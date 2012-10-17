@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_op_teacher_tree" model="ir.ui.view">
+			<field name="name">op.teacher.tree</field>
+			<field name="model">op.teacher</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Teacher">
+					<field name="title" />
+					<field name="name" />
+					<field name="middle_name" />
+					<field name="last_name" />
+					<field name="blood_group" />
+					<field name="category" />
+					<field name="emergency_contact" />
+					<field name="id_number" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_op_teacher_form" model="ir.ui.view">
+			<field name="name">op.teacher.form</field>
+			<field name="model">op.teacher</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Teacher">
+					<separator colspan="4" string="Basic Information" />
+					<group colspan="4" col="8">
+						<group col="8" colspan="4">
+							<group col="6" colspan="4">
+								<field name="name" />
+								<field name="middle_name" />
+								<field name="last_name" />
+								<field name="title" />
+								<field name="gender" />
+							</group>
+							<group colspan="1" col="1">
+								<field name="photo" widget='image' nolabel="1" />
+							</group>
+						</group>
+					</group>
+					<group colspan="4">
+						<separator colspan="4" string="Personal Information" />
+						<field name="birth_date" />
+						<field name="blood_group" />
+						<field name="nationality" />
+						<field name="language" />
+						<field name="religion" />
+						<field name="category" />
+					</group>
+					<group colspan="4">
+						<separator colspan="4" string="Other Information" />
+						<field name="id_number" />
+						<field name="library_card" />
+						<field name="pan_card" />
+						<field name="bank_acc_num" />
+						<field name="emergency_contact" />
+						<field name="visa_info" />
+					</group>
+					<field colspan="4" mode="tree,form" name="address" nolabel="1"
+						select="1" height="260">
+						<form string="Partner Contacts">
+							<group colspan="4" col="6">
+								<field name="name" string="Contact Name" />
+								<field domain="[('domain', '=', 'contact')]" name="title"
+									size="0" />
+								<field name="function" />
+							</group>
+							<newline />
+							<group colspan="2" col="4">
+								<separator string="Postal Address" colspan="4" col="4" />
+								<field name="type" string="Type" colspan="2" />
+								<field name="street" colspan="4" />
+								<field name="street2" colspan="4" />
+								<field name="zip" />
+								<field name="city" />
+								<field name="country_id" completion="1" />
+								<field name="state_id" />
+							</group>
+							<group colspan="2" col="2">
+								<separator string="Communication" colspan="2" col="2" />
+								<field name="phone" />
+								<field name="mobile" />
+								<field name="fax" />
+								<field name="email" widget="email" />
+							</group>
+						</form>
+						<tree string="Partner Contacts">
+							<field name="name" />
+							<field name="zip" />
+							<field name="city" />
+							<field name="country_id" />
+							<field name="phone" />
+							<field name="email" />
+						</tree>
+					</field>
+					<separator string="Library Detail" colspan="4" />
+					<field name="library_card_ids" colspan="4" nolabel="1" />
+					<!-- <field name="photo" /> -->
+				</form>
+			</field>
+		</record>
+
+		<record id="view_op_teacher_search" model="ir.ui.view">
+			<field name="name">op.teacher.search</field>
+			<field name="model">op.teacher</field>
+			<field name="type">search</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<search string="Teacher">
+					<field name="name" />
+					<field name="blood_group" />
+					<field name="category" />
+					<field name="id_number" />
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter string="Blood Group" domain="[]"
+							context="{'group_by':'blood_group'}" />
+						<filter string="Nationality" domain="[]"
+							context="{'group_by':'nationality'}" />
+						<filter string="Language" domain="[]" context="{'group_by':'language'}" />
+						<filter string="Category" domain="[]" context="{'group_by':'category'}" />
+						<filter string="Religion" domain="[]" context="{'group_by':'religion'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_open_op_teacher_view">
+			<field name="name">Teacher</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.teacher</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_op_teacher_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_teacher_view_form">
+			<field name="act_window_id" ref="act_open_op_teacher_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_teacher_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_teacher_view_tree">
+			<field name="act_window_id" ref="act_open_op_teacher_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_teacher_tree" />
+		</record>
+
+	</data>
+</openerp>

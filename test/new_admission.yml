@@ -1,0 +1,43 @@
+-
+  Create New Student Robin Singh
+-
+  !record {model: op.admission, id: op_stud_robin}:
+    name: Robin
+    middle_name: B
+    last_name: Singh
+    gender: m
+    birth_date: !eval time.strftime('1996-07-24')
+    application_date: !eval time.strftime('%Y-%m-%d')
+    admission_date: !eval time.strftime('%Y-%m-%d')
+    category_id: op_cat_jain
+    religion_id: op_rel_swami
+    course_id: op_cor_pg
+    standard_id: op_std_pg1
+    batch_id: op_batch_pg
+    division_id: op_div_e
+    fees: 1500.0
+    street: 'Mira Society'
+    street2: 'Ankur Road,Naranpura'
+    phone: 07927874567
+    mobile: 9712914226
+    email: 'robin@singh.com'
+    city: 'Ahmedabad'
+    zip: 380013
+    country_id: base.in
+    family_business: 'Agriculture'
+
+
+-
+  I create the Admission of Student Robin.
+-
+  !workflow {model: op.admission, action: confirm_in_progress, ref: op_stud_robin}
+
+-
+  I confirm the Admission of Student Robin.
+-
+  !workflow {model: op.admission, action: confirm_selection, ref: op_stud_robin}
+
+-
+  I am paying the fees of the confirm Admission of Student Robin.
+-
+  !workflow {model: op.admission, action: fee_paid, ref: op_stud_robin}

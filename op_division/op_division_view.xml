@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_op_division_tree" model="ir.ui.view">
+			<field name="name">op.division.tree</field>
+			<field name="model">op.division</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Division">
+					<field name="code" />
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_op_division_form" model="ir.ui.view">
+			<field name="name">op.division.form</field>
+			<field name="model">op.division</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Division">
+					<separator colspan="4" string="Division" />
+					<group colspan="4">
+						<field name="code" />
+						<field name="name" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_op_division_search" model="ir.ui.view">
+			<field name="name">op.division.search</field>
+			<field name="model">op.division</field>
+			<field name="type">search</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<search string="Division">
+					<field name="code" />
+					<field name="name" />
+					<newline />
+					<group expand="0" string="Group By...">
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_open_op_division_view">
+			<field name="name">Division</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.division</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_op_division_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_division_view_form">
+			<field name="act_window_id" ref="act_open_op_division_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_division_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_division_view_tree">
+			<field name="act_window_id" ref="act_open_op_division_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_division_tree" />
+		</record>
+
+
+	</data>
+</openerp>

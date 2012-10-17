@@ -1,0 +1,144 @@
+# -*- coding: utf-8 -*-
+#/#############################################################################
+#
+#    Tech-Receptives Solutions Pvt. Ltd.
+#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#/#############################################################################
+
+{
+    'name': 'OpenEduCate ERP',
+    'version': '1.0',
+    'category': 'Openerp Education',
+    "sequence": 3,
+    'complexity': "easy",
+    'description': """
+            This module provide overall education management system over OpenERP
+            Features includes managing
+                * Student
+                * Teacher
+                * Admission
+                * Course
+                * Batch
+                * Standard
+                * Books
+                * Library
+                * Lectures
+                * Exams
+                * Marksheet
+                * Result
+                * Transportation
+                * Hostel
+
+    """,
+    'author': 'Tech-Receptives Solution Pvt. Ltd.',
+    'website': 'http://www.techreceptives.com',
+    'images': [],
+    'depends': ['account',
+                'hr'],
+    'init_xml': [],
+    'update_xml': [
+        'security/op_security.xml',
+        'op_student/op_student_view.xml',
+        'op_standard/op_standard_view.xml',
+        'op_route/op_route_view.xml',
+        'op_teacher/op_teacher_view.xml',
+        'op_admission/op_admission_view.xml',
+        'op_admission/op_admission_sequence.xml',
+        'op_hostel_room/op_hostel_room_view.xml',
+        'op_attendance_register/op_attendance_register_view.xml',
+        'op_category/op_category_view.xml',
+        'op_attendance_sheet/op_attendance_sheet_view.xml',
+        'op_exam/op_exam_view.xml',
+        'op_publisher/op_publisher_view.xml',
+        'op_religion/op_religion_view.xml',
+        'op_attendance_line/op_attendance_line_view.xml',
+        'op_transportation/op_transportation_view.xml',
+        'op_book_movement/op_book_movement_view.xml',
+        'op_marksheet_register/op_marksheet_register_view.xml',
+        'op_classroom/op_classroom_view.xml',
+        'op_vehicle/op_vehicle_view.xml',
+        'op_hostel/op_hostel_view.xml',
+        'op_division/op_division_view.xml',
+        'op_exam_attendees/op_exam_attendees_view.xml',
+        'wizard/issue_book_view.xml',
+        'wizard/return_book_view.xml',
+        'op_book/op_book_view.xml',
+        'op_batch/op_batch_view.xml',
+        'op_marksheet_line/op_marksheet_line_view.xml',
+        'op_course/op_course_view.xml',
+        'op_subject/op_subject_view.xml',
+        'op_tag/op_tag_view.xml',
+        'op_result_line/op_result_line_view.xml',
+        'op_author/op_author_view.xml',
+        'op_exam_type/op_exam_type_view.xml',
+        'op_facility/op_facility_view.xml',
+        'op_roll_number/op_roll_number_view.xml',
+        'op_library/op_library_view.xml',
+        'op_timetable/op_timetable_view.xml',
+        'op_assignment/op_assignment_view.xml',
+        'op_assignment_sub_line/op_assignment_sub_line_view.xml',
+        'op_assignment_sub_history/op_assignment_sub_history_view.xml',
+        'op_achievement/op_achievement_view.xml',
+        'op_achievement_type/op_achievement_type_view.xml',
+        'wizard/generate_roll_number_view.xml',
+        'wizard/generate_time_table_view.xml',
+        'wizard/time_table_report.xml',
+        'wizard/op_all_student_wizard_view.xml',
+        'security/ir.model.access.csv',
+        'op_book_movement/wizard/returndate_view.xml',
+        'op_book_movement/wizard/reserve_book_view.xml',
+        'menu/openeducat_erp_menu.xml',
+        'report/report_menu.xml',
+        'menu/student_menu.xml',
+        'menu/teacher_menu.xml',
+        'menu/library_menu.xml',
+        'op_exam/op_exam_workflow.xml',
+        'op_admission/op_admission_workflow_view.xml',
+        'dashboard/librarian_dashboard_view.xml',
+        'dashboard/teacher_dashboard_view.xml',
+        'dashboard/student_dashboard_view.xml',
+    ],
+    'demo_xml': [
+                 'demo/op.category.csv',
+                 'demo/op.course.csv',
+                 'demo/op.subject.csv',
+                 'demo/op.batch.csv',
+                 'demo/op.standard.csv',
+                 'demo/op.religion.csv',
+                 'demo/op.tag.csv',
+                 'demo/op.book.csv',
+                 'demo/op.author.csv',
+                 'demo/op.division.csv',
+                 'demo/op.student.csv',
+                 'demo/op.teacher.csv',
+                 'demo/op.exam.type.csv',
+                 'demo/op.exam.csv',
+                 'demo/op.exam.attendees.csv',
+                 'demo/res.partner.address.csv',
+                 'demo/res.users.csv',
+                 'demo/res.groups.csv',
+                 'demo/op.period.csv',
+                 ],
+    'test': [
+             'test/configuration.yml',
+             'test/new_admission.yml'
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

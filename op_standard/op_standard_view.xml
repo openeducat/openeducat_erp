@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_op_standard_tree" model="ir.ui.view">
+			<field name="name">op.standard.tree</field>
+			<field name="model">op.standard</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Standard">
+					<field name="sequence" />
+					<field name="code" />
+					<field name="name" />
+					<field name="payment_term" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_op_standard_form" model="ir.ui.view">
+			<field name="name">op.standard.form</field>
+			<field name="model">op.standard</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Standard">
+					<separator colspan="4" string="Standard" />
+					<group colspan="4">
+						<field name="code" />
+						<field name="name" />
+					</group>
+					<field name="sequence" />
+					<field name="course_id" />
+					<field name="payment_term" />
+					<separator string="Division" colspan="4" />
+					<field name="division_ids" colspan="4" nolabel="1" />
+				</form>
+			</field>
+		</record>
+
+		<record id="view_op_standard_search" model="ir.ui.view">
+			<field name="name">op.standard.search</field>
+			<field name="model">op.standard</field>
+			<field name="type">search</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<search string="Standard">
+					<field name="code" />
+					<field name="name" />
+					<newline />
+					<group expand="0" string="Group By...">
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_open_op_standard_view">
+			<field name="name">Standard</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.standard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_op_standard_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_standard_view_form">
+			<field name="act_window_id" ref="act_open_op_standard_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_standard_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_standard_view_tree">
+			<field name="act_window_id" ref="act_open_op_standard_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_standard_tree" />
+		</record>
+
+	</data>
+</openerp>

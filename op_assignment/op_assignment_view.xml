@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_op_assignment_tree" model="ir.ui.view">
+			<field name="name">op.assignment.tree</field>
+			<field name="model">op.assignment</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Assignment">
+					<field name="name" />
+					<field name="course_id" />
+					<field name="standard_id" />
+					<field name="division_id" />
+					<field name="subject_id" />
+					<field name="teacher_id" />
+					<field name="marks" />
+					<field name="type" />
+					<field name="state" />
+					<field name="issued_date" />
+					<field name="submission_date" />
+					<field name="allocation_ids" />
+					<field name="assignment_sub_line" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_op_assignment_form" model="ir.ui.view">
+			<field name="name">op.assignment.form</field>
+			<field name="model">op.assignment</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml" >
+				<form string="Assignment">
+					<field name="name" />
+					<field name="course_id" />
+					<field name="standard_id" />
+					<field name="division_id" />
+					<field name="subject_id" />
+					<field name="teacher_id" />
+					<field name="marks" />
+					<field name="description" />
+					<field name="type" />
+					<field name="issued_date" />
+					<field name="submission_date" />
+					<separator string="Allocated To" colspan="4" />
+					<field name="allocation_ids" colspan="4" nolabel="1" />
+					<separator string="Submissions" colspan="4" />
+					
+					<field name="assignment_sub_line" colspan="4" nolabel="1">
+						<tree string="Submissions">
+							<field name="assignment_id" />
+							<field name="student_id" />
+							<field name="state" />
+							<field name="submission_date" />
+							<field name="note" />
+							<field name ="history_line" />
+						</tree>
+						
+						<group col="17" colspan="4">
+						<field name="state" widget="statusbar" statusbar_visible="d,p,f"
+							statusbar_colors='{"r":"red"}' />
+						<button name="act_publish" states="d" type="object"
+							string="Publish" icon="gtk-go-forward" />
+						<button name="act_finish" states="p" type="object"
+							string="Finish" icon="gtk-go-forward" />
+						
+					</group>
+						
+					</field>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_op_assignment_search" model="ir.ui.view">
+			<field name="name">op.assignment.search</field>
+			<field name="model">op.assignment</field>
+			<field name="type">search</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<search string="Assignment">
+					<field name="name" />
+					<field name="course_id" />
+					<field name="standard_id" />
+					<field name="division_id" />
+					<field name="subject_id" />
+					<field name="teacher_id" />
+					<field name="marks" />
+					<field name="description" />
+					<field name="type" />
+					<field name="state" />
+					<field name="issued_date" />
+					<field name="submission_date" />
+					<field name="allocation_ids" />
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
+						<filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
+						<filter string="Standard" domain="[]"
+							context="{'group_by':'standard_id'}" />
+						<filter string="Division" domain="[]"
+							context="{'group_by':'division_id'}" />
+						<filter string="Subject" domain="[]" context="{'group_by':'subject_id'}" />
+						<filter string="Teacher" domain="[]" context="{'group_by':'teacher_id'}" />
+						<filter string="Marks" domain="[]" context="{'group_by':'marks'}" />
+						<filter string="Type" domain="[]" context="{'group_by':'type'}" />
+						<filter string="State" domain="[]" context="{'group_by':'state'}" />
+						<filter string="Issued Date" domain="[]"
+							context="{'group_by':'issued_date'}" />
+						<filter string="Submission Date" domain="[]"
+							context="{'group_by':'submission_date'}" />
+						<filter string="Allocated To" domain="[]"
+							context="{'group_by':'allocation_ids'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_open_op_assignment_view">
+			<field name="name">Assignment</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.assignment</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_op_assignment_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_assignment_view_form">
+			<field name="act_window_id" ref="act_open_op_assignment_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_assignment_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_assignment_view_tree">
+			<field name="act_window_id" ref="act_open_op_assignment_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_assignment_tree" />
+		</record>
+
+	</data>
+</openerp>

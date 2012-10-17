@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_exam_tree" model="ir.ui.view">
+            <field name="name">op.exam.tree</field>
+            <field name="model">op.exam</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Exam">
+                    <field name="session_id"/>
+                    <field name="name" />
+                    <field name="subject_id" />
+                    <field name="division_id"/>
+                    <field name="exam_code" />
+                    <field name="exam_type" />
+                    <field name="evaluation_type" />
+                    <field name="venue" />
+                    <field name="start_time" />
+                    <field name="end_time" />
+                    <field name="state" />
+                    <field name="note" />
+                    <field name="total_marks"/>
+                    <field name="min_marks"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_exam_form" model="ir.ui.view">
+            <field name="name">op.exam.form</field>
+            <field name="model">op.exam</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Exam">
+                    <separator colspan="4" string="Exam" />
+                    <group col="4" colspan="4">
+                        <field name="session_id"/>
+                        <field name="name" />
+                        <field name="subject_id" />
+                        <field name="division_id"/>
+                        <field name="exam_code" />
+                        <field name="exam_type" />
+                        <field name="start_time" />
+                        <field name="end_time" />
+                        <field name="evaluation_type" />
+                        <field name="venue" />
+                        <newline/>
+                        <field name="total_marks"/>
+                        <field name="min_marks"/>
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="attendees_line" colspan="4" nolabel="1" />
+                        <field name="note" colspan="4" />
+                    </group>
+
+                    <group col="17" colspan="4">
+
+                        <field name="state" widget="statusbar" statusbar_visible="n,h,s,c"
+                            statusbar_colors='{"c":"red"}' />
+                        <button name="act_held" states="n" type="workflow" 
+                            string="Held Exam" icon="gtk-go-forward" />
+                        <button name="act_schedule" states="h" type="workflow"
+                            string="Schedule Exam" icon="gtk-go-forward" />
+                        <button name="act_cancel" states="n,h,s" type="workflow"
+                             string="Cancel" icon="gtk-go-forward" />
+                        <button name="act_new_exam" states="c" type="workflow" 
+                            string="New Exam" icon="gtk-convert" />
+                        
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_exam_search" model="ir.ui.view">
+            <field name="name">op.exam.search</field>
+            <field name="model">op.exam</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Exam">
+                    <field name="session_id"/>
+                    <field name="name" />
+                    <field name="subject_id" />
+                    <field name="exam_code" />
+                    <field name="division_id"/>
+                    <field name="exam_type" />
+                    <field name="evaluation_type" />
+                    <field name="venue" />
+                    <field name="start_time" />
+                    <field name="end_time" />
+                    <field name="state" />
+                    <field name="note" />
+                    <field name="total_marks"/>
+                    <field name="min_marks"/>
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
+                        <filter string="Batch" domain="[]" context="{'group_by':'batch_id'}" />
+                        <filter string="Subject" domain="[]" context="{'group_by':'subject_id'}" />
+                        <filter string="Standard" domain="[]"
+                            context="{'group_by':'standard_id'}" />
+                        <filter string="Exam Code" domain="[]"
+                            context="{'group_by':'exam_code'}" />
+                        <filter string="Exam Type" domain="[]"
+                            context="{'group_by':'exam_type'}" />
+                        <filter string="Evaluation Type" domain="[]"
+                            context="{'group_by':'evaluation_type'}" />
+                        <filter string="Venue" domain="[]" context="{'group_by':'venue'}" />
+                        <filter string="state" domain="[]" context="{'group_by':'state'}" />
+                        <filter string="Exam" domain="[]" context="{'group_by':'name'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_exam_view">
+            <field name="name">Exam</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.exam</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_exam_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_view_form">
+            <field name="act_window_id" ref="act_open_op_exam_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_exam_form" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_view_tree">
+            <field name="act_window_id" ref="act_open_op_exam_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_exam_tree" />
+        </record>
+
+        <record id="view_op_exam_session_tree" model="ir.ui.view">
+            <field name="name">op.exam.session.tree</field>
+            <field name="model">op.exam.session</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <tree string="exam Session">
+                <field name="name"/>
+                <field name="exam_code"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="course_id"/>
+                <field name="batch_id"/>
+                <field name="standard_id"/>
+                <field name="division_id"/>
+            </tree>
+            </field>
+        </record>
+        
+        <record id="view_op_exam_session_form" model="ir.ui.view">
+            <field name="name">op.exam.session.form</field>
+            <field name="model">op.exam.session</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <form string="exam Session">
+                <field name="name" select="1"/>
+                <field name="exam_code"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="course_id"/>
+                <field name="batch_id"/>
+                <field name="standard_id"/>
+                <field name="division_id"/>
+                <field name="exam_ids" colspan="4" nolabel="1"/>
+            </form>
+            </field>
+        </record>
+        
+        <record id="view_op_exam_session_search" model="ir.ui.view">
+            <field name="name">op.exam.session.search</field>
+            <field name="model">op.exam.session</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <search string="exam Session">
+                <field name="name" select="True"/>
+                <field name="exam_code" select="True"/>
+                <field name="start_time" select="True"/>
+                <field name="end_time" select="True"/>
+                <field name="course_id" select="True"/>
+                <field name="batch_id" select="True"/>
+                <field name="standard_id" select="True"/>
+                <field name="division_id" select="True"/>
+            </search>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="act_open_op_exam_session_view">
+            <field name="name">Exam Session</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.exam.session</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_exam_session_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_session_view_form">
+            <field name="act_window_id" ref="act_open_op_exam_session_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_exam_session_form"/>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_session_view_tree">
+            <field name="act_window_id" ref="act_open_op_exam_session_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_exam_session_tree"/>
+        </record>
+        
+
+    </data>
+</openerp>

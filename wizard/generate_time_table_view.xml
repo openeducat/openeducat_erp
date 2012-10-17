@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_gen_time_table_line_tree" model="ir.ui.view">
+			<field name="name">gen.time.table.line.tree</field>
+			<field name="model">gen.time.table.line</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="TimeTable Line" editable="top">
+					<field name="day" />
+					<field name="period_id" />
+					<field name="teacher_id" />
+					<field name="subject_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_gen_time_table_line_form" model="ir.ui.view">
+			<field name="name">gen.time.table.line.form</field>
+			<field name="model">gen.time.table.line</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Table Line">
+					<field name="day" />
+					<field name="period_id" />
+					<field name="teacher_id" />
+					<field name="subject_id" />
+				</form>
+			</field>
+		</record>
+
+		<record id="view_generate_time_table_form" model="ir.ui.view">
+			<field name="name">generate.time.table.form</field>
+			<field name="model">generate.time.table</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Time Table">
+					<field name="standard_id" />
+					<field name="division_id" />
+					<field name="start_date" />
+					<field name="end_date" />
+					<field name="time_table_lines" colspan="4" nolabel="1" />
+					<group colspan="4">
+						<button special="cancel" string="Close" type="object"
+							icon="terp-dialog-close" />
+						<button string="Generate time Table" type="object"
+							name="act_gen_time_table" />
+					</group>
+
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_open_generate_time_table_view">
+			<field name="name">Generate Time Table</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">generate.time.table</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_generate_time_table_view_form">
+			<field name="act_window_id" ref="act_open_generate_time_table_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_generate_time_table_form" />
+		</record>
+
+
+	</data>
+</openerp>

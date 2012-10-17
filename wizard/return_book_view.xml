@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="return_book_form">
+			<field name="name">return.book.form</field>
+			<field name="model">return.book</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Book Return">
+					<separator string="Book Return" colspan="4" />
+					<field name="book_id" />
+					<field name="actual_return_date" />
+					<separator colspan="4" />
+					<group colspan="4">
+						<button string="_Cancel" icon="gtk-cancel" special="cancel" />
+						<button name="do_return" type="object" string="OK" icon="gtk-ok" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="return_book_act">
+			<field name="name">Return Book</field>
+			<field name="res_model">return.book</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="return_book_form" />
+			<field name="context">{'default_book_id': context.get('book_id',False)}</field>
+			<field name="target">new</field>
+		</record>
+
+	</data>
+</openerp>

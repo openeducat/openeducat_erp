@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_op_religion_tree" model="ir.ui.view">
+			<field name="name">op.religion.tree</field>
+			<field name="model">op.religion</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Religion">
+					<field name="name" />
+					<field name="code" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_op_religion_form" model="ir.ui.view">
+			<field name="name">op.religion.form</field>
+			<field name="model">op.religion</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Religion">
+					<separator colspan="4" string="Religion Detail" />
+					<group col="4" colspan="4">
+						<field name="name" />
+						<field name="code" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_op_religion_search" model="ir.ui.view">
+			<field name="name">op.religion.search</field>
+			<field name="model">op.religion</field>
+			<field name="type">search</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<search string="Religion">
+					<field name="name" />
+					<field name="code" />
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
+						<filter string="Code" domain="[]" context="{'group_by':'code'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_open_op_religion_view">
+			<field name="name">Religion</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.religion</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_op_religion_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_religion_view_form">
+			<field name="act_window_id" ref="act_open_op_religion_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_religion_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_religion_view_tree">
+			<field name="act_window_id" ref="act_open_op_religion_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_religion_tree" />
+		</record>
+
+	</data>
+</openerp>

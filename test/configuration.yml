@@ -1,0 +1,48 @@
+-
+  Create New Category
+-
+  !record {model: op.category, id: op_cat_jain}:
+    name: 'Jain' 
+    code: 'jain'
+
+-
+  Create New Religion
+-
+  !record {model: op.religion, id: op_rel_swami}:
+    name: 'Swaminarayan' 
+    code: 'swami'
+
+-
+  Create New Course
+-
+  !record {model: op.course, id: op_cor_pg}:
+    name: 'PGDBM' 
+    code: 'pgdbm'
+    evaluation_type: GPA
+    section: 'I'
+
+-
+  Create New Standard
+-
+  !record {model: op.standard, id: op_std_pg1}:
+    name: 'PGDBM-Sem 1' 
+    code: 'pgdbmsem1'
+    sequence: 19
+    course_id: op_cor_pg
+
+-
+  Create New Batch
+-
+  !record {model: op.batch, id: op_batch_pg}:
+    name: 'PGDBM 2012-2013' 
+    code: 'pgdbm12'
+    start_date: !eval time.strftime('%Y-%m-07')
+    end_date: !eval time.strftime('2013-%m-07') 
+    course_id: op_cor_pg
+
+-
+  Create New Division
+-
+  !record {model: op.division, id: op_div_e}:
+    name: 'E' 
+    code: 'e'

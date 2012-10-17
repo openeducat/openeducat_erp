@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_op_book_movement_tree" model="ir.ui.view">
+			<field name="name">op.book.movement.tree</field>
+			<field name="model">op.book.movement</field>
+			<field name="type">tree</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Book Movement">
+					<field name="book_id" />
+					<field name="student_id" />
+					<field name="library_card_id" />
+					<field name="issued_date" />
+					<field name="return_date" />
+					<field name="actual_return_date" />
+					<field name="penalty" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_op_book_movement_form" model="ir.ui.view">
+			<field name="name">op.book.movement.form</field>
+			<field name="model">op.book.movement</field>
+			<field name="type">form</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Book Movement">
+					<separator colspan="4" string="Book Movement Detail" />
+					<group colspan="4">
+						<field name="book_id" />
+						<field name="student_id" />
+						<field name="library_card_id" />
+						<field name="issued_date" />
+						<field name="return_date" />
+						<field name="actual_return_date" />
+						<field name="penalty" />
+					</group>
+					<separator string="Book Status" colspan="4" />
+					<newline />
+					<field name="state" colspan="4" />
+					<separator colspan="4" string="Book Issue/Return" />
+					<group colspan="4">
+						<button name="issue_book" string="Issue Book" type="object"
+							icon="gtk-go-forward" />
+						<button name="return_book" string="Return Book" type="object"
+							icon="gtk-go-back" />
+					</group>
+					<separator colspan="4" string="Book Reservation Detail" />
+					<group colspan="4" col="6">
+						<field name="partner_id" />
+						<field name="reserver_name" />
+						<button name="do_book_reservation" string="Reserve Book"
+							type="object" icon="gtk-go-back" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_op_book_movement_search" model="ir.ui.view">
+			<field name="name">op.book.movement.search</field>
+			<field name="model">op.book.movement</field>
+			<field name="type">search</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<search string="Book Movement">
+					<field name="book_id" />
+					<field name="student_id" />
+					<field name="library_card_id" />
+					<field name="issued_date" />
+					<field name="return_date" />
+					<field name="actual_return_date" />
+					<field name="status" />
+					<field name="penalty" />
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter string="Book" domain="[]" context="{'group_by':'book_id'}" />
+						<filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
+						<filter string="Library Card" domain="[]"
+							context="{'group_by':'library_card_id'}" />
+						<filter string="Issued Date" domain="[]"
+							context="{'group_by':'issued_date'}" />
+						<filter string="Return Date" domain="[]"
+							context="{'group_by':'return_date'}" />
+						<filter string="Actual Return Date" domain="[]"
+							context="{'group_by':'actual_return_date'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="act_open_op_book_movement_view">
+			<field name="name">Book Movement</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.book.movement</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_op_book_movement_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_book_movement_view_form">
+			<field name="act_window_id" ref="act_open_op_book_movement_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_book_movement_form" />
+		</record>
+
+		<record model="ir.actions.act_window.view" id="act_open_op_book_movement_view_tree">
+			<field name="act_window_id" ref="act_open_op_book_movement_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_book_movement_tree" />
+		</record>
+
+	</data>
+</openerp>
