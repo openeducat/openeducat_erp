@@ -31,98 +31,106 @@
 			<field name="type">form</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Student">
+				<form string="Student" version="7.0">
+					<field name="photo" widget="image" class="oe_left oe_avatar" />
+					<div class="oe_title">
+						<h1>
+							<field name="title" placeholder="Title" style="width: 20%%" />
+							<field name="name" placeholder="First Name" style="width: 20%%" />
+							<field name="middle_name" placeholder="Middle Name" style="width: 10%%" />
+							<field name="last_name" placeholder="Last Name" style="width: 20%%" />
+						</h1>
+					</div>
 					<separator colspan="4" string="Basic Information" />
 					<group col="8" colspan="4">
 						<group col="6" colspan="4">
-							<field name="name" />
-							<field name="middle_name" />
-							<field name="last_name" />
 							<field name="gender" />
-							<field name="title" />
 							<field name="birth_date" />
 							<field name="id_number" />
 							<field name="roll_number" />
 						</group>
-						<group col="1" colspan="1">
-							<field name="photo" widget='image' nolabel="1" />
-						</group>
 					</group>
-
-					<separator colspan="4" string="Personal Detail" />
-					<group col="4" colspan="4">
-						<field name="category" />
-						<field name="religion" />
-						<field name="nationality" />
-						<field name="language" />
-						<field name="blood_group" />
-						<field name="pan_card" />
-						<field name="bank_acc_num" />
-						<field name="visa_info" />
-						<field name="emergency_contact" />
-					</group>
-
-					<separator colspan="4" string="Educational Detail" />
-					<group col="4" colspan="4">
-						<field name="course_id" />
-						<field name="standard_id" />
-						<field name="batch_id" />
-						<field name="division_id" />
-						<field name="roll_number_line" colspan="4" nolabel="1"
-							context="{'default_course_id':course_id,
+					<notebook colspan="4">
+						<page string="Details">
+							<separator colspan="4" string="Personal Detail" />
+							<group col="4" colspan="4">
+								<field name="category" />
+								<field name="religion" />
+								<field name="nationality" />
+								<field name="language" />
+								<field name="blood_group" />
+								<field name="pan_card" />
+								<field name="bank_acc_num" />
+								<field name="visa_info" />
+								<field name="emergency_contact" />
+							</group>
+						</page>
+						<page string="Educational">
+							<separator colspan="4" string="Educational Detail" />
+							<group col="4" colspan="4">
+								<field name="course_id" />
+								<field name="standard_id" />
+								<field name="batch_id" />
+								<field name="division_id" />
+								<field colspan="4" name="address" nolabel="1" select="1"
+									height="260">
+									<form string="Partner Contacts">
+										<group colspan="4" col="6">
+											<field name="name" string="Contact Name" />
+											<field domain="[('domain', '=', 'contact')]" name="title"
+												size="0" />
+											<field name="function" />
+										</group>
+										<newline />
+										<group colspan="2" col="4">
+											<separator string="Postal Address" colspan="4" col="4" />
+											<field name="type" string="Type" colspan="2" />
+											<field name="street" colspan="4" />
+											<field name="street2" colspan="4" />
+											<field name="zip" />
+											<field name="city" />
+											<field name="country_id" completion="1" />
+											<field name="state_id" />
+										</group>
+										<group colspan="2" col="2">
+											<separator string="Communication" colspan="2" col="2" />
+											<field name="phone" />
+											<field name="mobile" />
+											<field name="fax" />
+											<field name="email" widget="email" />
+										</group>
+									</form>
+									<tree string="Partner Contacts">
+										<field name="name" />
+										<field name="zip" />
+										<field name="city" />
+										<field name="country_id" />
+										<field name="phone" />
+										<field name="email" />
+									</tree>
+								</field>
+								<field name="roll_number_line" colspan="4" nolabel="1"
+									context="{'default_course_id':course_id,
                                      'default_batch_id':batch_id,
                                      'default_standard_id':standard_id,
-                                     'default_division_id':division_id}">
+                                     'default_division_id':division_id}" />
 
-						</field>
 
-						<field colspan="4" name="address" nolabel="1" select="1"
-							height="260">
-							<form string="Partner Contacts">
-								<group colspan="4" col="6">
-									<field name="name" string="Contact Name" />
-									<field domain="[('domain', '=', 'contact')]" name="title"
-										size="0" />
-									<field name="function" />
-								</group>
-								<newline />
-								<group colspan="2" col="4">
-									<separator string="Postal Address" colspan="4" col="4" />
-									<field name="type" string="Type" colspan="2" />
-									<field name="street" colspan="4" />
-									<field name="street2" colspan="4" />
-									<field name="zip" />
-									<field name="city" />
-									<field name="country_id" completion="1" />
-									<field name="state_id" />
-								</group>
-								<group colspan="2" col="2">
-									<separator string="Communication" colspan="2" col="2" />
-									<field name="phone" />
-									<field name="mobile" />
-									<field name="fax" />
-									<field name="email" widget="email" />
-								</group>
-							</form>
-							<tree string="Partner Contacts">
-								<field name="name" />
-								<field name="zip" />
-								<field name="city" />
-								<field name="country_id" />
-								<field name="phone" />
-								<field name="email" />
-							</tree>
-						</field>
-					</group>
-					<separator string="Assignment" colspan="4" />
-					<field name="allocation_ids" colspan="4" nolabel="1" />
-					
-					<separator string="Library Detail" colspan="4" />
-					<field name="library_card_ids" colspan="4" nolabel="1" />
-					<group colspan="4">
-						<button name="create_invoice" string="Create Invoice" type="object"
-							icon="gtk-apply" />
-					</group>
+							</group>
+						</page>
+						<page string="Assignments">
+							<separator string="Assignment" colspan="4" />
+							<field name="allocation_ids" colspan="4" nolabel="1" />
+						</page>
+						<page string="Library">
+							<separator string="Library Detail" colspan="4" />
+							<field name="library_card_ids" colspan="4" nolabel="1" />
+						</page>
+						<!-- <group colspan="4"> -->
+						<!-- <button name="create_invoice" string="Create Invoice" -->
+						<!-- type="object" icon="gtk-apply" /> -->
+						<!-- </group> -->
+					</notebook>
 				</form>
 			</field>
 		</record>

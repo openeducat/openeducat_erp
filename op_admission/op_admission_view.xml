@@ -31,23 +31,43 @@
 			<field name="type">form</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Admission">
+				<form string="Admission" version="7.0">
+					<header>
+						<span groups="base.group_user">
+							<field name="state" widget="statusbar" statusbar_visible="d,i,s"
+								statusbar_colors='{"r":"red"}' />
+							<button name="confirm_in_progress" states="d" type="workflow"
+								string="Confirm" icon="gtk-go-forward" />
+							<button name="confirm_selection" states="i" type="workflow"
+								string="Enroll" icon="gtk-go-forward" />
+							<button name="fee_paid" states="s" type="workflow" string="Pay Fee"
+								icon="gtk-go-forward" />
+							<button name="confirm_rejected" states="d,i,s,p" string="Reject"
+								type="workflow" icon="gtk-cancel" />
+							<button name="confirm_pending" states="i,s" string="Pending"
+								type="workflow" icon="gtk-cancel" />
+							<button name="confirm_cancel" states="d,i,s" string="Cancel"
+								type="workflow" icon="gtk-cancel" />
+							<button name="confirm_to_draft" states="c,p,r" string="Set to Draft"
+								type="object" icon="gtk-convert" />
+						</span>
+					</header>
+					<field name="photo" widget="image" class="oe_left oe_avatar" />
+					<div class="oe_title">
+						<h1>
+							<field name="title" placeholder="Title" style="width: 20%%" />
+							<field name="name" placeholder="First Name" style="width: 20%%" />
+							<field name="middle_name" placeholder="Middle Name" style="width: 10%%" />
+							<field name="last_name" placeholder="Last Name" style="width: 20%%" />
+						</h1>
+					</div>
 					<separator colspan="4" string="Basic Information" />
 					<group col="8" colspan="4">
 						<group col="6" colspan="4">
-							<field name="name" />
-							<field name="middle_name" />
-							<field name="last_name" />
 							<field name="gender" />
-							<field name="title" />
 							<field name="birth_date" />
 						</group>
-						<group col="1" colspan="1">
-							<field name="photo" widget='image' nolabel="1" />
-						</group>
 					</group>
-
-
 					<separator colspan="4" string="Addmision Detail" />
 					<group col="4" colspan="4">
 						<field name="application_number" />
@@ -66,42 +86,28 @@
 						<field name="prev_course" />
 						<field name="prev_result" />
 					</group>
-					<separator colspan="4" string="Personal Detail" />
-					<group col="4" colspan="4">
-						<field name="street" />
+					<separator colspan="4" col="4" string="Personal Detail" />
+					<label for="street" string="Address" />
+					<div>
+						<field name="street" placeholder="Street..." />
 						<field name="street2" />
-						<field name="phone" />
-						<field name="mobile" />
-						<field name="email" />
-						<field name="city" />
-						<field name="zip" />
-						<field name="state_id" />
-						<field name="country_id" />
+						<div class="address_format">
+							<field name="city" placeholder="City" style="width: 40%%" />
+							<field name="state_id" options='{"no_open": True}'
+								placeholder="State" style="width: 24%%" />
+							<field name="zip" placeholder="ZIP" style="width: 34%%" />
+						</div>
+						<field name="country_id" placeholder="Country" options='{"no_open": True}' />
+						<field name="phone" placeholder="Phone" />
+						<field name="mobile" placeholder="Mobile" />
+						<field name="email" placeholder="Email" />
+					</div>
+					<group col="4" colspan="4">
 						<field name="religion_id" />
 						<field name="family_business" />
 						<field name="family_income" />
 					</group>
 
-					<separator colspan="4" />
-
-					<group col="17" colspan="4">
-						<field name="state" widget="statusbar" statusbar_visible="d,i,s"
-							statusbar_colors='{"r":"red"}' />
-						<button name="confirm_in_progress" states="d" type="workflow"
-							string="Confirm Selection" icon="gtk-go-forward" />
-						<button name="confirm_selection" states="i" type="workflow"
-							string="Confirm Enrollment" icon="gtk-go-forward" />
-						<button name="fee_paid" states="s" type="workflow" string="Pay Fee"
-							icon="gtk-go-forward" />
-						<button name="confirm_rejected" states="d,i,s,p" string="Reject"
-							type="workflow" icon="gtk-cancel" />
-						<button name="confirm_pending" states="i,s" string="Pending"
-							type="workflow" icon="gtk-cancel" />
-						<button name="confirm_cancel" states="d,i,s" string="Cancel"
-							type="workflow" icon="gtk-cancel" />
-						<button name="confirm_to_draft" states="c,p,r" string="Set to Draft"
-							type="object" icon="gtk-convert" />
-					</group>
 				</form>
 			</field>
 		</record>
