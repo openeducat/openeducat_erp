@@ -42,6 +42,9 @@ class op_teacher(osv.osv):
             'visa_info': fields.char(size=64, string='Visa Info'),
             'id_number': fields.char(size=64, string='ID Card Number'),
             'photo': fields.binary(string='Photo'),
+            'login': fields.related('user_id', 'login', type='char', string='Login', readonly=1),
+            'last_login': fields.related('user_id', 'date', type='datetime', string='Latest Connection', readonly=1),
+            'timetable_ids':fields.one2many('op.timetable','teacher_id','Time table'),
     }
 
 op_teacher()
