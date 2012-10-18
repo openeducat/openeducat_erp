@@ -28,7 +28,7 @@ class op_assignment_sub_history(osv.osv):
             'description': fields.text(string='Description'),
             'state': fields.selection([('d','Draft'),('s','Submitted'),('a','Accepted'),('r','Rejected'),('c','Change Req.')], string='State'),
             'change_date': fields.datetime(string='Submission Date'),
-            'teacher_id': fields.many2one('op.teacher','Teacher'),
+            'faculty_id': fields.many2one('op.faculty','Faculty'),
     }
     
 op_assignment_sub_history()

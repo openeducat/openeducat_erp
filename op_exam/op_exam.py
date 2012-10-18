@@ -54,7 +54,7 @@ class op_exam(osv.osv):
             'end_time': fields.datetime(string='End Time', required=True),
             'state': fields.selection([('n','New Exam'),('h','Held'),('s','Scheduled'),('c','Cancelled')], string='State', select=True, readonly=True),
             'note': fields.text(string='Note'),
-            'responsible_id': fields.many2many('op.teacher', 'exam_teacher_rel', 'op_exam_id', 'op_teacher_id', string='Responsible'),
+            'responsible_id': fields.many2many('op.faculty', 'exam_faculty_rel', 'op_exam_id', 'op_faculty_id', string='Responsible'),
             'name': fields.char(size=256, string='Exam', required=True),
             'total_marks':fields.float('Total Marks'),
             'min_marks':fields.float('Passing Marks'),

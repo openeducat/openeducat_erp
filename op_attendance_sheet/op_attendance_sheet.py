@@ -29,7 +29,7 @@ class op_attendance_sheet(osv.osv):
             'attendance_line': fields.one2many('op.attendance.line', 'attendance_id', string='Attendance Line', required=True),
             'total_present': fields.integer(string='Total Present', required=True),
             'total_absent': fields.integer(string='Total Absent', required=True),
-            'teacher_id': fields.many2one('op.teacher', string='Teacher'),
+            'faculty_id': fields.many2one('op.faculty', string='Faculty'),
             'name': fields.char(size=8, string='Name'),
     }
     

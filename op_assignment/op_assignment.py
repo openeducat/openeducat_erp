@@ -29,7 +29,7 @@ class op_assignment(osv.osv):
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
             'division_id': fields.many2one('op.division', string='Division'),
             'subject_id': fields.many2one('op.subject', string='Subject', required=True),
-            'teacher_id': fields.many2one('op.teacher', string='Teacher', required=True),
+            'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True),
             'marks': fields.float(string='Marks'),
             'description': fields.text(string='Description', required=True),
             'type': fields.many2one('op.exam.type', string='Type', required=True),

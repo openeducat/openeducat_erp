@@ -45,13 +45,13 @@ op_period()
 class op_timetable(osv.osv):
     _name = 'op.timetable'
     _description = 'Time Table'
-    _rec_name = 'teacher_id'
+    _rec_name = 'faculty_id'
 
     _columns = {
         'period_id': fields.many2one('op.period', 'Period', ),
         'start_datetime':fields.datetime('Start'),
         'end_datetime':fields.datetime('End'),
-        'teacher_id': fields.many2one('op.teacher', 'Teacher', ),
+        'faculty_id': fields.many2one('op.faculty', 'Faculty', ),
         'standard_id': fields.many2one('op.standard', 'Standard', ),
         'division_id': fields.many2one('op.division', 'Division', ),
         'subject_id': fields.many2one('op.subject', 'Subject', ),

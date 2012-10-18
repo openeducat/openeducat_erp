@@ -20,7 +20,7 @@
 #/#############################################################################
 import op_standard
 import op_route
-import op_teacher
+import op_faculty
 import op_admission
 import op_hostel_room
 import op_attendance_register

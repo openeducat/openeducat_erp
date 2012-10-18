@@ -29,7 +29,7 @@
             This module provide overall education management system over OpenERP
             Features includes managing
                 * Student
-                * Teacher
+                * Faculty
                 * Admission
                 * Course
                 * Batch
@@ -55,7 +55,7 @@
         'op_student/op_student_view.xml',
         'op_standard/op_standard_view.xml',
         'op_route/op_route_view.xml',
-        'op_teacher/op_teacher_view.xml',
+        'op_faculty/op_faculty_view.xml',
         'op_admission/op_admission_view.xml',
         'op_admission/op_admission_sequence.xml',
         'op_hostel_room/op_hostel_room_view.xml',
@@ -104,12 +104,12 @@
         'menu/openeducat_erp_menu.xml',
         'report/report_menu.xml',
         'menu/student_menu.xml',
-        'menu/teacher_menu.xml',
+        'menu/faculty_menu.xml',
         'menu/library_menu.xml',
         'op_exam/op_exam_workflow.xml',
         'op_admission/op_admission_workflow_view.xml',
         'dashboard/librarian_dashboard_view.xml',
-        'dashboard/teacher_dashboard_view.xml',
+        'dashboard/faculty_dashboard_view.xml',
         'dashboard/student_dashboard_view.xml',
     ],
     'demo_xml': [
@@ -124,7 +124,7 @@
                  'demo/op.author.csv',
                  'demo/op.division.csv',
                  'demo/op.student.csv',
-                 'demo/op.teacher.csv',
+                 'demo/op.faculty.csv',
                  'demo/op.exam.type.csv',
                  'demo/op.exam.csv',
                  'demo/op.exam.attendees.csv',

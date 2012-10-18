@@ -67,7 +67,7 @@ class generate_time_table(osv.osv_memory):
             cu_en_date = curr_date + end_time
             print "+++++++++++",cu_en_date
             time_pool.create(cr, uid, {
-                        'teacher_id':line.teacher_id.id,
+                        'faculty_id':line.faculty_id.id,
                         'subject_id':line.subject_id.id,
                         'standard_id':self_obj.standard_id.id,
                         'period_id':line.period_id.id,
@@ -104,7 +104,7 @@ class generate_time_table_line(osv.osv_memory):
 
     _columns = {
         'gen_time_table': fields.many2one('generate.time.table', 'Time Table', required=True ),
-        'teacher_id': fields.many2one('op.teacher', 'Teacher', required=True ),
+        'faculty_id': fields.many2one('op.faculty', 'Faculty', required=True ),
         'subject_id': fields.many2one('op.subject', 'Subject', required=True ),
         'day':fields.selection([
                     ('1','Monday'),
