@@ -47,27 +47,26 @@
 								string="New Exam" icon="gtk-convert" />
 						</span>
 					</header>
-					<separator colspan="4" string="Exam" />
-					<group col="4" colspan="4">
-						<field name="session_id" />
-						<field name="name" />
-						<field name="subject_id" />
-						<field name="division_id" />
-						<field name="exam_code" />
-						<field name="exam_type" />
-						<field name="start_time" />
-						<field name="end_time" />
-						<field name="evaluation_type" />
-						<field name="venue" />
-						<newline />
-						<field name="total_marks" />
-						<field name="min_marks" />
-					</group>
-					<group col="4" colspan="4">
-						<field name="attendees_line" colspan="4" nolabel="1" />
-						<field name="note" colspan="4" />
-					</group>
-
+					<sheet>
+					    <group col="4" colspan="4">
+						    <field name="session_id" />
+						    <field name="name" />
+						    <field name="subject_id" />
+						    <field name="division_id" />
+						    <field name="exam_code" />
+						    <field name="exam_type" />
+						    <field name="start_time" />
+						    <field name="end_time" />
+						    <field name="evaluation_type" />
+						    <field name="venue" />
+						    <newline />
+						    <field name="total_marks" />
+						    <field name="min_marks" />
+					    </group>
+					    <field name="attendees_line" colspan="4" nolabel="1" />
+					    <separator colspan="4" string="Discription" />
+					    <field name="note" colspan="4" />
+                    </sheet>
 				</form>
 			</field>
 		</record>
@@ -164,16 +163,34 @@
 			<field name="type">form</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="exam Session">
-					<field name="name" select="1" />
-					<field name="exam_code" />
-					<field name="start_time" />
-					<field name="end_time" />
-					<field name="course_id" />
-					<field name="batch_id" />
-					<field name="standard_id" />
-					<field name="division_id" />
-					<field name="exam_ids" colspan="4" nolabel="1" />
+				<form string="exam Session" version="7.0">
+				    <sheet>
+				        <group col="4" colspan="4">
+					        <field name="name" select="1" />
+					        <field name="exam_code" />
+					        <field name="start_time" />
+					        <field name="end_time" />
+					        <field name="course_id" />
+					        <field name="batch_id" />
+					        <field name="standard_id" />
+					        <field name="division_id" />
+					        <field name="exam_ids" colspan="4" nolabel="1" >
+				                <tree string="Exam">
+					                <field name="name" />
+					                <field name="subject_id" />
+					                <field name="division_id" />
+					                <field name="exam_code" />
+					                <field name="exam_type" />
+					                <field name="evaluation_type" />
+					                <field name="start_time" />
+					                <field name="end_time" />
+					                <field name="state" />
+					                <field name="total_marks" />
+					                <field name="min_marks" />
+				                </tree>
+					        </field>
+					     </group>
+					</sheet>
 				</form>
 			</field>
 		</record>

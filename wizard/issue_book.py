@@ -40,6 +40,7 @@ class issue_book(osv.osv_memory):
     def do_issue(self, cr, uid, ids, context={}):
         value = {}
         book_movement = self.pool.get("op.book.movement")
+        book = self.pool.get("op.book")
         for this_obj in self.browse(cr, uid, ids):
             if this_obj.book_id.status and this_obj.book_id.status == 'a':
                 book_movement_create = {
@@ -51,6 +52,8 @@ class issue_book(osv.osv_memory):
                                         'state': 'I',
                                         }
                 book_move_id = book_movement.create(cr, uid, book_movement_create,context)
+                abc = book.write(cr, uid, this_obj.book_id.id, {'status': 'I'})
+                
                 value = {'type': 'ir.actions.act_window_close'}
             else:
                 book_state = this_obj.book_id.status == 'I' and 'Issued' or \

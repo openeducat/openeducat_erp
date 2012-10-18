@@ -39,20 +39,55 @@
 							<field name="title" placeholder="Title" style="width: 30%%" />
 						</h1>
 						<h1>
-							<field name="name" placeholder="First Name" style="width: 40%%" />
+							<field name="name" placeholder="First Name" style="width: 30%%" />
 							<field name="middle_name" placeholder="Middle Name" style="width: 10%%" />
 							<field name="last_name" placeholder="Last Name" style="width: 20%%" />
 						</h1>
 					</div>
 					<separator colspan="4" string="Basic Information" />
-					<group col="8" colspan="4">
 						<group col="6" colspan="4">
 							<field name="gender" />
 							<field name="birth_date" />
 							<field name="id_number" />
 							<field name="roll_number" />
 						</group>
-					</group>
+						<field colspan="4" name="address" nolabel="1" select="1"
+									height="260">
+							<form string="Partner Contacts">
+								<group colspan="4" col="6">
+									<field name="name" string="Contact Name" />
+									<field domain="[('domain', '=', 'contact')]" name="title"
+										size="0" />
+									<field name="function" />
+								</group>
+								<newline />
+								<group colspan="2" col="4">
+									<separator string="Postal Address" colspan="4" col="4" />
+									<field name="type" string="Type" colspan="2" />
+									<field name="street" colspan="4" />
+									<field name="street2" colspan="4" />
+									<field name="zip" />
+									<field name="city" />
+									<field name="country_id" completion="1" />
+									<field name="state_id" />
+								</group>
+								<group colspan="2" col="2">
+									<separator string="Communication" colspan="2" col="2" />
+									<field name="phone" />
+									<field name="mobile" />
+									<field name="fax" />
+									<field name="email" widget="email" />
+								</group>
+							</form>
+							<tree string="Partner Contacts">
+								<field name="name" />
+								<field name="zip" />
+								<field name="city" />
+								<field name="country_id" />
+								<field name="phone" />
+								<field name="email" />
+							</tree>
+						</field>
 					<notebook colspan="4">
 						<page string="Details">
 							<separator colspan="4" string="Personal Detail" />
@@ -75,43 +110,7 @@
 								<field name="standard_id" />
 								<field name="batch_id" />
 								<field name="division_id" />
-								<field colspan="4" name="address" nolabel="1" select="1"
-									height="260">
-									<form string="Partner Contacts">
-										<group colspan="4" col="6">
-											<field name="name" string="Contact Name" />
-											<field domain="[('domain', '=', 'contact')]" name="title"
-												size="0" />
-											<field name="function" />
-										</group>
-										<newline />
-										<group colspan="2" col="4">
-											<separator string="Postal Address" colspan="4" col="4" />
-											<field name="type" string="Type" colspan="2" />
-											<field name="street" colspan="4" />
-											<field name="street2" colspan="4" />
-											<field name="zip" />
-											<field name="city" />
-											<field name="country_id" completion="1" />
-											<field name="state_id" />
-										</group>
-										<group colspan="2" col="2">
-											<separator string="Communication" colspan="2" col="2" />
-											<field name="phone" />
-											<field name="mobile" />
-											<field name="fax" />
-											<field name="email" widget="email" />
-										</group>
-									</form>
-									<tree string="Partner Contacts">
-										<field name="name" />
-										<field name="zip" />
-										<field name="city" />
-										<field name="country_id" />
-										<field name="phone" />
-										<field name="email" />
-									</tree>
-								</field>
+								
 								<field name="roll_number_line" colspan="4" nolabel="1"
 									context="{'default_course_id':course_id,
                                      'default_batch_id':batch_id,

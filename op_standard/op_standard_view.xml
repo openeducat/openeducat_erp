@@ -22,17 +22,21 @@
 			<field name="type">form</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Standard">
+				<form string="Standard" version="7.0">
+				  <sheet>
+				    
 					<separator colspan="4" string="Standard" />
-					<group colspan="4">
-						<field name="code" />
-						<field name="name" />
-					</group>
-					<field name="sequence" />
+					<group colspan="4" col="4">
+					<field name="code" colspan="2"/>
+					<field name="name" colspan="2"/>
 					<field name="course_id" />
+					<field name="sequence" />
+					
 					<field name="payment_term" />
 					<separator string="Division" colspan="4" />
 					<field name="division_ids" colspan="4" nolabel="1" />
+					</group>
+				  </sheet>
 				</form>
 			</field>
 		</record>

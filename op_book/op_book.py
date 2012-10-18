@@ -29,7 +29,7 @@ class op_book(osv.osv):
             'id_book': fields.char(size=64, string='ISBN Code'),
             'tag': fields.many2many('op.tag', 'book_tag_rel', 'op_book_id', 'op_tag_id', string='Tag'),
             'author_ids': fields.many2many('op.author', 'book_author_rel', 'op_book_id', 'op_author_id', string='Author'),
-            'status': fields.selection([('I','Issued'),('a','Available'),('L','Lost'),('r','Reserved')], string='Status'),
+            'status': fields.selection([('a','Available'),('I','Issued'),('r','Reserved'),('L','Lost')], string='Status'),
             'edition': fields.text(string='Edition'),
             'publisher_ids': fields.many2many('op.publisher', 'book_publisher_rel', 'op_book_id', 'op_publisher_id', string='Publisher'),
             'course_ids': fields.many2many('op.course', 'book_course_rel', 'op_book_id', 'op_course_id', string='Course'),
