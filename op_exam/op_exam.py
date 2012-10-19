@@ -35,6 +35,14 @@ class op_exam_session(osv.osv):
             'exam_ids':fields.one2many('op.exam','session_id','Exams'),
 
     }
+    def generate_result(self, cr, uid, ids, context={}):
+        stu_pool = self.pool.get('op.student')
+        for self_obj in self.browse(cr, uid, ids, context=context):
+            for exam in self_obj.exam_ids:
+                print"R"
+
+
+        return True
 
 op_exam_session()
 
