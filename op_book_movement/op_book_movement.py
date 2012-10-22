@@ -49,7 +49,9 @@ class op_book_movement(osv.osv):
     def issue_book(self, cr, uid, ids, context={}):
         ''' function to issuing book '''
         book_pool = self.pool.get('op.book')
+        print ""
         for obj in self.browse(cr, uid, ids, context):
+            print "______________________obj.book_id______________________",obj,obj.book_id
             if obj.book_id.status and obj.book_id.status == 'a':
                 book_pool.write(cr, uid, obj.book_id.id, {'status': 'I'})
                 self.write(cr, uid, obj.id, {'state': 'I'})

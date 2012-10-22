@@ -38,6 +38,7 @@ class issue_book(osv.osv_memory):
     _defaults = {'state': 'I'}
     
     def do_issue(self, cr, uid, ids, context={}):
+        print "gggggggggggggggggggggggg",ids
         value = {}
         book_movement = self.pool.get("op.book.movement")
         book = self.pool.get("op.book")
@@ -52,7 +53,7 @@ class issue_book(osv.osv_memory):
                                         'state': 'I',
                                         }
                 book_move_id = book_movement.create(cr, uid, book_movement_create,context)
-                abc = book.write(cr, uid, this_obj.book_id.id, {'status': 'I'})
+                book.write(cr, uid, this_obj.book_id.id, {'status': 'I'})
                 
                 value = {'type': 'ir.actions.act_window_close'}
             else:

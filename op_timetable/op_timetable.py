@@ -23,6 +23,7 @@ from osv import fields
 class op_period(osv.osv):
     _name = 'op.period'
     _description = 'Period'
+    _order = "sequence"
 
     _columns = {
         'name':fields.char('Name',size=16, required=True),
@@ -38,6 +39,7 @@ class op_period(osv.osv):
         ],'Minute', required=True),
         'duration':fields.float('Duration'),
         'am_pm':fields.selection([('am','AM'),('pm','PM')],'AM/PM', required=True),
+        'sequence': fields.integer('Sequence'),
     }
 
 op_period()
