@@ -26,6 +26,15 @@ class op_admission(osv.osv):
     _name = 'op.admission'
     _rec_name = 'application_number'
     
+    def copy(self, cr, uid, id, default=None, context=None):
+        if not default:
+            default = {}
+        default.update({
+            'state': 'd',
+            'application_number': self.pool.get('ir.sequence').get(cr, uid, 'op.admission'),
+        })
+        return super(op_admission, self).copy(cr, uid, id, default, context=context)
+    
     _columns = {
             'name': fields.char(size=128, string='First Name', required=True),
             'middle_name': fields.char(size=128, string='Middle Name', required=True),
