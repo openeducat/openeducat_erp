@@ -82,22 +82,18 @@ class op_admission(osv.osv):
     
     def confirm_in_progress(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'i'})
-        print "_____________confirm_in_progree_______________"
         return True
     
     def confirm_selection(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'s'})
-        print "_____________confirm_in_selection_______________"
         return True
     
     def confirm_rejected(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'r'})
-        print "_____________confirm_rejected_______________"
         return True
     
     def confirm_pending(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'p'})
-        print "_____________confirm_pending_______________"
         return True
     
     def confirm_to_draft(self, cr, uid, ids, context=None):
@@ -106,12 +102,10 @@ class op_admission(osv.osv):
         for inv_id in ids:
             wf_service.trg_delete(uid, 'op.admission', inv_id, cr)
             wf_service.trg_create(uid, 'op.admission', inv_id, cr)
-        print "_____________confirm_to_draft_______________"
         return True
     
     def confirm_cancel(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'c'})
-        print "_____________confirm_cancel_______________"
         return True
     
     def fee_paid(self, cr, uid, ids,context=None):
@@ -146,13 +140,11 @@ class op_admission(osv.osv):
                                      'state_id': field.state_id and field.state_id.id or False,
                                      })]
                     }
-            print "________values_____________",vals
         new_student = student_pool.create(cr, uid, vals, context=context)
         
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_form')
         tree_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_tree')
-        print "________fees__________________",new_student,"______form_view_______________",form_view
         value = {
                 'domain': str([('id', '=', new_student)]),
                 'view_type': 'form',
@@ -166,7 +158,6 @@ class op_admission(osv.osv):
                 'target': 'current',
                 'nodestroy': True
             }
-        print "________value_____________________",value
         return value
     
 op_admission()

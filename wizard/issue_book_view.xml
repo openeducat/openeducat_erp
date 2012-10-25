@@ -7,18 +7,21 @@
 			<field name="model">issue.book</field>
 			<field name="type">form</field>
 			<field name="arch" type="xml">
-				<form string="Book Issue">
+				<form string="Book Issue" version="7.0">
+					<header>
+						<span groups="base.group_user">
+							<button string="_Cancel" icon="gtk-cancel" special="cancel" />
+							<button name="do_issue" type="object" string="OK" icon="gtk-ok" />
+						</span>
+					</header>
 					<separator string="Book Issue" colspan="4" />
-					<field name="book_id" />
-					<field name="student_id" />
-					<field name="library_card_id" />
-					<field name="issued_date" />
-					<field name="return_date" />
-					<field name="state" readonly="1" />
-					<separator colspan="4" />
-					<group colspan="4">
-						<button string="_Cancel" icon="gtk-cancel" special="cancel" />
-						<button name="do_issue" type="object" string="OK" icon="gtk-ok" />
+					<group col="2" colspan="4">
+						<field name="book_id" />
+						<field name="student_id" />
+						<field name="library_card_id" />
+						<field name="issued_date" />
+						<field name="return_date" />
+						<field name="state" readonly="1" />
 					</group>
 				</form>
 			</field>
