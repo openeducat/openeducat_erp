@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<document filename="Library Card.pdf">
+  <template pageSize="(600.0,842.0)" title="Library Card" author="Tech Receptives" allowSplitting="20">
+
+    <pageTemplate id="first">
+   		<frame id="first" x1="1.2cm" y1="3.3cm" height="22cm" width="19cm"/>
+    </pageTemplate>
+    
+    
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table_Signature">
+      <blockAlignment value="RIGHT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table_Below">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table_Blank">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table_All_Line">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000"/>
+    </blockTableStyle> 
+      
+ 
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P2" fontName="Helvetica" alignment="LEFT" fontSize="8.0" leading="10"/>
+    <paraStyle name="P3" fontName="Helvetica" alignment="RIGHT"/>
+    <paraStyle name="P4" fontName="Helvetica-Bold" alignment="CENTER"/>
+    <paraStyle name="P6" fontName="Helvetica" alignment="LEFT" leading="30"/>
+    <paraStyle name="P7" fontName="Helvetica-Bold" alignment="RIGHT"/>
+    
+    
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="10.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="10.0" leading="12" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="Preformatted Text" fontName="Helvetica" fontSize="8.0" leading="12" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <images/>
+  </stylesheet>
+  <story>
+  
+  	
+  	<para style="P1">[[repeatIn(objects,'o') ]]</para> -->
+ <!--   	<para style="P1">[[repeatIn(get_obj(),'o') ]]</para> -->
+	<para><font color="white"> </font></para>
+	<para><font color="white"> </font></para>
+	<para><font color="white"> </font></para>
+	
+	<blockTable colWidths="245.0" style="Table_All_Line">
+	<tr>
+		<td>
+			<blockTable colWidths="60,175" style="Table_Below">
+				<tr>
+					<td>
+						<image width="40" height="40">[[ company.logo or removeParentNode('image') ]]</image>
+					</td>
+					<td>
+						<para style="P2" fontSize="8.0" fontName="Helvetica-Bold"> [[ company.partner_id.name ]] </para>
+						<para style="P2" fontSize="8.0" alignment="CENTER"> [[ company.partner_id.address and company.partner_id.address[0].street or '' ]] [[ company.partner_id.address and company.partner_id.address[0].city or '']] [[ company.partner_id.address and company.partner_id.address[0].zip or '' ]]</para>
+						<para style="P2" fontSize="8.0" alignment="CENTER"> Phone: [[ company.partner_id.address and company.partner_id.address[0].phone or removeParentNode('para') ]]</para>
+						<para style="P2" fontSize="8.0" alignment="CENTER"> E-mail: [[ company.partner_id.address and company.partner_id.address[0].email or removeParentNode('para') ]]</para>
+					</td>
+				</tr>
+			</blockTable>
+			
+			<blockTable colWidths="60,185" style="Standard_Outline">
+				<tr>
+					<td>
+						<image width="50" height="50">[[ o.photo or removeParentNode('image') ]]</image>							
+					</td>
+					<td>
+					
+						<blockTable colWidths="185" style="Standard_Outline">
+							<tr>
+								<td><para style="P2" fontName="Helvetica-Bold">[[o.name]] [[o.middle_name or '']] [[o.last_name or '']]</para></td>
+							</tr>
+						</blockTable>
+						
+						<blockTable colWidths="185" style="Standard_Outline">
+							<tr>
+								<td>
+									<para style="P2" leading="10">	Library Card No :[[ o.library_card_ids[0].name ]] </para>
+									<para style="P2" leading="10">	Library Card Type :[[ o.library_card_ids[0].library_card_type_id.name ]]</para>
+									<para><font color="white"> </font></para>
+									<para><font color="white"> </font></para>
+								</td>
+							</tr>
+						</blockTable>
+					</td>
+				</tr>
+			</blockTable>
+		</td>
+	</tr>
+	</blockTable>
+	
+  </story>
+</document>
