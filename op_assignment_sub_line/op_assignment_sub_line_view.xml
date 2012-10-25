@@ -18,14 +18,33 @@
 				</tree>
 			</field>
 		</record>
-
+		
 		<record id="view_op_assignment_sub_line_form" model="ir.ui.view">
 			<field name="name">op.assignment.sub.line.form</field>
 			<field name="model">op.assignment.sub.line</field>
 			<field name="type">form</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Assignment Sub Line">
+				<form string="Assignment Sub Line" version="7.0">
+				<header>
+					<span groups="base.group_user">
+						<field name="state" widget="statusbar" statusbar_visible="d,s,a,r,c" />
+                        <button name="act_submit" states="d" type="object" 
+                            string="Submit Assignment" icon="gtk-go-forward" />
+                        <button name="act_accept" states="s" type="object" 
+                            string="Assignment Accepted" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
+                        <button name="act_change_req" states="s" type="object" 
+                            string="Change Require" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
+                        <button name="act_reject" states="s" type="object" 
+                            string="Assignment Rejected" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
+                        <button name="act_draft" states="r" type="object" 
+                            string="Re Submit Assignment" icon="gtk-go-forward" groups="openeducat_erp.group_op_student" />
+                        <button name="act_draft" states="c" type="object" 
+                            string="Change And ReSubmit" icon="gtk-go-forward" groups="openeducat_erp.group_op_student" />
+					</span>
+				</header>
+				<sheet>
+				<group colspan="4" col="4">
 					<field name="assignment_id" />
 					<field name="student_id" />
 					<field name="description" />
@@ -33,33 +52,12 @@
 					<field name="note" />
 					<separator string="Change History" colspan="4" />
 					<field name="history_line" colspan="4" nolabel="1" />
-					
-					<group col="17" colspan="4">
-						<field name="state" widget="statusbar" statusbar_visible="d,s,a,r,c" />
-                        
-                        <button name="act_submit" states="d" type="object" 
-                            string="Submit Assignment" icon="gtk-go-forward" />
-                         
-                        <button name="act_accept" states="s" type="object" 
-                            string="Assignment Accepted" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
-                            
-                        <button name="act_change_req" states="s" type="object" 
-                            string="Change Require" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
-                         
-                         <button name="act_reject" states="s" type="object" 
-                            string="Assignment Rejected" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
-                            
-                         <button name="act_draft" states="r" type="object" 
-                            string="Re Submit Assignment" icon="gtk-go-forward" groups="openeducat_erp.group_op_student" />
-                            
-                         <button name="act_draft" states="c" type="object" 
-                            string="Change And ReSubmit" icon="gtk-go-forward" groups="openeducat_erp.group_op_student" />
-                         
-					</group>
+				</group>
+				</sheet>	
 				</form>
 			</field>
 		</record>
-
+		
 		<record id="view_op_assignment_sub_line_search" model="ir.ui.view">
 			<field name="name">op.assignment.sub.line.search</field>
 			<field name="model">op.assignment.sub.line</field>

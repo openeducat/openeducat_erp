@@ -22,34 +22,39 @@ from osv import osv, fields
 
 class op_attendance_sheet(osv.osv):
     _name = 'op.attendance.sheet'
+
+    def _total_present(self, cr, uid, ids, name, arg, context=None):
+        res = {}
+
+        for sheet in self.browse(cr, uid, ids, context):
+            present_cnt = 0
+            for line in sheet.attendance_line:
+                
+                if line.present == True: 
+                    present_cnt =  present_cnt + 1
+            res[sheet.id] = present_cnt
+        return res
+
+    def _total_absent(self, cr, uid, ids, name, arg, context=None):
+        res = {}
+
+        for sheet in self.browse(cr, uid, ids, context):
+            absent_cnt = 0
+            for line in sheet.attendance_line:
+                if line.present == False: 
+                    absent_cnt =  absent_cnt + 1
+            res[sheet.id] = absent_cnt
+        return res
     
     _columns = {
             'register_id': fields.many2one('op.attendance.register', string='Register', required=True),
-            'date': fields.date(string='Date', required=True),
+            'attendance_date': fields.date(string='Date', required=True),
             'attendance_line': fields.one2many('op.attendance.line', 'attendance_id', string='Attendance Line', required=True),
-            'total_present': fields.integer(string='Total Present', required=True),
-            'total_absent': fields.integer(string='Total Absent', required=True),
-            'faculty_id': fields.many2one('op.faculty', string='Faculty'),
+            'total_present': fields.function(_total_present, string='Total Present', type='integer',method=True),
+            'total_absent': fields.function(_total_absent, string='Total Absent', type='integer',method=True),
+            'teacher_id': fields.many2one('op.faculty', string='Teacher'),
             'name': fields.char(size=8, string='Name'),
     }
-    
-    def write(self, cr, uid, ids, vals, context=None):
-        for sheet in self.browse(cr, uid, ids, context):
-            absent_cnt = 0
-            present_cnt = 0
-            for line in sheet.attendance_line and sheet.attendance_line:
-                if line.present == True: 
-                    present_cnt =  present_cnt + 1
-                else:
-                    absent_cnt =  absent_cnt + 1
-            print "BBBBBBBBBBBBBBBBBB*****************",present_cnt,absent_cnt,sheet
-        data = {
-                'total_present': present_cnt,
-                'total_absent':absent_cnt
-                }
-        vals.update(data)
-        print "VVVVVVVVVVVVVVVVVVVVVVVVVV",vals
-        return super(op_attendance_sheet, self).write(cr, uid, ids, vals, context=context)
-    
+        
 op_attendance_sheet()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
