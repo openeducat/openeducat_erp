@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -31,9 +31,9 @@ class return_book(osv.osv_memory):
                 'book_id': fields.many2one('op.book', string='Book', readonly=True),
                 'actual_return_date': fields.date(string='Actual Return Date', required=True),
                 }
-    
+
     _defaults = {'actual_return_date': time.strftime('%Y-%m-%d')}
-    
+
     def do_return(self, cr, uid, ids, context={}):
         value = {}
         book_movement = self.pool.get("op.book.movement")
@@ -51,7 +51,7 @@ class return_book(osv.osv_memory):
                               this_obj.book_id.status == 'r' and 'Reserved'
                 raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
         return value
-    
+
 return_book()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

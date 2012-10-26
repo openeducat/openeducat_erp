@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -23,12 +23,12 @@ from osv import osv, fields
 class op_attendance_line(osv.osv):
     _name = 'op.attendance.line'
     _rec_name = 'attendance_id'
-    
+
     _columns = {
             'attendance_id': fields.many2one('op.attendance.sheet', string='Attendance', required=True),
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'present': fields.boolean(string='Present ?', required=True),
     }
-    
+
 op_attendance_line()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

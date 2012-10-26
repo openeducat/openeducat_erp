@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,20 +15,20 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
 
 class op_route(osv.osv):
     _name = 'op.route'
-    
+
     _columns = {
             'name': fields.char(size=16, string='Name', required=True),
             'code': fields.char(size=8, string='Code', required=True),
             'cost': fields.float(string='Cost'),
             'parent_route': fields.many2one('op.route', string='Parent Route'),
     }
-    
+
 op_route()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -5,22 +5,21 @@ try:
             getCodes
 except :
     print "ERROR IMPORTING REPORT LAB"
-    
-def get_barcode_image(value, width=False, hight=False, hr=True, code='QR'):
+
+def get_barcode_image(value, width = False, hight = False, hr = True, code = 'QR'):
     """ genrating image for barcode """
     options = {}
     if width:options['width'] = width
     if hight:options['hight'] = hight
     if hr:options['humanReadable'] = hr
     try:
-        ret_val = createBarcodeDrawing(code, value=str(value), **options)
+        ret_val = createBarcodeDrawing(code, value = str(value), **options)
     except Exception, e:
-        print "+++++++++++++++++++++",e
         raise osv.except_osv('Error', e)
     return base64.encodestring(ret_val.asString('jpg'))
-    
+
 def server_to_local_timestamp(src_tstamp_str, src_format, dst_format, dst_tz_name,
-        tz_offset=True, ignore_unparsable_time=True, server_tz=False):
+        tz_offset = True, ignore_unparsable_time = True, server_tz = False):
     """
     Convert a source timestamp string into a destination timestamp string, attempting to apply the
     correct offset if both the server and local timezone are recognized, or no
@@ -54,11 +53,9 @@ def server_to_local_timestamp(src_tstamp_str, src_format, dst_format, dst_tz_nam
             import pytz
             src_tz = pytz.timezone(server_tz)
             dst_tz = pytz.timezone(dst_tz_name)
-            src_dt = src_tz.localize(dt_value, is_dst=True)
-            print "^^^^^^^^^^^^^^^",src_dt,dst_tz,dt_value,src_dt
+            src_dt = src_tz.localize(dt_value, is_dst = True)
             dt_value = src_dt.astimezone(dst_tz)
         res = dt_value.strftime(dst_format)
-        print "$$$$$$dddddddddddddddddddddddddddddd$$$$$$$",res
         # Normal ways to end up here are if strptime or strftime failed
         if not ignore_unparsable_time:
             return False

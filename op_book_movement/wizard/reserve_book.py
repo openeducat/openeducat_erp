@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -38,8 +38,8 @@ class reserve_book(osv.osv_memory):
                             {'partner_id': partner.id,'reserver_name': partner.name})
         value = {'type': 'ir.actions.act_window_close'}
         return value
-    
-    
+
+
 reserve_book()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

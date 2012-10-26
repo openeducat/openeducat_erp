@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -32,7 +32,7 @@ class return_date(osv.osv_memory):
     }
 
     _defaults = {'actual_return_date': time.strftime("%Y-%m-%d")}
-    
+
     def assign_return_date(self, cr, uid, ids, context={}):
         value = {}
         book_movement = self.pool.get("op.book.movement")
@@ -41,8 +41,8 @@ class return_date(osv.osv_memory):
         book_movement.calculate_penalty(cr, uid, context.get('active_ids',False), context)
         value = {'type': 'ir.actions.act_window_close'}
         return value
-    
-    
+
+
 return_date()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

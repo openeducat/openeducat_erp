@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,14 +15,14 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
 
 class op_assignment_sub_history(osv.osv):
     _name = 'op.assignment.sub.history'
-    
+
     _columns = {
             'assign_sub_id': fields.many2one('op.assignment.sub.line', string='Assignment'),
             'description': fields.text(string='Description'),
@@ -30,6 +30,6 @@ class op_assignment_sub_history(osv.osv):
             'change_date': fields.datetime(string='Submission Date'),
             'faculty_id': fields.many2one('op.faculty','Faculty'),
     }
-    
+
 op_assignment_sub_history()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -42,7 +42,7 @@ class op_library_card(osv.osv):
         'partner_id':fields.many2one('res.partner','Partner'),
         'name':fields.char('Number',size=256),
         'library_card_type_id': fields.many2one('op.library.card.type', 'Library Card Type'),
-		'issue_date':fields.date('Issue Date')
+                'issue_date':fields.date('Issue Date')
     }
 
 op_library_card()

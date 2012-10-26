@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -23,7 +23,7 @@ from tools.translate import _
 
 class op_book(osv.osv):
     _name = 'op.book'
-    
+
     _columns = {
             'name': fields.char(size=128, string='Title', required=True),
             'id_book': fields.char(size=64, string='ISBN Code'),
@@ -52,7 +52,7 @@ class op_book(osv.osv):
                 'view_mode': 'tree,form',
                 'res_model': 'op.book.movement',
                 'view_id': False,
-                'search_view_id':search_id['res_id'], 
+                'search_view_id':search_id['res_id'],
                 'res_id': book_search_issue,
 #                'views': [('form', form_id),('tree', tree_id)],
                 'type': 'ir.actions.act_window',

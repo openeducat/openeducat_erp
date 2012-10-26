@@ -22,6 +22,3 @@ module_ids = sock.execute(mapping['db'], 1, mapping['new_password'], 'ir.module.
 print "$$$$$$$$$$$",module_ids
 sock.execute(mapping['db'], 1, mapping['new_password'], 'ir.module.module', 'button_immediate_install', module_ids,)
 print "Script Ends",time.strftime("%Y-%m-%d %H:%M:%S")
-
-
-

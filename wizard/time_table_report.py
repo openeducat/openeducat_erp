@@ -45,7 +45,7 @@ class time_table_report(osv.osv_memory):
     def gen_time_table_report(self, cr, uid, ids, context={}):
         value = {}
         data = self.read(cr, uid, ids, ['standard_id','division_id','start_date', 'end_date'], context=context)
-        
+
         time_table_ids = self.pool.get('op.timetable').search(cr, uid, [('standard_id','=',data[0]['standard_id'][0]),
                                                                         ('division_id','=',data[0]['division_id'][0]),
                                                                         ('start_datetime','>',data[0]['start_date'] + '%H:%M:%S'),
@@ -60,7 +60,7 @@ class time_table_report(osv.osv_memory):
                 'datas': data[0],
                 }
         return value
-    
+
 time_table_report()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

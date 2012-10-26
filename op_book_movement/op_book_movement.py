@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -30,7 +30,7 @@ def days_between(d1, d2):
 class op_book_movement(osv.osv):
     _name = 'op.book.movement'
     _rec_name = 'book_id'
-    
+
     _columns = {
             'book_id': fields.many2one('op.book', string='Book', required=True),
             'student_id': fields.many2one('op.student', string='Student', required=True),
@@ -51,7 +51,6 @@ class op_book_movement(osv.osv):
         book_pool = self.pool.get('op.book')
         print ""
         for obj in self.browse(cr, uid, ids, context):
-            print "______________________obj.book_id______________________",obj,obj.book_id
             if obj.book_id.status and obj.book_id.status == 'a':
                 book_pool.write(cr, uid, obj.book_id.id, {'status': 'i'})
                 self.write(cr, uid, obj.id, {'state': 'i'})
@@ -62,7 +61,7 @@ class op_book_movement(osv.osv):
                               obj.book_id.status == 'r' and 'Reserved'
                 raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
         return True
-    
+
     def calculate_penalty(self, cr, uid, obj, context={}):
         book_pool = self.pool.get('op.book')
         penalty_amt = 0
@@ -70,9 +69,9 @@ class op_book_movement(osv.osv):
         for obj in self.browse(cr, uid, obj, context):
             standard_diff = days_between(obj.return_date,obj.issued_date)
             actual_diff = days_between(obj.actual_return_date,obj.issued_date)
-            
+
             penalty_days = actual_diff > (standard_diff + obj.library_card_id.library_card_type_id.duration) and actual_diff - (standard_diff + obj.library_card_id.library_card_type_id.duration) or penalty_days
-            
+
             penalty_amt = round(penalty_days - penalty_days/7) * obj.library_card_id.library_card_type_id.penalty_amt_per_day
             self.write(cr, uid, obj.id, {'penalty':penalty_amt,'state': 'a'})
             book_pool.write(cr, uid, obj.book_id.id, {'status': 'a'})
@@ -80,7 +79,7 @@ class op_book_movement(osv.osv):
 
     def return_book(self, cr, uid, ids, context={}):
         ''' function to returning book '''
-        
+
         for obj in self.browse(cr, uid, ids, context):
             if obj.book_id.status and obj.book_id.status == 'I':
                 #wizard call for return date
@@ -102,7 +101,7 @@ class op_book_movement(osv.osv):
                               obj.book_id.status == 'L' and 'Lost' or \
                               obj.book_id.status == 'r' and 'Reserved'
                 raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
-            
+
         return True
 
     def do_book_reservation(self, cr, uid, ids, context={}):

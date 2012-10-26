@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -29,8 +29,8 @@ class op_attendance_sheet(osv.osv):
         for sheet in self.browse(cr, uid, ids, context):
             present_cnt = 0
             for line in sheet.attendance_line:
-                
-                if line.present == True: 
+
+                if line.present == True:
                     present_cnt =  present_cnt + 1
             res[sheet.id] = present_cnt
         return res
@@ -41,11 +41,11 @@ class op_attendance_sheet(osv.osv):
         for sheet in self.browse(cr, uid, ids, context):
             absent_cnt = 0
             for line in sheet.attendance_line:
-                if line.present == False: 
+                if line.present == False:
                     absent_cnt =  absent_cnt + 1
             res[sheet.id] = absent_cnt
         return res
-    
+
     _columns = {
             'register_id': fields.many2one('op.attendance.register', string='Register', required=True),
             'attendance_date': fields.date(string='Date', required=True),
@@ -55,6 +55,6 @@ class op_attendance_sheet(osv.osv):
             'teacher_id': fields.many2one('op.faculty', string='Teacher'),
             'name': fields.char(size=8, string='Name'),
     }
-        
+
 op_attendance_sheet()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

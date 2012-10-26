@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -25,7 +25,7 @@ import netsvc
 class op_admission(osv.osv):
     _name = 'op.admission'
     _rec_name = 'application_number'
-    
+
     def copy(self, cr, uid, id, default=None, context=None):
         if not default:
             default = {}
@@ -34,7 +34,7 @@ class op_admission(osv.osv):
             'application_number': self.pool.get('ir.sequence').get(cr, uid, 'op.admission'),
         })
         return super(op_admission, self).copy(cr, uid, id, default, context=context)
-    
+
     _columns = {
             'name': fields.char(size=128, string='First Name', required=True),
             'middle_name': fields.char(size=128, string='Middle Name', required=True),
@@ -70,32 +70,32 @@ class op_admission(osv.osv):
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
             'division_id': fields.many2one('op.division', string='Division'),
     }
-    
+
     _defaults = {
                  'application_number': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'op.admission'),
                  'state':'d',
     }
-    
+
     _order = "application_number desc"
-    
-    
-    
+
+
+
     def confirm_in_progress(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'i'})
         return True
-    
+
     def confirm_selection(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'s'})
         return True
-    
+
     def confirm_rejected(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'r'})
         return True
-    
+
     def confirm_pending(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'p'})
         return True
-    
+
     def confirm_to_draft(self, cr, uid, ids, context=None):
         wf_service = netsvc.LocalService("workflow")
         self.write(cr,uid,ids,{'state':'d'})
@@ -103,15 +103,15 @@ class op_admission(osv.osv):
             wf_service.trg_delete(uid, 'op.admission', inv_id, cr)
             wf_service.trg_create(uid, 'op.admission', inv_id, cr)
         return True
-    
+
     def confirm_cancel(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'c'})
         return True
-    
+
     def fee_paid(self, cr, uid, ids,context=None):
         if context is None:
             context = {}
-        
+
         student_pool = self.pool.get('op.student')
         for field in self.browse(cr, uid, ids, context=context):
             vals = {
@@ -141,7 +141,7 @@ class op_admission(osv.osv):
                                      })]
                     }
         new_student = student_pool.create(cr, uid, vals, context=context)
-        
+
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_form')
         tree_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_tree')
@@ -159,6 +159,6 @@ class op_admission(osv.osv):
                 'nodestroy': True
             }
         return value
-    
+
 op_admission()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

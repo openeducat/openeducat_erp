@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,14 +15,14 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
 
 class op_assignment(osv.osv):
     _name = 'op.assignment'
-    
+
     _columns = {
             'name': fields.char(size=16, string='Name', required=True),
             'course_id': fields.many2one('op.course', string='Course', required=True),
@@ -39,23 +39,23 @@ class op_assignment(osv.osv):
             'allocation_ids': fields.many2many('op.student', 'op_assignment_student_rel', 'op_assignment_id', 'op_student_id', string='Allocated To'),
             'assignment_sub_line': fields.one2many('op.assignment.sub.line', 'assignment_id', string='Submissions'),
     }
-    
+
     _defaults = {
                  'state':'d',
                  }
-    
+
     def act_draft(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'d'})
         return True
-    
+
     def act_publish(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'p'})
         return True
-    
+
     def act_finish(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'f'})
         return True
-    
-    
+
+
 op_assignment()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,14 +15,14 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
 
 class op_course(osv.osv):
     _name = 'op.course'
-    
+
     _columns = {
             'name': fields.char(size=32, string='Name', required=True),
             'code': fields.char(size=8, string='Code', required=True),
@@ -30,6 +30,6 @@ class op_course(osv.osv):
             'evaluation_type': fields.selection([('normal','Normal'),('GPA','GPA'),('CWA','CWA'),('CCE','CCE')], string='Evaluation Type', required=True),
             'payment_term': fields.many2one('account.payment.term', 'Payment Term'),
     }
-    
+
 op_course()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

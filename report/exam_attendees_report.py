@@ -31,8 +31,7 @@ class exam_attendees_report(report_sxw.rml_parse):
             'time': time,
         })
 
-        
+
 report_sxw.report_sxw('report.op.attendees.report','op.exam.attendees', 'addons/openeducat_erp/report/exam_attendees_report.rml', parser=exam_attendees_report, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

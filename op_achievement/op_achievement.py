@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,14 +15,14 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
 
 class op_achievement(osv.osv):
     _name = 'op.achievement'
-    
+
     _columns = {
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True),
@@ -30,6 +30,6 @@ class op_achievement(osv.osv):
             'description': fields.text(string='Description', required=True),
             'achievement_date': fields.date(string='Date', required=True),
     }
-    
+
 op_achievement()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

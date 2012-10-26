@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -34,9 +34,9 @@ class issue_book(osv.osv_memory):
                 'return_date': fields.date(string='Return Date', required=True),
                 'state': fields.selection([('I','Issued'),('a','Available'),('L','Lost'),('r','Reserved')], string='Status'),
                 }
-    
+
     _defaults = {'state': 'I'}
-    
+
     def do_issue(self, cr, uid, ids, context={}):
         print "gggggggggggggggggggggggg",ids
         value = {}
@@ -54,7 +54,7 @@ class issue_book(osv.osv_memory):
                                         }
                 book_move_id = book_movement.create(cr, uid, book_movement_create,context)
                 book.write(cr, uid, this_obj.book_id.id, {'status': 'I'})
-                
+
                 value = {'type': 'ir.actions.act_window_close'}
             else:
                 book_state = this_obj.book_id.status == 'I' and 'Issued' or \
@@ -63,8 +63,8 @@ class issue_book(osv.osv_memory):
                               this_obj.book_id.status == 'r' and 'Reserved'
                 raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
         return value
-    
-    
+
+
 issue_book()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

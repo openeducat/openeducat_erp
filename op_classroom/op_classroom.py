@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,20 +15,20 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
 
 class op_classroom(osv.osv):
     _name = 'op.classroom'
-    
+
     _columns = {
             'Name': fields.char(size=16, string='Name', required=True),
             'Code': fields.char(size=4, string='Code', required=True),
             'Capacity': fields.integer(string='Capacity'),
             'Facility': fields.many2many('op.facility', 'classroom_facility_rel', 'op_classroom_id', 'op_facility_id', string='Facilities'),
     }
-    
+
 op_classroom()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

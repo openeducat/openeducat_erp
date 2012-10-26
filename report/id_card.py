@@ -68,4 +68,3 @@ class op_student(report_sxw.rml_parse):
 report_sxw.report_sxw('report.op.student.report','op.student', 'addons/openeducat_erp/report/id_card.rml', parser=op_student, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

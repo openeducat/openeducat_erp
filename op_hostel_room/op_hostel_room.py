@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,14 +15,14 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
 
 class op_hostel_room(osv.osv):
     _name = 'op.hostel.room'
-    
+
     _columns = {
             'hostel_id': fields.many2one('op.hostel', string='Hostel', required=True),
             'name': fields.char(size=8, string='Room Number', required=True),
@@ -31,6 +31,6 @@ class op_hostel_room(osv.osv):
             'rent': fields.float(string='Rent', required=True),
             'allocated_date': fields.date(string='Allocated Date'),
     }
-    
+
 op_hostel_room()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

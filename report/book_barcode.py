@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 
@@ -37,7 +37,7 @@ class book_barcode(report_sxw.rml_parse):
         })
 
     def render_image(self):
-        
+
         render_list = []
         for data in self.ids_to_print:
             book_obj = pooler.get_pool(self.cr.dbname).get(self.model_name).browse(self.cr, self.uid, data)
@@ -48,7 +48,7 @@ class book_barcode(report_sxw.rml_parse):
             render_list.append(render_data)
         return render_list
 
-report_sxw.report_sxw('report.op.book.barcode', 'op.book','addons/openeducat_erp/report/book_barcode.rml', 
+report_sxw.report_sxw('report.op.book.barcode', 'op.book','addons/openeducat_erp/report/book_barcode.rml',
                       parser=book_barcode, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

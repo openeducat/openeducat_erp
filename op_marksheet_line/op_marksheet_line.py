@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #/#############################################################################
-#    
+#
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
@@ -15,7 +15,7 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
 from osv import osv, fields
@@ -23,12 +23,12 @@ from osv import osv, fields
 class op_marksheet_line(osv.osv):
     _name = 'op.marksheet.line'
     _rec_name = 'marksheet_reg_id'
-    
+
     _columns = {
             'marksheet_reg_id': fields.many2one('op.marksheet.register', string='Marksheet Register', required=True),
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'result_line': fields.one2many('op.result', 'result_id', string='Result'),
     }
-    
+
 op_marksheet_line()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
