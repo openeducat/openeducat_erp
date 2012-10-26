@@ -12,7 +12,7 @@
 					<field name="id_book" />
 					<field name="tag" />
 					<field name="author_ids" />
-					<field name="status" />
+					<field name="state" />
 					<field name="edition" />
 					<field name="publisher_ids" />
 					<field name="course_ids" />
@@ -32,9 +32,9 @@
 							<field name="state" widget="statusbar" statusbar_visible="a,i,r,l"
 								statusbar_colors='{"r":"red"}' />
 							<button name="%(issue_book_act)d" string="Issue Book"
-								type="action" icon="gtk-go-forward" context="{'book_id': active_id}" />
+								type="action" icon="gtk-go-forward" context="{'book_id': active_id}" attrs="{'invisible':[('state','!=','a')]}" />
 							<button name="%(return_book_act)d" string="Return Book"
-								type="action" icon="gtk-go-back" context="{'book_id': active_id}" />
+								type="action" icon="gtk-go-back" context="{'book_id': active_id}" attrs="{'invisible':[('state','!=','i')]}" />
 						</span>
 					</header>
 					<sheet>
