@@ -51,15 +51,18 @@ class op_book_movement(osv.osv):
         book_pool = self.pool.get('op.book')
         print ""
         for obj in self.browse(cr, uid, ids, context):
-            if obj.book_id.status and obj.book_id.status == 'a':
-                book_pool.write(cr, uid, obj.book_id.id, {'status': 'i'})
+
+            if obj.book_id.state and obj.book_id.state == 'a':
+                book_pool.write(cr, uid, obj.book_id.id, {'state': 'i'})
                 self.write(cr, uid, obj.id, {'state': 'i'})
-            else:
-                book_state = obj.book_id.status == 'i' and 'Issued' or \
-                              obj.book_id.status == 'a' and 'Available' or \
-                              obj.book_id.status == 'l' and 'Lost' or \
-                              obj.book_id.status == 'r' and 'Reserved'
-                raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
+                
+            else: return True
+#            else:
+#                book_state = obj.book_id.state == 'i' and 'Issued' or \
+#                              obj.book_id.state == 'a' and 'Available' or \
+#                              obj.book_id.state == 'l' and 'Lost' or \
+#                              obj.book_id.state == 'r' and 'Reserved'
+#                raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
         return True
 
     def calculate_penalty(self, cr, uid, obj, context={}):
@@ -70,18 +73,18 @@ class op_book_movement(osv.osv):
             standard_diff = days_between(obj.return_date,obj.issued_date)
             actual_diff = days_between(obj.actual_return_date,obj.issued_date)
 
-            penalty_days = actual_diff > (standard_diff + obj.library_card_id.library_card_type_id.duration) and actual_diff - (standard_diff + obj.library_card_id.library_card_type_id.duration) or penalty_days
-
-            penalty_amt = round(penalty_days - penalty_days/7) * obj.library_card_id.library_card_type_id.penalty_amt_per_day
+            if obj.library_card_id and obj.library_card_id.library_card_type_id:
+                penalty_days = actual_diff > (standard_diff + obj.library_card_id.library_card_type_id.duration) and actual_diff - (standard_diff + obj.library_card_id.library_card_type_id.duration) or penalty_days
+                penalty_amt = round(penalty_days - penalty_days/7) * obj.library_card_id.library_card_type_id.penalty_amt_per_day
             self.write(cr, uid, obj.id, {'penalty':penalty_amt,'state': 'a'})
-            book_pool.write(cr, uid, obj.book_id.id, {'status': 'a'})
+            book_pool.write(cr, uid, obj.book_id.id, {'state': 'a'})
         return True
 
     def return_book(self, cr, uid, ids, context={}):
         ''' function to returning book '''
 
         for obj in self.browse(cr, uid, ids, context):
-            if obj.book_id.status and obj.book_id.status == 'I':
+            if obj.book_id.state and obj.book_id.state == 'i':
                 #wizard call for return date
                 value = {}
                 data_obj = self.pool.get('ir.model.data')
@@ -95,13 +98,14 @@ class op_book_movement(osv.osv):
                         'target':'new',
                         }
                 return value
-            else:
-                book_state = obj.book_id.status == 'I' and 'Issued' or \
-                              obj.book_id.status == 'a' and 'Available' or \
-                              obj.book_id.status == 'L' and 'Lost' or \
-                              obj.book_id.status == 'r' and 'Reserved'
-                raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
 
+            else: return True
+#                book_state = obj.book_id.state == 'i' and 'Issued' or \
+#                              obj.book_id.state == 'a' and 'Available' or \
+#                              obj.book_id.state == 'l' and 'Lost' or \
+#                              obj.book_id.state == 'r' and 'Reserved'
+#                raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
+            
         return True
 
     def do_book_reservation(self, cr, uid, ids, context={}):

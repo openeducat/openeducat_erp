@@ -37,18 +37,20 @@ class return_book(osv.osv_memory):
     def do_return(self, cr, uid, ids, context={}):
         value = {}
         book_movement = self.pool.get("op.book.movement")
+        book = self.pool.get("op.book")
         for this_obj in self.browse(cr, uid, ids):
-            if this_obj.book_id.status and this_obj.book_id.status == 'I':
-                book_move_search = book_movement.search(cr, uid, [('book_id','=',this_obj.book_id.id),('state','=','I')])
+            if this_obj.book_id.state and this_obj.book_id.state == 'i':
+                book_move_search = book_movement.search(cr, uid, [('book_id','=',this_obj.book_id.id),('state','=','i')])
                 if not book_move_search: value = {'type': 'ir.actions.act_window_close'}
                 book_movement.write(cr, uid, book_move_search,
                                 {'actual_return_date': this_obj.actual_return_date})
                 book_movement.calculate_penalty(cr, uid, book_move_search, context)
+                book.write(cr, uid, [this_obj.book_id.id], {'state':'a'})
             else:
-                book_state = this_obj.book_id.status == 'I' and 'Issued' or \
-                              this_obj.book_id.status == 'a' and 'Available' or \
-                              this_obj.book_id.status == 'L' and 'Lost' or \
-                              this_obj.book_id.status == 'r' and 'Reserved'
+                book_state = this_obj.book_id.state == 'i' and 'Issued' or \
+                              this_obj.book_id.state == 'a' and 'Available' or \
+                              this_obj.book_id.state == 'l' and 'Lost' or \
+                              this_obj.book_id.state == 'r' and 'Reserved'
                 raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
         return value
 
