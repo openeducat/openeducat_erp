@@ -20,7 +20,6 @@
 				</tree>
 			</field>
 		</record>
-
 		<record id="view_op_book_form" model="ir.ui.view">
 			<field name="name">op.book.form</field>
 			<field name="model">op.book</field>
@@ -28,57 +27,55 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Book" version="7.0">
-				  <header>
-				    <span groups="base.group_user">
-				    <field name="status" widget="statusbar" statusbar_visible="a,I,r,L"
+					<header>
+						<span groups="base.group_user">
+							<field name="state" widget="statusbar" statusbar_visible="a,i,r,l"
 								statusbar_colors='{"r":"red"}' />
-				        <button name="%(issue_book_act)d" string="Issue Book" type="action"
-							        icon="gtk-go-forward" context="{'book_id': active_id}"/>
-				        <button name="%(return_book_act)d" string="Return Book"
-							        type="action" icon="gtk-go-back" context="{'book_id': active_id}"/>
-					</span>
-				  </header>
-				  <sheet>
-				  
-                    <div>
-                        <h1>
-                            <field name="name" style="width: 100%%" />
-                        </h1>
-                        <label for="id_book" string="ISBN Code"/><field name="id_book"   style="width: 30%%" />
-                        <label for="internal_code" string="Internal ID"/><field name="internal_code" style="width: 30%%" />
-                    </div>
-				    <notebook colspan="4">
-					    <page string="Book Detail" >
-    					    <separator string="Description"/>
-					        <field name="edition" colspan="4" />
-					        <group colspan="4">
-					            <separator string="Authors" />
-					            <separator string="Publishers"/>
-					            <field name="author_ids" nolabel="1" widget="many2many_tags"/>
-					            
-					            <field name="publisher_ids" nolabel="1" widget="many2many_tags"/>
-					        </group>
-					        <separator string="Tags"/>
-					        <field name="tag" colspan="4" nolabel="1" widget="many2many_tags"/>
-					    </page>
-					    <page string="Education Details" >
-					        <group colspan="4">
-					            <separator string="Courses"/>
-					            <separator string="Subjects"/>
-					            <field name="course_ids"  nolabel="1" widget="many2many_tags"/>
-					            
-					            <field name="subject_ids"  nolabel="1" widget="many2many_tags"/>
-					        </group>
-					    </page>
-					    <page string="Movement" >
-					        <field name="movement_line" colspan="4" nolabel="1" />
-					    </page>
-					</notebook>
-				  </sheet>
+							<button name="%(issue_book_act)d" string="Issue Book"
+								type="action" icon="gtk-go-forward" context="{'book_id': active_id}" />
+							<button name="%(return_book_act)d" string="Return Book"
+								type="action" icon="gtk-go-back" context="{'book_id': active_id}" />
+						</span>
+					</header>
+					<sheet>
+						<div>
+							<h1>
+								<field name="name" style="width: 100%%" />
+							</h1>
+							<label for="id_book" string="ISBN Code" />
+							<field name="id_book" style="width: 30%%" />
+							<label for="internal_code" string="Internal ID" />
+							<field name="internal_code" style="width: 30%%" />
+						</div>
+						<notebook colspan="4">
+							<page string="Book Detail">
+								<separator string="Description" />
+								<field name="edition" colspan="4" />
+								<group colspan="4">
+									<separator string="Authors" />
+									<separator string="Publishers" />
+									<field name="author_ids" nolabel="1" widget="many2many_tags" />
+									<field name="publisher_ids" nolabel="1" widget="many2many_tags" />
+								</group>
+								<separator string="Tags" />
+								<field name="tag" colspan="4" nolabel="1" widget="many2many_tags" />
+							</page>
+							<page string="Education Details">
+								<group colspan="4">
+									<separator string="Courses" />
+									<separator string="Subjects" />
+									<field name="course_ids" nolabel="1" widget="many2many_tags" />
+									<field name="subject_ids" nolabel="1" widget="many2many_tags" />
+								</group>
+							</page>
+							<page string="Movement">
+								<field name="movement_line" colspan="4" nolabel="1" />
+							</page>
+						</notebook>
+					</sheet>
 				</form>
 			</field>
 		</record>
-
 		<record id="view_op_book_search" model="ir.ui.view">
 			<field name="name">op.book.search</field>
 			<field name="model">op.book</field>
@@ -90,7 +87,7 @@
 					<field name="id_book" />
 					<field name="tag" />
 					<field name="author_ids" />
-					<field name="status" />
+					<field name="state" />
 					<field name="edition" />
 					<field name="publisher_ids" />
 					<field name="course_ids" />
@@ -100,7 +97,7 @@
 					<group expand="0" string="Group By...">
 						<filter string="Title" domain="[]" context="{'group_by':'name'}" />
 						<filter string="Author" domain="[]" context="{'group_by':'author_ids'}" />
-						<filter string="Status" domain="[]" context="{'group_by':'status'}" />
+						<filter string="State" domain="[]" context="{'group_by':'state'}" />
 						<filter string="Publisher" domain="[]"
 							context="{'group_by':'publisher_ids'}" />
 						<filter string="Subjects" domain="[]"
@@ -109,7 +106,6 @@
 				</search>
 			</field>
 		</record>
-
 		<record model="ir.actions.act_window" id="act_open_op_book_view">
 			<field name="name">Book</field>
 			<field name="type">ir.actions.act_window</field>
@@ -120,21 +116,17 @@
 			<field name="domain">[]</field>
 			<field name="context">{}</field>
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_book_view_form">
 			<field name="act_window_id" ref="act_open_op_book_view" />
 			<field name="sequence" eval="20" />
 			<field name="view_mode">form</field>
 			<field name="view_id" ref="view_op_book_form" />
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_book_view_tree">
 			<field name="act_window_id" ref="act_open_op_book_view" />
 			<field name="sequence" eval="10" />
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_book_tree" />
 		</record>
-
-
 	</data>
 </openerp>

@@ -41,7 +41,7 @@ class op_book_movement(osv.osv):
             'penalty': fields.float(string='Penalty'),
             'partner_id': fields.many2one('res.partner', 'Person'),
             'reserver_name': fields.char('Person Name', size=256),
-            'state': fields.selection([('I','Issued'),('a','Available'),('L','Lost'),('r','Reserved')], string='Status'),
+            'state': fields.selection([('i','Issued'),('a','Available'),('l','Lost'),('r','Reserved')], string='Status'),
     }
 
     _defaults = {'state': 'a'}
@@ -53,12 +53,12 @@ class op_book_movement(osv.osv):
         for obj in self.browse(cr, uid, ids, context):
             print "______________________obj.book_id______________________",obj,obj.book_id
             if obj.book_id.status and obj.book_id.status == 'a':
-                book_pool.write(cr, uid, obj.book_id.id, {'status': 'I'})
-                self.write(cr, uid, obj.id, {'state': 'I'})
+                book_pool.write(cr, uid, obj.book_id.id, {'status': 'i'})
+                self.write(cr, uid, obj.id, {'state': 'i'})
             else:
-                book_state = obj.book_id.status == 'I' and 'Issued' or \
+                book_state = obj.book_id.status == 'i' and 'Issued' or \
                               obj.book_id.status == 'a' and 'Available' or \
-                              obj.book_id.status == 'L' and 'Lost' or \
+                              obj.book_id.status == 'l' and 'Lost' or \
                               obj.book_id.status == 'r' and 'Reserved'
                 raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
         return True

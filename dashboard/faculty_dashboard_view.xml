@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <openerp>
-    <data>
-    		<!-- List VIEW of Faculty's Period for Today -->
+	<data>
+		<!-- List VIEW of Faculty's Period for Today -->
 		<record id="view_op_timetable_faculty_calendar_dash" model="ir.ui.view">
 			<field name="name">op.timetable.calendar</field>
 			<field name="model">op.timetable</field>
@@ -17,8 +16,8 @@
 					<field name="subject_id" />
 				</calendar>
 			</field>
-		</record>	
-    	<record model="ir.actions.act_window" id="act_op_faculty_period_today">
+		</record>
+		<record model="ir.actions.act_window" id="act_op_faculty_period_today">
 			<field name="name">Book</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">op.timetable</field>
@@ -29,11 +28,8 @@
 			<field name="domain">[('start_datetime','&gt;=',time.strftime('%Y-%m-%d 00:00:00')),('start_datetime','&lt;=',time.strftime('%Y-%m-%d 23:59:59'))]</field>
 			<field name="context">{'search_default_today':1}</field>
 		</record>
-    		
-    		 
-    		 <!-- List View of Assignment To Approve -->
-    		 
-    	<record model="ir.actions.act_window" id="act_op_faculty_assignment">
+		<!-- List View of Assignment To Approve -->
+		<record model="ir.actions.act_window" id="act_op_faculty_assignment">
 			<field name="name">Faculty Assignment</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">op.assignment.sub.line</field>
@@ -43,35 +39,30 @@
 			<field name="domain">[('state','=','s')]</field>
 			<field name="context">{}</field>
 		</record>
-		
-		
 		<record id="board_faculty_form" model="ir.ui.view">
-            <field name="name">board.faculty.form</field>
-            <field name="model">board.board</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Faculty Dashboard">
-                    <board style="2-1">
-                        <column>
-                        	<action name="%(act_op_faculty_period_today)d" string="Period For Today" />
-                        </column>
-                        <column>
-                        	<action name="%(act_op_faculty_assignment)d" string="Assignment Approved" />
-                        </column>
-                    </board>
-                </form>
-            </field>
-        </record>
-
-        <record id="open_board_faculty" model="ir.actions.act_window">
-            <field name="name">Faculty Dashboard</field>
-            <field name="res_model">board.board</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="usage">menu</field>
-            <field name="view_id" ref="board_faculty_form"/>
-        </record>
-        
-    
-    </data>
+			<field name="name">board.faculty.form</field>
+			<field name="model">board.board</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Faculty Dashboard">
+					<board style="2-1">
+						<column>
+							<action name="%(act_op_faculty_period_today)d" string="Period For Today" />
+						</column>
+						<column>
+							<action name="%(act_op_faculty_assignment)d" string="Assignment Approved" />
+						</column>
+					</board>
+				</form>
+			</field>
+		</record>
+		<record id="open_board_faculty" model="ir.actions.act_window">
+			<field name="name">Faculty Dashboard</field>
+			<field name="res_model">board.board</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="usage">menu</field>
+			<field name="view_id" ref="board_faculty_form" />
+		</record>
+	</data>
 </openerp>

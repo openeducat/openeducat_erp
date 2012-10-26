@@ -29,7 +29,7 @@ class op_book(osv.osv):
             'id_book': fields.char(size=64, string='ISBN Code'),
             'tag': fields.many2many('op.tag', 'book_tag_rel', 'op_book_id', 'op_tag_id', string='Tag'),
             'author_ids': fields.many2many('op.author', 'book_author_rel', 'op_book_id', 'op_author_id', string='Author'),
-            'status': fields.selection([('a','Available'),('I','Issued'),('r','Reserved'),('L','Lost')], string='Status'),
+            'state': fields.selection([('a','Available'),('i','Issued'),('r','Reserved'),('l','Lost')], string='State'),
             'edition': fields.text(string='Edition'),
             'publisher_ids': fields.many2many('op.publisher', 'book_publisher_rel', 'op_book_id', 'op_publisher_id', string='Publisher'),
             'course_ids': fields.many2many('op.course', 'book_course_rel', 'op_book_id', 'op_course_id', string='Course'),
@@ -44,7 +44,7 @@ class op_book(osv.osv):
         search_view_id = data_obj._get_id(cr, uid, 'openeducat_erp', 'view_op_book_movement_search')
         search_id = data_obj.read(cr, uid, search_view_id, ['res_id'])
         book_move_pool = self.pool.get('op.book.movement')
-        book_search_issue = book_move_pool.search(cr, uid, [('book_id','=',ids[0]),('state','=','I')])
+        book_search_issue = book_move_pool.search(cr, uid, [('book_id','=',ids[0]),('state','=','i')])
         value = {
                 'name': _('Book Return'),
                 'domain': [('id','in',book_search_issue)],

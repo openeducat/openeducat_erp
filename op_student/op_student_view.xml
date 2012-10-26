@@ -24,7 +24,6 @@
 				</tree>
 			</field>
 		</record>
-
 		<record id="view_op_student_form" model="ir.ui.view">
 			<field name="name">op.student.form</field>
 			<field name="model">op.student</field>
@@ -32,75 +31,71 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Student" version="7.0">
-				  <sheet>
-					<field name="photo" widget="image" class="oe_left oe_avatar" />
-					<div class="oe_title">
-						<h1>
-							<field name="title" placeholder="Title" style="width: 30%%" />
-						</h1>
-						<h1>
-							<field name="name" placeholder="First Name" style="width: 30%%" />
-							<field name="middle_name" placeholder="Middle Name" style="width: 30%%" />
-							<field name="last_name" placeholder="Last Name" style="width: 30%%" />
-						</h1>
-					</div>
-					<separator colspan="4" string="Basic Information" />
+					<sheet>
+						<field name="photo" widget="image" class="oe_left oe_avatar" />
+						<div class="oe_title">
+							<h1>
+								<field name="title" placeholder="Title" style="width: 30%%" />
+							</h1>
+							<h1>
+								<field name="name" placeholder="First Name" style="width: 30%%" />
+								<field name="middle_name" placeholder="Middle Name" style="width: 30%%" />
+								<field name="last_name" placeholder="Last Name" style="width: 30%%" />
+							</h1>
+						</div>
+						<separator colspan="4" string="Basic Information" />
 						<group col="6" colspan="4">
 							<field name="gender" />
 							<field name="birth_date" />
 							<field name="id_number" />
 							<field name="roll_number" />
 						</group>
-					<notebook colspan="4">
-						<page string="Details">
-							<separator colspan="4" string="Personal Detail" />
-							<group col="4" colspan="4">
-								<field name="category" />
-								<field name="religion" />
-								<field name="nationality" />
-								<field name="language" />
-								<field name="blood_group" />
-								<field name="pan_card" />
-								<field name="bank_acc_num" />
-								<field name="visa_info" />
-								<field name="emergency_contact" />
-							</group>
-						</page>
-						<page string="Educational">
-							<separator colspan="4" string="Educational Detail" />
-							<group col="4" colspan="4">
-								<field name="course_id" />
-								<field name="standard_id" />
-								<field name="batch_id" />
-								<field name="division_id" />
-								
-								<field name="roll_number_line" colspan="4" nolabel="1"
-									context="{'default_course_id':course_id,
+						<notebook colspan="4">
+							<page string="Details">
+								<separator colspan="4" string="Personal Detail" />
+								<group col="4" colspan="4">
+									<field name="category" />
+									<field name="religion" />
+									<field name="nationality" />
+									<field name="language" />
+									<field name="blood_group" />
+									<field name="pan_card" />
+									<field name="bank_acc_num" />
+									<field name="visa_info" />
+									<field name="emergency_contact" />
+								</group>
+							</page>
+							<page string="Educational">
+								<separator colspan="4" string="Educational Detail" />
+								<group col="4" colspan="4">
+									<field name="course_id" />
+									<field name="standard_id" />
+									<field name="batch_id" />
+									<field name="division_id" />
+									<field name="roll_number_line" colspan="4" nolabel="1"
+										context="{'default_course_id':course_id,
                                      'default_batch_id':batch_id,
                                      'default_standard_id':standard_id,
                                      'default_division_id':division_id}" />
-
-
-							</group>
-						</page>
-						<page string="Assignments">
-							<separator string="Assignment" colspan="4" />
-							<field name="allocation_ids" colspan="4" nolabel="1" />
-						</page>
-						<page string="Library">
-							<separator string="Library Detail" colspan="4" />
-							<field name="library_card_ids" colspan="4" nolabel="1" />
-						</page>
-						<!-- <group colspan="4"> -->
-						<!-- <button name="create_invoice" string="Create Invoice" -->
-						<!-- type="object" icon="gtk-apply" /> -->
-						<!-- </group> -->
-					</notebook>
-				  </sheet>
+								</group>
+							</page>
+							<page string="Assignments">
+								<separator string="Assignment" colspan="4" />
+								<field name="allocation_ids" colspan="4" nolabel="1" />
+							</page>
+							<page string="Library">
+								<separator string="Library Detail" colspan="4" />
+								<field name="library_card_ids" colspan="4" nolabel="1" />
+							</page>
+							<!-- <group colspan="4"> -->
+							<!-- <button name="create_invoice" string="Create Invoice" -->
+							<!-- type="object" icon="gtk-apply" /> -->
+							<!-- </group> -->
+						</notebook>
+					</sheet>
 				</form>
 			</field>
 		</record>
-
 		<record id="view_op_student_search" model="ir.ui.view">
 			<field name="name">op.student.search</field>
 			<field name="model">op.student</field>
@@ -132,7 +127,6 @@
 				</search>
 			</field>
 		</record>
-
 		<record model="ir.actions.act_window" id="act_open_op_student_view">
 			<field name="name">Student</field>
 			<field name="type">ir.actions.act_window</field>
@@ -143,21 +137,17 @@
 			<field name="domain">[]</field>
 			<field name="context">{}</field>
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_student_view_form">
 			<field name="act_window_id" ref="act_open_op_student_view" />
 			<field name="sequence" eval="20" />
 			<field name="view_mode">form</field>
 			<field name="view_id" ref="view_op_student_form" />
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_student_view_tree">
 			<field name="act_window_id" ref="act_open_op_student_view" />
 			<field name="sequence" eval="10" />
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_student_tree" />
 		</record>
-
-
 	</data>
 </openerp>

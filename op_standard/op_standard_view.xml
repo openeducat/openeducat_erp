@@ -15,7 +15,6 @@
 				</tree>
 			</field>
 		</record>
-
 		<record id="view_op_standard_form" model="ir.ui.view">
 			<field name="name">op.standard.form</field>
 			<field name="model">op.standard</field>
@@ -23,24 +22,21 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Standard" version="7.0">
-				  <sheet>
-				    
-					<separator colspan="4" string="Standard" />
-					<group colspan="4" col="4">
-					<field name="code" colspan="2"/>
-					<field name="name" colspan="2"/>
-					<field name="course_id" />
-					<field name="sequence" />
-					
-					<field name="payment_term" />
-					<separator string="Division" colspan="4" />
-					<field name="division_ids" colspan="4" nolabel="1" />
-					</group>
-				  </sheet>
+					<sheet>
+						<separator colspan="4" string="Standard" />
+						<group colspan="4" col="4">
+							<field name="code" colspan="2" />
+							<field name="name" colspan="2" />
+							<field name="course_id" />
+							<field name="sequence" />
+							<field name="payment_term" />
+							<separator string="Division" colspan="4" />
+							<field name="division_ids" colspan="4" nolabel="1" />
+						</group>
+					</sheet>
 				</form>
 			</field>
 		</record>
-
 		<record id="view_op_standard_search" model="ir.ui.view">
 			<field name="name">op.standard.search</field>
 			<field name="model">op.standard</field>
@@ -56,7 +52,6 @@
 				</search>
 			</field>
 		</record>
-
 		<record model="ir.actions.act_window" id="act_open_op_standard_view">
 			<field name="name">Standard</field>
 			<field name="type">ir.actions.act_window</field>
@@ -67,20 +62,17 @@
 			<field name="domain">[]</field>
 			<field name="context">{}</field>
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_standard_view_form">
 			<field name="act_window_id" ref="act_open_op_standard_view" />
 			<field name="sequence" eval="20" />
 			<field name="view_mode">form</field>
 			<field name="view_id" ref="view_op_standard_form" />
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_standard_view_tree">
 			<field name="act_window_id" ref="act_open_op_standard_view" />
 			<field name="sequence" eval="10" />
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_standard_tree" />
 		</record>
-
 	</data>
 </openerp>

@@ -1,45 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
-	    <record model="ir.ui.view" id="hr_kanban_view_faculty">
-        <field name="name">Faculty Kanban</field>
-        <field name="model">op.faculty</field>
-        <field name="arch" type="xml">
-            <kanban>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_employee_vignette">
-                            <div class="oe_employee_image">
-                                <a type="open"><img t-att-src="kanban_image('op.faculty', 'photo', record.id.value)" class="oe_employee_picture"/></a>
-                            </div>
-                            <div class="oe_employee_details">
-                                <h4>
-                                    <a type="open"><field name="name"/>
-                                    <t t-if="record.middle_name.raw_value"> <field name="middle_name"/> </t>
-                                    <t t-if="record.last_name.raw_value"> <field name="last_name"/> </t>
-                                    </a>
-                                </h4>
-                                <ul>
-                                    <li t-if="record.id_number.raw_value"><field name="id_number"/></li>
-                                    <li t-if="record.contact_address.raw_value">Address: <field name="contact_address"/></li>
-                                    <li t-if="record.phone.raw_value">Tel: <field name="phone"/></li>
-                                    <li t-if="record.mobile.raw_value">Mobile: <field name="mobile"/></li>
-                                    <li t-if="record.email.raw_value"><a t-attf-href="mailto:#{record.email.value}"><field name="email"/></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <script>
-                            $('.oe_employee_picture').load(function() { if($(this).width() > $(this).height()) { $(this).addClass('oe_employee_picture_wide') } });
-                        </script>
-                    </t>
-                </templates>
-            </kanban>
-
-        </field>
-    </record>
-	
-	
-	
+		<record model="ir.ui.view" id="hr_kanban_view_faculty">
+			<field name="name">Faculty Kanban</field>
+			<field name="model">op.faculty</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_employee_vignette">
+								<div class="oe_employee_image">
+									<a type="open">
+										<img t-att-src="kanban_image('op.faculty', 'photo', record.id.value)"
+											class="oe_employee_picture" />
+									</a>
+								</div>
+								<div class="oe_employee_details">
+									<h4>
+										<a type="open">
+											<field name="name" />
+											<t t-if="record.middle_name.raw_value">
+												<field name="middle_name" />
+											</t>
+											<t t-if="record.last_name.raw_value">
+												<field name="last_name" />
+											</t>
+										</a>
+									</h4>
+									<ul>
+										<li t-if="record.id_number.raw_value">
+											<field name="id_number" />
+										</li>
+										<li t-if="record.contact_address.raw_value">
+											Address:
+											<field name="contact_address" />
+										</li>
+										<li t-if="record.phone.raw_value">
+											Tel:
+											<field name="phone" />
+										</li>
+										<li t-if="record.mobile.raw_value">
+											Mobile:
+											<field name="mobile" />
+										</li>
+										<li t-if="record.email.raw_value">
+											<a t-attf-href="mailto:#{record.email.value}">
+												<field name="email" />
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<script> $('.oe_employee_picture').load(function() {
+								if($(this).width() > $(this).height()) {
+								$(this).addClass('oe_employee_picture_wide') } }); 
+							</script>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
 		<record id="view_op_faculty_tree" model="ir.ui.view">
 			<field name="name">op.faculty.tree</field>
 			<field name="model">op.faculty</field>
@@ -58,7 +78,6 @@
 				</tree>
 			</field>
 		</record>
-
 		<record id="view_op_faculty_form" model="ir.ui.view">
 			<field name="name">op.faculty.form</field>
 			<field name="model">op.faculty</field>
@@ -66,96 +85,95 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Faculty" version="7.0">
-				    <sheet>
-					<field name="photo" widget="image" class="oe_left oe_avatar" />
-					<div class="oe_title">
-						<h1>
-							<field name="title" placeholder="Title" style="width: 30%%" />
-						</h1>
-						<h1>
-							<field name="name" placeholder="First Name" style="width: 40%%" />
-							<field name="middle_name" placeholder="Middle Name" style="width: 20%%" />
-							<field name="last_name" placeholder="Last Name" style="width: 30%%" />
-						</h1>
-					</div>
-					<separator colspan="4" string="Basic Information" />
-					<group colspan="4" col="8">
-						<group col="8" colspan="4">
-							<group col="6" colspan="4">
-								<field name="gender" />
-								<field name="phone"/>
-								<field name="mobile"/>
-								<field name="email"/>
+					<sheet>
+						<field name="photo" widget="image" class="oe_left oe_avatar" />
+						<div class="oe_title">
+							<h1>
+								<field name="title" placeholder="Title" style="width: 30%%" />
+							</h1>
+							<h1>
+								<field name="name" placeholder="First Name" style="width: 40%%" />
+								<field name="middle_name" placeholder="Middle Name" style="width: 20%%" />
+								<field name="last_name" placeholder="Last Name" style="width: 30%%" />
+							</h1>
+						</div>
+						<separator colspan="4" string="Basic Information" />
+						<group colspan="4" col="8">
+							<group col="8" colspan="4">
+								<group col="6" colspan="4">
+									<field name="gender" />
+									<field name="phone" />
+									<field name="mobile" />
+									<field name="email" />
+								</group>
 							</group>
 						</group>
-					</group>
-					<notebook colspan="4">
-					    <page string="Personal Information" >
-					        <group col="4">
-						        <field name="birth_date" />
-						        <field name="id_number" />
-						        <field name="blood_group" />
-						        <field name="library_card" />
-						        <field name="nationality" />
-						        <field name="pan_card" />
-						        <field name="language" />
-						        <field name="bank_acc_num" />
-						        <field name="religion" />
-						        <field name="emergency_contact" />
-						        <field name="category" />
-						        <field name="visa_info" />
-					        </group>
-					        <field colspan="4" name="address" nolabel="1" select="1"
-						        height="260">
-						        <form string="Partner Contacts">
-							        <group colspan="4" col="6">
-								        <field name="name" string="Contact Name" />
-								        <field domain="[('domain', '=', 'contact')]" name="title"
-									        size="0" />
-								        <field name="function" />
-							        </group>
-							        <newline />
-							        <group colspan="2" col="4">
-								        <separator string="Postal Address" colspan="4" col="4" />
-								        <field name="type" string="Type" colspan="2" />
-								        <field name="street" colspan="4" />
-								        <field name="street2" colspan="4" />
-								        <field name="zip" />
-								        <field name="city" />
-								        <field name="country_id" completion="1" />
-								        <field name="state_id" />
-							        </group>
-							        <group colspan="2" col="2">
-								        <separator string="Communication" colspan="2" col="2" />
-								        <field name="phone" />
-								        <field name="mobile" />
-								        <field name="fax" />
-								        <field name="email" widget="email" />
-							        </group>
-						        </form>
-						        <tree string="Partner Contacts">
-							        <field name="name" />
-							        <field name="zip" />
-							        <field name="city" />
-							        <field name="country_id" />
-							        <field name="phone" />
-							        <field name="email" />
-						        </tree>
-					        </field>
-					    </page>
-					    <page string="Time Table" >
-	    				    <field name="timetable_ids" colspan="4"/>
-					    </page>
-					    <page string="Library Detail" >
-    					    <field name="library_card_ids" colspan="4" nolabel="1" />
-					    </page>
-					</notebook>
+						<notebook colspan="4">
+							<page string="Personal Information">
+								<group col="4">
+									<field name="birth_date" />
+									<field name="id_number" />
+									<field name="blood_group" />
+									<field name="library_card" />
+									<field name="nationality" />
+									<field name="pan_card" />
+									<field name="language" />
+									<field name="bank_acc_num" />
+									<field name="religion" />
+									<field name="emergency_contact" />
+									<field name="category" />
+									<field name="visa_info" />
+								</group>
+								<field colspan="4" name="address" nolabel="1" select="1"
+									height="260">
+									<form string="Partner Contacts">
+										<group colspan="4" col="6">
+											<field name="name" string="Contact Name" />
+											<field domain="[('domain', '=', 'contact')]" name="title"
+												size="0" />
+											<field name="function" />
+										</group>
+										<newline />
+										<group colspan="2" col="4">
+											<separator string="Postal Address" colspan="4" col="4" />
+											<field name="type" string="Type" colspan="2" />
+											<field name="street" colspan="4" />
+											<field name="street2" colspan="4" />
+											<field name="zip" />
+											<field name="city" />
+											<field name="country_id" completion="1" />
+											<field name="state_id" />
+										</group>
+										<group colspan="2" col="2">
+											<separator string="Communication" colspan="2" col="2" />
+											<field name="phone" />
+											<field name="mobile" />
+											<field name="fax" />
+											<field name="email" widget="email" />
+										</group>
+									</form>
+									<tree string="Partner Contacts">
+										<field name="name" />
+										<field name="zip" />
+										<field name="city" />
+										<field name="country_id" />
+										<field name="phone" />
+										<field name="email" />
+									</tree>
+								</field>
+							</page>
+							<page string="Time Table">
+								<field name="timetable_ids" colspan="4" />
+							</page>
+							<page string="Library Detail">
+								<field name="library_card_ids" colspan="4" nolabel="1" />
+							</page>
+						</notebook>
 					</sheet>
 					<!-- <field name="photo" /> -->
 				</form>
 			</field>
 		</record>
-
 		<record id="view_op_faculty_search" model="ir.ui.view">
 			<field name="name">op.faculty.search</field>
 			<field name="model">op.faculty</field>
@@ -180,7 +198,6 @@
 				</search>
 			</field>
 		</record>
-
 		<record model="ir.actions.act_window" id="act_open_op_faculty_view">
 			<field name="name">Faculty</field>
 			<field name="type">ir.actions.act_window</field>
@@ -191,20 +208,17 @@
 			<field name="domain">[]</field>
 			<field name="context">{}</field>
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_faculty_view_form">
 			<field name="act_window_id" ref="act_open_op_faculty_view" />
 			<field name="sequence" eval="20" />
 			<field name="view_mode">form</field>
 			<field name="view_id" ref="view_op_faculty_form" />
 		</record>
-
 		<record model="ir.actions.act_window.view" id="act_open_op_faculty_view_tree">
 			<field name="act_window_id" ref="act_open_op_faculty_view" />
 			<field name="sequence" eval="10" />
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_faculty_tree" />
 		</record>
-
 	</data>
 </openerp>

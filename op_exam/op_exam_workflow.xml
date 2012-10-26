@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-
 		<record id="wkf_exam" model="workflow">
 			<field name="name">op.exam.basic</field>
 			<field name="osv">op.exam</field>
 			<field name="on_create">True</field>
 		</record>
-
 		<record id="act_new_exam" model="workflow.activity">
 			<field name="wkf_id" ref="wkf_exam" />
 			<field name="flow_start">True</field>
@@ -15,14 +13,12 @@
 			<field name="action">act_new_exam()</field>
 			<field name="name">No Exam</field>
 		</record>
-
 		<record id="act_held" model="workflow.activity">
 			<field name="wkf_id" ref="wkf_exam" />
 			<field name="kind">function</field>
 			<field name="action">act_held()</field>
 			<field name="name">Held Exam</field>
 		</record>
-
 		<record id="act_schedule" model="workflow.activity">
 			<field name="wkf_id" ref="wkf_exam" />
 			<field name="kind">function</field>
@@ -30,16 +26,12 @@
 			<field name="action">act_schedule()</field>
 			<field name="name">Schedule Exam</field>
 		</record>
-
 		<record id="act_cancel" model="workflow.activity">
 			<field name="wkf_id" ref="wkf_exam" />
 			<field name="kind">function</field>
 			<field name="action">act_cancel()</field>
 			<field name="name">Cancel</field>
 		</record>
-
-
-
 		<record id="act_new_exam_to_held" model="workflow.transition">
 			<field name="act_from" ref="act_new_exam" />
 			<field name="act_to" ref="act_held" />
@@ -50,8 +42,6 @@
 			<field name="act_to" ref="act_cancel" />
 			<field name="signal">act_cancel</field>
 		</record>
-
-
 		<record id="held_to_schedule" model="workflow.transition">
 			<field name="act_from" ref="act_held" />
 			<field name="act_to" ref="act_schedule" />
@@ -62,18 +52,15 @@
 			<field name="act_to" ref="act_cancel" />
 			<field name="signal">act_cancel</field>
 		</record>
-
 		<record id="schedule_to_cancel" model="workflow.transition">
 			<field name="act_from" ref="act_schedule" />
 			<field name="act_to" ref="act_cancel" />
 			<field name="signal">act_cancel</field>
 		</record>
-
 		<record id="cancel_to_new_exam" model="workflow.transition">
 			<field name="act_from" ref="act_cancel" />
 			<field name="act_to" ref="act_new_exam" />
 			<field name="signal">act_new_exam</field>
 		</record>
-
 	</data>
 </openerp>

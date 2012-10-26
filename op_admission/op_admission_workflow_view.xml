@@ -6,9 +6,7 @@
 			<field name="osv">op.admission</field>
 			<field name="on_create">True</field>
 		</record>
-
 		<!-- activity -->
-
 		<record id="act_draft" model="workflow.activity">
 			<field name="wkf_id" ref="wkf_op_admission_view" />
 			<field name="flow_start">True</field>
@@ -44,15 +42,12 @@
 			<field name="action">confirm_selection()</field>
 			<field name="name">Confirm Enrollment</field>
 		</record>
-
-
 		<record id="act_fee_paid" model="workflow.activity">
 			<field name="wkf_id" ref="wkf_op_admission_view" />
 			<field name="kind">function</field>
 			<field name="action">fee_paid()</field>
 			<field name="name">Pay Fee</field>
 		</record>
-
 		<record id="act_confirm_to_draft" model="workflow.activity">
 			<field name="wkf_id" ref="wkf_op_admission_view" />
 			<field name="kind">function</field>
@@ -60,9 +55,7 @@
 			<field name="action">confirm_to_draft()</field>
 			<field name="name">Set to Draft</field>
 		</record>
-
 		<!-- transition -->
-
 		<record id="trans_draft_confirm_in_progress" model="workflow.transition">
 			<field name="act_from" ref="act_draft" />
 			<field name="act_to" ref="act_confirm_in_progress" />
@@ -103,7 +96,6 @@
 			<field name="act_to" ref="act_confirm_to_draft" />
 			<field name="signal">confirm_to_draft</field>
 		</record>
-
 		<record id="trans_confirm_in_progress_confirm_selection" model="workflow.transition">
 			<field name="act_from" ref="act_confirm_in_progress" />
 			<field name="act_to" ref="act_confirm_selection" />
@@ -114,20 +106,16 @@
 			<field name="act_to" ref="act_confirm_cancel" />
 			<field name="signal">confirm_cancel</field>
 		</record>
-
-
 		<record id="trans_confirm_in_progress_confirm_rejected" model="workflow.transition">
 			<field name="act_from" ref="act_confirm_in_progress" />
 			<field name="act_to" ref="act_confirm_rejected" />
 			<field name="signal">confirm_rejected</field>
 		</record>
-
 		<record id="trans_confirm_in_progress_confirm_pending" model="workflow.transition">
 			<field name="act_from" ref="act_confirm_in_progress" />
 			<field name="act_to" ref="act_confirm_pending" />
 			<field name="signal">confirm_pending</field>
 		</record>
-
 		<record id="trans_confirm_selection_fee_paid" model="workflow.transition">
 			<field name="act_from" ref="act_confirm_selection" />
 			<field name="act_to" ref="act_fee_paid" />
@@ -148,6 +136,5 @@
 			<field name="act_to" ref="act_confirm_pending" />
 			<field name="signal">confirm_pending</field>
 		</record>
-
 	</data>
 </openerp>
