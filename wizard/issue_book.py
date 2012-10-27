@@ -38,7 +38,6 @@ class issue_book(osv.osv_memory):
     _defaults = {'state': 'i'}
 
     def do_issue(self, cr, uid, ids, context={}):
-        print "gggggggggggggggggggggggg",ids
         value = {}
         book_movement = self.pool.get("op.book.movement")
         book = self.pool.get("op.book")

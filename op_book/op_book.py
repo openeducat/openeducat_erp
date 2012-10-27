@@ -36,6 +36,7 @@ class op_book(osv.osv):
             'movement_line': fields.one2many('op.book.movement', 'book_id', string='Movement'),
             'subject_ids': fields.many2many('op.subject', 'book_subject_rel', 'op_book_id', 'op_subject_id', string='Subjects'),
             'internal_code': fields.char(size=64, string='Internal ID'),
+            'queue_ids': fields.many2many('op.book.queue', 'op_queue_book_rl', 'op_queue_id', 'op_book_id', 'Book Queue'),
     }
 
     def do_return(self, cr, uid, ids, context={}):

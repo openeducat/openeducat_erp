@@ -41,6 +41,7 @@ import op_division
 import op_exam_attendees
 import op_student
 import op_book
+import op_book_queue
 import op_batch
 import op_marksheet_line
 import op_course
@@ -62,5 +63,6 @@ import op_achievement_type
 import wizard
 import report
 import res_company
+import op_health
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

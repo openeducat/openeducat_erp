@@ -18,12 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-import generate_roll_number
-import generate_time_table
-import op_all_student_wizard
-import issue_book
-import return_book
-import time_table_report
-import book_request_queue
+
+import op_health
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
