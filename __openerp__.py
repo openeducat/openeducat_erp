@@ -136,7 +136,8 @@
                  ],
     'test': [
              'test/configuration.yml',
-             'test/new_admission.yml'
+             'test/new_admission.yml',
+             'test/new_faculty.yml'
     ],
     'installable': True,
     'auto_install': False,
