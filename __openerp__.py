@@ -101,6 +101,7 @@
         'security/ir.model.access.csv',
         'op_book_movement/wizard/returndate_view.xml',
         'op_book_movement/wizard/reserve_book_view.xml',
+        'op_result_template/op_result_template_view.xml',
         'menu/openeducat_erp_menu.xml',
         'report/report_menu.xml',
         'dashboard/librarian_dashboard_view.xml',

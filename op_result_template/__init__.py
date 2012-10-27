@@ -18,49 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-import op_standard
-import op_route
-import op_faculty
-import op_admission
-import op_hostel_room
-import op_attendance_register
-import op_category
-import op_attendance_sheet
-import op_exam
 import op_result_template
-import op_publisher
-import op_religion
-import op_attendance_line
-import op_transportation
-import op_book_movement
-import op_marksheet_register
-import op_classroom
-import op_vehicle
-import op_hostel
-import op_division
-import op_exam_attendees
-import op_student
-import op_book
-import op_batch
-import op_marksheet_line
-import op_course
-import op_subject
-import op_tag
-import op_result_line
-import op_author
-import op_exam_type
-import op_facility
-import op_roll_number
-import res_partner
-import op_library
-import op_timetable
-import op_assignment
-import op_assignment_sub_line
-import op_assignment_sub_history
-import op_achievement
-import op_achievement_type
-import wizard
-import report
-import res_company
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
