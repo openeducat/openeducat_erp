@@ -45,7 +45,7 @@ class op_book_movement(osv.osv):
     }
 
     _defaults = {'state': 'a'}
-
+    
     def issue_book(self, cr, uid, ids, context={}):
         ''' function to issuing book '''
         book_pool = self.pool.get('op.book')

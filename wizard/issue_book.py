@@ -20,6 +20,7 @@
 #/#############################################################################
 from osv import osv, fields
 from tools.translate import _
+#from _xmlplus.xpath.Context import Context
 
 class issue_book(osv.osv_memory):
     """ Issue Book """
@@ -37,30 +38,48 @@ class issue_book(osv.osv_memory):
 
     _defaults = {'state': 'i'}
 
+    def check_issue(self, cr, uid, student_id, library_card_id, context={}):
+        
+        book_movement = self.pool.get("op.book.movement")
+        library_card = self.pool.get("op.library.card")
+        
+        book_movement_search = book_movement.search(cr, uid, [('library_card_id','=',library_card_id),
+                                                                  ('student_id','=',student_id),
+                                                                  ('state','=','i')])
+        if len(book_movement_search) < library_card.browse(cr, uid, library_card_id,context).allow_book:
+            return True
+        else: 
+            return False
+            
     def do_issue(self, cr, uid, ids, context={}):
         value = {}
         book_movement = self.pool.get("op.book.movement")
         book = self.pool.get("op.book")
         for this_obj in self.browse(cr, uid, ids,context):
-            if this_obj.book_id.state and this_obj.book_id.state == 'a':
-                book_movement_create = {
-                                        'book_id': this_obj.book_id.id,
-                                        'student_id': this_obj.student_id.id,
-                                        'library_card_id': this_obj.library_card_id.id,
-                                        'issued_date': this_obj.issued_date,
-                                        'return_date': this_obj.return_date,
-                                        'state': 'i',
-                                        }
-                book_move_id = book_movement.create(cr, uid, book_movement_create,context)
-                book.write(cr, uid, this_obj.book_id.id, {'state': 'i'},context)
-
-                value = {'type': 'ir.actions.act_window_close'}
+            if self.check_issue(cr, uid, this_obj.student_id.id, this_obj.library_card_id.id, context) == True:
+            
+                if this_obj.book_id.state and this_obj.book_id.state == 'a':
+                    book_movement_create = {
+                                            'book_id': this_obj.book_id.id,
+                                            'student_id': this_obj.student_id.id,
+                                            'library_card_id': this_obj.library_card_id.id,
+                                            'issued_date': this_obj.issued_date,
+                                            'return_date': this_obj.return_date,
+                                            'state': 'i',
+                                            }
+                    book_move_id = book_movement.create(cr, uid, book_movement_create,context)
+                    book.write(cr, uid, this_obj.book_id.id, {'state': 'i'},context)
+    
+                    value = {'type': 'ir.actions.act_window_close'}
+                else:
+                    book_state = this_obj.book_id.state == 'I' and 'Issued' or \
+                                  this_obj.book_id.state == 'a' and 'Available' or \
+                                  this_obj.book_id.state == 'L' and 'Lost' or \
+                                  this_obj.book_id.state == 'r' and 'Reserved'
+                    raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
             else:
-                book_state = this_obj.book_id.state == 'I' and 'Issued' or \
-                              this_obj.book_id.state == 'a' and 'Available' or \
-                              this_obj.book_id.state == 'L' and 'Lost' or \
-                              this_obj.book_id.state == 'r' and 'Reserved'
-                raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
+                raise osv.except_osv(('Error!'),("Maximum Number of book allowed for %s is : %s") %(this_obj.student_id.name,this_obj.library_card_id.allow_book))
+            
         return value
 
 
