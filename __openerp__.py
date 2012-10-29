@@ -107,7 +107,7 @@
         'op_result_template/op_result_template_view.xml',
         'menu/openeducat_erp_menu.xml',
         'report/report_menu.xml',
-        'op_book_purchase/op_student_book_purchase_view.xml',
+        'op_book_purchase/op_book_purchase_view.xml',
         'dashboard/librarian_dashboard_view.xml',
         'dashboard/faculty_dashboard_view.xml',
         'dashboard/student_dashboard_view.xml',
