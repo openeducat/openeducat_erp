@@ -55,7 +55,7 @@ class op_student(osv.osv):
             'category': fields.many2one('op.category', string='Category', required=True),
             'religion': fields.many2one('op.religion', string='Religion'),
             'library_card': fields.char(size=64, string='Library Card'),
-            'emergency_contact': fields.many2one('res.partner.address', string='Emergency Contact'),
+            'emergency_contact': fields.many2one('res.partner', string='Emergency Contact'),
             'pan_card': fields.char(size=64, string='PAN Card'),
             'bank_acc_num': fields.char(size=64, string='Bank Acc Number'),
             'visa_info': fields.char(size=64, string='Visa Info'),

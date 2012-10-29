@@ -57,7 +57,7 @@ class op_exam(osv.osv):
             'exam_type': fields.many2one('op.exam.type', string='Exam Type', required=True),
             'evaluation_type': fields.selection([('normal','Normal'),('GPA','GPA'),('CWA','CWA'),('CCE','CCE')], string='Evaluation Type', required=True),
             'attendees_line': fields.one2many('op.exam.attendees', 'exam_id', string='Attendees', required=True),
-            'venue': fields.many2one('res.partner.address', string='Venue'),
+            'venue': fields.many2one('res.partner', string='Venue'),
             'start_time': fields.datetime(string='Start Time', required=True),
             'end_time': fields.datetime(string='End Time', required=True),
             'state': fields.selection([('n','New Exam'),('h','Held'),('s','Scheduled'),('c','Cancelled')], string='State', select=True, readonly=True),

@@ -29,6 +29,7 @@
 			<field name="name">op.exam.form</field>
 			<field name="model">op.exam</field>
 			<field name="type">form</field>
+			<field name="context">{'show_address': 1}</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Exam" version="7.0">
@@ -57,7 +58,7 @@
 							<field name="start_time" />
 							<field name="end_time" />
 							<field name="evaluation_type" />
-							<field name="venue" />
+							<field name="venue" context="{'show_address': 1}" options='{"always_reload": True}' />
 							<newline />
 							<field name="total_marks" />
 							<field name="min_marks" />

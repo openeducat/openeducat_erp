@@ -2,54 +2,56 @@
 <openerp>
 	<data>
 		<record id="view_op_publisher_tree" model="ir.ui.view">
-			<field name="name">op.publisher.tree</field>
+			<field name="address_id">op.publisher.tree</field>
 			<field name="model">op.publisher</field>
 			<field name="type">tree</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<tree string="Publisher">
-					<field name="name" />
+					<field name="address_id" />
 					<field name="book_ids" />
 				</tree>
 			</field>
 		</record>
 		<record id="view_op_publisher_form" model="ir.ui.view">
-			<field name="name">op.publisher.form</field>
+			<field name="address_id">op.publisher.form</field>
 			<field name="model">op.publisher</field>
 			<field name="type">form</field>
+			<field name="context">{'show_address': 1}</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Publisher">
-					<separator colspan="4" string="Name" />
+					<separator colspan="4" string="Publisher" />
 					<group>
-						<field name="name" />
+						<field name="address_id" context="{'show_address': 1}" options='{"always_reload": True}' />
 					</group>
 					<separator string="Publisher" colspan="4" />
 					<group col="4" colspan="4">
 						<field name="book_ids" colspan="4" nolabel="1" />
+						
 					</group>
 				</form>
 			</field>
 		</record>
 		<record id="view_op_publisher_search" model="ir.ui.view">
-			<field name="name">op.publisher.search</field>
+			<field name="address_id">op.publisher.search</field>
 			<field name="model">op.publisher</field>
 			<field name="type">search</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<search string="Publisher">
-					<field name="name" />
+					<field name="address_id" />
 					<field name="book_ids" />
 					<newline />
 					<group expand="0" string="Group By...">
-						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
+						<filter string="Publisher" domain="[]" context="{'group_by':'name'}" />
 						<filter string="Publisher" domain="[]" context="{'group_by':'book_ids'}" />
 					</group>
 				</search>
 			</field>
 		</record>
 		<record model="ir.actions.act_window" id="act_open_op_publisher_view">
-			<field name="name">Publisher</field>
+			<field name="address_id">Publisher</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">op.publisher</field>
 			<field name="view_type">form</field>

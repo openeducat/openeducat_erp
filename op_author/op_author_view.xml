@@ -9,7 +9,7 @@
 			<field name="arch" type="xml">
 				<tree string="Author">
 					<field name="name" />
-					<field name="address_id" />
+					<field name="address" />
 				</tree>
 			</field>
 		</record>
@@ -17,13 +17,13 @@
 			<field name="name">op.author.form</field>
 			<field name="model">op.author</field>
 			<field name="type">form</field>
+			<field name="context">{'show_address': 1}</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Author">
 					<separator colspan="4" string="Author Detail" />
 					<group colspan="4">
-						<field name="name" />
-						<field name="address_id" />
+						<field name="address" context="{'show_address': 1}" options='{"always_reload": True}'/>
 					</group>
 					<separator string="Books" colspan="4" />
 					<field name="book_ids" colspan="4" nolabel="1" />
@@ -38,7 +38,7 @@
 			<field name="arch" type="xml">
 				<search string="Author">
 					<field name="name" />
-					<field name="address_id" />
+					<field name="address" />
 					<field name="book_ids" />
 					<newline />
 					<group expand="0" string="Group By...">
