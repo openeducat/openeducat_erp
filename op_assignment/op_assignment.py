@@ -38,6 +38,7 @@ class op_assignment(osv.osv):
             'submission_date': fields.datetime(string='Submission Date'),
             'allocation_ids': fields.many2many('op.student', 'op_assignment_student_rel', 'op_assignment_id', 'op_student_id', string='Allocated To'),
             'assignment_sub_line': fields.one2many('op.assignment.sub.line', 'assignment_id', string='Submissions'),
+            'reviewer': fields.many2one('op.faculty', 'Reviewer')
     }
 
     _defaults = {

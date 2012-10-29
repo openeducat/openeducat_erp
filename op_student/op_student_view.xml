@@ -49,6 +49,7 @@
 							<field name="birth_date" />
 							<field name="id_number" />
 							<field name="roll_number" />
+							<field name="alumni_boolean" />
 						</group>
 						<notebook colspan="4">
 							<page string="Details">
@@ -86,6 +87,22 @@
 							<page string="Library">
 								<separator string="Library Detail" colspan="4" />
 								<field name="library_card_ids" colspan="4" nolabel="1" />
+							</page>
+							<page string="Placement Details">
+								<separator string="Placement Detail" colspan="4" />
+								<field name="placement_line" colspan="4" nolabel="1" />
+							</page>
+							
+							
+							<page string="Alumni Details">
+								<group colspan="4" col="4" attrs="{'invisible':[('alumni_boolean','=',False)]}">
+								<separator string="Alumni Detail" colspan="4" />
+									<field name="passing_year" />
+									<field name="current_position" />
+									<field name="current_job" />
+									<field name="email" />
+									<field name="phone" string="Phone"/>
+								</group>
 							</page>
 							<!-- <group colspan="4"> -->
 							<!-- <button name="create_invoice" string="Create Invoice" -->

@@ -76,6 +76,16 @@ class op_student(osv.osv):
                                     'op.roll.number': (_get_roll, [], 10),
                                 }),
             'allocation_ids': fields.many2many('op.assignment', 'op_student_assignment_rel', 'op_assignment_id', 'op_student_id', string='Assignment'),
+            'placement_line': fields.one2many('op.placement','student_id', 'Placement Details'),
+            
+            
+            'alumni_boolean': fields.boolean('Alumni Student'),
+            'passing_year': fields.many2one('op.batch', string='Passing Year'),
+            'current_position': fields.char(string='Current Position', size=256),
+            'current_job': fields.char(string='Current Job', size=256),
+            'email': fields.char(string='Email', size=128),
+            'phone': fields.char(string='Phone Number', size=256)
+            
     }
 
     def create_invoice(self, cr, uid, ids, context={}):

@@ -11,6 +11,9 @@
 					<field name="attendance_id" />
 					<field name="student_id" />
 					<field name="present" />
+					<field name="course_id" />
+					<field name="standard_id" />
+					<field name="division_id" />
 				</tree>
 			</field>
 		</record>
@@ -25,6 +28,9 @@
 					<group col="4" colspan="4">
 						<field name="student_id" />
 						<field name="present" />
+						<field name="course_id" />
+						<field name="standard_id" />
+						<field name="division_id" />
 					</group>
 				</form>
 			</field>
@@ -43,6 +49,12 @@
 					<group expand="0" string="Group By...">
 						<filter string="Attendance" domain="[]"
 							context="{'group_by':'attendance_id'}" />
+						<filter string="Course" domain="[]"
+							context="{'group_by':'course_id'}" />
+						<filter string="Standard" domain="[]"
+							context="{'group_by':'standard_id'}" />
+						<filter string="Division" domain="[]"
+							context="{'group_by':'division_id'}" />
 						<filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
 						<filter string="Present ?" domain="[]" context="{'group_by':'present'}" />
 					</group>
