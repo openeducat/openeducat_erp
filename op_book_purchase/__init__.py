@@ -1,1 +1,1 @@
-import op_student_book_purchase
+import op_book_purchase
