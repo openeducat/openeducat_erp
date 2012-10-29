@@ -74,7 +74,7 @@ class op_student(osv.osv):
                                 store = {
                                     'op.roll.number': (_get_roll, [], 10),
                                 }),
-            'allocation_ids': fields.many2many('op.assignment', 'op_student_assignment_rel', 'op_assignment_id', 'op_student_id', string='Assignment'),
+            'allocation_ids': fields.many2many('op.assignment', 'op_student_assignment_rel', 'op_student_id','op_assignment_id', string='Assignment'),
             'alumni_boolean': fields.boolean('Alumni Student'),
             'passing_year': fields.many2one('op.batch', string='Passing Year'),
             'current_position': fields.char(string='Current Position', size=256),
