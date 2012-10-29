@@ -53,19 +53,15 @@ class generate_time_table(osv.osv_memory):
             if line.period_id.am_pm == 'pm' and int(hour) != 12:
                 hour = int(hour)+12
             per_time = '%s:%s:00'%(hour,line.period_id.minute)
-            print "GGGGGGGGGG",curr_date.strftime("%Y-%m-%d ") + per_time,context['tz']
             dt_st = utils.server_to_local_timestamp(curr_date.strftime("%Y-%m-%d ") + per_time, "%Y-%m-%d %H:%M:%S",
                                      "%Y-%m-%d %H:%M:%S",
                                                     'GMT',
                                      server_tz = context.get('tz','GMT'),
 
                                      )
-            print "$%%%%%%%%%%%%%%%%%%%%%",dt_st
             curr_date = datetime.datetime.strptime(dt_st, "%Y-%m-%d %H:%M:%S")
             end_time = datetime.timedelta(hours=line.period_id.duration)
-            print "++++++++++++++++++++++++",curr_date,end_time
             cu_en_date = curr_date + end_time
-            print "+++++++++++",cu_en_date
             time_pool.create(cr, uid, {
                         'faculty_id':line.faculty_id.id,
                         'subject_id':line.subject_id.id,

@@ -53,7 +53,6 @@ class op_all_student_wizard(osv.osv_memory):
                                }
                         cr_id = self.pool.get('op.attendance.line').create(cr, uid, dic, context=context)
                         value = {'type': 'ir.actions.act_window_close'}
-            print 'VVVVV_________________',value
             return value
 
 

@@ -70,9 +70,7 @@ class time_table_generate(report_sxw.rml_parse):
                              }
 
             data_list.append(timetable_data)
-        print "_______________data_list__________________",data_list
         ttdl = sorted(data_list, key=lambda k: k['sequence'])
-        print "_____________ttdl______________________",ttdl
         final_list = self.sort_tt(ttdl)
 
         return final_list

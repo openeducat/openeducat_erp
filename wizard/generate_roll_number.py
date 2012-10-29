@@ -74,11 +74,9 @@ class generate_roll_number(osv.osv_memory):
                 cond = [('standard_id','=',std_obj.id)]
                 cond+=[('division_id','=',div)]
                 stu_ids = student_pool.search(cr, uid, cond, context=context, order=order_by)
-                print "%%%%%%%%%%%%%%%%%%%",stu_ids
                 roll_number = self_obj.start
                 for stu_id in stu_ids:
                     stu_obj = student_pool.browse(cr, uid, stu_id, context=context)
-                    print "++++",stu_obj.name,stu_obj.last_name,stu_obj.middle_name
                     roll_line_pool.create(cr, uid, {
                         'student_id':stu_id,
                         'batch_id':stu_obj.batch_id.id,

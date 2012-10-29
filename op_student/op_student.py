@@ -40,7 +40,6 @@ class op_student(osv.osv):
         result = {}
         for line in self.pool.get('op.roll.number').browse(cr, uid, ids, context=context):
             result[line.student_id.id] = True
-        print "result",result
         return result.keys()
 
     _columns = {
