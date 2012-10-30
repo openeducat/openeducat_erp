@@ -16,6 +16,7 @@
 					<field name="subject_ids" />
 					<field name="student_id" />
 					<field name="faculty_id" />
+					<field name="library_id" />
 				</tree>
 			</field>
 		</record>
@@ -25,15 +26,33 @@
 			<field name="type">form</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Purchase Request">
-					<field name="name" />
-					<field name="author_ids" />
-					<field name="edition" />
-					<field name="publisher_ids" />
-					<field name="course_ids" />
-					<field name="subject_ids" />
-					<field name="student_id" />
-					<field name="faculty_id" />
+				<form string="Purchase Request" version="7.0">
+					<header>
+						<span groups="base.group_user">
+							<field name="state" widget="statusbar" statusbar_visible="d,rq,a,r"
+								statusbar_colors='{"r":"red"}' />
+								
+							<button name="act_requested" states="d" type="object" string="Request Book"
+								icon="gtk-go-forward" groups="openeducat_erp.group_op_student" />
+							<button name="act_accept" states="rq" type="object" string="Accepted"
+								icon="gtk-go-forward" groups="openeducat_erp.group_op_back_office_admin" />
+							<button name="act_reject" states="rq" type="object"
+								string="Rejected" icon="terp-dialog-close" groups="openeducat_erp.group_op_back_office_admin" />
+						</span>
+					</header>
+					<sheet>
+						<group col="4" colspan="4">
+							<field name="name" />
+							<field name="author_ids" />
+							<field name="edition" />
+							<field name="publisher_ids" />
+							<field name="course_ids" />
+							<field name="subject_ids" />
+							<field name="student_id" />
+							<field name="faculty_id" />
+							<field name="library_id" />
+						</group>
+					</sheet>
 				</form>
 			</field>
 		</record>
@@ -52,6 +71,7 @@
 					<field name="subject_ids" />
 					<field name="student_id" />
 					<field name="faculty_id" />
+					<field name="library_id" />
 				</search>
 			</field>
 		</record>
