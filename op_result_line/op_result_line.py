@@ -27,10 +27,12 @@ class op_result_line(osv.osv):
     _columns = {
             'marksheet_line_id': fields.many2one('op.marksheet.line', string='Marksheet Line'),
             'exam_id': fields.many2one('op.exam', string='Exam', required=True),
+            'exam_tmpl_id':fields.many2one('op.result.exam.line','Exam Template'),
             'marks': fields.float(string='Marks', required=True),
             'per': fields.float(string='Percentage', required=True),
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'status': fields.selection([('p','Pass'),('f','Fail')], string='Status', required=True),
+            'result_id':fields.many2one('op.marksheet.line','MarkSheet Line')
     }
 
 op_result_line()

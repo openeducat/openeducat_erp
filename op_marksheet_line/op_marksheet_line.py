@@ -23,11 +23,67 @@ from osv import osv, fields
 class op_marksheet_line(osv.osv):
     _name = 'op.marksheet.line'
     _rec_name = 'marksheet_reg_id'
+    def _get_total(self, cr, uid, ids, name, args, context=None):
+        res = {}
+        for self_obj in self.browse(cr, uid, ids, context=context):
+            total = 0.0
+            per = 0.0
+            pass_flg = True
+            total_per = 0.0
+            number_fail = 0
+            for line in self_obj.result_line:
+                if line.status != 'p':
+                    pass_flg = False
+                    number_fail += 1
+                total+=line.marks
+                total_per += line.exam_id.total_marks
 
+            per = (total_per and (100/total_per)*total) or 0.0
+            result = ""
+
+            res_tmpl = self_obj.exam_session_id.result_id
+            if pass_flg and res_tmpl:
+                pass_st_ids = res_tmpl.pass_status_ids
+                to_consider = False
+                min_pass = 0.0
+
+                for pass_st in pass_st_ids:
+                    if pass_st.number <= per and pass_st.number > min_pass:
+                        min_pass = pass_st.number
+                        to_consider = pass_st
+
+                if to_consider:
+                    result  = to_consider.result
+            else:
+                if res_tmpl:
+                    crit_ids = res_tmpl.criteria_ids
+                    to_consider = False
+                    max_pass = False
+                    for crit_id in crit_ids:
+                        if crit_id.number == number_fail:
+                            to_consider = crit_id
+                        if not max_pass or  crit_id.number > max_pass.number:
+                            max_pass = crit_id
+                    if not to_consider:
+                        to_consider = max_pass
+                    result = to_consider.result
+
+
+            res[self_obj.id] = {
+                'total_marks': total,
+                'total_per': per,
+                'result':result,
+
+            }
+        return res
     _columns = {
             'marksheet_reg_id': fields.many2one('op.marksheet.register', string='Marksheet Register', required=True),
+            'exam_session_id':fields.many2one('op.result.template.line','Session Template'),
             'student_id': fields.many2one('op.student', string='Student', required=True),
-            'result_line': fields.one2many('op.result', 'result_id', string='Result'),
+            'result_line': fields.one2many('op.result.line', 'result_id', string='Result'),
+            'total_marks':fields.function(_get_total,string="Total Marks", method=True,multi='total_marks'),
+            'total_per':fields.function(_get_total,string="Total Percentage", method=True,multi='total_marks'),
+            'result':fields.function(_get_total, string="Result", method=True, multi="total_marks", type="char", size=256),
     }
 
 op_marksheet_line()

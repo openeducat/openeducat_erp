@@ -10,6 +10,9 @@
 				<tree string="Marksheet Line">
 					<field name="marksheet_reg_id" />
 					<field name="student_id" />
+					<field name="total_marks"/>
+					<field name="total_per"/>
+                                        <field name="result"/>
 				</tree>
 			</field>
 		</record>
@@ -24,6 +27,10 @@
 					<group colspan="4">
 						<field name="marksheet_reg_id" />
 						<field name="student_id" />
+					    <field name="total_marks"/>
+					    <field name="total_per"/>
+                                            <field name="result"/>
+						<field name="result_line" colspan="4"/>
 					</group>
 				</form>
 			</field>
@@ -37,11 +44,15 @@
 				<search string="Marksheet Line">
 					<field name="marksheet_reg_id" />
 					<field name="student_id" />
+				    <field name="total_marks"/>
+				    <field name="total_per"/>
+                                    <field name="result"/>
 					<newline />
 					<group expand="0" string="Group By...">
 						<filter string="Marksheet Register" domain="[]"
 							context="{'group_by':'marksheet_reg_id'}" />
 						<filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
+						<filter string="Result" domain="[]" context="{'group_by':'result'}" />
 					</group>
 				</search>
 			</field>

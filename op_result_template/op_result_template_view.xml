@@ -25,8 +25,13 @@
             <field name="name" select="1"/>
             <field name="exam_session_id"/>
             <field name="result_date"/>
+            <separator string="Minimum Qualification Criteria" colspan="4"/>
+            <field name="criteria_ids" colspan="4" nolabel="1"/>
+            <separator string="Passing Status" colspan="4"/>
+            <field name="pass_status_ids" colspan="4" nolabel="1"/>
             <separator string="Session Templates" colspan="4"/>
             <field name="line_ids" colspan="4" nolabel="1"/>
+            <button string="Genrate Result"  type="object" name="genrate_result"/>
         </form>
         </field>
     </record>
@@ -93,7 +98,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
         <form string="Session Template">
-            <field name="exam_session_id" select="1"/>
+            <field name="exam_session_id" select="1" on_change="onchange_exam_session(exam_session_id, context)"/>
             <field name="detailed_report"/>
             <field name="course_id" select="1"/>
             <field name="batch_id" select="1"/>
@@ -153,7 +158,7 @@
         <field name="type">tree</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <tree string="Exam Template">
+        <tree string="Exam Template" editable="top">
             <field name="exam_id" select="1"/>
             <field name="pass_marks" select="1"/>
             <field name="total_marks" select="1"/>
@@ -173,6 +178,8 @@
             <field name="pass_marks" select="1"/>
             <field name="total_marks" select="1"/>
             <field name="weightage" select="1"/>
+            <separator string="Result" colspan="4"/>
+            <field name="result_lines" colspan="4"/>
         </form>
         </field>
     </record>
@@ -218,5 +225,118 @@
     </record>
     
 
+    <record id="view_op_min_clearance_criteria_tree" model="ir.ui.view">
+        <field name="name">op.min.clear.criteria.tree</field>
+        <field name="model">op.min.clear.criteria</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <tree string="Qualification Criteria" editable="top">
+            <field name="name"/>
+            <field name="number"/>
+            <field name="result"/>
+        </tree>
+        </field>
+    </record>
+    
+    <record id="view_op_min_clearance_criteria_form" model="ir.ui.view">
+        <field name="name">op.min.clear.criteria.form</field>
+        <field name="model">op.min.clear.criteria</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <form string="Qualification Criteria">
+            <field name="name" select="1"/>
+            <field name="number"/>
+            <field name="result"/>
+        </form>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="act_open_op_min_clearance_criteria_view">
+        <field name="name">Qualification Criteria</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">op.min.clear.criteria</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_op_min_clearance_criteria_view_form">
+        <field name="act_window_id" ref="act_open_op_min_clearance_criteria_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_op_min_clearance_criteria_form"/>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_op_min_clearance_criteria_view_tree">
+        <field name="act_window_id" ref="act_open_op_min_clearance_criteria_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_op_min_clearance_criteria_tree"/>
+    </record>
+    
+    <menuitem id="menu_op_min_clearance_criteria"
+        parent="menu_op_school_back_office_root"
+        sequence="20"
+        action="act_open_op_min_clearance_criteria_view"/>
+
+    <record id="view_op_pass_status_tree" model="ir.ui.view">
+        <field name="name">op.pass.status.tree</field>
+        <field name="model">op.pass.status</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <tree string="Pass Status">
+            <field name="name"/>
+            <field name="number"/>
+            <field name="result"/>
+        </tree>
+        </field>
+    </record>
+    
+    <record id="view_op_pass_status_form" model="ir.ui.view">
+        <field name="name">op.pass.status.form</field>
+        <field name="model">op.pass.status</field>
+        <field name="type">form</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+        <form string="Pass Status">
+            <field name="name" select="1"/>
+            <field name="number"/>
+            <field name="result"/>
+        </form>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="act_open_op_pass_status_view">
+        <field name="name">Pass Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">op.pass.status</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_op_pass_status_view_form">
+        <field name="act_window_id" ref="act_open_op_pass_status_view"/>
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_op_pass_status_form"/>
+    </record>
+    
+    <record model="ir.actions.act_window.view" id="act_open_op_pass_status_view_tree">
+        <field name="act_window_id" ref="act_open_op_pass_status_view"/>
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_op_pass_status_tree"/>
+    </record>
+    
+    <menuitem id="menu_op_pass_status"
+        parent="menu_op_school_back_office_root"
+        sequence="20"
+        action="act_open_op_pass_status_view"/>
     </data>
 </openerp>
