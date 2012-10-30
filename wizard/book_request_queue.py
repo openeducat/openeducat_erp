@@ -2,7 +2,7 @@
 
 from osv import osv, fields
 
-class book_request_queue(osv.osv_memory):
+class book_request_queue(osv.TransientModel):
 
     _name = 'book.request.queue'
 
