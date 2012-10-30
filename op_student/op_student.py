@@ -41,6 +41,8 @@ class op_student(osv.osv):
         for line in self.pool.get('op.roll.number').browse(cr, uid, ids, context=context):
             result[line.student_id.id] = True
         return result.keys()
+    
+
 
     _columns = {
 #            'name': fields.char(size=128, string='First Name', required=True),
@@ -80,9 +82,10 @@ class op_student(osv.osv):
             'current_position': fields.char(string='Current Position', size=256),
             'current_job': fields.char(string='Current Job', size=256),
             'email': fields.char(string='Email', size=128),
-            'phone': fields.char(string='Phone Number', size=256)
-            
+            'phone': fields.char(string='Phone Number', size=256),
+            'user_id': fields.many2one('res.users', 'User'),
     }
+
 
     def create_invoice(self, cr, uid, ids, context={}):
         """ Create invoice for fee payment process of student """
