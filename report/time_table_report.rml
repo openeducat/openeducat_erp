@@ -16,20 +16,20 @@
       <blockValign value="TOP"/>
     </blockTableStyle>
     <blockTableStyle id="Table2">
-          <blockAlignment value="LEFT"/>
-          <blockValign value="TOP"/>
-          <lineStyle kind="LINEBEFORE" colorName="white" />
-          <lineStyle kind="LINEAFTER" colorName="white" />
-          <lineStyle kind="LINEABOVE" colorName="black" start="0,0" stop="0,0"/>
-          <lineStyle kind="LINEBELOW" colorName="black" start="0,0" stop="4,0"/>
+          <blockAlignment value="CENTER"/>
+          <blockValign value="CENTER"/>
+          <lineStyle kind="LINEBELOW" colorName="cccccc"/>
     </blockTableStyle>
     
     <blockTableStyle id="Table1">
-          <blockAlignment value="LEFT"/>
-          <blockValign value="TOP"/>
+          <blockAlignment value="CENTER"/>
+          <blockValign value="CENTER"/>
           <lineStyle kind="LINEABOVE" colorName="black"/>
           <lineStyle kind="LINEBELOW" colorName="black"/>
+          <lineStyle kind="LINEABOVE" colorName="black"/>
+          <lineStyle kind="LINEBEFORE" colorName="black"/>
     </blockTableStyle>
+    
 
     <blockTableStyle id="Table3">
       <blockAlignment value="LEFT"/>
@@ -77,16 +77,24 @@
 		</tr>
 	</blockTable>
 	</section>
+	<section>
+	<blockTable colWidths="9.5cm,9.5cm" style="Standard_Outline">
+		<tr>
+			<td><para style="P2" fontName="Helvetica-Bold" alignment="CENTER">From Date: [[ data['start_date'] ]]</para></td>
+			<td><para style="P2" fontName="Helvetica-Bold" alignment="CENTER">To Date: [[ data['end_date'] ]]</para></td>
+		</tr>
+	</blockTable>
+	</section>
 
 	<para style="P2"><font color="white"> </font></para>
 	<para style="P2"><font color="white"> </font></para>
 	<para style="P2"><font color="white"> </font></para>
 	
 	<section>
-	<blockTable colWidths="3cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm" style="Standard_Outline">
+	<blockTable colWidths="3cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm" style="Table1">
 		<tr>
 			<td><para style="P2"><font color="white"> </font></para></td>
-			<td><para style="P2" fontName="Helvetica-Bold">MON</para></td>
+			<td><para style="P2" fontName="Helvetica-Bold" alignment="CENTER">MON</para></td>
 			<td><para style="P2" fontName="Helvetica-Bold" alignment="CENTER">TUE</para></td>
 			<td><para style="P2" fontName="Helvetica-Bold" alignment="CENTER">WED</para></td>
 			<td><para style="P2" fontName="Helvetica-Bold" alignment="CENTER">THU</para></td>
@@ -99,13 +107,13 @@
 
 	<section>
 	<para style="P2">[[repeatIn(get_object(data),'a')]]</para>
-	<blockTable colWidths="3cm,16cm" style="Standard_Outline">
+	<blockTable colWidths="3cm,16cm" style="Table2">
 		<tr>
 			<td>
 				<para style="P2" fontName="Helvetica-Bold">[[ a['name'] ]]</para>
 			</td>
 			<td>
-				<blockTable colWidths="2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm" style="Standard_Outline">
+				<blockTable colWidths="2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm,2.28cm" style="">
 				<tr>
 					<td><para style="P2"  alignment="CENTER">[[ a['line'].get('Monday',{'subject':''})['subject'] ]]</para></td>
 					<td><para style="P2"  alignment="CENTER">[[ a['line'].get('Tuesday',{'subject':''})['subject'] ]]</para></td>

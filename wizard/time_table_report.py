@@ -21,7 +21,7 @@
 from osv import osv
 from osv import fields
 import datetime
-from openerp.addons.openeducat_erp import utils
+import time
 week_number  = {
     'Mon': 1,
     'Tue': 2,
@@ -36,30 +36,61 @@ class time_table_report(osv.osv_memory):
     _name = 'time.table.report'
     _description = 'Generate Time Table Report'
     _columns = {
-        'standard_id': fields.many2one('op.standard', 'Standard', required=True),
-        'division_id': fields.many2one('op.division', 'Division',  required=True),
+        'standard_id': fields.many2one('op.standard', 'Standard'),
+        'division_id': fields.many2one('op.division', 'Division'),
+        'faculty_id': fields.many2one('op.faculty', string='Faculty'),
         'start_date':fields.date('Start Date', required=True),
         'end_date':fields.date('End Date', required=True),
+        'state': fields.selection([('s','Student'),('t','Teacher')],string='Select',\
+                                  required=True),
     }
+
+    _defaults = {
+                 'state': 't',
+                 'start_date': time.strftime('2012-10-01'),
+                 'end_date': time.strftime('2012-10-31')
+                 }
 
     def gen_time_table_report(self, cr, uid, ids, context={}):
         value = {}
-        data = self.read(cr, uid, ids, ['standard_id','division_id','start_date', 'end_date'], context=context)
+        data = self.read(cr, uid, ids, ['start_date', 'end_date','standard_id',\
+                            'division_id','state','faculty_id'], context=context)
 
-        time_table_ids = self.pool.get('op.timetable').search(cr, uid, [('standard_id','=',data[0]['standard_id'][0]),
-                                                                        ('division_id','=',data[0]['division_id'][0]),
-                                                                        ('start_datetime','>',data[0]['start_date'] + '%H:%M:%S'),
-                                                                        ('end_datetime','<',data[0]['end_date'] + '%H:%M:%S'),
-                                                                        ],order='start_datetime asc')
-
-        data[0].update({'time_table_ids': time_table_ids})
-
-        value = {
-                'type': 'ir.actions.report.xml',
-                'report_name': 'time.table.report',
-                'datas': data[0],
-                }
-        return value
+        if data[0]['state'] == 's':
+            time_table_ids = self.pool.get('op.timetable').search(cr, uid, \
+                      [('standard_id','=',data[0]['standard_id'][0]),
+                        ('division_id','=',data[0]['division_id'][0]),
+                        ('start_datetime','>',data[0]['start_date'] + '%H:%M:%S'),
+                        ('end_datetime','<',data[0]['end_date'] + '%H:%M:%S'),
+                        ],order='start_datetime asc')
+            
+            data[0].update({'time_table_ids': time_table_ids})
+        else:
+            teacher_time_table_ids = self.pool.get('op.timetable').search(cr, uid,\
+                      [('start_datetime','>',data[0]['start_date'] + '%H:%M:%S'),
+                        ('end_datetime','<',data[0]['end_date'] + '%H:%M:%S'),
+                        ('faculty_id','=',data[0]['faculty_id'][1]),
+                        ],order='start_datetime asc')
+        
+        
+            data[0].update({'teacher_time_table_ids': teacher_time_table_ids})
+        
+        if data[0]['state'] == 's' :
+            print '________DATA________',data
+            value = {
+                    'type': 'ir.actions.report.xml',
+                    'report_name': 'time.table.report',
+                    'datas': data[0],
+                    }
+            return value
+        elif data[0]['state'] == 't':
+            print '________data________',data
+            value = {
+                    'type': 'ir.actions.report.xml',
+                    'report_name': 'time.table.teacher.report',
+                    'datas': data[0],
+                    }
+            return value
 
 time_table_report()
 

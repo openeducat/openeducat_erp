@@ -20,14 +20,14 @@
 #/#############################################################################
 from osv import osv, fields
 
-class op_publisher(osv.osv):
-    _name = 'op.publisher'
+class op_activity(osv.osv):
+    _name = 'op.activity'
 
     _columns = {
-            'name': fields.char(string="Name", size=20),
-            'address_id': fields.many2one('res.partner', string='Address'),
-            'book_ids': fields.many2many('op.book', 'book_publisher_rel', 'op_publisher_id', 'op_book_id', string='Publisher'),
+            'name': fields.char(string='Activity Name' ,size=128, required=True),
+            'student_id': fields.many2one('op.student', string='Student', required=True),
+            'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True),
     }
 
-op_publisher()
+op_activity()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

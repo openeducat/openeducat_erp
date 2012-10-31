@@ -66,5 +66,5 @@ import res_company
 import op_health
 import op_book_purchase
 import op_placement_offer
-
+import op_activity
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

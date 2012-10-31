@@ -52,6 +52,7 @@
     'init_xml': [],
     'update_xml': [
         'security/op_security.xml',
+        'op_activity/op_activity_view.xml',
         'op_student/op_student_view.xml',
         'op_standard/op_standard_view.xml',
         'op_health/op_health_view.xml',
