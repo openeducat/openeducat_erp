@@ -26,7 +26,7 @@
     <blockTableStyle id="Table_Below">
       <blockAlignment value="LEFT"/>
       <blockValign value="TOP"/>
-      <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
+      <lineStyle kind="LINEBELOW" colorName="#CCCCCC"/>
     </blockTableStyle>
     
     <blockTableStyle id="Table_Blank">
@@ -48,7 +48,7 @@
       <paraStyle name="all" alignment="justify"/>
     </initialize>
     <paraStyle name="P1" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P2" fontName="Helvetica" alignment="LEFT" fontSize="8.0" leading="10"/>
+    <paraStyle name="P2" fontName="Times-BoldItalic" alignment="LEFT" fontSize="8.0" leading="12"/>
     <paraStyle name="P3" fontName="Helvetica" alignment="RIGHT"/>
     <paraStyle name="P4" fontName="Helvetica-Bold" alignment="CENTER"/>
     <paraStyle name="P6" fontName="Helvetica" alignment="LEFT" leading="30"/>
@@ -68,61 +68,64 @@
     <images/>
   </stylesheet>
   <story>
-<!--    <para style="P1">[[repeatIn(objects,'o') ]]</para>-->
     <para style="P1">[[repeatIn(get_obj(),'o') ]]</para>
 	<para><font color="white"> </font></para>
 	<para><font color="white"> </font></para>
 	<para><font color="white"> </font></para>
 	
-	<blockTable colWidths="245.0" style="Table_All_Line">
+	<blockTable colWidths="210.0" style="Table_All_Line">
 	<tr>
 		<td>
-			<blockTable colWidths="60,175" style="Table_Below">
+			<blockTable colWidths="50,150" style="Table_Below">
 				<tr>
 					<td>
 						<image width="40" height="40">[[ company.logo or removeParentNode('image') ]]</image>
 					</td>
 					<td>
-						<para style="P2" fontSize="8.0" fontName="Helvetica-Bold"> [[ company.partner_id.name ]] </para>
-						<para style="P2" fontSize="8.0" alignment="CENTER"> [[ company.partner_id.address and company.partner_id.address[0].street or '' ]] [[ company.partner_id.address and company.partner_id.address[0].city or '']] [[ company.partner_id.address and company.partner_id.address[0].zip or '' ]]</para>
-						<para style="P2" fontSize="8.0" alignment="CENTER"> Phone: [[ company.partner_id.address and company.partner_id.address[0].phone or removeParentNode('para') ]]</para>
-						<para style="P2" fontSize="8.0" alignment="CENTER"> E-mail: [[ company.partner_id.address and company.partner_id.address[0].email or removeParentNode('para') ]]</para>
+						<para style="P2" fontSize="7.0" fontName="Helvetica-Bold" leading="9"> [[ company.partner_id.name ]] </para>
+						<para style="P2" fontSize="7.0" alignment="LEFT" leading="8"> [[ company.partner_id.street ]] [[ company.partner_id.street2 ]] [[ company.partner_id.city ]] [[ company.partner_id.state_id.name ]] [[ company.partner_id.zip ]] </para>
+						<para style="P2" fontSize="7.0" alignment="LEFT" leading="8"> Phone: [[ company.partner_id.phone  or removeParentNode('para') ]]</para>
+						<para style="P2" fontSize="7.0" alignment="LEFT" leading="8"> E-mail: [[ company.partner_id.email or removeParentNode('para') ]]</para>
+					
 					</td>
 				</tr>
 			</blockTable>
 			
-			<blockTable colWidths="60,185" style="Standard_Outline">
+			<blockTable colWidths="50,150" style="Standard_Outline">
 				<tr>
 					<td>
 						<image width="40" height="40">[[ o.photo or removeParentNode('image') ]]</image>							
 					</td>
 					<td>
-					
-						<blockTable colWidths="185" style="Standard_Outline">
-							<tr>
-								<td><para style="P2" fontName="Helvetica-Bold">[[o.name]] [[o.middle_name or '']] [[o.last_name or '']]</para></td>
-							</tr>
-						</blockTable>
-						
-						<blockTable colWidths="185" style="Standard_Outline">
+						<blockTable colWidths="150" style="Standard_Outline">
 							<tr>
 								<td>
-									<para style="P2" leading="10">Roll No.: [[o.roll_number]]</para>
-									<para style="P2" leading="10">Blood Group: [[o.blood_group]]</para>
-									<para style="P2" leading="10">Course: [[o.course_id.name]]</para>
-									<para style="P2" leading="10">BirthDate: [[o.birth_date]]</para>
+									<para style="P2" fontSize="7.5" fontName="Helvetica-Bold" leading="8">[[o.name]] [[o.middle_name or '']] [[o.last_name or '']]</para>
 								</td>
 							</tr>
 						</blockTable>
-						<blockTable colWidths="165" style="Table_Signature">
+						
+						<blockTable colWidths="150" style="Standard_Outline">
+							<tr>
+								<td>
+									<para style="P2" leading="8" fontSize="7">Roll No.: [[o.roll_number]]</para>
+									<para style="P2" leading="8" fontSize="7">Blood Group: [[o.blood_group]]</para>
+									<para style="P2" leading="8" fontSize="7">Course: [[o.course_id.name]]</para>
+									<para style="P2" leading="8" fontSize="7">BirthDate: [[o.birth_date]]</para>
+								</td>
+							</tr>
+						</blockTable>
+						<blockTable colWidths="130,20" style="Table_Signature">
 							<tr>
 								<td>
 									<image width="40" height="10">[[ company.signature or removeParentNode('image') ]]</image>
-									<para style="P2" leading="10" alignment="RIGHT">DIRECTOR</para>
+									<para style="P2" fontSize="6" leading="8" alignment="RIGHT">DIRECTOR</para>
+								</td>
+								<td>
+									<para><font color="white"> </font></para>
 								</td>
 							</tr>
 						</blockTable>
-						
 					</td>
 				</tr>
 			</blockTable>
@@ -137,31 +140,30 @@
 	<para><font color="white"> </font></para>
 	<para><font color="white"> </font></para>
 	
-	<blockTable colWidths="245.0" style="Table_All_Line">
+	<blockTable colWidths="210.0" style="Table_All_Line">
 	<tr>
 		<td>
-		<blockTable colWidths="140,100" style="Standard_Outline">
+		<para style="P2" fontSize="8.0" alignment="CENTER"> [[ repeatIn(get_address(o), 'addr') ]] </para>
+		<blockTable colWidths="110,100" style="Standard_Outline">
 		<tr>
 			<td>
 				<para style="P2"><font color="white"> </font></para>
 				<para style="P2"><font color="white"> </font></para>
 				<para style="P2"><font color="white"> </font></para>
+				<para style="P2" fontSize="8.0" alignment="CENTER"> [[ addr['street'] ]] </para>
+				<para style="P2" fontSize="8.0" alignment="CENTER"> [[ addr['street2'] ]]</para>
+				<para style="P2" fontSize="8.0" alignment="CENTER"> [[ addr['city'] ]] [[ addr['zip'] ]] </para>
+				<para style="P2" fontSize="8.0" alignment="CENTER"> Phone: [[ addr['phone'] or removeParentNode('para') ]]</para>
+				<para style="P2" fontSize="8.0" alignment="CENTER"> E-mail: [[ addr['email'] or removeParentNode('para') ]]</para>
 				<para style="P2"><font color="white"> </font></para>
 				<para style="P2"><font color="white"> </font></para>
-				<para style="P2" fontSize="8.0" alignment="CENTER"> [[ o.partner_id.address and o.partner_id.address[0].street or '' ]], [[ o.partner_id.address and o.partner_id.address[0].street2 or '' ]] </para>
-				<para style="P2" fontSize="8.0" alignment="CENTER"> [[ o.partner_id.address and o.partner_id.address[0].city or '']] [[ o.partner_id.address and o.partner_id.address[0].zip or '' ]] </para>
-				<para style="P2" fontSize="8.0" alignment="CENTER"> Phone: [[ o.partner_id.address and o.partner_id.address[0].phone or removeParentNode('para') ]]</para>
-				<para style="P2" fontSize="8.0" alignment="CENTER"> E-mail: [[ o.partner_id.address and o.partner_id.address[0].email or removeParentNode('para') ]]</para>
-				
 			</td>
 			<td>
-				<para style="P2"><font color="white"> </font></para>
-				<para style="P2"><font color="white"> </font></para>
+				<para style="P2" leading="16"><font color="white"> </font></para>
 				
 				<image width="90" height="90">[[ qr_data(o) ]]</image>
 				
-				<para style="P2"><font color="white"> </font></para>
-				<para style="P2"><font color="white"> </font></para>
+				<para style="P2" leading="16"><font color="white"> </font></para>
 			</td>
 		</tr>
 		</blockTable>

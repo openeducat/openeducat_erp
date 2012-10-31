@@ -35,6 +35,7 @@ class op_student(report_sxw.rml_parse):
             'render_image': self.render_image,
             'qr_data':self.qr_data,
             'get_obj': self.get_obj,
+            'get_address':self.get_address,
         })
 
     def get_obj(self):
@@ -47,6 +48,19 @@ class op_student(report_sxw.rml_parse):
         barcode = utils.get_barcode_image(value=barcode, code='QR')
         return barcode
 
+    def get_address(self,student):
+        student_data = {}
+        address = student.address and student.address[0] or False
+        addr = {
+                'street': student.street or '',
+                'street2': student.street2 or '',
+                'city': student.city or '',
+                'zip': student.zip or '',
+                'phone': student.phone or '',
+                'email': student.email or '',
+                }
+        return [addr]
+
     def qr_data(self,student):
         student_data = {}
         address = student.address and student.address[0] or False
@@ -56,12 +70,19 @@ class op_student(report_sxw.rml_parse):
                         'blood_group': student.blood_group or '',
                         'course': student.course_id.name,
                         'birth_date': student.birth_date or '',
-                        'address': '%s %s %s %s %s %s'%(address and address.street or '' ,
-                                                        address and address.street2 or '',
-                                                        address and address.city ,
-                                                        address and address.zip or '' ,
-                                                        address and address.phone or '' ,
-                                                        address and address.email or '')
+#                        'address': '%s %s %s %s %s %s'%(address and address.street or '' ,
+#                                                        address and address.street2 or '',
+#                                                        address and address.city ,
+#                                                        address and address.zip or '' ,
+#                                                        address and address.phone or '' ,
+#                                                        address and address.email or '')
+                        'address': '%s %s %s %s %s %s'%(student.street or '',
+                                                        student.street2 or '',
+                                                        student.city or '',
+                                                        student.zip or '',
+                                                        student.phone or '',
+                                                        student.email or '',
+                                                        )    
                         }
         qr = utils.get_barcode_image(value=student_data, code='QR')
         return qr

@@ -43,7 +43,7 @@
       <paraStyle name="all" alignment="justify"/>
     </initialize>
     <paraStyle name="P1" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P2" fontName="Helvetica" alignment="LEFT" fontSize="8.0" leading="10"/>
+    <paraStyle name="P2" fontName="Times-BoldItalic" alignment="LEFT" fontSize="8.0" leading="10"/>
     <paraStyle name="P3" fontName="Helvetica" alignment="RIGHT"/>
     <paraStyle name="P4" fontName="Helvetica-Bold" alignment="CENTER"/>
     <paraStyle name="P6" fontName="Helvetica" alignment="LEFT" leading="30"/>
@@ -71,41 +71,43 @@
 	<para><font color="white"> </font></para>
 	<para><font color="white"> </font></para>
 	
-	<blockTable colWidths="245.0" style="Table_All_Line">
+	<blockTable colWidths="210.0" style="Table_All_Line">
 	<tr>
 		<td>
-			<blockTable colWidths="60,175" style="Table_Below">
+			<blockTable colWidths="50,150" style="Table_Below">
 				<tr>
 					<td>
 						<image width="40" height="40">[[ company.logo or removeParentNode('image') ]]</image>
 					</td>
 					<td>
-						<para style="P2" fontSize="8.0" fontName="Helvetica-Bold"> [[ company.partner_id.name ]] </para>
-						<para style="P2" fontSize="8.0" alignment="CENTER"> [[ company.partner_id.address and company.partner_id.address[0].street or '' ]] [[ company.partner_id.address and company.partner_id.address[0].city or '']] [[ company.partner_id.address and company.partner_id.address[0].zip or '' ]]</para>
-						<para style="P2" fontSize="8.0" alignment="CENTER"> Phone: [[ company.partner_id.address and company.partner_id.address[0].phone or removeParentNode('para') ]]</para>
-						<para style="P2" fontSize="8.0" alignment="CENTER"> E-mail: [[ company.partner_id.address and company.partner_id.address[0].email or removeParentNode('para') ]]</para>
+						<para style="P2" fontSize="8.0" fontName="Helvetica-Bold" leading="9"> [[ company.partner_id.name ]] </para>
+						<para style="P2" fontSize="6.0" alignment="LEFT" leading="8"> [[ company.partner_id.street ]] [[ company.partner_id.street2 ]] [[ company.partner_id.city ]] [[ company.partner_id.state_id.name ]] [[ company.partner_id.zip ]] </para>
+						<para style="P2" fontSize="6.0" alignment="LEFT" leading="8"> Phone: [[ company.partner_id.phone  or removeParentNode('para') ]]</para>
+						<para style="P2" fontSize="6.0" alignment="LEFT" leading="8"> E-mail: [[ company.partner_id.email or removeParentNode('para') ]]</para>
+
 					</td>
 				</tr>
 			</blockTable>
 			
-			<blockTable colWidths="60,185" style="Standard_Outline">
+			<blockTable colWidths="50,150" style="Standard_Outline">
 				<tr>
 					<td>
 						<image width="50" height="50">[[ o.photo or removeParentNode('image') ]]</image>							
 					</td>
 					<td>
 					
-						<blockTable colWidths="185" style="Standard_Outline">
+						<blockTable colWidths="150" style="Standard_Outline">
 							<tr>
 								<td><para style="P2" fontName="Helvetica-Bold">[[o.name]] [[o.middle_name or '']] [[o.last_name or '']]</para></td>
 							</tr>
 						</blockTable>
 						
-						<blockTable colWidths="185" style="Standard_Outline">
+						<blockTable colWidths="150" style="Standard_Outline">
 							<tr>
 								<td>
 									<para style="P2" leading="10">	Library Card No :[[ o.library_card_ids[0].name ]] </para>
 									<para style="P2" leading="10">	Library Card Type :[[ o.library_card_ids[0].library_card_type_id.name ]]</para>
+									<para style="P2" leading="10">	Issue Date :[[ o.library_card_ids[0].issue_date ]]</para>
 									<para><font color="white"> </font></para>
 									<para><font color="white"> </font></para>
 								</td>
