@@ -76,7 +76,6 @@ class time_table_report(osv.osv_memory):
             data[0].update({'teacher_time_table_ids': teacher_time_table_ids})
         
         if data[0]['state'] == 's' :
-            print '________DATA________',data
             value = {
                     'type': 'ir.actions.report.xml',
                     'report_name': 'time.table.report',
@@ -84,7 +83,6 @@ class time_table_report(osv.osv_memory):
                     }
             return value
         elif data[0]['state'] == 't':
-            print '________data________',data
             value = {
                     'type': 'ir.actions.report.xml',
                     'report_name': 'time.table.teacher.report',

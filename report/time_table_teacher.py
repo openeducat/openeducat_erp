@@ -76,10 +76,8 @@ class time_table_teacher_generate(report_sxw.rml_parse):
                              }
 
             data_list.append(timetable_data)
-        print '___________data_list____________',data_list
         ttdl = sorted(data_list, key=lambda k: k['sequence'])
         final_list = self.sort_tt(ttdl)
-        print '_______final_list____________',final_list
         return final_list
 
 report_sxw.report_sxw('report.time.table.teacher.report', 'op.timetable','addons/openeducat_erp/report/time_table_teacher.rml',
