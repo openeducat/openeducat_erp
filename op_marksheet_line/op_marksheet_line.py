@@ -81,9 +81,9 @@ class op_marksheet_line(osv.osv):
             'exam_session_id':fields.many2one('op.result.template.line','Session Template'),
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'result_line': fields.one2many('op.result.line', 'result_id', string='Result'),
-            'total_marks':fields.function(_get_total,string="Total Marks", method=True,multi='total_marks'),
-            'total_per':fields.function(_get_total,string="Total Percentage", method=True,multi='total_marks'),
-            'result':fields.function(_get_total, string="Result", method=True, multi="total_marks", type="char", size=256),
+            'total_marks':fields.float("Total Marks", ),
+            'total_per':fields.float("Total Percentage",),
+            'result':fields.char("Result", size=256),
     }
 
 op_marksheet_line()

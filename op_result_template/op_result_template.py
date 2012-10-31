@@ -48,7 +48,9 @@ class op_result_template(osv.osv):
             stu_lst = []
             for exam_session in self_obj.line_ids:
 
+                total_exam = 0.0
                 for exam in exam_session.exam_lines:
+                    total_exam += exam.exam_id.total_marks
 
                     for attd in exam.exam_id.attendees_line:
                         result_dict = {
@@ -60,23 +62,63 @@ class op_result_template(osv.osv):
                             'student_id':attd.student_id.id,
                         }
                         ret_id = self.pool.get('op.result.line').create(cr, uid, result_dict, context=context)
-                        stu_lst.append([ret_id,attd.student_id.id])
+                        stu_lst.append([ret_id,attd.student_id.id,result_dict])
                 stu_dict = {}
-                for ret_id,stu_id in stu_lst:
+                for ret_id,stu_id,data in stu_lst:
                     if  stu_id not in stu_dict:
                         stu_dict[stu_id] = []
 
-                    stu_dict[stu_id].append(ret_id)
+                    stu_dict[stu_id].append([ret_id,data])
                 for stu_id in stu_dict:
+
+
+                    total_marks = sum([x[1]['marks'] for x in stu_dict[stu_id]])
+                    per = (total_exam and (100/total_exam)*total_marks) or 0.0
+                    result = ''
+                    pass_flg = True
+                    number_fail = 0
+                    for x in stu_dict[stu_id]:
+                        if x[1]['status'] == 'f':
+                            pass_flg = False
+                            number_fail += 1
+                    if pass_flg:
+
+                        pass_st_ids = self_obj.pass_status_ids
+                        to_consider = False
+                        min_pass = 0.0
+
+                        for pass_st in pass_st_ids:
+                            if pass_st.number <= per and pass_st.number > min_pass:
+                                min_pass = pass_st.number
+                                to_consider = pass_st
+
+                        if to_consider:
+                            result  = to_consider.result
+                    else:
+                        crit_ids = self_obj.criteria_ids
+                        to_consider = False
+                        max_pass = False
+                        for crit_id in crit_ids:
+                            if crit_id.number == number_fail:
+                                to_consider = crit_id
+                            if not max_pass or  crit_id.number > max_pass.number:
+                                max_pass = crit_id
+                        if not to_consider:
+                            to_consider = max_pass
+                        result = to_consider.result
+
+                    print "%%%%%%%%%%%%%%%%",total_marks,total_exam,per,result
                     mark_line_id = self.pool.get('op.marksheet.line').create(cr, uid,
                                                                              {'student_id':stu_id,
                                                                               'marksheet_reg_id':marksheet_reg_id,
-                                                                              'exam_session_id':exam_session.id
+                                                                              'exam_session_id':exam_session.id,
+                                                                              'result':result,
+                                                                              'total_marks': total_marks,
+                                                                              'total_per': per,
                                                                              }
                                                                             )
-
-                    self.pool.get('op.result.line').write(cr, uid, stu_dict[stu_id], {'result_id':mark_line_id})
-
+                    self.pool.get('op.result.line').write(cr, uid, [x[0] for x in stu_dict[stu_id]], {'result_id':mark_line_id,
+                                                                                                     })
         return True
 
 
