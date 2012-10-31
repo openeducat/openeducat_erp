@@ -84,6 +84,7 @@ class op_student(osv.osv):
             'email': fields.char(string='Email', size=128),
             'phone': fields.char(string='Phone Number', size=256),
             'user_id': fields.many2one('res.users', 'User'),
+            'placement_line': fields.one2many('op.placement.offer', 'student_id', 'Placement Details'),
     }
 
 
