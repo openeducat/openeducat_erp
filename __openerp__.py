@@ -116,6 +116,7 @@
         'menu/library_menu.xml',
         'op_exam/op_exam_workflow.xml',
         'op_admission/op_admission_workflow_view.xml',
+        'res_company/res_company.xml',
         
 
     ],
