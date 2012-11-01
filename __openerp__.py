@@ -53,6 +53,7 @@
     'update_xml': [
         'security/op_security.xml',
         'op_activity/op_activity_view.xml',
+        'op_parent/op_parent_view.xml',
         'op_student/op_student_view.xml',
         'op_standard/op_standard_view.xml',
         'op_health/op_health_view.xml',
@@ -116,6 +117,7 @@
         'menu/student_menu.xml',
         'menu/faculty_menu.xml',
         'menu/library_menu.xml',
+        'menu/parent_menu.xml',
         'op_exam/op_exam_workflow.xml',
         'op_admission/op_admission_workflow_view.xml',
         'res_company/res_company.xml',
