@@ -6,7 +6,7 @@
 			<field name="model">op.parent</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<tree string="Parent Activity">
+				<tree string="Parent">
 					<field name="name" />
 					<field name="student_ids" />
 				</tree>
@@ -17,12 +17,12 @@
 			<field name="model">op.parent</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Parent Activity" version="7.0">
-					<separator colspan="4" string="Parent Activity" />
+				<form string="Parent" version="7.0">
+					<separator colspan="4" string="Parent" />
 					<field name="name" placeholder="Parent Name" style="width: 30%%" />
 					<separator colspan="4" string="Select Student" />
 					<field name="student_ids" />
-					<field name="user_id" />
+					<field name="user_id" placeholder="User Id" style="width: 30%%" />
 				</form>
 			</field>
 		</record>
@@ -31,15 +31,18 @@
 			<field name="model">op.parent</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<search string="Activity Log">
+				<search string="Parent">
 					<field name="name" />
 					<field name="student_ids" />
 					<newline />
+					<group expand="0" string="Group By...">
+						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
+					</group>
 				</search>
 			</field>
 		</record>
 		<record model="ir.actions.act_window" id="act_open_op_parent_view">
-			<field name="name">Parent Activity</field>
+			<field name="name">Parent</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">op.parent</field>
 			<field name="view_type">form</field>
