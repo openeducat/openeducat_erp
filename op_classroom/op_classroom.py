@@ -24,10 +24,10 @@ class op_classroom(osv.osv):
     _name = 'op.classroom'
 
     _columns = {
-            'Name': fields.char(size=16, string='Name', required=True),
-            'Code': fields.char(size=4, string='Code', required=True),
-            'Capacity': fields.integer(string='Capacity'),
-            'Facility': fields.many2many('op.facility', 'classroom_facility_rel', 'op_classroom_id', 'op_facility_id', string='Facilities'),
+            'name': fields.char(size=16, string='Name', required=True),
+            'code': fields.char(size=4, string='Code', required=True),
+            'capacity': fields.integer(string='Capacity'),
+            'facility': fields.many2many('op.facility', 'classroom_facility_rel', 'op_classroom_id', 'op_facility_id', string='Facilities'),
     }
 
 op_classroom()

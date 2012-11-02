@@ -7,10 +7,10 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<tree string="Classroom">
-					<field name="Name" />
-					<field name="Code" />
-					<field name="Capacity" />
-					<field name="Facility" />
+					<field name="name" />
+					<field name="code" />
+					<field name="capacity" />
+					<field name="facility" />
 				</tree>
 			</field>
 		</record>
@@ -20,11 +20,11 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Classroom">
-					<field name="Name" />
-					<field name="Code" />
-					<field name="Capacity" />
+					<field name="name" />
+					<field name="code" />
+					<field name="capacity" />
 					<separator string="Facilities" colspan="4" />
-					<field name="Facility" colspan="4" nolabel="1" />
+					<field name="facility" colspan="4" nolabel="1" />
 				</form>
 			</field>
 		</record>
@@ -34,17 +34,16 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<search string="Classroom">
-					<field name="Name" />
-					<field name="Code" />
-					<field name="Capacity" />
-					<field name="Facility" />
+					<field name="name" />
+					<field name="code" />
+					<field name="capacity" />
+					<field name="facility" />
 					<newline />
 					<group expand="0" string="Group By...">
-						<filter string="Name" domain="[]" context="{'group_by':'Name'}" />
-						<filter string="Code" domain="[]" context="{'group_by':'Code'}" />
-						<filter string="Capacity" domain="[]" context="{'group_by':'Capacity'}" />
-						<filter string="Facilities" domain="[]"
-							context="{'group_by':'Facility'}" />
+						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
+						<filter string="Code" domain="[]" context="{'group_by':'code'}" />
+						<filter string="Capacity" domain="[]" context="{'group_by':'capacity'}" />
+<!-- 						<filter string="Facilities" domain="[]" context="{'group_by':'Facility'}" /> -->
 					</group>
 				</search>
 			</field>
