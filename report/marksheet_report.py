@@ -37,12 +37,10 @@ class marksheet_report(report_sxw.rml_parse):
         lines = []
         for o in objects:
             lines.extend(o.marksheet_line)
-            print "____________lines___________________",lines
         return lines
     
     def get_date(self, date):
         date1 = datetime.strptime(date, "%Y-%m-%d")
-        print "__________date________________",date1,date1.year,type(date1.year)
         return str(date1.month) +'/'+ str(date1.year)
     
     def get_total(self, marksheet_line):

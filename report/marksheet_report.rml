@@ -4,7 +4,7 @@
     <pageTemplate id="first">
          <frame id="first" x1="28.0" y1="28.0" width="539" height="772"/>
          <pageGraphics>
-            <image x="28" y="800" height="40.0" >[[ company.logo or removeParentNode('image') ]]</image>
+            <image x="28" y="790" width="550">[[ company.logo or removeParentNode('image') ]]</image>
    		</pageGraphics> 
     </pageTemplate>
   </template>
@@ -43,13 +43,6 @@
     <blockTableStyle id="Table3">
 	  <blockAlignment value="CENTER"/>
 	  <blockValign value="CENTER"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000"/>
-    </blockTableStyle>
-    
-    <blockTableStyle id="Table4">
-	  <blockAlignment value="CENTER"/>
-	  <blockValign value="CENTER"/>
       <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
     </blockTableStyle>
     
@@ -69,7 +62,7 @@
     <images/>
   </stylesheet>
   <story>
-  	<para style="P1">[[ repeatIn(get_lines(objects), 'line') ]]</para>
+  	<para style="Standard">[[ repeatIn(get_lines(objects), 'line') ]]</para>
   	<para style="Standard"><font color="white"> </font></para>
     <para style="Heading_center">[[ company.name ]]</para>
     <para style="Standard"><font color="white"> </font></para>
@@ -123,8 +116,8 @@
 					</blockTable>
 					</section>
 					<section>
-					<para style="P1">[[ repeatIn(line.result_line, 'result') ]]</para>
-					<blockTable colWidths="108.0,108.0,108.0,108.0,108.0" style="Table4">
+					<para style="Standard">[[ repeatIn(line.result_line, 'result') ]]</para>
+					<blockTable colWidths="108.0,108.0,108.0,108.0,108.0" style="Table3">
 					<tr>
 						<td><para style="Table_contents_left">[[ result.exam_id.subject_id.name ]]</para></td>
 						<td><para style="Table_contents_left">[[ result.exam_id.exam_type.name ]]</para></td>
@@ -134,18 +127,6 @@
 					</tr>
 					</blockTable>
 					</section>
-					<!--
-					<para style="Standard"><font color="white"> </font></para>
-					<blockTable colWidths="108.0,108.0,108.0,108.0,108.0" style="Standard_Outline">
-					<tr>
-						<td><para style="Standard"><font color="white"> </font></para></td>
-						<td><para style="Standard"><b>Total Marks</b></para></td>
-						<td><para style="Table_contents_right"><b>[[ get_total(line) ]]</b></para></td>
-						<td><para style="Standard"><b>Obtained Marks</b></para></td>
-						<td><para style="Table_contents_right"><b>[[ line.total_marks ]]</b></para></td>
-					</tr>
-					</blockTable>
-					-->
 					<para style="Standard"><font color="white"> </font></para>
 		    		<para style="Standard"><font color="white"> </font></para>
 		    		<para style="Standard"><b>Result Summary</b></para>
