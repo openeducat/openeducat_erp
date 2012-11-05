@@ -112,9 +112,25 @@ class op_student(osv.osv):
                             }
 
         invoice_default.update(invoice_data)
-
         invoice_id = invoice_pool.create(cr, uid, invoice_default, context=context)
-
-        return True
+        
+        models_data = self.pool.get('ir.model.data')
+        form_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_form')
+        tree_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_tree')
+        print "__________form_view_____________",form_view,"_________tree_view____________",tree_view
+        value = {
+                'domain': str([('id', '=', invoice_id)]),
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'account.invoice',
+                'view_id': False,
+                'views': [(form_view and form_view[1] or False, 'form'),
+                          (tree_view and tree_view[1] or False, 'tree')],
+                'type': 'ir.actions.act_window',
+                'res_id': invoice_id,
+                'target': 'current',
+                'nodestroy': True
+            }
+        return value
 op_student()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

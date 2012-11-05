@@ -20,6 +20,7 @@
 #/#############################################################################
 from osv import osv, fields
 import pooler
+import time
 import netsvc
 
 class op_admission(osv.osv):
@@ -36,44 +37,46 @@ class op_admission(osv.osv):
         return super(op_admission, self).copy(cr, uid, id, default, context=context)
 
     _columns = {
-            'name': fields.char(size=128, string='First Name', required=True),
-            'middle_name': fields.char(size=128, string='Middle Name', required=True),
-            'last_name': fields.char(size=128, string='Last Name', required=True),
-            'title': fields.many2one('res.partner.title','Title'),
-            'application_number': fields.char(size=16, string='Application Number', required=True),
-            'admission_date': fields.date(string='Admission Date', required=True),
-            'application_date': fields.datetime(string='Application Date', required=True),
-            'birth_date': fields.date(string='Birth Date', required=True),
-            'course_id': fields.many2one('op.course', string='Course', required=True),
-            'batch_id': fields.many2one('op.batch', string='Batch', required=True),
-            'street': fields.char(size=256, string='Street'),
-            'street2': fields.char(size=256, string='Street2'),
-            'phone': fields.char(size=16, string='Phone'),
-            'mobile': fields.char(size=16, string='Mobile'),
-            'email': fields.char(size=256, string='Email'),
-            'city': fields.char(size=64, string='City'),
-            'zip': fields.char(size=8, string='Zip'),
-            'state_id': fields.many2one('res.country.state', string='States'),
-            'country_id': fields.many2one('res.country', string='Country'),
-            'fees': fields.float(string='Fees'),
-            'photo': fields.binary(string='Photo'),
-            'state': fields.selection([('d','Draft'),('i','In Progress'),('s','Selected'),('r','Rejected'),('p','Pending'),('c','Cancel')],readonly=True,select=True, string='State'),
-            'due_date': fields.date(string='Due Date'),
-            'prev_institute': fields.char(size=256, string='Previous Institute'),
-            'prev_course': fields.char(size=256, string='Previous Course'),
-            'prev_result': fields.char(size=256, string='Previous Result'),
-            'family_business': fields.char(size=256, string='Family Business'),
-            'family_income': fields.float(string='Family Income'),
-            'religion_id': fields.many2one('op.religion', string='Religion'),
-            'category_id': fields.many2one('op.category', string='Category', required=True),
-            'gender': fields.selection([('m','Male'),('f','Female'),('o','Other')], string='Gender', required=True),
-            'standard_id': fields.many2one('op.standard', string='Standard', required=True),
-            'division_id': fields.many2one('op.division', string='Division'),
+            'name': fields.char(size=128, string='First Name', required=True, states={'done': [('readonly', True)]}),
+            'middle_name': fields.char(size=128, string='Middle Name', required=True, states={'done': [('readonly', True)]}),
+            'last_name': fields.char(size=128, string='Last Name', required=True, states={'done': [('readonly', True)]}),
+            'title': fields.many2one('res.partner.title','Title', states={'done': [('readonly', True)]}),
+            'application_number': fields.char(size=16, string='Application Number', required=True, states={'done': [('readonly', True)]}),
+            'admission_date': fields.date(string='Admission Date', required=True, states={'done': [('readonly', True)]}),
+            'application_date': fields.datetime(string='Application Date', required=True, states={'done': [('readonly', True)]}),
+            'birth_date': fields.date(string='Birth Date', required=True, states={'done': [('readonly', True)]}),
+            'course_id': fields.many2one('op.course', string='Course', required=True, states={'done': [('readonly', True)]}),
+            'batch_id': fields.many2one('op.batch', string='Batch', required=True, states={'done': [('readonly', True)]}),
+            'street': fields.char(size=256, string='Street', states={'done': [('readonly', True)]}),
+            'street2': fields.char(size=256, string='Street2', states={'done': [('readonly', True)]}),
+            'phone': fields.char(size=16, string='Phone', states={'done': [('readonly', True)]}),
+            'mobile': fields.char(size=16, string='Mobile', states={'done': [('readonly', True)]}),
+            'email': fields.char(size=256, string='Email', states={'done': [('readonly', True)]}),
+            'city': fields.char(size=64, string='City', states={'done': [('readonly', True)]}),
+            'zip': fields.char(size=8, string='Zip', states={'done': [('readonly', True)]}),
+            'state_id': fields.many2one('res.country.state', string='States', states={'done': [('readonly', True)]}),
+            'country_id': fields.many2one('res.country', string='Country', states={'done': [('readonly', True)]}),
+            'fees': fields.float(string='Fees', states={'done': [('readonly', True)]}),
+            'photo': fields.binary(string='Photo', states={'done': [('readonly', True)]}),
+            'state': fields.selection([('d','Draft'),('i','In Progress'),('s','Selected'), ('done','Done') ,('r','Rejected'),('p','Pending'),('c','Cancel')],readonly=True,select=True, string='State'),
+            'due_date': fields.date(string='Due Date', states={'done': [('readonly', True)]}),
+            'prev_institute': fields.char(size=256, string='Previous Institute', states={'done': [('readonly', True)]}),
+            'prev_course': fields.char(size=256, string='Previous Course', states={'done': [('readonly', True)]}),
+            'prev_result': fields.char(size=256, string='Previous Result', states={'done': [('readonly', True)]}),
+            'family_business': fields.char(size=256, string='Family Business', states={'done': [('readonly', True)]}),
+            'family_income': fields.float(string='Family Income', states={'done': [('readonly', True)]}),
+            'religion_id': fields.many2one('op.religion', string='Religion', states={'done': [('readonly', True)]}),
+            'category_id': fields.many2one('op.category', string='Category', required=True, states={'done': [('readonly', True)]}),
+            'gender': fields.selection([('m','Male'),('f','Female'),('o','Other')], string='Gender', required=True, states={'done': [('readonly', True)]}),
+            'standard_id': fields.many2one('op.standard', string='Standard', required=True, states={'done': [('readonly', True)]}),
+            'division_id': fields.many2one('op.division', string='Division', states={'done': [('readonly', True)]}),
     }
 
     _defaults = {
                  'application_number': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'op.admission'),
                  'state':'d',
+                 'admission_date': time.strftime('%Y-%m-%d'),
+                 'application_date': time.strftime('%Y-%m-%d %H:%M:%S'),
     }
 
     _order = "application_number desc"
@@ -111,7 +114,7 @@ class op_admission(osv.osv):
     def fee_paid(self, cr, uid, ids,context=None):
         if context is None:
             context = {}
-
+        self.write(cr,uid,ids,{'state':'done'})
         student_pool = self.pool.get('op.student')
         for field in self.browse(cr, uid, ids, context=context):
             vals = {

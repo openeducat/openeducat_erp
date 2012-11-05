@@ -34,6 +34,11 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Student" version="7.0">
+					<header>
+						<span groups="base.group_op_back_office">
+							<button name="create_invoice" string="Create Invoice" type="object" icon="gtk-apply" />
+						</span>
+					</header>
 					<sheet>
 						<field name="photo" widget="image" class="oe_left oe_avatar" />
 						<div class="oe_title">
@@ -129,10 +134,6 @@
 								<separator string="Parent" colspan="4" />
 								<field name="parent_ids" colspan="4" nolabel="1" />
 							</page>
-							<!-- <group colspan="4"> -->
-							<!-- <button name="create_invoice" string="Create Invoice" -->
-							<!-- type="object" icon="gtk-apply" /> -->
-							<!-- </group> -->
 						</notebook>
 					</sheet>
 				</form>

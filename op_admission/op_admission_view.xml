@@ -31,13 +31,13 @@
 				<form string="Admission" version="7.0">
 					<header>
 						<span groups="base.group_user">
-							<field name="state" widget="statusbar" statusbar_visible="d,i,s"
+							<field name="state" widget="statusbar" statusbar_visible="d,i,s,done"
 								statusbar_colors='{"r":"red"}' />
 							<button name="confirm_in_progress" states="d" type="workflow"
 								string="Confirm" icon="gtk-go-forward" />
 							<button name="confirm_selection" states="i" type="workflow"
 								string="Enroll" icon="gtk-go-forward" />
-							<button name="fee_paid" states="s" type="object" string="Pay Fee"
+							<button name="fee_paid" states="s" type="object" string="Open Student Profile"
 								icon="gtk-go-forward" />
 							<button name="confirm_rejected" states="d,i,s,p" string="Reject"
 								type="workflow" icon="gtk-cancel" />
@@ -75,8 +75,8 @@
 									<field name="admission_date" />
 									<field name="application_date" />
 									<field name="course_id" />
-									<field name="batch_id" />
-									<field name="standard_id" />
+									<field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+									<field name="standard_id" domain="[('course_id', '=', course_id)]"/>
 									<field name="fees" />
 									<field name="category_id" />
 									<field name="due_date" />
