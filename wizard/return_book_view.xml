@@ -6,14 +6,17 @@
 			<field name="model">return.book</field>
 			<field name="arch" type="xml">
 				<form string="Book Return" version= "7.0">
-					<separator string="Book Return" colspan="4" />
-					<field name="book_id" />
-					<field name="actual_return_date" />
-					<separator colspan="4" />
-					<group colspan="4">
+				<header>
+					<span groups="base.group_user">
 						<button string="_Cancel" icon="gtk-cancel" special="cancel" />
 						<button name="do_return" type="object" string="OK" icon="gtk-ok" />
-					</group>
+					</span>
+				</header>
+								
+				<separator string="Book Return" colspan="4" />
+				<field name="book_id" />
+				<field name="actual_return_date" />
+				<separator colspan="4" />
 				</form>
 			</field>
 		</record>
