@@ -18,13 +18,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-import generate_roll_number
-import generate_time_table
-import op_all_student_wizard
-import issue_book
-import return_book
-import time_table_report
-import book_request_queue
-import exam_seating_arrangement
+from osv import osv, fields
 
+class op_exam_room(osv.osv):
+    _name = 'op.exam.room'
+
+    _columns = {
+                'name': fields.char(string="Room Name", size=10, required=True),
+                'capacity': fields.integer(string="Capacity",size=3, required=True)
+    }
+    
+op_exam_room()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

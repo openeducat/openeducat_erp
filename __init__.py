@@ -68,4 +68,6 @@ import op_book_purchase
 import op_placement_offer
 import op_activity
 import op_parent
+import op_exam_res_allocation
+import op_exam_room
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
