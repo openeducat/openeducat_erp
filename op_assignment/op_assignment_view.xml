@@ -35,9 +35,9 @@
 							<field name="state" widget="statusbar" statusbar_visible="d,p,f"
 								statusbar_colors='{"r":"red"}' />
 							<button name="act_publish" states="d" type="object"
-								string="Publish" icon="gtk-go-forward" />
-							<button name="act_finish" states="p" type="object" string="Finish"
-								icon="gtk-go-forward" />
+								string="Publish" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
+							<button name="act_finish" states="p" type="object" 
+								string="Finish" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty"/>
 						</span>
 					</header>
 					<sheet>
@@ -68,7 +68,20 @@
 							</page>
 							<page string="Allocation Infomation">
 								<separator string="Allocated To" colspan="4" />
-								<field name="allocation_ids" colspan="4" nolabel="1" />
+								<field name="allocation_ids" colspan="4" nolabel="1">
+									<tree string="Allocation">
+										<field name="roll_number" />
+										<field name="title" />
+										<field name="name" />
+										<field name="middle_name" />
+										<field name="last_name" />
+										<field name="library_card" />
+										<field name="id_number" />
+										<field name="course_id" />
+										<field name="batch_id" />
+										<field name="standard_id" />
+									</tree>
+								</field>
 							</page>
 							<page string="Submissions">
 								<field name="assignment_sub_line" colspan="4" nolabel="1">
