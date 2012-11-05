@@ -20,12 +20,19 @@
 			<field name="model">op.achievement</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Achievement">
-					<field name="student_id" />
-					<field name="faculty_id" />
-					<field name="achievement_type" />
-					<field name="achievement_date" />
-					<field name="description" colspan="4" />
+				<form string="Achievement" version="7.0">
+				<sheet>
+				<separator colspan="4" string="Achievement" />
+					<div>
+						<group col="4" colspan="4">
+							<field name="student_id" />
+							<field name="faculty_id" />
+							<field name="achievement_type" />
+							<field name="achievement_date" />
+							<field name="description" colspan="4" />
+						</group>
+					</div>
+				</sheet>
 				</form>
 			</field>
 		</record>
