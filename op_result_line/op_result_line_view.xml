@@ -7,7 +7,7 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<tree string="Result Line">
-					<field name="marksheet_line_id" />
+					<field name="marksheet_line_id" invisible="1"/>
 					<field name="exam_id" />
 					<field name="exam_tmpl_id" />
 					<field name="marks" />
@@ -23,17 +23,19 @@
 			<field name="model">op.result.line</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Result Line">
-					<separator colspan="4" string="Result Line" />
-					<group colspan="4">
-						<field name="marksheet_line_id" />
-						<field name="exam_id" />
-						<field name="exam_tmpl_id" />
-                                                <field name="marks" />
-                                                <field name="per" />
-                                                <field name="student_id" />
-                                                <field name="status" />
-					</group>
+				<form string="Result Line" version="7.0">
+					<sheet>
+						<separator colspan="4" string="Result Line" />
+						<group colspan="4">
+							<field name="marksheet_line_id" invisible="1"/>
+							<field name="exam_id" />
+							<field name="exam_tmpl_id" />
+                            <field name="marks" />
+                            <field name="per" />
+                            <field name="student_id" />
+                            <field name="status" />
+						</group>
+					</sheet>
 				</form>
 			</field>
 		</record>

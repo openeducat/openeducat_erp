@@ -18,13 +18,15 @@
 			<field name="context">{'show_address': 1}</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Author">
-					<separator colspan="4" string="Author Detail" />
-					<group colspan="4">
-						<field name="address" context="{'show_address': 1}" options='{"always_reload": True}'/>
-					</group>
-					<separator string="Books" colspan="4" />
-					<field name="book_ids" colspan="4" nolabel="1" />
+				<form string="Author" version="7.0">
+					<sheet>
+						<separator colspan="4" string="Author Detail" />
+						<group colspan="4">
+							<field name="address" context="{'show_address': 1}" options='{"always_reload": True}'/>
+						</group>
+						<separator string="Books" colspan="4" />
+						<field name="book_ids" colspan="4" nolabel="1" />
+					</sheet>
 				</form>
 			</field>
 		</record>

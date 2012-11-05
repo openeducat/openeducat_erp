@@ -19,17 +19,19 @@
         <field name="model">op.result.template</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Result Template">
-            <field name="name" select="1"/>
-            <field name="exam_session_id"/>
-            <field name="result_date"/>
-            <separator string="Minimum Qualification Criteria" colspan="4"/>
-            <field name="criteria_ids" colspan="4" nolabel="1"/>
-            <separator string="Passing Status" colspan="4"/>
-            <field name="pass_status_ids" colspan="4" nolabel="1"/>
-            <separator string="Session Templates" colspan="4"/>
-            <field name="line_ids" colspan="4" nolabel="1"/>
-            <button string="Genrate Result"  type="object" name="genrate_result"/>
+        <form string="Result Template" version="7.0">
+        	<sheet>
+	            <field name="name" select="1"/>
+	            <field name="exam_session_id"/>
+	            <field name="result_date"/>
+	            <separator string="Minimum Qualification Criteria" colspan="4"/>
+	            <field name="criteria_ids" colspan="4" nolabel="1"/>
+	            <separator string="Passing Status" colspan="4"/>
+	            <field name="pass_status_ids" colspan="4" nolabel="1"/>
+	            <separator string="Session Templates" colspan="4"/>
+	            <field name="line_ids" colspan="4" nolabel="1"/>
+	            <button string="Genrate Result"  type="object" name="genrate_result"/>
+            </sheet>
         </form>
         </field>
     </record>
@@ -165,13 +167,18 @@
         <field name="model">op.result.exam.line</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Exam Template">
-            <field name="exam_id" select="1"/>
-            <field name="pass_marks" select="1"/>
-            <field name="total_marks" select="1"/>
-            <field name="weightage" select="1"/>
-            <separator string="Result" colspan="4"/>
-            <field name="result_lines" colspan="4"/>
+        <form string="Exam Template" version="7.0">
+        	<sheet>
+	        	<separator string="Exam Template" colspan="4"/>
+	        	<group colspan="4">
+	            <field name="exam_id" select="1"/>
+	            <field name="pass_marks" select="1"/>
+	            <field name="total_marks" select="1"/>
+	            <field name="weightage" select="1"/>
+	            <separator string="Result" colspan="4"/>
+	            <field name="result_lines" colspan="4"/>
+	            </group>
+            </sheet>
         </form>
         </field>
     </record>
@@ -234,10 +241,15 @@
         <field name="model">op.min.clear.criteria</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Qualification Criteria">
-            <field name="name" select="1"/>
-            <field name="number"/>
-            <field name="result"/>
+        <form string="Qualification Criteria" version="7.0">
+        	<sheet>
+        		<separator colspan="4" string="Qualification Criteria" />
+        		<group colsapn="4">
+		            <field name="name" select="1"/>
+		            <field name="number"/>
+		            <field name="result"/>
+	            </group>
+            </sheet>
         </form>
         </field>
     </record>
@@ -289,10 +301,15 @@
         <field name="model">op.pass.status</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Pass Status">
-            <field name="name" select="1"/>
-            <field name="number"/>
-            <field name="result"/>
+        <form string="Pass Status" version="7.0">
+        	<sheet>
+        		<separator colspan="4" string="Pass Status" />
+        		<group colspan="4">
+		            <field name="name" select="1"/>
+		            <field name="number"/>
+		            <field name="result"/>
+	            </group>
+            </sheet>
         </form>
         </field>
     </record>

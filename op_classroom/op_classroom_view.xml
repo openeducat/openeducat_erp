@@ -19,12 +19,17 @@
 			<field name="model">op.classroom</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Classroom">
-					<field name="name" />
-					<field name="code" />
-					<field name="capacity" />
-					<separator string="Facilities" colspan="4" />
-					<field name="facility" colspan="4" nolabel="1" />
+				<form string="Classroom" version="7.0">
+					<sheet>
+						<separator string="ClassRoom" colspan="4" />
+						<group colspan="4">
+							<field name="name" />
+							<field name="code" />
+							<field name="capacity" />
+							<separator string="Facilities" colspan="4" />
+							<field name="facility" colspan="4" nolabel="1" />
+						</group>
+					</sheet>
 				</form>
 			</field>
 		</record>

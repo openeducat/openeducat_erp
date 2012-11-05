@@ -29,8 +29,8 @@ class op_attendance_line(osv.osv):
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'present': fields.boolean(string='Present ?', required=True),
             'course_id':fields.related('student_id', 'course_id',type='many2one',relation='op.course',string='Course',store=True, readonly=True),
-            'standard_id': fields.related('student_id', 'standard_id', type='many2one', relation='op.standard', store=True, readonly=True),
-            'division_id': fields.related('student_id', 'division_id', type='many2one', relation='op.division', store=True, readonly=True)
+            'standard_id': fields.related('student_id', 'standard_id', type='many2one', relation='op.standard', string='Standard', store=True, readonly=True),
+            'division_id': fields.related('student_id', 'division_id', type='many2one', relation='op.division', string='Division', store=True, readonly=True)
     }
 
 op_attendance_line()

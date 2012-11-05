@@ -23,34 +23,36 @@
 			<field name="model">op.book.movement</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
-				<form string="Book Movement">
-					<separator colspan="4" string="Book Movement Detail" />
-					<group colspan="4">
-						<field name="book_id" />
-						<field name="student_id" />
-						<field name="library_card_id" />
-						<field name="issued_date" />
-						<field name="return_date" />
-						<field name="actual_return_date" />
-						<field name="penalty" />
-					</group>
-					<separator string="Book Status" colspan="4" />
-					<newline />
-					<field name="state" colspan="4" />
-					<separator colspan="4" string="Book Issue/Return" />
-					<group colspan="4">
-						<button name="issue_book" string="Issue Book" type="object"
-							icon="gtk-go-forward" attrs="{'invisible':[('state','!=','a')]}" />
-						<button name="return_book" string="Return Book" type="object"
-							icon="gtk-go-back" attrs="{'invisible':[('state','!=','i')]}" />
-					</group>
-					<separator colspan="4" string="Book Reservation Detail" />
-					<group colspan="4" col="6">
-						<field name="partner_id" />
-						<field name="reserver_name" />
-						<button name="do_book_reservation" string="Reserve Book"
-							type="object" icon="gtk-go-back" />
-					</group>
+				<form string="Book Movement" version="7.0">
+					<sheet>
+						<separator colspan="4" string="Book Movement Detail" />
+						<group colspan="4">
+							<field name="book_id" />
+							<field name="student_id" />
+							<field name="library_card_id" />
+							<field name="issued_date" />
+							<field name="return_date" />
+							<field name="actual_return_date" />
+							<field name="penalty" />
+						</group>
+						<separator string="Book Status" colspan="4" />
+						<newline />
+						<field name="state" colspan="4" />
+						<separator colspan="4" string="Book Issue/Return" />
+						<group colspan="4">
+							<button name="issue_book" string="Issue Book" type="object"
+								icon="gtk-go-forward" attrs="{'invisible':[('state','!=','a')]}" />
+							<button name="return_book" string="Return Book" type="object"
+								icon="gtk-go-back" attrs="{'invisible':[('state','!=','i')]}" />
+						</group>
+						<separator colspan="4" string="Book Reservation Detail" />
+						<group colspan="4" col="6">
+							<field name="partner_id" />
+							<field name="reserver_name" />
+							<button name="do_book_reservation" string="Reserve Book"
+								type="object" icon="gtk-go-back" />
+						</group>
+					</sheet>
 				</form>
 			</field>
 		</record>
