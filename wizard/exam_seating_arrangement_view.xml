@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<record model="ir.ui.view" id="exam_seat_arrange_form">
+			<field name="name">exam.seat.arrange.form</field>
+			<field name="model">exam.seat.arrange</field>
+			<field name="arch" type="xml">
+				<form string="Exam Seat Arrange" version="7.0">
+				<sheet>
+				<separator string="Add Book Queue Request" colspan="4" />
+					<group col="4" colspan="4">
+						<field name="exam_id"/>
+					</group>
+				</sheet>
+				</form>
+			</field>
+		</record>
+
+		<act_window id="exam_seat_arrange_act" name="Exam Seat Arrange"
+			res_model="exam.seat.arrange" src_model="op.exam.res.allocation" view_mode="form"
+			target="new" view_type="form" />
+
+	</data>
+</openerp>
