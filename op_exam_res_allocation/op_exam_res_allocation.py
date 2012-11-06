@@ -33,16 +33,17 @@ class op_exam_res_allocation(osv.osv):
                         'op_student_id', 'op_resource_id', string='Student'),
     }
 
-#    def onchange_exam_session_res(self, cr, uid, ids, exam_session_id, context={}):
-#        session_pool = self.pool.get('op.exam.session')
-#        exams = [x.id for x in session_pool.browse(cr, uid,\
-#                                           exam_session_id, context).exam_ids]
-#        students_list = []
-#        for exam in session_pool.browse(cr, uid,exam_session_id, context).exam_ids:
-#            students_list += [s.id for s in exam.attendees_line]
-#        return {
-#                'value':{'exam_ids':exams, 'student_ids':students_list}
-#                }
+    def onchange_exam_session_res(self, cr, uid, ids, exam_session_ids, context={}):
+        exams = []
+        students_list = []
+        session_pool = self.pool.get('op.exam.session')
+        for es_id in exam_session_ids[0][2]:
+            exams += [x.id for x in session_pool.browse(cr, uid, es_id, context).exam_ids]
+            for exam in session_pool.browse(cr, uid, es_id, context).exam_ids:
+                students_list += [s.id for s in exam.attendees_line]
+        return {
+                'value':{'exam_ids':exams, 'student_ids':students_list}
+                }
 
     
 op_exam_res_allocation()
