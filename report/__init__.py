@@ -25,4 +25,5 @@ import time_table_report
 import time_table_teacher
 import library_card
 import marksheet_report
+import exam_student_lable
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

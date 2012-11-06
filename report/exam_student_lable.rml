@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<document filename="Student Lable.pdf">
+  <template pageSize="(595.0,842.0)" title="Student Lable Report" author="VNC Development" allowSplitting="20">
+    <pageTemplate id="first">
+         <frame id="first" x1="28.0" y1="28.0" width="539" height="772"/>
+         <pageGraphics>
+            <image x="28" y="780" height="60">[[ company.logo or removeParentNode('image') ]]</image>
+   		</pageGraphics> 
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table1">
+	  <blockAlignment value="CENTER"/>
+	  <blockValign value="CENTER"/>
+	  <lineStyle kind="LINEBEFORE" colorName="#cccccc"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc"/>
+      <lineStyle kind="LINEAFTER" colorName="#cccccc"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table2">
+	  <blockAlignment value="CENTER"/>
+	  <blockValign value="CENTER"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="4,0" stop="4,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="4,0" stop="4,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="4,-1" stop="4,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+	  <blockAlignment value="CENTER"/>
+	  <blockValign value="CENTER"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
+    </blockTableStyle>
+    
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading_center" fontName="Helvetica-Bold" fontSize="14.0" alignment="CENTER" />
+    <paraStyle name="Header_center" fontName="Helvetica-Bold" fontSize="10.0" alignment="CENTER" />
+    <paraStyle name="Header_center_left" fontName="Helvetica-Bold" fontSize="12.0" alignment="LEFT" />
+    <paraStyle name="total_left" fontName="Helvetica-Bold" fontSize="9.0"  alignment="LEFT" />
+    <paraStyle name="total_right" fontName="Helvetica-Bold" fontSize="9.0"  alignment="RIGHT"/>
+    <paraStyle name="table_center" fontName="Helvetica-Bold" fontSize="9.0"  alignment="CENTER"/>
+    <paraStyle name="date_from_to" fontName="Helvetica" fontSize="12.0" alignment="CENTER"/>
+    <paraStyle name="Table_contents_left" fontName="Helvetica" fontSize="9.0" alignment="LEFT"/>
+    <paraStyle name="Table_contents_right" fontName="Helvetica" fontSize="9.0" alignment="RIGHT"/>
+    <images/>
+  </stylesheet>
+  <story>
+  	<para style="Standard">[[ repeatIn(objects, 'o') ]]</para>
+  	<para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">[[ company.name ]]</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">Student Lable</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="Standard"><font color="white"> </font></para>
+  	<blockTable colWidths="540.0" style="Standard_Outline">
+  	<tr>
+		<td>
+			<section>
+			<para style="Standard">[[ repeatIn(o.exam_session_ids, 'exam_session') ]]</para>
+			<blockTable colWidths="100.0,170.0,100.0,170.0" style="Standard_Outline">
+				<tr>
+					<td><para style="Standard"><b>Course:</b></para></td>
+					<td><para style="Standard">[[ exam_session.course_id.name ]]</para></td>
+					<td><para style="Standard"><b>Standard:</b></para></td>
+					<td><para style="Standard">[[ exam_session.standard_id.name ]]</para></td>
+				</tr>
+			</blockTable>
+			</section>
+			<section>
+			<para style="Standard">[[ repeatIn(o.exam_ids, 'exam') ]]</para>
+			<blockTable colWidths="100.0,170.0,100.0,170.0" style="Standard_Outline">
+				<tr>
+					<td><para style="Standard"><b>Exam Name:</b></para></td>
+					<td><para style="Standard">[[ exam.name ]]</para></td>
+					<td><para style="Standard"><b>Exam Code:</b></para></td>
+					<td><para style="Standard">[[ exam.exam_code ]]</para></td>
+				</tr>
+			</blockTable>
+			<para style="Standard"><font color="white"> </font></para>
+			<para style="Standard"><font color="white"> </font></para>
+			<section>
+			<para style="Standard">[[ repeatIn(get_student_data(o.exam_session_ids), 's')]]</para>			
+			<blockTable colWidths="180.0,180.0,180.0" style="Standard_Outline">
+				<tr>
+					<td>
+						<blockTable colWidths="150.0" style="Table1">
+							<tr>
+								<td><para style="Standard"><b>Student :[[ s['1'] and s['1']['student_name'] or removeParentNode('blockTable') ]]</b></para></td>
+							</tr>
+							<tr>
+								<td><para style="Standard">Roll No :[[ s['1']['roll_number'] ]]</para></td>
+							</tr>
+							<tr>
+								<td><para style="Standard"><b>Std :[[ s['1']['std'] ]]</b></para></td>
+							</tr>
+						</blockTable>
+						<para style="Standard"><font color="white"> </font></para>
+					</td>
+					<td>
+						<blockTable colWidths="150.0" style="Table1">
+							<tr>
+								<td><para style="Standard"><b>Student :[[ s['2'] and s['2']['student_name'] or removeParentNode('blockTable') ]]</b></para></td>
+							</tr>
+							<tr>
+								<td><para style="Standard">Roll No :[[ s['2']['roll_number'] ]]</para></td>
+							</tr>
+							<tr>
+								<td><para style="Standard"><b>Std :[[ s['2']['std'] ]]</b></para></td>
+							</tr>
+						</blockTable>
+						<para style="Standard"><font color="white"> </font></para>
+					</td>
+					<td>
+						<blockTable colWidths="150.0" style="Table1">
+							<tr>
+								<td><para style="Standard"><b>Student :[[ s['3'] and s['3']['student_name'] or removeParentNode('blockTable') ]]</b></para></td>
+							</tr>
+							<tr>
+								<td><para style="Standard">Roll No :[[ s['3']['roll_number'] ]]</para></td>
+							</tr>
+							<tr>
+								<td><para style="Standard"><b>Std :[[ s['3']['std'] ]]</b></para></td>
+							</tr>
+						</blockTable>
+						<para style="Standard"><font color="white"> </font></para>
+						<para style="Standard"><font color="white"> </font></para>
+					</td>
+				</tr>
+				</blockTable>
+			</section>
+			</section>
+		</td>
+	</tr>
+	</blockTable>
+  </story>
+</document>

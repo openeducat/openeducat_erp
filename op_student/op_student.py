@@ -117,7 +117,6 @@ class op_student(osv.osv):
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_form')
         tree_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_tree')
-        print "__________form_view_____________",form_view,"_________tree_view____________",tree_view
         value = {
                 'domain': str([('id', '=', invoice_id)]),
                 'view_type': 'form',
