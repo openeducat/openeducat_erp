@@ -11,5 +11,4 @@ class op_library(report_sxw.rml_parse):
 
             })
 
-
 report_sxw.report_sxw('report.op.library.report','op.student', 'addons/openeducat_erp/report/library_card.rml', parser=op_library, header=False)
