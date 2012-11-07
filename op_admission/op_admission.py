@@ -37,8 +37,8 @@ class op_admission(osv.osv):
         return super(op_admission, self).copy(cr, uid, id, default, context=context)
 
     _columns = {
-            'name': fields.char(size=128, string='First Name', required=True, states={'done': [('readonly', True)]}),
-            'middle_name': fields.char(size=128, string='Middle Name', required=True, states={'done': [('readonly', True)]}),
+            'name': fields.char(size=128, string='First Name', required=True, states={'done':[('readonly',True)]}),
+            'middle_name': fields.char(size=128, string='Middle Name', required=True, states={'done':[('readonly',True)]}),
             'last_name': fields.char(size=128, string='Last Name', required=True, states={'done': [('readonly', True)]}),
             'title': fields.many2one('res.partner.title','Title', states={'done': [('readonly', True)]}),
             'application_number': fields.char(size=16, string='Application Number', required=True, states={'done': [('readonly', True)]}),
@@ -58,7 +58,7 @@ class op_admission(osv.osv):
             'country_id': fields.many2one('res.country', string='Country', states={'done': [('readonly', True)]}),
             'fees': fields.float(string='Fees', states={'done': [('readonly', True)]}),
             'photo': fields.binary(string='Photo', states={'done': [('readonly', True)]}),
-            'state': fields.selection([('d','Draft'),('i','In Progress'),('s','Selected'), ('done','Done') ,('r','Rejected'),('p','Pending'),('c','Cancel')],readonly=True,select=True, string='State'),
+            'state': fields.selection([('d','Draft'),('i','Confirm'),('s','Enroll'), ('done','Done') ,('r','Rejected'),('p','Pending'),('c','Cancel')],readonly=True,select=True, string='State'),
             'due_date': fields.date(string='Due Date', states={'done': [('readonly', True)]}),
             'prev_institute': fields.char(size=256, string='Previous Institute', states={'done': [('readonly', True)]}),
             'prev_course': fields.char(size=256, string='Previous Course', states={'done': [('readonly', True)]}),
@@ -70,6 +70,7 @@ class op_admission(osv.osv):
             'gender': fields.selection([('m','Male'),('f','Female'),('o','Other')], string='Gender', required=True, states={'done': [('readonly', True)]}),
             'standard_id': fields.many2one('op.standard', string='Standard', required=True, states={'done': [('readonly', True)]}),
             'division_id': fields.many2one('op.division', string='Division', states={'done': [('readonly', True)]}),
+            'student_id': fields.many2one('op.student', string='Student', states={'done': [('readonly', True)]}),
     }
 
     _defaults = {
@@ -88,33 +89,8 @@ class op_admission(osv.osv):
         return True
 
     def confirm_selection(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'s'})
-        return True
-
-    def confirm_rejected(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'r'})
-        return True
-
-    def confirm_pending(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'p'})
-        return True
-
-    def confirm_to_draft(self, cr, uid, ids, context=None):
-        wf_service = netsvc.LocalService("workflow")
-        self.write(cr,uid,ids,{'state':'d'})
-        for inv_id in ids:
-            wf_service.trg_delete(uid, 'op.admission', inv_id, cr)
-            wf_service.trg_create(uid, 'op.admission', inv_id, cr)
-        return True
-
-    def confirm_cancel(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'c'})
-        return True
-
-    def fee_paid(self, cr, uid, ids,context=None):
         if context is None:
             context = {}
-        self.write(cr,uid,ids,{'state':'done'})
         student_pool = self.pool.get('op.student')
         for field in self.browse(cr, uid, ids, context=context):
             vals = {
@@ -144,12 +120,38 @@ class op_admission(osv.osv):
                                      })]
                     }
         new_student = student_pool.create(cr, uid, vals, context=context)
+        self.write(cr,uid,ids,{'state':'s','student_id': new_student})
+        return True
 
+    def confirm_rejected(self, cr, uid, ids, context=None):
+        self.write(cr,uid,ids,{'state':'r'})
+        return True
+
+    def confirm_pending(self, cr, uid, ids, context=None):
+        self.write(cr,uid,ids,{'state':'p'})
+        return True
+
+    def confirm_to_draft(self, cr, uid, ids, context=None):
+        wf_service = netsvc.LocalService("workflow")
+        self.write(cr,uid,ids,{'state':'d'})
+        for inv_id in ids:
+            wf_service.trg_delete(uid, 'op.admission', inv_id, cr)
+            wf_service.trg_create(uid, 'op.admission', inv_id, cr)
+        return True
+
+    def confirm_cancel(self, cr, uid, ids, context=None):
+        self.write(cr,uid,ids,{'state':'c'})
+        return True
+
+    def open_student(self, cr, uid, ids,context={}):
+
+        this_obj = self.browse(cr, uid, ids[0], context)
+        student = self.pool.get('op.student').browse(cr, uid, this_obj.student_id.id, context)
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_form')
         tree_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_tree')
         value = {
-                'domain': str([('id', '=', new_student)]),
+                'domain': str([('id', '=', student.id)]),
                 'view_type': 'form',
                 'view_mode': 'tree, form',
                 'res_model': 'op.student',
@@ -157,10 +159,11 @@ class op_admission(osv.osv):
                 'views': [(form_view and form_view[1] or False, 'form'),
                           (tree_view and tree_view[1] or False, 'tree')],
                 'type': 'ir.actions.act_window',
-                'res_id': new_student,
+                'res_id': student.id,
                 'target': 'current',
                 'nodestroy': True
             }
+        self.write(cr,uid,ids,{'state':'done'})
         return value
 
 op_admission()

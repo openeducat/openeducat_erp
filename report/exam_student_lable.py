@@ -31,14 +31,12 @@ class exam_student_lable_report(report_sxw.rml_parse):
             'get_student_data':self.get_student_data
         })
         
+    
     def format_list(self,temp_list):
         cnt = 1
         temp = {}
         lst = []
-#        temp_list.sort()
-        print "__________temp_list___sort_____",temp_list
         for i in temp_list:
-            print "_________i__________",i
             if cnt <= 3:
                 temp.update({str(cnt): i})
                 cnt += 1
@@ -48,7 +46,6 @@ class exam_student_lable_report(report_sxw.rml_parse):
                 temp = {}
                 temp.update({str(cnt): i})
                 cnt += 1
-        print "00000000000000000",len(temp_list)%3
         index = len(temp_list) - len(temp_list)%3    
         if len(temp_list)%3 == 1:
             lst.append({'1': temp_list[index]})
@@ -56,7 +53,6 @@ class exam_student_lable_report(report_sxw.rml_parse):
             lst.append({'1': temp_list[index],'2': temp_list[index+1]})
         else:
             lst.append({'1': temp_list[-3],'2': temp_list[-2],'3': temp_list[-1]})
-            print "22222222222222",lst
         return lst
     
     
@@ -66,20 +62,17 @@ class exam_student_lable_report(report_sxw.rml_parse):
         for line in exam_session_ids:
             student_ids = student_pool.search(self.cr, self.uid, [('course_id', '=', line.course_id.id),
                                                                   ('standard_id', '=', line.standard_id.id),
-                                                                  ('division_id', '=', line.division_id.id)], order= 'id asc')
-            print "______________student_ids_________________",student_ids
+                                                                  ], order= 'id asc')
             temp_list = []
             for student in student_pool.browse(self.cr, self.uid, student_ids):
                 res={
-                       'student_name': student.name,
+                       'student': student.name,
+                       'course': student.course_id.name,
                        'roll_number': student.roll_number,
                        'std': student.standard_id.name
                        }
                 temp_list.append(res)
             ret_list = self.format_list(temp_list)
-#        print "_________sadasd________",ret_list
-#        ret_list.sort()
-#        print "_________sort________",ret_list
         return ret_list
 
 report_sxw.report_sxw('report.op.exam.student.lable','op.exam.res.allocation', 'addons/openeducat_erp/report/exam_student_lable.rml', parser=exam_student_lable_report, header=False)

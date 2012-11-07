@@ -16,33 +16,10 @@
     
     <blockTableStyle id="Table1">
 	  <blockAlignment value="CENTER"/>
-	  <blockValign value="CENTER"/>
+	  <blockValign value="TOP"/>
 	  <lineStyle kind="LINEBEFORE" colorName="#cccccc"/>
       <lineStyle kind="LINEABOVE" colorName="#cccccc"/>
       <lineStyle kind="LINEAFTER" colorName="#cccccc"/>
-      <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
-    </blockTableStyle>
-    <blockTableStyle id="Table2">
-	  <blockAlignment value="CENTER"/>
-	  <blockValign value="CENTER"/>
-      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="0,0" stop="0,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="0,-1" stop="0,-1"/>
-      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="1,0" stop="1,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="1,0" stop="1,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="1,-1" stop="1,-1"/>
-      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="2,0" stop="2,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="2,0" stop="2,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="2,-1" stop="2,-1"/>
-      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="3,0" stop="3,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="3,0" stop="3,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="3,-1" stop="3,-1"/>
-      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="4,0" stop="4,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="4,0" stop="4,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="4,-1" stop="4,-1"/>
-    </blockTableStyle>
-    <blockTableStyle id="Table3">
-	  <blockAlignment value="CENTER"/>
-	  <blockValign value="CENTER"/>
       <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
     </blockTableStyle>
     
@@ -82,9 +59,8 @@
 					<td><para style="Standard">[[ exam_session.standard_id.name ]]</para></td>
 				</tr>
 			</blockTable>
-			</section>
 			<section>
-			<para style="Standard">[[ repeatIn(o.exam_ids, 'exam') ]]</para>
+			<!--<para style="Standard">[[ repeatIn(o.exam_ids, 'exam') ]]</para>
 			<blockTable colWidths="100.0,170.0,100.0,170.0" style="Standard_Outline">
 				<tr>
 					<td><para style="Standard"><b>Exam Name:</b></para></td>
@@ -92,58 +68,57 @@
 					<td><para style="Standard"><b>Exam Code:</b></para></td>
 					<td><para style="Standard">[[ exam.exam_code ]]</para></td>
 				</tr>
-			</blockTable>
+			</blockTable>-->
 			<para style="Standard"><font color="white"> </font></para>
 			<para style="Standard"><font color="white"> </font></para>
 			<section>
 			<para style="Standard">[[ repeatIn(get_student_data(o.exam_session_ids), 's')]]</para>			
-			<blockTable colWidths="180.0,180.0,180.0" style="Standard_Outline">
+			<blockTable colWidths="180.0,180.0,180.0" style="Table1">
 				<tr>
 					<td>
-						<blockTable colWidths="150.0" style="Table1">
+						<section>
+						<blockTable colWidths="150.0" style="Standard_Outline">
 							<tr>
-								<td><para style="Standard"><b>Student :[[ s['1'] and s['1']['student_name'] or removeParentNode('blockTable') ]]</b></para></td>
+								<td><para style="Standard">[[ s['1'] and s['1']['student'] or removeParentNode('section') ]]</para></td>
 							</tr>
 							<tr>
-								<td><para style="Standard">Roll No :[[ s['1']['roll_number'] ]]</para></td>
+								<td><para style="Standard">[[ s['1']['course'] ]]-[[ s['1']['std'] ]]</para></td>
 							</tr>
 							<tr>
-								<td><para style="Standard"><b>Std :[[ s['1']['std'] ]]</b></para></td>
+								<td><para style="Standard">Roll No :[[ s['1']['roll_number'] ]]</para></td>								
 							</tr>
 						</blockTable>
-						<para style="Standard"><font color="white"> </font></para>
+						</section>
 					</td>
 					<td>
-						<blockTable colWidths="150.0" style="Table1">
+						<blockTable colWidths="150.0" style="Standard_Outline">
 							<tr>
-								<td><para style="Standard"><b>Student :[[ s['2'] and s['2']['student_name'] or removeParentNode('blockTable') ]]</b></para></td>
+								<td><para style="Standard">[[ s['2'] and s['2']['student'] or removeParentNode('blockTable') ]]</para></td>
 							</tr>
 							<tr>
-								<td><para style="Standard">Roll No :[[ s['2']['roll_number'] ]]</para></td>
+								<td><para style="Standard">[[ s['2']['course'] ]]-[[ s['2']['std'] ]]</para></td>
 							</tr>
 							<tr>
-								<td><para style="Standard"><b>Std :[[ s['2']['std'] ]]</b></para></td>
+								<td><para style="Standard">Roll No :[[ s['2']['roll_number'] ]]</para></td>								
 							</tr>
 						</blockTable>
-						<para style="Standard"><font color="white"> </font></para>
 					</td>
 					<td>
-						<blockTable colWidths="150.0" style="Table1">
+						<blockTable colWidths="150.0" style="Standard_Outline">
 							<tr>
-								<td><para style="Standard"><b>Student :[[ s['3'] and s['3']['student_name'] or removeParentNode('blockTable') ]]</b></para></td>
+								<td><para style="Standard">[[ s['3'] and s['3']['student'] or removeParentNode('blockTable') ]]</para></td>
 							</tr>
 							<tr>
-								<td><para style="Standard">Roll No :[[ s['3']['roll_number'] ]]</para></td>
+								<td><para style="Standard">[[ s['3']['course'] ]]-[[ s['3']['std'] ]]</para></td>
 							</tr>
 							<tr>
-								<td><para style="Standard"><b>Std :[[ s['3']['std'] ]]</b></para></td>
+								<td><para style="Standard">Roll No :[[ s['3']['roll_number'] ]]</para></td>								
 							</tr>
 						</blockTable>
-						<para style="Standard"><font color="white"> </font></para>
-						<para style="Standard"><font color="white"> </font></para>
 					</td>
 				</tr>
 				</blockTable>
+			</section>
 			</section>
 			</section>
 		</td>
