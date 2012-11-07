@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<document filename="Exam Allocation.pdf">
+
+    <template pageSize="(595.0,842.0)" title="Exam Allocation" author="" allowSplitting="20">
+	    <pageTemplate id="first">
+	      <frame id="first" x1="57.0" y1="57.0" width="520" height="728"/>
+	    </pageTemplate>
+  </template>
+
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table_Simple">
+      <blockAlignment value="CENTER"/>
+      <blockValign value="CENTER"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table_Blank">
+      <blockAlignment value="CENTER"/>
+      <blockValign value="CENTER"/>
+    </blockTableStyle>
+    
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    
+    <paraStyle name="P1" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P2" fontName="Helvetica" alignment="LEFT"/>
+    <paraStyle name="P3" fontName="Helvetica" alignment="RIGHT"/>
+    <paraStyle name="P4" fontName="Helvetica-BOLD" alignment="CENTER"/>
+    <paraStyle name="P5" fontName="Helvetica-Bold" alignment="LEFT"/>
+    <paraStyle name="P6" fontName="Helvetica-BOLD" alignment="RIGHT"/>
+    
+    
+    <images/>
+  </stylesheet>
+  	<story>
+  	<para style="P4"> Exam Seat Allocation </para>
+	
+	<para><font color="white"></font></para>
+	<para><font color="white"></font></para>
+	<para><font color="white"></font></para>
+	
+	
+	<blockTable colWidths="260.0,260.0" style="Table_Simple">
+  	<tr>
+  		<td>
+  			<para style="P2"><b>Start Time</b> :[[ data['start_time'] ]] </para>
+  			<para style="P2"><b>End Time</b> :[[ data['end_time'] ]] </para>		
+  		</td>
+  		<td>
+  			<para style="P2"> <b>Room</b> :[[ data['room_id'][1] ]] </para>
+  		</td>
+  	</tr>
+  	</blockTable>
+	
+  	</story>
+</document>
