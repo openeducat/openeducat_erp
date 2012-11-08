@@ -34,19 +34,38 @@ class exam_allocation_report(report_sxw.rml_parse):
             'gen_exam_seat':self.gen_exam_seat,
         })
     
+    
+    
+    def arrange_list(self,lst_inner,length):
+        l = []
+        if length == 3:
+            res = map(l.append(lst_inner[0]),lst_inner[0][lst_inner[0].keys()[0]],lst_inner[1][lst_inner[1].keys()[0]],lst_inner[2][lst_inner[2].keys()[0]])
+        elif length == 2:
+            res = map(l.append(lst_inner[0]),lst_inner[0][lst_inner[0].keys()[0]],[],lst_inner[1][lst_inner[1].keys()[0]])
+        elif length == 1:
+            res = map(l.append(lst_inner[0]),lst_inner[0][lst_inner[0].keys()[0]],[],[])
+        return res
 
     def gen_exam_seat(self, data):
-        print '________DATA________',data
         lst_main = []
+        final_list =[]
         session_pool = self.pool.get('op.exam.session')
         student_pool = self.pool.get('op.student')
+        room_pool = self.pool.get('op.exam.room')
         
-        session_search = session_pool.search(self.cr, self.uid, [('room_id','=',data['room_id'][1])])
+        lst_inner = []
+        capacity = room_pool.read(self.cr, self.uid, data['room_id'][0], ['capacity'])['capacity']
+        session_search = session_pool.search(self.cr, self.uid, [('room_id','=',data['room_id'][1]),
+                                                                 ('id','in',data['exam_session_ids'])])
         for session_obj in session_search:
-            dic_main = {}
+            dic_inner = {}
             session_browse = session_pool.browse(self.cr, self.uid, session_obj)
             student_search = student_pool.search(self.cr, self.uid, [('course_id','=',session_browse.course_id.id)])
+#            student_search = [1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5]
+            if len(student_search) >  capacity: raise osv.except_osv(('Error!'),\
+                 ("Number of students must be less than room capacity!\n Students %s can not be accomodate in room %s\n Select another room") %(len(student_search),capacity))
             lst_student = []
+            
             for student_obj in student_search:
                 dic_student ={}
                 student_browse = student_pool.browse(self.cr, self.uid, student_obj)
@@ -57,22 +76,13 @@ class exam_allocation_report(report_sxw.rml_parse):
                               'standard': student_browse.standard_id.name
                               }
                 lst_student.append(dic_student)
-                lst_exam = []
-                for exam in session_browse.exam_ids:
-                    dic_exam = {}
-                    dic_exam ={
-                               'exam' : exam.name,
-                               'students': lst_student 
-                               }
-                    lst_exam.append(dic_exam)
-                dic_main = {
-                       'exam_session':session_browse.name,
-                       'exams': lst_exam
-                       }
-                lst_main.append(dic_main)
-                print '_________lst_main_______',lst_main
-                
-        return lst_main  
+                #TODO: arrange students as per roll number ascending
+            dic_inner[str(session_browse.course_id.name)] = lst_student            
+            lst_inner.append(dic_inner)
+        
+        final_list = self.arrange_list(lst_inner,len(session_search))
+        
+        return final_list  
      
 
 report_sxw.report_sxw('report.op.exam.allocation','op.exam.res.allocation', 

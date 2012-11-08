@@ -16,6 +16,7 @@
 				<sheet>
 					<separator string="Exam Seating Arrangement" colspan="4" />
 						<group col="4" colspan="4">
+							<field name="exam_session_ids" colspan="4" />
 							<field name="room_id"/>
 							<field name="start_time"/>
 							<field name="end_time"/>
@@ -26,20 +27,20 @@
 		</record>
 		
 		
-		<record id="exam_seat_arrange_act" model="ir.actions.act_window">
-            <field name="name">Exam Seat Arrange</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">exam.seat.arrange</field>
-            <field name="src_model">op.exam.res.allocation</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="context">{}</field>
-            <field name="target">new</field>
-        </record>
+<!-- 		<record id="exam_seat_arrange_act" model="ir.actions.act_window"> -->
+<!--             <field name="name">Exam Seat Arrange</field> -->
+<!--             <field name="type">ir.actions.act_window</field> -->
+<!--             <field name="res_model">exam.seat.arrange</field> -->
+<!--             <field name="src_model">op.exam.res.allocation</field> -->
+<!--             <field name="view_type">form</field> -->
+<!--             <field name="view_mode">form</field> -->
+<!--             <field name="context">{}</field> -->
+<!--             <field name="target">new</field> -->
+<!--         </record> -->
 
-<!-- 		<act_window id="exam_seat_arrange_act" name="Exam Seat Arrange" -->
-<!-- 			res_model="exam.seat.arrange" src_model="op.exam.res.allocation" view_mode="form" -->
-<!-- 			target="new" view_type="form" /> -->
+		<act_window id="exam_seat_arrange_act" name="Exam Seat Arrange"
+			res_model="exam.seat.arrange" src_model="op.exam.res.allocation" view_mode="form"
+			target="new" view_type="form" />
 
 	</data>
 </openerp>

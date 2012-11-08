@@ -60,9 +60,9 @@ class op_exam_res_allocation(osv.osv):
                 student_list += [student_browse.id]
                 for exam in session_browse.exam_ids:
                     exams += [exam.id]
-                return {
-                        'value':{'exam_ids':exams, 'student_ids':student_list}
-                }
+                    return {
+                            'value':{'exam_ids':[(6,0,exams)], 'student_ids':[(6,0,student_list)]}
+                    }
             
 op_exam_res_allocation()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
