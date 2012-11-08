@@ -60,6 +60,10 @@ class op_book(osv.osv):
                 'target':'new',
                 }
         return value
+    
+    _defaults={
+               'state': 'a'
+               }
 
 op_book()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

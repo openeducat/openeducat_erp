@@ -31,7 +31,6 @@ class exam_student_lable_report(report_sxw.rml_parse):
             'get_student_data':self.get_student_data
         })
         
-    
     def format_list(self,temp_list):
         cnt = 1
         temp = {}
@@ -53,13 +52,16 @@ class exam_student_lable_report(report_sxw.rml_parse):
             lst.append({'1': temp_list[index],'2': temp_list[index+1]})
         else:
             lst.append({'1': temp_list[-3],'2': temp_list[-2],'3': temp_list[-1]})
+        print "_____________________lst_______________",lst
         return lst
     
     
     def get_student_data(self, exam_session_ids):
-        final_list = []
+        
         student_pool = self.pool.get('op.student')
+        ret_list = []
         for line in exam_session_ids:
+            print "_________exam_session_ids____________",exam_session_ids
             student_ids = student_pool.search(self.cr, self.uid, [('course_id', '=', line.course_id.id),
                                                                   ('standard_id', '=', line.standard_id.id),
                                                                   ], order= 'id asc')
@@ -67,13 +69,20 @@ class exam_student_lable_report(report_sxw.rml_parse):
             for student in student_pool.browse(self.cr, self.uid, student_ids):
                 res={
                        'student': student.name,
+                       'middle_name': student.middle_name,
+                       'last_name': student.last_name, 
                        'course': student.course_id.name,
                        'roll_number': student.roll_number,
                        'std': student.standard_id.name
                        }
+                print "________________res______________",res
                 temp_list.append(res)
-            ret_list = self.format_list(temp_list)
-        return ret_list
+            ret_list.append(self.format_list(temp_list))
+            print "_______ret_list_________da______",ret_list
+        print "*************************"
+        print "_____________ret_list____return________",ret_list
+        print "*************************"
+        return ret_list[0]
 
 report_sxw.report_sxw('report.op.exam.student.lable','op.exam.res.allocation', 'addons/openeducat_erp/report/exam_student_lable.rml', parser=exam_student_lable_report, header=False)
 

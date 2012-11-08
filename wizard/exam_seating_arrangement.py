@@ -4,7 +4,7 @@ from osv import osv, fields
 import time
 from datetime import datetime
 
-class exam_seat_arrange(osv.osv):
+class exam_seat_arrange(osv.osv_memory):
 
     _name = 'exam.seat.arrange'
     _columns = {

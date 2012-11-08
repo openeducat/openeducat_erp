@@ -105,6 +105,7 @@ class op_admission(osv.osv):
                     'batch_id': field.batch_id and field.batch_id.id or False,
                     'standard_id': field.standard_id and field.standard_id.id or False,
                     'religion': field.religion_id and field.religion_id.id or False,
+                    'photo': field.photo or False,
                     'address':[(0,0,{
                                      'name': field.name or False,
                                      'type': 'invoice',
@@ -120,7 +121,7 @@ class op_admission(osv.osv):
                                      })]
                     }
         new_student = student_pool.create(cr, uid, vals, context=context)
-        self.write(cr,uid,ids,{'state':'s','student_id': new_student})
+        self.write(cr,uid,ids,{'state':'s', 'student_id': new_student})
         return True
 
     def confirm_rejected(self, cr, uid, ids, context=None):
@@ -146,7 +147,9 @@ class op_admission(osv.osv):
     def open_student(self, cr, uid, ids,context={}):
 
         this_obj = self.browse(cr, uid, ids[0], context)
+        print "____________this_obj_________",this_obj
         student = self.pool.get('op.student').browse(cr, uid, this_obj.student_id.id, context)
+        print "_____________student______________",student
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_form')
         tree_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_tree')
