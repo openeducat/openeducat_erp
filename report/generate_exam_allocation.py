@@ -81,7 +81,6 @@ class exam_allocation_report(report_sxw.rml_parse):
             lst_inner.append(dic_inner)
         
         final_list = self.arrange_list(lst_inner,len(session_search))
-        
         return final_list  
      
 

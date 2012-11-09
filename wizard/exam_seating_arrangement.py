@@ -8,15 +8,15 @@ class exam_seat_arrange(osv.osv_memory):
 
     _name = 'exam.seat.arrange'
     _columns = {
-                'room_id': fields.many2one('op.exam.room', 'Room'),
-                'exam_session_ids': fields.many2many('op.exam.session','exam_session_rel1', 'op_exam', 'op_session', 'Select Section'),
+                'room_id': fields.many2one('op.exam.room', 'Room', required=True),
+                'exam_session_ids': fields.many2many('op.exam.session','exam_session_rel1', 'op_exam', 'op_session', 'Select Section', required=True),
                 'start_time': fields.datetime('Start Time', required=True),
                 'end_time': fields.datetime('End Time', required=True),
                 }
     
     _defaults = {
                  'start_time' : fields.date.context_today,
-                 'end_time' : fields.date.context_today
+                 'end_time' : fields.date.context_today,
                  }
     
     

@@ -32,7 +32,7 @@ class op_exam_session(osv.osv):
             'exam_code': fields.char(size=8, string='Exam Code', required=True),
             'start_time': fields.datetime(string='Start Time', required=True),
             'end_time': fields.datetime(string='End Time', required=True),
-            'room_id': fields.many2one('op.exam.room', 'Room'),
+            'room_id': fields.many2one('op.exam.room', 'Room', required=True),
             'exam_ids':fields.one2many('op.exam','session_id','Exams'),
 
     }
@@ -40,7 +40,6 @@ class op_exam_session(osv.osv):
         stu_pool = self.pool.get('op.student')
         for self_obj in self.browse(cr, uid, ids, context=context):
             for exam in self_obj.exam_ids:
-
 
                 return True
 
