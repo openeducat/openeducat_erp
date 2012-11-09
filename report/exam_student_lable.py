@@ -52,7 +52,6 @@ class exam_student_lable_report(report_sxw.rml_parse):
             lst.append({'1': temp_list[index],'2': temp_list[index+1]})
         else:
             lst.append({'1': temp_list[-3],'2': temp_list[-2],'3': temp_list[-1]})
-        print "_____________________lst_______________",lst
         return lst
     
     
@@ -61,7 +60,6 @@ class exam_student_lable_report(report_sxw.rml_parse):
         student_pool = self.pool.get('op.student')
         ret_list = []
         for line in exam_session_ids:
-            print "_________exam_session_ids____________",exam_session_ids
             student_ids = student_pool.search(self.cr, self.uid, [('course_id', '=', line.course_id.id),
                                                                   ('standard_id', '=', line.standard_id.id),
                                                                   ], order= 'id asc')
@@ -75,13 +73,8 @@ class exam_student_lable_report(report_sxw.rml_parse):
                        'roll_number': student.roll_number,
                        'std': student.standard_id.name
                        }
-                print "________________res______________",res
                 temp_list.append(res)
             ret_list.append({'course': line.course_id.name, 'standard': line.standard_id.name, 'line': self.format_list(temp_list)})
-            print "_______ret_list_________da______",ret_list
-        print "*************************"
-        print "_____________ret_list____return________",ret_list
-        print "*************************"
         return ret_list
 
 report_sxw.report_sxw('report.op.exam.student.lable','op.exam.res.allocation', 'addons/openeducat_erp/report/exam_student_lable.rml', parser=exam_student_lable_report, header=False)

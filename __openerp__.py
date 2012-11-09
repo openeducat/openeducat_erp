@@ -44,8 +44,8 @@
                 * Hostel
 
     """,
-    'author': 'Tech-Receptives Solution Pvt. Ltd.',
-    'website': 'http://www.techreceptives.com',
+    'author': 'OpenEducat',
+    'website': 'http://www.openeducat.org',
     'images': [],
     'depends': ['account',
                 'hr'],

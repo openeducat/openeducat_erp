@@ -32,7 +32,8 @@ class res_users(osv.osv):
     _columns = {
                 'accredetion': fields.text('Accredetion'),
                 'approval_authority': fields.text('Approval Authority'),
-                'parent_ids':fields.one2many('op.parent','user_id','Parents')
+                'parent_ids':fields.one2many('op.parent','user_id','Parents'),
+                'user_line': fields.one2many('op.student', 'user_id', 'User Line')
                 }
 res_users()
 

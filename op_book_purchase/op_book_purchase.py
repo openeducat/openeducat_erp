@@ -23,6 +23,18 @@ from osv import osv, fields
 class op_book_purchase(osv.osv):
     _name = 'op.book.purchase'
     
+    
+#    def student_default(self, cr, uid, ids, field_name, arg, context={}):
+#        res = {}
+#        for student in self.browse(cr, uid, ids, context):
+#            print "____________student_____________",student
+#            for line in sheet.attendance_line:
+#
+#                if line.present == True:
+#                    present_cnt =  present_cnt + 1
+#            res[sheet.id] = present_cnt
+#        return res
+    
     _columns = {
             'name': fields.char(size=128, string='Title', required=True),
             'author_ids': fields.many2one('op.author', string='Author'),
@@ -36,8 +48,15 @@ class op_book_purchase(osv.osv):
             'state': fields.selection([('d','Draft'),('rq','Requested'),('a','Accept'),('r','Reject')], string='State', select=True, readonly=True),
             
     }
+    
+    def get_student(self, cr, uid, *args):
+        user_pool = self.pool.get('res.users')
+        result = user_pool.browse(cr, uid, uid).user_line[0].id
+        return result
+    
     _defaults = {
-              'state': 'd'
+              'state': 'd',
+              'student_id': get_student,
               }
 
     def act_draft(self, cr, uid, ids, context=None):
