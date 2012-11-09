@@ -77,12 +77,12 @@ class exam_student_lable_report(report_sxw.rml_parse):
                        }
                 print "________________res______________",res
                 temp_list.append(res)
-            ret_list.append(self.format_list(temp_list))
+            ret_list.append({'course': line.course_id.name, 'standard': line.standard_id.name, 'line': self.format_list(temp_list)})
             print "_______ret_list_________da______",ret_list
         print "*************************"
         print "_____________ret_list____return________",ret_list
         print "*************************"
-        return ret_list[0]
+        return ret_list
 
 report_sxw.report_sxw('report.op.exam.student.lable','op.exam.res.allocation', 'addons/openeducat_erp/report/exam_student_lable.rml', parser=exam_student_lable_report, header=False)
 

@@ -30,12 +30,10 @@ class op_book_purchase(osv.osv):
             'publisher_ids': fields.many2one('op.publisher', string='Publisher'),
             'course_ids': fields.many2one('op.course', string='Course'),
             'subject_ids': fields.many2one('op.subject', string='Subject'),
-            'student_id': fields.many2one('op.student', string='Student'),
-            'faculty_id': fields.many2one('op.faculty', string='Faculty'),
-            'library_id':fields.many2one('res.partner','Librarian'),
+            'student_id': fields.many2one('op.student', string='Student', groups="openeducat_erp.group_op_student"),
+            'faculty_id': fields.many2one('op.faculty', string='Faculty', groups="openeducat_erp.group_op_faculty"),
+            'library_id':fields.many2one('res.partner','Librarian', groups="openeducat_erp.group_op_library"),
             'state': fields.selection([('d','Draft'),('rq','Requested'),('a','Accept'),('r','Reject')], string='State', select=True, readonly=True),
-#            'student_id': fields.many2one('op.student', string='Student', required=True, groups="group_op_student"),
-#            'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True, groups="group_op_faculty"),
             
     }
     _defaults = {
