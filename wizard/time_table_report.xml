@@ -7,29 +7,34 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Time Table Report" version="7.0">
-				<header>
-					<span groups="base.group_user">
-							<button special="cancel" string="Close" type="object" icon="terp-dialog-close" />
-							<button string="Generate Time Table Report" type="object" name="gen_time_table_report" />
-					</span>
-				</header>
-				<sheet>
-					<separator string="Select Teacher/Student" colspan="4"/>
-					<div>
-	                    <group colspan="4" cols="4">
-	                        <field name="state" />
-	                        <field name="start_date"/>
-	                        <field name="end_date"/>
-	                        <field name="standard_id" attrs="{'required':[('state','=','s')],'invisible':[('state','!=','s')]}" />
-							<field name="division_id" attrs="{'required':[('state','=','s')],'invisible':[('state','!=','s')]}" />
-							<field name="faculty_id" attrs="{'required':[('state','=','t')],'invisible':[('state','!=','t')]}" />
-				        </group>
-					</div>
-				</sheet>
+					<header>
+						<span groups="base.group_user">
+							<button special="cancel" string="Close" type="object"
+								icon="terp-dialog-close" />
+							<button string="Generate Time Table Report" type="object"
+								name="gen_time_table_report" />
+						</span>
+					</header>
+					<sheet>
+						<separator string="Select Teacher/Student" colspan="4" />
+						<div>
+							<group colspan="4" cols="4">
+								<field name="state" />
+								<field name="start_date" />
+								<field name="end_date" />
+								<field name="standard_id"
+									attrs="{'required':[('state','=','s')],'invisible':[('state','!=','s')]}" />
+								<field name="division_id"
+									attrs="{'required':[('state','=','s')],'invisible':[('state','!=','s')]}" />
+								<field name="faculty_id"
+									attrs="{'required':[('state','=','t')],'invisible':[('state','!=','t')]}" />
+							</group>
+						</div>
+					</sheet>
 				</form>
 			</field>
 		</record>
-		
+
 		<record model="ir.actions.act_window" id="act_open_time_table_report_view">
 			<field name="name">Generate Time Table Report</field>
 			<field name="type">ir.actions.act_window</field>

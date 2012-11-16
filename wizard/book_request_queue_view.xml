@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
 	<data>
-		
+
 		<record model="ir.ui.view" id="book_request_queue_form">
 			<field name="name">book.request.queue.form</field>
 			<field name="model">book.request.queue</field>
@@ -9,18 +9,20 @@
 				<form string="Book Queue Request" version="7.0">
 					<header>
 						<span groups="base.group_user">
-							<button name="add_book_request_queue" string="Add" type="object" icon="gtk-go-forward"/>
-							<button special="cancel" string="Cancel" type="object" icon="terp-dialog-close" />
+							<button name="add_book_request_queue" string="Add" type="object"
+								icon="gtk-go-forward" />
+							<button special="cancel" string="Cancel" type="object"
+								icon="terp-dialog-close" />
 						</span>
 					</header>
 					<sheet>
 						<separator string="Add Book Queue Request" colspan="4" />
 						<div>
-						<field name="book_id" invisible="1"/>
-						<group col="2" colspan="4">
-							<field name="date_from"/>
-							<field name="date_to"/>
-						</group>
+							<field name="book_id" invisible="1" />
+							<group col="2" colspan="4">
+								<field name="date_from" />
+								<field name="date_to" />
+							</group>
 						</div>
 					</sheet>
 				</form>
@@ -29,7 +31,7 @@
 
 		<act_window id="book_request_queue_act" name="Book Queue Request"
 			res_model="book.request.queue" src_model="op.book" view_mode="form"
-			target="new" view_type="form" context="{'default_book_id': active_ids}"/>
+			target="new" view_type="form" context="{'default_book_id': active_ids}" />
 
 	</data>
 </openerp>

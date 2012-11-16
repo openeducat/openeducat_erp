@@ -36,15 +36,15 @@
 								statusbar_colors='{"r":"red"}' />
 							<button name="act_publish" states="d" type="object"
 								string="Publish" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
-							<button name="act_finish" states="p" type="object" 
-								string="Finish" icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty"/>
+							<button name="act_finish" states="p" type="object" string="Finish"
+								icon="gtk-go-forward" groups="openeducat_erp.group_op_faculty" />
 						</span>
 					</header>
 					<sheet>
 						<div>
 							<h1>
-								<field name="name"  placeholder="Assignment Name" attrs="{'readonly':[('state','!=','d')]}"
-									style="width: 100%%" />
+								<field name="name" placeholder="Assignment Name"
+									attrs="{'readonly':[('state','!=','d')]}" style="width: 100%%" />
 							</h1>
 						</div>
 						<group colspan="4" col="4">
@@ -54,7 +54,7 @@
 							<field name="subject_id" attrs="{'readonly':[('state','!=','d')]}" />
 							<field name="faculty_id" attrs="{'readonly':[('state','!=','d')]}" />
 							<field name="type" attrs="{'readonly':[('state','!=','d')]}" />
-							<field name="reviewer" attrs="{'readonly':[('state','!=','d')]}"/>
+							<field name="reviewer" attrs="{'readonly':[('state','!=','d')]}" />
 						</group>
 						<notebook colspan="4">
 							<page string="Basic Infomation">
@@ -136,8 +136,8 @@
 							context="{'group_by':'issued_date'}" />
 						<filter string="Submission Date" domain="[]"
 							context="{'group_by':'submission_date'}" />
-<!-- 						<filter string="Allocated To" domain="[]" -->
-<!-- 							context="{'group_by':'allocation_ids'}" /> -->
+						<!-- <filter string="Allocated To" domain="[]" -->
+						<!-- context="{'group_by':'allocation_ids'}" /> -->
 					</group>
 				</search>
 			</field>

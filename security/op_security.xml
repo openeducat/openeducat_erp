@@ -19,25 +19,26 @@
 		<record id="group_op_parent" model="res.groups">
 			<field name="name">Parent</field>
 		</record>
-		
+
 		<record model="ir.rule" id="student_login_rule">
-	        <field name="name">Student Login rule</field>
-	        <field name="model_id" ref="model_op_student"/>
-	        <field name="groups" eval="[(4, ref('openeducat_erp.group_op_student'))]"/>
-	        <field name="domain_force"> [('user_id','=',user.id)]</field>
-    	</record>
-    	
-    	<record model="ir.rule" id="parent_login_rule">
-	        <field name="name">Parent Login rule</field>
-	        <field name="model_id" ref="model_op_parent"/>
-	        <field name="groups" eval="[(4, ref('openeducat_erp.group_op_parent'))]"/>
-	        <field name="domain_force"> [('user_id','=',user.id)]</field>
-    	</record>
- 	    	<record model="ir.rule" id="student_parent_login_rule">
-	        <field name="name">Student Parent Login rule</field>
-	        <field name="model_id" ref="model_op_student"/>
-	        <field name="groups" eval="[(4, ref('openeducat_erp.group_op_parent'))]"/>
-	        <field name="domain_force"> [('parent_ids','in',[x.id for x in user.parent_ids])]</field>
-    	</record>
+			<field name="name">Student Login rule</field>
+			<field name="model_id" ref="model_op_student" />
+			<field name="groups" eval="[(4, ref('openeducat_erp.group_op_student'))]" />
+			<field name="domain_force"> [('user_id','=',user.id)]</field>
+		</record>
+
+		<record model="ir.rule" id="parent_login_rule">
+			<field name="name">Parent Login rule</field>
+			<field name="model_id" ref="model_op_parent" />
+			<field name="groups" eval="[(4, ref('openeducat_erp.group_op_parent'))]" />
+			<field name="domain_force"> [('user_id','=',user.id)]</field>
+		</record>
+		<record model="ir.rule" id="student_parent_login_rule">
+			<field name="name">Student Parent Login rule</field>
+			<field name="model_id" ref="model_op_student" />
+			<field name="groups" eval="[(4, ref('openeducat_erp.group_op_parent'))]" />
+			<field name="domain_force"> [('parent_ids','in',[x.id for x in
+				user.parent_ids])]</field>
+		</record>
 	</data>
 </openerp>

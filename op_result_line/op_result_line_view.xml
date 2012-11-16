@@ -7,7 +7,7 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<tree string="Result Line">
-					<field name="marksheet_line_id" invisible="1"/>
+					<field name="marksheet_line_id" invisible="1" />
 					<field name="exam_id" />
 					<field name="exam_tmpl_id" />
 					<field name="marks" />
@@ -27,13 +27,13 @@
 					<sheet>
 						<separator colspan="4" string="Result Line" />
 						<group colspan="4">
-							<field name="marksheet_line_id" invisible="1"/>
+							<field name="marksheet_line_id" invisible="1" />
 							<field name="exam_id" />
 							<field name="exam_tmpl_id" />
-                            <field name="marks" />
-                            <field name="per" />
-                            <field name="student_id" />
-                            <field name="status" />
+							<field name="marks" />
+							<field name="per" />
+							<field name="student_id" />
+							<field name="status" />
 						</group>
 					</sheet>
 				</form>
@@ -53,9 +53,11 @@
 						<filter string="Marksheet Line" domain="[]"
 							context="{'group_by':'marksheet_line_id'}" />
 						<filter string="Exam" domain="[]" context="{'group_by':'exam_id'}" />
-						<filter string="Exam Template" domain="[]" context="{'group_by':'exam_tmpl_id'}" />
+						<filter string="Exam Template" domain="[]"
+							context="{'group_by':'exam_tmpl_id'}" />
 						<filter string="Marks" domain="[]" context="{'group_by':'marks'}" />
-						<filter string="Students" domain="[]" context="{'group_by':'student_id'}" />
+						<filter string="Students" domain="[]"
+							context="{'group_by':'student_id'}" />
 						<filter string="Status" domain="[]" context="{'group_by':'status'}" />
 					</group>
 				</search>
