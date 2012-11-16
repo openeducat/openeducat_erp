@@ -51,8 +51,8 @@ class op_book_purchase(osv.osv):
     
     def get_student(self, cr, uid, *args):
         user_pool = self.pool.get('res.users')
-        result = user_pool.browse(cr, uid, uid).user_line[0].id
-        return result
+        result = user_pool.browse(cr, uid, uid).user_line
+        return result and result[0].id or False
     
     _defaults = {
               'state': 'd',

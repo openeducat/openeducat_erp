@@ -28,7 +28,7 @@ class op_library_card_type(osv.osv):
 
     _columns = {
         'name':fields.char('Name',size=256),
-        'duration': fields.float('Duration'),
+        'duration': fields.float('Duration',help="Duration in terms of Number of Lead Days"),
         'penalty_amt_per_day': fields.float('Penalty Amount Per Day'),
     }
 
@@ -39,7 +39,7 @@ class op_library_card(osv.osv):
     _description = 'Library Card'
 
     _columns = {
-        'partner_id':fields.many2one('res.partner','Partner'),
+        'partner_id':fields.many2one('res.partner','Student/Faculty'),
         'name':fields.char('Number',size=256),
         'library_card_type_id': fields.many2one('op.library.card.type', 'Library Card Type'),
         'issue_date':fields.date('Issue Date'),

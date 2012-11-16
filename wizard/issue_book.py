@@ -72,9 +72,9 @@ class issue_book(osv.osv_memory):
     
                     value = {'type': 'ir.actions.act_window_close'}
                 else:
-                    book_state = this_obj.book_id.state == 'I' and 'Issued' or \
+                    book_state = this_obj.book_id.state == 'i' and 'Issued' or \
                                   this_obj.book_id.state == 'a' and 'Available' or \
-                                  this_obj.book_id.state == 'L' and 'Lost' or \
+                                  this_obj.book_id.state == 'l' and 'Lost' or \
                                   this_obj.book_id.state == 'r' and 'Reserved'
                     raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
             else:
