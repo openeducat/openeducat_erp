@@ -70,4 +70,5 @@ import op_activity
 import op_parent
 import op_exam_res_allocation
 import op_exam_room
+import op_scholarship
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -19,12 +19,12 @@ class op_all_student_wizard(osv.osv_memory):
 
         data.update({'ids':context.get('active_ids',[]), 'student_ids': data['student_ids']})
 
-        self_search = sheet_pool.search(cr, uid, [])
-        for sheet in self_search:
-            self_browse = sheet_pool.browse(cr, uid, sheet)
-            course = self_browse.register_id.course_id.id
-            standard = self_browse.register_id.standard_id.id
-            division = self_browse.register_id.division_id.id
+        sheet_search = sheet_pool.search(cr, uid, [])
+        for sheet in sheet_search:
+            sheet_browse = sheet_pool.browse(cr, uid, sheet)
+            course = sheet_browse.register_id.course_id.id
+            standard = sheet_browse.register_id.standard_id.id
+            division = sheet_browse.register_id.division_id.id
 
 
             all_student_search = student_pool.search(cr, uid, [('course_id','=',course),
@@ -32,11 +32,12 @@ class op_all_student_wizard(osv.osv_memory):
                                                                ('division_id','=',division),
                                                                '|',('course_id','=',course),
                                                                ('standard_id','=',standard)])
-
+            
             if all_student_search:
                 for student_data in all_student_search:
                     dic = {}
                     student = student_pool.browse(cr,uid, student_data)
+                    
                     if student.id in data['student_ids']:
                         dic = {
                                'student_id':student.id,
@@ -54,7 +55,6 @@ class op_all_student_wizard(osv.osv_memory):
                         cr_id = self.pool.get('op.attendance.line').create(cr, uid, dic, context=context)
                         value = {'type': 'ir.actions.act_window_close'}
             return value
-
 
 op_all_student_wizard()
 
