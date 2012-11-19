@@ -29,7 +29,7 @@ class op_attendance_register(osv.osv):
             'course_id': fields.many2one('op.course', string='Course', required=True),
             'batch_id': fields.many2one('op.batch', string='Batch', required=True),
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
-            'division_id': fields.many2one('op.division', string='Division'),
+            'division_id': fields.many2one('op.division', string='Division', required=True),
             'subject_id': fields.many2one('op.subject', string='Subject'),
     }
 

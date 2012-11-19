@@ -27,9 +27,9 @@ class op_result_template(osv.osv):
 
     _rec_name = 'name'
     _columns = {
-        'exam_session_id':fields.many2one('op.exam.session','Exam Session'),
-        'name':fields.char("Name", size=254),
-        'result_date':fields.date('Result Date'),
+        'exam_session_id':fields.many2one('op.exam.session','Exam Session', required=True),
+        'name':fields.char("Name", size=254, required=True),
+        'result_date':fields.date('Result Date', required=True),
         'line_ids':fields.one2many('op.result.template.line', 'result_id', 'Lines'),
         'criteria_ids':fields.many2many('op.min.clear.criteria','op_res_tmp_crirel','res_id','cri_id','Minimum qualification Criteria'),
         'pass_status_ids':fields.many2many('op.pass.status','op_res_pass_st_rel','res_id','pass_id','Pass Status')

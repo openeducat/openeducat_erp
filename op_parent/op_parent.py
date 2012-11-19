@@ -25,9 +25,9 @@ class op_parent(osv.osv):
 
     _columns = {
 
-            'name': fields.many2one('res.partner','Parent Name'),
+            'name': fields.many2one('res.partner','Parent Name', required=True),
             'student_ids': fields.many2many('op.student', 'student_parent_rel', 'op_student', 'op_parent', string="Select Student"),
-            'user_id': fields.many2one('res.users', 'User'),
+            'user_id': fields.many2one('res.users', 'User', required=True),
     }
 
 op_parent()

@@ -35,7 +35,7 @@ class op_assignment(osv.osv):
             'type': fields.many2one('op.exam.type', string='Type', required=True),
             'state': fields.selection([('d','Draft'),('p','Publish'),('f','Finished')], string='State', required=True),
             'issued_date': fields.datetime(string='Issued Date', required=True),
-            'submission_date': fields.datetime(string='Submission Date'),
+            'submission_date': fields.datetime(string='Submission Date', required=True),
             'allocation_ids': fields.many2many('op.student', 'op_student_assignment_rel', 'op_assignment_id', 'op_student_id', string='Allocated To'),
             'assignment_sub_line': fields.one2many('op.assignment.sub.line', 'assignment_id', string='Submissions'),
             'reviewer': fields.many2one('op.faculty', 'Reviewer')

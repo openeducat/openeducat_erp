@@ -31,7 +31,6 @@ class op_roll_number(osv.osv):
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
             'division_id': fields.many2one('op.division', string='Division'),
             'student_id': fields.many2one('op.student', string='Student', required=True),
-            'division_id': fields.many2one('op.division', string='Division'),
     }
 
 op_roll_number()

@@ -27,12 +27,12 @@ class op_health(osv.osv):
     _description = """ Health Detail for Students and Faculties """
     
     _columns = {
-            'partner_id': fields.many2one('res.partner', 'Partner'),
-            'height': fields.float('Height(C.M.)'),
-            'weight': fields.float('weight(K.G.)'),
+            'partner_id': fields.many2one('res.partner', 'Partner', required=True),
+            'height': fields.float('Height(C.M.)', required=True),
+            'weight': fields.float('weight(K.G.)', required=True),
             'blood_group': fields.selection([('A+','A+ve'),('B+','B+ve'),('O+','O+ve'),\
                                              ('AB+','AB+ve'),('A-','A-ve'),('B-','B-ve'),\
-                                             ('O-','O-ve'),('AB-','AB-ve')], string='Blood Group'),
+                                             ('O-','O-ve'),('AB-','AB-ve')], string='Blood Group', required=True),
             'physical_challenges': fields.boolean('Physical Challenge?'),
             'physical_challenges_note': fields.text('Physical Challenge'),
             'major_diseases': fields.boolean('Major Diseases?'),

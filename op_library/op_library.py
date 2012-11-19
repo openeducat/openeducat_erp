@@ -27,9 +27,9 @@ class op_library_card_type(osv.osv):
     _description = 'Library Card Type'
 
     _columns = {
-        'name':fields.char('Name',size=256),
-        'duration': fields.float('Duration',help="Duration in terms of Number of Lead Days"),
-        'penalty_amt_per_day': fields.float('Penalty Amount Per Day'),
+        'name':fields.char('Name',size=256, required=True),
+        'duration': fields.float('Duration',help="Duration in terms of Number of Lead Days", required=True),
+        'penalty_amt_per_day': fields.float('Penalty Amount Per Day', required=True),
     }
 
 op_library_card_type()
@@ -39,11 +39,11 @@ class op_library_card(osv.osv):
     _description = 'Library Card'
 
     _columns = {
-        'partner_id':fields.many2one('res.partner','Student/Faculty'),
-        'name':fields.char('Number',size=256),
-        'library_card_type_id': fields.many2one('op.library.card.type', 'Library Card Type'),
-        'issue_date':fields.date('Issue Date'),
-        'allow_book': fields.integer(string="No. Of Book Allow", size=10),
+        'partner_id':fields.many2one('res.partner','Student/Faculty', required=True),
+        'number':fields.char('Number',size=256),
+        'library_card_type_id': fields.many2one('op.library.card.type', 'Library Card Type', required=True),
+        'issue_date':fields.date('Issue Date', required=True),
+        'allow_book': fields.integer(string="No. Of Book Allow", size=10, required=True),
     }
 
 op_library_card()
