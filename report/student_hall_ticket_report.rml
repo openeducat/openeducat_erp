@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<document filename="Student Lable.pdf">
+  <template pageSize="(595.0,842.0)" title="Student Lable Report" author="VNC Development" allowSplitting="20">
+    <pageTemplate id="first">
+         <frame id="first" x1="28.0" y1="28.0" width="539" height="772"/>
+         <pageGraphics>
+            <image x="28" y="780" height="60">[[ company.logo or removeParentNode('image') ]]</image>
+   		</pageGraphics> 
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table1">
+	  <blockAlignment value="CENTER"/>
+	  <blockValign value="TOP"/>
+	  <lineStyle kind="LINEBEFORE" colorName="#cccccc"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc"/>
+      <lineStyle kind="LINEAFTER" colorName="#cccccc"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc"/>
+    </blockTableStyle>
+    
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading_center" fontName="Helvetica-Bold" fontSize="14.0" alignment="CENTER" />
+    <paraStyle name="Header_center" fontName="Helvetica-Bold" fontSize="10.0" alignment="CENTER" />
+    <paraStyle name="Header_center_left" fontName="Helvetica-Bold" fontSize="12.0" alignment="LEFT" />
+    <paraStyle name="total_left" fontName="Helvetica-Bold" fontSize="9.0"  alignment="LEFT" />
+    <paraStyle name="total_right" fontName="Helvetica-Bold" fontSize="9.0"  alignment="RIGHT"/>
+    <paraStyle name="table_center" fontName="Helvetica-Bold" fontSize="9.0"  alignment="CENTER"/>
+    <paraStyle name="date_from_to" fontName="Helvetica" fontSize="12.0" alignment="CENTER"/>
+    <paraStyle name="Table_contents_left" fontName="Helvetica" fontSize="9.0" alignment="LEFT"/>
+    <paraStyle name="Table_contents_right" fontName="Helvetica" fontSize="9.0" alignment="RIGHT"/>
+    <images/>
+  </stylesheet>
+  <story>
+  	<para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">[[ company.name ]]</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">Hall Ticket</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="Standard"><font color="white"> </font></para>
+    <section>
+	    <para style="Standard">[[ repeatIn(get_data(data), 'o') ]]</para>
+	    <blockTable colWidths="270.0,270.0" style="Standard_Outline">
+			<tr>
+				<td><para style="Standard"><b>Student Name : [[ o['student'] ]] [[ o['student_middle'] ]] [[ o['student_last'] ]]</b></para></td>
+				<para style="Standard"><font color="white"> </font></para>
+			</tr>
+			<tr>
+				<td><para style="Standard"><b>Exam : [[ o['exam'] ]]</b></para></td>
+				<td><para style="Standard"><b>Exam Code : [[ o['exam_code'] ]]</b></para></td>
+			</tr>
+			<tr>
+				<td><para style="Standard"><b>Course : [[ o['course'] ]]</b></para></td>
+				<td><para style="Standard"><b>Standard : [[ o['standard'] ]]</b></para></td>
+			</tr>
+			<tr>
+				<td><para style="Standard"><b>Roll No. : [[ o['roll_number'] ]]</b></para></td>
+				<para style="Standard"><font color="white"> </font></para>
+			</tr>
+		</blockTable>
+		<section>
+		<para style="Standard">[[ repeatIn(o['line'], 's') ]]</para>
+		<blockTable colWidths="135.0,135.0,135.0,135.0" style="Table1">
+			<tr>
+				<td><para style="Standard"><b>Subject</b></para></td>
+				<td><para style="Standard"><b>Start Date</b></para></td>
+				<td><para style="Standard"><b>End Date</b></para></td>
+				<td><para style="Standard"><b>Supervisor Sign</b></para></td>
+			</tr>
+			<tr>
+				<td><para style="Standard"><b>[[ s['subject'] ]]</b></para></td>
+				<td><para style="Standard"><b>[[ s['start_date'] ]]</b></para></td>
+				<td><para style="Standard"><b>[[ s['end_date'] ]]</b></para></td>
+				<td><para style="Standard"><b>[[ s['sup'] ]]</b></para></td>
+			</tr>
+		</blockTable>
+		</section>
+		<para style="Standard"><font color="white"> </font></para>
+		<para style="Standard"><font color="white"> </font></para>
+	</section>
+  </story>
+</document>

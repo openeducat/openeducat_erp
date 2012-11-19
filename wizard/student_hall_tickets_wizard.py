@@ -18,14 +18,32 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
+from osv import osv, fields
+from tools.translate import _
+import time
 
-import book_barcode
-import id_card
-import time_table_report
-import time_table_teacher
-import library_card
-import marksheet_report
-import exam_student_lable
-import generate_exam_allocation
-import student_hall_ticket_report
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class student_hall_ticket(osv.osv_memory):
+    """ Retrun Book Wizard """
+
+    _name = 'student.hall.ticket'
+
+    _columns = {
+                'exam_session_id':fields.many2one('op.exam.session','Exam Session', required=True),
+                
+                }
+    
+    def print_report(self, cr, uid, ids, context={}):
+        
+#        data={}
+#        data['ids'] = ids
+#        data['form'] = self.read(cr, uid, ids, ['exam_session_id'])[0]
+#        data['form']['context'] = context
+        data = self.read(cr, uid, ids, ['exam_session_id'])
+        print "_________data____wizard________________",data
+        return {
+                'type': 'ir.actions.report.xml',
+                'report_name': 'student.hall.ticket',
+                'datas': data[0],
+        }
+
+student_hall_ticket()

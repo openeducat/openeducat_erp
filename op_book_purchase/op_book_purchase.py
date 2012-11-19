@@ -24,27 +24,16 @@ class op_book_purchase(osv.osv):
     _name = 'op.book.purchase'
     
     
-#    def student_default(self, cr, uid, ids, field_name, arg, context={}):
-#        res = {}
-#        for student in self.browse(cr, uid, ids, context):
-#            print "____________student_____________",student
-#            for line in sheet.attendance_line:
-#
-#                if line.present == True:
-#                    present_cnt =  present_cnt + 1
-#            res[sheet.id] = present_cnt
-#        return res
-    
     _columns = {
             'name': fields.char(size=128, string='Title', required=True),
             'author_ids': fields.many2one('op.author', string='Author'),
             'edition': fields.text(string='Edition'),
             'publisher_ids': fields.many2one('op.publisher', string='Publisher'),
-            'course_ids': fields.many2one('op.course', string='Course'),
-            'subject_ids': fields.many2one('op.subject', string='Subject'),
-            'student_id': fields.many2one('op.student', string='Student', groups="openeducat_erp.group_op_student"),
-            'faculty_id': fields.many2one('op.faculty', string='Faculty', groups="openeducat_erp.group_op_faculty"),
-            'library_id':fields.many2one('res.partner','Librarian', groups="openeducat_erp.group_op_library"),
+            'course_ids': fields.many2one('op.course', string='Course', required=True),
+            'subject_ids': fields.many2one('op.subject', string='Subject', required=True),
+            'student_id': fields.many2one('op.student', string='Student', groups="openeducat_erp.group_op_student", required=True),
+            'faculty_id': fields.many2one('op.faculty', string='Faculty', groups="openeducat_erp.group_op_faculty", required=True),
+            'library_id':fields.many2one('res.partner','Librarian', groups="openeducat_erp.group_op_library", required=True),
             'state': fields.selection([('d','Draft'),('rq','Requested'),('a','Accept'),('r','Reject')], string='State', select=True, readonly=True),
             
     }

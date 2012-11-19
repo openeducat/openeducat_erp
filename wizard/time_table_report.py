@@ -36,9 +36,9 @@ class time_table_report(osv.osv_memory):
     _name = 'time.table.report'
     _description = 'Generate Time Table Report'
     _columns = {
-        'standard_id': fields.many2one('op.standard', 'Standard'),
+        'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division'),
-        'faculty_id': fields.many2one('op.faculty', string='Faculty'),
+        'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True),
         'start_date':fields.date('Start Date', required=True),
         'end_date':fields.date('End Date', required=True),
         'state': fields.selection([('s','Student'),('t','Teacher')],string='Select',\

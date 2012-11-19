@@ -26,5 +26,6 @@ import return_book
 import time_table_report
 import book_request_queue
 import exam_seating_arrangement
+import student_hall_tickets_wizard
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

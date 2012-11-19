@@ -44,6 +44,7 @@
                 * Hostel
 
     """,
+    'summary': 'Manage Students, Faculties and Education Institute',
     'author': 'OpenEducat',
     'website': 'http://www.openeducat.org',
     'images': [],
@@ -83,6 +84,7 @@
         'wizard/book_request_queue_view.xml',
         'wizard/issue_book_view.xml',
         'wizard/return_book_view.xml',
+        'wizard/student_hall_tickets_wizard_view.xml',
         'op_book/op_book_view.xml',
         'op_batch/op_batch_view.xml',
         'op_marksheet_line/op_marksheet_line_view.xml',
