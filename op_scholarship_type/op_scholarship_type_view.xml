@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_op_scholarship_type_tree" model="ir.ui.view">
+			<field name="name">op.scholarship.type.tree</field>
+			<field name="model">op.scholarship.type</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Scholarship Type">
+					<field name="name" />
+					<field name="amount" />
+				</tree>
+			</field>
+		</record>
+		<record id="view_op_scholarship_type_form" model="ir.ui.view">
+			<field name="name">op.scholarship.type.form</field>
+			<field name="model">op.scholarship.type</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Tag" version="7.0">
+					<sheet>
+						<separator colspan="4" string="Tag" />
+						<group colspan="4">
+							<field name="name" />
+							<field name="amount" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="view_op_scholarship_type_search" model="ir.ui.view">
+			<field name="name">op.scholarship.type.search</field>
+			<field name="model">op.scholarship.type</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<search string="Tag">
+					<field name="name" />
+					<field name="amount" />
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
+						<filter string="Amount" domain="[]" context="{'group_by':'amount'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="act_open_op_scholarship_type_view">
+			<field name="name">Tag</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.scholarship.type</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_op_scholarship_type_search" />
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+		<record model="ir.actions.act_window.view" id="act_open_op_scholarship_type_view_form">
+			<field name="act_window_id" ref="act_open_op_scholarship_type_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_scholarship_type_form" />
+		</record>
+		<record model="ir.actions.act_window.view" id="act_open_op_scholarship_type_view_tree">
+			<field name="act_window_id" ref="act_open_op_scholarship_type_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_scholarship_type_tree" />
+		</record>
+	</data>
+</openerp>
