@@ -24,6 +24,7 @@
     'version': '1.0',
     'category': 'Openerp Education',
     "sequence": 3,
+    'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
     'description': """
             This module provide overall education management system over OpenERP
@@ -44,7 +45,6 @@
                 * Hostel
 
     """,
-    'summary': 'Manage Students, Faculties and Education Institute',
     'author': 'OpenEducat',
     'website': 'http://www.openeducat.org',
     'images': [],
@@ -95,6 +95,7 @@
         'op_author/op_author_view.xml',
         'op_exam_type/op_exam_type_view.xml',
         'op_facility/op_facility_view.xml',
+        'op_scholarship/op_scholarship_view.xml',
         'op_roll_number/op_roll_number_view.xml',
         'op_library/op_library_view.xml',
         'op_timetable/op_timetable_view.xml',
@@ -116,7 +117,6 @@
         'menu/openeducat_erp_menu.xml',
         'report/report_menu.xml',
         'op_book_purchase/op_book_purchase_view.xml',
-        'op_scholarship/op_scholarship_view.xml',
         'dashboard/librarian_dashboard_view.xml',
         'dashboard/faculty_dashboard_view.xml',
         'dashboard/student_dashboard_view.xml',
