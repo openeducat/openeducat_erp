@@ -19,41 +19,36 @@ class op_all_student_wizard(osv.osv_memory):
 
         data.update({'ids':context.get('active_ids',[]), 'student_ids': data['student_ids']})
 
-        sheet_search = sheet_pool.search(cr, uid, [])
-        for sheet in sheet_search:
+        for sheet in context.get('active_ids',[]):
             sheet_browse = sheet_pool.browse(cr, uid, sheet)
             course = sheet_browse.register_id.course_id.id
             standard = sheet_browse.register_id.standard_id.id
             division = sheet_browse.register_id.division_id.id
-
-
+            absent_list = [x.student_id.id for x in sheet_browse.attendance_line]
             all_student_search = student_pool.search(cr, uid, [('course_id','=',course),
                                                                ('standard_id','=',standard),
                                                                ('division_id','=',division),
                                                                '|',('course_id','=',course),
                                                                ('standard_id','=',standard)])
             
-            if all_student_search:
-                for student_data in all_student_search:
-                    dic = {}
-                    student = student_pool.browse(cr,uid, student_data)
-                    
-                    if student.id in data['student_ids']:
-                        dic = {
-                               'student_id':student.id,
-                               'absent':False,
-                               'attendance_id': context.get('active_id'),
-                               }
-                        cr_id = self.pool.get('op.attendance.line').create(cr, uid, dic, context=context)
-                        value = {'type': 'ir.actions.act_window_close'}
-                    else:
-                        dic = {
-                               'student_id':student.id,
-                               'present':True,
-                               'attendance_id': context.get('active_id'),
-                               }
-                        cr_id = self.pool.get('op.attendance.line').create(cr, uid, dic, context=context)
-                        value = {'type': 'ir.actions.act_window_close'}
+            all_student_search = list(set(all_student_search)-set(absent_list))
+            for student_data in all_student_search:
+                dic = {}
+                student = student_pool.browse(cr,uid, student_data)
+                if student.id in data['student_ids']:
+                    dic = {
+                           'student_id':student.id,
+                           'absent':False,
+                           'attendance_id': context.get('active_id'),
+                           }
+                else:
+                    dic = {
+                           'student_id':student.id,
+                           'present':True,
+                           'attendance_id': context.get('active_id'),
+                           }
+                cr_id = self.pool.get('op.attendance.line').create(cr, uid, dic, context=context)
+            value = {'type': 'ir.actions.act_window_close'}
             return value
 
 op_all_student_wizard()
