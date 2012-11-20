@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
+	
+		<record model="ir.ui.view" id="kanban_view_student">
+			<field name="name">Student Kanban</field>
+			<field name="model">op.student</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<templates>
+						<t t-name="kanban-box">
+							<div class="oe_employee_vignette">
+								<div class="oe_employee_image">
+									<a type="open">
+										<img t-att-src="kanban_image('op.student', 'photo', record.id.value)"
+											class="oe_employee_picture" />
+									</a>
+								</div>
+								<div class="oe_employee_details">
+									<h4>
+										<a type="open">
+											<field name="name" />
+											<t t-if="record.middle_name.raw_value">
+												<field name="middle_name" />
+											</t>
+											<t t-if="record.last_name.raw_value">
+												<field name="last_name" />
+											</t>
+										</a>
+									</h4>
+									<ul>
+										<li t-if="record.course_id.raw_value">
+											Course:
+											<field name="course_id" />
+										</li>
+										<li t-if="record.standard_id.raw_value">
+											Standard:
+											<field name="standard_id" />
+										</li>
+									</ul>
+								</div>
+							</div>
+							<script> $('.oe_employee_picture').load(function() {
+								if($(this).width() > $(this).height()) {
+								$(this).addClass('oe_employee_picture_wide') } });
+							</script>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+	
 		<record id="view_op_student_tree" model="ir.ui.view">
 			<field name="name">op.student.tree</field>
 			<field name="model">op.student</field>
@@ -178,7 +227,7 @@
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">op.student</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<field name="view_mode">kanban,tree,form</field>
 			<field name="search_view_id" ref="view_op_student_search" />
 			<field name="domain">[]</field>
 			<field name="context">{}</field>
@@ -194,6 +243,12 @@
 			<field name="sequence" eval="10" />
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_student_tree" />
+		</record>
+		<record model="ir.actions.act_window.view" id="act_open_op_student_view_kanban">
+			<field name="act_window_id" ref="act_open_op_student_view" />
+			<field name="sequence" eval="5" />
+			<field name="view_mode">kanban</field>
+			<field name="view_id" ref="kanban_view_student" />
 		</record>
 	</data>
 </openerp>

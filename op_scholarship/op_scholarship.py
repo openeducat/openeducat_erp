@@ -30,6 +30,10 @@ class op_scholarship(osv.osv):
             'state': fields.selection([('d','Draft'),('c','Confirm'),('r','Reject')],readonly=True ,select=True, string='State')
     }
     
+    _defaults = {
+                 'state': 'd'
+                 }
+    
     def act_draft(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'d'})
         return True

@@ -39,53 +39,53 @@
     <images/>
   </stylesheet>
   <story>
+  	<section>
+  	<para style="Standard">[[ repeatIn(get_data(data), 'o') ]]</para>
   	<para style="Standard"><font color="white"> </font></para>
     <para style="Heading_center">[[ company.name ]]</para>
     <para style="Standard"><font color="white"> </font></para>
-    <para style="Heading_center">Hall Ticket</para>
+    <para style="Heading_center">Hall Ticket For [[ o['exam'] ]]([[ o['exam_code'] ]])</para>
     <para style="Standard"><font color="white"> </font></para>
     <para style="Standard"><font color="white"> </font></para>
-    <section>
-	    <para style="Standard">[[ repeatIn(get_data(data), 'o') ]]</para>
-	    <blockTable colWidths="270.0,270.0" style="Standard_Outline">
-			<tr>
-				<td><para style="Standard"><b>Student Name : [[ o['student'] ]] [[ o['student_middle'] ]] [[ o['student_last'] ]]</b></para></td>
-				<para style="Standard"><font color="white"> </font></para>
-			</tr>
-			<tr>
-				<td><para style="Standard"><b>Exam : [[ o['exam'] ]]</b></para></td>
-				<td><para style="Standard"><b>Exam Code : [[ o['exam_code'] ]]</b></para></td>
-			</tr>
-			<tr>
-				<td><para style="Standard"><b>Course : [[ o['course'] ]]</b></para></td>
-				<td><para style="Standard"><b>Standard : [[ o['standard'] ]]</b></para></td>
-			</tr>
-			<tr>
-				<td><para style="Standard"><b>Roll No. : [[ o['roll_number'] ]]</b></para></td>
-				<para style="Standard"><font color="white"> </font></para>
-			</tr>
-		</blockTable>
-		<blockTable colWidths="135.0,135.0,135.0,135.0" style="Table1">
-			<tr>
-				<td><para style="Standard"><b>Subject</b></para></td>
-				<td><para style="Standard"><b>Start Date</b></para></td>
-				<td><para style="Standard"><b>End Date</b></para></td>
-				<td><para style="Standard"><b>Supervisor Sign</b></para></td>
-			</tr>
-		</blockTable>
-		<section>
-		<para style="Standard">[[ repeatIn(o['line'], 's') ]]</para>
-		<blockTable colWidths="135.0,135.0,135.0,135.0" style="Table1">
-			<tr>
-				<td><para style="Standard"><b>[[ s['subject'] ]]</b></para></td>
-				<td><para style="Standard"><b>[[ s['start_date'] ]]</b></para></td>
-				<td><para style="Standard"><b>[[ s['end_date'] ]]</b></para></td>
-				<td><para style="Standard"><b>[[ s['sup'] ]]</b></para></td>
-			</tr>
-		</blockTable>
-		</section>
-		<para style="Standard"><font color="white"> </font></para>
-		<para style="Standard"><font color="white"> </font></para>
+    <blockTable colWidths="470.0,70.0" style="Standard_Outline">
+    	<tr>
+    		<td>
+    			<blockTable colWidths="235.0,235.0" style="Standard_Outline">
+					<tr>
+						<td><para style="Standard"><b>Student Name : </b>[[ o['student'] ]] [[ o['student_middle'] ]] [[ o['student_last'] ]]</para></td>
+						<td><para style="Standard"><b>Roll No. : </b>[[ o['roll_number'] ]]</para></td>
+					</tr>
+					<tr>
+						<td><para style="Standard"><b>Course : </b>[[ o['course'] ]]</para></td>
+						<td><para style="Standard"><b>Standard : </b>[[ o['standard'] ]]</para></td>
+					</tr>
+				</blockTable>
+			</td>
+			<td>
+				<image width="50" height="50">[[ o['photo'] or removeParentNode('image') ]]</image>
+			</td>
+		</tr>
+	</blockTable>
+	<blockTable colWidths="135.0,135.0,135.0,135.0" style="Table1">
+		<tr>
+			<td><para style="Standard"><b>Subject</b></para></td>
+			<td><para style="Standard"><b>Date</b></para></td>
+			<td><para style="Standard"><b>Time</b></para></td>
+			<td><para style="Standard"><b>Supervisor Sign</b></para></td>
+		</tr>
+	</blockTable>
+	<section>
+	<para style="Standard">[[ repeatIn(o['line'], 's') ]]</para>
+	<blockTable colWidths="135.0,135.0,135.0,135.0" style="Table1">
+		<tr>
+			<td><para style="Standard">[[ s['subject'] ]]</para></td>
+			<td><para style="Standard">[[ s['date'] ]]</para></td>
+			<td><para style="Standard">[[ s['time'] ]]</para></td>
+			<td><para style="Standard">[[ s['sup_sign'] ]]</para></td>
+		</tr>
+	</blockTable>
+	</section>
+	<pageBreak/>
 	</section>
   </story>
 </document>

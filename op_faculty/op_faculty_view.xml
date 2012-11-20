@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
-		<record model="ir.ui.view" id="hr_kanban_view_faculty">
+		<record model="ir.ui.view" id="kanban_view_faculty">
 			<field name="name">Faculty Kanban</field>
 			<field name="model">op.faculty</field>
 			<field name="arch" type="xml">
@@ -221,6 +221,12 @@
 			<field name="sequence" eval="10" />
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_faculty_tree" />
+		</record>
+		<record model="ir.actions.act_window.view" id="act_open_op_faculty_view_kanban">
+			<field name="act_window_id" ref="act_open_op_faculty_view" />
+			<field name="sequence" eval="5" />
+			<field name="view_mode">kanban</field>
+			<field name="view_id" ref="kanban_view_faculty" />
 		</record>
 	</data>
 </openerp>

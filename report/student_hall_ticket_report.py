@@ -33,50 +33,47 @@ class student_hall_ticket_report(report_sxw.rml_parse):
             'get_data':self.get_data,
         })
         
+    def get_date(self, exam_line):
+        start_time = exam_line.start_time[10:]
+        end_time = exam_line.end_time[10:]
+        return start_time[:6]+ ' To ' +end_time[:6]
+        
+    
     def get_subject(self, datas):
         exam = self.pool.get('op.exam')
         lst = []
         for exam_line in datas['exam_ids']:
-            print "__________exam_line____________",exam_line.name
             temp_exam = exam.browse(self.cr, self.uid, exam_line)
             res1 = {
                     'subject': exam_line.subject_id.name,
-                    'start_date': exam_line.start_time,
-                    'end_date': exam_line.end_time,
-                    'sup': ''
+                    'date': exam_line.start_time[:10],
+                    'time': self.get_date(exam_line),
+                    'sup_sign': ''
                     }
             lst.append(res1)
-            print "___________res1_____________",lst
         return lst
     
     def get_data(self, data):
         final_lst = []
         exam_session_pool = self.pool.get('op.exam.session')
         exam_student = self.pool.get('op.student')
-#        exam = self.pool.get('op.exam')
-        print "__________data____________",data['exam_session_id'][0]
         datas = exam_session_pool.browse(self.cr, self.uid, data['exam_session_id'][0])
         student_search = exam_student.search(self.cr, self.uid, [('course_id', '=', datas.course_id.id), ('standard_id', '=', datas.standard_id.id)])
-        print "_________student________________",student_search
-        print "__________data__fds___________",datas.exam_ids
         for student in exam_student.browse(self.cr, self.uid, student_search) :
-            print "_______student__dcsf_____",student.name
             res = {
                    'exam': datas.name,
                    'exam_code': datas.exam_code,
                    'course': datas.course_id.name,
                    'standard': datas.standard_id.name,
                    'student': student.name,
+                   'photo': student.photo,
                    'student_middle': student.middle_name,
                    'student_last': student.last_name,
                    'roll_number': student.roll_number,
                    'line': self.get_subject(datas),
                    }
-            print "___________res__________",res
             final_lst.append(res)
-        print "___________final_lst__________",final_lst
         return final_lst
-
 
 report_sxw.report_sxw('report.student.hall.ticket', 'op.exam.session','addons/openeducat_erp/report/student_hall_ticket_report.rml',
                       parser=student_hall_ticket_report, header=False)
