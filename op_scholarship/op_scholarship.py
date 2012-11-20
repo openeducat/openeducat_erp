@@ -26,7 +26,7 @@ class op_scholarship(osv.osv):
     _columns = {
             'name': fields.char(size=64, string='Name', required=True),
             'student_id': fields.many2one('op.student', 'Student', required=True),
-            'type': fields.selection([('s','School Scholarship'),('g','Government Scholarship'),('o','Other Scholarship')],select=True, string='Select Type'),
+            'type_id': fields.many2one('op.scholarship.type','Type', required=True),
             'state': fields.selection([('d','Draft'),('c','Confirm'),('r','Reject')],readonly=True ,select=True, string='State')
     }
     

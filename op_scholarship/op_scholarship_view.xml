@@ -9,7 +9,7 @@
 				<tree string="Scholarship">
 					<field name="name" />
 					<field name="student_id" />
-					<field name="type" />
+					<field name="type_id" />
 					<field name="state" />
 				</tree>
 			</field>
@@ -20,24 +20,24 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Scholarship" version="7.0">
-				<header>
+					<header>
 						<span groups="base.group_user">
 							<field name="state" widget="statusbar" statusbar_visible="d,c,r"
 								statusbar_colors='{"r":"red"}' />
 							<button name="act_confirm" states="d" type="object"
 								string="Confirm" icon="gtk-go-forward" />
-							<button name="act_reject" states="d" type="object"
-								string="Reject" icon="gtk-go-forward" />
+							<button name="act_reject" states="d" type="object" string="Reject"
+								icon="gtk-go-forward" />
 						</span>
-				</header>
-				<sheet>
-					<separator colspan="4" string="Scholarship" />
-					<group colspan="4">
-						<field name="name" />
-						<field name="student_id" />
-						<field name="type" />
-					</group>
-				</sheet>
+					</header>
+					<sheet>
+						<separator colspan="4" string="Scholarship" />
+						<group colspan="4">
+							<field name="name" />
+							<field name="student_id" />
+							<field name="type_id" />
+						</group>
+					</sheet>
 				</form>
 			</field>
 		</record>
@@ -53,7 +53,7 @@
 						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
 						<filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
 						<filter string="State" domain="[]" context="{'group_by':'state'}" />
-						<filter string="Type" domain="[]" context="{'group_by':'type'}" />
+						<filter string="Type" domain="[]" context="{'group_by':'type_id'}" />
 					</group>
 				</search>
 			</field>

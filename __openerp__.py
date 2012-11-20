@@ -96,6 +96,7 @@
         'op_exam_type/op_exam_type_view.xml',
         'op_facility/op_facility_view.xml',
         'op_scholarship/op_scholarship_view.xml',
+        'op_scholarship_type/op_scholarship_type_view.xml',
         'op_roll_number/op_roll_number_view.xml',
         'op_library/op_library_view.xml',
         'op_timetable/op_timetable_view.xml',

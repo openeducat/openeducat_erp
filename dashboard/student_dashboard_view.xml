@@ -24,9 +24,7 @@
 			<field name="view_mode">calendar,form</field>
 			<field name="view_id" ref="view_op_timetable_calendar_dash" />
 			<field name="search_view_id" ref="view_op_timetable_search" />
-			<field name="domain">[('start_datetime','&gt;=',time.strftime('%Y-%m-%d
-				00:00:00')),
-				('start_datetime','&lt;=',time.strftime('%Y-%m-%d 23:59:59'))]</field>
+			<field name="domain">[('start_datetime','&gt;=',time.strftime('%Y-%m-%d 00:00:00')),('start_datetime','&lt;=',time.strftime('%Y-%m-%d 23:59:59'))]</field>
 			<field name="context">{'search_default_today':1}</field>
 		</record>
 		<!-- List View of Assignment To Submit -->
