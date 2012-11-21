@@ -29,4 +29,5 @@ import exam_student_lable
 import generate_exam_allocation
 import student_hall_ticket_report
 import transport_detail
+import student_attendance
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<document filename="Student Attendance Report.pdf">
+  <template pageSize="(595.0,842.0)" title="Student Attendance Report" author="OpenEducat" allowSplitting="20">
+    
+    <pageTemplate id="first">
+    	<frame id="first" x1="28.0" y1="28.0" width="520" height="728"/> 
+    </pageTemplate>
+    
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table_Simple">
+      <blockAlignment value="CENTER"/>
+      <blockValign value="CENTER"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table_Blank">
+      <blockAlignment value="CENTER"/>
+      <blockValign value="CENTER"/>
+    </blockTableStyle>
+    
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    
+    <paraStyle name="P1" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P2" fontName="Helvetica" alignment="LEFT"/>
+    <paraStyle name="P3" fontName="Helvetica" alignment="RIGHT"/>
+    <paraStyle name="P4" fontName="Helvetica-BOLD" alignment="CENTER"/>
+    <paraStyle name="P5" fontName="Helvetica-Bold" alignment="LEFT"/>
+    <paraStyle name="P6" fontName="Helvetica-BOLD" alignment="RIGHT"/>
+    <paraStyle name="space" fontName="Helvetica-BOLD" alignment="LEFT" leading="12" fontSize="15.0"/>
+    
+    
+    <images/>
+  </stylesheet>
+  	<story>
+  	
+  	
+  	
+  	
+  	
+  	<section>
+  	
+  	<para>[[ repeatIn(get_data(data), 'obj_data') ]]</para>
+  	<para> [[ obj_data['student_id'] ]] </para> 
+  	<blockTable colWidths="520" style="Table_Simple">
+		<tr>
+			<td>
+				<para>[[ repeatIn(obj_data['line'], 'line') ]]</para>
+				<blockTable colWidths="260,260" style="Standard_Outline">
+					<tr>
+						<td><para style="P2">[[ line['absent_date'] ]]</para></td>
+						<td><para style="P3">1</para></td>
+					</tr>
+				</blockTable>		
+			</td>
+		</tr>
+		<tr>
+			<td><para style="P2">Total Absent(s): [[ obj_data['total'] ]]</para></td>
+		</tr>
+	</blockTable>
+  	
+	</section>	
+  	</story>
+</document>
