@@ -7,10 +7,14 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<tree string="Transportation">
-					<field name="route_id" />
-					<field name="student_id" />
-					<field name="start_date" />
-					<field name="end_date" />
+					<field name="name" />
+					<field name="vehicle_id" />
+					<field name="start_time" />
+					<field name="end_time" />
+					<field name="from" />
+					<field name="to" />
+					<field name="stop" />
+					<field name="student_ids" />
 				</tree>
 			</field>
 		</record>
@@ -21,12 +25,31 @@
 			<field name="arch" type="xml">
 				<form string="Transportation" version="7.0">
 					<sheet>
-						<separator colspan="4" string="Transportation Detail" />
-						<group col="4" colspan="4">
-							<field name="route_id" />
-							<field name="student_id" />
-							<field name="start_date" />
-							<field name="end_date" />
+						<separator colspan="4" string="Transport" />
+						<group colspan="4" col="4">
+							<field name="name" />
+							<field name="vehicle_id" />
+							<field name="start_time" />
+							<field name="end_time" />
+							<field name="from" />
+							<field name="to" />
+							<group colspan="4">
+								<field name="stop" />
+							</group>
+							<newline />
+							
+							<group colspan="4">
+								<field name="student_ids" string="Student(s)" nolable="1" >
+									<tree>
+										<field name="title" />
+										<field name="name" />
+										<field name="middle_name" />
+										<field name="last_name" />
+										<field name="course_id" />
+										<field name="standard_id" />
+									</tree>
+								</field>
+							</group>
 						</group>
 					</sheet>
 				</form>
@@ -38,14 +61,18 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<search string="Transportation">
-					<field name="route_id" />
-					<field name="student_id" />
-					<field name="start_date" />
-					<field name="end_date" />
+					<field name="name" />
+					<field name="stop" />
+					<field name="vehicle_id" />
+					<field name="start_time" />
+					<field name="end_time" />
+					<field name="from" />
+					<field name="to" />
+					<field name="student_ids" />
 					<newline />
 					<group expand="0" string="Group By...">
-						<filter string="Route" domain="[]" context="{'group_by':'route_id'}" />
-						<filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
+						<filter string="Route Name" domain="[]" context="{'group_by':'name'}" />
+						<filter string="Vehicle" domain="[]" context="{'group_by':'vehicle_id'}" />
 					</group>
 				</search>
 			</field>
@@ -72,5 +99,58 @@
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_transportation_tree" />
 		</record>
+		
+		
+		<record id="view_op_stop_tree" model="ir.ui.view">
+			<field name="name">op.stops.tree</field>
+			<field name="model">op.stop</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="stop">
+					<field name="name" />
+					<field name="sequence" />
+				</tree>
+			</field>
+		</record>
+		<record id="view_op_stop_form" model="ir.ui.view">
+			<field name="name">op.stop.form</field>
+			<field name="model">op.stop</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Transport" version="7.0">
+					<sheet>
+						<separator colspan="4" string="stop" />
+						<group colspan="4">
+							<field name="name" />
+							<field name="sequence" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="act_open_op_stop_view">
+			<field name="name">stop</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">op.stop</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+		<record model="ir.actions.act_window.view" id="act_open_op_stop_view_form">
+			<field name="act_window_id" ref="act_open_op_stop_view" />
+			<field name="sequence" eval="20" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_op_stop_form" />
+		</record>
+		<record model="ir.actions.act_window.view" id="act_open_op_stop_view_tree">
+			<field name="act_window_id" ref="act_open_op_stop_view" />
+			<field name="sequence" eval="10" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="view_op_stop_tree" />
+		</record>
+		
+		
 	</data>
 </openerp>

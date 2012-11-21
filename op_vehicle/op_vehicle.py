@@ -28,6 +28,7 @@ class op_vehicle(osv.osv):
             'reg_number': fields.char(size=16, string='Registration Number', required=True),
             'capacity': fields.integer(string='Capacity', required=True),
             'active': fields.boolean(string='Active'),
+            'partner_id': fields.many2one('res.partner', 'Driver'),
     }
 
 op_vehicle()

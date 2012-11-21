@@ -22,14 +22,31 @@ from osv import osv, fields
 
 class op_transportation(osv.osv):
     _name = 'op.transportation'
-    _rec_name = 'route_id'
-
+    
     _columns = {
-            'route_id': fields.many2one('op.route', string='Route', required=True),
-            'student_id': fields.many2one('res.partner', string='Student', required=True),
-            'start_date': fields.date(string='Start Date', required=True),
-            'end_date': fields.date(string='End Date', required=True),
+            'name': fields.char(size=64, string='Name', required=True),
+            'stop': fields.one2many('op.stop', 'transport_id', 'Stop'),
+            'vehicle_id': fields.many2one('op.vehicle', 'Vehicle', required=True),
+            'start_time': fields.datetime(string='Start Time', required=True),
+            'end_time': fields.datetime(string='End Time', required=True),
+            'from':fields.char(string="From", size=20, required=True),
+            'to':fields.char(string="To", size=20, required=True),
+            'student_ids': fields.many2many('op.student', 'student_transport_rel', 'op_student_id', 'transport_id', string='Add Student(s)'),
     }
 
 op_transportation()
+
+
+class op_stop(osv.osv):
+    _name = 'op.stop'
+    
+    _columns = {
+            
+            'name': fields.char(size=64, string='Name', required=True),
+            'sequence': fields.integer('Sequence'),
+            'transport_id': fields.many2one('op.transportation', 'Transport'),
+    }
+    
+    _order = 'sequence asc'
+op_stop()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -10,6 +10,7 @@
 					<field name="name" />
 					<field name="reg_number" />
 					<field name="capacity" />
+					<field name="partner_id" />
 					<field name="active" />
 				</tree>
 			</field>
@@ -17,6 +18,7 @@
 		<record id="view_op_vehicle_form" model="ir.ui.view">
 			<field name="name">op.vehicle.form</field>
 			<field name="model">op.vehicle</field>
+			<field name="context">{'show_address': 1}</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Vehicle" version="7.0">
@@ -26,6 +28,8 @@
 							<field name="name" />
 							<field name="reg_number" />
 							<field name="capacity" />
+							<field name="partner_id" context="{'show_address': 1}"
+								options='{"always_reload": True}' />
 							<field name="active" />
 						</group>
 					</sheet>
@@ -41,6 +45,7 @@
 					<field name="name" />
 					<field name="reg_number" />
 					<field name="capacity" />
+					<field name="partner_id" />
 					<field name="active" />
 					<newline />
 					<group expand="0" string="Group By...">
