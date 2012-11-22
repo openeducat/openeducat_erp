@@ -65,6 +65,6 @@ class student_attendance(report_sxw.rml_parse):
 
 report_sxw.report_sxw('report.student.attendance','op.student',
                       'addons/openeducat_erp/report/student_attendance_report.rml', 
-                      parser=student_attendance, header='internal')
+                      parser=student_attendance, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
