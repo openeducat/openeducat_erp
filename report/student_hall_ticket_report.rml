@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<document filename="Student Lable.pdf">
-  <template pageSize="(595.0,842.0)" title="Student Lable Report" author="VNC Development" allowSplitting="20">
+<document filename="Student Hall Ticket.pdf">
+  <template pageSize="(595.0,842.0)" title="Student Hall Ticket Report" author="Openeducat" allowSplitting="20">
     <pageTemplate id="first">
          <frame id="first" x1="28.0" y1="28.0" width="539" height="772"/>
          <pageGraphics>
@@ -44,7 +44,7 @@
   	<para style="Standard"><font color="white"> </font></para>
     <para style="Heading_center">[[ company.name ]]</para>
     <para style="Standard"><font color="white"> </font></para>
-    <para style="Heading_center">Hall Ticket For [[ o['exam'] ]]([[ o['exam_code'] ]])</para>
+    <para style="Standard" fontSize="12.0" alignment="CENTER"><b>Hall Ticket For </b>[[ o['exam'] ]]([[ o['exam_code'] ]])</para>
     <para style="Standard"><font color="white"> </font></para>
     <para style="Standard"><font color="white"> </font></para>
     <blockTable colWidths="470.0,70.0" style="Standard_Outline">
@@ -79,7 +79,7 @@
 	<blockTable colWidths="135.0,135.0,135.0,135.0" style="Table1">
 		<tr>
 			<td><para style="Standard">[[ s['subject'] ]]</para></td>
-			<td><para style="Standard">[[ s['date'] ]]</para></td>
+			<td><para style="Standard">[[ formatLang(s['date'], date=True) ]]</para></td>
 			<td><para style="Standard">[[ s['time'] ]]</para></td>
 			<td><para style="Standard">[[ s['sup_sign'] ]]</para></td>
 		</tr>

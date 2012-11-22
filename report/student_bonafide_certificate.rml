@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<document filename="Student Bonafide Certificate.pdf">
+  <template pageSize="(595.0,842.0)" title="Student Bonafide Certificate Report" author="Openeducat" allowSplitting="20">
+    <pageTemplate id="first">
+         <frame id="first" x1="28.0" y1="28.0" width="540" height="772"/>
+         <pageGraphics>
+            <image x="80" y="770" height="60">[[ company.logo or removeParentNode('image') ]]</image>
+   		</pageGraphics> 
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading_center" fontName="Helvetica-Bold" fontSize="14.0" alignment="CENTER" />
+    <paraStyle name="address_center" fontName="Helvetica-Bold" fontSize="12.0" alignment="CENTER" />
+    <paraStyle name="Table_contents_left" fontName="Helvetica" fontSize="10.0" alignment="LEFT"/>
+    <images/>
+  </stylesheet>
+  <story>
+  	<para style="Standard">[[ repeatIn(objects, 'o') ]]</para>
+  	<para style="Standard"><font color="white"> </font></para>
+  	<para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">[[ company.name ]]</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="address_center">[[ company.street ]]-[[ company.city ]]-[[ company.zip ]],[[ company.country_id.name ]]</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">Bonafide Certificate</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="Standard"><font color="white"> </font></para>
+    <section>
+    <blockTable colWidths="440.0" style="Standard_Outline">
+    	<tr>
+    		<td><para style="Table_contents_left">This is to certify that [[ o.title.name ]] <u>[[ o.name ]]    [[ o.middle_name ]]    [[ o.last_name ]]</u></para></td>
+		</tr>
+		<para style="Standard"><font color="white"> </font></para>
+		<para style="Standard"><font color="white"> </font></para>
+		<tr>
+    		<td><para style="Table_contents_left">is / was a bonafide student of this school / collage  studying in Std. <u>[[ o.course_id.name ]]  -  [[ o.standard_id.name ]]  ([[ o.division_id.name ]])</u></para></td>
+		</tr>
+		<para style="Standard"><font color="white"> </font></para>
+		<para style="Standard"><font color="white"> </font></para>
+		<tr>
+    		<td><para style="Table_contents_left">Year <u>([[ o.batch_id.name ]])</u>  His / Her birthday as recorded in the General Register of</para></td>
+		</tr>
+		<para style="Standard"><font color="white"> </font></para>
+		<para style="Standard"><font color="white"> </font></para>
+		<tr>
+    		<td><para style="Table_contents_left">the school / collage is (  <u>[[ formatLang(o.birth_date, date=True) ]]</u>  ) To the best of my knowledge he / she</para></td>
+		</tr>
+		<para style="Standard"><font color="white"> </font></para>
+		<para style="Standard"><font color="white"> </font></para>
+		<tr>
+    		<td><para style="Table_contents_left">bears a Good Moral character.</para></td>
+		</tr>
+	</blockTable>
+	</section>
+	<para style="Standard"><font color="white"> </font></para>
+	<para style="Standard"><font color="white"> </font></para>
+	<para style="Standard"><font color="white"> </font></para>
+	<blockTable colWidths="340.0,100.0" style="Standard_Outline">
+		<tr>
+    		<td><para style="Table_contents_left"><b>DATE : </b>[[ formatLang(time.strftime('%Y-%m-%d'),date=True) ]]</para></td>
+    		<td><para style="Table_contents_left"><b>PRINCIPAL</b></para></td>
+		</tr>
+	</blockTable>
+  </story>
+</document>

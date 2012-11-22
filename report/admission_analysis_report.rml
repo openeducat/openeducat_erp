@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<document filename="Admission Analysis.pdf">
+  <template pageSize="(595.0,842.0)" title="Admission Analysis Report" author="Openeducat" allowSplitting="20">
+    <pageTemplate id="first">
+         <frame id="first" x1="28.0" y1="28.0" width="540" height="772"/>
+         <pageGraphics>
+            <image x="28" y="780" height="60">[[ company.logo or removeParentNode('image') ]]</image>
+   		</pageGraphics> 
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table1">
+	  <blockAlignment value="CENTER"/>
+	  <blockValign value="TOP"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#cccccc" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#cccccc" start="2,-1" stop="2,-1"/>
+    </blockTableStyle>
+    
+    <blockTableStyle id="Table2">
+	  <blockAlignment value="CENTER"/>
+	  <blockValign value="TOP"/>
+      <lineStyle kind="LINEABOVE" colorName="#cccccc"/>
+    </blockTableStyle>
+    
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading_center" fontName="Helvetica-Bold" fontSize="14.0" alignment="CENTER" />
+    <paraStyle name="Header_center" fontName="Helvetica-Bold" fontSize="10.0" alignment="CENTER" />
+    <paraStyle name="Header_center_left" fontName="Helvetica-Bold" fontSize="12.0" alignment="LEFT" />
+    <paraStyle name="total_left" fontName="Helvetica-Bold" fontSize="9.0"  alignment="LEFT" />
+    <paraStyle name="total_right" fontName="Helvetica-Bold" fontSize="9.0"  alignment="RIGHT"/>
+    <paraStyle name="table_center" fontName="Helvetica-Bold" fontSize="9.0"  alignment="CENTER"/>
+    <paraStyle name="date_from_to" fontName="Helvetica" fontSize="12.0" alignment="CENTER"/>
+    <paraStyle name="Table_contents_left" fontName="Helvetica" fontSize="9.0" alignment="LEFT"/>
+    <paraStyle name="Table_contents_right" fontName="Helvetica" fontSize="9.0" alignment="RIGHT"/>
+    <images/>
+  </stylesheet>
+  <story>
+  	<para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">[[ company.name ]]</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="Heading_center">Admission Analysis</para>
+    <para style="Standard"><font color="white"> </font></para>
+    <para style="date_from_to"><b>From </b>[[ formatLang(data['start_date'], date=True) ]]<b> To </b>[[ formatLang(data['end_date'], date=True) ]]</para>
+    <para style="Standard"><font color="white"> </font></para>
+    
+	<blockTable colWidths="270.0, 270.0" style="Standard_Outline">
+		<tr>
+			<td><para style="Standard" alignment="LEFT"><b>Course : </b>[[ data['course_id'][1] ]]</para></td>
+			<td><para style="Standard" alignment="RIGHT"><b>Standard : </b>[[ data['standard_id'][1] ]]</para></td>
+		</tr>
+	</blockTable>
+	<para style="Standard"><font color="white"> </font></para>
+	<blockTable colWidths="180.0,180.0,180.0" style="Table1">
+		<tr>
+			<td><para style="Header_center">Student Name</para></td>
+			<td><para style="Header_center">Category</para></td>
+			<td><para style="Header_center">Application No.</para></td>
+		</tr>
+	</blockTable>
+	<section>
+    	<para style="Standard">[[ repeatIn(get_data(data), 'o') ]]</para>
+    	<blockTable colWidths="180.0,180.0,180.0" style="Table2">
+    		<tr>
+    			<td><para style="Table_contents_left">[[ o['name'] ]] [[ o['middle_name'] ]] [[ o['last_name'] ]]</para></td>
+    			<td><para style="Table_contents_left">[[ o['category'] ]]</para></td>
+    			<td><para style="Table_contents_left">[[ o['application_no'] ]]</para></td>
+    		</tr>
+    	</blockTable>
+    </section>
+	<para style="Standard"><font color="white"> </font></para>
+	<para style="Standard"><font color="white"> </font></para>
+	<para style="Table_contents_left">Total Number Of Students : <b>[[ o['total'] ]]</b></para>    
+  </story>
+</document>

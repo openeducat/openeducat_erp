@@ -80,6 +80,7 @@
         'op_hostel/op_hostel_view.xml',
         'op_division/op_division_view.xml',
         'op_exam_attendees/op_exam_attendees_view.xml',
+        'wizard/admission_analysis_wizard_view.xml',
         'wizard/exam_seating_arrangement_view.xml',
         'wizard/book_request_queue_view.xml',
         'wizard/issue_book_view.xml',

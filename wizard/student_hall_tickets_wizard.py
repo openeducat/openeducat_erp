@@ -34,12 +34,7 @@ class student_hall_ticket(osv.osv_memory):
     
     def print_report(self, cr, uid, ids, context={}):
         
-#        data={}
-#        data['ids'] = ids
-#        data['form'] = self.read(cr, uid, ids, ['exam_session_id'])[0]
-#        data['form']['context'] = context
         data = self.read(cr, uid, ids, ['exam_session_id'])
-        print "_________data____wizard________________",data
         return {
                 'type': 'ir.actions.report.xml',
                 'report_name': 'student.hall.ticket',
