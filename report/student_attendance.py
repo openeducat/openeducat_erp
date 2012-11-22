@@ -31,8 +31,15 @@ class student_attendance(report_sxw.rml_parse):
         super(student_attendance, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
+            'get_date': self.get_date,
             'get_data': self.get_data
         })
+    
+    def get_date(self, data):
+        dt_from = data['from_date']
+        dt_to = data['to_date']
+        from_to = 'From : ' + dt_from + ' ' + 'To : ' + ' ' + dt_to 
+        return from_to 
     
     def get_data(self, data):
         
@@ -51,12 +58,13 @@ class student_attendance(report_sxw.rml_parse):
                 if data['student_id'] == line.student_id.id and line.present == False:
                     dic = {
                            'absent_date': sheet_browse.attendance_date,
+                           'remark': line.remark
                            }
                     lst.append(dic)
         return [{'total': len(lst),'line': lst, 'student_id': student.name}]
 
 report_sxw.report_sxw('report.student.attendance','op.student',
                       'addons/openeducat_erp/report/student_attendance_report.rml', 
-                      parser=student_attendance, header=False)
+                      parser=student_attendance, header='internal')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

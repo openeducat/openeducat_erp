@@ -13,4 +13,4 @@ class op_transportation_detail(report_sxw.rml_parse):
 
 report_sxw.report_sxw('report.op.transport.detail.report',
                       'op.transportation', 'addons/openeducat_erp/report/transport_detail.rml', 
-                      parser=op_transportation_detail, header=False)
+                      parser=op_transportation_detail, header='external')

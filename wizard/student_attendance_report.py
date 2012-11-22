@@ -22,7 +22,7 @@ class student_attendance(osv.osv_memory):
         
         data = self.read(cr, uid, ids, ['from_date','to_date'], context=context)
         data[0].update({'student_id':context.get('active_ids',[])[0]})
-        print '_________DDDDDDDDDDDDDDDD___________',data
+
         return {
                 'type': 'ir.actions.report.xml',
                 'report_name': 'student.attendance',

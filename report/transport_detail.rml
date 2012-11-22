@@ -13,10 +13,6 @@
       <blockAlignment value="LEFT"/>
       <blockValign value="TOP"/>
     </blockTableStyle>
-    <blockTableStyle id="Table_Signature">
-      <blockAlignment value="RIGHT"/>
-      <blockValign value="TOP"/>
-    </blockTableStyle>
     
     <blockTableStyle id="Table_Below">
       <blockAlignment value="LEFT"/>
@@ -57,34 +53,142 @@
   
   	
   	<para style="P1">[[repeatIn(objects,'o') ]]</para>
-	<para><font color="white"> </font></para>
-	<para><font color="white"> </font></para>
-	<para><font color="white"> </font></para>
 	
-	<para style="P4">Hello</para>
+	<blockTable colWidths="520" style="Table_Blank">
+		<tr><td><para><font color="white"> </font></para></td></tr>
+		<tr><td><para><font color="white"> </font></para></td></tr>
+		<tr><td><para><font color="white"> </font></para></td></tr>
+		<tr><td><para><font color="white"> </font></para></td></tr>
+	</blockTable>
+	<para style="P4">Transport Route Detail</para>
+	<blockTable colWidths="520" style="Table_Blank">
+		<tr><td><para><font color="white"> </font></para></td></tr>
+		<tr><td><para><font color="white"> </font></para></td></tr>
+	</blockTable>
 	
-	<blockTable colWidths="85.0,85.0,85.0,85.0,85.0,85.0" style="Table_All_Line">
+	<blockTable colWidths="260.0,260.0" style="Table_All_Line">
 		<tr>
 			<td>
-				<para> [[ o.name ]] </para>
+				<para> <b>Route Name:</b> [[ o.name ]] </para>				
 			</td>
 			<td>
-				<para> [[ o.stop ]] </para>
+				<para> <b>Cost:</b> [[ o.cost ]] </para>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<para> <b>From:</b> [[ o.from1 ]] </para>
 			</td>
 			<td>
-				<para>  </para>
+				<para> <b>To:</b> [[ o.to ]] </para>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<para> <b>Start Time:</b> [[ o.start_time ]] </para>
 			</td>
 			<td>
-				<para> [[ o.to ]] </para>
+				<para> <b>End Time:</b> [[ o.end_time ]] </para>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<para> <b> Vehicle Detail </b> </para>
+				<para> [[ o.vehicle_id.name ]] </para>
+				<para> [[ o.vehicle_id.reg_number ]] </para>
+				<para> [[ o.vehicle_id.capacity ]] </para>
+				
 			</td>
 			<td>
-				<para> [[ o.start_time ]] </para>
-			</td>
-			<td>
-				<para> [[ o.end_time ]] </para>
+				<para> <b>Driver Name</b>: [[ o.vehicle_id.partner_id.name ]] </para>
+				<para> <b> Address: </b> </para>
+				<para> [[ o.vehicle_id.partner_id.street ]] [[ o.vehicle_id.partner_id.street2 ]] </para>
+				<para> [[ o.vehicle_id.partner_id.city ]] [[ o.vehicle_id.partner_id.state ]] [[ o.vehicle_id.partner_id.zip ]]</para>
+				<para> [[ o.vehicle_id.partner_id.country_id.name ]] </para>
 			</td>
 		</tr>
 	</blockTable>
+	
+	<blockTable colWidths="520" style="Table_Blank">
+			<tr><td><para><font color="white"> </font></para></td></tr>
+			<tr><td><para><font color="white"> </font></para></td></tr>
+	</blockTable>
+
+	<para style="P4"> Stop Detail </para>
+		
+	<blockTable colWidths="520" style="Table_Blank">
+		<tr><td><para><font color="white"> </font></para></td></tr>
+		<tr><td><para><font color="white"> </font></para></td></tr>
+	</blockTable>
+	
+	<blockTable colWidths="70.0,450.0" style="Table_All_Line">
+			<tr>
+				<td>
+					<para style="P4"> Sequence </para>	
+				</td>
+				<td>
+					<para style="P4"> Stop Name </para>	
+				</td>
+			</tr>
+	</blockTable>
+	
+	
+	<section>
+	<para>[[ repeatIn(o.stop, 'obj_stop') ]]</para>
+		<blockTable colWidths="70.0,450.0" style="Table_All_Line">
+			<tr>
+				<td>
+					<para style="P1"> [[ obj_stop.sequence ]] </para>
+				</td>
+				<td>
+					<para style="P2"> [[ obj_stop.name ]] </para>					
+				</td>
+			</tr>
+		</blockTable>
+	</section>
+	
+	<blockTable colWidths="520" style="Table_Blank">
+		<tr><td><para><font color="white"> </font></para></td></tr>
+		<tr><td><para><font color="white"> </font></para></td></tr>
+	</blockTable>
+	
+	<para style="P4"> Student Detail </para>
+	
+	
+	<blockTable colWidths="520" style="Table_Blank">
+		<tr><td><para><font color="white"> </font></para></td></tr>
+		<tr><td><para><font color="white"> </font></para></td></tr>
+	</blockTable>
+	
+	<blockTable colWidths="173.0,173.0,173.0" style="Table_All_Line">
+			<tr>
+				<td>
+					<para style="P4"> Student Name </para>
+				</td>
+				<td>
+					<para style="P4"> Course </para>
+				</td>
+				<td>
+					<para style="P4"> Standard </para>
+				</td>
+			</tr>
+	</blockTable>
+	<section>
+	<para>[[ repeatIn(o.student_ids, 'obj_student_ids') ]]</para>
+		<blockTable colWidths="173.0,173.0,173.0" style="Table_All_Line">
+			<tr>
+				<td>
+					<para style="P2"> [[ obj_student_ids.name ]] [[ obj_student_ids.middle_name ]] [[ obj_student_ids.last_name ]]  </para>
+				</td>
+				<td>
+					<para style="P2"> [[ obj_student_ids.course_id.name ]] </para>
+				</td>
+				<td>
+					<para style="P2"> [[ obj_student_ids.standard_id.name ]] </para>
+				</td>
+			</tr>
+		</blockTable>
+	</section>
 	
   </story>
 </document>

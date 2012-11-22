@@ -26,10 +26,11 @@ class op_transportation(osv.osv):
     _columns = {
             'name': fields.char(size=64, string='Name', required=True),
             'stop': fields.one2many('op.stop', 'transport_id', 'Stop'),
+            'cost': fields.float(size=64, string="Cost"),
             'vehicle_id': fields.many2one('op.vehicle', 'Vehicle', required=True),
             'start_time': fields.datetime(string='Start Time', required=True),
             'end_time': fields.datetime(string='End Time', required=True),
-            'from':fields.char(string="From", size=20, required=True),
+            'from1':fields.char(string="From", size=20, required=True),
             'to':fields.char(string="To", size=20, required=True),
             'student_ids': fields.many2many('op.student', 'student_transport_rel', 'op_student_id', 'transport_id', string='Add Student(s)'),
     }
