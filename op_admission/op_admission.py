@@ -71,6 +71,7 @@ class op_admission(osv.osv):
             'standard_id': fields.many2one('op.standard', string='Standard', required=True, states={'done': [('readonly', True)]}),
             'division_id': fields.many2one('op.division', string='Division', states={'done': [('readonly', True)]}),
             'student_id': fields.many2one('op.student', string='Student', states={'done': [('readonly', True)]}),
+            'nbr': fields.integer('# of Admission', readonly=True),
     }
 
     _defaults = {
@@ -121,7 +122,7 @@ class op_admission(osv.osv):
                                      })]
                     }
         new_student = student_pool.create(cr, uid, vals, context=context)
-        self.write(cr,uid,ids,{'state':'s', 'student_id': new_student})
+        self.write(cr,uid,ids,{'state':'s', 'student_id': new_student, 'nbr': 1})
         return True
 
     def confirm_rejected(self, cr, uid, ids, context=None):

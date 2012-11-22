@@ -72,6 +72,6 @@ class admission_analysis_report(report_sxw.rml_parse):
         return lst
 
 report_sxw.report_sxw('report.admission.analysis', 'op.admission','addons/openeducat_erp/report/admission_analysis_report.rml',
-                      parser=admission_analysis_report, header=False)
+                      parser=admission_analysis_report, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

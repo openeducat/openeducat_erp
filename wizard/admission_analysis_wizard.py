@@ -34,6 +34,10 @@ class admission_analysis(osv.osv_memory):
                 'end_date': fields.date('End Date', required=True),
                 }
     
+    _defaults = {
+                 'start_date': time.strftime('%Y-%m-01'),
+            }
+    
     def print_report(self, cr, uid, ids, context={}):
         
         data = self.read(cr, uid, ids, ['course_id', 'standard_id', 'start_date', 'end_date'])

@@ -31,6 +31,6 @@ class student_bonafide_certificate(report_sxw.rml_parse):
         })
     
 
-report_sxw.report_sxw('report.student.bonafide.certificate','op.student', 'addons/openeducat_erp/report/student_bonafide_certificate.rml', parser=student_bonafide_certificate, header=False)
+report_sxw.report_sxw('report.student.bonafide.certificate','op.student', 'addons/openeducat_erp/report/student_bonafide_certificate.rml', parser=student_bonafide_certificate, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
