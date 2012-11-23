@@ -41,6 +41,8 @@ class op_health(osv.osv):
             'eyeglasses_no': fields.char('Eye Glasses', size=64),
             'regular_checkup': fields.boolean('Any Regular Checkup Required?'),
             'health_line': fields.one2many('op.health.line', 'health_id', 'Checkup Line'),
+#            'student_id':fields.many2one('op.student', 'Student'),
+#            'faculty_id':fields.many2one('op.faculty', 'Faculty'),
     }
 
     _defaults = {
