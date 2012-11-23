@@ -31,7 +31,8 @@
 								statusbar_colors='{"r":"red"}' />
 
 							<button name="act_requested" states="d" type="object"
-								string="Request Book" icon="gtk-go-forward" groups="openeducat_erp.group_op_student" />
+								string="Request Book" icon="gtk-go-forward" 
+								groups="openeducat_erp.group_op_student,openeducat_erp.group_op_faculty,openeducat_erp.group_op_library,openeducat_erp.group_op_back_office_admin" />
 							<button name="act_accept" states="rq" type="object"
 								string="Accepted" icon="gtk-go-forward"
 								groups="openeducat_erp.group_op_back_office_admin" />
@@ -48,9 +49,9 @@
 							<field name="publisher_ids" />
 							<field name="course_ids" />
 							<field name="subject_ids" domain="[('course_id','=',course_ids)]" />
-							<field name="student_id" />
-							<field name="faculty_id" />
-							<field name="library_id" />
+							<field name="student_id" groups="openeducat_erp.group_op_student,openeducat_erp.group_op_back_office_admin" />
+							<field name="faculty_id" groups="openeducat_erp.group_op_faculty,openeducat_erp.group_op_back_office_admin"/>
+							<field name="library_id" groups="openeducat_erp.group_op_library,openeducat_erp.group_op_back_office_admin"/>
 						</group>
 					</sheet>
 				</form>

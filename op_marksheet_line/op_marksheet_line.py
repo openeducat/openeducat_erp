@@ -77,7 +77,7 @@ class op_marksheet_line(osv.osv):
 #           }
 #       return res
     _columns = {
-            'marksheet_reg_id': fields.many2one('op.marksheet.register', string='Marksheet Register', required=True),
+            'marksheet_reg_id': fields.many2one('op.marksheet.register', string='Marksheet Register'),
             'exam_session_id':fields.many2one('op.result.template.line','Session Template'),
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'result_line': fields.one2many('op.result.line', 'result_id', string='Result'),

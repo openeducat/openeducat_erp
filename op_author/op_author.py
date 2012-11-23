@@ -24,7 +24,7 @@ class op_author(osv.osv):
     _name = 'op.author'
 
     _columns = {
-            'name': fields.char(size=128, string='Name', required=True),
+            'name': fields.char(size=128, string='Name'),
             'address': fields.many2one('res.partner', string='Address'),
             'book_ids': fields.many2many('op.book', 'book_author_rel', 'op_author_id', 'op_book_id', string='Books'),
     }
