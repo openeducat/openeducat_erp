@@ -40,7 +40,7 @@ class op_library_card(osv.osv):
 
     _columns = {
         'partner_id':fields.many2one('res.partner','Student/Faculty', required=True),
-        'number':fields.char('Number',size=256),
+        'number':fields.char('Number',size=256, required=True),
         'library_card_type_id': fields.many2one('op.library.card.type', 'Library Card Type', required=True),
         'issue_date':fields.date('Issue Date', required=True),
         'allow_book': fields.integer(string="No. Of Book Allow", size=10, required=True),
