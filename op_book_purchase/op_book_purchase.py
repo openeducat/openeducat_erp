@@ -26,9 +26,9 @@ class op_book_purchase(osv.osv):
     
     _columns = {
             'name': fields.char(size=128, string='Title', required=True),
-            'author_ids': fields.many2one('op.author', string='Author'),
+            'author_ids': fields.char(string='Author', size=256),
             'edition': fields.text(string='Edition'),
-            'publisher_ids': fields.many2one('op.publisher', string='Publisher'),
+            'publisher_ids': fields.char(string='Publisher', size=256),
             'course_ids': fields.many2one('op.course', string='Course', required=True),
             'subject_ids': fields.many2one('op.subject', string='Subject', required=True),
             'student_id': fields.many2one('op.student', 'Student'),

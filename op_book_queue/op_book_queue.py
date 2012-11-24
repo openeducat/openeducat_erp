@@ -27,7 +27,7 @@ class op_book_queue(osv.osv):
     _description = """ Book Queue Request Detail for Students and Faculties """
     
     _columns = {
-            'partner_id': fields.many2one('res.partner', 'Partner', required=True),
+            'partner_id': fields.many2one('res.partner', 'Student/Faculty', required=True),
 #            'book_id': fields.many2one('op.book', 'Book', required=True),
             'book_ids': fields.many2many('op.book', 'op_queue_book_rl', 'op_book_id', 'op_queue_id', 'Book'),
             'date_from': fields.date('From Date', required=True),
