@@ -107,7 +107,6 @@ class op_result_template(osv.osv):
                             to_consider = max_pass
                         result = to_consider.result
 
-                    print "%%%%%%%%%%%%%%%%",total_marks,total_exam,per,result
                     mark_line_id = self.pool.get('op.marksheet.line').create(cr, uid,
                                                                              {'student_id':stu_id,
                                                                               'marksheet_reg_id':marksheet_reg_id,

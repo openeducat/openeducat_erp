@@ -148,9 +148,7 @@ class op_admission(osv.osv):
     def open_student(self, cr, uid, ids,context={}):
 
         this_obj = self.browse(cr, uid, ids[0], context)
-        print "____________this_obj_________",this_obj
         student = self.pool.get('op.student').browse(cr, uid, this_obj.student_id.id, context)
-        print "_____________student______________",student
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_form')
         tree_view = models_data.get_object_reference(cr, uid, 'openeducat_erp', 'view_op_student_tree')

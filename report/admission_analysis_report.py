@@ -36,11 +36,9 @@ class admission_analysis_report(report_sxw.rml_parse):
     def get_date(self, data):
         start_date = data['start_date']
         end_date = data['end_date']
-        print "___________date__________",'From'+ start_date + ' To ' + end_date
         return 'From' + start_date + ' To ' + end_date
         
     def get_data(self, data):
-        print "_________data_______________",data['course_id'][0]
         lst = []
         student_pool = self.pool.get('op.admission')
         student_search = student_pool.search(self.cr, self.uid, [('state', '=', 'done'),
@@ -49,12 +47,10 @@ class admission_analysis_report(report_sxw.rml_parse):
                                                         ('admission_date', '>=', data['start_date']), 
                                                         ('admission_date', '<=', data['end_date'])],
                                                             order= 'admission_date desc')
-        print "_____________student__search_______________",student_search
         res = {}
         res1 = {}
         total_student = 0
         for student in student_pool.browse(self.cr, self.uid, student_search):
-            print "___________student.name______________",student
             total_student += 1
             res = {
                    'name': student.name,
@@ -66,9 +62,6 @@ class admission_analysis_report(report_sxw.rml_parse):
             lst.append(res)
         res1['total'] = total_student
         lst.append(res1)
-        print "***************************"
-        print lst
-        print "***************************"
         return lst
 
 report_sxw.report_sxw('report.admission.analysis', 'op.admission','addons/openeducat_erp/report/admission_analysis_report.rml',

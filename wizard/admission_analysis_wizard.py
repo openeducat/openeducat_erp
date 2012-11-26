@@ -41,7 +41,6 @@ class admission_analysis(osv.osv_memory):
     def print_report(self, cr, uid, ids, context={}):
         
         data = self.read(cr, uid, ids, ['course_id', 'standard_id', 'start_date', 'end_date'])
-        print "__________data___wizard______________",data
         return {
                 'type': 'ir.actions.report.xml',
                 'report_name': 'admission.analysis',
