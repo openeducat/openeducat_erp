@@ -68,7 +68,7 @@ class op_student(osv.osv):
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
             'roll_number_line': fields.one2many('op.roll.number','student_id','Roll Number'),
             'partner_id': fields.many2one('res.partner', 'Partner',required=True, ondelete="cascade"),
-            'health_lines': fields.one2many('op.health', 'student_id', 'Health Detail'),
+            'health_lines': fields.one2many('op.health', 'partner_id', 'Health Detail'),
             'roll_number': fields.function(_get_curr_roll_number,
                                 method=True,
                                 string='Current Roll Number',
