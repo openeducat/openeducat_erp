@@ -113,6 +113,7 @@
         'wizard/time_table_report.xml',
         'wizard/op_all_student_wizard_view.xml',
         'wizard/student_attendance_report_view.xml',
+        'wizard/student_migrate_view.xml',
         'security/ir.model.access.csv',
         'op_book_movement/wizard/returndate_view.xml',
         'op_book_movement/wizard/reserve_book_view.xml',
