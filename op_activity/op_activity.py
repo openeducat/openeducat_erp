@@ -24,10 +24,25 @@ class op_activity(osv.osv):
     _name = 'op.activity'
 
     _columns = {
-            'name': fields.char(string='Activity Name' ,size=128, required=True),
+#            'name': fields.char(string='Activity Name' ,size=128, required=True),
             'student_id': fields.many2one('op.student', string='Student', required=True),
-            'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True),
+            'faculty_id': fields.many2one('op.faculty', string='Faculty'),
+            'type_id': fields.many2one('op.activity.type', 'Activity Type'),
+            'date': fields.date('Date'),
     }
 
 op_activity()
+
+
+class op_activity_type(osv.osv):
+    _name = 'op.activity.type'
+
+    _columns = {
+            'name': fields.char(string='Activity Type' ,size=128, required=True),
+            
+    }
+
+op_activity_type()
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

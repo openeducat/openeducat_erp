@@ -28,6 +28,7 @@ class student_migrate(osv.osv_memory):
     _name = 'student.migrate'
     
     _columns = {
+                'date': fields.date('Date', required=True),
                 'course_id': fields.many2one('op.course', string='Course', required=True),
                 'from_standard_id': fields.many2one('op.standard', string='From Standard', required=True),
                 'to_standard_id': fields.many2one('op.standard', string='To Standard', required=True),
@@ -38,21 +39,35 @@ class student_migrate(osv.osv_memory):
     
     def go_forward(self, cr, uid, ids, context={}):
         standard = self.pool.get("op.standard")
+        activity = self.pool.get("op.activity")
+        student_obj = self.pool.get("op.student")
+        activity_type = self.pool.get("op.activity.type")
         lst_student =[]
         for self_obj in self.browse(cr, uid, ids):
             dic = {}
+            act_type_id = activity_type.create(cr, uid, {'name': 'Migration'},context)
             for student in self_obj.student_ids:
+                dic_act = {}
+                dic_act = {
+                           'student_id': student.id,
+                           'type_id': act_type_id,
+                           'date': self_obj.date
+                           }
+                act_id = activity.create(cr, uid, dic_act,context)
+                student_std = student_obj.write(cr, uid, student.id, {'standard_id': self_obj.to_standard_id.id},context={} )
                 lst_student.append(student.id)
             dic = {
                    'code': self_obj.to_standard_id.name,
                    'name': self_obj.to_standard_id.name,
                    'course_id': self_obj.course_id.id,
+                   'date': self_obj.date,
                    'student_ids': [(6,0,lst_student)],
                    }
         std_id = standard.create(cr, uid, dic,context)
+        
         value = {'type': 'ir.actions.act_window_close'}
         return value
-
+        
 student_migrate()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
