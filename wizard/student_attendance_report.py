@@ -8,8 +8,8 @@ class student_attendance(osv.osv_memory):
 
     _name = 'student.attendance'
     _columns = {
-                'from_date': fields.datetime('From Date', required=True),
-                'to_date': fields.datetime('To Date', required=True),
+                'from_date': fields.date('From Date', required=True),
+                'to_date': fields.date('To Date', required=True),
                 }
     
     _defaults = {
