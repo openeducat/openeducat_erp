@@ -45,9 +45,9 @@ class student_hall_ticket_report(report_sxw.rml_parse):
         exam = self.pool.get('op.exam')
         lst = []
         for exam_line in datas['exam_ids']:
-            dt_st = utils.server_to_local_timestamp(exam_line.start_time.strftime("%Y-%m-%d ") + per_time, "%Y-%m-%d %H:%M:%S",
-                                     "%Y-%m-%d %H:%M:%S",'GMT',server_tz = context.get('tz','GMT'),)
-            print "________dt_st____________",dt_st
+#            dt_st = utils.server_to_local_timestamp(exam_line.start_time.strftime("%Y-%m-%d ") + per_time, "%Y-%m-%d %H:%M:%S",
+#                                     "%Y-%m-%d %H:%M:%S",'GMT',server_tz = context.get('tz','GMT'),)
+#            print "________dt_st____________",dt_st
             temp_exam = exam.browse(self.cr, self.uid, exam_line)
             res1 = {
                     'subject': exam_line.subject_id.name,
