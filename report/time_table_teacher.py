@@ -33,8 +33,13 @@ class time_table_teacher_generate(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'get_object': self.get_object,
+            'get_full_name': self.get_full_name,
         })
 
+    def get_full_name(self, data):
+        faculty_name = self.pool.get('op.faculty').browse(self.cr, self.uid, data['faculty_id'][0])
+        return faculty_name.name + ' ' + faculty_name.middle_name + ' ' + faculty_name.last_name 
+    
     def sort_tt(self,data_list):
         main_list = []
         f = []
@@ -59,7 +64,6 @@ class time_table_teacher_generate(report_sxw.rml_parse):
 
         data_list = []
         for timetable_obj in pooler.get_pool(self.cr.dbname).get('op.timetable').browse(self.cr, self.uid, data['teacher_time_table_ids']):
-
             oldDate = datetime.strptime(timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
             day = dayofWeek[datetime.weekday(oldDate)]
 
@@ -71,7 +75,10 @@ class time_table_teacher_generate(report_sxw.rml_parse):
                             'end_datetime': timetable_obj.end_datetime[10:],
                             'day': day,
                             'subject': timetable_obj.subject_id.name,
-                            'faculty': timetable_obj.faculty_id.name,
+##                            'faculty': self.get_full_name(timetable_obj),
+#                            'faculty_middle': timetable_obj.faculty_id.middle_name,
+#                            'faculty_last': timetable_obj.faculty_id.last_name,
+                            'course': timetable_obj.standard_id.course_id.name,
                             'standard': timetable_obj.standard_id.name,
                              }
 
