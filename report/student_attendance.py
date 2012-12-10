@@ -43,7 +43,7 @@ class student_attendance(report_sxw.rml_parse):
     
     def get_data(self, data):
         
-        if data['from_date'].split()[0] >= data['to_date'].split()[0]:
+        if data['from_date'].split()[0] > data['to_date'].split()[0]:
             raise osv.except_osv(('Error!'),("From Date is not greater than To Date "))
         else:
             student_pool = self.pool.get('op.student')
