@@ -44,7 +44,7 @@ class marksheet_report(report_sxw.rml_parse):
         return str(date1.month) +'/'+ str(date1.year)
     
     def get_total(self, marksheet_line):
-        total = [x.exam_id.total_marks for x in marksheet_line.result_line]
+        total = [x.total_marks for x in marksheet_line.result_line]
         return sum(total)
      
 

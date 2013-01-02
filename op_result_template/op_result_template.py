@@ -53,71 +53,75 @@ class op_result_template(osv.osv):
                     total_exam += exam.exam_id.total_marks
 
                     for attd in exam.exam_id.attendees_line:
+                        print "55555555555555%",(exam.weightage/100)*attd.marks,attd.student_id.name
                         result_dict = {
                             'exam_id':exam.exam_id.id,
                             'exam_tmpl_id':exam.id,
-                            'marks':(100/exam.weightage)*attd.marks,
+                            'marks':(exam.weightage/100)*attd.marks,
                             'status':attd.marks >= exam.pass_marks and 'p' or 'f',
                             'per':(100*attd.marks)/exam.total_marks,
                             'student_id':attd.student_id.id,
+                            'total_marks': (exam.weightage/100)*exam.total_marks,
                         }
                         ret_id = self.pool.get('op.result.line').create(cr, uid, result_dict, context=context)
                         stu_lst.append([ret_id,attd.student_id.id,result_dict])
-                stu_dict = {}
-                for ret_id,stu_id,data in stu_lst:
-                    if  stu_id not in stu_dict:
-                        stu_dict[stu_id] = []
+            stu_dict = {}
+            for ret_id,stu_id,data in stu_lst:
+                if  stu_id not in stu_dict:
+                    stu_dict[stu_id] = []
 
-                    stu_dict[stu_id].append([ret_id,data])
-                for stu_id in stu_dict:
+                stu_dict[stu_id].append([ret_id,data])
+            for stu_id in stu_dict:
 
 
-                    total_marks = sum([x[1]['marks'] for x in stu_dict[stu_id]])
-                    per = (total_exam and (100/total_exam)*total_marks) or 0.0
-                    result = ''
-                    pass_flg = True
-                    number_fail = 0
-                    for x in stu_dict[stu_id]:
-                        if x[1]['status'] == 'f':
-                            pass_flg = False
-                            number_fail += 1
-                    if pass_flg:
+                total_marks = sum([x[1]['marks'] for x in stu_dict[stu_id]])
+                print '5555555555%',total_marks
+                per = (total_exam and (100/total_exam)*total_marks) or 0.0
+                result = ''
+                pass_flg = True
+                number_fail = 0
+                for x in stu_dict[stu_id]:
+                    if x[1]['status'] == 'f':
+                        pass_flg = False
+                        number_fail += 1
+                if pass_flg:
 
-                        pass_st_ids = self_obj.pass_status_ids
-                        to_consider = False
-                        min_pass = 0.0
+                    pass_st_ids = self_obj.pass_status_ids
+                    to_consider = False
+                    min_pass = 0.0
 
-                        for pass_st in pass_st_ids:
-                            if pass_st.number <= per and pass_st.number > min_pass:
-                                min_pass = pass_st.number
-                                to_consider = pass_st
+                    for pass_st in pass_st_ids:
+                        if pass_st.number <= per and pass_st.number > min_pass:
+                            min_pass = pass_st.number
+                            to_consider = pass_st
 
-                        if to_consider:
-                            result  = to_consider.result
-                    else:
-                        crit_ids = self_obj.criteria_ids
-                        to_consider = False
-                        max_pass = False
-                        for crit_id in crit_ids:
-                            if crit_id.number == number_fail:
-                                to_consider = crit_id
-                            if not max_pass or  crit_id.number > max_pass.number:
-                                max_pass = crit_id
-                        if not to_consider:
-                            to_consider = max_pass
-                        result = to_consider.result
+                    if to_consider:
+                        result  = to_consider.result
+                else:
+                    crit_ids = self_obj.criteria_ids
+                    to_consider = False
+                    max_pass = False
+                    for crit_id in crit_ids:
+                        if crit_id.number == number_fail:
+                            to_consider = crit_id
+                        if not max_pass or  crit_id.number > max_pass.number:
+                            max_pass = crit_id
+                    if not to_consider:
+                        to_consider = max_pass
+                    result = to_consider.result
 
-                    mark_line_id = self.pool.get('op.marksheet.line').create(cr, uid,
-                                                                             {'student_id':stu_id,
-                                                                              'marksheet_reg_id':marksheet_reg_id,
-                                                                              'exam_session_id':exam_session.id,
-                                                                              'result':result,
-                                                                              'total_marks': total_marks,
-                                                                              'total_per': per,
-                                                                             }
-                                                                            )
-                    self.pool.get('op.result.line').write(cr, uid, [x[0] for x in stu_dict[stu_id]], {'result_id':mark_line_id,
-                                                                                                     })
+                mark_line_id = self.pool.get('op.marksheet.line').create(cr, uid,
+                                                                         {'student_id':stu_id,
+                                                                          'marksheet_reg_id':marksheet_reg_id,
+                                                                          'exam_session_id':exam_session.id,
+                                                                          'result':result,
+                                                                          'total_marks': total_marks,
+                                                                          'total_per': per,
+                                                                          'total_exam_marks':total_exam,
+                                                                         }
+                                                                        )
+                self.pool.get('op.result.line').write(cr, uid, [x[0] for x in stu_dict[stu_id]], {'result_id':mark_line_id,
+                                                                                                 })
         return True
 
 

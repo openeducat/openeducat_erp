@@ -32,7 +32,8 @@ class op_result_line(osv.osv):
             'per': fields.float(string='Percentage', required=True),
             'student_id': fields.many2one('op.student', string='Student', required=True),
             'status': fields.selection([('p','Pass'),('f','Fail')], string='Status', required=True),
-            'result_id':fields.many2one('op.marksheet.line','MarkSheet Line')
+            'result_id':fields.many2one('op.marksheet.line','MarkSheet Line'),
+            'total_marks': fields.float(string='Percentage'),
     }
 
 op_result_line()
