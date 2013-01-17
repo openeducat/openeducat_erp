@@ -154,6 +154,7 @@
                  'demo/res.users.csv',
                  'demo/res.groups.csv',
                  'demo/op.period.csv',
+                 'demo/op_comapny_data.xml',
                  ],
     'test': [
              'test/configuration.yml',
