@@ -32,6 +32,7 @@ class op_standard(osv.osv):
             'sequence':fields.integer('Sequence'),
             'division_ids': fields.many2many('op.division', 'standard_division_rel', 'standard_id', 'division_id', 'Divisions', ),
             'student_ids': fields.many2many('op.student', 'op_student_standard_rel', 'op_student_id', 'op_standard_id', string='Student(s)'),
+#            'class_ids': fields.many2many('op.gr.setup', 'op_class_setup_rel','op_standard_id', 'op_setup_id' , string='Class'),
     }
 
 op_standard()
