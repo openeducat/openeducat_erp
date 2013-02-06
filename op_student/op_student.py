@@ -88,6 +88,7 @@ class op_student(osv.osv):
             'placement_line': fields.one2many('op.placement.offer', 'student_id', 'Placement Details'),
             'activity_log':fields.one2many('op.activity','student_id', 'Activity Log' ),
             'parent_ids': fields.many2many('op.parent', 'op_parent_student_rel', 'op_parent_id', 'op_student_id', string='Parent'),
+            'gr': fields.char(string="GR Number", size=20),
     }
 
 

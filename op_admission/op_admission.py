@@ -72,6 +72,10 @@ class op_admission(osv.osv):
             'division_id': fields.many2one('op.division', string='Division', states={'done': [('readonly', True)]}),
             'student_id': fields.many2one('op.student', string='Student', states={'done': [('readonly', True)]}),
             'nbr': fields.integer('# of Admission', readonly=True),
+            'gr_no': fields.boolean('Old Student??'),
+            'gr_no_old': fields.char(string="GR Number old", size=10),
+            'gr_no_new': fields.char(string="GR Number new", size=10),
+            
     }
 
     _defaults = {
@@ -94,6 +98,11 @@ class op_admission(osv.osv):
             context = {}
         student_pool = self.pool.get('op.student')
         for field in self.browse(cr, uid, ids, context=context):
+            if field.gr_no == True:
+                gr = field.gr_no_old
+            else:
+                gr = field.gr_no_new
+            print 'GGGGGGGGGGG___________',gr
             vals = {
                     'title': field.title and field.title.id or False,
                     'name': field.name,
@@ -107,6 +116,7 @@ class op_admission(osv.osv):
                     'standard_id': field.standard_id and field.standard_id.id or False,
                     'religion': field.religion_id and field.religion_id.id or False,
                     'photo': field.photo or False,
+                    'gr': gr,
                     'address':[(0,0,{
                                      'name': field.name or False,
                                      'type': 'invoice',
