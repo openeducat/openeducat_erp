@@ -52,7 +52,7 @@ class op_student(osv.osv):
             'blood_group': fields.selection([('A+','A+ve'),('B+','B+ve'),('O+','O+ve'),('AB+','AB+ve'),('A-','A-ve'),('B-','B-ve'),('O-','O-ve'),('AB-','AB-ve')], string='Blood Group'),
             'gender': fields.selection([('m','Male'),('f','Female'),('o','Other')], string='Gender', required=True),
             'nationality': fields.many2one('res.country', string='Nationality'),
-            'language': fields.many2one('res.lang', string='Language'),
+            'language': fields.many2one('res.lang', string='Mother Tongue'),
             'category': fields.many2one('op.category', string='Category', required=True),
             'religion': fields.many2one('op.religion', string='Religion'),
             'library_card': fields.char(size=64, string='Library Card'),

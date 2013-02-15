@@ -7,7 +7,7 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<tree string="TimeTable Line" editable="top">
-					<field name="day" />
+					<field name="day" invisible="1"/>
 					<field name="period_id" />
 					<field name="faculty_id" />
 					<field name="subject_id" />
@@ -49,8 +49,40 @@
 								<field name="division_id" />
 								<field name="start_date" />
 								<field name="end_date" />
-								<field name="time_table_lines" colspan="4" nolabel="1" />
+<!-- 								<field name="time_table_lines" colspan="4" nolabel="1" /> -->
 							</group>
+							<notebook>
+								<page string="Monday">
+									<group string="Monday">
+										<field name="time_table_lines" nolabel="1" domain="[('day', '=', '1')]" context="{'default_day': '1'}"/>
+									</group>
+								</page>
+								<page string="Tuesday">
+									<group string="Tuesday">
+										<field name="time_table_lines" nolabel="1" domain="[('day', '=', '2')]" context="{'default_day': '2'}"/>
+									</group>
+								</page>
+								<page string="Wednesday">
+									<group string="Wednesday">
+										<field name="time_table_lines" nolabel="1" domain="[('day', '=', '3')]" context="{'default_day': '3'}"/>
+									</group>
+								</page>
+								<page string="Thursday">
+									<group string="Thursday">
+										<field name="time_table_lines" nolabel="1" domain="[('day', '=', '4')]" context="{'default_day': '4'}"/>
+									</group>
+								</page>
+								<page string="Friday">
+									<group string="Friday">
+										<field name="time_table_lines" nolabel="1" domain="[('day', '=', '5')]" context="{'default_day': '5'}"/>
+									</group>
+								</page>
+								<page string="Saturday">
+									<group string="Saturday">
+										<field name="time_table_lines" nolabel="1" domain="[('day', '=', '6')]" context="{'default_day': '6'}"/>
+									</group>
+								</page>
+							</notebook>
 						</div>
 					</sheet>
 				</form>
