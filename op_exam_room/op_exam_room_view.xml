@@ -8,7 +8,10 @@
 			<field name="arch" type="xml">
 				<tree string="Exam Room">
 					<field name="name" />
+					<field name="classroom_id" />
 					<field name="capacity" />
+					<field name="course_ids" />
+					<field name="standard_ids" />
 				</tree>
 			</field>
 		</record>
@@ -22,9 +25,19 @@
 					<sheet>
 						<separator colspan="4" string="Exam Room" />
 						<div>
-							<group col="4" colspan="4">
+							<group col="4">
 								<field name="name" />
+								<field name="classroom_id" />
 								<field name="capacity" />
+							</group>
+							<group string="Course">
+								<field name="course_ids" nolabel="1"/>
+							</group>
+							<group string="Standard">
+								<field name="standard_ids" nolabel="1"/>
+							</group>
+							<group string="Student">
+								<field name="student_ids" nolabel="1"/>
 							</group>
 						</div>
 					</sheet>
@@ -38,6 +51,7 @@
 			<field name="arch" type="xml">
 				<search string="Exam Room">
 					<field name="name" />
+					<field name="classroom_id" />
 					<field name="capacity" />
 				</search>
 			</field>

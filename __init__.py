@@ -51,6 +51,7 @@ import op_result_line
 import op_author
 import op_exam_type
 import op_facility
+import op_allocat_division
 import op_roll_number
 import res_partner
 import op_library

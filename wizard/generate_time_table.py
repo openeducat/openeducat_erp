@@ -62,7 +62,7 @@ class generate_time_table(osv.osv_memory):
             curr_date = datetime.datetime.strptime(dt_st, "%Y-%m-%d %H:%M:%S")
             end_time = datetime.timedelta(hours=line.period_id.duration)
             cu_en_date = curr_date + end_time
-            time_pool.create(cr, uid, {
+            a = time_pool.create(cr, uid, {
                         'faculty_id':line.faculty_id.id,
                         'subject_id':line.subject_id.id,
                         'standard_id':self_obj.standard_id.id,
@@ -70,7 +70,8 @@ class generate_time_table(osv.osv_memory):
                         'division_id':self_obj.division_id.id,
                         'start_datetime':curr_date.strftime("%Y-%m-%d %H:%M:%S"),
                         'end_datetime':cu_en_date.strftime("%Y-%m-%d %H:%M:%S"),
-            })
+                        })
+            print "__________a______________",a
 
             curr_date = curr_date+ datetime.timedelta(days=day_cnt)
 
@@ -81,6 +82,7 @@ class generate_time_table(osv.osv_memory):
             en_date = datetime.datetime.strptime(self_obj.end_date,'%Y-%m-%d')
             st_day = week_number[st_date.strftime('%a')]
             for line in self_obj.time_table_lines:
+                print "__________line_____________",line
                 if int(line.day) == st_day:
                     self.gen_datewise(cr, uid, line, st_date, en_date, self_obj, context=context)
                 if int(line.day) < st_day:
