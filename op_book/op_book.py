@@ -24,8 +24,26 @@ from tools.translate import _
 class op_book(osv.osv):
     _name = 'op.book'
 
+#    def no_of_books_available(self, cr, uid, ids, fields, args, context={}):
+#        print "________ids____field_names_____",ids,fields
+#        res = {}
+#        for line in self.browse(cr, uid, ids, context=context):
+#            mov_qty = 0
+#            qty = 0
+#            total_number = 0
+#            for number in line.movement_line:
+#                mov_qty += number.quantity
+#                print "________total_number_________",mov_qty
+#            qty = line.number_book
+#            total_number = qty - mov_qty
+#            res[line.id] = total_number
+#            print "_________res________",res
+#        return res
+    
     _columns = {
             'name': fields.char(size=128, string='Title', required=True),
+            'number_book': fields.integer('No. Of Books', size=256, required=True),
+#            'number_book': fields.function(no_of_books_available, string="No. Of Books", type='integer', method=True, store=True),
             'id_book': fields.char(size=64, string='ISBN Code'),
             'tag': fields.many2many('op.tag', 'book_tag_rel', 'op_book_id', 'op_tag_id', string='Tag'),
             'author_ids': fields.many2many('op.author', 'book_author_rel', 'op_book_id', 'op_author_id', string='Author', required=True),

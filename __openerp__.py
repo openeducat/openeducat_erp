@@ -152,7 +152,7 @@
                  'demo/op.exam.csv',
                  'demo/op.exam.attendees.csv',
 #                 'demo/res.partner.address.csv',
-#                 'demo/res.users.csv',
+                 'demo/res.users.csv',
                  'demo/res.groups.csv',
                  'demo/op.period.csv',
                  'demo/op_comapny_data.xml',

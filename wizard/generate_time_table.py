@@ -41,6 +41,12 @@ class generate_time_table(osv.osv_memory):
         'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division',  required=True),
         'time_table_lines':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
+        'time_table_lines_1':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
+        'time_table_lines_2':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
+        'time_table_lines_3':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
+        'time_table_lines_4':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
+        'time_table_lines_5':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
+        'time_table_lines_6':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
         'start_date':fields.date('Start Date', required=True),
         'end_date':fields.date('End Date', required=True),
     }
@@ -77,10 +83,14 @@ class generate_time_table(osv.osv_memory):
 
         return True
     def act_gen_time_table(self, cr, uid, ids, context={}):
+        print "___________ids_______________",ids
         for self_obj in self.browse(cr, uid, ids, context=context):
+            print "______________self_obj______________",self_obj.standard_id.name
             st_date = datetime.datetime.strptime(self_obj.start_date,'%Y-%m-%d')
             en_date = datetime.datetime.strptime(self_obj.end_date,'%Y-%m-%d')
             st_day = week_number[st_date.strftime('%a')]
+            print "________________st_date,en_date,st_day_________________",st_date,en_date,st_day
+            print "_________time_table_lines_____________",self_obj.time_table_lines
             for line in self_obj.time_table_lines:
                 print "__________line_____________",line
                 if int(line.day) == st_day:

@@ -29,14 +29,21 @@ class issue_book(osv.osv_memory):
 
     _columns = {
                 'book_id': fields.many2one('op.book', string='Book', required=True),
-                'student_id': fields.many2one('op.student', string='Student', required=True),
+                'quantity': fields.integer('No. Of Books', size=256, required=True),
+                'type': fields.selection([('student', 'Student'), ('faculty', 'Faculty')], 'Type', required=True),
+                'student_id': fields.many2one('op.student', string='Student'),
+                'faculty_id': fields.many2one('op.faculty', string='Faculty'),
                 'library_card_id': fields.many2one('op.library.card', 'Library Card', required=True),
                 'issued_date': fields.date(string='Issued Date', required=True),
                 'return_date': fields.date(string='Return Date', required=True),
                 'state': fields.selection([('i','Issued'),('a','Available'),('l','Lost'),('r','Reserved')], string='Status'),
                 }
 
-    _defaults = {'state': 'i'}
+    _defaults = {
+                 'state': 'i',
+                 'type': 'student'
+                 
+                 }
 
     def check_issue(self, cr, uid, student_id, library_card_id, context={}):
         
@@ -56,31 +63,44 @@ class issue_book(osv.osv_memory):
         book_movement = self.pool.get("op.book.movement")
         book = self.pool.get("op.book")
         for this_obj in self.browse(cr, uid, ids,context):
-            if self.check_issue(cr, uid, this_obj.student_id.id, this_obj.library_card_id.id, context) == True:
-            
-                if this_obj.book_id.state and this_obj.book_id.state == 'a':
-                    book_movement_create = {
-                                            'book_id': this_obj.book_id.id,
-                                            'student_id': this_obj.student_id.id,
-                                            'library_card_id': this_obj.library_card_id.id,
-                                            'issued_date': this_obj.issued_date,
-                                            'return_date': this_obj.return_date,
-                                            'state': 'i',
-                                            }
-                    book_move_id = book_movement.create(cr, uid, book_movement_create,context)
-                    book.write(cr, uid, this_obj.book_id.id, {'state': 'i'},context)
-    
-                    value = {'type': 'ir.actions.act_window_close'}
+            print "__________this_obj__________",this_obj
+            print "_______EEEEEEEEEE",this_obj.book_id.number_book,this_obj.book_id.movement_line
+            total_book = 0
+            for movement in this_obj.book_id.movement_line:
+                if movement.state == 'i':
+                    total_book += movement.quantity
+            print "__________total_book___________",total_book
+            if this_obj.book_id.number_book > 0 and this_obj.book_id.number_book - total_book > 0 :
+                if self.check_issue(cr, uid, this_obj.student_id.id, this_obj.library_card_id.id, context) == True:
+                    if this_obj.book_id.state and this_obj.book_id.state == 'a':
+                        book_movement_create = {
+                                                'book_id': this_obj.book_id.id,
+                                                'quantity': this_obj.quantity,
+                                                'type': this_obj.type,
+                                                'student_id': this_obj.student_id.id or False,
+                                                'faculty_id': this_obj.faculty_id.id or False ,
+                                                'library_card_id': this_obj.library_card_id.id,
+                                                'issued_date': this_obj.issued_date,
+                                                'return_date': this_obj.return_date,
+                                                'state': 'i',
+                                                }
+                        book_move_id = book_movement.create(cr, uid, book_movement_create,context)
+                        book.write(cr, uid, this_obj.book_id.id, {'state': 'i'},context)
+        
+                        value = {'type': 'ir.actions.act_window_close'}
+                    else:
+                        book_state = this_obj.book_id.state == 'i' and 'Issued' or \
+                                      this_obj.book_id.state == 'a' and 'Available' or \
+                                      this_obj.book_id.state == 'l' and 'Lost' or \
+                                      this_obj.book_id.state == 'r' and 'Reserved'
+                        raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
                 else:
-                    book_state = this_obj.book_id.state == 'i' and 'Issued' or \
-                                  this_obj.book_id.state == 'a' and 'Available' or \
-                                  this_obj.book_id.state == 'l' and 'Lost' or \
-                                  this_obj.book_id.state == 'r' and 'Reserved'
-                    raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
+                    raise osv.except_osv(('Error!'),("Maximum Number of book allowed for %s is : %s") %(this_obj.student_id.name,this_obj.library_card_id.allow_book))
             else:
-                raise osv.except_osv(('Error!'),("Maximum Number of book allowed for %s is : %s") %(this_obj.student_id.name,this_obj.library_card_id.allow_book))
+                raise osv.except_osv(('Error!'),("There Is No Book Available"))
             
         return value
+    
 
 
 issue_book()

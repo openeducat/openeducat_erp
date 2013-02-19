@@ -19,6 +19,9 @@
 #
 #/#############################################################################
 from osv import osv, fields
+import time
+import datetime
+from dateutil.relativedelta import relativedelta
 
 class op_allocat_division(osv.osv):
     _name = 'op.allocat.division'
@@ -30,6 +33,19 @@ class op_allocat_division(osv.osv):
             'division_id': fields.many2one('op.division', 'Division'),
             'student_ids': fields.many2many('op.student', 'div_student_rel', 'op_division_id', 'op_student_id', string='Student(s)'),
     }
+    
+    def generate_division(self, cr, uid, ids, context={}):
+        print "___________ids_______________",ids
+        for self_obj in self.browse(cr, uid, ids, context=context):
+            print "______________self_obj______________",self_obj.name
+            for line in self_obj.student_ids:
+                print "___________line_______________",line
+                val = {
+                        'division_id': self_obj.division_id.id
+                    }
+                print "__________val_____________",val
+                self.pool.get('op.student').write(cr, uid, [line.id], val)
+        return True
 
 op_allocat_division()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

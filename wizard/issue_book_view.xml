@@ -13,11 +13,20 @@
 						</span>
 					</header>
 					<sheet>
-						<separator string="Book Issue" colspan="4" />
-						<group col="2" colspan="4">
+						<separator string="Book Issue" />
+						<group col="4">
 							<field name="book_id" />
-							<field name="student_id" />
+							<field name="type" />
+						</group>
+						<group attrs="{'invisible':[('type','!=','student')]}">
+							<field name="student_id" attrs="{'required':[('type','=','student')]}" />
+						</group>
+						<group  attrs="{'invisible':[('type','!=','faculty')]}">
+							<field name="faculty_id" attrs="{'required':[('type','=','faculty')]}"/>
+						</group>
+						<group col="4">
 							<field name="library_card_id" />
+							<field name="quantity" />
 							<field name="issued_date" />
 							<field name="return_date" />
 							<field name="state" readonly="1" />
@@ -35,5 +44,11 @@
 			<field name="context">{'default_book_id': active_id}</field>
 			<field name="target">new</field>
 		</record>
+		
+		
+<!-- 		<act_window id="issue_book_act" -->
+<!--             key2="client_action_multi" name="Issue Book" -->
+<!--             res_model="issue.book" src_model="op.book" -->
+<!--             view_mode="form" target="new" view_type="form" /> -->
 	</data>
 </openerp>
