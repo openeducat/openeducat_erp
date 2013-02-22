@@ -26,7 +26,7 @@ class op_subject(osv.osv):
     _columns = {
             'name': fields.char(size=128, string='Name', required=True),
             'code': fields.char(size=256, string='Code', required=True),
-            'course_id': fields.many2one('op.course', string='Course', required=True),
+            'course_id': fields.many2one('op.course', string='Course'),
             'grade_waitage': fields.float(string='Grade Waitage'),
             'type': fields.selection([('p','Practial'),('t','Theory'),('pt','Both'),('o','Other')], string='Type', required=True),
     }

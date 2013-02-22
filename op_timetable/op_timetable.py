@@ -57,6 +57,8 @@ class op_timetable(osv.osv):
         'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division', required=True),
         'subject_id': fields.many2one('op.subject', 'Subject', required=True),
+        'color': fields.integer('Color Index'),
+        'type': fields.selection([('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday')], 'Days'),
     }
 
 op_timetable()

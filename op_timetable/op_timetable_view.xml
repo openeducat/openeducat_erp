@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
+
+		
 		<record id="view_op_period_tree" model="ir.ui.view">
 			<field name="name">op.period.tree</field>
 			<field name="model">op.period</field>
@@ -106,6 +108,7 @@
 							<field name="subject_id" />
 							<field name="start_datetime" />
 							<field name="end_datetime" />
+							<field name="type"/>
 						</group>
 					</sheet>
 				</form>
@@ -124,6 +127,20 @@
 					<field name="subject_id" select="True" />
 					<field name="start_datetime" select="True" />
 					<field name="end_datetime" select="True" />
+					<newline />
+					<filter string="Today" domain="[('start_datetime', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start_datetime', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]" />
+					<group expand="0" string="Group By...">
+						<filter string="Faculty" domain="[]"
+							context="{'group_by':'faculty_id'}" />
+						<filter string="Standard" domain="[]"
+							context="{'group_by':'standard_id'}" />
+						<filter string="division" domain="[]"
+							context="{'group_by':'division_id'}" />
+						<filter string="period" domain="[]"
+							context="{'group_by':'period_id'}" />
+						<filter string="Subject" domain="[]"
+							context="{'group_by':'subject_id'}" />
+					</group>
 				</search>
 			</field>
 		</record>
@@ -141,12 +158,63 @@
 				</calendar>
 			</field>
 		</record>
+		
+		<record model="ir.ui.view" id="view_timetable_kanban">
+            <field name="name">timetable.kanban</field>
+            <field name="model">op.timetable</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="type" class="oe_background_grey" version="7.0">
+                	<field name="type"/>
+                	<field name="color"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                    	<div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_project oe_kanban_global_click">
+                    		<div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
+                                <span class="oe_e">í</span>
+                                <ul class="oe_dropdown_menu">
+                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
+                                    <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
+                                    <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                </ul>
+                            </div>
+                            <div class="oe_kanban_content">
+                            	
+                                <div><b><field name="period_id"/></b></div>
+	                           	<div>
+		                           	<li t-if="record.faculty_id.raw_value">
+										Faculty:
+										<field name="faculty_id"/>
+									</li>
+		                           	<li t-if="record.subject_id.raw_value">
+										Subject:
+										<field name="subject_id"/>
+									</li>
+									<li t-if="record.subject_id.raw_value">
+										Standard:
+										<field name="standard_id"/>
+									</li>
+									<li t-if="record.subject_id.raw_value">
+										Division:
+										<field name="division_id"/>
+									</li>
+								</div>
+								<div class="oe_kanban_bottom_right">
+                            		<img t-att-src="kanban_image('op.faculty', 'photo', record.faculty_id.raw_value)" t-att-title="record.faculty_id.value" width="24" height="24" class="oe_kanban_avatar"/>
+                            	</div>
+							</div>
+						</div>
+                    </t>
+                    </templates>
+                </kanban>
+            </field>
+         </record>
+		
 		<record model="ir.actions.act_window" id="act_open_op_timetable_view">
 			<field name="name">Time Table</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">op.timetable</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">calendar</field>
+			<field name="view_mode">kanban,calendar</field>
 			<field name="search_view_id" ref="view_op_timetable_search" />
 			<field name="domain">[]</field>
 			<field name="context">{}</field>
@@ -162,6 +230,12 @@
 			<field name="sequence" eval="10" />
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_timetable_tree" />
+		</record>
+		<record model="ir.actions.act_window.view" id="act_open_op_timetable_view_kanban">
+			<field name="act_window_id" ref="act_open_op_timetable_view" />
+			<field name="sequence" eval="5" />
+			<field name="view_mode">kanban</field>
+			<field name="view_id" ref="view_timetable_kanban" />
 		</record>
 	</data>
 </openerp>
