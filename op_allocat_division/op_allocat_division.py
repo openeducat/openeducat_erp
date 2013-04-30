@@ -35,15 +35,11 @@ class op_allocat_division(osv.osv):
     }
     
     def generate_division(self, cr, uid, ids, context={}):
-        print "___________ids_______________",ids
         for self_obj in self.browse(cr, uid, ids, context=context):
-            print "______________self_obj______________",self_obj.name
             for line in self_obj.student_ids:
-                print "___________line_______________",line
                 val = {
                         'division_id': self_obj.division_id.id
                     }
-                print "__________val_____________",val
                 self.pool.get('op.student').write(cr, uid, [line.id], val)
         return True
 

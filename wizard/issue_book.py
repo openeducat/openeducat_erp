@@ -63,13 +63,10 @@ class issue_book(osv.osv_memory):
         book_movement = self.pool.get("op.book.movement")
         book = self.pool.get("op.book")
         for this_obj in self.browse(cr, uid, ids,context):
-            print "__________this_obj__________",this_obj
-            print "_______EEEEEEEEEE",this_obj.book_id.number_book,this_obj.book_id.movement_line
             total_book = 0
             for movement in this_obj.book_id.movement_line:
                 if movement.state == 'i':
                     total_book += movement.quantity
-            print "__________total_book___________",total_book
             if this_obj.book_id.number_book > 0 and this_obj.book_id.number_book - total_book > 0 :
                 if self.check_issue(cr, uid, this_obj.student_id.id, this_obj.library_card_id.id, context) == True:
                     if this_obj.book_id.state and this_obj.book_id.state == 'a':

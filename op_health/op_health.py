@@ -49,22 +49,6 @@ class op_health(osv.osv):
                 'regular_checkup': False,
                  }
     
-##    def name_search(self, cr, user, name, args=None, operator='ilike', context=None, limit=100):
-##        if not args:
-##            args = []
-##        ids = self.search(cr, user, [('serial', '=', name)]+ args, limit=limit, context=context)
-##        ids += self.search(cr, user, [('name', operator, name)]+ args, limit=limit, context=context)
-##        return self.name_get(cr, user, ids, context)
-#
-#    def name_get(self, cr, uid, ids, context={}):
-#        result= []
-#        if not all(ids):
-#            return result
-#        for health in self.browse(cr, uid, ids, context=context):
-#            print "GGGGGGGGGG", health.student_id,health.faculty_id
-#            name = health.faculty_id and health.faculty_id.name + ' ' + health.faculty_id.middle_name + ' ' + health.faculty_id.last_name or health.student_id and health.student_id.name + ' ' + health.student_id.middle_name + ' ' + health.student_id.last_name or False
-#            result.append((pl.id,name))
-#        return result
 op_health()
 
 class op_health_line(osv.osv):

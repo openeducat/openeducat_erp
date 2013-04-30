@@ -78,22 +78,16 @@ class generate_time_table(osv.osv_memory):
                         'end_datetime':cu_en_date.strftime("%Y-%m-%d %H:%M:%S"),
                         'type': curr_date.strftime('%A'),
                         })
-            print "__________a______________",a,curr_date.strftime('%A') 
 
             curr_date = curr_date+ datetime.timedelta(days=day_cnt)
 
         return True
     def act_gen_time_table(self, cr, uid, ids, context={}):
-        print "___________ids_______________",ids
         for self_obj in self.browse(cr, uid, ids, context=context):
-            print "______________self_obj______________",self_obj.standard_id.name
             st_date = datetime.datetime.strptime(self_obj.start_date,'%Y-%m-%d')
             en_date = datetime.datetime.strptime(self_obj.end_date,'%Y-%m-%d')
             st_day = week_number[st_date.strftime('%a')]
-            print "________________st_date,en_date,st_day_________________",st_date,en_date,st_day
-            print "_________time_table_lines_____________",self_obj.time_table_lines
             for line in self_obj.time_table_lines:
-                print "__________line_____________",line.day
                 if int(line.day) == st_day:
                     self.gen_datewise(cr, uid, line, st_date, en_date, self_obj, context=context)
                 if int(line.day) < st_day:
