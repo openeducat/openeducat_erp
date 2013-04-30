@@ -6,14 +6,16 @@
 			<field name="model">reserve.book</field>
 			<field name="arch" type="xml">
 				<form string="Book Reservation" version="7.0">
+					<header>
+						<span groups="base.group_user">
+							<button string="_Cancel" icon="gtk-cancel" special="cancel" />
+							<button name="set_partner" type="object" string="OK" icon="gtk-ok" />
+						</span>
+					</header>
 					<sheet>
 						<separator string="Book Reservation" colspan="4" />
 						<field name="partner_id" />
 						<separator colspan="4" />
-						<group colspan="4">
-							<button string="_Cancel" icon="gtk-cancel" special="cancel" />
-							<button name="set_partner" type="object" string="OK" icon="gtk-ok" />
-						</group>
 					</sheet>
 				</form>
 			</field>

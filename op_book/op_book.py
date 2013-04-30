@@ -24,8 +24,10 @@ from tools.translate import _
 class op_book(osv.osv):
     _name = 'op.book'
 
+    
     _columns = {
             'name': fields.char(size=128, string='Title', required=True),
+            'number_book': fields.integer('No. Of Books', size=256, required=True),
             'id_book': fields.char(size=64, string='ISBN Code'),
             'tag': fields.many2many('op.tag', 'book_tag_rel', 'op_book_id', 'op_tag_id', string='Tag'),
             'author_ids': fields.many2many('op.author', 'book_author_rel', 'op_book_id', 'op_author_id', string='Author', required=True),

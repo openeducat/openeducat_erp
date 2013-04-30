@@ -22,10 +22,13 @@ from osv import osv, fields
 
 class op_exam_room(osv.osv):
     _name = 'op.exam.room'
-
     _columns = {
-                'name': fields.char(string="Room Name", size=10, required=True),
-                'capacity': fields.integer(string="Capacity",size=3, required=True)
+                'name': fields.char('Name', size=256, required=True),
+                'classroom_id': fields.many2one('op.classroom', 'Classroom', required=True),
+                'capacity': fields.integer(string="Capacity",size=3, required=True),
+                'course_ids': fields.many2many('op.course', 'course_exam_room_rel', 'exam_room_id', 'course_id', 'Course'),
+                'standard_ids': fields.many2many('op.standard', 'standard_exam_room_rel', 'exam_room_id', 'standard_id', 'Course'),
+                'student_ids': fields.many2many('op.student', 'student_exam_room_rel', 'exam_room_id', 'student_id', 'Course'),
     }
     
 op_exam_room()

@@ -41,6 +41,12 @@ class generate_time_table(osv.osv_memory):
         'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division',  required=True),
         'time_table_lines':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
+        'time_table_lines_1':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', 1)], required=True),
+        'time_table_lines_2':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '2')], required=True),
+        'time_table_lines_3':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '3')], required=True),
+        'time_table_lines_4':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '4')], required=True),
+        'time_table_lines_5':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '5')], required=True),
+        'time_table_lines_6':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '6')], required=True),
         'start_date':fields.date('Start Date', required=True),
         'end_date':fields.date('End Date', required=True),
     }
@@ -62,7 +68,7 @@ class generate_time_table(osv.osv_memory):
             curr_date = datetime.datetime.strptime(dt_st, "%Y-%m-%d %H:%M:%S")
             end_time = datetime.timedelta(hours=line.period_id.duration)
             cu_en_date = curr_date + end_time
-            time_pool.create(cr, uid, {
+            a = time_pool.create(cr, uid, {
                         'faculty_id':line.faculty_id.id,
                         'subject_id':line.subject_id.id,
                         'standard_id':self_obj.standard_id.id,
@@ -70,7 +76,8 @@ class generate_time_table(osv.osv_memory):
                         'division_id':self_obj.division_id.id,
                         'start_datetime':curr_date.strftime("%Y-%m-%d %H:%M:%S"),
                         'end_datetime':cu_en_date.strftime("%Y-%m-%d %H:%M:%S"),
-            })
+                        'type': curr_date.strftime('%A'),
+                        })
 
             curr_date = curr_date+ datetime.timedelta(days=day_cnt)
 

@@ -29,6 +29,7 @@ class op_course(osv.osv):
             'section': fields.char(size=32, string='Section', required=True),
             'evaluation_type': fields.selection([('normal','Normal'),('GPA','GPA'),('CWA','CWA'),('CCE','CCE')], string='Evaluation Type', required=True),
             'payment_term': fields.many2one('account.payment.term', 'Payment Term'),
+            'subject_ids': fields.many2many('op.subject', 'op_course_subject_rel', 'op_course_id', 'op_subject_id', string='Subject(s)'),
     }
 
 op_course()

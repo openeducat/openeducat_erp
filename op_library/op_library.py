@@ -36,6 +36,7 @@ op_library_card_type()
 
 class op_library_card(osv.osv):
     _name = 'op.library.card'
+    _rec_name = 'number'
     _description = 'Library Card'
 
     _columns = {

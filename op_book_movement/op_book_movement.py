@@ -33,7 +33,10 @@ class op_book_movement(osv.osv):
 
     _columns = {
             'book_id': fields.many2one('op.book', string='Book', required=True),
-            'student_id': fields.many2one('op.student', string='Student', required=True),
+            'quantity': fields.integer('No. Of Books', size=256, required=True),
+            'type': fields.selection([('student', 'Student'), ('faculty', 'Faculty')], 'Type', required=True),
+            'student_id': fields.many2one('op.student', string='Student'),
+            'faculty_id': fields.many2one('op.faculty', string='Faculty'),
             'library_card_id': fields.many2one('op.library.card', 'Library Card', required=True),
             'issued_date': fields.date(string='Issued Date', required=True),
             'return_date': fields.date(string='Return Date', required=True),

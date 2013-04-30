@@ -6,15 +6,16 @@
 			<field name="model">return.date</field>
 			<field name="arch" type="xml">
 				<form string="Return Date" version="7.0">
-					<sheet>
-						<separator string="Return Date" colspan="4" />
-						<field name="actual_return_date" required="1" />
-						<separator colspan="4" />
-						<group colspan="4">
+					<header>
+						<span groups="base.group_user">
 							<button string="_Cancel" icon="gtk-cancel" special="cancel" />
 							<button name="assign_return_date" type="object" string="OK"
 								icon="gtk-ok" />
-						</group>
+						</span>
+					</header>
+					<sheet>
+						<separator string="Return Date" colspan="4" />
+						<field name="actual_return_date" required="1" />
 					</sheet>
 				</form>
 			</field>

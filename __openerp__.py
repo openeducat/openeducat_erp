@@ -108,6 +108,7 @@
         'op_achievement_type/op_achievement_type_view.xml',
         'op_exam_res_allocation/op_exam_res_allocation_view.xml',
         'op_exam_room/op_exam_room_view.xml',
+        'op_allocat_division/op_allocat_division_view.xml',
         'wizard/generate_roll_number_view.xml',
         'wizard/generate_time_table_view.xml',
         'wizard/time_table_report.xml',
@@ -154,6 +155,7 @@
                  'demo/res.users.csv',
                  'demo/res.groups.csv',
                  'demo/op.period.csv',
+                 'demo/op_comapny_data.xml',
                  ],
     'test': [
              'test/configuration.yml',

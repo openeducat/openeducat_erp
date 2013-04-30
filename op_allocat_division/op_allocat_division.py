@@ -19,17 +19,29 @@
 #
 #/#############################################################################
 from osv import osv, fields
+import time
+import datetime
+from dateutil.relativedelta import relativedelta
 
-class op_subject(osv.osv):
-    _name = 'op.subject'
+class op_allocat_division(osv.osv):
+    _name = 'op.allocat.division'
 
     _columns = {
-            'name': fields.char(size=128, string='Name', required=True),
-            'code': fields.char(size=256, string='Code', required=True),
-            'course_id': fields.many2one('op.course', string='Course'),
-            'grade_waitage': fields.float(string='Grade Waitage'),
-            'type': fields.selection([('p','Practial'),('t','Theory'),('pt','Both'),('o','Other')], string='Type', required=True),
+            'name': fields.char(size=128, string='Name'),
+            'course_id': fields.many2one('op.course', 'Course'),
+            'standard_id': fields.many2one('op.standard', 'Standard'),
+            'division_id': fields.many2one('op.division', 'Division'),
+            'student_ids': fields.many2many('op.student', 'div_student_rel', 'op_division_id', 'op_student_id', string='Student(s)'),
     }
+    
+    def generate_division(self, cr, uid, ids, context={}):
+        for self_obj in self.browse(cr, uid, ids, context=context):
+            for line in self_obj.student_ids:
+                val = {
+                        'division_id': self_obj.division_id.id
+                    }
+                self.pool.get('op.student').write(cr, uid, [line.id], val)
+        return True
 
-op_subject()
+op_allocat_division()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
