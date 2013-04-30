@@ -45,7 +45,7 @@
                 * Hostel
 
     """,
-    'author': 'OpenEducat / Tech-Receptives Solutions Pvt. Ltd.',
+    'author': 'OpenEducat',
     'website': 'http://www.openeducat.org',
     'images': [],
     'depends': ['account',
@@ -151,6 +151,7 @@
                  'demo/op.exam.type.csv',
                  'demo/op.exam.csv',
                  'demo/op.exam.attendees.csv',
+#                 'demo/res.partner.address.csv',
                  'demo/res.users.csv',
                  'demo/res.groups.csv',
                  'demo/op.period.csv',

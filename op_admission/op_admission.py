@@ -102,7 +102,6 @@ class op_admission(osv.osv):
                 gr = field.gr_no_old
             else:
                 gr = field.gr_no_new
-            print 'GGGGGGGGGGG___________',gr
             vals = {
                     'title': field.title and field.title.id or False,
                     'name': field.name,
