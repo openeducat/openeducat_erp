@@ -19,6 +19,9 @@
 #
 #/#############################################################################
 from osv import osv, fields
+#from datetime import datetime, timedelta
+from datetime import datetime
+
 class op_exam_session(osv.osv):
     _name = 'op.exam.session'
     _description = 'Exam Session'
@@ -36,6 +39,17 @@ class op_exam_session(osv.osv):
             'exam_ids':fields.one2many('op.exam','session_id','Exams'),
 
     }
+    
+    def _check_date_time(self, cr, uid, ids, context=None):
+        for self_obj in self.browse(cr, uid, ids): 
+            if self_obj.start_time > self_obj.end_time:
+                return False
+        return True
+    
+    _constraints = [
+        (_check_date_time, 'Start Time Should be greater than End Time .', ['start_time','end_time']),
+    ]
+    
     def generate_result(self, cr, uid, ids, context={}):
         stu_pool = self.pool.get('op.student')
         for self_obj in self.browse(cr, uid, ids, context=context):
@@ -59,7 +73,7 @@ class op_exam(osv.osv):
             'venue': fields.many2one('res.partner', string='Venue'),
             'start_time': fields.datetime(string='Start Time', required=True),
             'end_time': fields.datetime(string='End Time', required=True),
-            'state': fields.selection([('n','New Exam'),('h','Held'),('s','Scheduled'),('c','Cancelled')], string='State', select=True, readonly=True),
+            'state': fields.selection([('n','New Exam'),('h','Held'),('s','Scheduled'),('d','Done'),('c','Cancelled')], string='State', select=True, readonly=True),
             'note': fields.text(string='Note'),
             'responsible_id': fields.many2many('op.faculty', 'exam_faculty_rel', 'op_exam_id', 'op_faculty_id', string='Responsible'),
             'name': fields.char(size=256, string='Exam', required=True),
@@ -70,11 +84,25 @@ class op_exam(osv.osv):
     _defaults = {
                  'state':'n'
     }
-
+    
+    def _check_date_time(self, cr, uid, ids, context=None):
+        for self_obj in self.browse(cr, uid, ids): 
+            if self_obj.start_time > self_obj.end_time:
+                return False
+        return True
+    
+    _constraints = [
+        (_check_date_time, 'Start Time Should be greater than End Time .', ['start_time','end_time']),
+    ]
+    
     def act_held(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'h'})
         return True
-
+    
+    def act_done(self, cr, uid, ids, context=None):
+        self.write(cr,uid,ids,{'state':'d'})
+        return True
+    
     def act_schedule(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'s'})
         return True
