@@ -54,7 +54,6 @@ class op_exam_session(osv.osv):
         stu_pool = self.pool.get('op.student')
         for self_obj in self.browse(cr, uid, ids, context=context):
             for exam in self_obj.exam_ids:
-
                 return True
 
 op_exam_session()

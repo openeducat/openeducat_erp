@@ -36,27 +36,27 @@
 					</header>
 					<sheet>
 						<separator colspan="4" string="Book Movement Detail" />
-						<group colspan="4">
+						<group colspan="4" col="4">
 							<field name="book_id" />
 							<field name="quantity" />
+						</group>
+						
+						<separator colspan="4" string="Student/Faculty Detail" />
+						<group colspan="4" col="4">
 							<field name="type" />
+							<field name="student_id" attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}" />
+							<field name="faculty_id" attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
 							<field name="library_card_id" />
+						</group>
+						<group colspan="4" col="4">
 							<field name="issued_date" />
 							<field name="return_date" />
 							<field name="actual_return_date" />
 							<field name="penalty" />
 						</group>
-						<group attrs="{'invisible':[('type','!=','student')]}">
-							<field name="student_id" attrs="{'required':[('type','=','student')]}" />
-						</group>
-						<group  attrs="{'invisible':[('type','!=','faculty')]}">
-							<field name="faculty_id" attrs="{'required':[('type','=','faculty')]}"/>
-						</group>
-						<separator string="Book Status" colspan="4" />
-						<newline />
-						<field name="state" colspan="4" />
 						<separator colspan="4" string="Book Reservation Detail" />
-						<group colspan="4" col="6">
+						<group colspan="4" col="8">
+							<field name="state" />
 							<field name="partner_id" />
 							<field name="reserver_name" />
 							<button name="do_book_reservation" string="Reserve Book"
