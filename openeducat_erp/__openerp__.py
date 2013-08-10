@@ -158,7 +158,8 @@
                  ],
     'css': ['static/src/css/base.css'],
     'qweb': [
-        'static/src/xml/base.xml'],             
+        'static/src/xml/base.xml'],
+    'js': ['static/src/js/chrome.js'],        
     'test': [
              'test/configuration.yml',
              'test/new_admission.yml',
