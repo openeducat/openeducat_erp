@@ -25,7 +25,7 @@
 						<separator colspan="4" string="Basic Information" />
 						<group col="4" colspan="4">
 							<field name="hostel_id" />
-							<field name="name" />
+							<field name="name" on_change="onchange_name(name)" />
 						</group>
 						<separator string="Allocated Students" />
 						<group col="4" colspan="4">
@@ -86,5 +86,43 @@
 			<field name="view_mode">tree</field>
 			<field name="view_id" ref="view_op_hostel_room_tree" />
 		</record>
+		
+		
+		
+		<!-- View For Room -->
+		
+		
+		<record id="view_op_room_tree" model="ir.ui.view">
+			<field name="name">op.room.tree</field>
+			<field name="model">op.room</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<tree string="Room">
+					<field name="name" />
+					<field name="code" />
+					<field name="capacity" />
+				</tree>
+			</field>
+		</record>
+		<record id="view_op_room_form" model="ir.ui.view">
+			<field name="name">op.room.form</field>
+			<field name="model">op.room</field>
+			<field name="priority" eval="8" />
+			<field name="arch" type="xml">
+				<form string="Room" version="7.0">
+					<sheet>
+						<separator colspan="4" string="Room" />
+						<group colspan="4" col="4">
+							<field name="name" />
+							<field name="code" />
+							<field name="capacity" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		
+		
 	</data>
 </openerp>

@@ -63,7 +63,7 @@ class op_student(osv.osv):
             'id_number': fields.char(size=64, string='ID Card Number'),
             'photo': fields.binary(string='Photo'),
             'course_id': fields.many2one('op.course', string='Course', required=True),
-            'division_id': fields.many2one('op.division', string='Division'),
+            'division_id': fields.many2one('op.division', string='Division', required=True),
             'batch_id': fields.many2one('op.batch', string='Batch', required=True),
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
             'roll_number_line': fields.one2many('op.roll.number','student_id','Roll Number'),
@@ -88,7 +88,7 @@ class op_student(osv.osv):
             'placement_line': fields.one2many('op.placement.offer', 'student_id', 'Placement Details'),
             'activity_log':fields.one2many('op.activity','student_id', 'Activity Log' ),
             'parent_ids': fields.many2many('op.parent', 'op_parent_student_rel', 'op_parent_id', 'op_student_id', string='Parent'),
-            'gr': fields.char(string="GR Number", size=20),
+            'gr_no': fields.char(string="GR Number", size=20),
     }
 
 

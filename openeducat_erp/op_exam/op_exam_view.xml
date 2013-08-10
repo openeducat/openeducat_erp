@@ -33,14 +33,20 @@
 				<form string="Exam" version="7.0">
 					<header>
 						<span groups="base.group_user">
-							<field name="state" widget="statusbar" statusbar_visible="n,h,s,c"
+							<field name="state" widget="statusbar" statusbar_visible="n,h,s,d,c"
 								statusbar_colors='{"c":"red"}' />
 							<button name="act_held" states="n" type="workflow" string="Held Exam"
 								icon="gtk-go-forward" />
+								
 							<button name="act_schedule" states="h" type="workflow"
 								string="Schedule Exam" icon="gtk-go-forward" />
+								
 							<button name="act_cancel" states="n,h,s" type="workflow"
 								string="Cancel" icon="gtk-go-forward" />
+							
+							<button name="act_done" states="s" type="workflow"
+								string="Done" icon="gtk-convert" />
+							
 							<button name="act_new_exam" states="c" type="workflow"
 								string="New Exam" icon="gtk-convert" />
 						</span>
@@ -160,8 +166,8 @@
 							<field name="start_time" />
 							<field name="end_time" />
 							<field name="course_id" />
-							<field name="batch_id" />
-							<field name="standard_id" />
+							<field name="batch_id" domain="[('course_id', '=', course_id)]" />
+							<field name="standard_id" domain="[('course_id', '=', course_id)]"/>
 							<field name="division_id" />
 							<field name="room_id" />
 							<field name="exam_ids" colspan="4" nolabel="1">

@@ -8,7 +8,8 @@
 			<field name="arch" type="xml">
 				<tree string="Hostel">
 					<field name="name" />
-					<field name="rooms" />
+					<field name="capacity" />
+					<field name="room_lines" />
 				</tree>
 			</field>
 		</record>
@@ -20,10 +21,19 @@
 				<form string="Hostel" version="7.0">
 					<sheet>
 						<separator colspan="4" string="Hostel Details" />
-						<group colspan="4">
+						<group colspan="4" col="4">
 							<field name="name" />
-							<field name="rooms" />
+							<field name="capacity" />
 						</group>
+						<field name="room_lines" >
+							<tree editable="bottom">
+								<field name="name" on_change="onchange_name(name)"/>
+								<field name="students_per_room"/>
+<!-- 								<field name=""/> -->
+<!-- 								<field name=""/> -->
+<!-- 								<field name=""/> -->
+							</tree>
+						</field>
 					</sheet>
 				</form>
 			</field>
@@ -35,11 +45,10 @@
 			<field name="arch" type="xml">
 				<search string="Hostel">
 					<field name="name" />
-					<field name="rooms" />
+					<field name="capacity" />
 					<newline />
 					<group expand="0" string="Group By...">
 						<filter string="Name" domain="[]" context="{'group_by':'name'}" />
-						<filter string="Rooms" domain="[]" context="{'group_by':'rooms'}" />
 					</group>
 				</search>
 			</field>

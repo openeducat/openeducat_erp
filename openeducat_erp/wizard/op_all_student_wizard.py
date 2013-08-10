@@ -26,9 +26,21 @@ class op_all_student_wizard(osv.osv_memory):
     _name = 'op.all.student'
 
     _columns = {
+                'course_id': fields.many2one('op.course', 'Course', readonly=True),
+                'standard_id': fields.many2one('op.standard', 'Standard', readonly=True),
+                'batch_id': fields.many2one('op.batch', 'Batch', readonly=True),
+                'division_id': fields.many2one('op.division', 'Division', readonly=True),
                 'student_ids': fields.many2many('op.student', 'student_student_rel', 'op_student_id', 'student_id', string='Add Student(s)'),
                 }
 
+
+    _defaults = {
+                 'course_id': lambda self,cr,uid,ctx: ctx.get('active_ids', False) and self.pool.get('op.attendance.sheet').browse(cr, uid, ctx['active_ids'][0], context=ctx).register_id.course_id.id or False,
+                 'standard_id': lambda self,cr,uid,ctx: ctx.get('active_ids', False) and self.pool.get('op.attendance.sheet').browse(cr, uid, ctx['active_ids'][0], context=ctx).register_id.course_id.id or False,
+                 'batch_id': lambda self,cr,uid,ctx: ctx.get('active_ids', False) and self.pool.get('op.attendance.sheet').browse(cr, uid, ctx['active_ids'][0], context=ctx).register_id.course_id.id or False,
+                 'division_id': lambda self,cr,uid,ctx: ctx.get('active_ids', False) and self.pool.get('op.attendance.sheet').browse(cr, uid, ctx['active_ids'][0], context=ctx).register_id.course_id.id or False,
+                 
+                 }
     def confirm_student(self, cr, uid, ids, context={}):
         value = {}
         student_pool = self.pool.get("op.student")
