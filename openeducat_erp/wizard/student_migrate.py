@@ -37,6 +37,16 @@ class student_migrate(osv.osv_memory):
                                                 required=True),
                 }
     
+    def _check_from_to_standard(self, cr, uid, ids, context=None):
+        for self_obj in self.browse(cr, uid, ids): 
+            if self_obj.from_standard_id.id == self_obj.to_standard_id.id:
+                return False
+        return True
+    
+    _constraints = [
+        (_check_from_to_standard, 'Student is already in this standard.', ['from_standard_id','Can\'t Move']),
+    ]
+    
     def go_forward(self, cr, uid, ids, context={}):
         standard = self.pool.get("op.standard")
         activity = self.pool.get("op.activity")

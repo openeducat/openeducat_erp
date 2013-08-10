@@ -34,7 +34,7 @@ class op_book_movement(osv.osv):
     _columns = {
             'book_id': fields.many2one('op.book', string='Book', required=True),
             'quantity': fields.integer('No. Of Books', size=256, required=True),
-            'type': fields.selection([('student', 'Student'), ('faculty', 'Faculty')], 'Type', required=True),
+            'type': fields.selection([('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty', required=True),
             'student_id': fields.many2one('op.student', string='Student'),
             'faculty_id': fields.many2one('op.faculty', string='Faculty'),
             'library_card_id': fields.many2one('op.library.card', 'Library Card', required=True),
@@ -48,6 +48,24 @@ class op_book_movement(osv.osv):
     }
 
     _defaults = {'state': 'a'}
+    
+    def _check_date(self, cr, uid, ids, context=None):
+        for self_obj in self.browse(cr, uid, ids):
+            if self_obj.issued_date > self_obj.return_date:
+                return False
+        return True
+    
+    _constraints = [
+        (_check_date, 'Issue Date Should be greater than Return Date.', ['Date']),
+    ]
+    
+    
+    def onchange_book_id(self, cr, uid, ids, book, context=None):
+        res = {}
+        res = {
+               'state': self.pool.get('op.book').browse(cr, uid, book).state
+               }
+        return {'value': res}
     
     def issue_book(self, cr, uid, ids, context={}):
         ''' function to issuing book '''

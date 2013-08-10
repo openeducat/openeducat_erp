@@ -26,6 +26,7 @@ class op_facility(osv.osv):
     _columns = {
             'Name': fields.char(size=16, string='Name', required=True),
             'Code': fields.char(size=4, string='Code', required=True),
+            'hostel_room_id': fields.many2one('op.hostel.room','hostel_room_id', 'Hostel Room')
     }
 
 op_facility()
