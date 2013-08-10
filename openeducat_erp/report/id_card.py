@@ -50,7 +50,7 @@ class op_student(report_sxw.rml_parse):
 
     def get_address(self,student):
         student_data = {}
-        address = student.address and student.address[0] or False
+        address = student.street and student.street[0] or False
         addr = {
                 'street': student.street or '',
                 'street2': student.street2 or '',
@@ -59,23 +59,18 @@ class op_student(report_sxw.rml_parse):
                 'phone': student.phone or '',
                 'email': student.email or '',
                 }
+        print "__________ADDR___________",addr
         return [addr]
 
     def qr_data(self,student):
         student_data = {}
-        address = student.address and student.address[0] or False
+        address = student.street and student.street[0] or False
         student_data = {
                         'name': student.name + ' ' + student.middle_name + ' ' + student.last_name,
                         'roll_number': student.roll_number or '',
                         'blood_group': student.blood_group or '',
                         'course': student.course_id.name,
                         'birth_date': student.birth_date or '',
-#                        'address': '%s %s %s %s %s %s'%(address and address.street or '' ,
-#                                                        address and address.street2 or '',
-#                                                        address and address.city ,
-#                                                        address and address.zip or '' ,
-#                                                        address and address.phone or '' ,
-#                                                        address and address.email or '')
                         'address': '%s %s %s %s %s %s'%(student.street or '',
                                                         student.street2 or '',
                                                         student.city or '',
@@ -84,6 +79,7 @@ class op_student(report_sxw.rml_parse):
                                                         student.email or '',
                                                         )    
                         }
+        print "_______________student_data__________________",student_data
         qr = utils.get_barcode_image(value=student_data, code='QR')
         return qr
 report_sxw.report_sxw('report.op.student.report','op.student', 'addons/openeducat_erp/report/id_card.rml', parser=op_student, header=False)

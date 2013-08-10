@@ -48,6 +48,14 @@
 												<field name="email" />
 											</a>
 										</li>
+										<li t-if="record.category.raw_value">
+											Category:
+											<field name="category" />
+										</li>
+										<li t-if="record.language.raw_value">
+											Language:
+											<field name="language" />
+										</li>
 									</ul>
 								</div>
 							</div>
@@ -90,10 +98,13 @@
 							<h1>
 								<field name="title" placeholder="Title" style="width: 30%%" />
 							</h1>
-							<h1>
-								<field name="name" placeholder="First Name" style="width: 40%%" />
-								<field name="middle_name" placeholder="Middle Name" style="width: 20%%" />
-								<field name="last_name" placeholder="Last Name" style="width: 30%%" />
+							<h1><table>
+								<tr>
+								<td><field name="name" placeholder="First Name" style="padding-right:10px" /></td>
+								<td><field name="middle_name" placeholder="Middle Name" style="padding-right:10px" /></td>
+								<td><field name="last_name" placeholder="Last Name" style="padding-right:10px" /></td>
+								</tr>
+								</table>
 							</h1>
 						</div>
 						<separator colspan="4" string="Basic Information" />

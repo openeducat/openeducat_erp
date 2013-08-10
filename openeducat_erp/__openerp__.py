@@ -20,7 +20,7 @@
 #/#############################################################################
 
 {
-    'name': 'OpenEduCate ERP',
+    'name': 'OpenEduCat ERP',
     'version': '1.0',
     'category': 'Openerp Education',
     "sequence": 3,
@@ -45,11 +45,11 @@
                 * Hostel
 
     """,
-    'author': 'OpenEducat / Tech-Receptives Solutions Pvt. Ltd.',
+    'author': 'Tech-Receptives Solutions Pvt. Ltd.',
     'website': 'http://www.openeducat.org',
     'images': [],
     'depends': ['account',
-                'hr'],
+                'hr','web'],
     'init_xml': [],
     'update_xml': [
         'security/op_security.xml',
@@ -156,6 +156,9 @@
                  'demo/op.period.csv',
                  'demo/op_comapny_data.xml',
                  ],
+    'css': ['static/src/css/base.css'],
+    'qweb': [
+        'static/src/xml/base.xml'],             
     'test': [
              'test/configuration.yml',
              'test/new_admission.yml',
