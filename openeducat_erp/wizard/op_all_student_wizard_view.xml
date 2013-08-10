@@ -13,10 +13,16 @@
 						</span>
 					</header>
 					<sheet>
+						<group col="4">
+							<field name="course_id" />
+							<field name="standard_id" />
+							<field name="batch_id" />
+							<field name="division_id" />
+						</group>
 						<separator string="Add Absent Student(s)" colspan="4" />
 						<group colspan="4">
 							<field name="student_ids" string="Add Absent Student Student(s)"
-								nolabel="1" />
+								nolabel="1" domain="[('course_id','=',course_id),('standard_id','=',standard_id),('batch_id','=',batch_id),('division_id','=',division_id)]"/>
 						</group>
 					</sheet>
 				</form>
