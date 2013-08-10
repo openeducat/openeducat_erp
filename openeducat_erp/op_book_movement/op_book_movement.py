@@ -60,6 +60,13 @@ class op_book_movement(osv.osv):
     ]
     
     
+    def onchange_book_id(self, cr, uid, ids, book, context=None):
+        res = {}
+        res = {
+               'state': self.pool.get('op.book').browse(cr, uid, book).state
+               }
+        return {'value': res}
+    
     def issue_book(self, cr, uid, ids, context={}):
         ''' function to issuing book '''
         book_pool = self.pool.get('op.book')
