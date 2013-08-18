@@ -165,6 +165,7 @@
              'test/new_admission.yml',
              'test/new_faculty.yml'
     ],
+    'images': ['images/Admission_Process.png','images/Course_list.png','images/Faculty_management.png','images/Student_Information.png','images/TimeTable.png'],
     'installable': True,
     'auto_install': False,
     'application': True,
