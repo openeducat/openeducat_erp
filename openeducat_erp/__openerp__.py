@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat ERP',
-    'version': '1.0',
+    'version': '7.1.3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Students, Faculties and Education Institute',
@@ -149,8 +149,6 @@
                  'demo/op.student.csv',
                  'demo/op.faculty.csv',
                  'demo/op.exam.type.csv',
-#                 'demo/op.exam.csv',
-#                 'demo/op.exam.attendees.csv',
                  'demo/res.users.csv',
                  'demo/res.groups.csv',
                  'demo/op.period.csv',
