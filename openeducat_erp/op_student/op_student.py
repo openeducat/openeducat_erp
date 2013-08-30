@@ -63,7 +63,7 @@ class op_student(osv.osv):
             'id_number': fields.char(size=64, string='ID Card Number'),
             'photo': fields.binary(string='Photo'),
             'course_id': fields.many2one('op.course', string='Course', required=True),
-            'division_id': fields.many2one('op.division', string='Division', required=True),
+            'division_id': fields.many2one('op.division', string='Division'),
             'batch_id': fields.many2one('op.batch', string='Batch', required=True),
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
             'roll_number_line': fields.one2many('op.roll.number','student_id','Roll Number'),
