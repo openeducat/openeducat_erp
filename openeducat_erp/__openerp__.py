@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat ERP',
-    'version': '7.1.3',
+    'version': '1.3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Students, Faculties and Education Institute',
