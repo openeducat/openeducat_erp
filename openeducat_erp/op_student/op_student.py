@@ -68,7 +68,7 @@ class op_student(osv.osv):
             'standard_id': fields.many2one('op.standard', string='Standard', required=True),
             'roll_number_line': fields.one2many('op.roll.number','student_id','Roll Number'),
             'partner_id': fields.many2one('res.partner', 'Partner',required=True, ondelete="cascade"),
-            'health_lines': fields.one2many('op.health', 'partner_id', 'Health Detail'),
+            'health_lines': fields.one2many('op.health', 'student_id', 'Health Detail'),
             'roll_number': fields.function(_get_curr_roll_number,
                                 method=True,
                                 string='Current Roll Number',
@@ -110,9 +110,9 @@ class op_student(osv.osv):
             invoice_data = {
                             'partner_id': student.partner_id.id,
                             'date_invoice': time.strftime('%Y-%m-%d'),
-                            'payment_term': student.standard_id and student.standard_id.id or student.course_id and student.course_id.id or False,
+                            'payment_term': student.standard_id.payment_term and student.standard_id.payment_term.id or student.course_id.payment_term and student.course_id.payment_term.id or False,
                             }
-
+            
         invoice_default.update(invoice_data)
         invoice_id = invoice_pool.create(cr, uid, invoice_default, context=context)
         

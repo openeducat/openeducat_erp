@@ -7,7 +7,8 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<tree string="Health">
-					<field name="partner_id" />
+					<field name="student_id" />
+					<field name="faculty_id" />
 					<field name="blood_group" />
 					<field name="height" />
 					<field name="weight" />
@@ -29,7 +30,8 @@
 						<separator colspan="4" string="Health Details" />
 						<div class="oe_title">
 							<h1>
-								<field name="partner_id" placeholder="Name" style="width: 100%%" />
+								<field name="student_id" placeholder="Student Name" style="width: 100%%" />
+								<field name="faculty_id" placeholder="Faculty Name" style="width: 100%%" />
 							</h1>
 						</div>
 						<group colspan="4" col="6">
@@ -82,7 +84,8 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<search string="Health">
-					<field name="partner_id" />
+					<field name="student_id" />
+					<field name="faculty_id" />
 					<field name="blood_group" />
 					<field name="eyeglasses" />
 					<field name="physical_challenges" />
@@ -90,7 +93,7 @@
 					<field name="regular_checkup" />
 					<newline />
 					<group expand="0" string="Group By...">
-						<filter string="Name" domain="[]" context="{'group_by':'partner_id'}" />
+						<filter string="Student Name" domain="[]" context="{'group_by':'student_id'}" />
 						<filter string="Eye Glasses" domain="[]"
 							context="{'group_by':'eyeglasses'}" />
 						<filter string="blood_group" domain="[]"

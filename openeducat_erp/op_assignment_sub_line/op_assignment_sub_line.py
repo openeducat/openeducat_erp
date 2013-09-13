@@ -25,7 +25,7 @@ from datetime import datetime, timedelta
 
 class op_assignment_sub_line(osv.osv):
     _name = 'op.assignment.sub.line'
-
+    _rec_name = 'assignment_id'
     _columns = {
             'assignment_id': fields.many2one('op.assignment', string='Assignment'),
             'student_id': fields.many2one('op.student', string='Student'),
