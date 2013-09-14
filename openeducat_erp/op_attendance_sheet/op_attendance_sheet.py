@@ -47,13 +47,13 @@ class op_attendance_sheet(osv.osv):
         return res
 
     _columns = {
+            'name': fields.char(size=8, string='Name'),    
             'register_id': fields.many2one('op.attendance.register', string='Register', required=True),
             'attendance_date': fields.date(string='Date', required=True),
             'attendance_line': fields.one2many('op.attendance.line', 'attendance_id', string='Attendance Line', required=True),
             'total_present': fields.function(_total_present, string='Total Present', type='integer',method=True),
             'total_absent': fields.function(_total_absent, string='Total Absent', type='integer',method=True),
             'teacher_id': fields.many2one('op.faculty', string='Teacher'),
-            'name': fields.char(size=8, string='Name'),
     }
 
 op_attendance_sheet()

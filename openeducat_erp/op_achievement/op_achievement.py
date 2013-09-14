@@ -22,6 +22,7 @@ from osv import osv, fields
 
 class op_achievement(osv.osv):
     _name = 'op.achievement'
+    _rec_name = 'student_id'
 
     _columns = {
             'student_id': fields.many2one('op.student', string='Student', required=True),

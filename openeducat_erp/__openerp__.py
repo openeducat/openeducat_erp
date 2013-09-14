@@ -48,7 +48,7 @@
     'author': 'Tech-Receptives Solutions Pvt. Ltd.',
     'website': 'http://www.openeducat.org',
     'images': [],
-    'depends': ['account',
+    'depends': ['account_accountant',
                 'hr','web'],
     'init_xml': [],
     'update_xml': [
@@ -149,6 +149,8 @@
                  'demo/op.student.csv',
                  'demo/op.faculty.csv',
                  'demo/op.exam.type.csv',
+#                 'demo/op.exam.csv',
+#                 'demo/op.exam.attendees.csv',
                  'demo/res.users.csv',
                  'demo/res.groups.csv',
                  'demo/op.period.csv',

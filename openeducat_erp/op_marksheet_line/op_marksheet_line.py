@@ -22,7 +22,7 @@ from osv import osv, fields
 
 class op_marksheet_line(osv.osv):
     _name = 'op.marksheet.line'
-    _rec_name = 'marksheet_reg_id'
+    _rec_name = 'student_id'
 #   def _get_total(self, cr, uid, ids, name, args, context=None):
 #       res = {}
 #       for self_obj in self.browse(cr, uid, ids, context=context):

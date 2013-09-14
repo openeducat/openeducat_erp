@@ -31,7 +31,8 @@ class op_attendance_line(osv.osv):
             'course_id':fields.related('student_id', 'course_id',type='many2one',relation='op.course',string='Course',store=True, readonly=True),
             'standard_id': fields.related('student_id', 'standard_id', type='many2one', relation='op.standard', string='Standard', store=True, readonly=True),
             'division_id': fields.related('student_id', 'division_id', type='many2one', relation='op.division', string='Division', store=True, readonly=True),
-            'remark': fields.char(size=256, string="Remark")
+            'remark': fields.char(size=256, string="Remark"),
+            'attendance_date':fields.related('attendance_id','attendance_date',type='date',relation='op.attendance.sheet', string='Date', store=True, readonly=True)
     }
 
 op_attendance_line()

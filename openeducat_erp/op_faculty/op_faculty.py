@@ -45,7 +45,7 @@ class op_faculty(osv.osv):
             'login': fields.related('user_id', 'login', type='char', string='Login', readonly=1),
             'last_login': fields.related('user_id', 'date', type='datetime', string='Latest Connection', readonly=1),
             'timetable_ids':fields.one2many('op.timetable','faculty_id','Time table'),
-            'health_faculty_lines': fields.one2many('op.health', 'partner_id', 'Health Detail'),
+            'health_faculty_lines': fields.one2many('op.health', 'faculty_id', 'Health Detail'),
             'faculty_subject_ids': fields.many2many('op.subject', 'faculty_subject_rel', 'op_faculty_id', 'op_subject_id', string='Subjects'),
     }
 

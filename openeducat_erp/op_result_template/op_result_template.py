@@ -129,6 +129,7 @@ op_result_template()
 
 class op_result_template_line(osv.osv):
     _name = 'op.result.template.line'
+    _rec_name = 'exam_session_id'
     _description = 'Result template Line'
 
     _columns = {

@@ -23,6 +23,7 @@ import time
 
 class op_book_queue(osv.osv):
     _name = 'op.book.queue'
+    _rec_name = 'partner_id'
     
     _description = """ Book Queue Request Detail for Students and Faculties """
     

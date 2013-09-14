@@ -20,7 +20,7 @@
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
 			<field name="search_view_id" ref="view_op_book_movement_search" />
-			<field name="domain">[('state','=','i'),('return_date','&lt;=',(datetime.datetime.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),('return_date','&gt;=',(datetime.datetime.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]</field>
+			<field name="domain">[('state','=','i'),('return_date','&lt;=',(context_today()+datetime.timedelta(days=31)).strftime('%Y-%m-%d')),('return_date','&gt;=',(context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]</field>
 			<field name="context">{'search_default_month':1}</field>
 		</record>
 		<record id="board_libray_form" model="ir.ui.view">

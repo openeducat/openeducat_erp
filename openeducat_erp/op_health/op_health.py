@@ -27,7 +27,8 @@ class op_health(osv.osv):
     _description = """ Health Detail for Students and Faculties """
     
     _columns = {
-            'partner_id': fields.many2one('res.partner', 'Student/Faculty', required=True),
+            'student_id': fields.many2one('op.student', 'Student'),
+            'faculty_id': fields.many2one('op.faculty', 'Faculty'),
             'height': fields.float('Height(C.M.)', required=True),
             'weight': fields.float('weight(K.G.)', required=True),
             'blood_group': fields.selection([('A+','A+ve'),('B+','B+ve'),('O+','O+ve'),\
