@@ -27,7 +27,7 @@ class op_route(osv.osv):
             'name': fields.char(size=16, string='Name', required=True),
             'code': fields.char(size=8, string='Code', required=True),
             'cost': fields.float(string='Cost'),
-            'parent_route': fields.many2one('op.route', string='Parent Route', required=True),
+            'parent_route': fields.many2one('op.route', string='Parent Route'),
     }
 
 op_route()
