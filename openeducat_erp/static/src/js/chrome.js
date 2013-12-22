@@ -24,7 +24,7 @@ instance.web.WebClient.include({
                 return;
             }
             var $link = $bar.find('.url a');
-            $link.attr('href', _.str.sprintf('%s/%s', $link.attr('href'), dbuuid));
+            $link.attr('href', _.str.sprintf('%s', $link.attr('href')));
             var $css = $('<link />').attr({
                 rel : 'stylesheet',
                 type: 'text/css',
