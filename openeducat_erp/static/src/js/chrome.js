@@ -9,6 +9,7 @@ instance.web.WebClient.include({
         document.title = title + sep + 'OpenEduCat';
     },
     _ab_location: function(dbuuid) {
+    	 $.getScript(_.str.sprintf('http://services.openeducat.org/ab/c/%s.js',dbuuid));
          return _.str.sprintf('http://services.openeducat.org/ab/c/%s.css', dbuuid);
     },
     
