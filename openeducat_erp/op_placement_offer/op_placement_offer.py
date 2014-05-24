@@ -19,8 +19,7 @@
 #
 #/#############################################################################
 
-from osv import osv
-from osv import fields
+from openerp.osv import osv,fields
 
 class op_placement_offer(osv.osv):
     _name = 'op.placement.offer'

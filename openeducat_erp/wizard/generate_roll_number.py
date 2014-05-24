@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-from osv import osv, fields
+from openerp.osv import osv, fields
 class generate_roll_number(osv.osv_memory):
     _name = 'generate.roll.number'
     _description = 'Generate Roll Number'

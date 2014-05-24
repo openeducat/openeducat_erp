@@ -21,8 +21,8 @@
 
 import time
 import datetime
-from osv import osv, fields
-from report import report_sxw
+from openerp.osv import osv, fields
+from openerp.report import report_sxw
 
 
 

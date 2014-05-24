@@ -18,8 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-from osv import osv
-from osv import fields
+from openerp.osv import osv,fields
 import time
 class op_result_template(osv.osv):
     _name = 'op.result.template'

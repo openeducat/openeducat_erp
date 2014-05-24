@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-from osv import osv
-from osv import fields
+from openerp.osv import osv,fields
+
 import datetime
 from openerp.addons.openeducat_erp import utils
 week_number  = {

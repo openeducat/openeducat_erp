@@ -18,9 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-from osv import osv, fields
+from openerp.osv import osv, fields
 from datetime import datetime
-from tools.translate import _
+from openerp.tools.translate import _
 
 def days_between(d1, d2):
     d1 = datetime.strptime(d1, "%Y-%m-%d")

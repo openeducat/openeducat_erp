@@ -18,10 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #/#############################################################################
-from osv import osv, fields
-import pooler
+from openerp.osv import osv, fields
 import time
-import netsvc
+from openerp import netsvc
 
 class op_admission(osv.osv):
     _name = 'op.admission'

@@ -19,7 +19,7 @@
 #
 #/#############################################################################
 
-from osv import osv, fields
+from openerp.osv import osv, fields
 
 class book_request_queue(osv.TransientModel):
 

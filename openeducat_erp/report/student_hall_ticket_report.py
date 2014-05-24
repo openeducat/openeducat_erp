@@ -20,11 +20,11 @@
 #/#############################################################################
 
 import time
-from osv import osv
-from report import report_sxw
+from openerp.osv import osv
+from openerp.report import report_sxw
 from datetime import date,datetime
 import datetime
-import netsvc
+from openerp import netsvc
 from openerp.addons.openeducat_erp import utils
 
 class student_hall_ticket_report(report_sxw.rml_parse):

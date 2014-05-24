@@ -19,8 +19,7 @@
 #
 #/#############################################################################
 
-from osv import osv
-from osv import fields
+from openerp.osv import osv,fields
 
 class op_library_card_type(osv.osv):
     _name = 'op.library.card.type'

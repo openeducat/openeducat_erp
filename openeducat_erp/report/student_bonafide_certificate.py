@@ -21,7 +21,7 @@
 
 import time
 from datetime import datetime
-from report import report_sxw
+from openerp.report import report_sxw
 
 class student_bonafide_certificate(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context=None):

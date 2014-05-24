@@ -50,8 +50,7 @@
     'images': [],
     'depends': ['account_accountant',
                 'hr','web'],
-    'init_xml': [],
-    'update_xml': [
+    'data': [
         'security/op_security.xml',
         'op_activity/op_activity_view.xml',
         'op_parent/op_parent_view.xml',
@@ -135,7 +134,7 @@
         
 
     ],
-    'demo_xml': [
+    'demo': [
                  'demo/op.category.csv',
                  'demo/op.course.csv',
                  'demo/op.subject.csv',
@@ -149,10 +148,8 @@
                  'demo/op.student.csv',
                  'demo/op.faculty.csv',
                  'demo/op.exam.type.csv',
-#                 'demo/op.exam.csv',
-#                 'demo/op.exam.attendees.csv',
-                 'demo/res.users.csv',
-                 'demo/res.groups.csv',
+#                  'demo/res.users.csv',
+#                  'demo/res.groups.csv',
                  'demo/op.period.csv',
                  'demo/op_comapny_data.xml',
                  ],

@@ -20,12 +20,12 @@
 #/#############################################################################
 
 import time
-from osv import osv
-from report import report_sxw
-from openeducat_erp import utils
-import pooler
+from openerp.osv import osv
+from openerp.report import report_sxw
+from openerp.addons.openeducat_erp import utils
+from openerp import pooler
 from datetime import date,datetime
-import netsvc
+from openerp import netsvc
 
 class time_table_teacher_generate(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context={}):

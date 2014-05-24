@@ -20,9 +20,9 @@
 #/#############################################################################
 
 import time
-from osv import osv
-from report import report_sxw
-import netsvc
+from openerp.osv import osv
+from openerp.report import report_sxw
+from openerp import netsvc
 
 class admission_analysis_report(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context={}):
