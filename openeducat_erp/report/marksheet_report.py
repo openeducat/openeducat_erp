@@ -22,6 +22,7 @@
 import time
 from datetime import datetime
 from openerp.report import report_sxw
+from openerp.osv import osv
 
 class marksheet_report(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context=None):
@@ -46,8 +47,14 @@ class marksheet_report(report_sxw.rml_parse):
     def get_total(self, marksheet_line):
         total = [x.total_marks for x in marksheet_line.result_line]
         return sum(total)
-     
+    
+class report_marksheet_report(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_marksheet_report'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_marksheet_report'
+    _wrapped_report_class =marksheet_report
+        
 
-report_sxw.report_sxw('report.op.marksheet','op.marksheet.register', 'addons/openeducat_erp/report/marksheet_report.rml', parser=marksheet_report, header=False)
+#report_sxw.report_sxw('report.op.marksheet','op.marksheet.register', 'addons/openeducat_erp/report/marksheet_report.rml', parser=marksheet_report, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

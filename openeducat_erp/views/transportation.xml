@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+		<template id="report_transportation_detail">
+		<style>
+			.font{
+				font-size:14px;
+				font-family:"Helvetica"
+				}
+			@page{
+					size: A4;
+				}
+				
+			 table.center {
+				    width:70%; 
+				    margin-left:10%; 
+				  }
+				  
+			td.spacer{
+					  padding-bottom:5px;
+					}
+					
+					
+					.table.gridtable {
+						font-size:11px;
+						border-width: 1px;
+						border-color: #666666;
+						border-collapse: collapse;
+					}
+					table.gridtable th {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #666666;
+					}
+					table.gridtable td {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #666666;
+					}
+		</style>	
+		
+		<t t-call="report.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="report.external_layout">
+				<div class="font">
+				    <div class="page">
+					     <div class="oe_structure"/>
+			    		 <div class="row" style="padding-left:10px">
+			    				Phone: &#09;
+			    				<span t-esc="res_company.phone"/><br><u>Mail:<span t-esc="res_company.email"/></u></br>
+			    		 </div>
+			    		 <br></br>
+			    		 <br></br>
+				          <div class="row text-center" font-size="18px">
+			                    <Strong>Transport Route Detail</Strong>	
+					      </div>
+					      <br></br>
+					      <table  class="center gridtable">
+		                        <tbody >
+		                            <tr>
+		                                <td class="spacer">
+	                                         <b>Route Name:</b>
+	                                         <span t-raw="'%s &lt;&gt;' % o.name  if o.name  else ''"/>
+		                                </td>
+		                                <td>
+		                                	<b>Cost:</b> 
+		                                	<span t-raw="'%s &lt;&gt;' % o.cost  if o.cost  else ''"/> 
+		                                </td>
+		                              </tr>
+		                              <tr>
+		                                <td class="spacer">
+		                                	<b>From:</b> 
+		                                	<span t-raw="'%s &lt;&gt;' % o.from1  if o.from1  else ''"/> 
+		                                </td>
+		                                <td>
+		                                	<b>To:</b> 
+		                                	<span t-raw="'%s &lt;&gt;' % o.to  if o.to  else ''"/> 
+		                                </td>
+		                              </tr>
+		                             <tr>
+		                             	<td class="spacer">
+		                             		<b>Start Time:</b>
+		                             		<span t-raw="'%s &lt;&gt;' % o.start_time  if o.start_time  else ''"/> 
+		                             	</td>
+		                             	<td>
+		                             		<b>End Time:</b>
+		                             		<span t-raw="'%s &lt;&gt;' % o.end_time  if o.end_time  else ''"/> 
+		                             	</td>
+		                             </tr>
+		                             <tr>
+		                             	<td class="spacer">
+		                             		<b> Vehicle Detail: </b>
+		                             		<span t-raw="'%s &lt;&gt;' % o.vehicle_id.name  if o.vehicle_id.name  else ''"/><br/> 
+		                             		<span t-raw="'%s &lt;&gt;' % o.vehicle_id.reg_number  if o.vehicle_id.reg_number  else ''"/><br/> 
+		                             		<span t-raw="'%s &lt;&gt;' % o.vehicle_id.capacity  if o.vehicle_id.capacity  else ''"/> 
+		                             	</td>
+		                             	<td>
+			                             	<b>Driver Name</b>: 
+			                             	<span t-raw="'%s &lt;&gt;' % o.vehicle_id.partner_id.name  if o.vehicle_id.partner_id.name  else ''"/><br></br> 
+			                             	<b> Address: </b>
+			                             	<span t-raw="'%s &lt;&gt;' %  o.vehicle_id.partner_id.street  if  o.vehicle_id.partner_id.street  else ''"/> 
+			                             	<span t-raw="'%s &lt;&gt;' %  o.vehicle_id.partner_id.street2  if  o.vehicle_id.partner_id.street2  else ''"/> 
+			                             	<span t-raw="'%s &lt;&gt;' %  o.vehicle_id.partner_id.city  if  o.vehicle_id.partner_id.street2  else ''"/> 
+         			                        <span t-raw="'%s &lt;&gt;' %  o.vehicle_id.partner_id.state  if  o.vehicle_id.partner_id.state  else ''"/> 
+			                             	<span t-raw="'%s &lt;&gt;' %  o.vehicle_id.partner_id.zip  if  o.vehicle_id.partner_id.zip  else ''"/>
+			                             </td> 
+		                             </tr> 
+		                        </tbody>
+		                    </table>
+							<br></br>
+							<br></br>	
+							<t t-foreach="o.stop" t-as="obj_stop">
+							<div class="row text-center" font-size="18px" t-if="obj_stop">
+			                    	<strong>Bus Stop Detail </strong>
+					        </div>	 
+					        <br></br>
+		                    <table class="center gridtable">
+		                    	<thead>
+		                    		<th width="20px;" >Sequence</th>
+		                    		<th class="text-center">Stop Name</th>
+		                    	</thead>
+		                        <tbody>
+		                            <tr>
+		                                <td width="20px;">
+		                                	 <span t-raw="'%s &lt;&gt;' % obj_stop.sequence   if obj_stop.sequence   else ''"/> 
+		                                </td>
+		                                <td class="text-left">
+		                                	 <span t-raw="'%s &lt;&gt;' %  obj_stop.name   if  obj_stop.name   else ''"/> 
+		                                </td>
+		                              </tr>
+		                        </tbody>
+		                    </table> 
+		                   </t>
+		                    <br></br>
+							<br></br>	
+							 
+							<div class="row text-center" font-size="18px" t-if="o.student_ids">
+			                    	 <strong> Student Detail</strong>
+					        </div>
+					        <br></br>
+			                    <table class="center gridtable">
+			                    	<thead>
+			                    		<th class="text-center">Student Name</th>
+			                    		<th class="text-center">Course</th>
+			                    		<th class="text-center">Standard</th>
+			                    	</thead>
+			                        <tbody>
+			                        	<t t-foreach="o.student_ids" t-as="obj_student_ids">
+			                            <tr>
+			                                <td class="text-left">
+			                                	 <span t-raw="'%s &lt;&gt;' %  obj_student_ids.name   if  obj_student_ids.name   else ''"/>
+			                                	 <span t-raw="'%s &lt;&gt;' %  obj_student_ids.middle_name   if  obj_student_ids.middle_name   else ''"/> 
+			                                	 <span t-raw="'%s &lt;&gt;' %  obj_student_ids.last_name   if  obj_student_ids.last_name   else ''"/>  
+			                                </td>
+			                                <td class="text-left">
+			                                	 <span t-raw="'%s &lt;&gt;' %  obj_student_ids.course_id.name    if  obj_student_ids.course_id.name    else ''"/> 
+			                                </td>
+			                                 <td class="text-left">
+			                                	 <span t-raw="'%s &lt;&gt;' %   obj_student_ids.standard_id.name     if   obj_student_ids.standard_id.name     else ''"/> 
+			                                </td>
+			                              </tr>
+			                             </t>
+			                        </tbody>
+			                    </table> 
+					   	</div>
+					   	</div>
+					</t>
+			</t>
+		   </t>
+	</template>
+
+</data>
+</openerp>
+

@@ -22,6 +22,7 @@
 import time
 from datetime import datetime
 from openerp.report import report_sxw
+from openerp.osv import osv, fields
 
 class student_bonafide_certificate(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context=None):
@@ -29,8 +30,16 @@ class student_bonafide_certificate(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
         })
+        self.context = context
+    
     
 
-report_sxw.report_sxw('report.student.bonafide.certificate','op.student', 'addons/openeducat_erp/report/student_bonafide_certificate.rml', parser=student_bonafide_certificate, header='external')
+class report_bonafide_certificate(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_bonafide_certificate'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_bonafide_certificate'
+    _wrapped_report_class = student_bonafide_certificate
+    
+#report_sxw.report_sxw('report.student.bonafide.certificate','op.student', 'addons/openeducat_erp/report/student_bonafide_certificate.rml', parser=student_bonafide_certificate, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

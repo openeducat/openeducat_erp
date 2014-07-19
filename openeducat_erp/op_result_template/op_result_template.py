@@ -52,7 +52,6 @@ class op_result_template(osv.osv):
                     total_exam += exam.exam_id.total_marks
 
                     for attd in exam.exam_id.attendees_line:
-                        print "55555555555555%",(exam.weightage/100)*attd.marks,attd.student_id.name
                         result_dict = {
                             'exam_id':exam.exam_id.id,
                             'exam_tmpl_id':exam.id,
@@ -74,7 +73,6 @@ class op_result_template(osv.osv):
 
 
                 total_marks = sum([x[1]['marks'] for x in stu_dict[stu_id]])
-                print '5555555555%',total_marks
                 per = (total_exam and (100/total_exam)*total_marks) or 0.0
                 result = ''
                 pass_flg = True

@@ -25,19 +25,19 @@ from openerp.report import report_sxw
 from openerp import netsvc
 
 class admission_analysis_report(report_sxw.rml_parse):
+    
+    _name = 'report.openeducat_erp.admission_analysis_report'
+    
     def __init__(self, cr, uid, name, context={}):
         super(admission_analysis_report, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'get_date':self.get_date,
             'get_data':self.get_data,
+            'get_total_student': self.get_total_student,
         })
         
-    def get_date(self, data):
-        start_date = data['start_date']
-        end_date = data['end_date']
-        return 'From' + start_date + ' To ' + end_date
-        
+    def get_total_student(self, data):
+        return self.total_student
     def get_data(self, data):
         lst = []
         student_pool = self.pool.get('op.admission')
@@ -49,9 +49,10 @@ class admission_analysis_report(report_sxw.rml_parse):
                                                             order= 'admission_date desc')
         res = {}
         res1 = {}
-        total_student = 0
+        self.total_student = 0
+        print 'student_search',student_search
         for student in student_pool.browse(self.cr, self.uid, student_search):
-            total_student += 1
+            self.total_student += 1
             res = {
                    'name': student.name,
                    'middle_name': student.middle_name,
@@ -60,11 +61,19 @@ class admission_analysis_report(report_sxw.rml_parse):
                    'application_no': student.application_number,
                    }
             lst.append(res)
-        res1['total'] = total_student
-        lst.append(res1)
         return lst
+    
+    
+class report_admission_analysis(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_admission_analysis'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_admission_analysis'
+    _wrapped_report_class = admission_analysis_report
 
-report_sxw.report_sxw('report.admission.analysis', 'op.admission','addons/openeducat_erp/report/admission_analysis_report.rml',
-                      parser=admission_analysis_report, header='external')
+
+
+    
+#report_sxw.report_sxw('report.admission.analysis', 'op.admission','addons/openeducat_erp/report/admission_analysis_report.rml',
+#                      parser=admission_analysis_report, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

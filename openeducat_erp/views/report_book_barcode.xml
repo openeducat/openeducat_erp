@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	<template id="report_book_barcode">
+		<style>
+			.font{
+				font-size:24px;
+				font-family:"Helvetica"
+				}
+			@page{
+					size: A4;
+				}
+				
+			 table.center {
+				    width:70%; 
+				    margin-left:10%; 
+				  }
+				  
+			td.spacer{
+					  padding-bottom:100px;
+					}
+			td.spacer1{
+					  padding-right:320px;
+					}
+		</style>	
+		
+				<t t-call="report.html_container">
+					<div class="font">
+					    <div class="page">
+					          <div class="row text-center">
+				              <h2><u><strong>Book Detail</strong></u></h2>
+						      </div>
+						      <br></br>
+						      <t t-set="render_image" t-value="render_image()"/>
+						      <table t-if="render_image">
+							      <tbody>
+			                            <tr t-foreach="render_image" t-as="line_ids">
+			                                <td class="spacer">
+			                                    <t t-if="line_ids['name']">
+			                                       <h3><b><span t-esc="line_ids['name']"/></b></h3>
+			                                    </t>
+			                                    <br></br><br></br>
+			                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Standard39', line_ids['book'], 500, 60)" style="width:100%;"/>
+			                                </td>
+			                            </tr>
+			                     </tbody>
+		                   </table>
+						</div>
+				</div>
+			</t>
+	</template>
+</data>
+</openerp>
+

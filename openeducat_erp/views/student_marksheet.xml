@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+		<template id="report_marksheet_report">
+		<style>
+			.font{
+				font-size:14px;
+				font-family:"Helvetica"
+				}
+			@page{
+					margin-top:1%;
+					size: A4;
+				}
+				
+			 table.center {
+				    width:70%; 
+				    margin-left:10%; 
+				  }
+			td.spacer{
+					  padding-bottom:5px;
+					  padding-right:200px;
+					}
+					
+			 .table.gridtable {
+						font-size:11px;
+						border-width: 1px;
+						border-color: #cccccc;
+						border-collapse: collapse;
+					}
+					table.gridtable th {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #cccccc;
+						<!-- background-color: #dedede; -->
+					}
+					table.gridtable td {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #cccccc;
+						<!-- background-color: #ffffff; -->
+					}
+    
+		</style>	
+		<t t-call="report.html_container">
+			<t t-call="report.external_layout">
+				 <t t-set="get_lines" t-value="get_lines(docs)"/>
+		 		 <t t-foreach="get_lines" t-as="line">
+				  <div class="font">
+				    <div class="page">
+			    		 <div class="row" style="padding-left:10px">
+			    				Phone: &#09;
+			    				<span t-esc="res_company.phone"/><br><u>Mail:<span t-esc="res_company.email"/></u></br>
+			    		 </div>
+				          <div class="row text-center">
+			                    	<h4><strong>MarkSheet</strong></h4>
+					      </div>
+						      <br></br>
+						       <br></br>
+						        <br></br>
+								      <table class="center">
+					                        <tbody >
+					                            <tr>
+					                                 <td width="18%">
+				                                        <b>Student Name</b>
+				                                      </td>
+				                                     <td class="spacer">
+				                                        :<span t-raw="'%s &lt;&gt;' % line.student_id.name if line.student_id.name else ''"/>
+				                                        <span t-raw="'%s &lt;&gt;' % line.student_id.middle_name if line.student_id.middle_name else ''"/>
+				                                        <span t-raw="'%s &lt;&gt;' % line.student_id.last_name if line.student_id.last_name else ''"/>
+					                                </td>
+					                                <td width="15%">
+					                              			<b>Standard</b>
+					                              	</td>
+					                              	<td>
+					                              		:<span t-raw="'%s &lt;&gt;' %  line.marksheet_reg_id.exam_session_id.standard_id.name if  line.marksheet_reg_id.exam_session_id.standard_id.name else ''"/>
+					                              	</td>
+					                              </tr>
+					                              <tr>	
+				                              			<td width="18%">
+				                              				<b>Course</b>
+				                              			</td>
+				                              			<td class="spacer">
+					                              			:<span t-raw="'%s &lt;&gt;' %  line.marksheet_reg_id.exam_session_id.course_id.name if  line.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
+					                              		</td>
+					                              		<td width="15%">
+					                              			<b>Exam Name</b>
+					                              		</td>
+					                              		<td>
+					                              			:<span t-raw="'%s &lt;&gt;' %   line.marksheet_reg_id.exam_session_id.name if   line.marksheet_reg_id.exam_session_id.name else ''"/>
+					                              		</td>
+					                              </tr>
+				                              	  <tr>
+					                              	<td width="18%">
+					                              			<b>Division</b>
+					                              	</td>
+					                              	<td class="spacer">
+					                              		:<span t-raw="'%s &lt;&gt;' %   line.marksheet_reg_id.exam_session_id.division_id.name if   line.marksheet_reg_id.exam_session_id.division_id.name else ''"/>
+					                              	</td>
+					                              	<td width="15%">
+					                              			<b>Exam Code</b>
+					                              	</td>
+					                              	<td>
+					                              		:<span t-raw="'%s &lt;&gt;' %   line.marksheet_reg_id.exam_session_id.exam_code if   line.marksheet_reg_id.exam_session_id.exam_code else ''"/>
+					                              	</td>
+				                              	 </tr>
+					                        </tbody>
+					                    </table>
+					                    <br></br> <br></br>
+						      			<t t-foreach="line.result_line" t-as="result">
+						                    <table class="gridtable center">
+						                    	<thead class="text-center">
+						                    		<th>Subject</th>
+						                    		<th>Exam Type</th>
+						                    		<th>Total Marks</th>
+						                    		<th>Passing Marks</th>
+						                    		<th>Obtained Marks</th>
+						                    	</thead>
+						                    	
+						                        <tbody >
+						                            <tr>
+						                                <td class="text-left">
+					                                        <span t-raw="'%s &lt;&gt;' % result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
+						                                </td>
+						                                 <td class="text-left">
+					                                        <span t-raw="'%s &lt;&gt;' %  result.exam_id.exam_type.name if  result.exam_id.exam_type.name else ''"/>
+						                                </td>
+						                                 <td class="text-right">
+					                                        <span t-raw="'%s &lt;&gt;' % formatLang(result.exam_id.total_marks) if formatLang(result.exam_id.total_marks) else ''"/>
+						                                </td>
+						                                 <td class="text-right">
+					                                        <span t-raw="'%s &lt;&gt;' %  formatLang(result.exam_id.min_marks) if  formatLang(result.exam_id.min_marks) else ''"/>
+						                                </td>
+						                                 <td class="text-right">
+					                                        <span t-raw="'%s &lt;&gt;' % formatLang(result.marks) if formatLang(result.marks) else ''"/>
+						                                </td>
+						                              </tr>
+						                        </tbody>
+						                    </table>
+						                  </t>
+						                  <br></br>
+						                  <br></br>
+						                  <div style="margin-left:10%">
+						                  	<b>Result Summary</b>
+						                  </div>
+						                  <br></br>
+						                  <table class="gridtable center">
+						                    	<thead class="text-center">
+						                    		<th>Month/ Year Of Passing</th>
+						                    		<th>Obtained Marks/ Total Marks</th>
+						                    		<th>Percentage</th>
+						                    		<th>Result</th>
+						                    	</thead>
+						                    	
+						                        <tbody >
+						                            <tr>
+						                                <td class="text-center">
+					                                        <span t-raw="'%s &lt;&gt;' %  get_date(line.marksheet_reg_id.generated_date) if  get_date(line.marksheet_reg_id.generated_date) else ''"/>
+						                                </td>
+						                                 <td class="text-center">
+					                                        <span t-raw="'%s &lt;&gt;' %  formatLang(line.total_marks) if  formatLang(line.total_marks) else ''"/>/
+					                                        <span t-raw="'%s &lt;&gt;' %  formatLang(get_total(line)) if  formatLang(get_total(line)) else ''"/>
+					                                     </td>
+						                                 <td class="text-center">
+					                                        <span t-raw="'%s &lt;&gt;' %  formatLang(line.total_per)  if  formatLang(line.total_per)  else ''"/> %
+						                                </td>
+						                                 <td class="text-center">
+					                                        <span t-raw="'%s &lt;&gt;' % line.result if line.result else ''"/>
+						                                </td>
+						                              </tr>
+						                        </tbody>
+						                    </table>
+						   		</div>
+						   	</div>
+						  </t>
+					   </t>
+					</t>
+	</template>
+
+</data>
+</openerp>
+

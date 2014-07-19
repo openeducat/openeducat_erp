@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+		<template id="report_exam_student_lable_report">
+		<style>
+			.font{
+				font-size:20px;
+				font-family:"Helvetica"
+				}
+			@page{
+					size: A4;
+				}
+				
+			table.center {
+				    width:80%; 
+				    margin-left:10%; 
+				  }
+				  
+		    table.center1 {
+				    width:80%; 
+				    margin-left:50%; 
+				  }
+			td.spacer{
+					  padding-bottom:5px;
+					}
+			td.spacer1{
+					  padding-right:320px;
+					}
+		    .table.gridtable {
+						font-size:11px;
+						border-width: 1px;
+						border-color: #cccccc;
+						border-collapse: collapse;
+					}
+					table.gridtable th {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #cccccc;
+					}
+					table.gridtable td {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #cccccc;
+					}
+					
+		</style>	
+		
+		<t t-call="report.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="report.external_layout">
+				<div class="font">
+				    <div class="page">
+				       <img t-if="res_company.logo" t-att-src="'data:image/png;base64,%s' % res_company.logo" width="380" hight="880"/>
+				       		<para> <font color="white"> ......</font></para>
+	                    	<para><font color="white">......</font></para>
+	                    	<para><font color="white">......</font></para>
+	                    	<para><font color="white">......</font></para>
+	                    	<para><font color="white">......</font></para>
+	                    	<table class ="center1">
+	                    		<tr>
+	                    			<td><h2> <b><span t-field= 'res_company.name'/></b></h2></td>
+	                    		</tr>
+	                    	</table>
+	                    	   <div class="row text-center">
+			                    	<h2><strong>Seating Arrangement for Student Examination</strong></h2>
+					          </div>
+	                    	<para> <font color="white"> ......</font></para>
+	                    	<para><font color="white">......</font></para>
+				    		<t t-foreach="get_student_data(o.exam_session_ids)" t-as="s">
+					     		<table class="center">
+			                        <tbody>
+			                            <tr>
+			                                <td class="spacer1">
+			                                	<b>Course : </b> <span t-esc="s['course']"/>
+			                                </td>
+			                                <td>
+			                                	   <b>Standard :</b> <span t-esc="s['standard']"/>
+			                                </td>
+			                              </tr>
+			                        </tbody>
+			                    </table> 
+			                    <para> <font color="white"> ......</font></para>
+		                    	<para><font color="white">......</font></para>
+		                    	<table class="gridtable center">
+		                   	 	<tbody>
+                                 <tr t-foreach="s['line']" t-as="ss">
+                                	<td>
+                                        <span t-esc="ss['1'] and ss['1']['student']"/>
+                                        <br><span t-esc="ss['1']['course']"/>-<span t-esc="ss['1']['std']"/></br>
+                                        <br>Roll No :<span t-esc="ss['1']['roll_number']"/></br>
+                                    </td>
+                                	<td>
+                                         <span t-esc="ss['2'] and ss['2']['student']"/>
+                                        <br><span t-esc="ss['2']['course']"/>-<span t-esc="ss['2']['std']"/></br>
+                                        <br>Roll No :<span t-esc="ss['2']['roll_number']"/></br>
+                                    </td>
+                                    <td>
+                                         <span t-if = "ss['3']['student']"><span t-esc="ss['3'] and ss['3']['student']"/></span>
+                                        <br><span t-esc="ss['3']['course']"/>-<span t-esc="ss['3']['std']"/></br>
+                                        <br>Roll No :<span t-esc="ss['3']['roll_number']"/></br>
+                                    </td>
+                                  </tr>
+                              </tbody>
+		                   	</table>
+			                  	<!-- <t t-foreach="s['line']" t-as="ss">
+				                  	<table class="gridtable center">
+				                  		<td>                
+				                  			<span t-if="ss['1']">
+				                  			<table>
+				                  				<tr><td><span t-esc="ss['1']['student']"/></td></tr>
+				                  				<tr><td><span t-esc="ss['1']['course']" />-<span t-esc="ss['1']['std']"/></td></tr>
+				                  				<tr><td><span t-esc="ss['1']['roll_number']" /></td></tr>
+				                  			</table>
+				                  			</span>
+				                  		</td>
+				                  		<td>
+				                  			<span t-if="ss['2']">
+				                  			<table>
+				                  				<tr><td><span t-esc="ss['2']['student']" /></td></tr>
+				                  				<tr><td><span t-esc="ss['2']['course']"/>-<span t-esc="ss['2']['std']"/></td></tr>
+				                  				<tr><td><span t-esc="ss['2']['roll_number']" /></td></tr>
+				                  			</table>
+				                  			</span>
+				                  		</td>
+				                  		<td>
+				                  			<span t-if="ss['3']">
+				                  			<table>
+				                  				<tr><td><span t-esc="ss['3']['student']" /></td></tr>
+				                  				<tr><td><span t-esc="ss['3']['course']" /></td></tr>
+				                  				<tr><td><span t-esc="ss['3']['roll_number']" /></td></tr>
+				                  			</table>
+				                  			</span>
+				                  		</td>
+				                  	</table>
+				                </t> -->
+		               		</t>
+				    </div>
+				   </div>
+				</t>
+		     </t>
+	     </t>
+</template>
+</data>
+</openerp>

@@ -2,30 +2,149 @@
 <openerp>
 	<data>
 		<!-- Report Menus -->
-		<report auto="False" id="report_op_book_barcode" model="op.book"
+		<!-- <report auto="False" id="report_op_book_barcode" model="op.book"
 			name="op.book.barcode" rml="openeducat_erp/report/book_barcode.rml"
-			string="Book Barcode" groups="openeducat_erp.group_op_library" />
+			string="Book Barcode" groups="openeducat_erp.group_op_library" /> -->
+		<!-- 	
 		<report auto="False" id="report_op_student" model="op.student"
 			name="op.student.report" rml="openeducat_erp/report/id_card.rml"
-			string="Student IDcard" usage="default" groups="openeducat_erp.group_op_back_office_admin" />
-		<report auto="False" id="report_op_marksheet" model="op.marksheet.register"
+			string="Student IDcard" usage="default" groups="openeducat_erp.group_op_back_office_admin" /> -->
+			
+			
+	<!-- 	<report auto="False" id="report_op_marksheet" model="op.marksheet.register"
 			name="op.marksheet" rml="openeducat_erp/report/marksheet_report.rml"
-			string="MarkSheet" usage="default" />
+			string="MarkSheet" usage="default" /> -->
+		<!-- 	
 		<report auto="False" id="report_op_library" model="op.student"
 			name="op.library.report" rml="openeducat_erp/report/library_card.rml"
-			string="Library Card" usage="default" groups="openeducat_erp.group_op_back_office_admin" />
+			string="Library Card" usage="default" groups="openeducat_erp.group_op_back_office_admin" /> -->
 
-		<report auto="False" id="report_op_exam_student_lable" model="op.exam.res.allocation"
+		<!-- <report auto="False" id="report_op_exam_student_lable" model="op.exam.res.allocation"
 			name="op.exam.student.lable" rml="openeducat_erp/report/exam_student_lable.rml"
 			string="Print Student Lable" usage="default" />
-
-		<report auto="False" id="report_op_transportation" model="op.transportation"
+ -->
+		<!-- <report auto="False" id="report_op_transportation" model="op.transportation"
 			name="op.transport.detail.report" rml="openeducat_erp/report/transport_detail.rml"
-			string="Transportation Detail" usage="default" />
+			string="Transportation Detail" usage="default" /> -->
 		
-		<report auto="False" id="report_student_bonafide_certificate"
+		<!-- <report auto="False" id="report_student_bonafide_certificate"
 			model="op.student" name="student.bonafide.certificate"
 			rml="openeducat_erp/report/student_bonafide_certificate.rml" string="Bonafide Certificate"
-			usage="default" groups="openeducat_erp.group_op_back_office_admin" />
+			usage="default" groups="openeducat_erp.group_op_back_office_admin" /> -->
+			
+			
+		<report 
+            id="report_student_id"
+            string="Student IdCard"
+            model="op.student" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_student_idcard" 
+            name="openeducat_erp.report_student_idcard" 
+        /> 
+        
+         <report 
+            id="report_library_id"
+            string="Library IdCard"
+            model="op.student" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_library_idcard" 
+            name="openeducat_erp.report_library_idcard" 
+        /> 
+        
+        <report 
+            id="report_student_label"
+            string="Student Label"
+            model="op.exam.res.allocation" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_exam_student_lable_report" 
+            name="openeducat_erp.report_exam_student_lable_report" 
+        /> 
+        	
+			
+         <report 
+            id="report_bonafide_certificate_1"
+            string="Bonafide Certificate"
+            model="op.student" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_bonafide_certificate" 
+            name="openeducat_erp.report_bonafide_certificate" 
+        /> 
+        
+         <report 
+            id="report_book_barcode_1"
+            string="Book Barcode"
+            model="op.book" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_book_barcode" 
+            name="openeducat_erp.report_book_barcode" 
+        /> 
+        
+        <report 
+            id="report_marksheet_1"
+            string="Marksheet"
+            model="op.marksheet.register" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_marksheet_report" 
+            name="openeducat_erp.report_marksheet_report" 
+        /> 
+        
+         
+        <report 
+            id="report_transportation_1"
+            string="Transport Detail"
+            model="op.transportation" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_transportation_detail" 
+            name="openeducat_erp.report_transportation_detail" 
+        /> 
+        
+        
+        <report 
+            id="action_report_report_admission_analysis" 
+            model="admission.analysis" 
+            string="Admission Analysis"
+            report_type="qweb-pdf"
+            name="openeducat_erp.report_admission_analysis" 
+            file="openeducat_erp.report_admission_analysis"
+            menu="False"
+            auto="False"
+        />
+        
+        <report 
+            id="action_student_hall_ticket_report" 
+            model="op.exam.session" 
+            string="Student Hall Ticket"
+            report_type="qweb-pdf"
+            name="openeducat_erp.report_ticket" 
+            file="openeducat_erp.report_ticket"
+            menu="False"
+            auto="False"
+        />
+        
+        <report 
+            id="report_teacher_timetable_generate"
+            string="Generate TimeTable"
+            model="op.timetable" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_time_table_teacher_generate" 
+            name="openeducat_erp.report_time_table_teacher_generate" 
+            menu="False"
+            auto="False"
+        /> 
+        
+         <report 
+            id="report_student_timetable_generate"
+            string="Generate TimeTable"
+            model="op.timetable" 
+            report_type="qweb-pdf"
+            file="openeducat_erp.report_time_table_student_generate" 
+            name="openeducat_erp.report_time_table_student_generate"
+            menu="False"
+            auto="False" 
+        /> 
+        
+			
+			
+			
 	</data>
 </openerp>

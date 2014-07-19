@@ -1,0 +1,95 @@
+<openerp>
+<data>
+		<template id="report_time_table_student_generate">
+		<style>
+			.font{
+				font-size:18px;
+				font-family:"Helvetica"
+				}
+			@page{
+					size: A4;
+				}
+				
+			table.center {
+				    width:80%; 
+				    margin-left:10%; 
+				  }
+				  
+			 td.spacer1{
+					  padding-right:320px;
+					}
+			.table.gridtable {
+						font-size:11px;
+						border-width: 1px;
+						border-color: #cccccc;
+						border-collapse: collapse;
+					}
+					table.gridtable th {
+						border-width: 1px;
+						padding: 10px;
+						border-style: solid;
+						border-color: #cccccc;
+						<!-- background-color: #dedede; -->
+					}
+					table.gridtable td {
+						border-width: 1px;
+						padding: 10px;
+						border-style: solid;
+						border-color: #cccccc;
+						<!-- background-color: #ffffff; -->
+					}
+				
+		</style>	
+		
+		<t t-call="report.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="report.external_layout">
+				<div class="font">
+					<div class="page">
+							<div class="row text-center">
+	                    			<h2> <b><span t-field= 'res_company.name'/></b></h2>
+	                    		</div>
+	                    	   <div class="row text-center">
+			                    	<h2><strong>Time Table</strong></h2>
+					          </div>
+							 <para> <font color="white"> ......</font></para>
+	                    	 <para><font color="white">......</font></para>
+							<table class="center">
+		                        <tbody>
+		                            <tr>
+		                                <td class="spacer1">
+		                                	<b>Class: </b> <span t-esc="data['standard_id'][1]"/> 
+		                                </td>
+		                                <td>
+		                                	   <b>Division:</b> <span t-esc="data['division_id'][1]"/>
+		                                </td>
+		                              </tr>
+		                        </tbody>
+		                    </table> 
+							<para> <font color="white"> ......</font></para>
+	                    	<para><font color="white">......</font></para>
+	                    	<div class="row text-center">
+		                                	<b>From Date: </b> <span t-esc="data['start_date']"/>  <b>To Date:</b> <span t-esc="data['end_date']"/>
+		                     </div>
+                    	  <table class="gridtable center">
+                           		  <tr t-foreach="get_object(data)" t-as="a">
+                           		  	<td> <span t-raw="'%s &lt;&gt;' %  a['name'] if  a['name']  else ''"/> </td>
+                           		    <td><span t-esc="a['line'].get('1',{'subject':''})['subject']"/></td>
+                           		    <td><span t-esc="a['line'].get('2',{'subject':''})['subject']"/></td>
+                           		    <td><span t-esc="a['line'].get('3',{'subject':''})['subject']"/></td>
+                           		    <td><span t-esc="a['line'].get('4',{'subject':''})['subject']"/></td>
+                           		    <td><span t-esc="a['line'].get('5',{'subject':''})['subject']"/></td>
+                           		    <td><span t-esc="a['line'].get('6',{'subject':''})['subject']"/></td>
+                           		    <td><span t-esc="a['line'].get('7',{'subject':''})['subject']"/></td>
+                           		    
+                           		  </tr>
+                         </table>
+                    </div>
+                </div>
+            </t>
+         </t>
+       </t>
+</template>
+</data>
+</openerp>
+    

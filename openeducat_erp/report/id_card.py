@@ -59,7 +59,6 @@ class op_student(report_sxw.rml_parse):
                 'phone': student.phone or '',
                 'email': student.email or '',
                 }
-        print "__________ADDR___________",addr
         return [addr]
 
     def qr_data(self,student):
@@ -79,9 +78,15 @@ class op_student(report_sxw.rml_parse):
                                                         student.email or '',
                                                         )    
                         }
-        print "_______________student_data__________________",student_data
         qr = utils.get_barcode_image(value=student_data, code='QR')
         return qr
-report_sxw.report_sxw('report.op.student.report','op.student', 'addons/openeducat_erp/report/id_card.rml', parser=op_student, header=False)
+    
+class report_student_idcard(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_student_idcard'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_student_idcard'
+    _wrapped_report_class = op_student 
+    
+#report_sxw.report_sxw('report.op.student.report','op.student', 'addons/openeducat_erp/report/id_card.rml', parser=op_student, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

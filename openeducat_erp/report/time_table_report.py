@@ -75,7 +75,10 @@ class time_table_generate(report_sxw.rml_parse):
 
         return final_list
 
-report_sxw.report_sxw('report.time.table.report', 'op.timetable','addons/openeducat_erp/report/time_table_report.rml',
-                      parser=time_table_generate, header=False)
+class report_time_table_student_generate(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_time_table_student_generate'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_time_table_student_generate'
+    _wrapped_report_class = time_table_generate
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

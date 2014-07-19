@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	<template id="report_admission_analysis">
+	
+	<style>
+			.font{
+				font-size:14px;
+				font-family:"Helvetica"
+				}
+			@page{
+					margin-top:1%;
+					size: A4;
+				}
+				
+			 table.center {
+				    width:96%; 
+				  }
+			td.spacer{
+					  padding-right:570px;
+					}
+					
+			 .table.gridtable {
+						font-size:11px;
+						border-width: 1px;
+						border-color: #cccccc;
+						border-collapse: collapse;
+					}
+					table.gridtable th {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #cccccc;
+						<!-- background-color: #dedede; -->
+					}
+					table.gridtable td {
+						border-width: 1px;
+						padding: 8px;
+						border-style: solid;
+						border-color: #cccccc;
+						<!-- background-color: #ffffff; -->
+					}
+    
+		</style>	
+		
+	   <t t-call="report.html_container">
+	   		<t t-call="report.external_layout">
+				<div class="font">
+				    <div class="page">
+			    		 <div class="row" style="padding-left:10px">
+			    				Phone: &#09;
+			    				<span t-esc="res_company.phone"/><br><u>Mail:<span t-esc="res_company.email"/></u></br>
+			    		 </div>
+				          <div class="row text-center">
+			                    	<h4><strong>Admission Analysis</strong></h4>
+					      </div>
+				           <div class=" text-center">
+					            <b>From </b>
+					            <span t-raw="'%s &lt;&gt;' %  formatLang(data['start_date'], date=True) if  formatLang(data['start_date'], date=True) else ''"/>
+					            <b> To </b>
+					            <span t-raw="'%s &lt;&gt;' %   formatLang(data['end_date'], date=True) if   formatLang(data['end_date'], date=True)  else ''"/>
+					       </div>
+	                    <table>
+	                        <tbody >
+	                            <tr>
+	                                <td class="spacer">
+	                                	<b>Course : </b>
+                                        <span t-raw="'%s &lt;&gt;' % data['course_id'][1] if data['course_id'][1] else ''"/>
+	                                </td>
+	                                 <td>
+	                                 <b>Standard : </b>
+                                        <span t-raw="'%s &lt;&gt;' %  data['standard_id'][1] if  data['standard_id'][1] else ''"/>
+	                                </td>
+	                              </tr>
+	                        </tbody>
+	                    </table>
+	                    <para> <font color="white"> ......</font></para>
+	                    <para><font color="white">......</font></para>
+	                    <para><font color="white">......</font></para>
+	                    <para style="P2"><font color="white"> </font></para>
+		                    <table class="gridtable center">
+		                    	<thead>
+		                    		<th class="text-left">Student Name</th>
+		                    		<th class="text-center">Category</th>
+		                    		<th class="text-center">Application No.</th>
+		                    	</thead>
+		                        
+		                        <tbody >
+		                            <tr t-foreach="get_data(data)" t-as="o">
+		                                <td class="text-left">
+		                                	<span t-esc="o['name']"/>
+	                                        <span t-raw="'%s &lt;&gt;' %  o['middle_name'] if  o['middle_name']  else ''"/>
+	                                        <span t-raw="'%s &lt;&gt;' %   o['last_name']  if  o['last_name']  else ''"/> 
+		                                </td>
+		                                 <td class="text-left">
+	                                        <span t-raw="'%s &lt;&gt;' %  o['category'] if o['category'] else ''"/>
+		                                </td>
+		                                <td class="text-left">
+	                                        <span t-raw="'%s &lt;&gt;' %   o['application_no']  if   o['application_no']   else ''"/>
+		                                </td>
+		                              </tr>
+		                        </tbody>
+		                    </table>
+		                     <table class="center">
+		                        <tbody>
+		                            <tr>
+		                                <td >
+		                                	<font color="white">........</font>
+		                                </td>
+		                              </tr>
+		                              <tr>
+		                                <td >
+		                                	<font color="white">........</font>
+		                                </td>
+		                              </tr>
+		                        </tbody>
+		                    </table> 
+	                   	     Total Number Of Students :<span t-esc="get_total_student(data)"/>
+				   </div>   
+	        </div>
+	    </t>
+	    </t>
+	</template>
+
+</data>
+</openerp>

@@ -92,6 +92,9 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Faculty" version="7.0">
+				<header>
+					<button name="create_employee" string="Create Employee" groups="base.group_user" type="object"/>
+				</header>
 					<sheet>
 						<field name="photo" widget="image" class="oe_left oe_avatar" />
 						<div class="oe_title">
@@ -134,6 +137,7 @@
 										options='{"always_reload": True}' />
 									<field name="category" />
 									<field name="visa_info" />
+									<field name='emp_id' />
 								</group>
 								<field colspan="4" name="child_ids" nolabel="1" select="1"
 									height="260">

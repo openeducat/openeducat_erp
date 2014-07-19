@@ -1,0 +1,114 @@
+<openerp>
+<data>
+		<template id="report_time_table_teacher_generate">
+		<style>
+			.font{
+				font-size:18px;
+				font-family:"Helvetica"
+				}
+			@page{
+					size: A4;
+				}
+				
+			td.a {
+     				 border-style:solid black; 
+     				 border-width:3px; 
+     				 border-color:#000000; 
+     				 padding: 10px;
+				}
+			td.b {
+					border-style:solid black; 
+     				border-width:3px; 
+     				border-color:#333333; 
+     				padding:10px;
+				}
+			 .table.gridtable {
+						font-size:11px;
+						border-color: #cccccc;
+						border-collapse: collapse;
+					}
+					table.gridtable th {
+						border-style: solid;
+						border-color: #cccccc;
+						padding-bottom: 10px;
+						padding-top: 14px;
+						padding-right: 50px;
+					    padding-left: 50px;
+					}
+					table.gridtable td {
+						border-style: solid;
+						border-color: #cccccc;
+						padding-bottom: 10px;
+						padding-top: 14px;
+						padding-right: 50px;
+					    padding-left: 50px;
+					}
+				  
+		</style>	
+		
+		<t t-call="report.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="report.external_layout">
+				<div class="font">
+					<div class="page">
+						<div class="row text-center">
+	                    	<h2> <b><span t-field= 'res_company.name'/></b></h2>
+	                     </div>
+	                      <div class="row text-center">
+			                   <h2><strong> Faculty Time Table</strong></h2>
+					       </div>
+					        <para> <font color="white"> ......</font></para>
+	                    	<para><font color="white">......</font></para>
+	                    	<div class="row text-center">
+								<b>From Date: </b> <span t-esc="data['start_date']"/>  <b>To Date:</b> <span t-esc="data['end_date']"/>
+							</div>
+							  <para> <font color="white"> ......</font></para>
+	                    	  <para><font color="white">......</font></para>
+	                          <para><font color="white">......</font></para>
+	                          <div class="text-left">
+                        			<b>Faculty Name :</b> <span t-esc="get_full_name(data)"/>
+                   			 </div>
+                   			  <para><font color="white">......</font></para>
+	                          <para><font color="white">......</font></para>
+	                          <para><font color="white">......</font></para>
+	                           <table class="gridtable center">
+		                    	<thead>
+		                    		<th class="text-left">PERIOD </th>
+		                    		<th class="text-center">   MON </th>
+		                    		<th class="text-center">   TUES </th>
+                           		    <th class="text-center">   WED </th>
+		                    		<th class="text-center">   THUR </th>
+		                    		<th class="text-center">   FRI </th>
+		                    		<th class="text-center">   SAT </th>
+		                    		<th class="text-center">   SUN </th>
+		                    	</thead>
+                    	      <tbody>
+                    	      	<tr t-foreach="get_object(data)" t-as="a">
+                    	      		<td class="text-left"><span t-raw="'%s &lt;&gt;' %  a['name'] if  o['name']  else ''"/></td> 
+                    	      		<td class="text-left"><span t-esc="a['line'].get('Monday',{'standard':''})['standard'] ]] [[ a['line'].get('Monday',{'course':''})['course'] ]] [[ a['line'].get('Monday',{'subject':''})['subject']"/></td>
+                           		    <td class="text-left"><span t-esc="a['line'].get('Tuesday',{'standard':''})['standard'] ]] [[ a['line'].get('Tuesday',{'course':''})['course'] ]] [[ a['line'].get('Tuesday',{'subject':''})['subject']"/></td>
+                           		    <td class="text-left"><span t-esc="a['line'].get('Wednesday',{'standard':''})['standard'] ]] [[ a['line'].get('Wednesday',{'course':''})['course'] ]] [[ a['line'].get('Wednesday',{'subject':''})['subject']"/></td>
+                           		    <td class="text-left"><span t-esc="a['line'].get('Thursday',{'standard':''})['standard'] ]] [[ a['line'].get('Thursday',{'course':''})['course'] ]] [[ a['line'].get('Thursday',{'subject':''})['subject']"/></td>
+                           		    <td class="text-left"><span t-esc="a['line'].get('Friday',{'standard':''})['standard'] ]] [[ a['line'].get('Friday',{'course':''})['course'] ]] [[ a['line'].get('Friday',{'subject':''})['subject']"/></td>
+                           		    <td class="text-left"><span t-esc="a['line'].get('Saturday',{'standard':''})['standard'] ]] [[ a['line'].get('Saturday',{'course':''})['course'] ]] [[ a['line'].get('Saturday',{'subject':''})['subject']"/></td>
+                           		    <td class="text-left"><span t-esc="a['line'].get('Sunday',{'standard':''})['standard'] ]] [[ a['line'].get('Sunday',{'course':''})['course'] ]] [[ a['line'].get('Sunday',{'subject':''})['subject']"/></td>
+                            	</tr>
+                             </tbody>
+                        </table>
+                     </div>
+                 </div>
+             </t>
+          </t>
+       </t>
+</template>
+</data>
+</openerp>
+                  
+                           	
+                    	    
+                         
+                           		 
+                           	
+                           		
+                           		
+                     

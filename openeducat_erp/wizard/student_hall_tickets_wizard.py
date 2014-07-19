@@ -32,13 +32,8 @@ class student_hall_ticket(osv.osv_memory):
                 
                 }
     
-    def print_report(self, cr, uid, ids, context={}):
-        
-        data = self.read(cr, uid, ids, ['exam_session_id'])
-        return {
-                'type': 'ir.actions.report.xml',
-                'report_name': 'student.hall.ticket',
-                'datas': data[0],
-        }
+    def print_report(self, cr, uid, ids,data,context=None):
+        data.update( self.read(cr, uid, ids, ['exam_session_id'])[0])
+        return self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_ticket', data=data, context=context)
 
 student_hall_ticket()

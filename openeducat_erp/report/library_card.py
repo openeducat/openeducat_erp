@@ -31,5 +31,11 @@ class op_library(report_sxw.rml_parse):
             'time': time,
 
             })
+        
+class report_library_idcard(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_library_idcard'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_library_idcard'
+    _wrapped_report_class = op_library 
 
-report_sxw.report_sxw('report.op.library.report','op.student', 'addons/openeducat_erp/report/library_card.rml', parser=op_library, header=False)
+#report_sxw.report_sxw('report.op.library.report','op.student', 'addons/openeducat_erp/report/library_card.rml', parser=op_library, header=False)

@@ -20,12 +20,12 @@
 #/#############################################################################
 
 import time
-from openerp.osv import osv
+from openerp.osv import osv,fields
 from openerp.report import report_sxw
 from datetime import date,datetime
-import datetime
 from openerp import netsvc
 from openerp.addons.openeducat_erp import utils
+import pytz
 
 class student_hall_ticket_report(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context={}):
@@ -34,20 +34,30 @@ class student_hall_ticket_report(report_sxw.rml_parse):
             'time': time,
             'get_data':self.get_data,
         })
-        
+        self.context = context
+         
+         
     def get_date(self, exam_line):
-        start_time = exam_line.start_time[10:]
-        end_time = exam_line.end_time[10:]
-        return start_time[:6]+ ' To ' +end_time[:6]
+        
+        context = self.context
+        local = pytz.timezone (context.get('tz'))
+        start_time = exam_line.start_time
+        end_time = exam_line.end_time
+        
+        schedule_start = datetime.strptime(exam_line.start_time,"%Y-%m-%d %H:%M:%S")
+        schedule_end = datetime.strptime(exam_line.end_time,"%Y-%m-%d %H:%M:%S")
+        
+        schedule_start = fields.datetime.context_timestamp(self.cr, self.uid, schedule_start, context=context).strftime("%Y-%m-%d %H:%M:%S")
+        
+        schedule_end = fields.datetime.context_timestamp(self.cr, self.uid, schedule_end, context=context).strftime("%Y-%m-%d %H:%M:%S")
+        
+        return schedule_start[11:] + ' To ' +schedule_end[11:]
         
     
     def get_subject(self, datas):
         exam = self.pool.get('op.exam')
         lst = []
         for exam_line in datas['exam_ids']:
-#            dt_st = utils.server_to_local_timestamp(exam_line.start_time.strftime("%Y-%m-%d ") + per_time, "%Y-%m-%d %H:%M:%S",
-#                                     "%Y-%m-%d %H:%M:%S",'GMT',server_tz = context.get('tz','GMT'),)
-#            print "________dt_st____________",dt_st
             temp_exam = exam.browse(self.cr, self.uid, exam_line)
             res1 = {
                     'subject': exam_line.subject_id.name,
@@ -58,7 +68,7 @@ class student_hall_ticket_report(report_sxw.rml_parse):
             lst.append(res1)
         return lst
     
-    def get_data(self, data):
+    def get_data(self,data):
         final_lst = []
         exam_session_pool = self.pool.get('op.exam.session')
         exam_student = self.pool.get('op.student')
@@ -80,7 +90,11 @@ class student_hall_ticket_report(report_sxw.rml_parse):
             final_lst.append(res)
         return final_lst
 
-report_sxw.report_sxw('report.student.hall.ticket', 'op.exam.session','addons/openeducat_erp/report/student_hall_ticket_report.rml',
-                      parser=student_hall_ticket_report, header=False)
+class report_ticket(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_ticket'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_ticket'
+    _wrapped_report_class = student_hall_ticket_report
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

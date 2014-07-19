@@ -2,7 +2,7 @@
 #/#############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -131,7 +131,17 @@
         'op_exam/op_exam_workflow.xml',
         'op_admission/op_admission_workflow_view.xml',
         'res_company/res_company.xml',
-        
+        'views/report_admission_analysis.xml',
+        'views/report_bonafide_certificate.xml',
+        'views/report_book_barcode.xml',
+        'views/student_marksheet.xml',
+        'views/transportation.xml',
+        'views/student_idcard.xml',
+        'views/library_idcard.xml',
+        'views/report_ticket.xml',
+        'views/student_label.xml',
+        'views/report_time_table_teacher_generate.xml',
+        'views/generate_timetable_student.xml',
 
     ],
     'demo': [

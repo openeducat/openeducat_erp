@@ -22,6 +22,7 @@
 import time
 from datetime import datetime
 from openerp.report import report_sxw
+from openerp.osv import osv
 
 class exam_student_lable_report(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context=None):
@@ -77,6 +78,13 @@ class exam_student_lable_report(report_sxw.rml_parse):
             ret_list.append({'course': line.course_id.name, 'standard': line.standard_id.name, 'line': self.format_list(temp_list)})
         return ret_list
 
-report_sxw.report_sxw('report.op.exam.student.lable','op.exam.res.allocation', 'addons/openeducat_erp/report/exam_student_lable.rml', parser=exam_student_lable_report, header=False)
+
+class report_exam_student_lable_report(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_exam_student_lable_report'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_exam_student_lable_report'
+    _wrapped_report_class = exam_student_lable_report
+
+#report_sxw.report_sxw('report.op.exam.student.lable','op.exam.res.allocation', 'addons/openeducat_erp/report/exam_student_lable.rml', parser=exam_student_lable_report, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

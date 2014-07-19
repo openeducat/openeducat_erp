@@ -32,6 +32,10 @@ class op_transportation_detail(report_sxw.rml_parse):
 
             })
 
-report_sxw.report_sxw('report.op.transport.detail.report',
-                      'op.transportation', 'addons/openeducat_erp/report/transport_detail.rml', 
-                      parser=op_transportation_detail, header='external')
+
+class report_transportation_detail(osv.AbstractModel):
+    _name = 'report.openeducat_erp.report_transportation_detail'
+    _inherit = 'report.abstract_report'
+    _template = 'openeducat_erp.report_transportation_detail'
+    _wrapped_report_class = op_transportation_detail
+        

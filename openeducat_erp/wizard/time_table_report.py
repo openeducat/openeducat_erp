@@ -19,7 +19,7 @@
 #
 #/#############################################################################
 from openerp.osv import osv,fields
-
+from openerp.tools.translate import _
 import datetime
 import time
 week_number  = {
@@ -76,20 +76,9 @@ class time_table_report(osv.osv_memory):
             data[0].update({'teacher_time_table_ids': teacher_time_table_ids})
         
         if data[0]['state'] == 's' :
-            value = {
-                    'type': 'ir.actions.report.xml',
-                    'report_name': 'time.table.report',
-                    'datas': data[0],
-                    }
-            return value
+            return  self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_time_table_student_generate', data=data[0], context=context)
         elif data[0]['state'] == 't':
-            value = {
-                    'type': 'ir.actions.report.xml',
-                    'report_name': 'time.table.teacher.report',
-                    'datas': data[0],
-                    }
-            return value
-
+            return self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_time_table_teacher_generate', data=data[0], context=context)
 time_table_report()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

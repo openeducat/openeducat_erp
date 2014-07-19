@@ -19,7 +19,6 @@
 #
 #/#############################################################################
 from openerp.osv import osv, fields
-#from datetime import datetime, timedelta
 from datetime import datetime
 
 class op_exam_session(osv.osv):
@@ -61,6 +60,28 @@ op_exam_session()
 class op_exam(osv.osv):
     _name = 'op.exam'
 
+    def _get_total_marks(self, cr, uid, ids, field_name, arg, context={}):
+        res = {}
+        for self_obj in self.browse(cr, uid, ids, context=context):
+            res[self_obj.id] = 0.00
+            total_mark = 0.00
+            if self_obj.exam_line:
+                for line in self_obj.exam_line:
+                    total_mark += line.total_marks
+                res[self_obj.id] = total_mark
+        
+        return res
+    
+    def _get_total_passing_mark(self, cr, uid, ids, field_name, arg, context={}):
+        res = {}
+        for self_obj in self.browse(cr, uid, ids, context=context):
+            res[self_obj.id] = 0.00
+            total_pass = 0.00
+            if self_obj.exam_line:
+                for line in self_obj.exam_line:
+                    total_pass += line.min_marks
+                res[self_obj.id] = total_pass
+        return res
     _columns = {
             'session_id':fields.many2one('op.exam.session','Exam Session'),
             'subject_id': fields.many2one('op.subject', string='Subject', required=True),

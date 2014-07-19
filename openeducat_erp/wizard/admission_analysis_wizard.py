@@ -38,13 +38,13 @@ class admission_analysis(osv.osv_memory):
                  'start_date': time.strftime('%Y-%m-01'),
             }
     
-    def print_report(self, cr, uid, ids, context={}):
-        
-        data = self.read(cr, uid, ids, ['course_id', 'standard_id', 'start_date', 'end_date'])
-        return {
-                'type': 'ir.actions.report.xml',
-                'report_name': 'admission.analysis',
-                'datas': data[0],
-        }
+    
+    def print_report(self, cr, uid, ids, data, context=None):
+        if context is None:
+            context = {}
+        data.update(self.read(cr, uid, ids, ['course_id', 'standard_id', 'start_date', 'end_date'])[0])
+        return self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_admission_analysis', data=data, context=context)
+    
+    
 
 admission_analysis()
