@@ -50,7 +50,6 @@ class admission_analysis_report(report_sxw.rml_parse):
         res = {}
         res1 = {}
         self.total_student = 0
-        print 'student_search',student_search
         for student in student_pool.browse(self.cr, self.uid, student_search):
             self.total_student += 1
             res = {
