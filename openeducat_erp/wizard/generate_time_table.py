@@ -22,6 +22,8 @@ from openerp.osv import osv,fields
 
 import datetime
 from openerp.addons.openeducat_erp import utils
+import pytz
+
 week_number  = {
     'Mon': 1,
     'Tue': 2,
@@ -41,7 +43,7 @@ class generate_time_table(osv.osv_memory):
         'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division',  required=True),
         'time_table_lines':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
-        'time_table_lines_1':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', 1)], required=True),
+        'time_table_lines_1':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '1')], required=True),
         'time_table_lines_2':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '2')], required=True),
         'time_table_lines_3':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '3')], required=True),
         'time_table_lines_4':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', domain=[('day', '=', '4')], required=True),
@@ -59,13 +61,13 @@ class generate_time_table(osv.osv_memory):
             if line.period_id.am_pm == 'pm' and int(hour) != 12:
                 hour = int(hour)+12
             per_time = '%s:%s:00'%(hour,line.period_id.minute)
-            dt_st = utils.server_to_local_timestamp(curr_date.strftime("%Y-%m-%d ") + per_time, "%Y-%m-%d %H:%M:%S",
-                                     "%Y-%m-%d %H:%M:%S",
-                                                    'GMT',
-                                     server_tz = context.get('tz','GMT'),
-
-                                     )
-            curr_date = datetime.datetime.strptime(dt_st, "%Y-%m-%d %H:%M:%S")
+            user = self.pool.get('res.users').browse(cr, uid, uid)
+            local = pytz.timezone (user.partner_id.tz or 'GMT')
+            naive = datetime.datetime.strptime (curr_date.strftime("%Y-%m-%d ") +per_time,"%Y-%m-%d %H:%M:%S")
+            local_dt = local.localize(naive, is_dst=None)
+            utc_dt = local_dt.astimezone (pytz.utc)
+            utc_dt = utc_dt.strftime("%Y-%m-%d %H:%M:%S")
+            curr_date = datetime.datetime.strptime(utc_dt, "%Y-%m-%d %H:%M:%S")
             end_time = datetime.timedelta(hours=line.period_id.duration)
             cu_en_date = curr_date + end_time
             a = time_pool.create(cr, uid, {
