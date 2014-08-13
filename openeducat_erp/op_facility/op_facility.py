@@ -22,7 +22,7 @@ from openerp.osv import osv, fields
 
 class op_facility(osv.osv):
     _name = 'op.facility'
-
+    _rec_name = 'Name'
     _columns = {
             'Name': fields.char(size=16, string='Name', required=True),
             'Code': fields.char(size=4, string='Code', required=True),
