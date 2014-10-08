@@ -95,6 +95,7 @@
         'op_author/op_author_view.xml',
         'op_exam_type/op_exam_type_view.xml',
         'op_facility/op_facility_view.xml',
+        "op_faculty/hr_view.xml",
         'op_scholarship/op_scholarship_view.xml',
         'op_scholarship_type/op_scholarship_type_view.xml',
         'op_roll_number/op_roll_number_view.xml',
@@ -167,7 +168,7 @@
     'css': ['static/src/css/base.css'],
     'qweb': [
         'static/src/xml/base.xml'],
-    'js': ['static/src/js/chrome.js'],        
+    'js': ['static/src/js/chrome.js'],
     'test': [
              'test/configuration.yml',
              'test/new_admission.yml',
