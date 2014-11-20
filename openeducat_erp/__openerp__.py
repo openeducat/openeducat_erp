@@ -49,7 +49,7 @@
     'website': 'http://www.openeducat.org',
     'images': [],
     'depends': ['account_accountant',
-                'hr','web'],
+                'hr','web','website'],
     'data': [
         'security/op_security.xml',
         'op_activity/op_activity_view.xml',
@@ -143,7 +143,8 @@
         'views/student_label.xml',
         'views/report_time_table_teacher_generate.xml',
         'views/generate_timetable_student.xml',
-        'views/openeducat_template.xml'
+        'views/openeducat_template.xml',
+        'views/homepage_template.xml',
 
     ],
     'demo': [
