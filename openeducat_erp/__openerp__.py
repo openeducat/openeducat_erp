@@ -72,6 +72,7 @@
         'op_transportation/op_transportation_view.xml',
         'op_book_movement/op_book_movement_view.xml',
         'op_book_queue/op_book_queue_view.xml',
+        'op_book_queue/op_book_queue_sequence.xml',
         'op_placement_offer/op_placement_offer_view.xml',
         'op_marksheet_register/op_marksheet_register_view.xml',
         'op_classroom/op_classroom_view.xml',

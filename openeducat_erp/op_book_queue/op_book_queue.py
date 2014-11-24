@@ -25,9 +25,20 @@ class op_book_queue(osv.osv):
     _name = 'op.book.queue'
     _rec_name = 'partner_id'
     
+    def copy(self, cr, uid, id, default=None, context=None):
+        if not default:
+            default = {}
+        default.update({
+            'state':'request',
+            'name': self.pool.get('ir.sequence').get(cr, uid, 'op.book.queue'),
+        })
+        return super(op_book_queue, self).copy(cr, uid, id, default, context=context)
+    
+    
     _description = """ Book Queue Request Detail for Students and Faculties """
     
     _columns = {
+            'name':fields.char("Sequence No",readonly=True),
             'partner_id': fields.many2one('res.partner', 'Student/Faculty', required=True),
 #            'book_id': fields.many2one('op.book', 'Book', required=True),
             'book_ids': fields.many2many('op.book', 'op_queue_book_rl', 'op_book_id', 'op_queue_id', 'Book'),
@@ -37,7 +48,10 @@ class op_book_queue(osv.osv):
                                        ('reject','Reject')], 'Status'),
     }
 
-    _defaults = {'state': 'request'}
+    _defaults = {
+                 'state': 'request',
+                 'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'op.book.queue'),
+                 }
 
     def do_reject(self, cr, uid, ids, context={}):
         self.write(cr, uid, ids, {'state': 'reject'})
