@@ -28,16 +28,19 @@ class op_book_queue(osv.osv):
     _description = """ Book Queue Request Detail for Students and Faculties """
     
     _columns = {
+            'name':fields.char("Sequence No",readonly=True,copy=False),
             'partner_id': fields.many2one('res.partner', 'Student/Faculty', required=True),
-#            'book_id': fields.many2one('op.book', 'Book', required=True),
-            'book_ids': fields.many2many('op.book', 'op_queue_book_rl', 'op_book_id', 'op_queue_id', 'Book'),
+            'book_id': fields.many2one('op.book', 'Book', required=True),
             'date_from': fields.date('From Date', required=True),
             'date_to': fields.date('To Date', required=True),
             'state': fields.selection([('request','Request'),('accept','Accept'),\
-                                       ('reject','Reject')], 'Status'),
+                                       ('reject','Reject')], 'Status',copy=False),
     }
 
-    _defaults = {'state': 'request'}
+    _defaults = {
+                 'state': 'request',
+                 'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'op.book.queue'),
+                 }
 
     def do_reject(self, cr, uid, ids, context={}):
         self.write(cr, uid, ids, {'state': 'reject'})
