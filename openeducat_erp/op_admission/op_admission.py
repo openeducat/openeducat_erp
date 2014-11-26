@@ -175,6 +175,13 @@ class op_admission(osv.osv):
             }
         self.write(cr,uid,ids,{'state':'done'})
         return value
-
+        
+    def create_student_invoice(self, cr, uid, ids, context={}):
+        this_obj = self.browse(cr, uid, ids[0], context)
+        a=self.pool.get('op.student').create_invoice(cr,uid,this_obj.student_id.id, context=context)
+        print "a____________________",a
+        self.write(cr,uid,ids,{'state':'done'})
+        return True
+    
 op_admission()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

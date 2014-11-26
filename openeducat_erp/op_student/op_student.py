@@ -115,7 +115,7 @@ class op_student(osv.osv):
             
         invoice_default.update(invoice_data)
         invoice_id = invoice_pool.create(cr, uid, invoice_default, context=context)
-        
+        self.write(cr, uid, ids, {'invoice_ids': [(4, invoice_id)]}, context=context)
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_form')
         tree_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_tree')
@@ -133,5 +133,29 @@ class op_student(osv.osv):
                 'nodestroy': True
             }
         return value
+    
+    def action_view_invoice(self, cr, uid, ids, context=None):
+        '''
+        This function returns an action that display existing invoices of given student ids and show a invoice"
+        '''
+        mod_obj = self.pool.get('ir.model.data')
+        act_obj = self.pool.get('ir.actions.act_window')
+
+        result = mod_obj.get_object_reference(cr, uid, 'account', 'action_invoice_tree1')
+        id = result and result[1] or False
+        result = act_obj.read(cr, uid, [id], context=context)[0]
+        #compute the number of invoices to display
+        inv_ids = []
+        for so in self.browse(cr, uid, ids, context=context):
+            inv_ids += [invoice.id for invoice in so.invoice_ids]
+        #choose the view_mode accordingly
+        if len(inv_ids)>1:
+            result['domain'] = "[('id','in',["+','.join(map(str, inv_ids))+"])]"
+        else:
+            res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_form')
+            result['views'] = [(res and res[1] or False, 'form')]
+            result['res_id'] = inv_ids and inv_ids[0] or False
+        return result
+    
 op_student()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
