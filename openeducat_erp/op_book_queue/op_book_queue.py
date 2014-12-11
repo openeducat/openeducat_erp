@@ -38,10 +38,16 @@ class op_book_queue(osv.osv):
     }
 
     _defaults = {
-                 'state': 'request',
-                 'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'op.book.queue'),
+                'state': 'request',
+                'name': '/',
                  }
-
+    def create(self, cr, uid, vals, context=None):
+        if context is None:
+            context = {}
+        if vals.get('name', '/') == '/':
+            vals['name'] = self.pool.get('ir.sequence').get(cr, uid, 'op.book.queue') or '/'
+        return super(op_book_queue, self).create(cr, uid, vals, context=context)
+    
     def do_reject(self, cr, uid, ids, context={}):
         self.write(cr, uid, ids, {'state': 'reject'})
         return True
