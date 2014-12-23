@@ -89,6 +89,7 @@ class op_student(osv.osv):
             'activity_log':fields.one2many('op.activity','student_id', 'Activity Log' ),
             'parent_ids': fields.many2many('op.parent', 'op_parent_student_rel', 'op_parent_id', 'op_student_id', string='Parent'),
             'gr_no': fields.char(string="GR Number", size=20),
+            'invoice_exists':fields.boolean('Invoice'),
     }
 
 
@@ -115,7 +116,7 @@ class op_student(osv.osv):
             
         invoice_default.update(invoice_data)
         invoice_id = invoice_pool.create(cr, uid, invoice_default, context=context)
-        self.write(cr, uid, ids, {'invoice_ids': [(4, invoice_id)]}, context=context)
+        self.write(cr, uid, ids, {'invoice_ids': [(4, invoice_id)],'invoice_exists':True}, context=context)
         models_data = self.pool.get('ir.model.data')
         form_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_form')
         tree_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_tree')
