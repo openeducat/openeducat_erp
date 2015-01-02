@@ -28,7 +28,19 @@ class wizard_op_student(osv.osv):
     
     _name = 'wizard.op.student'
     _description = "Create User the selected Students"
-
+    
+    def _get_students(self, cr, uid, context=None):
+        if not context:
+            context = {}
+            
+        if context and context.get("active_ids"):
+            return context.get("active_ids")
+        return []
+    
+    _columns = {
+               'student_ids': fields.many2many('op.student', 'ref_student_user_wiz', "student_id", "user_id", "Students"),
+        }
+            
     def create_user(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -54,6 +66,10 @@ class wizard_op_student(osv.osv):
                 user_id = self.pool.get('res.users').create(cr, uid, user_default, context=context)
                 student_pool.write(cr, uid, [stud.id], {'user_id': user_id}, context=context)
         return {'type': 'ir.actions.act_window_close'}
+    
+    _defaults = {
+                 'student_ids' : _get_students,
+                 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
         
