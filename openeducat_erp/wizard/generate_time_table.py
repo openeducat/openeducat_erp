@@ -40,6 +40,7 @@ class generate_time_table(osv.osv_memory):
     _rec_name = 'standard_id'
 
     _columns = {
+        'course_id': fields.many2one('op.course', 'Course', required=True),
         'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division',  required=True),
         'time_table_lines':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
