@@ -56,6 +56,18 @@ class op_assignment(osv.osv):
     def act_finish(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'f'})
         return True
+    
+    def read(self, cr, uid, ids, fields='value', context=None, load='_classic_read'):
+        print "__op_assignment_____read_____ids____",cr
+        print "__op_assignment_____read_____ids____",ids
+        print "__op_assignment_____read_____fields____",fields
+        res = super(op_assignment, self).read(cr, uid, ids, fields=fields, context=context, load=load)
+        for r in res:
+            print "res===========",r
+#             if r.has_key('name'):
+#                 r['name'] = '***' + r['name']
+#                 print " r['name']========",r['name']
+        return res
 
 
 op_assignment()

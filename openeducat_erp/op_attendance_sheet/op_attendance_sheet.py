@@ -55,6 +55,10 @@ class op_attendance_sheet(osv.osv):
             'total_absent': fields.function(_total_absent, string='Total Absent', type='integer',method=True),
             'teacher_id': fields.many2one('op.faculty', string='Teacher'),
     }
-
+    
+    def read(self, cr, uid, ids, fields=None, context=None, load='_classic_read'):
+        print "__op_attendance_sheet_____read_____ids____",ids
+        print "__op_attendance_sheet_____read_____fields____",fields
+        return super(op_attendance_sheet, self).read(cr, uid, ids, fields=fields, context=context, load=load)
 op_attendance_sheet()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

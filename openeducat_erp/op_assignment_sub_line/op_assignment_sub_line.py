@@ -60,6 +60,17 @@ class op_assignment_sub_line(osv.osv):
     def act_reject(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'r'})
         return True
+    
+    def read(self, cr, uid, ids, fields=None, context=None, load='_classic_read'):
+        print "__op_assignment_sub_line_____read_____ids____",ids
+        print "__op_assignment_sub_line_____read_____fields____",fields
+        res = super(op_assignment_sub_line, self).read(cr, uid, ids, fields=fields, context=context, load=load)
+        for r in res:
+            print "Assignment====subline=======",r
+#             if r.has_key('name'):
+#                 r['name'] = '***' + r['name']
+#                 print " r['name']========",r['name']
+        return res
 
 op_assignment_sub_line()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
