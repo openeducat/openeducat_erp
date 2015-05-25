@@ -29,7 +29,7 @@ class op_book_queue(osv.osv):
     
     _columns = {
             'name':fields.char("Sequence No",readonly=True,copy=False),
-            'partner_id': fields.many2one('res.partner', 'Student/Faculty', required=True),
+            'partner_id': fields.many2one('res.partner', 'Student/Faculty', required=False),
             'book_id': fields.many2one('op.book', 'Book', required=True),
             'date_from': fields.date('From Date', required=True),
             'date_to': fields.date('To Date', required=True),
