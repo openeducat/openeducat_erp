@@ -61,8 +61,8 @@
 		<record model="ir.rule" id="student_self_assignment_rule_id">
 			<field name="name">Student Self Assignment</field>             
 			<field name="model_id" ref="model_op_assignment"/>
-			<!-- <field name="domain_force">[('allocation_ids', 'in', user.user_line[0].id)]</field> -->
-			<field name="domain_force">[('id','in', [x.id for x in user.user_line[0].allocation_ids])]</field>
+			<field name="domain_force">[('allocation_ids', 'in', user.user_line[0].id)]</field>
+			<!-- <field name="domain_force">[('id','in', [x.id for x in user.user_line[0].allocation_ids])]</field> -->
 			<field name="groups" eval="[(4, ref('openeducat_erp.group_op_student'))]"/>
 		</record>
 	</data>

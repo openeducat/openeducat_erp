@@ -19,6 +19,7 @@
 #
 #/#############################################################################
 from openerp.osv import osv, fields
+from openerp import tools
 
 class res_company(osv.osv):
     _inherit = "res.company"
@@ -35,6 +36,11 @@ class res_users(osv.osv):
                 'parent_ids':fields.one2many('op.parent','user_id','Parents'),
                 'user_line': fields.one2many('op.student', 'user_id', 'User Line')
                 }
+    
+    @tools.ormcache(skiparg=2)
+    def has_group(self, cr, uid, group_ext_id,context=None):
+         return super(res_users ,self).has_group(cr, uid, group_ext_id)
+     
 res_users()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

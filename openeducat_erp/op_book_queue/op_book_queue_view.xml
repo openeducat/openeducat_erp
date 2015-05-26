@@ -9,7 +9,7 @@
 				<tree string="Book Queue Request">
 					<!-- <field name="book_id"/> -->
 					<field name='name'/>
-					<field name="partner_id" />
+					<field name="user_id" />
 					<field name="date_from" />
 					<field name="date_to" />
 					<field name="state" />
@@ -46,11 +46,10 @@
 							<field name="name"/>
 						</div>
 						<group colspan="4" col="4">
-								<field name="partner_id" placeholder="Name" />
+								<field name="user_id" placeholder="Name" />
 								<field name="book_id" placeholder="Book"/>
 								<field name="date_from" />
 								<field name="date_to" />
-								<field name="user_id"></field>
 						</group>
 						</div>
 					</sheet>
@@ -64,14 +63,14 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<search string="Book Queue Request">
-					<field name="partner_id" />
+					<field name="user_id" />
 					<field name="date_from" />
 					<field name="date_to" />
 					<field name="state" />
 					<newline />
 					<group expand="0" string="Group By...">
 						<!--<filter string="Book" domain="[]" context="{'group_by':'book_id'}"/> -->
-						<filter string="Partner" domain="[]" context="{'group_by':'partner_id'}" />
+						<filter string="Partner" domain="[]" context="{'group_by':'user_id'}" />
 						<filter string="Status" domain="[]" context="{'group_by':'state'}" />
 					</group>
 				</search>
