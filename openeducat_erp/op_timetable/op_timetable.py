@@ -62,14 +62,6 @@ class op_timetable(osv.osv):
         'type': fields.selection([('Monday', 'Monday'),('Tuesday', 'Tuesday'),('Wednesday', 'Wednesday'),('Thursday', 'Thursday'),('Friday', 'Friday'),('Saturday', 'Saturday')], 'Days'),
     }
     
-    def read(self, cr, uid, ids, fields='value', context=None, load='_classic_read'):
-        print "__op_timetable_____read_____ids____",ids
-        print "__op_timetable_____read_____fields____",fields
-        res = super(op_timetable, self).read(cr, uid, ids, fields=fields, context=context, load=load)
-#         print "res===============",res
-#         for r in res:
-#             print "res===========",r
-        return res
 
 op_timetable()
 

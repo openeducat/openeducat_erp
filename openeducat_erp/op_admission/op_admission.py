@@ -178,8 +178,7 @@ class op_admission(osv.osv):
         
     def create_student_invoice(self, cr, uid, ids, context={}):
         this_obj = self.browse(cr, uid, ids[0], context)
-        a=self.pool.get('op.student').create_invoice(cr,uid,this_obj.student_id.id, context=context)
-        print "a____________________",a
+        self.pool.get('op.student').create_invoice(cr,uid,this_obj.student_id.id, context=context)
         self.write(cr,uid,ids,{'state':'done'})
         return True
     

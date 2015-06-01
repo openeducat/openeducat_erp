@@ -32,11 +32,6 @@ class op_attendance_register(osv.osv):
             'division_id': fields.many2one('op.division', string='Division', required=True),
             'subject_id': fields.many2one('op.subject', string='Subject'),
     }
-    
-    def read(self, cr, uid, ids, fields=None, context=None, load='_classic_read'):
-        print "__op_attendance_register_____read_____ids____",ids
-        print "__op_attendance_register_____read_____fields____",fields
-        return super(op_attendance_register, self).read(cr, uid, ids, fields=fields, context=context, load=load)
 
 op_attendance_register()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

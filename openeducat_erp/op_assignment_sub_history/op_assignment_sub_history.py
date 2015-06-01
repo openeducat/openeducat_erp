@@ -30,11 +30,6 @@ class op_assignment_sub_history(osv.osv):
             'change_date': fields.datetime(string='Submission Date'),
             'faculty_id': fields.many2one('op.faculty','Faculty'),
     }
-    
-    def read(self, cr, uid, ids, fields=None, context=None, load='_classic_read'):
-        print "__op_assignment_sub_history_____read_____ids____",ids
-        print "__op_assignment_sub_history_____read_____fields____",fields
-        return super(op_assignment_sub_history, self).read(cr, uid, ids, fields=fields, context=context, load=load)
 
 op_assignment_sub_history()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

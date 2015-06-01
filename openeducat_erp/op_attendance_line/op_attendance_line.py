@@ -35,10 +35,6 @@ class op_attendance_line(osv.osv):
             'attendance_date':fields.related('attendance_id','attendance_date',type='date',relation='op.attendance.sheet', string='Date', store=True, readonly=True)
     }
     
-    def read(self, cr, uid, ids, fields=None, context=None, load='_classic_read'):
-        print "__op_attendance_line_____read_____ids____",ids
-        print "__op_attendance_line_____read_____fields____",fields
-        return super(op_attendance_line, self).read(cr, uid, ids, fields=fields, context=context, load=load)
 
 op_attendance_line()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
