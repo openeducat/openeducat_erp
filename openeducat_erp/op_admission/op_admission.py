@@ -133,6 +133,10 @@ class op_admission(osv.osv):
         self.write(cr,uid,ids,{'state':'s', 'student_id': new_student, 'nbr': 1})
         return True
 
+    def fee_paid(self, cr, uid, ids, context=None):
+        self.write(cr,uid,ids,{'state':'d'})
+        return True
+    
     def confirm_rejected(self, cr, uid, ids, context=None):
         self.write(cr,uid,ids,{'state':'r'})
         return True
