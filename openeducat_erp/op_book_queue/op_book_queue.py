@@ -29,7 +29,7 @@ class op_book_queue(osv.osv):
     
     _columns = {
             'name':fields.char("Sequence No",readonly=True,copy=False),
-            'partner_id': fields.many2one('res.partner', 'Student/Faculty', required=False),
+            'partner_id': fields.many2one('res.partner', 'Student/Faculty'),
             'book_id': fields.many2one('op.book', 'Book', required=True),
             'date_from': fields.date('From Date', required=True),
             'date_to': fields.date('To Date', required=True),
@@ -40,8 +40,8 @@ class op_book_queue(osv.osv):
 
     _defaults = {
                  'state': 'request',
-                 'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'op.book.queue'),
-                  'user_id': lambda obj, cr, uid, context: uid,
+                 'name': '/',
+                 'user_id': lambda obj, cr, uid, context: uid,
                  }
     def create(self, cr, uid, vals, context=None):
         if context is None:

@@ -27,7 +27,7 @@ import pytz
 week_number  = {
     'Mon': 1,
     'Tue': 2,
-    'Web': 3,
+    'Wed': 3,
     'Thu': 4,
     'Fri': 5,
     'Sat': 6,
@@ -40,6 +40,7 @@ class generate_time_table(osv.osv_memory):
     _rec_name = 'standard_id'
 
     _columns = {
+        'course_id': fields.many2one('op.course', 'Course', required=True),
         'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division',  required=True),
         'time_table_lines':fields.one2many('gen.time.table.line','gen_time_table','Time Table Lines', required=True),
@@ -73,6 +74,7 @@ class generate_time_table(osv.osv_memory):
             a = time_pool.create(cr, uid, {
                         'faculty_id':line.faculty_id.id,
                         'subject_id':line.subject_id.id,
+                        'course_id':self_obj.course_id.id,
                         'standard_id':self_obj.standard_id.id,
                         'period_id':line.period_id.id,
                         'division_id':self_obj.division_id.id,

@@ -48,7 +48,7 @@
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'images': [],
-    'depends': ['account_accountant',
+    'depends': ['account_accountant','document'
                 'hr','web','website'],
     'data': [
         'security/op_security.xml',
@@ -86,6 +86,7 @@
         'wizard/return_book_view.xml',
         'wizard/student_hall_tickets_wizard_view.xml',
         'wizard/admission_analysis_wizard_view.xml',
+        'wizard/wizard_op_student_view.xml',
         'op_book/op_book_view.xml',
         'op_batch/op_batch_view.xml',
         'op_marksheet_line/op_marksheet_line_view.xml',

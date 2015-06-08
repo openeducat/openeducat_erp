@@ -30,4 +30,5 @@ import student_hall_tickets_wizard
 import student_attendance_report
 import admission_analysis_wizard
 import student_migrate
+import op_all_student_user
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

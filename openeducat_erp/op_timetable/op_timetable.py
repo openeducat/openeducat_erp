@@ -53,6 +53,7 @@ class op_timetable(osv.osv):
         'period_id': fields.many2one('op.period', 'Period', required=True),
         'start_datetime':fields.datetime('Start', required=True),
         'end_datetime':fields.datetime('End', required=True),
+        'course_id': fields.many2one('op.course', string='Course', required=False),
         'faculty_id': fields.many2one('op.faculty', 'Faculty', required=True),
         'standard_id': fields.many2one('op.standard', 'Standard', required=True),
         'division_id': fields.many2one('op.division', 'Division', required=True),
