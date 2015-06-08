@@ -48,7 +48,7 @@
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'images': [],
-    'depends': ['account_accountant','document'
+    'depends': ['account_accountant','document',
                 'hr','web','website'],
     'data': [
         'security/op_security.xml',
@@ -150,6 +150,8 @@
 
     ],
     'demo': [
+                 'demo/res.users.csv',
+                 'demo/res.groups.csv',
                  'demo/op.category.csv',
                  'demo/op.course.csv',
                  'demo/op.subject.csv',
@@ -163,8 +165,6 @@
                  'demo/op.student.csv',
                  'demo/op.faculty.csv',
                  'demo/op.exam.type.csv',
-                'demo/res.users.csv',
-                'demo/res.groups.csv',
                  'demo/op.period.csv',
                  'demo/op_comapny_data.xml',
                  'demo/op.book.queue.csv',
