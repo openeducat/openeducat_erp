@@ -114,20 +114,16 @@ class op_admission(osv.osv):
                     'standard_id': field.standard_id and field.standard_id.id or False,
                     'religion': field.religion_id and field.religion_id.id or False,
                     'photo': field.photo or False,
-                    'gr': gr,
-                    'address':[(0,0,{
-                                     'name': field.name or False,
-                                     'type': 'invoice',
-                                     'title': field.title and field.title.id or False,
-                                     'street': field.street or False,
-                                     'street2': field.street2 or False,
-                                     'phone': field.phone or False,
-                                     'mobile': field.mobile or False,
-                                     'zip': field.zip or False,
-                                     'city': field.city or False,
-                                     'country_id': field.country_id and field.country_id.id or False,
-                                     'state_id': field.state_id and field.state_id.id or False,
-                                     })]
+                    'gr_no': gr,
+                    'title': field.title and field.title.id or False,
+                    'street': field.street or False,
+                    'street2': field.street2 or False,
+                    'phone': field.phone or False,
+                    'mobile': field.mobile or False,
+                    'zip': field.zip or False,
+                    'city': field.city or False,
+                    'country_id': field.country_id and field.country_id.id or False,
+                    'state_id': field.state_id and field.state_id.id or False,
                     }
         new_student = student_pool.create(cr, uid, vals, context=context)
         self.write(cr,uid,ids,{'state':'s', 'student_id': new_student, 'nbr': 1})
