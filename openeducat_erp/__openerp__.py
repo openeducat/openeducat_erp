@@ -168,6 +168,9 @@
                  'demo/op.period.csv',
                  'demo/op_comapny_data.xml',
                  'demo/op.book.queue.csv',
+                 'demo/op.assignment.csv',
+                 'demo/op_timetable_data.xml',
+                 'demo/op.assignment.sub.line.csv',
                  ],
     'css': ['static/src/css/base.css'],
     'qweb': [
