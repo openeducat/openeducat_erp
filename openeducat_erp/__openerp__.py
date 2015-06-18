@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
 #    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
 {
     'name': 'OpenEduCat ERP',
@@ -48,8 +48,8 @@
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'images': [],
-    'depends': ['account_accountant','document',
-                'hr','web','website'],
+    'depends': ['account_accountant', 'document',
+                'hr', 'web', 'website'],
     'data': [
         'security/op_security.xml',
         'op_activity/op_activity_view.xml',
@@ -150,38 +150,44 @@
 
     ],
     'demo': [
-                 'demo/res.users.csv',
-                 'demo/res.groups.csv',
-                 'demo/op.category.csv',
-                 'demo/op.course.csv',
-                 'demo/op.subject.csv',
-                 'demo/op.batch.csv',
-                 'demo/op.standard.csv',
-                 'demo/op.religion.csv',
-                 'demo/op.tag.csv',
-                 'demo/op.book.csv',
-                 'demo/op.author.csv',
-                 'demo/op.division.csv',
-                 'demo/op.student.csv',
-                 'demo/op.faculty.csv',
-                 'demo/op.exam.type.csv',
-                 'demo/op.period.csv',
-                 'demo/op_comapny_data.xml',
-                 'demo/op.book.queue.csv',
-                 'demo/op.assignment.csv',
-                 'demo/op_timetable_data.xml',
-                 'demo/op.assignment.sub.line.csv',
-                 ],
+        'demo/res.users.csv',
+        'demo/res.groups.csv',
+        'demo/op.category.csv',
+        'demo/op.course.csv',
+        'demo/op.subject.csv',
+        'demo/op.batch.csv',
+        'demo/op.standard.csv',
+        'demo/op.religion.csv',
+        'demo/op.tag.csv',
+        'demo/op.book.csv',
+        'demo/op.author.csv',
+        'demo/op.division.csv',
+        'demo/op.student.csv',
+        'demo/op.faculty.csv',
+        'demo/op.exam.type.csv',
+        'demo/op.period.csv',
+        'demo/op_comapny_data.xml',
+        'demo/op.book.queue.csv',
+        'demo/op.assignment.csv',
+        'demo/op_timetable_data.xml',
+        'demo/op.assignment.sub.line.csv',
+    ],
     'css': ['static/src/css/base.css'],
     'qweb': [
         'static/src/xml/base.xml'],
     'js': ['static/src/js/chrome.js'],
     'test': [
-             'test/configuration.yml',
-             'test/new_admission.yml',
-             'test/new_faculty.yml'
+        'test/configuration.yml',
+        'test/new_admission.yml',
+        'test/new_faculty.yml'
     ],
-    'images': ['images/Admission_Process.png','images/Course_list.png','images/Faculty_management.png','images/Student_Information.png','images/TimeTable.png'],
+    'images': [
+        'images/Admission_Process.png',
+        'images/Course_list.png',
+        'images/Faculty_management.png',
+        'images/Student_Information.png',
+        'images/TimeTable.png'
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,
