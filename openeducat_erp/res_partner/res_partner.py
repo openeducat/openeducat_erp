@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,15 +17,16 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class res_partner(osv.osv):
+from openerp import models, fields, api, _
+
+
+class res_partner(models.Model):
     _inherit = 'res.partner'
 
-    _columns = {
-            'library_card_ids': fields.one2many('op.library.card', 'partner_id', 'Library Card', ),
-    }
+    library_card_ids = fields.One2many(
+        'op.library.card', 'partner_id', 'Library Card')
 
-res_partner()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

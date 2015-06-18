@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,30 +17,29 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
+
+from openerp import models, fields, api, _
 from openerp import tools
 
-class res_company(osv.osv):
-    _inherit = "res.company"
-    _columns = {
-                'signature': fields.binary('Signature'),
-                'accredetion': fields.text('Accredetion'),
-                'approval_authority': fields.text('Approval Authority'),
-                }
-res_company()
 
-class res_users(osv.osv):
+class res_company(models.Model):
+    _inherit = "res.company"
+
+    signature = fields.Binary('Signature')
+    accredetion = fields.Text('Accredetion')
+    approval_authority = fields.Text('Approval Authority')
+
+
+class res_users(models.Model):
     _inherit = "res.users"
-    _columns = {
-                'parent_ids':fields.one2many('op.parent','user_id','Parents'),
-                'user_line': fields.one2many('op.student', 'user_id', 'User Line')
-                }
-    
+
+    parent_ids = fields.One2many('op.parent', 'user_id', 'Parents')
+    user_line = fields.One2many('op.student', 'user_id', 'User Line')
+
     @tools.ormcache(skiparg=2)
-    def has_group(self, cr, uid, group_ext_id,context=None):
-         return super(res_users ,self).has_group(cr, uid, group_ext_id)
-     
-res_users()
+    def has_group(self, cr, uid, group_ext_id, context=None):
+        return super(res_users, self).has_group(cr, uid, group_ext_id)
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

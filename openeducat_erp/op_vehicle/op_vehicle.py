@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,18 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_vehicle(osv.osv):
+from openerp import models, fields
+
+
+class op_vehicle(models.Model):
     _name = 'op.vehicle'
 
-    _columns = {
-            'name': fields.char(size=16, string='Name', required=True),
-            'reg_number': fields.char(size=16, string='Registration Number', required=True),
-            'capacity': fields.integer(string='Capacity', required=True),
-            'active': fields.boolean(string='Active'),
-            'partner_id': fields.many2one('res.partner', 'Driver'),
-    }
+    name = fields.Char('Name', size=16, required=True)
+    reg_number = fields.Char('Registration Number', size=16,  required=True)
+    capacity = fields.Integer('Capacity', required=True)
+    active = fields.Boolean('Active')
+    partner_id = fields.Many2one('res.partner', 'Driver')
 
-op_vehicle()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
