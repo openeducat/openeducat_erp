@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,18 +17,18 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_route(osv.osv):
+from openerp import models, fields
+
+
+class op_route(models.Model):
     _name = 'op.route'
 
-    _columns = {
-            'name': fields.char(size=16, string='Name', required=True),
-            'code': fields.char(size=8, string='Code', required=True),
-            'cost': fields.float(string='Cost'),
-            'parent_route': fields.many2one('op.route', string='Parent Route'),
-    }
+    name = fields.Char('Name', size=16, required=True)
+    code = fields.Char('Code', size=8, required=True)
+    cost = fields.Float('Cost')
+    parent_route = fields.Many2one('op.route', 'Parent Route')
 
-op_route()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,20 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_subject(osv.osv):
+from openerp import models, fields
+
+
+class op_subject(models.Model):
     _name = 'op.subject'
 
-    _columns = {
-            'name': fields.char(size=128, string='Name', required=True),
-            'code': fields.char(size=256, string='Code', required=True),
-            'course_id': fields.many2one('op.course', string='Course'),
-            'grade_waitage': fields.float(string='Grade Waitage'),
-            'type': fields.selection([('p','Practial'),('t','Theory'),('pt','Both'),('o','Other')], string='Type', required=True),
-    }
+    name = fields.Char('Name', size=128, required=True)
+    code = fields.Char('Code', size=256, required=True)
+    course_id = fields.Many2one('op.course', 'Course')
+    grade_waitage = fields.Float('Grade Waitage')
+    type = fields.Selection([('p', 'Practial'), ('t', 'Theory'),
+                             ('pt', 'Both'), ('o', 'Other')], 'Type', required=True)
 
-op_subject()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

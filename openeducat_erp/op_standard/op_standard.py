@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,23 +17,26 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_standard(osv.osv):
+from openerp import models, fields
+
+
+class op_standard(models.Model):
     _name = 'op.standard'
     _order = 'sequence'
 
-    _columns = {
-            'code': fields.char(size=8, string='Code', required=True),
-            'name': fields.char(size=32, string='Name', required=True),
-            'course_id': fields.many2one('op.course', string='Course', required=True),
-            'payment_term': fields.many2one('account.payment.term', 'Payment Term'),
-            'sequence':fields.integer('Sequence'),
-            'division_ids': fields.many2many('op.division', 'standard_division_rel', 'standard_id', 'division_id', 'Divisions', ),
-            'student_ids': fields.many2many('op.student', 'op_student_standard_rel', 'op_student_id', 'op_standard_id', string='Student(s)'),
-#            'class_ids': fields.many2many('op.gr.setup', 'op_class_setup_rel','op_standard_id', 'op_setup_id' , string='Class'),
-    }
+    code = fields.Char('Code', size=8, required=True)
+    name = fields.Char('Name', size=32, required=True)
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    payment_term = fields.Many2one('account.payment.term', 'Payment Term')
+    sequence = fields.Integer('Sequence')
+    division_ids = fields.Many2many(
+        'op.division', 'standard_division_rel', 'standard_id', 'division_id', 'Divisions', )
+    student_ids = fields.Many2many(
+        'op.student', 'op_student_standard_rel', 'op_student_id', 'op_standard_id', string='Student(s)')
+#     class_ids = fields.Many2many(
+#         'op.gr.setup', 'op_class_setup_rel', 'op_standard_id', 'op_setup_id', string='Class')
 
-op_standard()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
