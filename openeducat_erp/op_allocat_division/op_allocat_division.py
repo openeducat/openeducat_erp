@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,31 +17,25 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-import time
-import datetime
-from dateutil.relativedelta import relativedelta
+###############################################################################
 
-class op_allocat_division(osv.osv):
+from openerp import models, fields, api
+
+
+class op_allocat_division(models.Model):
     _name = 'op.allocat.division'
 
-    _columns = {
-            'name': fields.char(size=128, string='Name'),
-            'course_id': fields.many2one('op.course', 'Course'),
-            'standard_id': fields.many2one('op.standard', 'Standard'),
-            'division_id': fields.many2one('op.division', 'Division'),
-            'student_ids': fields.many2many('op.student', 'div_student_rel', 'op_division_id', 'op_student_id', string='Student(s)'),
-    }
-    
-    def generate_division(self, cr, uid, ids, context={}):
-        for self_obj in self.browse(cr, uid, ids, context=context):
-            for line in self_obj.student_ids:
-                val = {
-                        'division_id': self_obj.division_id.id
-                    }
-                self.pool.get('op.student').write(cr, uid, [line.id], val)
+    name = fields.Char('Name', size=128, required=True)
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    standard_id = fields.Many2one('op.standard', 'Standard', required=True)
+    division_id = fields.Many2one('op.division', 'Division', required=True)
+    student_ids = fields.Many2many('op.student', string='Student(s)')
+
+    @api.one
+    def generate_division(self):
+        for allocation in self:
+            allocation.student_ids.write(
+                {'division_id': allocation.division_id.id})
         return True
 
-op_allocat_division()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
