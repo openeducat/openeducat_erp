@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,20 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+##############################################################################
 
-class op_assignment_sub_history(osv.osv):
+from openerp import models, fields
+
+
+class op_assignment_sub_history(models.Model):
     _name = 'op.assignment.sub.history'
 
-    _columns = {
-            'assign_sub_id': fields.many2one('op.assignment.sub.line', string='Assignment'),
-            'description': fields.text(string='Description'),
-            'state': fields.selection([('d','Draft'),('s','Submitted'),('a','Accepted'),('r','Rejected'),('c','Change Req.')], string='State'),
-            'change_date': fields.datetime(string='Submission Date'),
-            'faculty_id': fields.many2one('op.faculty','Faculty'),
-    }
+    assign_sub_id = fields.Many2one(
+        'op.assignment.sub.line', 'Assignment', required=True)
+    description = fields.Text('Description')
+    state = fields.Selection([('d', 'Draft'), ('s', 'Submitted'),
+                              ('a', 'Accepted'), ('r', 'Rejected'), ('c', 'Change Req.')], 'State')
+    change_date = fields.Datetime('Submission Date')
+    faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
 
-op_assignment_sub_history()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
