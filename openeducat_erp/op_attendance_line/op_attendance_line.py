@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,23 +17,27 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+##############################################################################
 
-class op_attendance_line(osv.osv):
+from openerp import models, fields
+
+
+class op_attendance_line(models.Model):
     _name = 'op.attendance.line'
     _rec_name = 'attendance_id'
 
-    _columns = {
-            'attendance_id': fields.many2one('op.attendance.sheet', string='Attendance', required=True),
-            'student_id': fields.many2one('op.student', string='Student', required=True),
-            'present': fields.boolean(string='Present ?'),
-            'course_id':fields.related('student_id', 'course_id',type='many2one',relation='op.course',string='Course',store=True, readonly=True),
-            'standard_id': fields.related('student_id', 'standard_id', type='many2one', relation='op.standard', string='Standard', store=True, readonly=True),
-            'division_id': fields.related('student_id', 'division_id', type='many2one', relation='op.division', string='Division', store=True, readonly=True),
-            'remark': fields.char(size=256, string="Remark"),
-            'attendance_date':fields.related('attendance_id','attendance_date',type='date',relation='op.attendance.sheet', string='Date', store=True, readonly=True)
-    }
+    attendance_id = fields.Many2one(
+        'op.attendance.sheet', 'Attendance', required=True)
+    student_id = fields.Many2one('op.student', 'Student', required=True)
+    present = fields.Boolean('Present ?')
+    course_id = fields.Many2one(
+        'op.course', 'Course', related='student_id.course_id', store=True, readonly=True)
+    standard_id = fields.Many2one(
+        'op.standard', 'Standard', related='student_id.standard_id', store=True, readonly=True)
+    division_id = fields.Many2one(
+        'op.division', 'Division', related='student_id.division_id', store=True, readonly=True)
+    remark = fields.Char('Remark', size=256)
+    attendance_date = fields.Date(
+        'Date', related='attendance_id.attendance_date', store=True, readonly=True)
 
-op_attendance_line()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
