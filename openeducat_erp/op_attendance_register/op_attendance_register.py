@@ -20,17 +20,18 @@
 #/#############################################################################
 from openerp.osv import osv, fields
 
+
 class op_attendance_register(osv.osv):
     _name = 'op.attendance.register'
 
     _columns = {
-            'name': fields.char(size=16, string='Name', required=True),
-            'code': fields.char(size=8, string='Code', required=True),
-            'course_id': fields.many2one('op.course', string='Course', required=True),
-            'batch_id': fields.many2one('op.batch', string='Batch', required=True),
-            'standard_id': fields.many2one('op.standard', string='Standard', required=True),
-            'division_id': fields.many2one('op.division', string='Division', required=True),
-            'subject_id': fields.many2one('op.subject', string='Subject'),
+        'name': fields.char(size=16, string='Name', required=True),
+        'code': fields.char(size=8, string='Code', required=True),
+        'course_id': fields.many2one('op.course', string='Course', required=True),
+        'batch_id': fields.many2one('op.batch', string='Batch', required=True),
+        'standard_id': fields.many2one('op.standard', string='Standard', required=True),
+        'division_id': fields.many2one('op.division', string='Division', required=True),
+        'subject_id': fields.many2one('op.subject', string='Subject'),
     }
 
 op_attendance_register()

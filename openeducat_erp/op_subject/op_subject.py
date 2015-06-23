@@ -29,7 +29,7 @@ class op_subject(models.Model):
     code = fields.Char('Code', size=256, required=True)
     course_id = fields.Many2one('op.course', 'Course')
     grade_waitage = fields.Float('Grade Waitage')
-    type = fields.Selection([('p', 'Practial'), ('t', 'Theory'),
+    type = fields.Selection([('p', 'Practical'), ('t', 'Theory'),
                              ('pt', 'Both'), ('o', 'Other')], 'Type', required=True)
 
 

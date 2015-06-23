@@ -18,7 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-import time
 
 from openerp import models, fields, api
 
@@ -34,22 +33,21 @@ class op_result_template(models.Model):
     result_date = fields.Date('Result Date', required=True)
     line_ids = fields.One2many('op.result.template.line', 'result_id', 'Lines')
     criteria_ids = fields.Many2many(
-        'op.min.clear.criteria', 'op_res_tmp_crirel', 'res_id', 'cri_id', 'Minimum qualification Criteria')
-    pass_status_ids = fields.Many2many(
-        'op.pass.status', 'op_res_pass_st_rel', 'res_id', 'pass_id', 'Pass Status')
+        'op.min.clear.criteria', string='Minimum qualification Criteria')
+    pass_status_ids = fields.Many2many('op.pass.status', string='Pass Status')
 
     @api.one
     def genrate_result(self):
-        for self_obj in self:
+        for result_template in self:
             marksheet_reg_id = self.env['op.marksheet.register'].create({
-                'name': 'Mark Sheet for %s' % self_obj.exam_session_id.name,
-                'exam_session_id': self_obj.exam_session_id.id,
-                'generated_date': time.strftime("%Y-%m-%d"),
-                'generated_by': uid,
+                'name': 'Mark Sheet for %s' % result_template.exam_session_id.name,
+                'exam_session_id': result_template.exam_session_id.id,
+                'generated_date': fields.Date.today(),
+                'generated_by': self.env.uid,
                 'status': 'd',
             })
-            stu_lst = []
-            for exam_session in self_obj.line_ids:
+            student_list = []
+            for exam_session in result_template.line_ids:
 
                 total_exam = 0.0
                 for exam in exam_session.exam_lines:
@@ -66,10 +64,10 @@ class op_result_template(models.Model):
                             'total_marks': (exam.weightage / 100) * exam.total_marks,
                         }
                         ret_id = self.env['op.result.line'].create(result_dict)
-                        stu_lst.append(
+                        student_list.append(
                             [ret_id, attd.student_id.id, result_dict])
             stu_dict = {}
-            for ret_id, stu_id, data in stu_lst:
+            for ret_id, stu_id, data in student_list:
                 if stu_id not in stu_dict:
                     stu_dict[stu_id] = []
 
@@ -87,7 +85,7 @@ class op_result_template(models.Model):
                         number_fail += 1
                 if pass_flg:
 
-                    pass_st_ids = self_obj.pass_status_ids
+                    pass_st_ids = result_template.pass_status_ids
                     to_consider = False
                     min_pass = 0.0
 
@@ -99,7 +97,7 @@ class op_result_template(models.Model):
                     if to_consider:
                         result = to_consider.result
                 else:
-                    crit_ids = self_obj.criteria_ids
+                    crit_ids = result_template.criteria_ids
                     to_consider = False
                     max_pass = False
                     for crit_id in crit_ids:
@@ -120,7 +118,7 @@ class op_result_template(models.Model):
                                                                      'total_exam_marks': total_exam,
                                                                      })
                 self.env['op.result.line'].write(
-                    [x[0] for x in stu_dict[stu_id]], {'result_id': mark_line_id, })
+                    [x[0] for x in stu_dict[stu_id]], {'result_id': mark_line_id})
         return True
 
 
@@ -132,38 +130,35 @@ class op_result_template_line(models.Model):
     exam_session_id = fields.Many2one('op.exam.session', 'Exam Session')
     detailed_report = fields.Boolean('Detailed Report')
     course_id = fields.Many2one(
-        'course_id', 'Course', related='exam_session_id.course_id', readonly=True)
+        'op.course', 'Course', related='exam_session_id.course_id', readonly=True)
     batch_id = fields.Many2one(
-        'batch_id', 'Batch', related='exam_session_id.batch_id', readonly=True)
+        'op.batch', 'Batch', related='exam_session_id.batch_id', readonly=True)
     standard_id = fields.Many2one(
-        'standard_id', 'Standard', related='exam_session_id.standard_id', readonly=True)
+        'op.standard', 'Standard', related='exam_session_id.standard_id', readonly=True)
     division_id = fields.Many2one(
-        'division_id', 'Division', related='exam_session_id.division_id', readonly=True)
+        'op.division', 'Division', related='exam_session_id.division_id', readonly=True)
     result_id = fields.Many2one('op.result.template', 'Result Template Line')
     exam_lines = fields.One2many(
         'op.result.exam.line', 'result_id', 'Exam Lines')
 
-    @api.multi
-    def onchange_exam_session(exam_session_id):
+    @api.onchange('exam_session_id')
+    def onchange_exam_session(self):
         ret_val = []
-        exam_session_pool = self.env['op.exam.session']
-        exam_session_obj = exam_session_pool.browse(exam_session_id)
-        for exam_obj in exam_session_obj.exam_ids:
+        for exam_obj in self.exam_session_id.exam_ids:
             ret_val.append({'exam_id': exam_obj.id, 'weightage': 100})
-
-        return {'value': {'exam_lines': ret_val}}
+        self.exam_lines = ret_val
 
 
 class op_result_exam_line(models.Model):
     _name = 'op.result.exam.line'
     _description = 'Result Exam Line'
 
-    result_id = fields.Many2one('op.result.template.line')
+    result_id = fields.Many2one('op.result.template.line', 'Session Template')
     exam_id = fields.Many2one('op.exam', 'Exam')
     pass_marks = fields.Float(
-        'min_marks', 'Passing Marks', related='exam_id.min_marks', readonly=True)
+        'Passing Marks', related='exam_id.min_marks', readonly=True)
     total_marks = fields.Float(
-        related='exam_id.total_marks', string='Total Marks', readonly=True)
+        'Total Marks', related='exam_id.total_marks', readonly=True)
     weightage = fields.Float('Weightage')
     result_lines = fields.One2many(
         'op.result.line', 'exam_tmpl_id', 'Result Lines')

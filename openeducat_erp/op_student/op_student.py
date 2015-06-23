@@ -19,7 +19,6 @@
 #
 ###############################################################################
 
-import time
 from openerp import models, fields, api
 
 
@@ -27,24 +26,9 @@ class op_student(models.Model):
     _name = 'op.student'
     _inherits = {'res.partner': 'partner_id'}
 
-#     def _get_curr_roll_number(self, cr, uid, ids, fields, arg, context=None):
-#         ret_val = {}
-#         for self_obj in self.browse(cr, uid, ids, context=context):
-#             roll_no = 0
-#             seq = 0
-#             for roll_number in self_obj.roll_number_line:
-#                 if roll_number.standard_id.sequence > seq:
-#                     roll_no = roll_number.roll_number
-#                     seq = roll_number.standard_id.sequence
-#             ret_val[self_obj.id] = roll_no
-#
-#         return ret_val
-
     @api.one
     @api.depends('roll_number_line', 'roll_number_line.roll_number', 'roll_number_line.student_id', 'roll_number_line.standard_id', 'roll_number_line.standard_id.sequence')
     def _get_curr_roll_number(self):
-        print "\n\n\n\n\n\n\n\n_get_curr_roll_number i m in========="
-#         ret_val = {}
         for student in self:
             roll_no = 0
             seq = 0
@@ -53,12 +37,6 @@ class op_student(models.Model):
                     roll_no = roll_number.roll_number
                     seq = roll_number.standard_id.sequence
             self.roll_number = roll_no
-
-#     def _get_roll(self, cr, uid, ids, context=None):
-#         result = {}
-#         for line in self.pool.get('op.roll.number').browse(cr, uid, ids, context=context):
-#             result[line.student_id.id] = True
-#         return result.keys()
 
 
 #          name = fields.Char('First Name',size=128, required=True)
@@ -92,23 +70,9 @@ class op_student(models.Model):
     partner_id = fields.Many2one(
         'res.partner', 'Partner', required=True, ondelete="cascade")
     health_lines = fields.One2many('op.health', 'student_id', 'Health Detail')
-#     roll_number = fields.Function(_get_curr_roll_number,
-#                                   method=True,
-#                                   'Current Roll Number',
-#                                   type='char',
-#                                   size=8,
-#                                   store={
-#                                       'op.roll.number': (_get_roll, [], 10),
-#                                   })
-
     roll_number = fields.Char(
         'Current Roll Number', compute='_get_curr_roll_number', size=8, store=True)
-#                               store={
-#                                   'op.roll.number': (_get_roll, [], 10),
-#                               })
-
-    allocation_ids = fields.Many2many(
-        'op.assignment', 'op_student_assignment_rel', 'op_student_id', 'op_assignment_id', 'Assignment')
+    allocation_ids = fields.Many2many('op.assignment', string='Assignment')
     alumni_boolean = fields.Boolean('Alumni Student')
     passing_year = fields.Many2one('op.batch', 'Passing Year')
     current_position = fields.Char('Current Position', size=256)
@@ -120,8 +84,7 @@ class op_student(models.Model):
         'op.placement.offer', 'student_id', 'Placement Details')
     activity_log = fields.One2many(
         'op.activity', 'student_id', 'Activity Log')
-    parent_ids = fields.Many2many(
-        'op.parent', 'op_parent_student_rel', 'op_parent_id', 'op_student_id', string='Parent')
+    parent_ids = fields.Many2many('op.parent', string='Parent')
     gr_no = fields.Char("GR Number", size=20)
     invoice_exists = fields.Boolean('Invoice')
 
@@ -143,7 +106,7 @@ class op_student(models.Model):
 
             invoice_data = {
                 'partner_id': student.partner_id.id,
-                'date_invoice': time.strftime('%Y-%m-%d'),
+                'date_invoice': fields.Date.today(),
                 'payment_term': student.standard_id.payment_term and student.standard_id.payment_term.id or student.course_id.payment_term and student.course_id.payment_term.id or False,
             }
 

@@ -33,8 +33,7 @@ class op_transportation(models.Model):
     end_time = fields.Datetime('End Time', required=True)
     from1 = fields.Char('From', size=20, required=True)
     to = fields.Char('To', size=20, required=True)
-    student_ids = fields.Many2many(
-        'op.student', 'student_transport_rel', 'op_student_id', 'transport_id', string='Add Student(s)')
+    student_ids = fields.Many2many('op.student', string='Add Student(s)')
 
 
 class op_stop(models.Model):

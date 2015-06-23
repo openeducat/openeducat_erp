@@ -31,12 +31,9 @@ class op_standard(models.Model):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     payment_term = fields.Many2one('account.payment.term', 'Payment Term')
     sequence = fields.Integer('Sequence')
-    division_ids = fields.Many2many(
-        'op.division', 'standard_division_rel', 'standard_id', 'division_id', 'Divisions', )
-    student_ids = fields.Many2many(
-        'op.student', 'op_student_standard_rel', 'op_student_id', 'op_standard_id', string='Student(s)')
-#     class_ids = fields.Many2many(
-#         'op.gr.setup', 'op_class_setup_rel', 'op_standard_id', 'op_setup_id', string='Class')
+    division_ids = fields.Many2many('op.division', string='Divisions', )
+    student_ids = fields.Many2many('op.student', string='Student(s)')
+#     class_ids = fields.Many2many('op.gr.setup', string='Class')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
