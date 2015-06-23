@@ -26,17 +26,16 @@ class op_student(models.Model):
     _name = 'op.student'
     _inherits = {'res.partner': 'partner_id'}
 
-    @api.one
     @api.depends('roll_number_line', 'roll_number_line.roll_number', 'roll_number_line.student_id', 'roll_number_line.standard_id', 'roll_number_line.standard_id.sequence')
     def _get_curr_roll_number(self):
-        for student in self:
-            roll_no = 0
-            seq = 0
-            for roll_number in student.roll_number_line:
-                if roll_number.standard_id.sequence > seq:
-                    roll_no = roll_number.roll_number
-                    seq = roll_number.standard_id.sequence
-            self.roll_number = roll_no
+        #         for student in self:
+        roll_no = 0
+        seq = 0
+        for roll_number in self.roll_number_line:
+            if roll_number.standard_id.sequence > seq:
+                roll_no = roll_number.roll_number
+                seq = roll_number.standard_id.sequence
+        self.roll_number = roll_no
 
 
 #          name = fields.Char('First Name',size=128, required=True)
@@ -113,7 +112,6 @@ class op_student(models.Model):
         invoice_default.update(invoice_data)
         invoice_id = invoice_pool.create(invoice_default).id
         self.write({'invoice_ids': [(4, invoice_id)], 'invoice_exists': True})
-        models_data = self.env['ir.model.data']
         form_view = self.env.ref('account.invoice_form')
         tree_view = self.env.ref('account.invoice_tree')
         value = {

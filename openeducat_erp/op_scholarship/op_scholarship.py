@@ -31,10 +31,6 @@ class op_scholarship(models.Model):
     state = fields.Selection(
         [('d', 'Draft'), ('c', 'Confirm'), ('r', 'Reject')], 'State', default='d', readonly=True, select=True)
 
-#     _defaults = {
-#         'state': 'd'
-#     }
-
     @api.one
     def act_draft(self):
         self.write({'state': 'd'})

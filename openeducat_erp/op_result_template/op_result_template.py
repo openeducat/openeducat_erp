@@ -48,7 +48,6 @@ class op_result_template(models.Model):
             })
             student_list = []
             for exam_session in result_template.line_ids:
-
                 total_exam = 0.0
                 for exam in exam_session.exam_lines:
                     total_exam += exam.exam_id.total_marks
@@ -108,17 +107,16 @@ class op_result_template(models.Model):
                     if not to_consider:
                         to_consider = max_pass
                     result = to_consider.result
-
                 mark_line_id = self.env['op.marksheet.line'].create({'student_id': stu_id,
-                                                                     'marksheet_reg_id': marksheet_reg_id,
+                                                                     'marksheet_reg_id': marksheet_reg_id.id,
                                                                      'exam_session_id': exam_session.id,
                                                                      'result': result,
                                                                      'total_marks': total_marks,
                                                                      'total_per': per,
                                                                      'total_exam_marks': total_exam,
                                                                      })
-                self.env['op.result.line'].write(
-                    [x[0] for x in stu_dict[stu_id]], {'result_id': mark_line_id})
+                self.env['op.result.line'].browse(
+                    [x[0].id for x in stu_dict[stu_id]]).write({'result_id': mark_line_id.id})
         return True
 
 
