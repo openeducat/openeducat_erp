@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,29 +17,21 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+##############################################################################
 
-class reserve_book(osv.osv_memory):
+from openerp import models, fields, api
+
+
+class reserve_book(models.TransientModel):
+
     """ Reserve Book """
-
     _name = 'reserve.book'
 
-    _columns = {
-        'partner_id': fields.many2one('res.partner', required=True),
-    }
+    partner_id = fields.Many2one('res.partner', required=True)
 
-    def set_partner(self, cr, uid, ids, context={}):
-        value = {}
-        book_movement = self.pool.get("op.book.movement")
-        partner = self.browse(cr, uid, ids[0]).partner_id
-        book_movement.write(cr, uid, context.get('active_ids',False),
-                            {'partner_id': partner.id,'reserver_name': partner.name})
-        value = {'type': 'ir.actions.act_window_close'}
-        return value
-
-
-reserve_book()
+    @api.one
+    def set_partner(self):
+        self.env['op.book.movement'].browse(self.env.context.get('active_ids', False)).write(
+            {'partner_id': self.partner_id.id, 'reserver_name': self.partner_id.name})
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
