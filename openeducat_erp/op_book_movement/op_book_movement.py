@@ -35,7 +35,7 @@ class op_book_movement(models.Model):
     _rec_name = 'book_id'
 
     book_id = fields.Many2one('op.book', 'Book', required=True)
-    quantity = fields.Integer('No. Of Books', size=256, required=True)
+    quantity = fields.Integer('No. Of Books', required=True)
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty', required=True)
     student_id = fields.Many2one('op.student', 'Student')

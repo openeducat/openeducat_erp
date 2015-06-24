@@ -102,34 +102,33 @@ class op_admission(models.Model):
 
     @api.one
     def confirm_selection(self):
-        for admission in self:
-            gr = admission.gr_no_new
-            if admission.gr_no == True:
-                gr = admission.gr_no_old
-            vals = {
-                'title': admission.title and admission.title.id or False,
-                'name': admission.name,
-                'middle_name': admission.middle_name,
-                'last_name': admission.last_name,
-                'birth_date': admission.birth_date,
-                'gender': admission.gender,
-                'category': admission.category_id and admission.category_id.id or False,
-                'course_id': admission.course_id and admission.course_id.id or False,
-                'batch_id': admission.batch_id and admission.batch_id.id or False,
-                'standard_id': admission.standard_id and admission.standard_id.id or False,
-                'religion': admission.religion_id and admission.religion_id.id or False,
-                'photo': admission.photo or False,
-                'gr_no': gr,
-                'title': admission.title and admission.title.id or False,
-                'street': admission.street or False,
-                'street2': admission.street2 or False,
-                'phone': admission.phone or False,
-                'mobile': admission.mobile or False,
-                'zip': admission.zip or False,
-                'city': admission.city or False,
-                'country_id': admission.country_id and admission.country_id.id or False,
-                'state_id': admission.state_id and admission.state_id.id or False,
-            }
+        gr = self.gr_no_new
+        if self.gr_no == True:
+            gr = self.gr_no_old
+        vals = {
+            'title': self.title and self.title.id or False,
+            'name': self.name,
+            'middle_name': self.middle_name,
+            'last_name': self.last_name,
+            'birth_date': self.birth_date,
+            'gender': self.gender,
+            'category': self.category_id and self.category_id.id or False,
+            'course_id': self.course_id and self.course_id.id or False,
+            'batch_id': self.batch_id and self.batch_id.id or False,
+            'standard_id': self.standard_id and self.standard_id.id or False,
+            'religion': self.religion_id and self.religion_id.id or False,
+            'photo': self.photo or False,
+            'gr_no': gr,
+            'title': self.title and self.title.id or False,
+            'street': self.street or False,
+            'street2': self.street2 or False,
+            'phone': self.phone or False,
+            'mobile': self.mobile or False,
+            'zip': self.zip or False,
+            'city': self.city or False,
+            'country_id': self.country_id and self.country_id.id or False,
+            'state_id': self.state_id and self.state_id.id or False,
+        }
         self.write(
             {'state': 's', 'student_id': self.env['op.student'].create(vals).id, 'nbr': 1})
         return True

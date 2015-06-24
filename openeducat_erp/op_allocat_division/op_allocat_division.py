@@ -33,9 +33,8 @@ class op_allocat_division(models.Model):
 
     @api.one
     def generate_division(self):
-        for allocation in self:
-            allocation.student_ids.write(
-                {'division_id': allocation.division_id.id})
+        self.student_ids.write(
+            {'division_id': self.division_id.id})
         return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

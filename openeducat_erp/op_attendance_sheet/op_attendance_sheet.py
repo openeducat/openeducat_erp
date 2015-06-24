@@ -25,17 +25,17 @@ from openerp import models, fields, api
 class op_attendance_sheet(models.Model):
     _name = 'op.attendance.sheet'
 
+    @api.one
     @api.depends('attendance_line.present')
     def _total_present(self):
-        for sheet in self:
-            self.total_present = len(sheet.attendance_line.filtered(
-                lambda self: self.present))
+        self.total_present = len(self.attendance_line.filtered(
+            lambda self: self.present))
 
+    @api.one
     @api.depends('attendance_line.present')
     def _total_absent(self):
-        for sheet in self:
-            self.total_absent = len(sheet.attendance_line.filtered(
-                lambda self: self.present == False))
+        self.total_absent = len(self.attendance_line.filtered(
+            lambda self: self.present == False))
 
     name = fields.Char('Name', size=8)
     register_id = fields.Many2one(
@@ -45,9 +45,9 @@ class op_attendance_sheet(models.Model):
     attendance_line = fields.One2many(
         'op.attendance.line', 'attendance_id', 'Attendance Line', required=True)
     total_present = fields.Integer(
-        'Total Present', compute='_total_present', method=True)
+        'Total Present', compute='_total_present')
     total_absent = fields.Integer(
-        'Total Absent', compute='_total_absent', method=True)
+        'Total Absent', compute='_total_absent')
     teacher_id = fields.Many2one('op.faculty', 'Teacher')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
