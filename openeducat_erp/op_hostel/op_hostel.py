@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,33 +17,29 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_hostel(osv.osv):
+from openerp import models, fields, api
+from openerp.exceptions import ValidationError
+
+
+class op_hostel(models.Model):
     _name = 'op.hostel'
 
-    _columns = {
-            'name': fields.char(size=16, string='Name', required=True),
-            'capacity': fields.integer('Hostel Capacity', required=True),
-#            'room_ids': fields.many2many('op.hostel.room', 'hostel_id','room_id', 'hostel_room_id_rel','Room(s)'),
-            'room_lines': fields.one2many('op.hostel.room','hostel_id', 'Room(s)')
-#            'rooms': fields.integer(string='Rooms', required=True),
-        }
-    
-    def _check_hostel_capacity(self, cr, uid, ids, context=None):
-        for self_obj in self.browse(cr, uid, ids):
-            counter = 0.00
-            for room in self_obj.room_lines:
-                counter += room.students_per_room
-                if counter > self_obj.capacity:
-                    return False
-        return True
-    
-    _constraints = [
-        (_check_hostel_capacity, 'Hostel capacity Over.', ['Capacity Over']),
-    ]
-            
+    name = fields.Char('Name', size=16, required=True)
+    capacity = fields.Integer('Hostel Capacity', required=True)
+#     room_ids = fields.Many2many('op.hostel.room', string='Room(s)')
+    room_lines = fields.One2many('op.hostel.room', 'hostel_id', 'Room(s)')
+#     rooms = fields.Integer('Rooms', required=True)
 
-op_hostel()
+    @api.one
+    @api.constrains('room_lines', 'room_lines.students_per_room')
+    def _check_hostel_capacity(self):
+        counter = 0.00
+        for room in self.room_lines:
+            counter += room.students_per_room
+            if counter > self.capacity:
+                raise ValidationError('Hostel Capacity Over')
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

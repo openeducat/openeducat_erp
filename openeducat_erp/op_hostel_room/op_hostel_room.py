@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,61 +17,46 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_hostel_room(osv.osv):
+from openerp import models, fields, api
+from openerp.exceptions import ValidationError
+
+
+class op_hostel_room(models.Model):
     _name = 'op.hostel.room'
 
-    _columns = {
-            'hostel_id': fields.many2one('op.hostel', string='Hostel'),
-#            'name': fields.char(size=8, string='Room Number', required=True),
-            'name': fields.many2one('op.room', 'Name', required=True),   
-            'student_ids': fields.many2many('res.partner', 'student_hostel_room_rel', 'op_hostel_room_id', 'res_partner_id', string='Allocated Students '),
-            'students_per_room': fields.integer(string='Students Per Room', required=True),
-            'rent': fields.float(string='Rent'),
-            'allocated_date': fields.date(string='Allocated Date'),
-            'facility_line': fields.one2many('op.facility', 'hostel_room_id', 'Facilities')
-    }
-    
-    
-    
-    def onchange_name(self, cr, uid, ids, room, context={}):
-        res = {}
-        if room:
-            res = {
-                   'students_per_room': self.pool.get('op.room').browse(cr, uid, room).capacity,
-                   }
-        return {'value': res}
-    
-    
-    def _check_student_capacity(self, cr, uid, ids, context=None):
-        for self_obj in self.browse(cr, uid, ids):
-            counter = 0.00
-            for student in self_obj.student_ids:
-                counter += 1
-                if counter > self_obj.students_per_room:
-                    return False
-        return True
-    
-    _constraints = [
-        (_check_student_capacity, 'Room capacity Over.', ['Capacity Over']),
-    ]
-    
-    
-    
-op_hostel_room()
+    hostel_id = fields.Many2one('op.hostel', 'Hostel')
+#     name = fields.Char('Room Number', size=8, required=True),
+    name = fields.Many2one('op.room', 'Name', required=True)
+    student_ids = fields.Many2many('res.partner', string='Allocated Students ')
+    students_per_room = fields.Integer('Students Per Room', required=True)
+    rent = fields.Float('Rent')
+    allocated_date = fields.Date('Allocated Date')
+    facility_line = fields.One2many(
+        'op.facility', 'hostel_room_id', 'Facilities')
+
+    @api.onchange('name')
+    def onchange_name(self):
+        if self.name:
+            self.students_per_room = self.name.capacity
+
+    @api.one
+    @api.constrains('student_ids', 'students_per_room')
+    def _check_student_capacity(self):
+        counter = 0
+        for student in self.student_ids:
+            counter += 1
+            if counter > self.students_per_room:
+                raise ValidationError('Room capacity Over')
 
 
-class op_room(osv.osv):
-    
+class op_room(models.Model):
     _name = 'op.room'
-    
-    _columns = {
-                'name': fields.char('Name', required=True),
-                'code': fields.char('Code', required=True),
-                'capacity': fields.integer('Room Capacity', required=True),
-                }
-op_room()    
+
+    name = fields.Char('Name', required=True)
+    code = fields.Char('Code', required=True)
+    capacity = fields.Integer('Room Capacity', required=True)
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
