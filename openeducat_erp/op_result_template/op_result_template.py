@@ -37,7 +37,7 @@ class op_result_template(models.Model):
     pass_status_ids = fields.Many2many('op.pass.status', string='Pass Status')
 
     @api.one
-    def genrate_result(self):
+    def generate_result(self):
         for result_template in self:
             marksheet_reg_id = self.env['op.marksheet.register'].create({
                 'name': 'Mark Sheet for %s' % result_template.exam_session_id.name,
