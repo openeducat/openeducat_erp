@@ -19,9 +19,8 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
-from openerp.tools.translate import _
 
 
 def days_between(d1, d2):
