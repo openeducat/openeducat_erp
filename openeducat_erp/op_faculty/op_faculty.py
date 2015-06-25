@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
 
@@ -76,24 +76,21 @@ class hr_employee(models.Model):
 
     @api.onchange('user_id')
     def onchange_user(self):
-        work_email = False
-        address = False
-        number = False
         if self.user_id:
-            self.user_id.supplier = True
+            self.user_id.partner_id.supplier = True
             self.address_home_id = self.user_id.partner_id.id
             self.work_email = self.user_id.email
+            self.identification_id = False
             return {'domain': {'address_id': [('id', '=', self.user_id.partner_id.id)]}}
 
     @api.onchange('address_id')
     def onchange_address_id(self):
         if self.address_home_id and self.address_id:
             if self.address_home_id != self.address_id:
-                raise Warning(
-                    _('Configuration Error!... Home Address and working address should be same!'))
+                raise Warning(_('Configuration Error!'), _(
+                    'Home Address and working address should be same!'))
         if self.address_id:
             partner = self.env['res.partner'].browse(self.address_id.id)
-            print "-----------------------------------------------", partner
             self.work_phone = partner.phone
             self.mobile_phone = partner.mobile
 
@@ -101,8 +98,8 @@ class hr_employee(models.Model):
     def onchange_address_home_id(self):
         if self.address_home_id and self.address_id:
             if self.address_home_id != self.address_id:
-                raise Warning(
-                    _('Configuration Error!... Home Address and working address should be same!'))
+                raise Warning(_('Configuration Error!'), _(
+                    'Home Address and working address should be same!'))
         if self.address_home_id:
             partner = self.env['res.partner'].browse(self.address_home_id.id)
             partner.write({'supplier': True, 'employee': True})
