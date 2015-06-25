@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,99 +17,95 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_faculty(osv.osv):
+from openerp import models, fields, api
+from openerp.exceptions import Warning
+
+
+class op_faculty(models.Model):
     _name = 'op.faculty'
-    _inherits = {'res.partner':'partner_id'}
-    
-    def create_employee(self, cr, uid, ids, context=None):
-        
-        self_obj = self.browse(cr, uid,ids, context=None)
-        emp_obj = self.pool.get('hr.employee')
+    _inherits = {'res.partner': 'partner_id'}
+
+    partner_id = fields.Many2one(
+        'res.partner', 'Partner', required=True, ondelete="cascade")
+    middle_name = fields.Char('Middle Name', size=128, required=True)
+    last_name = fields.Char('Last Name', size=128, required=True)
+    birth_date = fields.Date('Birth Date', required=True)
+    blood_group = fields.Selection([('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
+                                    ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')], string='Blood Group')
+    gender = fields.Selection(
+        [('male', 'Male'), ('female', 'Female')], 'Gender', required=True)
+    nationality = fields.Many2one('res.country', 'Nationality')
+    language = fields.Many2one('res.lang', 'Language')
+    category = fields.Many2one('op.category', 'Category', required=True)
+    religion = fields.Many2one('op.religion', 'Religion')
+    library_card = fields.Char('Library Card', size=64)
+    emergency_contact = fields.Many2one(
+        'res.partner', 'Emergency Contact')
+    pan_card = fields.Char('PAN Card', size=64)
+    bank_acc_num = fields.Char('Bank Acc Number', size=64)
+    visa_info = fields.Char('Visa Info', size=64)
+    id_number = fields.Char('ID Card Number', size=64)
+    photo = fields.Binary('Photo')
+    login = fields.Char(
+        'Login', related='partner_id.user_id.login', readonly=1)
+    last_login = fields.Date(
+        'Latest Connection', related='partner_id.user_id.login_date', readonly=1)
+    timetable_ids = fields.One2many('op.timetable', 'faculty_id', 'Time table')
+    health_faculty_lines = fields.One2many(
+        'op.health', 'faculty_id', 'Health Detail')
+    faculty_subject_ids = fields.Many2many('op.subject', string='Subjects')
+    emp_id = fields.Many2one('hr.employee', 'Employee')
+
+    @api.one
+    def create_employee(self):
+        emp_obj = self.env['hr.employee']
         vals = {
-                    'name' : self_obj[0].name + ' '+self_obj[0].middle_name +' '+ self_obj[0].last_name,
-                    'nationality' : self_obj[0].country_id ,
-                     'gender': self_obj[0].gender,
-                    
-                 }
-        emp_id = emp_obj.create(cr,uid,vals,context=None)
-        self.pool.get('op.faculty').write(cr,uid,ids,{'emp_id':emp_id})
+            'name': self.name + ' ' + self.middle_name + ' ' + self.last_name,
+            'country_id': self.nationality.id,
+            'gender': self.gender,
+        }
+        emp_id = emp_obj.create(vals)
+        self.write({'emp_id': emp_id.id})
         return True
-        
-    _columns = {
-            'partner_id': fields.many2one('res.partner', 'Partner',required=True, ondelete="cascade"),
-            'middle_name': fields.char(size=128, string='Middle Name', required=True),
-            'last_name': fields.char(size=128, string='Last Name', required=True),
-            'birth_date': fields.date(string='Birth Date', required=True),
-            'blood_group': fields.selection([('A+','A+ve'),('B+','B+ve'),('O+','O+ve'),('AB+','AB+ve'),('A-','A-ve'),('B-','B-ve'),('O-','O-ve'),('AB-','AB-ve')], string='Blood Group'),
-            'gender': fields.selection([('male', 'Male'), ('female', 'Female')], 'Gender',required=True),
-            'nationality': fields.many2one('res.country', string='Nationality'),
-            'language': fields.many2one('res.lang', string='Language'),
-            'category': fields.many2one('op.category', string='Category', required=True),
-            'religion': fields.many2one('op.religion', string='Religion'),
-            'library_card': fields.char(size=64, string='Library Card'),
-            'emergency_contact': fields.many2one('res.partner', string='Emergency Contact'),
-            'pan_card': fields.char(size=64, string='PAN Card'),
-            'bank_acc_num': fields.char(size=64, string='Bank Acc Number'),
-            'visa_info': fields.char(size=64, string='Visa Info'),
-            'id_number': fields.char(size=64, string='ID Card Number'),
-            'photo': fields.binary(string='Photo'),
-            'login': fields.related('user_id', 'login', type='char', string='Login', readonly=1),
-            'last_login': fields.related('user_id', 'date', type='datetime', string='Latest Connection', readonly=1),
-            'timetable_ids':fields.one2many('op.timetable','faculty_id','Time table'),
-            'health_faculty_lines': fields.one2many('op.health', 'faculty_id', 'Health Detail'),
-            'faculty_subject_ids': fields.many2many('op.subject', 'faculty_subject_rel', 'op_faculty_id', 'op_subject_id', string='Subjects'),
-            'emp_id': fields.many2one('hr.employee', string='Employee'),
-            
-            
-    }
 
-op_faculty()
 
-class hr_employee(osv.osv):
-    
+class hr_employee(models.Model):
     _inherit = "hr.employee"
-    
-    def onchange_user(self, cr, uid, ids, user_id, context=None):
-        work_email = False; address = False; emp_id = False
+
+    @api.onchange('user_id')
+    def onchange_user(self):
+        work_email = False
+        address = False
         number = False
-        if user_id:
-            user = self.pool.get('res.users').browse(cr, uid, user_id)
-            user.partner_id.write({'supplier': True})
-            address = user.partner_id.id
-            work_email = user.email
-            return {'value': {'work_email' : work_email, 'address_home_id': address, 'identification_id': number}, 'domain': {'address_id': [('id', '=', address)]}}
-        return {}
-    
-    def onchange_address_id(self, cr, uid, ids, address,address_home, context=None):
-        if address:
-            address = self.pool.get('res.partner').browse(cr, uid, address, context=context)
-            return {'value': {'work_phone': address.phone, 'mobile_phone': address.mobile}}
-        if address_home and address:
-            if address_home != address:
-                raise osv.except_osv(_('Configuration Error!'), _('Home Address and working address should be same!'))
-        return {'value': {}}
+        if self.user_id:
+            self.user_id.supplier = True
+            self.address_home_id = self.user_id.partner_id.id
+            self.work_email = self.user_id.email
+            return {'domain': {'address_id': [('id', '=', self.user_id.partner_id.id)]}}
 
-    def onchange_address_home_id(self, cr, uid, ids, address_home_id,address, context=None):
-        emp_id = False
-        if address_home_id and address:
-            if address_home_id != address:
-                raise osv.except_osv(_('Configuration Error!'), _('Home Address and working address should be same!'))
-        if address_home_id:
-            partner = self.pool.get('res.partner').browse(cr, uid, address_home_id)
-            partner.write({'supplier': True, 'employee': True})            
-        return {'value': {}}
-    
-    def onchange_company(self, cr, uid, ids, company, context=None):
-        address_id = False
-        if company:
-            company_id = self.pool.get('res.company').browse(cr, uid, company, context=context)
-            address = self.pool.get('res.partner').address_get(cr, uid, [company_id.partner_id.id], ['default'])
-            address_id = address and address['default'] or False
-        return {'value': {'address_id' : False}}
+    @api.onchange('address_id')
+    def onchange_address_id(self):
+        if self.address_home_id and self.address_id:
+            if self.address_home_id != self.address_id:
+                raise Warning(
+                    _('Configuration Error!... Home Address and working address should be same!'))
+        if self.address_id:
+            partner = self.env['res.partner'].browse(self.address_id.id)
+            print "-----------------------------------------------", partner
+            self.work_phone = partner.phone
+            self.mobile_phone = partner.mobile
 
+    @api.onchange('address_home_id')
+    def onchange_address_home_id(self):
+        if self.address_home_id and self.address_id:
+            if self.address_home_id != self.address_id:
+                raise Warning(
+                    _('Configuration Error!... Home Address and working address should be same!'))
+        if self.address_home_id:
+            partner = self.env['res.partner'].browse(self.address_home_id.id)
+            partner.write({'supplier': True, 'employee': True})
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
