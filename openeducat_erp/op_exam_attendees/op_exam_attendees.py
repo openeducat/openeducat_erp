@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,20 +17,20 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_exam_attendees(osv.osv):
+from openerp import models, fields
+
+
+class op_exam_attendees(models.Model):
     _name = 'op.exam.attendees'
     _rec_name = 'student_id'
 
-    _columns = {
-            'student_id': fields.many2one('op.student', string='Student', required=True),
-            'status': fields.selection([('p','Present'),('a','Absent')], string='Status', required=True),
-            'marks': fields.float(string='Marks'),
-            'note': fields.text(string='Note'),
-            'exam_id': fields.many2one('op.exam', string='Exam', required=True),
-    }
+    student_id = fields.Many2one('op.student', 'Student', required=True)
+    status = fields.Selection(
+        [('p', 'Present'), ('a', 'Absent')], 'Status', required=True)
+    marks = fields.Float('Marks')
+    note = fields.Text('Note')
+    exam_id = fields.Many2one('op.exam', 'Exam', required=True)
 
-op_exam_attendees()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
