@@ -33,7 +33,7 @@ class op_hostel(models.Model):
 #     rooms = fields.Integer('Rooms', required=True)
 
     @api.one
-    @api.constrains('room_lines', 'room_lines.students_per_room')
+    @api.constrains('room_lines')
     def _check_hostel_capacity(self):
         counter = 0.00
         for room in self.room_lines:

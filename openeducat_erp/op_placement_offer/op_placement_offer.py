@@ -36,28 +36,23 @@ class op_placement_offer(models.Model):
 
     @api.one
     def placement_offer(self):
-        self.write({'state': 'o'})
-        return True
+        self.state = 'o'
 
     @api.one
     def placement_join(self):
-        self.write({'state': 'j'})
-        return True
+        self.state = 'j'
 
     @api.one
     def confirm_rejected(self):
-        self.write({'state': 'r'})
-        return True
+        self.state = 'r'
 
     @api.one
     def confirm_to_draft(self):
-        self.write({'state': 'd'})
-        return True
+        self.state = 'd'
 
     @api.one
     def confirm_cancel(self):
-        self.write({'state': 'c'})
-        return True
+        self.state = 'c'
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

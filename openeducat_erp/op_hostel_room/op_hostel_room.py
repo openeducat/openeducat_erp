@@ -44,11 +44,8 @@ class op_hostel_room(models.Model):
     @api.one
     @api.constrains('student_ids', 'students_per_room')
     def _check_student_capacity(self):
-        counter = 0
-        for student in self.student_ids:
-            counter += 1
-            if counter > self.students_per_room:
-                raise ValidationError('Room capacity Over')
+        if len(self.student_ids) > self.students_per_room:
+            raise ValidationError('Room capacity Over')
 
 
 class op_room(models.Model):

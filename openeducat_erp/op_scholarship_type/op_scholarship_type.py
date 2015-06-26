@@ -26,7 +26,7 @@ class op_scholarship_type(models.Model):
     _name = 'op.scholarship.type'
 
     name = fields.Char('Name', size=64, required=True)
-    amount = fields.Integer('Amount', size=10)
+    amount = fields.Integer('Amount')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

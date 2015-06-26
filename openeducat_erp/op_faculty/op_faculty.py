@@ -33,7 +33,7 @@ class op_faculty(models.Model):
     last_name = fields.Char('Last Name', size=128, required=True)
     birth_date = fields.Date('Birth Date', required=True)
     blood_group = fields.Selection([('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-                                    ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')], string='Blood Group')
+                                    ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')], 'Blood Group')
     gender = fields.Selection(
         [('male', 'Male'), ('female', 'Female')], 'Gender', required=True)
     nationality = fields.Many2one('res.country', 'Nationality')
@@ -68,11 +68,10 @@ class op_faculty(models.Model):
         }
         emp_id = emp_obj.create(vals)
         self.write({'emp_id': emp_id.id})
-        return True
 
 
 class hr_employee(models.Model):
-    _inherit = "hr.employee"
+    _inherit = 'hr.employee'
 
     @api.onchange('user_id')
     def onchange_user(self):
@@ -85,24 +84,20 @@ class hr_employee(models.Model):
 
     @api.onchange('address_id')
     def onchange_address_id(self):
-        if self.address_home_id and self.address_id:
-            if self.address_home_id != self.address_id:
-                raise Warning(_('Configuration Error!'), _(
-                    'Home Address and working address should be same!'))
+        if self.address_home_id and self.address_id and self.address_home_id != self.address_id:
+            raise Warning(_('Configuration Error!'), _(
+                'Home Address and working address should be same!'))
         if self.address_id:
-            partner = self.env['res.partner'].browse(self.address_id.id)
-            self.work_phone = partner.phone
-            self.mobile_phone = partner.mobile
+            self.work_phone = self.address_id.phone
+            self.mobile_phone = self.address_id.mobile
 
     @api.onchange('address_home_id')
     def onchange_address_home_id(self):
-        if self.address_home_id and self.address_id:
-            if self.address_home_id != self.address_id:
-                raise Warning(_('Configuration Error!'), _(
-                    'Home Address and working address should be same!'))
+        if self.address_home_id and self.address_id and self.address_home_id != self.address_id:
+            raise Warning(_('Configuration Error!'), _(
+                'Home Address and working address should be same!'))
         if self.address_home_id:
-            partner = self.env['res.partner'].browse(self.address_home_id.id)
-            partner.write({'supplier': True, 'employee': True})
+            self.address_home_id.write({'supplier': True, 'employee': True})
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

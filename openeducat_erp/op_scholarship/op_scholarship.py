@@ -33,18 +33,16 @@ class op_scholarship(models.Model):
 
     @api.one
     def act_draft(self):
-        self.write({'state': 'd'})
-        return True
+        # Reminder... Delete This Method... Not used
+        self.state = 'd'
 
     @api.one
     def act_confirm(self):
-        self.write({'state': 'c'})
-        return True
+        self.state = 'c'
 
     @api.one
     def act_reject(self):
-        self.write({'state': 'r'})
-        return True
+        self.state = 'r'
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

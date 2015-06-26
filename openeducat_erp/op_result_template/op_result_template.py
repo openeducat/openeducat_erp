@@ -38,85 +38,84 @@ class op_result_template(models.Model):
 
     @api.one
     def generate_result(self):
-        for result_template in self:
-            marksheet_reg_id = self.env['op.marksheet.register'].create({
-                'name': 'Mark Sheet for %s' % result_template.exam_session_id.name,
-                'exam_session_id': result_template.exam_session_id.id,
-                'generated_date': fields.Date.today(),
-                'generated_by': self.env.uid,
-                'status': 'd',
-            })
-            student_list = []
-            for exam_session in result_template.line_ids:
-                total_exam = 0.0
-                for exam in exam_session.exam_lines:
-                    total_exam += exam.exam_id.total_marks
+        marksheet_reg_id = self.env['op.marksheet.register'].create({
+            'name': 'Mark Sheet for %s' % self.exam_session_id.name,
+            'exam_session_id': self.exam_session_id.id,
+            'generated_date': fields.Date.today(),
+            'generated_by': self.env.uid,
+            'status': 'd',
+        })
+        student_list = []
+        for exam_session in self.line_ids:
+            total_exam = 0.0
+            for exam in exam_session.exam_lines:
+                total_exam += exam.exam_id.total_marks
 
-                    for attd in exam.exam_id.attendees_line:
-                        result_dict = {
-                            'exam_id': exam.exam_id.id,
-                            'exam_tmpl_id': exam.id,
-                            'marks': (exam.weightage / 100) * attd.marks,
-                            'status': attd.marks >= exam.pass_marks and 'p' or 'f',
-                            'per': (100 * attd.marks) / exam.total_marks,
-                            'student_id': attd.student_id.id,
-                            'total_marks': (exam.weightage / 100) * exam.total_marks,
-                        }
-                        ret_id = self.env['op.result.line'].create(result_dict)
-                        student_list.append(
-                            [ret_id, attd.student_id.id, result_dict])
-            stu_dict = {}
-            for ret_id, stu_id, data in student_list:
-                if stu_id not in stu_dict:
-                    stu_dict[stu_id] = []
+                for attd in exam.exam_id.attendees_line:
+                    result_dict = {
+                        'exam_id': exam.exam_id.id,
+                        'exam_tmpl_id': exam.id,
+                        'marks': (exam.weightage / 100) * attd.marks,
+                        'status': attd.marks >= exam.pass_marks and 'p' or 'f',
+                        'per': (100 * attd.marks) / exam.total_marks,
+                        'student_id': attd.student_id.id,
+                        'total_marks': (exam.weightage / 100) * exam.total_marks,
+                    }
+                    ret_id = self.env['op.result.line'].create(result_dict)
+                    student_list.append(
+                        [ret_id, attd.student_id.id, result_dict])
+        stu_dict = {}
+        for ret_id, stu_id, data in student_list:
+            if stu_id not in stu_dict:
+                stu_dict[stu_id] = []
 
-                stu_dict[stu_id].append([ret_id, data])
-            for stu_id in stu_dict:
+            stu_dict[stu_id].append([ret_id, data])
+        for stu_id in stu_dict:
 
-                total_marks = sum([x[1]['marks'] for x in stu_dict[stu_id]])
-                per = (total_exam and (100 / total_exam) * total_marks) or 0.0
-                result = ''
-                pass_flg = True
-                number_fail = 0
-                for x in stu_dict[stu_id]:
-                    if x[1]['status'] == 'f':
-                        pass_flg = False
-                        number_fail += 1
-                if pass_flg:
+            total_marks = sum([x[1]['marks'] for x in stu_dict[stu_id]])
+            per = (total_exam and (100 / total_exam) * total_marks) or 0.0
+            result = ''
+            pass_flg = True
+            number_fail = 0
+            for x in stu_dict[stu_id]:
+                if x[1]['status'] == 'f':
+                    pass_flg = False
+                    number_fail += 1
+            if pass_flg:
 
-                    pass_st_ids = result_template.pass_status_ids
-                    to_consider = False
-                    min_pass = 0.0
+                pass_st_ids = self.pass_status_ids
+                to_consider = False
+                min_pass = 0.0
 
-                    for pass_st in pass_st_ids:
-                        if pass_st.number <= per and pass_st.number > min_pass:
-                            min_pass = pass_st.number
-                            to_consider = pass_st
+                for pass_st in pass_st_ids:
+                    if pass_st.number <= per and pass_st.number > min_pass:
+                        min_pass = pass_st.number
+                        to_consider = pass_st
 
-                    if to_consider:
-                        result = to_consider.result
-                else:
-                    crit_ids = result_template.criteria_ids
-                    to_consider = False
-                    max_pass = False
-                    for crit_id in crit_ids:
-                        if crit_id.number == number_fail:
-                            to_consider = crit_id
-                        if not max_pass or crit_id.number > max_pass.number:
-                            max_pass = crit_id
-                    if not to_consider:
-                        to_consider = max_pass
+                if to_consider:
                     result = to_consider.result
-                mark_line_id = self.env['op.marksheet.line'].create({'student_id': stu_id,
-                                                                     'marksheet_reg_id': marksheet_reg_id.id,
-                                                                     'exam_session_id': exam_session.id,
-                                                                     'result': result,
-                                                                     'total_marks': total_marks,
-                                                                     'total_per': per,
-                                                                     'total_exam_marks': total_exam,
-                                                                     })
-                self.env['op.result.line'].browse(
-                    [x[0].id for x in stu_dict[stu_id]]).write({'result_id': mark_line_id.id})
+            else:
+                crit_ids = self.criteria_ids
+                to_consider = False
+                max_pass = False
+                for crit_id in crit_ids:
+                    if crit_id.number == number_fail:
+                        to_consider = crit_id
+                    if not max_pass or crit_id.number > max_pass.number:
+                        max_pass = crit_id
+                if not to_consider:
+                    to_consider = max_pass
+                result = to_consider.result
+            mark_line_id = self.env['op.marksheet.line'].create({'student_id': stu_id,
+                                                                 'marksheet_reg_id': marksheet_reg_id.id,
+                                                                 'exam_session_id': exam_session.id,
+                                                                 'result': result,
+                                                                 'total_marks': total_marks,
+                                                                 'total_per': per,
+                                                                 'total_exam_marks': total_exam,
+                                                                 })
+            self.env['op.result.line'].browse(
+                [x[0].id for x in stu_dict[stu_id]]).write({'result_id': mark_line_id.id})
         return True
 
 

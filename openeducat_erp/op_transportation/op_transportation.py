@@ -27,7 +27,7 @@ class op_transportation(models.Model):
 
     name = fields.Char('Name', size=64, required=True)
     stop = fields.One2many('op.stop', 'transport_id', 'Stop')
-    cost = fields.Float('Cost', size=64)
+    cost = fields.Float('Cost')
     vehicle_id = fields.Many2one('op.vehicle', 'Vehicle', required=True)
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)
