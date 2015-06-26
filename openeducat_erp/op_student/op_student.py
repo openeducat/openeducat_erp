@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,146 +17,139 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-import time
+###############################################################################
 
-class op_student(osv.osv):
+from openerp import models, fields, api
+
+
+class op_student(models.Model):
     _name = 'op.student'
-    _inherits = {'res.partner':'partner_id'}
-    def _get_curr_roll_number(self, cr, uid, ids, fields, arg, context=None):
-        ret_val = {}
-        for self_obj in self.browse(cr, uid, ids, context=context):
-            roll_no = 0
-            seq = 0
-            for roll_number in self_obj.roll_number_line:
-                if roll_number.standard_id.sequence > seq:
-                    roll_no = roll_number.roll_number
-                    seq = roll_number.standard_id.sequence
-            ret_val[self_obj.id] = roll_no
+    _inherits = {'res.partner': 'partner_id'}
 
-        return ret_val
-    def _get_roll(self, cr, uid, ids, context=None):
-        result = {}
-        for line in self.pool.get('op.roll.number').browse(cr, uid, ids, context=context):
-            result[line.student_id.id] = True
-        return result.keys()
-    
+    @api.depends('roll_number_line', 'roll_number_line.roll_number', 'roll_number_line.student_id', 'roll_number_line.standard_id', 'roll_number_line.standard_id.sequence')
+    def _get_curr_roll_number(self):
+        #         for student in self:
+        roll_no = 0
+        seq = 0
+        for roll_number in self.roll_number_line:
+            if roll_number.standard_id.sequence > seq:
+                roll_no = roll_number.roll_number
+                seq = roll_number.standard_id.sequence
+        self.roll_number = roll_no
 
 
-    _columns = {
-#            'name': fields.char(size=128, string='First Name', required=True),
-            'middle_name': fields.char(size=128, string='Middle Name', required=True),
-            'last_name': fields.char(size=128, string='Last Name', required=True),
-            'birth_date': fields.date(string='Birth Date', required=True),
-            'blood_group': fields.selection([('A+','A+ve'),('B+','B+ve'),('O+','O+ve'),('AB+','AB+ve'),('A-','A-ve'),('B-','B-ve'),('O-','O-ve'),('AB-','AB-ve')], string='Blood Group'),
-            'gender': fields.selection([('m','Male'),('f','Female'),('o','Other')], string='Gender', required=True),
-            'nationality': fields.many2one('res.country', string='Nationality'),
-            'language': fields.many2one('res.lang', string='Mother Tongue'),
-            'category': fields.many2one('op.category', string='Category', required=True),
-            'religion': fields.many2one('op.religion', string='Religion'),
-            'library_card': fields.char(size=64, string='Library Card'),
-            'emergency_contact': fields.many2one('res.partner', string='Emergency Contact'),
-            'pan_card': fields.char(size=64, string='PAN Card'),
-            'bank_acc_num': fields.char(size=64, string='Bank Acc Number'),
-            'visa_info': fields.char(size=64, string='Visa Info'),
-            'id_number': fields.char(size=64, string='ID Card Number'),
-            'photo': fields.binary(string='Photo'),
-            'course_id': fields.many2one('op.course', string='Course', required=True),
-            'division_id': fields.many2one('op.division', string='Division'),
-            'batch_id': fields.many2one('op.batch', string='Batch', required=True),
-            'standard_id': fields.many2one('op.standard', string='Standard', required=True),
-            'roll_number_line': fields.one2many('op.roll.number','student_id','Roll Number'),
-            'partner_id': fields.many2one('res.partner', 'Partner',required=True, ondelete="cascade"),
-            'health_lines': fields.one2many('op.health', 'student_id', 'Health Detail'),
-            'roll_number': fields.function(_get_curr_roll_number,
-                                method=True,
-                                string='Current Roll Number',
-                                type='char',
-                                size=8,
-                                store = {
-                                    'op.roll.number': (_get_roll, [], 10),
-                                }),
-            'allocation_ids': fields.many2many('op.assignment', 'op_student_assignment_rel', 'op_student_id','op_assignment_id', string='Assignment'),
-            'alumni_boolean': fields.boolean('Alumni Student'),
-            'passing_year': fields.many2one('op.batch', string='Passing Year'),
-            'current_position': fields.char(string='Current Position', size=256),
-            'current_job': fields.char(string='Current Job', size=256),
-            'email': fields.char(string='Email', size=128),
-            'phone': fields.char(string='Phone Number', size=256),
-            'user_id': fields.many2one('res.users', 'User'),
-            'placement_line': fields.one2many('op.placement.offer', 'student_id', 'Placement Details'),
-            'activity_log':fields.one2many('op.activity','student_id', 'Activity Log' ),
-            'parent_ids': fields.many2many('op.parent', 'op_parent_student_rel', 'op_parent_id', 'op_student_id', string='Parent'),
-            'gr_no': fields.char(string="GR Number", size=20),
-            'invoice_exists':fields.boolean('Invoice'),
-    }
+#          name = fields.Char('First Name',size=128, required=True)
+    middle_name = fields.Char('Middle Name', size=128, required=True)
+    last_name = fields.Char('Middle Name', size=128, required=True)
+    birth_date = fields.Date('Birth Date', required=True)
+    blood_group = fields.Selection([('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
+                                    ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')], 'Blood Group')
+    gender = fields.Selection(
+        [('m', 'Male'), ('f', 'Female'), ('o', 'Other')], 'Gender', required=True)
+    nationality = fields.Many2one('res.country', 'Nationality')
+    language = fields.Many2one('res.lang', 'Mother Tongue')
+    category = fields.Many2one(
+        'op.category', 'Category', required=True)
+    religion = fields.Many2one('op.religion', 'Religion')
+    library_card = fields.Char('Library Card', size=64)
+    emergency_contact = fields.Many2one(
+        'res.partner', 'Emergency Contact')
+    pan_card = fields.Char('PAN Card', size=64)
+    bank_acc_num = fields.Char('Bank Acc Number', size=64)
+    visa_info = fields.Char('Visa Info', size=64)
+    id_number = fields.Char('ID Card Number', size=64)
+    photo = fields.Binary('Photo')
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    division_id = fields.Many2one('op.division', 'Division')
+    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
+    standard_id = fields.Many2one(
+        'op.standard', 'Standard', required=True)
+    roll_number_line = fields.One2many(
+        'op.roll.number', 'student_id', 'Roll Number')
+    partner_id = fields.Many2one(
+        'res.partner', 'Partner', required=True, ondelete="cascade")
+    health_lines = fields.One2many('op.health', 'student_id', 'Health Detail')
+    roll_number = fields.Char(
+        'Current Roll Number', compute='_get_curr_roll_number', size=8, store=True)
+    allocation_ids = fields.Many2many('op.assignment', string='Assignment')
+    alumni_boolean = fields.Boolean('Alumni Student')
+    passing_year = fields.Many2one('op.batch', 'Passing Year')
+    current_position = fields.Char('Current Position', size=256)
+    current_job = fields.Char('Current Job', size=256)
+    email = fields.Char('Email', size=128)
+    phone = fields.Char('Phone Number', size=256)
+    user_id = fields.Many2one('res.users', 'User')
+    placement_line = fields.One2many(
+        'op.placement.offer', 'student_id', 'Placement Details')
+    activity_log = fields.One2many(
+        'op.activity', 'student_id', 'Activity Log')
+    parent_ids = fields.Many2many('op.parent', string='Parent')
+    gr_no = fields.Char("GR Number", size=20)
+    invoice_exists = fields.Boolean('Invoice')
 
-
-    def create_invoice(self, cr, uid, ids, context={}):
+    @api.multi
+    def create_invoice(self):
         """ Create invoice for fee payment process of student """
 
-        invoice_pool = self.pool.get('account.invoice')
+        invoice_pool = self.env['account.invoice']
 
-        default_fields = invoice_pool.fields_get(cr, uid, context=context)
-        invoice_default = invoice_pool.default_get(cr, uid, default_fields, context=context)
+        default_fields = invoice_pool.fields_get(self)
+        invoice_default = invoice_pool.default_get(default_fields)
 
-        for student in self.browse(cr, uid, ids, context=context):
-
-            onchange_partner = invoice_pool.onchange_partner_id(cr, uid, [], type='out_invoice',\
-                                partner_id=student.partner_id.id)
+        for student in self:
+            type = 'out_invoice'
+            partner_id = student.partner_id.id
+            onchange_partner = invoice_pool.onchange_partner_id(
+                type, partner_id)
             invoice_default.update(onchange_partner['value'])
 
-
             invoice_data = {
-                            'partner_id': student.partner_id.id,
-                            'date_invoice': time.strftime('%Y-%m-%d'),
-                            'payment_term': student.standard_id.payment_term and student.standard_id.payment_term.id or student.course_id.payment_term and student.course_id.payment_term.id or False,
-                            }
-            
-        invoice_default.update(invoice_data)
-        invoice_id = invoice_pool.create(cr, uid, invoice_default, context=context)
-        self.write(cr, uid, ids, {'invoice_ids': [(4, invoice_id)],'invoice_exists':True}, context=context)
-        models_data = self.pool.get('ir.model.data')
-        form_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_form')
-        tree_view = models_data.get_object_reference(cr, uid, 'account', 'invoice_tree')
-        value = {
-                'domain': str([('id', '=', invoice_id)]),
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'account.invoice',
-                'view_id': False,
-                'views': [(form_view and form_view[1] or False, 'form'),
-                          (tree_view and tree_view[1] or False, 'tree')],
-                'type': 'ir.actions.act_window',
-                'res_id': invoice_id,
-                'target': 'current',
-                'nodestroy': True
+                'partner_id': student.partner_id.id,
+                'date_invoice': fields.Date.today(),
+                'payment_term': student.standard_id.payment_term and student.standard_id.payment_term.id or student.course_id.payment_term and student.course_id.payment_term.id or False,
             }
+
+        invoice_default.update(invoice_data)
+        invoice_id = invoice_pool.create(invoice_default).id
+        self.write({'invoice_ids': [(4, invoice_id)], 'invoice_exists': True})
+        form_view = self.env.ref('account.invoice_form')
+        tree_view = self.env.ref('account.invoice_tree')
+        value = {
+            'domain': str([('id', '=', invoice_id)]),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'account.invoice',
+            'view_id': False,
+            'views': [(form_view and form_view.id or False, 'form'),
+                      (tree_view and tree_view.id or False, 'tree')],
+            'type': 'ir.actions.act_window',
+            'res_id': invoice_id,
+            'target': 'current',
+            'nodestroy': True
+        }
         return value
-    
-    def action_view_invoice(self, cr, uid, ids, context=None):
+
+    @api.multi
+    def action_view_invoice(self):
         '''
         This function returns an action that display existing invoices of given student ids and show a invoice"
         '''
-        mod_obj = self.pool.get('ir.model.data')
-        act_obj = self.pool.get('ir.actions.act_window')
-
-        result = mod_obj.get_object_reference(cr, uid, 'account', 'action_invoice_tree1')
-        id = result and result[1] or False
-        result = act_obj.read(cr, uid, [id], context=context)[0]
-        #compute the number of invoices to display
+        result = self.env.ref('account.action_invoice_tree1')
+        id = result and result.id or False
+        result = self.env['ir.actions.act_window'].browse(id).read()[0]
+        # compute the number of invoices to display
         inv_ids = []
-        for so in self.browse(cr, uid, ids, context=context):
+        for so in self:
             inv_ids += [invoice.id for invoice in so.invoice_ids]
-        #choose the view_mode accordingly
-        if len(inv_ids)>1:
-            result['domain'] = "[('id','in',["+','.join(map(str, inv_ids))+"])]"
+        # choose the view_mode accordingly
+        if len(inv_ids) > 1:
+            result[
+                'domain'] = "[('id','in',[" + ','.join(map(str, inv_ids)) + "])]"
         else:
-            res = mod_obj.get_object_reference(cr, uid, 'account', 'invoice_form')
-            result['views'] = [(res and res[1] or False, 'form')]
+            res = self.env.ref('account.invoice_form')
+            result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = inv_ids and inv_ids[0] or False
         return result
-    
-op_student()
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

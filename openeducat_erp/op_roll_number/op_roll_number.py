@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,21 +17,21 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_roll_number(osv.osv):
+from openerp import models, fields
+
+
+class op_roll_number(models.Model):
     _name = 'op.roll.number'
     _rec_name = 'roll_number'
 
-    _columns = {
-            'roll_number': fields.char(size=8, string='Roll Number', required=True),
-            'course_id': fields.many2one('op.course', string='Course', required=True),
-            'batch_id': fields.many2one('op.batch', string='Batch', required=True),
-            'standard_id': fields.many2one('op.standard', string='Standard', required=True),
-            'division_id': fields.many2one('op.division', string='Division'),
-            'student_id': fields.many2one('op.student', string='Student', required=True),
-    }
+    roll_number = fields.Char('Roll Number', size=8, required=True)
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
+    standard_id = fields.Many2one('op.standard', 'Standard', required=True)
+    division_id = fields.Many2one('op.division', 'Division')
+    student_id = fields.Many2one('op.student', 'Student', required=True)
 
-op_roll_number()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

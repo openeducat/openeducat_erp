@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,18 +17,17 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_parent(osv.osv):
+from openerp import models, fields
+
+
+class op_parent(models.Model):
     _name = 'op.parent'
 
-    _columns = {
+    name = fields.Many2one('res.partner', 'Parent Name', required=True)
+    student_ids = fields.Many2many('op.student', string='Select Student')
+    user_id = fields.Many2one('res.users', 'User', required=True)
 
-            'name': fields.many2one('res.partner','Parent Name', required=True),
-            'student_ids': fields.many2many('op.student', 'student_parent_rel', 'op_student', 'op_parent', string="Select Student"),
-            'user_id': fields.many2one('res.users', 'User', required=True),
-    }
 
-op_parent()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,34 +17,32 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_scholarship(osv.osv):
+from openerp import models, fields, api
+
+
+class op_scholarship(models.Model):
     _name = 'op.scholarship'
-    
-    _columns = {
-            'name': fields.char(size=64, string='Name', required=True),
-            'student_id': fields.many2one('op.student', 'Student', required=True),
-            'type_id': fields.many2one('op.scholarship.type','Type', required=True),
-            'state': fields.selection([('d','Draft'),('c','Confirm'),('r','Reject')],readonly=True ,select=True, string='State')
-    }
-    
-    _defaults = {
-                 'state': 'd'
-                 }
-    
-    def act_draft(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'d'})
-        return True
-    
-    def act_confirm(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'c'})
-        return True
-    
-    def act_reject(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'r'})
-        return True
-    
-op_scholarship()
+
+    name = fields.Char('Name', size=64, required=True)
+    student_id = fields.Many2one('op.student', 'Student', required=True)
+    type_id = fields.Many2one('op.scholarship.type', 'Type', required=True)
+    state = fields.Selection(
+        [('d', 'Draft'), ('c', 'Confirm'), ('r', 'Reject')], 'State', default='d', readonly=True, select=True)
+
+    @api.one
+    def act_draft(self):
+        # Reminder... Delete This Method... Not used
+        self.state = 'd'
+
+    @api.one
+    def act_confirm(self):
+        self.state = 'c'
+
+    @api.one
+    def act_reject(self):
+        self.state = 'r'
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
