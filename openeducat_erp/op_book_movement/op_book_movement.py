@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
@@ -66,7 +66,6 @@ class op_book_movement(models.Model):
         if self.book_id.state and self.book_id.state == 'a':
             self.book_id.state = 'i'
             self.state = 'i'
-        return True
 
     @api.one
     def calculate_penalty(self):
@@ -81,7 +80,6 @@ class op_book_movement(models.Model):
                 self.library_card_id.library_card_type_id.penalty_amt_per_day
         self.write({'penalty': penalty_amt, 'state': 'a'})
         self.book_id.state = 'a'
-        return True
 
     @api.multi
     def return_book(self):

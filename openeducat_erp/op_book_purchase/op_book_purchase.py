@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 from openerp import models, fields, api
 
@@ -42,21 +42,17 @@ class op_book_purchase(models.Model):
     def act_draft(self):
         # Reminder:: Delete this method as it is not used.
         self.state = 'd'
-        return True
 
     @api.one
     def act_requested(self):
         self.state = 'rq'
-        return True
 
     @api.one
     def act_accept(self):
         self.state = 'a'
-        return True
 
     @api.one
     def act_reject(self):
         self.state = 'r'
-        return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
@@ -53,16 +53,13 @@ class op_book_queue(models.Model):
     @api.one
     def do_reject(self):
         self.state = 'reject'
-        return True
 
     @api.one
     def do_accept(self):
         self.state = 'accept'
-        return True
 
     @api.one
     def do_request_again(self):
         self.state = 'request'
-        return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

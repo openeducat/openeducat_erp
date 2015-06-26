@@ -35,6 +35,5 @@ class op_allocat_division(models.Model):
     def generate_division(self):
         self.student_ids.write(
             {'division_id': self.division_id.id})
-        return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

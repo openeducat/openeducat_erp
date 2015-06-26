@@ -47,17 +47,14 @@ class op_assignment(models.Model):
     def act_draft(self):
         # Reminder:: Delete this method as it is not used.
         self.state = 'd'
-        return True
 
     @api.one
     def act_publish(self):
         self.state = 'p'
-        return True
 
     @api.one
     def act_finish(self):
         self.state = 'f'
-        return True
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

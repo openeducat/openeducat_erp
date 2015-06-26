@@ -77,26 +77,21 @@ class op_exam(models.Model):
     @api.one
     def act_held(self):
         self.state = 'h'
-        return True
 
     @api.one
     def act_done(self):
         self.state = 'd'
-        return True
 
     @api.one
     def act_schedule(self):
         self.state = 's'
-        return True
 
     @api.one
     def act_cancel(self):
         self.state = 'c'
-        return True
 
     @api.one
     def act_new_exam(self):
         self.state = 'n'
-        return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

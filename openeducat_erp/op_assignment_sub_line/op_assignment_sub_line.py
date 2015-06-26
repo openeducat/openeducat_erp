@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 from openerp import models, fields, api
 
@@ -41,26 +41,21 @@ class op_assignment_sub_line(models.Model):
     @api.one
     def act_draft(self):
         self.state = 'd'
-        return True
 
     @api.one
     def act_submit(self):
         self.state = 's'
-        return True
 
     @api.one
     def act_accept(self):
         self.state = 'a'
-        return True
 
     @api.one
     def act_change_req(self):
         self.state = 'c'
-        return True
 
     @api.one
     def act_reject(self):
         self.state = 'r'
-        return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

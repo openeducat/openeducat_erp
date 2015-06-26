@@ -98,7 +98,6 @@ class op_admission(models.Model):
     @api.one
     def confirm_in_progress(self):
         self.state = 'i'
-        return True
 
     @api.one
     def confirm_selection(self):
@@ -131,35 +130,29 @@ class op_admission(models.Model):
         }
         self.write(
             {'state': 's', 'student_id': self.env['op.student'].create(vals).id, 'nbr': 1})
-        return True
 
     @api.one
     def fee_paid(self):
-        # TO_FIX:: Remove this method & its call from YML
+        # TO_FIX:: Remove this method & its call from YML as it's not used.
         self.state = 'd'
-        return True
 
     @api.one
     def confirm_rejected(self):
         self.state = 'r'
-        return True
 
     @api.one
     def confirm_pending(self):
         self.state = 'p'
-        return True
 
     @api.one
     def confirm_to_draft(self):
         self.state = 'd'
         self.delete_workflow()
         self.create_workflow()
-        return True
 
     @api.one
     def confirm_cancel(self):
         self.state = 'c'
-        return True
 
     @api.multi
     def open_student(self):
@@ -181,13 +174,9 @@ class op_admission(models.Model):
         self.state = 'done'
         return value
 
-    def create_student_invoice(self, cr, uid, ids, context={}):
-        # Reminder:: Remain to Convert in New API, Convert once create_invoice
-        # is converted
-        this_obj = self.browse(cr, uid, ids[0], context)
-        self.pool.get('op.student').create_invoice(
-            cr, uid, this_obj.student_id.id, context=context)
-        self.write(cr, uid, ids, {'state': 'done'})
-        return True
+    @api.one
+    def create_student_invoice(self):
+        self.student_id.create_invoice()
+        self.state = 'done'
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

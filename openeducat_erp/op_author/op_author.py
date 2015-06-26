@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 from openerp import models, fields
 
@@ -25,8 +25,8 @@ from openerp import models, fields
 class op_author(models.Model):
     _name = 'op.author'
 
-    name = fields.Char('Name', size=128)
-    address = fields.Many2one('res.partner', 'Address', required=True)
+    name = fields.Char('Name', size=128, required=True)
+    address = fields.Many2one('res.partner', 'Address')
     book_ids = fields.Many2many('op.book', string='Books')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
