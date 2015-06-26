@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,19 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_exam_room(osv.osv):
+from openerp import models, fields
+
+
+class op_exam_room(models.Model):
     _name = 'op.exam.room'
-    _columns = {
-                'name': fields.char('Name', size=256, required=True),
-                'classroom_id': fields.many2one('op.classroom', 'Classroom', required=True),
-                'capacity': fields.integer(string="Capacity",size=3, required=True),
-                'course_ids': fields.many2many('op.course', 'course_exam_room_rel', 'exam_room_id', 'course_id', 'Course'),
-                'standard_ids': fields.many2many('op.standard', 'standard_exam_room_rel', 'exam_room_id', 'standard_id', 'Course'),
-                'student_ids': fields.many2many('op.student', 'student_exam_room_rel', 'exam_room_id', 'student_id', 'Course'),
-    }
-    
-op_exam_room()
+
+    name = fields.Char('Name', size=256, required=True)
+    classroom_id = fields.Many2one('op.classroom', 'Classroom', required=True)
+    capacity = fields.Integer('Capacity', required=True)
+    course_ids = fields.Many2many('op.course', string='Course(s)')
+    standard_ids = fields.Many2many('op.standard', string='Standard(s)')
+    student_ids = fields.Many2many('op.student', string='Student(s)')
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

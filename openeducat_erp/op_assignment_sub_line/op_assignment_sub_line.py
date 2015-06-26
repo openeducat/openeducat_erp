@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,49 +17,45 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-import time
-from datetime import datetime, timedelta
+###############################################################################
+
+from openerp import models, fields, api
 
 
-class op_assignment_sub_line(osv.osv):
+class op_assignment_sub_line(models.Model):
     _name = 'op.assignment.sub.line'
     _rec_name = 'assignment_id'
-    _columns = {
-            'assignment_id': fields.many2one('op.assignment', string='Assignment'),
-            'student_id': fields.many2one('op.student', string='Student'),
-            'description': fields.text(string='Description'),
-            'state': fields.selection([('d','Draft'),('s','Submitted'),('a','Accepted'),('r','Rejected'),('c','Change Req.')], string='State'),
-            'submission_date': fields.datetime(string='Submission Date', readonly=True),
-            'note': fields.text(string='Note'),
-            'history_line': fields.one2many('op.assignment.sub.history', 'assign_sub_id', string='Change History'),
-    }
 
-    _defaults = {
-                 'submission_date': fields.date.context_today,
-                 'state': 'd'
-                 }
+    assignment_id = fields.Many2one(
+        'op.assignment', 'Assignment', required=True)
+    student_id = fields.Many2one('op.student', 'Student', required=True)
+    description = fields.Text('Description')
+    state = fields.Selection([('d', 'Draft'), ('s', 'Submitted'), (
+        'a', 'Accepted'), ('r', 'Rejected'), ('c', 'Change Req.')], 'State', default='d')
+    submission_date = fields.Datetime(
+        'Submission Date', readonly=True, default=lambda self: fields.Datetime.now(), required=True)
+    note = fields.Text('Note')
+    history_line = fields.One2many(
+        'op.assignment.sub.history', 'assign_sub_id', string='Change History')
 
-    def act_draft(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'d'})
-        return True
+    @api.one
+    def act_draft(self):
+        self.state = 'd'
 
-    def act_submit(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'s'})
-        return True
+    @api.one
+    def act_submit(self):
+        self.state = 's'
 
-    def act_accept(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'a'})
-        return True
+    @api.one
+    def act_accept(self):
+        self.state = 'a'
 
-    def act_change_req(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'c'})
-        return True
+    @api.one
+    def act_change_req(self):
+        self.state = 'c'
 
-    def act_reject(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'r'})
-        return True
+    @api.one
+    def act_reject(self):
+        self.state = 'r'
 
-op_assignment_sub_line()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

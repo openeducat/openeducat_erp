@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,16 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_author(osv.osv):
+from openerp import models, fields
+
+
+class op_author(models.Model):
     _name = 'op.author'
 
-    _columns = {
-            'name': fields.char(size=128, string='Name'),
-            'address': fields.many2one('res.partner', string='Address'),
-            'book_ids': fields.many2many('op.book', 'book_author_rel', 'op_author_id', 'op_book_id', string='Books'),
-    }
+    name = fields.Char('Name', size=128, required=True)
+    address = fields.Many2one('res.partner', 'Address')
+    book_ids = fields.Many2many('op.book', string='Books')
 
-op_author()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,53 +17,42 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_book_purchase(osv.osv):
+from openerp import models, fields, api
+
+
+class op_book_purchase(models.Model):
     _name = 'op.book.purchase'
-    
-    
-    _columns = {
-            'name': fields.char(size=128, string='Title', required=True),
-            'author_ids': fields.char(string='Author', size=256),
-            'edition': fields.text(string='Edition'),
-            'publisher_ids': fields.char(string='Publisher', size=256),
-            'course_ids': fields.many2one('op.course', string='Course', required=True),
-            'subject_ids': fields.many2one('op.subject', string='Subject', required=True),
-            'student_id': fields.many2one('op.student', 'Student'),
-            'faculty_id': fields.many2one('op.faculty', 'Faculty'),
-            'library_id': fields.many2one('res.partner','Librarian'),
-            'state': fields.selection([('d','Draft'),('rq','Requested'),('a','Accept'),('r','Reject')], string='State', select=True, readonly=True),
-            
-    }
-    
-    def get_student(self, cr, uid, *args):
-        user_pool = self.pool.get('res.users')
-        result = user_pool.browse(cr, uid, uid).user_line
-        return result and result[0].id or False
-    
-    _defaults = {
-              'state': 'd',
-              'student_id': get_student,
-              }
 
-    def act_draft(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'d'})
-        return True
-    
-    def act_requested(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'rq'})
-        return True
-    
-    def act_accept(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'a'})
-        return True
-    
-    def act_reject(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'r'})
-        return True
+    name = fields.Char('Title', size=128, required=True)
+    author_ids = fields.Char('Author', size=256)
+    edition = fields.Text('Edition')
+    publisher_ids = fields.Char('Publisher', size=256)
+    course_ids = fields.Many2one('op.course', 'Course', required=True)
+    subject_ids = fields.Many2one('op.subject', 'Subject', required=True)
+    student_id = fields.Many2one('op.student', 'Student', default=lambda self:
+                                 self.env.user.user_line and self.env.user.user_line[0].id or False)
+    faculty_id = fields.Many2one('op.faculty', 'Faculty')
+    library_id = fields.Many2one('res.partner', 'Librarian')
+    state = fields.Selection([('d', 'Draft'), ('rq', 'Requested'), (
+        'a', 'Accept'), ('r', 'Reject')], 'State', select=True, readonly=True, default='d')
 
+    @api.one
+    def act_draft(self):
+        # Reminder:: Delete this method as it is not used.
+        self.state = 'd'
 
-op_book_purchase()
+    @api.one
+    def act_requested(self):
+        self.state = 'rq'
+
+    @api.one
+    def act_accept(self):
+        self.state = 'a'
+
+    @api.one
+    def act_reject(self):
+        self.state = 'r'
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

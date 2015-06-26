@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,39 +17,26 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_exam_res_allocation(osv.osv):
+from openerp import models, fields, api
+
+
+class op_exam_res_allocation(models.Model):
     _name = 'op.exam.res.allocation'
-    
-    _columns = {
-            'exam_session_ids': fields.many2many('op.exam.session','exam_session_rel', 'op_exam', 'op_session', 'Select Exam Session'),
-            'exam_ids': fields.many2many('op.exam', 'exam_resource_rel',\
-                         'op_exam_id', 'op_resource_id', string='Exam(s)'),
-            'faculty_ids': fields.many2many('op.faculty', 'faculty_resource_rel',\
-                        'op_faculty_id', 'op_resource_id', string='Faculty'),
-            'student_ids': fields.many2many('op.student', 'student_resource_rel',\
-                        'op_student_id', 'op_resource_id', string='Student'),
-    }
-        
-    def onchange_exam_session_res(self, cr, uid, ids, exam_session_ids, context={}):
-        
-        session_pool = self.pool.get('op.exam.session')
-        student_pool = self.pool.get('op.student')
-        for session_obj in exam_session_ids[0][2]:
-            session_browse = session_pool.browse(cr, uid, session_obj, context)
-            student_search = student_pool.search(cr, uid, [('course_id','=',session_browse.course_id.id)])
-            student_list = []
-            for student_obj in student_search:
-                student_browse = student_pool.browse(cr, uid, student_obj)
-                student_list += [student_browse.id]
-                exams = []
-                for exam in session_browse.exam_ids:
-                    exams += [exam.id]
-            return {
-                    'value':{'exam_ids':[(6,0,exams)], 'student_ids':[(6,0,student_list)]}
-                    }
-                    
-op_exam_res_allocation()
+
+    exam_session_ids = fields.Many2many(
+        'op.exam.session', string='Select Exam Session')
+    exam_ids = fields.Many2many('op.exam', string='Exam(s)')
+    faculty_ids = fields.Many2many('op.faculty', string='Faculty')
+    student_ids = fields.Many2many('op.student', string='Student')
+
+    @api.onchange('exam_session_ids')
+    def onchange_exam_session_res(self):
+        for session in self.exam_session_ids:
+            students = self.env['op.student'].search(
+                [('course_id', '=', session.course_id.id)])
+            self.exam_ids = session.exam_ids.ids
+            self.student_ids = students.ids
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
