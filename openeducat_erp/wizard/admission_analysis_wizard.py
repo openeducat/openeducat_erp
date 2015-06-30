@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,34 +17,30 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+###############################################################################
+
 import time
 
-class admission_analysis(osv.osv_memory):
-    """ Admission Analysis Wizard """
+from openerp import models, fields, api
+from openerp.tools.translate import _
 
+
+class admission_analysis(models.TransientModel):
+
+    """ Admission Analysis Wizard """
     _name = 'admission.analysis'
 
-    _columns = {
-                'course_id': fields.many2one('op.course', 'Course', required=True),
-                'standard_id': fields.many2one('op.standard', 'Standard', required=True),
-                'start_date': fields.date('Start Date', required=True),
-                'end_date': fields.date('End Date', required=True),
-                }
-    
-    _defaults = {
-                 'start_date': time.strftime('%Y-%m-01'),
-            }
-    
-    
-    def print_report(self, cr, uid, ids, data, context=None):
-        if context is None:
-            context = {}
-        data.update(self.read(cr, uid, ids, ['course_id', 'standard_id', 'start_date', 'end_date'])[0])
-        return self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_admission_analysis', data=data, context=context)
-    
-    
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    standard_id = fields.Many2one('op.standard', 'Standard', required=True)
+    start_date = fields.Date(
+        'Start Date', default=time.strftime('%Y-%m-01'), required=True)
+    end_date = fields.Date('End Date', required=True)
 
-admission_analysis()
+    @api.multi
+    def print_report(self):
+        data = self.read(
+            ['course_id', 'standard_id', 'start_date', 'end_date'])[0]
+        return self.env['report'].get_action(self, 'openeducat_erp.report_admission_analysis', data=data)
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
