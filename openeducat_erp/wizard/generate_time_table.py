@@ -21,9 +21,7 @@
 
 import datetime
 import pytz
-
 from openerp import models, fields, api
-from openerp.addons.openeducat_erp import utils
 
 week_number = {
     'Mon': 1,

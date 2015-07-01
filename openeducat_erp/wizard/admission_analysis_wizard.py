@@ -22,7 +22,6 @@
 import time
 
 from openerp import models, fields, api
-from openerp.tools.translate import _
 
 
 class admission_analysis(models.TransientModel):
