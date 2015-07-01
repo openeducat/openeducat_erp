@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,67 +17,49 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-import time
+###############################################################################
 
-class student_migrate(osv.osv_memory):
+from openerp import models, fields, api, _
+
+
+class student_migrate(models.TransientModel):
+
     """ Student Migration Wizard """
-
     _name = 'student.migrate'
-    
-    _columns = {
-                'date': fields.date('Date', required=True),
-                'course_id': fields.many2one('op.course', string='Course', required=True),
-                'from_standard_id': fields.many2one('op.standard', string='From Standard', required=True),
-                'to_standard_id': fields.many2one('op.standard', string='To Standard', required=True),
-                'student_ids': fields.many2many('op.student', 'op_student_migration_rel', 
-                                                'op_student_id', 'op_migrate_id', string='Student(s)', 
-                                                required=True),
-                }
-    
-    def _check_from_to_standard(self, cr, uid, ids, context=None):
-        for self_obj in self.browse(cr, uid, ids): 
-            if self_obj.from_standard_id.id == self_obj.to_standard_id.id:
-                return False
-        return True
-    
-    _constraints = [
-        (_check_from_to_standard, 'Student is already in this standard.', ['from_standard_id','Can\'t Move']),
+
+    date = fields.Date('Date', required=True, default=fields.Date.today())
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    from_standard_id = fields.Many2one(
+        'op.standard', 'From Standard', required=True)
+    to_standard_id = fields.Many2one(
+        'op.standard', 'To Standard', required=True)
+    student_ids = fields.Many2many(
+        'op.student', string='Student(s)', required=True)
+
+    _sql_constraints = [
+        ('from_to_standard_check', 'check(from_standard_id != to_standard_id)',
+         _("From Student must not be same as To Student !")),
     ]
-    
-    def go_forward(self, cr, uid, ids, context={}):
-        standard = self.pool.get("op.standard")
-        activity = self.pool.get("op.activity")
-        student_obj = self.pool.get("op.student")
-        activity_type = self.pool.get("op.activity.type")
-        lst_student =[]
-        for self_obj in self.browse(cr, uid, ids):
-            dic = {}
-            act_type_id = activity_type.create(cr, uid, {'name': 'Migration'},context)
-            for student in self_obj.student_ids:
-                dic_act = {}
-                dic_act = {
-                           'student_id': student.id,
-                           'type_id': act_type_id,
-                           'date': self_obj.date
-                           }
-                act_id = activity.create(cr, uid, dic_act,context)
-                student_std = student_obj.write(cr, uid, student.id, {'standard_id': self_obj.to_standard_id.id},context={} )
-                lst_student.append(student.id)
-            dic = {
-                   'code': self_obj.to_standard_id.name,
-                   'name': self_obj.to_standard_id.name,
-                   'course_id': self_obj.course_id.id,
-                   'date': self_obj.date,
-                   'student_ids': [(6,0,lst_student)],
-                   }
-        std_id = standard.create(cr, uid, dic,context)
-        
-        value = {'type': 'ir.actions.act_window_close'}
-        return value
-        
-student_migrate()
+
+    @api.one
+    def go_forward(self):
+        activity_type = self.env["op.activity.type"]
+        lst_student = self.to_standard_id.student_ids.ids
+        act_type = activity_type.search([('name', '=', 'Migration')], limit=1)
+        if not act_type:
+            act_type = activity_type.create({'name': 'Migration'})
+        for student in self.student_ids:
+            activity_vals = {
+                'student_id': student.id,
+                'type_id': act_type.id,
+                'date': self.date
+            }
+            self.env['op.activity'].create(activity_vals)
+            student.write({'standard_id': self.to_standard_id.id})
+            lst_student.append(student.id)
+        self.from_standard_id.student_ids = self.from_standard_id.student_ids - \
+            self.student_ids
+        self.to_standard_id.write(
+            {'student_ids': [(6, 0, lst_student)]})
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
