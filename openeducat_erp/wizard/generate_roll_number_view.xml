@@ -7,19 +7,16 @@
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Generate Roll Numbers">
-					<field name="type" select="1" />
-					<field name="prefix" select="1"
-						on_change="onchange_number(prefix,start,sufix,separator)" />
-					<field name="start" select="1"
-						on_change="onchange_number(prefix,start,sufix,separator)" />
-					<field name="sufix" select="1"
-						on_change="onchange_number(prefix,start,sufix,separator)" />
-					<field name="separator" select="1"
-						on_change="onchange_number(prefix,start,sufix,separator)"
-						attrs="{'required': ['|',('prefix','!=', False),
-                                         ('sufix','!=', False)]}" />
-					<field name="example" select="1" />
-					<field name="division_ids" colspan="4" nolabel="1" />
+					<group>
+						<field name="type" select="1" />
+						<field name="prefix" select="1" />
+						<field name="start" select="1" />
+						<field name="sufix" select="1" />
+						<field name="separator" select="1"
+							attrs="{'required': ['|',('prefix','!=', False),('sufix','!=', False)]}" />
+						<field name="example" select="1" />
+						<field name="division_ids" colspan="4" nolabel="1" />
+					</group>
 					<group colspan="4" col="4">
 						<button special="cancel" string="Close" type="object"
 							icon="terp-dialog-close" />
@@ -30,6 +27,6 @@
 		</record>
 		<act_window name="Generate Roll Number  " res_model="generate.roll.number"
 			src_model="op.standard" view_mode="form" target="new" key2="client_action_multi"
-			id="act_op_gen_roll_no" groups="openeducat_erp.group_op_back_office_admin"/>
+			id="act_op_gen_roll_no" groups="openeducat_erp.group_op_back_office_admin" />
 	</data>
 </openerp>
