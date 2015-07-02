@@ -27,7 +27,7 @@ class exam_seat_arrange(models.TransientModel):
 
     room_id = fields.Many2one('op.exam.room', 'Room', required=True)
     exam_session_ids = fields.Many2many(
-        'op.exam.session', 'exam_session_rel1', 'op_exam', 'op_session', 'Select Section', required=True)
+        'op.exam.session', string='Select Section', required=True)
     start_time = fields.Datetime(
         'Start Time', default=fields.Date.context_today, required=True)
     end_time = fields.Datetime(

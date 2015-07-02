@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,43 +17,39 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-import time
+###############################################################################
 
-class return_book(osv.osv_memory):
+from openerp import models, fields, api
+from openerp.exceptions import Warning
+
+
+class return_book(models.TransientModel):
+
     """ Retrun Book Wizard """
-
     _name = 'return.book'
 
-    _columns = {
-                'book_id': fields.many2one('op.book', string='Book', readonly=True),
-                'actual_return_date': fields.date(string='Actual Return Date', required=True),
-                }
+    book_id = fields.Many2one('op.book', 'Book', readonly=True)
+    actual_return_date = fields.Date(
+        'Actual Return Date', default=lambda self: fields.Date.today(), required=True)
 
-    _defaults = {'actual_return_date': time.strftime('%Y-%m-%d')}
+    @api.one
+    def do_return(self):
+        book_movement = self.env['op.book.movement']
+        if self.book_id.state and self.book_id.state == 'i':
+            book_move_search = book_movement.search(
+                [('book_id', '=', self.book_id.id), ('state', '=', 'i')])
+            if not book_move_search:
+                return {'type': 'ir.actions.act_window_close'}
+            book_move_search.actual_return_date = self.actual_return_date
+            book_movement.calculate_penalty(book_move_search)
+            self.book_id.state = 'a'
+        else:
+            book_state = self.book_id.state == 'i' and 'Issued' or \
+                self.book_id.state == 'a' and 'Available' or \
+                self.book_id.state == 'l' and 'Lost' or \
+                self.book_id.state == 'r' and 'Reserved'
+            raise Warning(_('Error!'), _(
+                'Book Can not be issued because book state is : %s') % (book_state))
 
-    def do_return(self, cr, uid, ids, context={}):
-        value = {}
-        book_movement = self.pool.get("op.book.movement")
-        book = self.pool.get("op.book")
-        for this_obj in self.browse(cr, uid, ids):
-            if this_obj.book_id.state and this_obj.book_id.state == 'i':
-                book_move_search = book_movement.search(cr, uid, [('book_id','=',this_obj.book_id.id),('state','=','i')])
-                if not book_move_search: value = {'type': 'ir.actions.act_window_close'}
-                book_movement.write(cr, uid, book_move_search,
-                                {'actual_return_date': this_obj.actual_return_date})
-                book_movement.calculate_penalty(cr, uid, book_move_search, context)
-                book.write(cr, uid, [this_obj.book_id.id], {'state':'a'})
-            else:
-                book_state = this_obj.book_id.state == 'i' and 'Issued' or \
-                              this_obj.book_id.state == 'a' and 'Available' or \
-                              this_obj.book_id.state == 'l' and 'Lost' or \
-                              this_obj.book_id.state == 'r' and 'Reserved'
-                raise osv.except_osv(('Error!'),("Book Can not be issued because book state is : %s") %(book_state))
-        return value
-
-return_book()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

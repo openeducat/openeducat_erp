@@ -19,9 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import Warning
-from openerp.tools.translate import _
 
 
 class issue_book(models.TransientModel):
@@ -30,7 +29,7 @@ class issue_book(models.TransientModel):
     _name = 'issue.book'
 
     book_id = fields.Many2one('op.book', 'Book', required=True)
-    quantity = fields.Integer('No. Of Books', size=256, required=True)
+    quantity = fields.Integer('No. Of Books', required=True)
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')], 'Type', default='student', required=True)
     student_id = fields.Many2one('op.student', 'Student')
