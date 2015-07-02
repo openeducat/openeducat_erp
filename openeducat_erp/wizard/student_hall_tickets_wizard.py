@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,23 +17,22 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-import time
+###############################################################################
 
-class student_hall_ticket(osv.osv_memory):
-    """ Retrun Book Wizard """
+from openerp import models, fields, api
 
+
+class student_hall_ticket(models.TransientModel):
+
+    """ Student Hall Ticket Wizard """
     _name = 'student.hall.ticket'
 
-    _columns = {
-                'exam_session_id':fields.many2one('op.exam.session','Exam Session', required=True),
-                
-                }
-    
-    def print_report(self, cr, uid, ids,data,context=None):
-        data.update( self.read(cr, uid, ids, ['exam_session_id'])[0])
-        return self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_ticket', data=data, context=context)
+    exam_session_id = fields.Many2one(
+        'op.exam.session', 'Exam Session', required=True)
 
-student_hall_ticket()
+    @api.multi
+    def print_report(self):
+        data = self.read(['exam_session_id'])[0]
+        return self.env['report'].get_action(self, 'openeducat_erp.report_ticket', data=data)
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

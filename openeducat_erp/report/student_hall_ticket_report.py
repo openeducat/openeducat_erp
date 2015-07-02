@@ -58,7 +58,6 @@ class student_hall_ticket_report(report_sxw.rml_parse):
         exam = self.pool.get('op.exam')
         lst = []
         for exam_line in datas['exam_ids']:
-            temp_exam = exam.browse(self.cr, self.uid, exam_line)
             res1 = {
                     'subject': exam_line.subject_id.name,
                     'date': exam_line.start_time[:10],
