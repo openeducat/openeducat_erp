@@ -30,7 +30,8 @@ class return_book(models.TransientModel):
 
     book_id = fields.Many2one('op.book', 'Book', readonly=True)
     actual_return_date = fields.Date(
-        'Actual Return Date', default=lambda self: fields.Date.today(), required=True)
+        'Actual Return Date', default=lambda self: fields.Date.today(),
+        required=True)
 
     @api.one
     def do_return(self):
@@ -49,7 +50,8 @@ class return_book(models.TransientModel):
                 self.book_id.state == 'l' and 'Lost' or \
                 self.book_id.state == 'r' and 'Reserved'
             raise Warning(_('Error!'), _(
-                'Book Can not be issued because book state is : %s') % (book_state))
+                'Book Can not be issued because book state is : %s') %
+                (book_state))
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

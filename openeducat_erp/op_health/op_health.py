@@ -30,8 +30,10 @@ class op_health(models.Model):
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     height = fields.Float('Height(C.M.)', required=True)
     weight = fields.Float('weight(K.G.)', required=True)
-    blood_group = fields.Selection([('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-                                    ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')], 'Blood Group', required=True)
+    blood_group = fields.Selection(
+        [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
+         ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
+        'Blood Group', required=True)
     physical_challenges = fields.Boolean('Physical Challenge?', default=False)
     physical_challenges_note = fields.Text('Physical Challenge')
     major_diseases = fields.Boolean('Major Diseases?', default=False)

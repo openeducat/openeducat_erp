@@ -31,7 +31,8 @@ class issue_book(models.TransientModel):
     book_id = fields.Many2one('op.book', 'Book', required=True)
     quantity = fields.Integer('No. Of Books', required=True)
     type = fields.Selection(
-        [('student', 'Student'), ('faculty', 'Faculty')], 'Type', default='student', required=True)
+        [('student', 'Student'), ('faculty', 'Faculty')],
+        'Type', default='student', required=True)
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     library_card_id = fields.Many2one(
@@ -39,13 +40,18 @@ class issue_book(models.TransientModel):
     issued_date = fields.Date('Issued Date', required=True)
     return_date = fields.Date('Return Date', required=True)
     state = fields.Selection(
-        [('i', 'Issued'), ('a', 'Available'), ('l', 'Lost'), ('r', 'Reserved')], 'Status', default='i')
+        [('i', 'Issued'), ('a', 'Available'),
+         ('l', 'Lost'), ('r', 'Reserved')],
+        'Status', default='i')
 
     @api.one
     def check_issue(self, student_id, library_card_id):
-        book_movement_search = self.env["op.book.movement"].search([(
-            'library_card_id', '=', library_card_id), ('student_id', '=', student_id), ('state', '=', 'i')])
-        if len(book_movement_search) < self.env["op.library.card"].browse(library_card_id).allow_book:
+        book_movement_search = self.env["op.book.movement"].search(
+            [('library_card_id', '=', library_card_id),
+             ('student_id', '=', student_id),
+             ('state', '=', 'i')])
+        if len(book_movement_search) < self.env["op.library.card"].browse(
+                library_card_id).allow_book:
             return True
         else:
             return False
@@ -57,7 +63,8 @@ class issue_book(models.TransientModel):
         for movement in self.book_id.movement_line:
             if movement.state == 'i':
                 total_book += movement.quantity
-        if self.book_id.number_book > 0 and self.book_id.number_book - total_book > 0:
+        if self.book_id.number_book > 0 and \
+                self.book_id.number_book - total_book > 0:
             if self.check_issue(self.student_id.id, self.library_card_id.id):
                 if self.book_id.state and self.book_id.state == 'a':
                     book_movement_create = {
@@ -76,15 +83,17 @@ class issue_book(models.TransientModel):
                     self.book_id.state = 'i'
                     value = {'type': 'ir.actions.act_window_close'}
                 else:
-                    book_state = this_obj.book_id.state == 'i' and 'Issued' or \
-                        this_obj.book_id.state == 'a' and 'Available' or \
-                        this_obj.book_id.state == 'l' and 'Lost' or \
-                        this_obj.book_id.state == 'r' and 'Reserved'
+                    book_state = this_obj.book_id.state == 'i' and 'Issued' \
+                        or this_obj.book_id.state == 'a' and 'Available' \
+                        or this_obj.book_id.state == 'l' and 'Lost' \
+                        or this_obj.book_id.state == 'r' and 'Reserved'
                     raise Warning(_('Error!'), _(
-                        'Book Can not be issued because book state is : %s') % (self.book_id.state))
+                        'Book Can not be issued because book state is : %s') %
+                        (self.book_id.state))
             else:
                 raise Warning(_('Error!'), _(
-                    'Maximum Number of book allowed for %s is : %s') % (self.student_id.name, self.library_card_id.allow_book))
+                    'Maximum Number of book allowed for %s is : %s') %
+                    (self.student_id.name, self.library_card_id.allow_book))
         else:
             raise Warning(_('Error!'), _('There Is No Book Available'))
         return value

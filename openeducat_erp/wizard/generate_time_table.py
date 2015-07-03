@@ -43,19 +43,26 @@ class generate_time_table(models.TransientModel):
     standard_id = fields.Many2one('op.standard', 'Standard', required=True)
     division_id = fields.Many2one('op.division', 'Division',  required=True)
     time_table_lines = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines', required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        required=True)
     time_table_lines_1 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines', domain=[('day', '=', '1')], required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        domain=[('day', '=', '1')], required=True)
     time_table_lines_2 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines', domain=[('day', '=', '2')], required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        domain=[('day', '=', '2')], required=True)
     time_table_lines_3 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines', domain=[('day', '=', '3')], required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        domain=[('day', '=', '3')], required=True)
     time_table_lines_4 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines', domain=[('day', '=', '4')], required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        domain=[('day', '=', '4')], required=True)
     time_table_lines_5 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines', domain=[('day', '=', '5')], required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        domain=[('day', '=', '5')], required=True)
     time_table_lines_6 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines', domain=[('day', '=', '6')], required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        domain=[('day', '=', '6')], required=True)
     start_date = fields.Date('Start Date', required=True)
     end_date = fields.Date('End Date', required=True)
 
@@ -70,7 +77,7 @@ class generate_time_table(models.TransientModel):
             per_time = '%s:%s:00' % (hour, line.period_id.minute)
             local = pytz.timezone(self.env.user.partner_id.tz or 'GMT')
             naive = datetime.datetime.strptime(
-                curr_date.strftime("%Y-%m-%d ") + per_time, "%Y-%m-%d %H:%M:%S")
+                curr_date.strftime('%Y-%m-%d') + per_time, '%Y-%m-%d %H:%M:%S')
             local_dt = local.localize(naive, is_dst=None)
             utc_dt = local_dt.astimezone(pytz.utc)
             utc_dt = utc_dt.strftime("%Y-%m-%d %H:%M:%S")

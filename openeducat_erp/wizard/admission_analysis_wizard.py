@@ -39,7 +39,8 @@ class admission_analysis(models.TransientModel):
     def print_report(self):
         data = self.read(
             ['course_id', 'standard_id', 'start_date', 'end_date'])[0]
-        return self.env['report'].get_action(self, 'openeducat_erp.report_admission_analysis', data=data)
+        return self.env['report'].get_action(
+            self, 'openeducat_erp.report_admission_analysis', data=data)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

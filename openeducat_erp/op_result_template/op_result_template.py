@@ -59,7 +59,8 @@ class op_result_template(models.Model):
                         'status': attd.marks >= exam.pass_marks and 'p' or 'f',
                         'per': (100 * attd.marks) / exam.total_marks,
                         'student_id': attd.student_id.id,
-                        'total_marks': (exam.weightage / 100) * exam.total_marks,
+                        'total_marks': (exam.weightage / 100) *
+                        exam.total_marks,
                     }
                     ret_id = self.env['op.result.line'].create(result_dict)
                     student_list.append(
@@ -106,16 +107,18 @@ class op_result_template(models.Model):
                 if not to_consider:
                     to_consider = max_pass
                 result = to_consider.result
-            mark_line_id = self.env['op.marksheet.line'].create({'student_id': stu_id,
-                                                                 'marksheet_reg_id': marksheet_reg_id.id,
-                                                                 'exam_session_id': exam_session.id,
-                                                                 'result': result,
-                                                                 'total_marks': total_marks,
-                                                                 'total_per': per,
-                                                                 'total_exam_marks': total_exam,
-                                                                 })
+            mark_line_id = self.env['op.marksheet.line'].create(
+                {'student_id': stu_id,
+                 'marksheet_reg_id': marksheet_reg_id.id,
+                 'exam_session_id': exam_session.id,
+                 'result': result,
+                 'total_marks': total_marks,
+                 'total_per': per,
+                 'total_exam_marks': total_exam,
+                 })
             self.env['op.result.line'].browse(
-                [x[0].id for x in stu_dict[stu_id]]).write({'result_id': mark_line_id.id})
+                [x[0].id for x in stu_dict[stu_id]]).write(
+                {'result_id': mark_line_id.id})
         return True
 
 
@@ -127,13 +130,16 @@ class op_result_template_line(models.Model):
     exam_session_id = fields.Many2one('op.exam.session', 'Exam Session')
     detailed_report = fields.Boolean('Detailed Report')
     course_id = fields.Many2one(
-        'op.course', 'Course', related='exam_session_id.course_id', readonly=True)
+        'op.course', 'Course', related='exam_session_id.course_id',
+        readonly=True)
     batch_id = fields.Many2one(
         'op.batch', 'Batch', related='exam_session_id.batch_id', readonly=True)
     standard_id = fields.Many2one(
-        'op.standard', 'Standard', related='exam_session_id.standard_id', readonly=True)
+        'op.standard', 'Standard', related='exam_session_id.standard_id',
+        readonly=True)
     division_id = fields.Many2one(
-        'op.division', 'Division', related='exam_session_id.division_id', readonly=True)
+        'op.division', 'Division', related='exam_session_id.division_id',
+        readonly=True)
     result_id = fields.Many2one('op.result.template', 'Result Template Line')
     exam_lines = fields.One2many(
         'op.result.exam.line', 'result_id', 'Exam Lines')

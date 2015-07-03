@@ -27,7 +27,8 @@ class generate_roll_number(models.TransientModel):
     _description = 'Generate Roll Number'
 
     type = fields.Selection(
-        [('n', 'By Name'), ('s', 'By Surname')], 'Generation Sequence', required=True)
+        [('n', 'By Name'), ('s', 'By Surname')], 'Generation Sequence',
+        required=True)
     prefix = fields.Char('Prefix', size=256)
     start = fields.Integer('Number Starts from', required=True)
     sufix = fields.Char('Suffix', size=256)
@@ -60,11 +61,18 @@ class generate_roll_number(models.TransientModel):
             order_by = 'last_name,name,middle_name'
         for div in self.division_ids:
             students = student_pool.search(
-                [('standard_id', '=', std_obj.id), ('division_id', '=', div.id)], order=order_by)
+                [('standard_id', '=', std_obj.id),
+                 ('division_id', '=', div.id)], order=order_by)
             roll_number = self.start
             for student in students:
-                self.env['op.roll.number'].create({'student_id': student.id, 'batch_id': student.batch_id.id, 'standard_id': std_obj.id,
-                                                   'course_id': std_obj.course_id.id, 'roll_number': self.get_number(self.prefix, roll_number, self.sufix, self.separator)})
+                self.env['op.roll.number'].create({
+                    'student_id': student.id,
+                    'batch_id': student.batch_id.id,
+                    'standard_id': std_obj.id,
+                    'course_id': std_obj.course_id.id,
+                    'roll_number': self.get_number(
+                        self.prefix, roll_number,
+                        self.sufix, self.separator)})
                 roll_number += 1
 
 
