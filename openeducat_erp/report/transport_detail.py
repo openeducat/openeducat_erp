@@ -24,13 +24,16 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 from openerp import pooler
 
+
 class op_transportation_detail(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context=None):
-        super(op_transportation_detail, self).__init__(cr, uid, name, context=context)
+        super(op_transportation_detail, self).__init__(
+            cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
 
-            })
+        })
 
 
 class report_transportation_detail(osv.AbstractModel):
@@ -38,4 +41,3 @@ class report_transportation_detail(osv.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_transportation_detail'
     _wrapped_report_class = op_transportation_detail
-        

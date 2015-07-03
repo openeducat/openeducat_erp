@@ -24,24 +24,29 @@ from datetime import datetime
 
 try:
     from reportlab.graphics.barcode import createBarcodeDrawing, \
-            getCodes
-except :
+        getCodes
+except:
     print "ERROR IMPORTING REPORT LAB"
 
-def get_barcode_image(value, width = False, hight = False, hr = True, code = 'QR'):
+
+def get_barcode_image(value, width=False, hight=False, hr=True, code='QR'):
     """ genrating image for barcode """
     options = {}
-    if width:options['width'] = width
-    if hight:options['hight'] = hight
-    if hr:options['humanReadable'] = hr
+    if width:
+        options['width'] = width
+    if hight:
+        options['hight'] = hight
+    if hr:
+        options['humanReadable'] = hr
     try:
-        ret_val = createBarcodeDrawing(code, value = str(value), **options)
+        ret_val = createBarcodeDrawing(code, value=str(value), **options)
     except Exception, e:
         raise osv.except_osv('Error', e)
     return base64.encodestring(ret_val.asString('jpg'))
 
+
 def server_to_local_timestamp(src_tstamp_str, src_format, dst_format, dst_tz_name,
-        tz_offset = True, ignore_unparsable_time = True, server_tz = False):
+                              tz_offset=True, ignore_unparsable_time=True, server_tz=False):
     """
     Convert a source timestamp string into a destination timestamp string, attempting to apply the
     correct offset if both the server and local timezone are recognized, or no
@@ -69,13 +74,14 @@ def server_to_local_timestamp(src_tstamp_str, src_format, dst_format, dst_tz_nam
         # find out server timezone
         if not server_tz:
             server_tz = "UTC"
-        # dt_value needs to be a datetime.datetime object (so no time.struct_time or mx.DateTime.DateTime here!)
+        # dt_value needs to be a datetime.datetime object (so no
+        # time.struct_time or mx.DateTime.DateTime here!)
         dt_value = datetime.strptime(src_tstamp_str, src_format)
         if tz_offset and dst_tz_name:
             import pytz
             src_tz = pytz.timezone(server_tz)
             dst_tz = pytz.timezone(dst_tz_name)
-            src_dt = src_tz.localize(dt_value, is_dst = True)
+            src_dt = src_tz.localize(dt_value, is_dst=True)
             dt_value = src_dt.astimezone(dst_tz)
         res = dt_value.strftime(dst_format)
         # Normal ways to end up here are if strptime or strftime failed

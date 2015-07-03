@@ -20,74 +20,82 @@
 #/#############################################################################
 
 import time
-from openerp.osv import osv,fields
+from openerp.osv import osv, fields
 from openerp.report import report_sxw
-from datetime import date,datetime
+from datetime import date, datetime
 from openerp import netsvc
 from openerp.addons.openeducat_erp import utils
 import pytz
 
+
 class student_hall_ticket_report(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context={}):
-        super(student_hall_ticket_report, self).__init__(cr, uid, name, context=context)
+        super(student_hall_ticket_report, self).__init__(
+            cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'get_data':self.get_data,
+            'get_data': self.get_data,
         })
         self.context = context
-         
-         
+
     def get_date(self, exam_line):
-        
+
         context = self.context
-        local = pytz.timezone (context.get('tz'))
+        local = pytz.timezone(context.get('tz'))
         start_time = exam_line.start_time
         end_time = exam_line.end_time
-        
-        schedule_start = datetime.strptime(exam_line.start_time,"%Y-%m-%d %H:%M:%S")
-        schedule_end = datetime.strptime(exam_line.end_time,"%Y-%m-%d %H:%M:%S")
-        
-        schedule_start = fields.datetime.context_timestamp(self.cr, self.uid, schedule_start, context=context).strftime("%Y-%m-%d %H:%M:%S")
-        
-        schedule_end = fields.datetime.context_timestamp(self.cr, self.uid, schedule_end, context=context).strftime("%Y-%m-%d %H:%M:%S")
-        
-        return schedule_start[11:] + ' To ' +schedule_end[11:]
-        
-    
+
+        schedule_start = datetime.strptime(
+            exam_line.start_time, "%Y-%m-%d %H:%M:%S")
+        schedule_end = datetime.strptime(
+            exam_line.end_time, "%Y-%m-%d %H:%M:%S")
+
+        schedule_start = fields.datetime.context_timestamp(
+            self.cr, self.uid, schedule_start, context=context).strftime("%Y-%m-%d %H:%M:%S")
+
+        schedule_end = fields.datetime.context_timestamp(
+            self.cr, self.uid, schedule_end, context=context).strftime("%Y-%m-%d %H:%M:%S")
+
+        return schedule_start[11:] + ' To ' + schedule_end[11:]
+
     def get_subject(self, datas):
         exam = self.pool.get('op.exam')
         lst = []
         for exam_line in datas['exam_ids']:
             res1 = {
-                    'subject': exam_line.subject_id.name,
-                    'date': exam_line.start_time[:10],
-                    'time': self.get_date(exam_line),
-                    'sup_sign': ''
-                    }
+                'subject': exam_line.subject_id.name,
+                'date': exam_line.start_time[:10],
+                'time': self.get_date(exam_line),
+                'sup_sign': ''
+            }
             lst.append(res1)
         return lst
-    
-    def get_data(self,data):
+
+    def get_data(self, data):
         final_lst = []
         exam_session_pool = self.pool.get('op.exam.session')
         exam_student = self.pool.get('op.student')
-        datas = exam_session_pool.browse(self.cr, self.uid, data['exam_session_id'][0])
-        student_search = exam_student.search(self.cr, self.uid, [('course_id', '=', datas.course_id.id), ('standard_id', '=', datas.standard_id.id)])
-        for student in exam_student.browse(self.cr, self.uid, student_search) :
+        datas = exam_session_pool.browse(
+            self.cr, self.uid, data['exam_session_id'][0])
+        student_search = exam_student.search(self.cr, self.uid, [(
+            'course_id', '=', datas.course_id.id), ('standard_id', '=', datas.standard_id.id)])
+        for student in exam_student.browse(self.cr, self.uid, student_search):
             res = {
-                   'exam': datas.name,
-                   'exam_code': datas.exam_code,
-                   'course': datas.course_id.name,
-                   'standard': datas.standard_id.name,
-                   'student': student.name,
-                   'photo': student.photo,
-                   'student_middle': student.middle_name,
-                   'student_last': student.last_name,
-                   'roll_number': student.roll_number,
-                   'line': self.get_subject(datas),
-                   }
+                'exam': datas.name,
+                'exam_code': datas.exam_code,
+                'course': datas.course_id.name,
+                'standard': datas.standard_id.name,
+                'student': student.name,
+                'photo': student.photo,
+                'student_middle': student.middle_name,
+                'student_last': student.last_name,
+                'roll_number': student.roll_number,
+                'line': self.get_subject(datas),
+            }
             final_lst.append(res)
         return final_lst
+
 
 class report_ticket(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_ticket'

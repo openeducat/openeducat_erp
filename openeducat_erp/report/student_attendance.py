@@ -25,34 +25,37 @@ from openerp.osv import osv, fields
 from openerp.report import report_sxw
 
 
-
 class student_attendance(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context=None):
-        super(student_attendance, self).__init__(cr, uid, name, context=context)
+        super(student_attendance, self).__init__(
+            cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'get_date': self.get_date,
             'get_data': self.get_data
         })
-    
+
     def get_date(self, data):
         dt_from = data['from_date']
         dt_to = data['to_date']
-        from_to = 'From : ' + dt_from + ' ' + 'To : ' + ' ' + dt_to 
-        return from_to 
-    
+        from_to = 'From : ' + dt_from + ' ' + 'To : ' + ' ' + dt_to
+        return from_to
+
     def get_data(self, data):
-        
+
         if data['from_date'].split()[0] > data['to_date'].split()[0]:
-            raise osv.except_osv(('Error!'),("From Date is not greater than To Date "))
+            raise osv.except_osv(
+                ('Error!'), ("From Date is not greater than To Date "))
         else:
             student_pool = self.pool.get('op.student')
             sheet_pool = self.pool.get('op.attendance.sheet')
-    
-            student = student_pool.browse(self.cr, self.uid, data['student_id'])
-            sheet_search = sheet_pool.search(self.cr, self.uid, [('attendance_date','>=', data['from_date']),
-                                                          ('attendance_date','<=',data['to_date'])] )
-            
+
+            student = student_pool.browse(
+                self.cr, self.uid, data['student_id'])
+            sheet_search = sheet_pool.search(self.cr, self.uid, [('attendance_date', '>=', data['from_date']),
+                                                                 ('attendance_date', '<=', data['to_date'])])
+
             lst = []
             for sheet in sheet_search:
                 sheet_browse = sheet_pool.browse(self.cr, self.uid, sheet)
@@ -60,14 +63,14 @@ class student_attendance(report_sxw.rml_parse):
                     dic = {}
                     if data['student_id'] == line.student_id.id and line.present == False:
                         dic = {
-                               'absent_date': sheet_browse.attendance_date,
-                               'remark': line.remark
-                               }
+                            'absent_date': sheet_browse.attendance_date,
+                            'remark': line.remark
+                        }
                         lst.append(dic)
-            return [{'total': len(lst),'line': lst, 'student_id': student.name}]
+            return [{'total': len(lst), 'line': lst, 'student_id': student.name}]
 
-report_sxw.report_sxw('report.student.attendance','op.student',
-                      'addons/openeducat_erp/report/student_attendance_report.rml', 
+report_sxw.report_sxw('report.student.attendance', 'op.student',
+                      'addons/openeducat_erp/report/student_attendance_report.rml',
                       parser=student_attendance, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

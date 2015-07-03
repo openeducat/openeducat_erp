@@ -25,7 +25,9 @@ from openerp.report import report_sxw
 from openerp.addons.openeducat_erp import utils
 from openerp import pooler
 
+
 class op_student(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context={}):
         self.ctx = {}
         self.ctx = context.copy()
@@ -33,60 +35,61 @@ class op_student(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'render_image': self.render_image,
-            'qr_data':self.qr_data,
+            'qr_data': self.qr_data,
             'get_obj': self.get_obj,
-            'get_address':self.get_address,
+            'get_address': self.get_address,
         })
 
     def get_obj(self):
         student_list = []
-        for student in pooler.get_pool(self.cr.dbname).get(self.ctx.get('active_model',False)).browse(self.cr, self.uid, self.ctx['active_ids']):
+        for student in pooler.get_pool(self.cr.dbname).get(self.ctx.get('active_model', False)).browse(self.cr, self.uid, self.ctx['active_ids']):
             student_list.append(student)
         return student_list
 
-    def render_image(self,barcode):
+    def render_image(self, barcode):
         barcode = utils.get_barcode_image(value=barcode, code='QR')
         return barcode
 
-    def get_address(self,student):
+    def get_address(self, student):
         student_data = {}
         address = student.street and student.street[0] or False
         addr = {
-                'street': student.street or '',
-                'street2': student.street2 or '',
-                'city': student.city or '',
-                'zip': student.zip or '',
-                'phone': student.phone or '',
-                'email': student.email or '',
-                }
+            'street': student.street or '',
+            'street2': student.street2 or '',
+            'city': student.city or '',
+            'zip': student.zip or '',
+            'phone': student.phone or '',
+            'email': student.email or '',
+        }
         return [addr]
 
-    def qr_data(self,student):
+    def qr_data(self, student):
         student_data = {}
         address = student.street and student.street[0] or False
         student_data = {
-                        'name': student.name + ' ' + student.middle_name + ' ' + student.last_name,
-                        'roll_number': student.roll_number or '',
-                        'blood_group': student.blood_group or '',
-                        'course': student.course_id.name,
-                        'birth_date': student.birth_date or '',
-                        'address': '%s %s %s %s %s %s'%(student.street or '',
-                                                        student.street2 or '',
-                                                        student.city or '',
-                                                        student.zip or '',
-                                                        student.phone or '',
-                                                        student.email or '',
-                                                        )    
-                        }
+            'name': student.name + ' ' + student.middle_name + ' ' + student.last_name,
+            'roll_number': student.roll_number or '',
+            'blood_group': student.blood_group or '',
+            'course': student.course_id.name,
+            'birth_date': student.birth_date or '',
+            'address': '%s %s %s %s %s %s' % (student.street or '',
+                                              student.street2 or '',
+                                              student.city or '',
+                                              student.zip or '',
+                                              student.phone or '',
+                                              student.email or '',
+                                              )
+        }
         qr = utils.get_barcode_image(value=student_data, code='QR')
         return qr
-    
+
+
 class report_student_idcard(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_student_idcard'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_student_idcard'
-    _wrapped_report_class = op_student 
-    
+    _wrapped_report_class = op_student
+
 #report_sxw.report_sxw('report.op.student.report','op.student', 'addons/openeducat_erp/report/id_card.rml', parser=op_student, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

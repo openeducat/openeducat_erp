@@ -25,37 +25,41 @@ from openerp.report import report_sxw
 from openerp.addons.openeducat_erp import utils
 from openerp import pooler
 
+
 class book_barcode_parser(report_sxw.rml_parse):
-    
+
     def __init__(self, cr, uid, name, context=None):
         self.ids_to_print = []
-        self.ids_to_print = context.get('active_ids',False)
-        self.model_name = context.get('active_model',False)
-        super(book_barcode_parser, self).__init__(cr, uid, name, context=context)
+        self.ids_to_print = context.get('active_ids', False)
+        self.model_name = context.get('active_model', False)
+        super(book_barcode_parser, self).__init__(
+            cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'render_image': self.render_image,
         })
-    
+
     def render_image(self):
-       render_list = []
-       for data in self.ids_to_print:
-           book_obj = pooler.get_pool(self.cr.dbname).get(self.model_name).browse(self.cr, self.uid, data)
-           render_data = {
-                           'name': book_obj.name,
-                           'book': book_obj.id_book
-                           }
-           render_list.append(render_data)
-       return render_list
-    
+        render_list = []
+        for data in self.ids_to_print:
+            book_obj = pooler.get_pool(self.cr.dbname).get(
+                self.model_name).browse(self.cr, self.uid, data)
+            render_data = {
+                'name': book_obj.name,
+                'book': book_obj.id_book
+            }
+            render_list.append(render_data)
+        return render_list
+
+
 class report_book_barcode(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_book_barcode'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_book_barcode'
-    _wrapped_report_class =book_barcode_parser
-    
+    _wrapped_report_class = book_barcode_parser
 
-#report_sxw.report_sxw('report.op.book.barcode', 'op.book','addons/openeducat_erp/report/book_barcode.rml',
+
+# report_sxw.report_sxw('report.op.book.barcode', 'op.book','addons/openeducat_erp/report/book_barcode.rml',
 #                      parser=book_barcode, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
