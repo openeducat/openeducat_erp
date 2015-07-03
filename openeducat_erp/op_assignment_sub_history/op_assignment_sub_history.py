@@ -28,8 +28,9 @@ class op_assignment_sub_history(models.Model):
     assign_sub_id = fields.Many2one(
         'op.assignment.sub.line', 'Assignment', required=True)
     description = fields.Text('Description')
-    state = fields.Selection([('d', 'Draft'), ('s', 'Submitted'),
-                              ('a', 'Accepted'), ('r', 'Rejected'), ('c', 'Change Req.')], 'State')
+    state = fields.Selection([
+        ('d', 'Draft'), ('s', 'Submitted'), ('a', 'Accepted'),
+        ('r', 'Rejected'), ('c', 'Change Req.')], 'State')
     change_date = fields.Datetime('Submission Date')
     faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
 

@@ -35,7 +35,7 @@ class op_attendance_sheet(models.Model):
     @api.depends('attendance_line.present')
     def _total_absent(self):
         self.total_absent = len(self.attendance_line.filtered(
-            lambda self: self.present == False))
+            lambda self: self.present is False))
 
     name = fields.Char('Name', size=8)
     register_id = fields.Many2one(
@@ -43,7 +43,8 @@ class op_attendance_sheet(models.Model):
     attendance_date = fields.Date(
         'Date', required=True, default=lambda self: fields.Date.today())
     attendance_line = fields.One2many(
-        'op.attendance.line', 'attendance_id', 'Attendance Line', required=True)
+        'op.attendance.line', 'attendance_id', 'Attendance Line',
+        required=True)
     total_present = fields.Integer(
         'Total Present', compute='_total_present')
     total_absent = fields.Integer(

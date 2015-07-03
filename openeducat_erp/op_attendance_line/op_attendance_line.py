@@ -31,13 +31,17 @@ class op_attendance_line(models.Model):
     student_id = fields.Many2one('op.student', 'Student', required=True)
     present = fields.Boolean('Present ?')
     course_id = fields.Many2one(
-        'op.course', 'Course', related='student_id.course_id', store=True, readonly=True)
+        'op.course', 'Course', related='student_id.course_id', store=True,
+        readonly=True)
     standard_id = fields.Many2one(
-        'op.standard', 'Standard', related='student_id.standard_id', store=True, readonly=True)
+        'op.standard', 'Standard', related='student_id.standard_id',
+        store=True, readonly=True)
     division_id = fields.Many2one(
-        'op.division', 'Division', related='student_id.division_id', store=True, readonly=True)
+        'op.division', 'Division', related='student_id.division_id',
+        store=True, readonly=True)
     remark = fields.Char('Remark', size=256)
     attendance_date = fields.Date(
-        'Date', related='attendance_id.attendance_date', store=True, readonly=True)
+        'Date', related='attendance_id.attendance_date', store=True,
+        readonly=True)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

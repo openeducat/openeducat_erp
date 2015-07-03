@@ -30,10 +30,12 @@ class op_assignment_sub_line(models.Model):
         'op.assignment', 'Assignment', required=True)
     student_id = fields.Many2one('op.student', 'Student', required=True)
     description = fields.Text('Description')
-    state = fields.Selection([('d', 'Draft'), ('s', 'Submitted'), (
-        'a', 'Accepted'), ('r', 'Rejected'), ('c', 'Change Req.')], 'State', default='d')
+    state = fields.Selection(
+        [('d', 'Draft'), ('s', 'Submitted'), ('a', 'Accepted'),
+         ('r', 'Rejected'), ('c', 'Change Req.')], 'State', default='d')
     submission_date = fields.Datetime(
-        'Submission Date', readonly=True, default=lambda self: fields.Datetime.now(), required=True)
+        'Submission Date', readonly=True,
+        default=lambda self: fields.Datetime.now(), required=True)
     note = fields.Text('Note')
     history_line = fields.One2many(
         'op.assignment.sub.history', 'assign_sub_id', string='Change History')

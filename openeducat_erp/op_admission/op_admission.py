@@ -28,25 +28,36 @@ class op_admission(models.Model):
     _order = "application_number desc"
 
     name = fields.Char(
-        'First Name', size=128, required=True, states={'done': [('readonly', True)]})
+        'First Name', size=128, required=True,
+        states={'done': [('readonly', True)]})
     middle_name = fields.Char(
-        'Middle Name', size=128, required=True, states={'done': [('readonly', True)]})
+        'Middle Name', size=128, required=True,
+        states={'done': [('readonly', True)]})
     last_name = fields.Char(
-        'Last Name', size=128, required=True, states={'done': [('readonly', True)]})
+        'Last Name', size=128, required=True,
+        states={'done': [('readonly', True)]})
     title = fields.Many2one(
         'res.partner.title', 'Title', states={'done': [('readonly', True)]})
-    application_number = fields.Char('Application Number', size=16, required=True, copy=False, states={
-                                     'done': [('readonly', True)]}, default=lambda self: self.env['ir.sequence'].get('op.admission'))
-    admission_date = fields.Date('Admission Date', required=True, copy=False, states={
-                                 'done': [('readonly', True)]}, default=lambda self: fields.Date.today())
-    application_date = fields.Datetime('Application Date', required=True, copy=False, states={
-                                       'done': [('readonly', True)]}, default=lambda self: fields.Datetime.now())
+    application_number = fields.Char(
+        'Application Number', size=16, required=True, copy=False,
+        states={'done': [('readonly', True)]},
+        default=lambda self: self.env['ir.sequence'].get('op.admission'))
+    admission_date = fields.Date(
+        'Admission Date', required=True, copy=False,
+        states={'done': [('readonly', True)]},
+        default=lambda self: fields.Date.today())
+    application_date = fields.Datetime(
+        'Application Date', required=True, copy=False,
+        states={'done': [('readonly', True)]},
+        default=lambda self: fields.Datetime.now())
     birth_date = fields.Date(
         'Birth Date', required=True, states={'done': [('readonly', True)]})
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True, states={'done': [('readonly', True)]})
+        'op.course', 'Course', required=True,
+        states={'done': [('readonly', True)]})
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=True, states={'done': [('readonly', True)]})
+        'op.batch', 'Batch', required=True,
+        states={'done': [('readonly', True)]})
     street = fields.Char(
         'Street', size=256, states={'done': [('readonly', True)]})
     street2 = fields.Char(
@@ -65,8 +76,10 @@ class op_admission(models.Model):
         'res.country', 'Country', states={'done': [('readonly', True)]})
     fees = fields.Float('Fees', states={'done': [('readonly', True)]})
     photo = fields.Binary('Photo', states={'done': [('readonly', True)]})
-    state = fields.Selection([('d', 'Draft'), ('i', 'Confirm'), ('s', 'Enroll'), ('done', 'Done'), (
-        'r', 'Rejected'), ('p', 'Pending'), ('c', 'Cancel')], 'State', readonly=True, select=True, default='d')
+    state = fields.Selection(
+        [('d', 'Draft'), ('i', 'Confirm'), ('s', 'Enroll'), ('done', 'Done'),
+         ('r', 'Rejected'), ('p', 'Pending'), ('c', 'Cancel')], 'State',
+        readonly=True, select=True, default='d')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
     prev_institute = fields.Char(
         'Previous Institute', size=256, states={'done': [('readonly', True)]})
@@ -81,11 +94,14 @@ class op_admission(models.Model):
     religion_id = fields.Many2one(
         'op.religion', 'Religion', states={'done': [('readonly', True)]})
     category_id = fields.Many2one(
-        'op.category', 'Category', required=True, states={'done': [('readonly', True)]})
-    gender = fields.Selection([('m', 'Male'), ('f', 'Female'), ('o', 'Other')],
-                              'Gender', required=True, states={'done': [('readonly', True)]})
+        'op.category', 'Category', required=True,
+        states={'done': [('readonly', True)]})
+    gender = fields.Selection(
+        [('m', 'Male'), ('f', 'Female'), ('o', 'Other')], 'Gender',
+        required=True, states={'done': [('readonly', True)]})
     standard_id = fields.Many2one(
-        'op.standard', 'Standard', required=True, states={'done': [('readonly', True)]})
+        'op.standard', 'Standard', required=True,
+        states={'done': [('readonly', True)]})
     division_id = fields.Many2one(
         'op.division', 'Division', states={'done': [('readonly', True)]})
     student_id = fields.Many2one(
@@ -102,7 +118,7 @@ class op_admission(models.Model):
     @api.one
     def confirm_selection(self):
         gr = self.gr_no_new
-        if self.gr_no == True:
+        if self.gr_no:
             gr = self.gr_no_old
         vals = {
             'title': self.title and self.title.id or False,
@@ -128,8 +144,11 @@ class op_admission(models.Model):
             'country_id': self.country_id and self.country_id.id or False,
             'state_id': self.state_id and self.state_id.id or False,
         }
-        self.write(
-            {'state': 's', 'student_id': self.env['op.student'].create(vals).id, 'nbr': 1})
+        self.write({
+            'state': 's',
+            'student_id': self.env['op.student'].create(vals).id,
+            'nbr': 1
+        })
 
     @api.one
     def fee_paid(self):

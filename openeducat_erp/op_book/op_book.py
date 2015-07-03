@@ -31,7 +31,8 @@ class op_book(models.Model):
     tag = fields.Many2many('op.tag', string='Tag')
     author_ids = fields.Many2many('op.author', string='Author', required=True)
     state = fields.Selection(
-        [('a', 'Available'), ('i', 'Issued'), ('r', 'Reserved'), ('l', 'Lost')], 'State', default='a')
+        [('a', 'Available'), ('i', 'Issued'), ('r', 'Reserved'),
+         ('l', 'Lost')], 'State', default='a')
     edition = fields.Text('Edition')
     publisher_ids = fields.Many2many(
         'op.publisher', string='Publisher', required=True)
