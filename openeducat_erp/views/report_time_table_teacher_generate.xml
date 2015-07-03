@@ -84,14 +84,14 @@
 		                    	</thead>
                     	      <tbody>
                     	      	<tr t-foreach="get_object(data)" t-as="a">
-                    	      		<td class="text-left"><span t-raw="'%s &lt;&gt;' %  a['name'] if  o['name']  else ''"/></td> 
-                    	      		<td class="text-left"><span t-esc="a['line'].get('Monday',{'standard':''})['standard'] ]] [[ a['line'].get('Monday',{'course':''})['course'] ]] [[ a['line'].get('Monday',{'subject':''})['subject']"/></td>
-                           		    <td class="text-left"><span t-esc="a['line'].get('Tuesday',{'standard':''})['standard'] ]] [[ a['line'].get('Tuesday',{'course':''})['course'] ]] [[ a['line'].get('Tuesday',{'subject':''})['subject']"/></td>
-                           		    <td class="text-left"><span t-esc="a['line'].get('Wednesday',{'standard':''})['standard'] ]] [[ a['line'].get('Wednesday',{'course':''})['course'] ]] [[ a['line'].get('Wednesday',{'subject':''})['subject']"/></td>
-                           		    <td class="text-left"><span t-esc="a['line'].get('Thursday',{'standard':''})['standard'] ]] [[ a['line'].get('Thursday',{'course':''})['course'] ]] [[ a['line'].get('Thursday',{'subject':''})['subject']"/></td>
-                           		    <td class="text-left"><span t-esc="a['line'].get('Friday',{'standard':''})['standard'] ]] [[ a['line'].get('Friday',{'course':''})['course'] ]] [[ a['line'].get('Friday',{'subject':''})['subject']"/></td>
-                           		    <td class="text-left"><span t-esc="a['line'].get('Saturday',{'standard':''})['standard'] ]] [[ a['line'].get('Saturday',{'course':''})['course'] ]] [[ a['line'].get('Saturday',{'subject':''})['subject']"/></td>
-                           		    <td class="text-left"><span t-esc="a['line'].get('Sunday',{'standard':''})['standard'] ]] [[ a['line'].get('Sunday',{'course':''})['course'] ]] [[ a['line'].get('Sunday',{'subject':''})['subject']"/></td>
+                    	      		<td class="text-left"><span t-esc="'%s' %  a['name'] if  a['name']  else ''"/></td> 
+                    	      		<td class="text-left"><span t-esc="'%s %s %s' % (a['line'].get('Monday',{'standard':''})['standard'], a['line'].get('Monday',{'course':''})['course'], a['line'].get('Monday',{'subject':''})['subject'])"/></td>
+                    	      		<td class="text-left"><span t-esc="'%s %s %s' % (a['line'].get('Tuesday',{'standard':''})['standard'], a['line'].get('Tuesday',{'course':''})['course'], a['line'].get('Tuesday',{'subject':''})['subject'])"/></td>
+                    	      		<td class="text-left"><span t-esc="'%s %s %s' % (a['line'].get('Wednesday',{'standard':''})['standard'], a['line'].get('Wednesday',{'course':''})['course'], a['line'].get('Wednesday',{'subject':''})['subject'])"/></td>
+                    	      		<td class="text-left"><span t-esc="'%s %s %s' % (a['line'].get('Thursday',{'standard':''})['standard'], a['line'].get('Thursday',{'course':''})['course'], a['line'].get('Thursday',{'subject':''})['subject'])"/></td>
+                    	      		<td class="text-left"><span t-esc="'%s %s %s' % (a['line'].get('Friday',{'standard':''})['standard'], a['line'].get('Friday',{'course':''})['course'], a['line'].get('Friday',{'subject':''})['subject'])"/></td>
+                    	      		<td class="text-left"><span t-esc="'%s %s %s' % (a['line'].get('Saturday',{'standard':''})['standard'], a['line'].get('Saturday',{'course':''})['course'], a['line'].get('Saturday',{'subject':''})['subject'])"/></td>
+                    	      		<td class="text-left"><span t-esc="'%s %s %s' % (a['line'].get('Sunday',{'standard':''})['standard'], a['line'].get('Sunday',{'course':''})['course'], a['line'].get('Sunday',{'subject':''})['subject'])"/></td>
                             	</tr>
                              </tbody>
                         </table>

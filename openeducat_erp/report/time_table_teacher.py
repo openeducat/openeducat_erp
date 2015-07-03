@@ -24,12 +24,15 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 from openerp.addons.openeducat_erp import utils
 from openerp import pooler
-from datetime import date,datetime
+from datetime import date, datetime
 from openerp import netsvc
 
+
 class time_table_teacher_generate(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context={}):
-        super(time_table_teacher_generate, self).__init__(cr, uid, name, context=context)
+        super(time_table_teacher_generate, self).__init__(
+            cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'get_object': self.get_object,
@@ -37,50 +40,53 @@ class time_table_teacher_generate(report_sxw.rml_parse):
         })
 
     def get_full_name(self, data):
-        faculty_name = self.pool.get('op.faculty').browse(self.cr, self.uid, data['faculty_id'][0])
-        return faculty_name.name + ' ' + faculty_name.middle_name + ' ' + faculty_name.last_name 
-    
-    def sort_tt(self,data_list):
+        faculty_name = self.pool.get('op.faculty').browse(
+            self.cr, self.uid, data['faculty_id'][0])
+        return faculty_name.name + ' ' + faculty_name.middle_name + ' ' + faculty_name.last_name
+
+    def sort_tt(self, data_list):
         main_list = []
         f = []
         for d in data_list:
             if d['period'] not in f:
                 f.append(d['period'])
                 main_list.append({
-                                  'name':d['period'],
-                                  'line':{d['day']:d},
-                                  'peropd_time': d['start_datetime'] + ' To ' + d['end_datetime']
-                                  
-                                  })
+                    'name': d['period'],
+                    'line': {d['day']: d},
+                    'peropd_time': d['start_datetime'] + ' To ' + d['end_datetime']
+
+                })
             else:
                 for m in main_list:
                     if m['name'] == d['period']:
                         m['line'][d['day']] = d
         return main_list
 
-    def get_object(self,data):
+    def get_object(self, data):
 
-        dayofWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        dayofWeek = ['Monday', 'Tuesday', 'Wednesday',
+                     'Thursday', 'Friday', 'Saturday', 'Sunday']
 
         data_list = []
         for timetable_obj in pooler.get_pool(self.cr.dbname).get('op.timetable').browse(self.cr, self.uid, data['teacher_time_table_ids']):
-            oldDate = datetime.strptime(timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
+            oldDate = datetime.strptime(
+                timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
             day = dayofWeek[datetime.weekday(oldDate)]
 
             timetable_data = {
-                            'period': timetable_obj.period_id.name,
-                            'period_time': timetable_obj.period_id.hour + ':' + timetable_obj.period_id.minute + timetable_obj.period_id.am_pm,
-                            'sequence': timetable_obj.period_id.sequence,
-                            'start_datetime': timetable_obj.start_datetime[10:],
-                            'end_datetime': timetable_obj.end_datetime[10:],
-                            'day': day,
-                            'subject': timetable_obj.subject_id.name,
-##                            'faculty': self.get_full_name(timetable_obj),
-#                            'faculty_middle': timetable_obj.faculty_id.middle_name,
-#                            'faculty_last': timetable_obj.faculty_id.last_name,
-                            'course': timetable_obj.standard_id.course_id.name,
-                            'standard': timetable_obj.standard_id.name,
-                             }
+                'period': timetable_obj.period_id.name,
+                'period_time': timetable_obj.period_id.hour + ':' + timetable_obj.period_id.minute + timetable_obj.period_id.am_pm,
+                'sequence': timetable_obj.period_id.sequence,
+                'start_datetime': timetable_obj.start_datetime[10:],
+                'end_datetime': timetable_obj.end_datetime[10:],
+                'day': day,
+                'subject': timetable_obj.subject_id.name,
+                # 'faculty': self.get_full_name(timetable_obj),
+                #                            'faculty_middle': timetable_obj.faculty_id.middle_name,
+                #                            'faculty_last': timetable_obj.faculty_id.last_name,
+                'course': timetable_obj.standard_id.course_id.name,
+                'standard': timetable_obj.standard_id.name,
+            }
 
             data_list.append(timetable_data)
         ttdl = sorted(data_list, key=lambda k: k['sequence'])
@@ -92,6 +98,6 @@ class report_time_table_teacher_generate(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_time_table_teacher_generate'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_time_table_teacher_generate'
-    _wrapped_report_class = time_table_teacher_generate 
+    _wrapped_report_class = time_table_teacher_generate
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,4 +1,4 @@
-from openerp.addons.web import controllers 
+from openerp.addons.web import controllers
 controllers.main.html_template = """<!DOCTYPE html>
 <html style="height: 100%%">
     <head>

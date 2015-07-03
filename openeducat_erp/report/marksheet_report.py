@@ -24,36 +24,39 @@ from datetime import datetime
 from openerp.report import report_sxw
 from openerp.osv import osv
 
+
 class marksheet_report(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context=None):
         super(marksheet_report, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'get_lines':self.get_lines,
+            'get_lines': self.get_lines,
             'get_date': self.get_date,
             'get_total': self.get_total
         })
-    
+
     def get_lines(self, objects):
         lines = []
         for o in objects:
             lines.extend(o.marksheet_line)
         return lines
-    
+
     def get_date(self, date):
         date1 = datetime.strptime(date, "%Y-%m-%d")
-        return str(date1.month) +'/'+ str(date1.year)
-    
+        return str(date1.month) + '/' + str(date1.year)
+
     def get_total(self, marksheet_line):
         total = [x.total_marks for x in marksheet_line.result_line]
         return sum(total)
-    
+
+
 class report_marksheet_report(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_marksheet_report'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_marksheet_report'
-    _wrapped_report_class =marksheet_report
-        
+    _wrapped_report_class = marksheet_report
+
 
 #report_sxw.report_sxw('report.op.marksheet','op.marksheet.register', 'addons/openeducat_erp/report/marksheet_report.rml', parser=marksheet_report, header=False)
 

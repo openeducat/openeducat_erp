@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,38 +17,29 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
-from openerp.osv import osv, fields
-import time
-from datetime import datetime
+from openerp import models, fields, api
 
-class student_attendance(osv.osv_memory):
 
+class student_attendance(models.TransientModel):
     _name = 'student.attendance'
-    _columns = {
-                'from_date': fields.date('From Date', required=True),
-                'to_date': fields.date('To Date', required=True),
-                }
-    
-    _defaults = {
-                 'from_date' : fields.date.context_today,
-                 'to_date' : fields.date.context_today,
-                 }
-    
-    
-    def print_report(self, cr, uid, ids, context=None):
-        
-        data = self.read(cr, uid, ids, ['from_date','to_date'], context=context)
-        data[0].update({'student_id':context.get('active_ids',[])[0]})
+
+    from_date = fields.Date(
+        'From Date', required=True, default=lambda self: fields.Date.today())
+    to_date = fields.Date(
+        'To Date', required=True, default=lambda self: fields.Date.today())
+
+    @api.multi
+    def print_report(self):
+        data = self.read(['from_date', 'to_date'])[0]
+        data.update({'student_id': self.env.context.get('active_id', False)})
 
         return {
-                'type': 'ir.actions.report.xml',
-                'report_name': 'student.attendance',
-                'datas': data[0],
+            'type': 'ir.actions.report.xml',
+            'report_name': 'student.attendance',
+            'datas': data,
         }
-        
-    
-student_attendance()
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
