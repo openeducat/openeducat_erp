@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,60 +17,44 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
-from openerp.osv import fields, osv, orm
-from openerp.tools.translate import _
-from bsddb.dbtables import _columns
-from openerp.osv.orm import except_orm
+from openerp import models, fields, api, _
 
-class wizard_op_student(osv.osv):
-    
+
+class wizard_op_student(models.TransientModel):
     _name = 'wizard.op.student'
     _description = "Create User the selected Students"
-    
-    def _get_students(self, cr, uid, context=None):
-        if not context:
-            context = {}
-            
-        if context and context.get("active_ids"):
-            return context.get("active_ids")
+
+    def _get_students(self):
+        if self.env.context and self.env.context.get('active_ids'):
+            return self.env.context.get('active_ids')
         return []
-    
-    _columns = {
-               'student_ids': fields.many2many('op.student', 'ref_student_user_wiz', "student_id", "user_id", "Students"),
-        }
-            
-    def create_user(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        active_ids = context.get('active_ids', []) or []
-        ir_model_data = self.pool.get("ir.model.data")
-        student_pool = self.pool.get('op.student')
-        
-        user_obj = self.pool.get('res.users')
-        user_fields = user_obj.fields_get(cr, uid, context=context)
-        user_default = user_obj.default_get(cr, uid, user_fields, context=context)
+
+    student_ids = fields.Many2many(
+        'op.student', default=_get_students, string='Students')
+
+    @api.one
+    def create_user(self):
+        student_pool = self.env['op.student']
+        user_pool = self.env['res.users']
+        user_fields = user_pool.fields_get(self)
+        user_default = user_pool.default_get(user_fields)
         user_default_group_lst = user_default['groups_id']
-        student_group_id = ir_model_data.get_object_reference(cr, uid, 'openeducat_erp', 'group_op_student')[1]
+        student_group_id = self.env.ref('openeducat_erp.group_op_student').id
         user_default_group_lst[0][2].append(student_group_id)
         user_default['groups_id'] = user_default_group_lst
-        for stud in student_pool.browse(cr, uid, active_ids, context=context):
+        active_ids = self.env.context.get('active_ids', []) or []
+        for stud in student_pool.browse(active_ids):
             if not stud.user_id:
                 user_vals = {
-                        'name' : stud.name,
-                        'login' : stud.name,
-                        'partner_id':stud.partner_id.id,                    
+                    'name': stud.name,
+                    'login': stud.name,
+                    'partner_id': stud.partner_id.id
                 }
                 user_default.update(user_vals)
-                user_id = self.pool.get('res.users').create(cr, uid, user_default, context=context)
-                student_pool.write(cr, uid, [stud.id], {'user_id': user_id}, context=context)
-        return {'type': 'ir.actions.act_window_close'}
-    
-    _defaults = {
-                 'student_ids' : _get_students,
-                 }
+                user_id = user_pool.create(user_default)
+                stud.user_id = user_id
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-        
-    

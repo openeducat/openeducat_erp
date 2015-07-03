@@ -15,14 +15,14 @@
 						<field name="separator" select="1"
 							attrs="{'required': ['|',('prefix','!=', False),('sufix','!=', False)]}" />
 						<field name="example" select="1" />
+						<separator colspan="4" string="Divisions" />
 						<field name="division_ids" colspan="4" nolabel="1" />
 					</group>
-					<group colspan="4" col="4">
-						<button special="cancel" string="Close" type="object"
-							icon="terp-dialog-close" />
-						<button string="Generate Roll Number" type="object" name="act_generate" />
-					</group>
 				</form>
+				<footer>
+					<button string="Generate Roll Number" type="object" name="act_generate" class="oe_highlight" />
+					<button special="cancel" string="Close" type="object" />
+				</footer>
 			</field>
 		</record>
 		<act_window name="Generate Roll Number  " res_model="generate.roll.number"

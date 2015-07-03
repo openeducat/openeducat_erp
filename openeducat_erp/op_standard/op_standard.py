@@ -31,7 +31,7 @@ class op_standard(models.Model):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     payment_term = fields.Many2one('account.payment.term', 'Payment Term')
     sequence = fields.Integer('Sequence')
-    division_ids = fields.Many2many('op.division', string='Divisions', )
+    division_ids = fields.Many2many('op.division', string='Divisions')
     student_ids = fields.Many2many('op.student', string='Student(s)')
 #     class_ids = fields.Many2many('op.gr.setup', string='Class')
 

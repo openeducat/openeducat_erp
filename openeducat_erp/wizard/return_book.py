@@ -41,7 +41,7 @@ class return_book(models.TransientModel):
             if not book_move_search:
                 return {'type': 'ir.actions.act_window_close'}
             book_move_search.actual_return_date = self.actual_return_date
-            book_movement.calculate_penalty(book_move_search)
+            book_move_search.calculate_penalty()
             self.book_id.state = 'a'
         else:
             book_state = self.book_id.state == 'i' and 'Issued' or \

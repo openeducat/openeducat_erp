@@ -27,13 +27,13 @@ class generate_roll_number(models.TransientModel):
     _description = 'Generate Roll Number'
 
     type = fields.Selection(
-        [('n', 'By Name'), ('s', 'By Surname'), ], 'Generation Sequence', required=True, )
-    prefix = fields.Char('Prefix', size=256, )
+        [('n', 'By Name'), ('s', 'By Surname')], 'Generation Sequence', required=True)
+    prefix = fields.Char('Prefix', size=256)
     start = fields.Integer('Number Starts from', required=True)
-    sufix = fields.Char('Sufix', size=256, )
+    sufix = fields.Char('Suffix', size=256)
     separator = fields.Char('Separator', size=256,)
     example = fields.Char('Example', size=256, readonly=True)
-    division_ids = fields.Many2many('op.division', string='Divisiones')
+    division_ids = fields.Many2many('op.division', string='Divisions')
 
     def get_number(self, prefix, start, sufix, separator):
         example = ''
