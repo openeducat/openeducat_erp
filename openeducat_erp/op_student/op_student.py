@@ -26,7 +26,9 @@ class op_student(models.Model):
     _name = 'op.student'
     _inherits = {'res.partner': 'partner_id'}
 
-    @api.depends('roll_number_line', 'roll_number_line.roll_number', 'roll_number_line.student_id', 'roll_number_line.standard_id', 'roll_number_line.standard_id.sequence')
+    @api.depends('roll_number_line', 'roll_number_line.roll_number',
+                 'roll_number_line.student_id', 'roll_number_line.standard_id',
+                 'roll_number_line.standard_id.sequence')
     def _get_curr_roll_number(self):
         #         for student in self:
         roll_no = 0
@@ -37,15 +39,16 @@ class op_student(models.Model):
                 seq = roll_number.standard_id.sequence
         self.roll_number = roll_no
 
-
-#          name = fields.Char('First Name',size=128, required=True)
     middle_name = fields.Char('Middle Name', size=128, required=True)
     last_name = fields.Char('Middle Name', size=128, required=True)
     birth_date = fields.Date('Birth Date', required=True)
-    blood_group = fields.Selection([('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-                                    ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')], 'Blood Group')
+    blood_group = fields.Selection(
+        [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
+         ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
+        'Blood Group')
     gender = fields.Selection(
-        [('m', 'Male'), ('f', 'Female'), ('o', 'Other')], 'Gender', required=True)
+        [('m', 'Male'), ('f', 'Female'),
+         ('o', 'Other')], 'Gender', required=True)
     nationality = fields.Many2one('res.country', 'Nationality')
     language = fields.Many2one('res.lang', 'Mother Tongue')
     category = fields.Many2one(
@@ -70,7 +73,8 @@ class op_student(models.Model):
         'res.partner', 'Partner', required=True, ondelete="cascade")
     health_lines = fields.One2many('op.health', 'student_id', 'Health Detail')
     roll_number = fields.Char(
-        'Current Roll Number', compute='_get_curr_roll_number', size=8, store=True)
+        'Current Roll Number', compute='_get_curr_roll_number',
+        size=8, store=True)
     allocation_ids = fields.Many2many('op.assignment', string='Assignment')
     alumni_boolean = fields.Boolean('Alumni Student')
     passing_year = fields.Many2one('op.batch', 'Passing Year')
@@ -106,7 +110,10 @@ class op_student(models.Model):
             invoice_data = {
                 'partner_id': student.partner_id.id,
                 'date_invoice': fields.Date.today(),
-                'payment_term': student.standard_id.payment_term and student.standard_id.payment_term.id or student.course_id.payment_term and student.course_id.payment_term.id or False,
+                'payment_term': student.standard_id.payment_term and
+                student.standard_id.payment_term.id or
+                student.course_id.payment_term and
+                student.course_id.payment_term.id or False,
             }
 
         invoice_default.update(invoice_data)
@@ -132,7 +139,8 @@ class op_student(models.Model):
     @api.multi
     def action_view_invoice(self):
         '''
-        This function returns an action that display existing invoices of given student ids and show a invoice"
+        This function returns an action that
+        display existing invoices of given student ids and show a invoice"
         '''
         result = self.env.ref('account.action_invoice_tree1')
         id = result and result.id or False
@@ -143,8 +151,8 @@ class op_student(models.Model):
             inv_ids += [invoice.id for invoice in so.invoice_ids]
         # choose the view_mode accordingly
         if len(inv_ids) > 1:
-            result[
-                'domain'] = "[('id','in',[" + ','.join(map(str, inv_ids)) + "])]"
+            result['domain'] = \
+                "[('id','in',[" + ','.join(map(str, inv_ids)) + "])]"
         else:
             res = self.env.ref('account.invoice_form')
             result['views'] = [(res and res.id or False, 'form')]

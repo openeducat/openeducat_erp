@@ -32,7 +32,8 @@ class op_placement_offer(models.Model):
     offer_package = fields.Char('Offered Package', size=256)
     training_period = fields.Char('Training Period', size=256)
     state = fields.Selection(
-        [('d', 'Draft'), ('o', 'Offer'), ('j', 'Join'), ('r', 'Rejected'), ('c', 'Cancel')], 'State', default='d')
+        [('d', 'Draft'), ('o', 'Offer'), ('j', 'Join'), ('r', 'Rejected'),
+         ('c', 'Cancel')], 'State', default='d')
 
     @api.one
     def placement_offer(self):

@@ -29,8 +29,9 @@ class op_subject(models.Model):
     code = fields.Char('Code', size=256, required=True)
     course_id = fields.Many2one('op.course', 'Course')
     grade_waitage = fields.Float('Grade Waitage')
-    type = fields.Selection([('p', 'Practical'), ('t', 'Theory'),
-                             ('pt', 'Both'), ('o', 'Other')], 'Type', required=True)
+    type = fields.Selection(
+        [('p', 'Practical'), ('t', 'Theory'), ('pt', 'Both'), ('o', 'Other')],
+        'Type', required=True)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

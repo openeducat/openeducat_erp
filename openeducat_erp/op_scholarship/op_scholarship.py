@@ -29,7 +29,8 @@ class op_scholarship(models.Model):
     student_id = fields.Many2one('op.student', 'Student', required=True)
     type_id = fields.Many2one('op.scholarship.type', 'Type', required=True)
     state = fields.Selection(
-        [('d', 'Draft'), ('c', 'Confirm'), ('r', 'Reject')], 'State', default='d', readonly=True, select=True)
+        [('d', 'Draft'), ('c', 'Confirm'), ('r', 'Reject')], 'State',
+        default='d', readonly=True, select=True)
 
     @api.one
     def act_draft(self):
