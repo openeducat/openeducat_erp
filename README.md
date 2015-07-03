@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/openeducat/openeducat_erp.svg?branch=8.0)](https://travis-ci.org/openeducat/openeducat_erp)
+
 OpenEduCat for Odoo 8
 =====================
 
