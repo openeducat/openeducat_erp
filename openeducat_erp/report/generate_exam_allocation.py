@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Tech-Receptives Solutions Pvt. Ltd.
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,10 +17,11 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
-import time
 import datetime
+import time
+
 from openerp.osv import osv, fields
 from openerp.report import report_sxw
 
@@ -37,15 +38,20 @@ class exam_allocation_report(report_sxw.rml_parse):
 
     def arrange_list(self, lst_inner, length):
         l = []
+        res = []
         if length == 3:
-            res = map(l.append(lst_inner[0]), lst_inner[0][lst_inner[0].keys()[0]], lst_inner[
-                      1][lst_inner[1].keys()[0]], lst_inner[2][lst_inner[2].keys()[0]])
+            res = map(
+                l.append(lst_inner[0]), lst_inner[0][lst_inner[0].keys()[0]],
+                lst_inner[1][lst_inner[1].keys()[0]],
+                lst_inner[2][lst_inner[2].keys()[0]])
         elif length == 2:
-            res = map(l.append(lst_inner[0]), lst_inner[0][
-                      lst_inner[0].keys()[0]], [], lst_inner[1][lst_inner[1].keys()[0]])
+            res = map(
+                l.append(lst_inner[0]), lst_inner[0][lst_inner[0].keys()[0]],
+                [], lst_inner[1][lst_inner[1].keys()[0]])
         elif length == 1:
             res = map(
-                l.append(lst_inner[0]), lst_inner[0][lst_inner[0].keys()[0]], [], [])
+                l.append(lst_inner[0]),
+                lst_inner[0][lst_inner[0].keys()[0]], [], [])
         return res
 
     def gen_exam_seat(self, data):
@@ -58,18 +64,22 @@ class exam_allocation_report(report_sxw.rml_parse):
         lst_inner = []
         capacity = room_pool.read(
             self.cr, self.uid, data['room_id'][0], ['capacity'])['capacity']
-        session_search = session_pool.search(self.cr, self.uid, [('room_id', '=', data['room_id'][1]),
-                                                                 ('id', 'in', data['exam_session_ids'])])
+        session_search = session_pool.search(
+            self.cr, self.uid, [('room_id', '=', data['room_id'][1]),
+                                ('id', 'in', data['exam_session_ids'])])
         for session_obj in session_search:
             dic_inner = {}
             session_browse = session_pool.browse(
                 self.cr, self.uid, session_obj)
             student_search = student_pool.search(
-                self.cr, self.uid, [('course_id', '=', session_browse.course_id.id)])
-#            student_search = [1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5]
+                self.cr, self.uid,
+                [('course_id', '=', session_browse.course_id.id)])
             if len(student_search) > capacity:
-                raise osv.except_osv(('Error!'),
-                                     ("Number of students must be less than room capacity!\n Students %s can not be accomodate in room %s\n Select another room") % (len(student_search), capacity))
+                raise osv.except_osv(
+                    ('Error!'), ("Number of students must be less than room \
+                     capacity!\n Students %s can not be accomodate in \
+                     room %s\n Select another room") % (len(student_search),
+                                                        capacity))
             lst_student = []
 
             for student_obj in student_search:
@@ -91,8 +101,9 @@ class exam_allocation_report(report_sxw.rml_parse):
         return final_list
 
 
-report_sxw.report_sxw('report.op.exam.allocation', 'op.exam.res.allocation',
-                      'addons/openeducat_erp/report/generate_exam_allocation.rml',
-                      parser=exam_allocation_report, header=False)
+report_sxw.report_sxw(
+    'report.op.exam.allocation', 'op.exam.res.allocation',
+    'addons/openeducat_erp/report/generate_exam_allocation.rml',
+    parser=exam_allocation_report, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

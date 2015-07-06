@@ -53,15 +53,17 @@ class op_exam(models.Model):
     division_id = fields.Many2one('op.division', 'Division')
     exam_code = fields.Char('Exam Code', size=8, required=True)
     exam_type = fields.Many2one('op.exam.type', 'Exam Type', required=True)
-    evaluation_type = fields.Selection([('normal', 'Normal'), ('GPA', 'GPA'), (
-        'CWA', 'CWA'), ('CCE', 'CCE')], 'Evaluation Type', required=True)
+    evaluation_type = fields.Selection(
+        [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
+        'Evaluation Type', required=True)
     attendees_line = fields.One2many(
         'op.exam.attendees', 'exam_id', 'Attendees', required=True)
     venue = fields.Many2one('res.partner', 'Venue')
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)
-    state = fields.Selection([('n', 'New Exam'), ('h', 'Held'), ('s', 'Scheduled'), (
-        'd', 'Done'), ('c', 'Cancelled')], 'State', select=True, readonly=True, default='n')
+    state = fields.Selection(
+        [('n', 'New Exam'), ('h', 'Held'), ('s', 'Scheduled'), ('d', 'Done'),
+         ('c', 'Cancelled')], 'State', select=True, readonly=True, default='n')
     note = fields.Text('Note')
     responsible_id = fields.Many2many('op.faculty', string='Responsible')
     name = fields.Char('Exam', size=256, required=True)

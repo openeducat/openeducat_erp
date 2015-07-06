@@ -33,6 +33,7 @@ class student_hall_ticket(models.TransientModel):
     @api.multi
     def print_report(self):
         data = self.read(['exam_session_id'])[0]
-        return self.env['report'].get_action(self, 'openeducat_erp.report_ticket', data=data)
+        return self.env['report'].get_action(
+            self, 'openeducat_erp.report_ticket', data=data)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

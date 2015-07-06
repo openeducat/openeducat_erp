@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,12 +17,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
 import time
+
 from openerp.osv import osv
 from openerp.report import report_sxw
-from openerp import netsvc
 
 
 class admission_analysis_report(report_sxw.rml_parse):
@@ -44,15 +44,13 @@ class admission_analysis_report(report_sxw.rml_parse):
     def get_data(self, data):
         lst = []
         student_pool = self.pool.get('op.admission')
-        student_search = student_pool.search(self.cr, self.uid, [('state', '=', 'done'),
-                                                                 ('course_id', '=', data[
-                                                                  'course_id'][0]),
-                                                                 ('standard_id', '=', data[
-                                                                  'standard_id'][0]),
-                                                                 ('admission_date', '>=', data[
-                                                                  'start_date']),
-                                                                 ('admission_date', '<=', data['end_date'])],
-                                             order='admission_date desc')
+        student_search = student_pool.search(
+            self.cr, self.uid, [('state', '=', 'done'),
+                                ('course_id', '=', data['course_id'][0]),
+                                ('standard_id', '=', data['standard_id'][0]),
+                                ('admission_date', '>=', data['start_date']),
+                                ('admission_date', '<=', data['end_date'])],
+            order='admission_date desc')
         res = {}
         res1 = {}
         self.total_student = 0
@@ -76,7 +74,8 @@ class report_admission_analysis(osv.AbstractModel):
     _wrapped_report_class = admission_analysis_report
 
 
-# report_sxw.report_sxw('report.admission.analysis', 'op.admission','addons/openeducat_erp/report/admission_analysis_report.rml',
+# report_sxw.report_sxw('report.admission.analysis', 'op.admission',
+#            'addons/openeducat_erp/report/admission_analysis_report.rml',
 #                      parser=admission_analysis_report, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

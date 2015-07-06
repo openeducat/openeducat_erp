@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Tech-Receptives Solutions Pvt. Ltd.
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,12 +17,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 import time
-from datetime import datetime
-from openerp.report import report_sxw
+
 from openerp.osv import osv
+from openerp.report import report_sxw
 
 
 class exam_student_lable_report(report_sxw.rml_parse):
@@ -64,10 +64,11 @@ class exam_student_lable_report(report_sxw.rml_parse):
         student_pool = self.pool.get('op.student')
         ret_list = []
         for line in exam_session_ids:
-            student_ids = student_pool.search(self.cr, self.uid, [('course_id', '=', line.course_id.id),
-                                                                  ('standard_id', '=',
-                                                                   line.standard_id.id),
-                                                                  ], order='id asc')
+            student_ids = student_pool.search(
+                self.cr, self.uid, [('course_id', '=', line.course_id.id),
+                                    ('standard_id', '=', line.standard_id.id),
+                                    ], order='id asc')
+
             temp_list = []
             for student in student_pool.browse(self.cr, self.uid, student_ids):
                 res = {
@@ -79,8 +80,9 @@ class exam_student_lable_report(report_sxw.rml_parse):
                     'std': student.standard_id.name
                 }
                 temp_list.append(res)
-            ret_list.append({'course': line.course_id.name, 'standard':
-                             line.standard_id.name, 'line': self.format_list(temp_list)})
+            ret_list.append({'course': line.course_id.name,
+                             'standard': line.standard_id.name,
+                             'line': self.format_list(temp_list)})
         return ret_list
 
 
@@ -90,6 +92,9 @@ class report_exam_student_lable_report(osv.AbstractModel):
     _template = 'openeducat_erp.report_exam_student_lable_report'
     _wrapped_report_class = exam_student_lable_report
 
-#report_sxw.report_sxw('report.op.exam.student.lable','op.exam.res.allocation', 'addons/openeducat_erp/report/exam_student_lable.rml', parser=exam_student_lable_report, header=False)
+# report_sxw.report_sxw('report.op.exam.student.lable',
+#                       'op.exam.res.allocation',
+#                       'addons/openeducat_erp/report/exam_student_lable.rml',
+#                       parser=exam_student_lable_report, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

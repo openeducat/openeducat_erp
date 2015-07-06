@@ -27,22 +27,22 @@
     'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
     'description': """
-            This module provide overall education management system over OpenERP
-            Features includes managing
-                * Student
-                * Faculty
-                * Admission
-                * Course
-                * Batch
-                * Standard
-                * Books
-                * Library
-                * Lectures
-                * Exams
-                * Marksheet
-                * Result
-                * Transportation
-                * Hostel
+        This module provide overall education management system overOpenERP
+        Features includes managing
+            * Student
+            * Faculty
+            * Admission
+            * Course
+            * Batch
+            * Standard
+            * Books
+            * Library
+            * Lectures
+            * Exams
+            * Marksheet
+            * Result
+            * Transportation
+            * Hostel
 
     """,
     'author': 'Tech Receptives',
@@ -73,12 +73,12 @@
         'op_book_movement/op_book_movement_view.xml',
         'op_book_queue/op_book_queue_view.xml',
         'op_book_queue/op_book_queue_sequence.xml',
+        'op_division/op_division_view.xml',
         'op_placement_offer/op_placement_offer_view.xml',
         'op_marksheet_register/op_marksheet_register_view.xml',
         'op_classroom/op_classroom_view.xml',
         'op_vehicle/op_vehicle_view.xml',
         'op_hostel/op_hostel_view.xml',
-        'op_division/op_division_view.xml',
         'op_exam_attendees/op_exam_attendees_view.xml',
         'wizard/exam_seating_arrangement_view.xml',
         'wizard/book_request_queue_view.xml',

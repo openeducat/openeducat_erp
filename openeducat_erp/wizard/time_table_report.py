@@ -35,34 +35,37 @@ class time_table_report(models.TransientModel):
         'Start Date', required=True, default=time.strftime('%Y-%m-01'))
     end_date = fields.Date(
         'End Date', required=True)
-    state = fields.Selection([('s', 'Student'), ('t', 'Teacher')], string='Select',
-                             required=True, default='t')
+    state = fields.Selection(
+        [('s', 'Student'), ('t', 'Teacher')], string='Select', required=True,
+        default='t')
 
     @api.multi
     def gen_time_table_report(self):
         data = self.read(
-            ['start_date', 'end_date', 'standard_id', 'division_id', 'state', 'faculty_id'])[0]
+            ['start_date', 'end_date', 'standard_id', 'division_id', 'state',
+             'faculty_id'])[0]
         if data['state'] == 's':
-            time_table_ids = self.env['op.timetable'].search([('standard_id', '=', data['standard_id'][0]),
-                                                              ('division_id', '=', data[
-                                                                  'division_id'][0]),
-                                                              ('start_datetime', '>', data[
-                                                                  'start_date'] + '%H:%M:%S'),
-                                                              ('end_datetime', '<', data[
-                                                                  'end_date'] + '%H:%M:%S'),
-                                                              ], order='start_datetime asc')
+            time_table_ids = self.env['op.timetable'].search(
+                [('standard_id', '=', data['standard_id'][0]),
+                 ('division_id', '=', data['division_id'][0]),
+                 ('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
+                 ('end_datetime', '<', data['end_date'] + '%H:%M:%S')],
+                order='start_datetime asc')
 
             data.update({'time_table_ids': time_table_ids.ids})
-            return self.env['report'].get_action(self, 'openeducat_erp.report_time_table_student_generate', data=data)
+            return self.env['report'].get_action(
+                self, 'openeducat_erp.report_time_table_student_generate',
+                data=data)
         else:
-            teacher_time_table_ids = self.env['op.timetable'].search([('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
-                                                                      ('end_datetime', '<', data[
-                                                                       'end_date'] + '%H:%M:%S'),
-                                                                      ('faculty_id', '=', data[
-                                                                       'faculty_id'][0]),
-                                                                      ], order='start_datetime asc')
+            teacher_time_table_ids = self.env['op.timetable'].search(
+                [('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
+                 ('end_datetime', '<', data['end_date'] + '%H:%M:%S'),
+                 ('faculty_id', '=', data['faculty_id'][0])],
+                order='start_datetime asc')
 
             data.update({'teacher_time_table_ids': teacher_time_table_ids.ids})
-            return self.env['report'].get_action(self, 'openeducat_erp.report_time_table_teacher_generate', data=data)
+            return self.env['report'].get_action(
+                self, 'openeducat_erp.report_time_table_teacher_generate',
+                data=data)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,12 +17,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
 import time
+
+from openerp import pooler
 from openerp.osv import osv
 from openerp.report import report_sxw
-from openerp import pooler
 
 
 class op_library(report_sxw.rml_parse):
@@ -31,7 +32,6 @@ class op_library(report_sxw.rml_parse):
         super(op_library, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-
         })
 
 
@@ -41,4 +41,8 @@ class report_library_idcard(osv.AbstractModel):
     _template = 'openeducat_erp.report_library_idcard'
     _wrapped_report_class = op_library
 
-#report_sxw.report_sxw('report.op.library.report','op.student', 'addons/openeducat_erp/report/library_card.rml', parser=op_library, header=False)
+# report_sxw.report_sxw('report.op.library.report','op.student',
+#                       'addons/openeducat_erp/report/library_card.rml',
+#                       parser=op_library, header=False)
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
