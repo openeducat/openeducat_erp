@@ -32,8 +32,10 @@ class op_faculty(models.Model):
     middle_name = fields.Char('Middle Name', size=128, required=True)
     last_name = fields.Char('Last Name', size=128, required=True)
     birth_date = fields.Date('Birth Date', required=True)
-    blood_group = fields.Selection([('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-                                    ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')], 'Blood Group')
+    blood_group = fields.Selection(
+        [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
+         ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
+        'Blood Group')
     gender = fields.Selection(
         [('male', 'Male'), ('female', 'Female')], 'Gender', required=True)
     nationality = fields.Many2one('res.country', 'Nationality')
@@ -51,7 +53,8 @@ class op_faculty(models.Model):
     login = fields.Char(
         'Login', related='partner_id.user_id.login', readonly=1)
     last_login = fields.Date(
-        'Latest Connection', related='partner_id.user_id.login_date', readonly=1)
+        'Latest Connection', related='partner_id.user_id.login_date',
+        readonly=1)
     timetable_ids = fields.One2many('op.timetable', 'faculty_id', 'Time table')
     health_faculty_lines = fields.One2many(
         'op.health', 'faculty_id', 'Health Detail')
@@ -80,11 +83,13 @@ class hr_employee(models.Model):
             self.address_home_id = self.user_id.partner_id.id
             self.work_email = self.user_id.email
             self.identification_id = False
-            return {'domain': {'address_id': [('id', '=', self.user_id.partner_id.id)]}}
+            return {'domain':
+                    {'address_id': [('id', '=', self.user_id.partner_id.id)]}}
 
     @api.onchange('address_id')
     def onchange_address_id(self):
-        if self.address_home_id and self.address_id and self.address_home_id != self.address_id:
+        if self.address_home_id and self.address_id and \
+                self.address_home_id != self.address_id:
             raise Warning(_('Configuration Error!'), _(
                 'Home Address and working address should be same!'))
         if self.address_id:
@@ -93,7 +98,8 @@ class hr_employee(models.Model):
 
     @api.onchange('address_home_id')
     def onchange_address_home_id(self):
-        if self.address_home_id and self.address_id and self.address_home_id != self.address_id:
+        if self.address_home_id and self.address_id and \
+                self.address_home_id != self.address_id:
             raise Warning(_('Configuration Error!'), _(
                 'Home Address and working address should be same!'))
         if self.address_home_id:

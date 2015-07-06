@@ -28,7 +28,8 @@ class op_library_card_type(models.Model):
 
     name = fields.Char('Name', size=256, required=True)
     duration = fields.Float(
-        'Duration', help='Duration in terms of Number of Lead Days', required=True)
+        'Duration', help='Duration in terms of Number of Lead Days',
+        required=True)
     penalty_amt_per_day = fields.Float('Penalty Amount Per Day', required=True)
 
 

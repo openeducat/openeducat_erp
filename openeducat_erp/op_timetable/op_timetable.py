@@ -58,8 +58,10 @@ class op_timetable(models.Model):
     division_id = fields.Many2one('op.division', 'Division', required=True)
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
     color = fields.Integer('Color Index')
-    type = fields.Selection([('Monday', 'Monday'), ('Tuesday', 'Tuesday'), ('Wednesday', 'Wednesday'), (
-        'Thursday', 'Thursday'), ('Friday', 'Friday'), ('Saturday', 'Saturday')], 'Days')
+    type = fields.Selection(
+        [('Monday', 'Monday'), ('Tuesday', 'Tuesday'),
+         ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'),
+         ('Friday', 'Friday'), ('Saturday', 'Saturday')], 'Days')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
