@@ -28,7 +28,8 @@ class return_date(models.TransientModel):
     _name = 'return.date'
 
     actual_return_date = fields.Date(
-        'Actual Return Date', required=True, default=lambda self: fields.Date.today())
+        'Actual Return Date', required=True,
+        default=lambda self: fields.Date.today())
 
     @api.one
     def assign_return_date(self):
