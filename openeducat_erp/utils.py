@@ -22,10 +22,11 @@
 from datetime import datetime
 import base64
 try:
-    from reportlab.graphics.barcode import createBarcodeDrawing, \
-        getCodes
+    from reportlab.graphics.barcode import createBarcodeDrawing
 except:
     print "ERROR IMPORTING REPORT LAB"
+
+from openerp.osv import osv
 
 
 def get_barcode_image(value, width=False, hight=False, hr=True, code='QR'):

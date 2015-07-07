@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from datetime import date, datetime
+from datetime import datetime
 import time
 
 from openerp import pooler

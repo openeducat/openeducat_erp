@@ -78,18 +78,17 @@ class issue_book(models.TransientModel):
                         'return_date': self.return_date,
                         'state': 'i',
                     }
-                    book_move_id = self.env['op.book.movement'].create(
-                        book_movement_create)
+                    self.env['op.book.movement'].create(book_movement_create)
                     self.book_id.state = 'i'
                     value = {'type': 'ir.actions.act_window_close'}
                 else:
-                    book_state = this_obj.book_id.state == 'i' and 'Issued' \
-                        or this_obj.book_id.state == 'a' and 'Available' \
-                        or this_obj.book_id.state == 'l' and 'Lost' \
-                        or this_obj.book_id.state == 'r' and 'Reserved'
+                    book_state = self.book_id.state == 'i' and 'Issued' \
+                        or self.book_id.state == 'a' and 'Available' \
+                        or self.book_id.state == 'l' and 'Lost' \
+                        or self.book_id.state == 'r' and 'Reserved'
                     raise Warning(_('Error!'), _(
                         'Book Can not be issued because book state is : %s') %
-                        (self.book_id.state))
+                        (book_state))
             else:
                 raise Warning(_('Error!'), _(
                     'Maximum Number of book allowed for %s is : %s') %

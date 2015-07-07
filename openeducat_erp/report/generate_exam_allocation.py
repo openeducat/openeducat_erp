@@ -19,10 +19,9 @@
 #
 ###############################################################################
 
-import datetime
 import time
 
-from openerp.osv import osv, fields
+from openerp.osv import osv
 from openerp.report import report_sxw
 
 
@@ -55,7 +54,6 @@ class exam_allocation_report(report_sxw.rml_parse):
         return res
 
     def gen_exam_seat(self, data):
-        lst_main = []
         final_list = []
         session_pool = self.pool.get('op.exam.session')
         student_pool = self.pool.get('op.student')

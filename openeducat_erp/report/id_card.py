@@ -22,6 +22,7 @@
 import time
 
 from openerp import pooler
+from openerp.addons.openeducat_erp import utils
 from openerp.osv import osv
 from openerp.report import report_sxw
 
@@ -53,8 +54,6 @@ class op_student(report_sxw.rml_parse):
         return barcode
 
     def get_address(self, student):
-        student_data = {}
-        address = student.street and student.street[0] or False
         addr = {
             'street': student.street or '',
             'street2': student.street2 or '',
@@ -67,7 +66,6 @@ class op_student(report_sxw.rml_parse):
 
     def qr_data(self, student):
         student_data = {}
-        address = student.street and student.street[0] or False
         student_data = {
             'name': ' '.join([student.name,
                               student.middle_name,

@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from datetime import date, datetime
+from datetime import datetime
 import time
 
 from openerp.osv import osv, fields
@@ -40,8 +40,6 @@ class student_hall_ticket_report(report_sxw.rml_parse):
     def get_date(self, exam_line):
 
         context = self.context
-        start_time = exam_line.start_time
-        end_time = exam_line.end_time
 
         schedule_start = datetime.strptime(
             exam_line.start_time, "%Y-%m-%d %H:%M:%S")
@@ -59,7 +57,6 @@ class student_hall_ticket_report(report_sxw.rml_parse):
         return schedule_start[11:] + ' To ' + schedule_end[11:]
 
     def get_subject(self, datas):
-        exam = self.pool.get('op.exam')
         lst = []
         for exam_line in datas['exam_ids']:
             res1 = {

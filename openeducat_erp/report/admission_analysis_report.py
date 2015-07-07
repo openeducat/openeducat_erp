@@ -52,7 +52,6 @@ class admission_analysis_report(report_sxw.rml_parse):
                                 ('admission_date', '<=', data['end_date'])],
             order='admission_date desc')
         res = {}
-        res1 = {}
         self.total_student = 0
         for student in student_pool.browse(self.cr, self.uid, student_search):
             self.total_student += 1

@@ -21,7 +21,7 @@
 
 import time
 
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 
 
 class time_table_report(models.TransientModel):
