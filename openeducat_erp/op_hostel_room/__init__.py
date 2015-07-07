@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_hostel_room
+from . import op_hostel_room
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_book_purchase
+from . import op_book_purchase
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

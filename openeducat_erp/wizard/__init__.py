@@ -19,19 +19,19 @@
 #
 ###############################################################################
 
-import admission_analysis_wizard
-import book_request_queue
-import exam_seating_arrangement
-import generate_roll_number
-import generate_time_table
-import issue_book
-import op_all_student_user
-import op_all_student_wizard
-import return_book
-import student_attendance_report
-import student_hall_tickets_wizard
-import student_migrate
-import time_table_report
+from . import admission_analysis_wizard
+from . import book_request_queue
+from . import exam_seating_arrangement
+from . import generate_roll_number
+from . import generate_time_table
+from . import issue_book
+from . import op_all_student_user
+from . import op_all_student_wizard
+from . import return_book
+from . import student_attendance_report
+from . import student_hall_tickets_wizard
+from . import student_migrate
+from . import time_table_report
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

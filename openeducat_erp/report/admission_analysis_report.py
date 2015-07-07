@@ -29,7 +29,7 @@ class admission_analysis_report(report_sxw.rml_parse):
 
     _name = 'report.openeducat_erp.admission_analysis_report'
 
-    def __init__(self, cr, uid, name, context={}):
+    def __init__(self, cr, uid, name, context=None):
         super(admission_analysis_report, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({

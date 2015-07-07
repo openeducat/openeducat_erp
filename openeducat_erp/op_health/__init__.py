@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_health
+from . import op_health
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

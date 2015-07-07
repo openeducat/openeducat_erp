@@ -21,10 +21,12 @@
 
 from datetime import datetime
 import base64
+import logging
 try:
     from reportlab.graphics.barcode import createBarcodeDrawing
 except:
-    print "ERROR IMPORTING REPORT LAB"
+    _logger = logging.getLogger(__name__)
+    _logger.info("ERROR IMPORTING REPORT LAB")
 
 from openerp.osv import osv
 

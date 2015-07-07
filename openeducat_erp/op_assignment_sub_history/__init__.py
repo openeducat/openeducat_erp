@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_assignment_sub_history
+from . import op_assignment_sub_history
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

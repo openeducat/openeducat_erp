@@ -29,7 +29,7 @@ from openerp.report import report_sxw
 
 class op_student(report_sxw.rml_parse):
 
-    def __init__(self, cr, uid, name, context={}):
+    def __init__(self, cr, uid, name, context=None):
         self.ctx = {}
         self.ctx = context.copy()
         super(op_student, self).__init__(cr, uid, name, context=context)

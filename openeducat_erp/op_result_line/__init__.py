@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_result_line
+from . import op_result_line
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

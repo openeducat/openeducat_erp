@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_tag
+from . import op_tag
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

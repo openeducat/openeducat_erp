@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_route
+from . import op_route
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

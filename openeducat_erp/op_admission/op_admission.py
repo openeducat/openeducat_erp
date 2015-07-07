@@ -134,7 +134,6 @@ class op_admission(models.Model):
             'religion': self.religion_id and self.religion_id.id or False,
             'photo': self.photo or False,
             'gr_no': gr,
-            'title': self.title and self.title.id or False,
             'street': self.street or False,
             'street2': self.street2 or False,
             'phone': self.phone or False,

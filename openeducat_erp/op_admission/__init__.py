@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_admission
+from . import op_admission
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

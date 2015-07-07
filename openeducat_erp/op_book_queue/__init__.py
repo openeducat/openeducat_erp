@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_book_queue
+from . import op_book_queue
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

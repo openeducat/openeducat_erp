@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_classroom
+from . import op_classroom
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

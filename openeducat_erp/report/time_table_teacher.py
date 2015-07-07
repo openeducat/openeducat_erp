@@ -29,7 +29,7 @@ from openerp.report import report_sxw
 
 class time_table_teacher_generate(report_sxw.rml_parse):
 
-    def __init__(self, cr, uid, name, context={}):
+    def __init__(self, cr, uid, name, context=None):
         super(time_table_teacher_generate, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
