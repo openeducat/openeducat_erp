@@ -35,7 +35,8 @@ class op_assignment(models.Model):
     description = fields.Text('Description', required=True)
     type = fields.Many2one('op.exam.type', 'Type', required=True)
     state = fields.Selection(
-        [('d', 'Draft'), ('p', 'Publish'), ('f', 'Finished')], 'State', required=True, default='d')
+        [('d', 'Draft'), ('p', 'Publish'), ('f', 'Finished')], 'State',
+        required=True, default='d')
     issued_date = fields.Datetime('Issued Date', required=True)
     submission_date = fields.Datetime('Submission Date', required=True)
     allocation_ids = fields.Many2many('op.student', string='Allocated To')

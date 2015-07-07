@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,20 +17,19 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
+from datetime import datetime
 import time
+
+from openerp import pooler
 from openerp.osv import osv
 from openerp.report import report_sxw
-from openerp.addons.openeducat_erp import utils
-from openerp import pooler
-from datetime import date, datetime
-from openerp import netsvc
 
 
 class time_table_generate(report_sxw.rml_parse):
 
-    def __init__(self, cr, uid, name, context={}):
+    def __init__(self, cr, uid, name, context=None):
         super(time_table_generate, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
@@ -60,7 +59,9 @@ class time_table_generate(report_sxw.rml_parse):
                      'Thursday', 'Friday', 'Saturday', 'Sunday']
 
         data_list = []
-        for timetable_obj in pooler.get_pool(self.cr.dbname).get('op.timetable').browse(self.cr, self.uid, data['time_table_ids']):
+        for timetable_obj in pooler.get_pool(self.cr.dbname).get(
+            'op.timetable').browse(
+                self.cr, self.uid, data['time_table_ids']):
 
             oldDate = datetime.strptime(
                 timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")

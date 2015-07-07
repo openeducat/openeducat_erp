@@ -31,12 +31,15 @@ class op_book_purchase(models.Model):
     publisher_ids = fields.Char('Publisher', size=256)
     course_ids = fields.Many2one('op.course', 'Course', required=True)
     subject_ids = fields.Many2one('op.subject', 'Subject', required=True)
-    student_id = fields.Many2one('op.student', 'Student', default=lambda self:
-                                 self.env.user.user_line and self.env.user.user_line[0].id or False)
+    student_id = fields.Many2one(
+        'op.student', 'Student',
+        default=lambda self: self.env.user.user_line and
+        self.env.user.user_line[0].id or False)
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     library_id = fields.Many2one('res.partner', 'Librarian')
-    state = fields.Selection([('d', 'Draft'), ('rq', 'Requested'), (
-        'a', 'Accept'), ('r', 'Reject')], 'State', select=True, readonly=True, default='d')
+    state = fields.Selection(
+        [('d', 'Draft'), ('rq', 'Requested'), ('a', 'Accept'),
+         ('r', 'Reject')], 'State', select=True, readonly=True, default='d')
 
     @api.one
     def act_draft(self):

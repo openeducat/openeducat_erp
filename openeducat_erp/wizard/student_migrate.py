@@ -57,8 +57,8 @@ class student_migrate(models.TransientModel):
             self.env['op.activity'].create(activity_vals)
             student.write({'standard_id': self.to_standard_id.id})
             lst_student.append(student.id)
-        self.from_standard_id.student_ids = self.from_standard_id.student_ids - \
-            self.student_ids
+        self.from_standard_id.student_ids = \
+            self.from_standard_id.student_ids - self.student_ids
         self.to_standard_id.write(
             {'student_ids': [(6, 0, lst_student)]})
 

@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-import reserve_book
-import returndate
+from . import reserve_book
+from . import returndate
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

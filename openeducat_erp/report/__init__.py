@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,21 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
-import book_barcode
-import id_card
-import time_table_report
-import time_table_teacher
-import library_card
-import marksheet_report
-import exam_student_lable
-import generate_exam_allocation
-import student_hall_ticket_report
-import transport_detail
-import student_attendance
-import student_bonafide_certificate
-import admission_analysis_report
+from . import admission_analysis_report
+from . import book_barcode
+from . import exam_student_lable
+from . import generate_exam_allocation
+from . import id_card
+from . import library_card
+from . import marksheet_report
+from . import student_attendance
+from . import student_bonafide_certificate
+from . import student_hall_ticket_report
+from . import time_table_report
+from . import time_table_teacher
+from . import transport_detail
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -36,7 +36,8 @@ class op_book_queue(models.Model):
     user_id = fields.Many2one(
         'res.users', 'User', readonly=True, default=lambda self: self.env.uid)
     state = fields.Selection(
-        [('request', 'Request'), ('accept', 'Accept'), ('reject', 'Reject')], 'Status', copy=False, default='request')
+        [('request', 'Request'), ('accept', 'Accept'), ('reject', 'Reject')],
+        'Status', copy=False, default='request')
 
     @api.constrains('date_from', 'date_to')
     def _check_date(self):

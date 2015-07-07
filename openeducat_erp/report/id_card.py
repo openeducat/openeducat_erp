@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Tech-Receptives Solutions Pvt. Ltd.
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,18 +17,19 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 import time
+
+from openerp import pooler
+from openerp.addons.openeducat_erp import utils
 from openerp.osv import osv
 from openerp.report import report_sxw
-from openerp.addons.openeducat_erp import utils
-from openerp import pooler
 
 
 class op_student(report_sxw.rml_parse):
 
-    def __init__(self, cr, uid, name, context={}):
+    def __init__(self, cr, uid, name, context=None):
         self.ctx = {}
         self.ctx = context.copy()
         super(op_student, self).__init__(cr, uid, name, context=context)
@@ -42,7 +43,9 @@ class op_student(report_sxw.rml_parse):
 
     def get_obj(self):
         student_list = []
-        for student in pooler.get_pool(self.cr.dbname).get(self.ctx.get('active_model', False)).browse(self.cr, self.uid, self.ctx['active_ids']):
+        for student in pooler.get_pool(self.cr.dbname).get(
+            self.ctx.get('active_model', False)).browse(
+                self.cr, self.uid, self.ctx['active_ids']):
             student_list.append(student)
         return student_list
 
@@ -51,8 +54,6 @@ class op_student(report_sxw.rml_parse):
         return barcode
 
     def get_address(self, student):
-        student_data = {}
-        address = student.street and student.street[0] or False
         addr = {
             'street': student.street or '',
             'street2': student.street2 or '',
@@ -65,9 +66,10 @@ class op_student(report_sxw.rml_parse):
 
     def qr_data(self, student):
         student_data = {}
-        address = student.street and student.street[0] or False
         student_data = {
-            'name': student.name + ' ' + student.middle_name + ' ' + student.last_name,
+            'name': ' '.join([student.name,
+                              student.middle_name,
+                              student.last_name]),
             'roll_number': student.roll_number or '',
             'blood_group': student.blood_group or '',
             'course': student.course_id.name,
@@ -90,6 +92,8 @@ class report_student_idcard(osv.AbstractModel):
     _template = 'openeducat_erp.report_student_idcard'
     _wrapped_report_class = op_student
 
-#report_sxw.report_sxw('report.op.student.report','op.student', 'addons/openeducat_erp/report/id_card.rml', parser=op_student, header=False)
+# report_sxw.report_sxw('report.op.student.report','op.student',
+#                       'addons/openeducat_erp/report/id_card.rml',
+#                       parser=op_student, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

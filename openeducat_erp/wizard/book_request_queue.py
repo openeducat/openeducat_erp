@@ -32,7 +32,7 @@ class book_request_queue(osv.TransientModel):
         'book_id': fields.many2one('op.book', 'Book'),
     }
 
-    def add_book_request_queue(self, cr, uid, ids, context={}):
+    def add_book_request_queue(self, cr, uid, ids, context=None):
         value = {}
 
         queue_pool = self.pool.get('op.book.queue')

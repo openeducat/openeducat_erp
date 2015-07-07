@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_timetable
+from . import op_timetable
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

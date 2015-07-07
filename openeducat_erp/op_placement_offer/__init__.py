@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_placement_offer
+from . import op_placement_offer
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

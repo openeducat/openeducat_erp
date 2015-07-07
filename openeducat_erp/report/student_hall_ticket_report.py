@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,20 +17,18 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
+from datetime import datetime
 import time
+
 from openerp.osv import osv, fields
 from openerp.report import report_sxw
-from datetime import date, datetime
-from openerp import netsvc
-from openerp.addons.openeducat_erp import utils
-import pytz
 
 
 class student_hall_ticket_report(report_sxw.rml_parse):
 
-    def __init__(self, cr, uid, name, context={}):
+    def __init__(self, cr, uid, name, context=None):
         super(student_hall_ticket_report, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
@@ -42,9 +40,6 @@ class student_hall_ticket_report(report_sxw.rml_parse):
     def get_date(self, exam_line):
 
         context = self.context
-        local = pytz.timezone(context.get('tz'))
-        start_time = exam_line.start_time
-        end_time = exam_line.end_time
 
         schedule_start = datetime.strptime(
             exam_line.start_time, "%Y-%m-%d %H:%M:%S")
@@ -52,15 +47,16 @@ class student_hall_ticket_report(report_sxw.rml_parse):
             exam_line.end_time, "%Y-%m-%d %H:%M:%S")
 
         schedule_start = fields.datetime.context_timestamp(
-            self.cr, self.uid, schedule_start, context=context).strftime("%Y-%m-%d %H:%M:%S")
+            self.cr, self.uid, schedule_start, context=context).strftime(
+            "%Y-%m-%d %H:%M:%S")
 
         schedule_end = fields.datetime.context_timestamp(
-            self.cr, self.uid, schedule_end, context=context).strftime("%Y-%m-%d %H:%M:%S")
+            self.cr, self.uid, schedule_end, context=context).strftime(
+            "%Y-%m-%d %H:%M:%S")
 
         return schedule_start[11:] + ' To ' + schedule_end[11:]
 
     def get_subject(self, datas):
-        exam = self.pool.get('op.exam')
         lst = []
         for exam_line in datas['exam_ids']:
             res1 = {
@@ -78,8 +74,9 @@ class student_hall_ticket_report(report_sxw.rml_parse):
         exam_student = self.pool.get('op.student')
         datas = exam_session_pool.browse(
             self.cr, self.uid, data['exam_session_id'][0])
-        student_search = exam_student.search(self.cr, self.uid, [(
-            'course_id', '=', datas.course_id.id), ('standard_id', '=', datas.standard_id.id)])
+        student_search = exam_student.search(
+            self.cr, self.uid, [('course_id', '=', datas.course_id.id),
+                                ('standard_id', '=', datas.standard_id.id)])
         for student in exam_student.browse(self.cr, self.uid, student_search):
             res = {
                 'exam': datas.name,

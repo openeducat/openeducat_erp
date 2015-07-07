@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,13 +17,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
 import time
+
+from openerp import pooler
 from openerp.osv import osv
 from openerp.report import report_sxw
-from openerp.addons.openeducat_erp import utils
-from openerp import pooler
 
 
 class book_barcode_parser(report_sxw.rml_parse):
@@ -59,7 +59,8 @@ class report_book_barcode(osv.AbstractModel):
     _wrapped_report_class = book_barcode_parser
 
 
-# report_sxw.report_sxw('report.op.book.barcode', 'op.book','addons/openeducat_erp/report/book_barcode.rml',
+# report_sxw.report_sxw('report.op.book.barcode', 'op.book',
+#            'addons/openeducat_erp/report/book_barcode.rml',
 #                      parser=book_barcode, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

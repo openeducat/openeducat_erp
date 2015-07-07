@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Tech-Receptives Solutions Pvt. Ltd.
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,12 +17,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
-import time
 from datetime import datetime
-from openerp.report import report_sxw
+import time
+
 from openerp.osv import osv
+from openerp.report import report_sxw
 
 
 class marksheet_report(report_sxw.rml_parse):
@@ -58,6 +59,8 @@ class report_marksheet_report(osv.AbstractModel):
     _wrapped_report_class = marksheet_report
 
 
-#report_sxw.report_sxw('report.op.marksheet','op.marksheet.register', 'addons/openeducat_erp/report/marksheet_report.rml', parser=marksheet_report, header=False)
+# report_sxw.report_sxw('report.op.marksheet','op.marksheet.register',
+#                       'addons/openeducat_erp/report/marksheet_report.rml',
+#                       parser=marksheet_report, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

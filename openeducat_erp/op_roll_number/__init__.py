@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_roll_number
+from . import op_roll_number
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

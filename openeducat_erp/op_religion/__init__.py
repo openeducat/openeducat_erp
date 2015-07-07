@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_religion
+from . import op_religion
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

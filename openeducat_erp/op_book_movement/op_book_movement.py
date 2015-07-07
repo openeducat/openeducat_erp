@@ -36,7 +36,8 @@ class op_book_movement(models.Model):
     book_id = fields.Many2one('op.book', 'Book', required=True)
     quantity = fields.Integer('No. Of Books', required=True)
     type = fields.Selection(
-        [('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty', required=True)
+        [('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty',
+        required=True)
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     library_card_id = fields.Many2one(
@@ -48,7 +49,8 @@ class op_book_movement(models.Model):
     partner_id = fields.Many2one('res.partner', 'Person')
     reserver_name = fields.Char('Person Name', size=256)
     state = fields.Selection(
-        [('i', 'Issued'), ('a', 'Available'), ('l', 'Lost'), ('r', 'Reserved')], 'Status', default='a')
+        [('i', 'Issued'), ('a', 'Available'), ('l', 'Lost'),
+         ('r', 'Reserved')], 'Status', default='a')
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
@@ -73,9 +75,11 @@ class op_book_movement(models.Model):
         penalty_days = 0
         standard_diff = days_between(self.return_date, self.issued_date)
         actual_diff = days_between(self.actual_return_date, self.issued_date)
+        owned_days = standard_diff + \
+            self.library_card_id.library_card_type_id.duration
         if self.library_card_id and self.library_card_id.library_card_type_id:
-            penalty_days = actual_diff > (standard_diff + self.library_card_id.library_card_type_id.duration) and actual_diff - (
-                standard_diff + self.library_card_id.library_card_type_id.duration) or penalty_days
+            penalty_days = actual_diff > owned_days and actual_diff - \
+                owned_days or penalty_days
             penalty_amt = round(penalty_days - penalty_days / 7) * \
                 self.library_card_id.library_card_type_id.penalty_amt_per_day
         self.write({'penalty': penalty_amt, 'state': 'a'})

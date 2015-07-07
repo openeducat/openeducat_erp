@@ -29,10 +29,10 @@ class exam_seat_arrange(models.TransientModel):
     exam_session_ids = fields.Many2many(
         'op.exam.session', string='Select Section', required=True)
     start_time = fields.Datetime(
-        'Start Time', default=lambda self: fields.Date.context_today,
+        'Start Time', default=lambda self: fields.Datetime.now(),
         required=True)
     end_time = fields.Datetime(
-        'End Time', default=lambda self: fields.Date.context_today,
+        'End Time', default=lambda self: fields.Datetime.now(),
         required=True)
 
     @api.multi

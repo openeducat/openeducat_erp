@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_achievement
+from . import op_achievement
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-import op_attendance_register
+from . import op_attendance_register
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

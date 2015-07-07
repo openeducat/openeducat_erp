@@ -84,7 +84,7 @@ class generate_time_table(models.TransientModel):
             curr_date = datetime.datetime.strptime(utc_dt, "%Y-%m-%d %H:%M:%S")
             end_time = datetime.timedelta(hours=line.period_id.duration)
             cu_en_date = curr_date + end_time
-            a = self.env['op.timetable'].create({
+            self.env['op.timetable'].create({
                 'faculty_id': line.faculty_id.id,
                 'subject_id': line.subject_id.id,
                 'course_id': self_obj.course_id.id,
