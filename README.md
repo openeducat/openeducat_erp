@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/openeducat/openeducat_erp.svg?branch=8.0)](https://travis-ci.org/openeducat/openeducat_erp)
-[![Coverage Status](https://coveralls.io/repos/openeducat/openeducat_erp/badge.svg?branch=8.0-parthiv-test)](https://coveralls.io/r/openeducat/openeducat_erp?branch=8.0-parthiv-test)
+[![Coverage Status](https://coveralls.io/repos/github/openeducat/openeducat_erp/badge.svg?branch=8.0)](https://coveralls.io/github/openeducat/openeducat_erp?branch=8.0)
 OpenEduCat for Odoo 8
 =====================
 
