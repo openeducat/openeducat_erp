@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,20 +17,22 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
 import time
+
 from openerp.osv import osv
 from openerp.report import report_sxw
-from openerp import pooler
+
 
 class op_transportation_detail(report_sxw.rml_parse):
+
     def __init__(self, cr, uid, name, context=None):
-        super(op_transportation_detail, self).__init__(cr, uid, name, context=context)
+        super(op_transportation_detail, self).__init__(
+            cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-
-            })
+        })
 
 
 class report_transportation_detail(osv.AbstractModel):
@@ -38,4 +40,5 @@ class report_transportation_detail(osv.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_transportation_detail'
     _wrapped_report_class = op_transportation_detail
-        
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

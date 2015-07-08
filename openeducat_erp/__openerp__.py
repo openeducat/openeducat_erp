@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,39 +17,39 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
 {
     'name': 'OpenEduCat ERP',
-    'version': '1.3.1',
+    'version': '1.0',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
     'description': """
-            This module provide overall education management system over OpenERP
-            Features includes managing
-                * Student
-                * Faculty
-                * Admission
-                * Course
-                * Batch
-                * Standard
-                * Books
-                * Library
-                * Lectures
-                * Exams
-                * Marksheet
-                * Result
-                * Transportation
-                * Hostel
+        This module provide overall education management system overOpenERP
+        Features includes managing
+            * Student
+            * Faculty
+            * Admission
+            * Course
+            * Batch
+            * Standard
+            * Books
+            * Library
+            * Lectures
+            * Exams
+            * Marksheet
+            * Result
+            * Transportation
+            * Hostel
 
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'images': [],
-    'depends': ['account_accountant',
-                'hr','web','website'],
+    'depends': ['account_accountant', 'document',
+                'hr', 'web', 'website'],
     'data': [
         'security/op_security.xml',
         'op_activity/op_activity_view.xml',
@@ -73,12 +73,12 @@
         'op_book_movement/op_book_movement_view.xml',
         'op_book_queue/op_book_queue_view.xml',
         'op_book_queue/op_book_queue_sequence.xml',
+        'op_division/op_division_view.xml',
         'op_placement_offer/op_placement_offer_view.xml',
         'op_marksheet_register/op_marksheet_register_view.xml',
         'op_classroom/op_classroom_view.xml',
         'op_vehicle/op_vehicle_view.xml',
         'op_hostel/op_hostel_view.xml',
-        'op_division/op_division_view.xml',
         'op_exam_attendees/op_exam_attendees_view.xml',
         'wizard/exam_seating_arrangement_view.xml',
         'wizard/book_request_queue_view.xml',
@@ -86,6 +86,7 @@
         'wizard/return_book_view.xml',
         'wizard/student_hall_tickets_wizard_view.xml',
         'wizard/admission_analysis_wizard_view.xml',
+        'wizard/wizard_op_student_view.xml',
         'op_book/op_book_view.xml',
         'op_batch/op_batch_view.xml',
         'op_marksheet_line/op_marksheet_line_view.xml',
@@ -149,34 +150,44 @@
 
     ],
     'demo': [
-                 'demo/op.category.csv',
-                 'demo/op.course.csv',
-                 'demo/op.subject.csv',
-                 'demo/op.batch.csv',
-                 'demo/op.standard.csv',
-                 'demo/op.religion.csv',
-                 'demo/op.tag.csv',
-                 'demo/op.book.csv',
-                 'demo/op.author.csv',
-                 'demo/op.division.csv',
-                 'demo/op.student.csv',
-                 'demo/op.faculty.csv',
-                 'demo/op.exam.type.csv',
-                'demo/res.users.csv',
-                'demo/res.groups.csv',
-                 'demo/op.period.csv',
-                 'demo/op_comapny_data.xml',
-                 ],
+        'demo/res.users.csv',
+        'demo/res.groups.csv',
+        'demo/op.category.csv',
+        'demo/op.course.csv',
+        'demo/op.subject.csv',
+        'demo/op.batch.csv',
+        'demo/op.standard.csv',
+        'demo/op.religion.csv',
+        'demo/op.tag.csv',
+        'demo/op.book.csv',
+        'demo/op.author.csv',
+        'demo/op.division.csv',
+        'demo/op.student.csv',
+        'demo/op.faculty.csv',
+        'demo/op.exam.type.csv',
+        'demo/op.period.csv',
+        'demo/op_comapny_data.xml',
+        'demo/op.book.queue.csv',
+        'demo/op.assignment.csv',
+        'demo/op_timetable_data.xml',
+        'demo/op.assignment.sub.line.csv',
+    ],
     'css': ['static/src/css/base.css'],
     'qweb': [
         'static/src/xml/base.xml'],
     'js': ['static/src/js/chrome.js'],
     'test': [
-             'test/configuration.yml',
-             'test/new_admission.yml',
-             'test/new_faculty.yml'
+        'test/configuration.yml',
+        'test/new_admission.yml',
+        'test/new_faculty.yml'
     ],
-    'images': ['images/Admission_Process.png','images/Course_list.png','images/Faculty_management.png','images/Student_Information.png','images/TimeTable.png'],
+    'images': [
+        'images/Admission_Process.png',
+        'images/Course_list.png',
+        'images/Faculty_management.png',
+        'images/Student_Information.png',
+        'images/TimeTable.png'
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

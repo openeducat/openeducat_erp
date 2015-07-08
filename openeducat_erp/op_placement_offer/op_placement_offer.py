@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,48 +17,43 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
+###############################################################################
 
-from openerp.osv import osv,fields
+from openerp import models, fields, api
 
-class op_placement_offer(osv.osv):
+
+class op_placement_offer(models.Model):
     _name = 'op.placement.offer'
     _description = 'Placement Offer'
 
-    _columns = {
-                'name': fields.char('Company Name', required=True),
-                'student_id': fields.many2one('op.student', 'Student Name', required=True),
-                'join_date': fields.date(string='Join Date'),
-                'offer_package': fields.char(string='Offered Package', size=256),
-                'training_period': fields.char(string='Training Period', size=256),
-                'state': fields.selection([('d','Draft'),('o','Offer'),('j','Join'),('r','Rejected'),('c','Cancel')], string='State')
-    }
-    
-    _defaults = {
-                 'state':'d',
-    }
-    
-    def placement_offer(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'o'})
-        return True
+    name = fields.Char('Company Name', required=True)
+    student_id = fields.Many2one('op.student', 'Student Name', required=True)
+    join_date = fields.Date('Join Date')
+    offer_package = fields.Char('Offered Package', size=256)
+    training_period = fields.Char('Training Period', size=256)
+    state = fields.Selection(
+        [('d', 'Draft'), ('o', 'Offer'), ('j', 'Join'), ('r', 'Rejected'),
+         ('c', 'Cancel')], 'State', default='d')
 
-    def placement_join(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'j'})
-        return True
+    @api.one
+    def placement_offer(self):
+        self.state = 'o'
 
-    def confirm_rejected(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'r'})
-        return True
+    @api.one
+    def placement_join(self):
+        self.state = 'j'
 
-    def confirm_to_draft(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'d'})
-        return True
+    @api.one
+    def confirm_rejected(self):
+        self.state = 'r'
 
-    def confirm_cancel(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'c'})
-        return True
+    @api.one
+    def confirm_to_draft(self):
+        self.state = 'd'
 
-op_placement_offer()
+    @api.one
+    def confirm_cancel(self):
+        self.state = 'c'
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

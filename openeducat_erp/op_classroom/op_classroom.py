@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,32 +17,30 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_classroom(osv.osv):
+from openerp import models, fields
+
+
+class op_classroom(models.Model):
     _name = 'op.classroom'
 
-    _columns = {
-            'name': fields.char(size=16, string='Name', required=True),
-            'code': fields.char(size=4, string='Code', required=True),
-            'course_id': fields.many2one('op.course', 'Course', required=True),
-            'standard_id': fields.many2one('op.standard', 'Standard', required=True),
-            'capacity': fields.integer(string='No. Of Person'),
-            'facility': fields.many2many('op.facility', 'classroom_facility_rel', 'op_classroom_id', 'op_facility_id', string='Facilities'),
-            'asset_line': fields.one2many('op.asset', 'asset_id', 'Asset', required=True),
-    }
+    name = fields.Char('Name', size=16, required=True)
+    code = fields.Char('Code', size=4, required=True)
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    standard_id = fields.Many2one('op.standard', 'Standard', required=True)
+    capacity = fields.Integer(string='No. Of Person')
+    facility = fields.Many2many('op.facility', string='Facilities')
+    asset_line = fields.One2many(
+        'op.asset', 'asset_id', 'Asset', required=True)
 
-op_classroom()
 
-class op_asset(osv.osv):
+class op_asset(models.Model):
     _name = 'op.asset'
-    
-    _columns = {
-                'asset_id': fields.many2one('op.classroom', 'Asset'),
-                'product_id': fields.many2one('product.product', 'Product', required=True),
-                'code': fields.char('Code', size=256),
-                'product_uom_qty': fields.float('Quantity',required=True),
-                
-            }
+
+    asset_id = fields.Many2one('op.classroom', 'Asset')
+    product_id = fields.Many2one('product.product', 'Product', required=True)
+    code = fields.Char('Code', size=256)
+    product_uom_qty = fields.Float('Quantity', required=True)
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

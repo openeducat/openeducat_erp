@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+	
+		<record id="op_timetable_1" model="op.timetable">
+   			<field name="period_id" search="[('name','=','First Period')]"/>
+   			<field name="faculty_id" search="[('name','=','Al')]"/>
+   			<field name="standard_id" search="[('name','=','SEM-I')]"/>
+   			<field name="division_id" search="[('name','=','A')]"/>
+   			<field name="course_id" search="[('name','=','MCA')]"/>
+   			<field name="subject_id" search="[('name','=','Programing Language C')]"/>
+   			<field name="start_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 10:00:00')"/>
+   			<field name="end_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 11:00:00')"/>
+    	</record>
+    	
+    	<record id="op_timetable_2" model="op.timetable">
+   			<field name="period_id" search="[('name','=','Second Period')]"/>
+   			<field name="faculty_id" search="[('name','=','Kate')]"/>
+   			<field name="standard_id" search="[('name','=','SEM-I')]"/>
+   			<field name="division_id" search="[('name','=','B')]"/>
+   			<field name="course_id" search="[('name','=','MCA')]"/>
+   			<field name="subject_id" search="[('name','=','Advance Database Management System')]"/>
+   			<field name="start_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 11:00:00')"/>
+   			<field name="end_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 12:00:00')"/>
+    	</record>
+    	
+    	<record id="op_timetable_3" model="op.timetable">
+   			<field name="period_id" search="[('name','=','Third Period')]"/>
+   			<field name="faculty_id" search="[('name','=','Nattrajan')]"/>
+   			<field name="standard_id" search="[('name','=','SEM-I')]"/>
+   			<field name="division_id" search="[('name','=','B')]"/>
+   			<field name="course_id" search="[('name','=','MCA')]"/>
+   			<field name="subject_id" search="[('name','=','Networking')]"/>
+   			<field name="start_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 12:00:00')"/>
+   			<field name="end_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 1:00:00')"/>
+    	</record>
+    	
+    	<record id="op_timetable_4" model="op.timetable">
+   			<field name="period_id" search="[('name','=','Lab')]"/>
+   			<field name="faculty_id" search="[('name','=','Nattrajan')]"/>
+   			<field name="standard_id" search="[('name','=','SEM-I')]"/>
+   			<field name="division_id" search="[('name','=','A')]"/>
+   			<field name="course_id" search="[('name','=','MCA')]"/>
+   			<field name="subject_id" search="[('name','=','System Analysis and Design')]"/>
+   			<field name="start_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 2:00:00')"/>
+   			<field name="end_datetime" eval="(DateTime.today() - relativedelta(months=0)).strftime('%Y-%m-%d 4:00:00')"/>
+    	</record>
+    	
+	</data>
+</openerp>

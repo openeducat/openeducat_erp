@@ -17,7 +17,6 @@
 		<record id="view_op_allocat_division_form" model="ir.ui.view">
 			<field name="name">op.allocat.division.form</field>
 			<field name="model">op.allocat.division</field>
-			<field name="context">{'show_address': 1}</field>
 			<field name="priority" eval="8" />
 			<field name="arch" type="xml">
 				<form string="Allocat Division" version="7.0">
@@ -34,7 +33,7 @@
 							<field name="standard_id" />
 							<field name="division_id" />
 						</group>
-						<separator string="Student" colspan="4" />
+						<separator string="Student(s)" colspan="4" />
 						<field name="student_ids" colspan="4" nolabel="1" domain="[('course_id', '=', course_id),('standard_id', '=', standard_id)]">
 							<tree>
 								<field name="name" />

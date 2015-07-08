@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,37 +17,33 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_transportation(osv.osv):
+from openerp import models, fields
+
+
+class op_transportation(models.Model):
     _name = 'op.transportation'
-    
-    _columns = {
-            'name': fields.char(size=64, string='Name', required=True),
-            'stop': fields.one2many('op.stop', 'transport_id', 'Stop'),
-            'cost': fields.float(size=64, string="Cost"),
-            'vehicle_id': fields.many2one('op.vehicle', 'Vehicle', required=True),
-            'start_time': fields.datetime(string='Start Time', required=True),
-            'end_time': fields.datetime(string='End Time', required=True),
-            'from1':fields.char(string="From", size=20, required=True),
-            'to':fields.char(string="To", size=20, required=True),
-            'student_ids': fields.many2many('op.student', 'student_transport_rel', 'op_student_id', 'transport_id', string='Add Student(s)'),
-    }
 
-op_transportation()
+    name = fields.Char('Name', size=64, required=True)
+    stop = fields.One2many('op.stop', 'transport_id', 'Stop')
+    cost = fields.Float('Cost')
+    vehicle_id = fields.Many2one('op.vehicle', 'Vehicle', required=True)
+    start_time = fields.Datetime('Start Time', required=True)
+    end_time = fields.Datetime('End Time', required=True)
+    from1 = fields.Char('From', size=20, required=True)
+    to = fields.Char('To', size=20, required=True)
+    student_ids = fields.Many2many('op.student', string='Add Student(s)')
 
 
-class op_stop(osv.osv):
+class op_stop(models.Model):
     _name = 'op.stop'
-    
-    _columns = {
-            
-            'name': fields.char(size=64, string='Name', required=True),
-            'sequence': fields.integer('Sequence'),
-            'transport_id': fields.many2one('op.transportation', 'Transport'),
-    }
-    
+
+    name = fields.Char('Name', size=64, required=True)
+    sequence = fields.Integer('Sequence')
+    transport_id = fields.Many2one('op.transportation', 'Transport')
+
     _order = 'sequence asc'
-op_stop()
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

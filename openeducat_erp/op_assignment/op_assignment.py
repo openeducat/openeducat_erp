@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,46 +17,45 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_assignment(osv.osv):
+from openerp import models, fields, api
+
+
+class op_assignment(models.Model):
     _name = 'op.assignment'
 
-    _columns = {
-            'name': fields.char(size=16, string='Name', required=True),
-            'course_id': fields.many2one('op.course', string='Course', required=True),
-            'standard_id': fields.many2one('op.standard', string='Standard', required=True),
-            'division_id': fields.many2one('op.division', string='Division'),
-            'subject_id': fields.many2one('op.subject', string='Subject', required=True),
-            'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True),
-            'marks': fields.float(string='Marks'),
-            'description': fields.text(string='Description', required=True),
-            'type': fields.many2one('op.exam.type', string='Type', required=True),
-            'state': fields.selection([('d','Draft'),('p','Publish'),('f','Finished')], string='State', required=True),
-            'issued_date': fields.datetime(string='Issued Date', required=True),
-            'submission_date': fields.datetime(string='Submission Date', required=True),
-            'allocation_ids': fields.many2many('op.student', 'op_student_assignment_rel', 'op_assignment_id', 'op_student_id', string='Allocated To'),
-            'assignment_sub_line': fields.one2many('op.assignment.sub.line', 'assignment_id', string='Submissions'),
-            'reviewer': fields.many2one('op.faculty', 'Reviewer')
-    }
+    name = fields.Char('Name', size=16, required=True)
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    standard_id = fields.Many2one('op.standard', 'Standard', required=True)
+    division_id = fields.Many2one('op.division', 'Division')
+    subject_id = fields.Many2one('op.subject', 'Subject', required=True)
+    faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
+    marks = fields.Float('Marks')
+    description = fields.Text('Description', required=True)
+    type = fields.Many2one('op.exam.type', 'Type', required=True)
+    state = fields.Selection(
+        [('d', 'Draft'), ('p', 'Publish'), ('f', 'Finished')], 'State',
+        required=True, default='d')
+    issued_date = fields.Datetime('Issued Date', required=True)
+    submission_date = fields.Datetime('Submission Date', required=True)
+    allocation_ids = fields.Many2many('op.student', string='Allocated To')
+    assignment_sub_line = fields.One2many(
+        'op.assignment.sub.line', 'assignment_id', 'Submissions')
+    reviewer = fields.Many2one('op.faculty', 'Reviewer')
 
-    _defaults = {
-                 'state':'d',
-                 }
+    @api.one
+    def act_draft(self):
+        # Reminder:: Delete this method as it is not used.
+        self.state = 'd'
 
-    def act_draft(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'d'})
-        return True
+    @api.one
+    def act_publish(self):
+        self.state = 'p'
 
-    def act_publish(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'p'})
-        return True
-
-    def act_finish(self, cr, uid, ids, context=None):
-        self.write(cr,uid,ids,{'state':'f'})
-        return True
+    @api.one
+    def act_finish(self):
+        self.state = 'f'
 
 
-op_assignment()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

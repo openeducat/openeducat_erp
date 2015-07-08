@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,68 +17,55 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv,fields
-from openerp.tools.translate import _
-import datetime
-import time
-week_number  = {
-    'Mon': 1,
-    'Tue': 2,
-    'Web': 3,
-    'Thu': 4,
-    'Fri': 5,
-    'Sat': 6,
-    'Sun': 7,
-}
+###############################################################################
 
-class time_table_report(osv.osv_memory):
+import time
+
+from openerp import models, fields, api
+
+
+class time_table_report(models.TransientModel):
     _name = 'time.table.report'
     _description = 'Generate Time Table Report'
-    _columns = {
-        'standard_id': fields.many2one('op.standard', 'Standard'),
-        'division_id': fields.many2one('op.division', 'Division'),
-        'faculty_id': fields.many2one('op.faculty', string='Faculty'),
-        'start_date':fields.date('Start Date', required=True),
-        'end_date':fields.date('End Date', required=True),
-        'state': fields.selection([('s','Student'),('t','Teacher')],string='Select',\
-                                  required=True),
-    }
 
-    _defaults = {
-                 'state': 't',
-                 'start_date': time.strftime('2012-10-01'),
-                 'end_date': time.strftime('2012-10-31')
-                 }
+    standard_id = fields.Many2one('op.standard', 'Standard')
+    division_id = fields.Many2one('op.division', 'Division')
+    faculty_id = fields.Many2one('op.faculty', 'Faculty')
+    start_date = fields.Date(
+        'Start Date', required=True, default=time.strftime('%Y-%m-01'))
+    end_date = fields.Date(
+        'End Date', required=True)
+    state = fields.Selection(
+        [('s', 'Student'), ('t', 'Teacher')], string='Select', required=True,
+        default='t')
 
-    def gen_time_table_report(self, cr, uid, ids, context={}):
-        value = {}
-        data = self.read(cr, uid, ids, ['start_date', 'end_date','standard_id',\
-                            'division_id','state','faculty_id'], context=context)
+    @api.multi
+    def gen_time_table_report(self):
+        data = self.read(
+            ['start_date', 'end_date', 'standard_id', 'division_id', 'state',
+             'faculty_id'])[0]
+        if data['state'] == 's':
+            time_table_ids = self.env['op.timetable'].search(
+                [('standard_id', '=', data['standard_id'][0]),
+                 ('division_id', '=', data['division_id'][0]),
+                 ('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
+                 ('end_datetime', '<', data['end_date'] + '%H:%M:%S')],
+                order='start_datetime asc')
 
-        if data[0]['state'] == 's':
-            time_table_ids = self.pool.get('op.timetable').search(cr, uid, \
-                      [('standard_id','=',data[0]['standard_id'][0]),
-                        ('division_id','=',data[0]['division_id'][0]),
-                        ('start_datetime','>',data[0]['start_date'] + '%H:%M:%S'),
-                        ('end_datetime','<',data[0]['end_date'] + '%H:%M:%S'),
-                        ],order='start_datetime asc')
-            
-            data[0].update({'time_table_ids': time_table_ids})
+            data.update({'time_table_ids': time_table_ids.ids})
+            return self.env['report'].get_action(
+                self, 'openeducat_erp.report_time_table_student_generate',
+                data=data)
         else:
-            teacher_time_table_ids = self.pool.get('op.timetable').search(cr, uid,\
-                      [('start_datetime','>',data[0]['start_date'] + '%H:%M:%S'),
-                        ('end_datetime','<',data[0]['end_date'] + '%H:%M:%S'),
-                        ('faculty_id','=',data[0]['faculty_id'][1]),
-                        ],order='start_datetime asc')
-        
-        
-            data[0].update({'teacher_time_table_ids': teacher_time_table_ids})
-        
-        if data[0]['state'] == 's' :
-            return  self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_time_table_student_generate', data=data[0], context=context)
-        elif data[0]['state'] == 't':
-            return self.pool['report'].get_action(cr, uid, [], 'openeducat_erp.report_time_table_teacher_generate', data=data[0], context=context)
-time_table_report()
+            teacher_time_table_ids = self.env['op.timetable'].search(
+                [('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
+                 ('end_datetime', '<', data['end_date'] + '%H:%M:%S'),
+                 ('faculty_id', '=', data['faculty_id'][0])],
+                order='start_datetime asc')
+
+            data.update({'teacher_time_table_ids': teacher_time_table_ids.ids})
+            return self.env['report'].get_action(
+                self, 'openeducat_erp.report_time_table_teacher_generate',
+                data=data)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

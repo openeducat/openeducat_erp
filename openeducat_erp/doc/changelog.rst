@@ -2,6 +2,12 @@
 
 Changelog
 =========
+`8.0.0`
+---------
+- OpenEduCat Now compatible with Odoo v8.
+- Added demo portal
+
+
 `7.1.3.1`
 ---------
 

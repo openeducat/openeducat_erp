@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,20 +17,20 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_achievement(osv.osv):
+from openerp import models, fields
+
+
+class op_achievement(models.Model):
     _name = 'op.achievement'
     _rec_name = 'student_id'
 
-    _columns = {
-            'student_id': fields.many2one('op.student', string='Student', required=True),
-            'faculty_id': fields.many2one('op.faculty', string='Faculty', required=True),
-            'achievement_type': fields.many2one('op.achievement.type', string='Achievement Type', required=True),
-            'description': fields.text(string='Description', required=True),
-            'achievement_date': fields.date(string='Date', required=True),
-    }
+    student_id = fields.Many2one('op.student', 'Student', required=True)
+    faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
+    achievement_type = fields.Many2one(
+        'op.achievement.type', 'Achievement Type', required=True)
+    description = fields.Text('Description', required=True)
+    achievement_date = fields.Date('Date', required=True)
 
-op_achievement()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

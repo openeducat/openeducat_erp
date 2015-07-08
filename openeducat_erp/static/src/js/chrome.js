@@ -19,7 +19,8 @@ instance.web.WebClient.include({
         }
         var self = this;
         var config_parameter = new instance.web.Model('ir.config_parameter');
-        var $bar = this.$el.find('.announcement_bar');
+        $(openerp.qweb.render('WebClient.announcement_bar')).prependTo($('body'));
+        var $bar = this.$el.find('#announcement_bar_table');
         return config_parameter.call('get_param', ['database.uuid', false]).then(function(dbuuid) {
             if (!dbuuid) {
                 return;

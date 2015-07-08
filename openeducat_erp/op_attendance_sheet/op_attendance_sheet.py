@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-#/#############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2004-TODAY Tech-Receptives(<http://www.tech-receptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,44 +17,38 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#/#############################################################################
-from openerp.osv import osv, fields
+###############################################################################
 
-class op_attendance_sheet(osv.osv):
+from openerp import models, fields, api
+
+
+class op_attendance_sheet(models.Model):
     _name = 'op.attendance.sheet'
 
-    def _total_present(self, cr, uid, ids, name, arg, context=None):
-        res = {}
+    @api.one
+    @api.depends('attendance_line.present')
+    def _total_present(self):
+        self.total_present = len(self.attendance_line.filtered(
+            lambda self: self.present))
 
-        for sheet in self.browse(cr, uid, ids, context):
-            present_cnt = 0
-            for line in sheet.attendance_line:
+    @api.one
+    @api.depends('attendance_line.present')
+    def _total_absent(self):
+        self.total_absent = len(self.attendance_line.filtered(
+            lambda self: self.present is False))
 
-                if line.present == True:
-                    present_cnt =  present_cnt + 1
-            res[sheet.id] = present_cnt
-        return res
+    name = fields.Char('Name', size=8)
+    register_id = fields.Many2one(
+        'op.attendance.register', 'Register', required=True)
+    attendance_date = fields.Date(
+        'Date', required=True, default=lambda self: fields.Date.today())
+    attendance_line = fields.One2many(
+        'op.attendance.line', 'attendance_id', 'Attendance Line',
+        required=True)
+    total_present = fields.Integer(
+        'Total Present', compute='_total_present')
+    total_absent = fields.Integer(
+        'Total Absent', compute='_total_absent')
+    teacher_id = fields.Many2one('op.faculty', 'Teacher')
 
-    def _total_absent(self, cr, uid, ids, name, arg, context=None):
-        res = {}
-
-        for sheet in self.browse(cr, uid, ids, context):
-            absent_cnt = 0
-            for line in sheet.attendance_line:
-                if line.present == False:
-                    absent_cnt =  absent_cnt + 1
-            res[sheet.id] = absent_cnt
-        return res
-
-    _columns = {
-            'name': fields.char(size=8, string='Name'),    
-            'register_id': fields.many2one('op.attendance.register', string='Register', required=True),
-            'attendance_date': fields.date(string='Date', required=True),
-            'attendance_line': fields.one2many('op.attendance.line', 'attendance_id', string='Attendance Line', required=True),
-            'total_present': fields.function(_total_present, string='Total Present', type='integer',method=True),
-            'total_absent': fields.function(_total_absent, string='Total Absent', type='integer',method=True),
-            'teacher_id': fields.many2one('op.faculty', string='Teacher'),
-    }
-
-op_attendance_sheet()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
