@@ -77,7 +77,8 @@ class generate_time_table(models.TransientModel):
             per_time = '%s:%s:00' % (hour, line.period_id.minute)
             local = pytz.timezone(self.env.user.partner_id.tz or 'GMT')
             naive = datetime.datetime.strptime(
-                curr_date.strftime('%Y-%m-%d') + per_time, '%Y-%m-%d %H:%M:%S')
+                curr_date.strftime('%Y-%m-%d ') +
+                per_time, '%Y-%m-%d %H:%M:%S')
             local_dt = local.localize(naive, is_dst=None)
             utc_dt = local_dt.astimezone(pytz.utc)
             utc_dt = utc_dt.strftime("%Y-%m-%d %H:%M:%S")
