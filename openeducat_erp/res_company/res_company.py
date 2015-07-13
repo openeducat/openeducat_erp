@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, tools, api
+from openerp import models, fields, tools
 
 
 class res_company(models.Model):
@@ -36,10 +36,8 @@ class res_users(models.Model):
     parent_ids = fields.One2many('op.parent', 'user_id', 'Parents')
     user_line = fields.One2many('op.student', 'user_id', 'User Line')
 
-    @api.model
     @tools.ormcache(skiparg=2)
-    def has_group(self, group_ext_id):
-        return super(res_users, self).has_group(group_ext_id)
-
+    def has_group(self, cr, uid, group_ext_id, context=None):
+        return super(res_users, self).has_group(cr, uid, group_ext_id)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
