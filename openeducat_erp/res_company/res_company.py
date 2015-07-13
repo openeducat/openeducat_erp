@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, tools, api
+from openerp import models, fields, tools
 
 
 class res_company(models.Model):
