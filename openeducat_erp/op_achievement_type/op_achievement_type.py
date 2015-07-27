@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_achievement_type(models.Model):
+class OpAchievementType(models.Model):
     _name = 'op.achievement.type'
 
     name = fields.Char('Name', size=256, required=True)

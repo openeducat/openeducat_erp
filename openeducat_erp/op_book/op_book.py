@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_book(models.Model):
+class OpBook(models.Model):
     _name = 'op.book'
 
     name = fields.Char('Title', size=128, required=True)

@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_student(models.Model):
+class OpStudent(models.Model):
     _name = 'op.student'
     _inherits = {'res.partner': 'partner_id'}
 

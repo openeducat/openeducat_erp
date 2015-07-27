@@ -23,7 +23,7 @@ from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
-class op_exam_session(models.Model):
+class OpExamSession(models.Model):
     _name = 'op.exam.session'
     _description = 'Exam Session'
 
@@ -45,7 +45,7 @@ class op_exam_session(models.Model):
                 _('Start Time Should be greater than End Time.'))
 
 
-class op_exam(models.Model):
+class OpExam(models.Model):
     _name = 'op.exam'
 
     session_id = fields.Many2one('op.exam.session', 'Exam Session')

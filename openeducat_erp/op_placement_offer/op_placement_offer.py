@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_placement_offer(models.Model):
+class OpPlacementOffer(models.Model):
     _name = 'op.placement.offer'
     _description = 'Placement Offer'
 

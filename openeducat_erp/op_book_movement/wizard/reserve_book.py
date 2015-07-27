@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class reserve_book(models.TransientModel):
+class ReserveBook(models.TransientModel):
 
     """ Reserve Book """
     _name = 'reserve.book'

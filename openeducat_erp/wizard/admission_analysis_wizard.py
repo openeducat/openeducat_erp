@@ -24,7 +24,7 @@ import time
 from openerp import models, fields, api
 
 
-class admission_analysis(models.TransientModel):
+class AdmissionAnalysis(models.TransientModel):
 
     """ Admission Analysis Wizard """
     _name = 'admission.analysis'

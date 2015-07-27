@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_admission(models.Model):
+class OpAdmission(models.Model):
     _name = 'op.admission'
     _rec_name = 'application_number'
     _order = "application_number desc"

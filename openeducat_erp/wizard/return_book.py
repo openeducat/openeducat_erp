@@ -23,7 +23,7 @@ from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
 
-class return_book(models.TransientModel):
+class ReturnBook(models.TransientModel):
 
     """ Retrun Book Wizard """
     _name = 'return.book'

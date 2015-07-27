@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_division(models.Model):
+class OpDivision(models.Model):
     _name = 'op.division'
 
     code = fields.Char('Code', size=8, required=True)

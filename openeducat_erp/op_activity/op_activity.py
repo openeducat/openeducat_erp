@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_activity(models.Model):
+class OpActivity(models.Model):
     _name = 'op.activity'
 
 #     name = fields.Char(string='Activity Name', size=128, required=True)
@@ -32,7 +32,7 @@ class op_activity(models.Model):
     date = fields.Date('Date')
 
 
-class op_activity_type(models.Model):
+class OpActivityType(models.Model):
     _name = 'op.activity.type'
 
     name = fields.Char('Activity Type', size=128, required=True)

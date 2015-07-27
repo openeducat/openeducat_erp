@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class res_company(models.Model):
+class ResCompany(models.Model):
     _inherit = "res.company"
 
     signature = fields.Binary('Signature')
@@ -30,7 +30,7 @@ class res_company(models.Model):
     approval_authority = fields.Text('Approval Authority')
 
 
-class res_users(models.Model):
+class ResUsers(models.Model):
     _inherit = "res.users"
 
     parent_ids = fields.One2many('op.parent', 'user_id', 'Parents')

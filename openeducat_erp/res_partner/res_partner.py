@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     library_card_ids = fields.One2many(

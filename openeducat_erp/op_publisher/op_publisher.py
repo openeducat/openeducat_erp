@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_publisher(models.Model):
+class OpPublisher(models.Model):
     _name = 'op.publisher'
 
     name = fields.Char('Name', size=20)

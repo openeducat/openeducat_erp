@@ -23,7 +23,7 @@ from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
 
-class op_faculty(models.Model):
+class OpFaculty(models.Model):
     _name = 'op.faculty'
     _inherits = {'res.partner': 'partner_id'}
 
@@ -73,7 +73,7 @@ class op_faculty(models.Model):
         self.write({'emp_id': emp_id.id})
 
 
-class hr_employee(models.Model):
+class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     @api.onchange('user_id')

@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_attendance_line(models.Model):
+class OpAttendanceLine(models.Model):
     _name = 'op.attendance.line'
     _rec_name = 'attendance_id'
 

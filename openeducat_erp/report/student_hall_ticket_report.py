@@ -26,10 +26,10 @@ from openerp.osv import osv, fields
 from openerp.report import report_sxw
 
 
-class student_hall_ticket_report(report_sxw.rml_parse):
+class StudentHallTicketReport(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(student_hall_ticket_report, self).__init__(
+        super(StudentHallTicketReport, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
@@ -94,11 +94,11 @@ class student_hall_ticket_report(report_sxw.rml_parse):
         return final_lst
 
 
-class report_ticket(osv.AbstractModel):
+class ReportTicket(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_ticket'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_ticket'
-    _wrapped_report_class = student_hall_ticket_report
+    _wrapped_report_class = StudentHallTicketReport
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

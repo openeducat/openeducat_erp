@@ -23,7 +23,7 @@ from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 
 
-class op_hostel_room(models.Model):
+class OpHostelRoom(models.Model):
     _name = 'op.hostel.room'
 
     hostel_id = fields.Many2one('op.hostel', 'Hostel')
@@ -48,7 +48,7 @@ class op_hostel_room(models.Model):
             raise ValidationError('Room capacity Over')
 
 
-class op_room(models.Model):
+class OpRoom(models.Model):
     _name = 'op.room'
 
     name = fields.Char('Name', required=True)

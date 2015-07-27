@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_exam_type(models.Model):
+class OpExamType(models.Model):
     _name = 'op.exam.type'
 
     name = fields.Char('Name', size=256, required=True)

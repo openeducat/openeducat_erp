@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_assignment_sub_line(models.Model):
+class OpAssignmentSubLine(models.Model):
     _name = 'op.assignment.sub.line'
     _rec_name = 'assignment_id'
 

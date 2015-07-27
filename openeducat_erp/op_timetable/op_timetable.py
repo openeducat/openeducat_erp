@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_period(models.Model):
+class OpPeriod(models.Model):
     _name = 'op.period'
     _description = 'Period'
     _order = 'sequence'
@@ -44,7 +44,7 @@ class op_period(models.Model):
     sequence = fields.Integer('Sequence')
 
 
-class op_timetable(models.Model):
+class OpTimetable(models.Model):
     _name = 'op.timetable'
     _description = 'Time Table'
     _rec_name = 'faculty_id'

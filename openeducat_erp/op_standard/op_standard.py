@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_standard(models.Model):
+class OpStandard(models.Model):
     _name = 'op.standard'
     _order = 'sequence'
 

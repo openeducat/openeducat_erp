@@ -29,7 +29,7 @@ def days_between(d1, d2):
     return abs((d2 - d1).days)
 
 
-class op_book_movement(models.Model):
+class OpBookMovement(models.Model):
     _name = 'op.book.movement'
     _rec_name = 'book_id'
 

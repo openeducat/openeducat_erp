@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_transportation(models.Model):
+class OpTransportation(models.Model):
     _name = 'op.transportation'
 
     name = fields.Char('Name', size=64, required=True)
@@ -36,7 +36,7 @@ class op_transportation(models.Model):
     student_ids = fields.Many2many('op.student', string='Add Student(s)')
 
 
-class op_stop(models.Model):
+class OpStop(models.Model):
     _name = 'op.stop'
 
     name = fields.Char('Name', size=64, required=True)
