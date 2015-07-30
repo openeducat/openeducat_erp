@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_category(models.Model):
+class OpCategory(models.Model):
     _name = 'op.category'
 
     name = fields.Char('Name', size=256, required=True)

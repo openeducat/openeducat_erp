@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_result_line(models.Model):
+class OpResultLine(models.Model):
     _name = 'op.result.line'
     _rec_name = 'marks'
 

@@ -2,6 +2,16 @@
 
 Changelog
 =========
+
+`8.0.1.1.0`
+---------
+- Refactor the code as per New API.
+- Follow pep8.
+- Apply testing for flake8 & pylint via travis.
+- Apply testing for code coverage.
+- Minor bug fixes
+
+
 `8.0.0`
 ---------
 - OpenEduCat Now compatible with Odoo v8.

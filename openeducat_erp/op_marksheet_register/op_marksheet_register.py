@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_marksheet_register(models.Model):
+class OpMarksheetRegister(models.Model):
     _name = 'op.marksheet.register'
 
     exam_session_id = fields.Many2one(

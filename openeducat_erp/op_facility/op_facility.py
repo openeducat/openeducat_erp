@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_facility(models.Model):
+class OpFacility(models.Model):
     _name = 'op.facility'
     _rec_name = 'Name'
 

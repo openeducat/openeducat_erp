@@ -34,7 +34,7 @@ week_number = {
 }
 
 
-class generate_time_table(models.TransientModel):
+class GenerateTimeTable(models.TransientModel):
     _name = 'generate.time.table'
     _description = 'Generate Time Table'
     _rec_name = 'standard_id'
@@ -77,7 +77,8 @@ class generate_time_table(models.TransientModel):
             per_time = '%s:%s:00' % (hour, line.period_id.minute)
             local = pytz.timezone(self.env.user.partner_id.tz or 'GMT')
             naive = datetime.datetime.strptime(
-                curr_date.strftime('%Y-%m-%d') + per_time, '%Y-%m-%d %H:%M:%S')
+                curr_date.strftime('%Y-%m-%d ') +
+                per_time, '%Y-%m-%d %H:%M:%S')
             local_dt = local.localize(naive, is_dst=None)
             utc_dt = local_dt.astimezone(pytz.utc)
             utc_dt = utc_dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -123,7 +124,7 @@ class generate_time_table(models.TransientModel):
         return {'type': 'ir.actions.act_window_close'}
 
 
-class generate_time_table_line(models.TransientModel):
+class GenerateTimeTableLine(models.TransientModel):
     _name = 'gen.time.table.line'
     _description = 'Generate Time Table Lines'
     _rec_name = 'day'

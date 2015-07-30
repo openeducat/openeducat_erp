@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_result_template(models.Model):
+class OpResultTemplate(models.Model):
     _name = 'op.result.template'
     _description = 'Result Template'
     _rec_name = 'name'
@@ -122,7 +122,7 @@ class op_result_template(models.Model):
         return True
 
 
-class op_result_template_line(models.Model):
+class OpResultTemplateLine(models.Model):
     _name = 'op.result.template.line'
     _rec_name = 'exam_session_id'
     _description = 'Result template Line'
@@ -152,7 +152,7 @@ class op_result_template_line(models.Model):
         self.exam_lines = ret_val
 
 
-class op_result_exam_line(models.Model):
+class OpResultExamLine(models.Model):
     _name = 'op.result.exam.line'
     _description = 'Result Exam Line'
 
@@ -167,7 +167,7 @@ class op_result_exam_line(models.Model):
         'op.result.line', 'exam_tmpl_id', 'Result Lines')
 
 
-class op_min_clearance_criteria(models.Model):
+class OpMinClearanceCriteria(models.Model):
     _name = "op.min.clear.criteria"
 
     name = fields.Char('Name', size=256)
@@ -175,7 +175,7 @@ class op_min_clearance_criteria(models.Model):
     result = fields.Char('Result to display')
 
 
-class op_pass_status(models.Model):
+class OpPassStatus(models.Model):
     _name = 'op.pass.status'
     _description = 'Pass Status'
 

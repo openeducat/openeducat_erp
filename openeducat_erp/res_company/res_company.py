@@ -19,10 +19,10 @@
 #
 ###############################################################################
 
-from openerp import models, fields, tools, api
+from openerp import models, fields
 
 
-class res_company(models.Model):
+class ResCompany(models.Model):
     _inherit = "res.company"
 
     signature = fields.Binary('Signature')
@@ -30,16 +30,11 @@ class res_company(models.Model):
     approval_authority = fields.Text('Approval Authority')
 
 
-class res_users(models.Model):
+class ResUsers(models.Model):
     _inherit = "res.users"
 
     parent_ids = fields.One2many('op.parent', 'user_id', 'Parents')
     user_line = fields.One2many('op.student', 'user_id', 'User Line')
-
-    @api.model
-    @tools.ormcache(skiparg=2)
-    def has_group(self, group_ext_id):
-        return super(res_users, self).has_group(group_ext_id)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

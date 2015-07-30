@@ -23,7 +23,7 @@ from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 
 
-class op_hostel(models.Model):
+class OpHostel(models.Model):
     _name = 'op.hostel'
 
     name = fields.Char('Name', size=16, required=True)

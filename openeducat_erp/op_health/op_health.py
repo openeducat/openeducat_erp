@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_health(models.Model):
+class OpHealth(models.Model):
     _name = 'op.health'
     _description = """ Health Detail for Students and Faculties """
 
@@ -46,7 +46,7 @@ class op_health(models.Model):
         'op.health.line', 'health_id', 'Checkup Line')
 
 
-class op_health_line(models.Model):
+class OpHealthLine(models.Model):
     _name = 'op.health.line'
 
     health_id = fields.Many2one('op.health', 'Health')

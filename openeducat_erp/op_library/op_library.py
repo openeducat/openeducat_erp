@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_library_card_type(models.Model):
+class OpLibraryCardType(models.Model):
     _name = 'op.library.card.type'
     _description = 'Library Card Type'
 
@@ -33,7 +33,7 @@ class op_library_card_type(models.Model):
     penalty_amt_per_day = fields.Float('Penalty Amount Per Day', required=True)
 
 
-class op_library_card(models.Model):
+class OpLibraryCard(models.Model):
     _name = 'op.library.card'
     _rec_name = 'number'
     _description = 'Library Card'

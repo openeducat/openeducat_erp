@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_marksheet_line(models.Model):
+class OpMarksheetLine(models.Model):
     _name = 'op.marksheet.line'
     _rec_name = 'student_id'
 

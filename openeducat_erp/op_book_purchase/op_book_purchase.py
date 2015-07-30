@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_book_purchase(models.Model):
+class OpBookPurchase(models.Model):
     _name = 'op.book.purchase'
 
     name = fields.Char('Title', size=128, required=True)

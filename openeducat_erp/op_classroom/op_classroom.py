@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_classroom(models.Model):
+class OpClassroom(models.Model):
     _name = 'op.classroom'
 
     name = fields.Char('Name', size=16, required=True)
@@ -35,7 +35,7 @@ class op_classroom(models.Model):
         'op.asset', 'asset_id', 'Asset', required=True)
 
 
-class op_asset(models.Model):
+class OpAsset(models.Model):
     _name = 'op.asset'
 
     asset_id = fields.Many2one('op.classroom', 'Asset')

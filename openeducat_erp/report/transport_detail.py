@@ -25,20 +25,20 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class op_transportation_detail(report_sxw.rml_parse):
+class OpTransportationDetail(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(op_transportation_detail, self).__init__(
+        super(OpTransportationDetail, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
         })
 
 
-class report_transportation_detail(osv.AbstractModel):
+class ReportTransportationDetail(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_transportation_detail'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_transportation_detail'
-    _wrapped_report_class = op_transportation_detail
+    _wrapped_report_class = OpTransportationDetail
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -22,7 +22,7 @@
 from openerp.osv import osv, fields
 
 
-class book_request_queue(osv.TransientModel):
+class BookRequestQueue(osv.TransientModel):
 
     _name = 'book.request.queue'
 
@@ -65,7 +65,5 @@ class book_request_queue(osv.TransientModel):
             value = {'type': 'ir.actions.act_window_close'}
         return value
 
-
-book_request_queue()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

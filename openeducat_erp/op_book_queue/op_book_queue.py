@@ -23,7 +23,7 @@ from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
-class op_book_queue(models.Model):
+class OpBookQueue(models.Model):
     _name = 'op.book.queue'
     _rec_name = 'partner_id'
     _description = """ Book Queue Request Detail for Students and Faculties """
@@ -49,7 +49,7 @@ class op_book_queue(models.Model):
     def create(self, vals):
         if vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].get('op.book.queue') or '/'
-        return super(op_book_queue, self).create(vals)
+        return super(OpBookQueue, self).create(vals)
 
     @api.one
     def do_reject(self):

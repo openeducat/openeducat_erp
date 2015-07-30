@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_attendance_sheet(models.Model):
+class OpAttendanceSheet(models.Model):
     _name = 'op.attendance.sheet'
 
     @api.one

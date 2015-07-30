@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_achievement(models.Model):
+class OpAchievement(models.Model):
     _name = 'op.achievement'
     _rec_name = 'student_id'
 

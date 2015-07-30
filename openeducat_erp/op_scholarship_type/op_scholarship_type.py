@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_scholarship_type(models.Model):
+class OpScholarshipType(models.Model):
     _name = 'op.scholarship.type'
 
     name = fields.Char('Name', size=64, required=True)

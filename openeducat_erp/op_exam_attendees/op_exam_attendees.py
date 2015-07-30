@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_exam_attendees(models.Model):
+class OpExamAttendees(models.Model):
     _name = 'op.exam.attendees'
     _rec_name = 'student_id'
 

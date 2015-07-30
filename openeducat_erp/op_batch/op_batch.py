@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_batch(models.Model):
+class OpBatch(models.Model):
     _name = 'op.batch'
 
     code = fields.Char('Code', size=8, required=True)
