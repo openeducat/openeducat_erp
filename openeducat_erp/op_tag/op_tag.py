@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_tag(models.Model):
+class OpTag(models.Model):
     _name = 'op.tag'
 
     name = fields.Char('Name', size=64, required=True)

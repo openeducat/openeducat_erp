@@ -24,7 +24,7 @@ import time
 from openerp import models, fields, api
 
 
-class time_table_report(models.TransientModel):
+class TimeTableReport(models.TransientModel):
     _name = 'time.table.report'
     _description = 'Generate Time Table Report'
 

@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_attendance_register(models.Model):
+class OpAttendanceRegister(models.Model):
     _name = 'op.attendance.register'
 
     name = fields.Char('Name', size=16, required=True)

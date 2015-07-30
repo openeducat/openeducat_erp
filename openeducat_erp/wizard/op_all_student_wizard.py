@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_all_student_wizard(models.TransientModel):
+class OpAllStudentWizard(models.TransientModel):
     _name = 'op.all.student'
 
     course_id = fields.Many2one(

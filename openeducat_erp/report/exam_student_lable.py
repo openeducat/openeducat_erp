@@ -25,10 +25,10 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class exam_student_lable_report(report_sxw.rml_parse):
+class ExamStudentLableReport(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(exam_student_lable_report, self).__init__(
+        super(ExamStudentLableReport, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
@@ -86,11 +86,11 @@ class exam_student_lable_report(report_sxw.rml_parse):
         return ret_list
 
 
-class report_exam_student_lable_report(osv.AbstractModel):
+class ReportExamStudentLableReport(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_exam_student_lable_report'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_exam_student_lable_report'
-    _wrapped_report_class = exam_student_lable_report
+    _wrapped_report_class = ExamStudentLableReport
 
 # report_sxw.report_sxw('report.op.exam.student.lable',
 #                       'op.exam.res.allocation',

@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_allocat_division(models.Model):
+class OpAllocatDivision(models.Model):
     _name = 'op.allocat.division'
 
     name = fields.Char('Name', size=128, required=True)

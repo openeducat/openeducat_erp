@@ -25,10 +25,10 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class student_bonafide_certificate(report_sxw.rml_parse):
+class StudentBonafideCertificate(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(student_bonafide_certificate, self).__init__(
+        super(StudentBonafideCertificate, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
@@ -36,11 +36,11 @@ class student_bonafide_certificate(report_sxw.rml_parse):
         self.context = context
 
 
-class report_bonafide_certificate(osv.AbstractModel):
+class ReportBonafideCertificate(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_bonafide_certificate'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_bonafide_certificate'
-    _wrapped_report_class = student_bonafide_certificate
+    _wrapped_report_class = StudentBonafideCertificate
 
 # report_sxw.report_sxw('report.student.bonafide.certificate','op.student',
 #     'addons/openeducat_erp/report/student_bonafide_certificate.rml',

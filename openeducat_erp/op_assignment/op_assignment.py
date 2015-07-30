@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_assignment(models.Model):
+class OpAssignment(models.Model):
     _name = 'op.assignment'
 
     name = fields.Char('Name', size=16, required=True)

@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class exam_seat_arrange(models.TransientModel):
+class ExamSeatArrange(models.TransientModel):
     _name = 'exam.seat.arrange'
 
     room_id = fields.Many2one('op.exam.room', 'Room', required=True)

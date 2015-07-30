@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_assignment_sub_history(models.Model):
+class OpAssignmentSubHistory(models.Model):
     _name = 'op.assignment.sub.history'
 
     assign_sub_id = fields.Many2one(

@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class generate_roll_number(models.TransientModel):
+class GenerateRollNumber(models.TransientModel):
     _name = 'generate.roll.number'
     _description = 'Generate Roll Number'
 

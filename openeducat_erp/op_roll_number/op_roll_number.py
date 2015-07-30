@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_roll_number(models.Model):
+class OpRollNumber(models.Model):
     _name = 'op.roll.number'
     _rec_name = 'roll_number'
 

@@ -25,20 +25,20 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class op_library(report_sxw.rml_parse):
+class OpLibrary(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(op_library, self).__init__(cr, uid, name, context=context)
+        super(OpLibrary, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
         })
 
 
-class report_library_idcard(osv.AbstractModel):
+class ReportLibraryIdcard(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_library_idcard'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_library_idcard'
-    _wrapped_report_class = op_library
+    _wrapped_report_class = OpLibrary
 
 # report_sxw.report_sxw('report.op.library.report','op.student',
 #                       'addons/openeducat_erp/report/library_card.rml',

@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class student_hall_ticket(models.TransientModel):
+class StudentHallTicket(models.TransientModel):
 
     """ Student Hall Ticket Wizard """
     _name = 'student.hall.ticket'

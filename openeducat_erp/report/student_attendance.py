@@ -25,10 +25,10 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class student_attendance(report_sxw.rml_parse):
+class StudentAttendance(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(student_attendance, self).__init__(
+        super(StudentAttendance, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
@@ -77,6 +77,6 @@ class student_attendance(report_sxw.rml_parse):
 report_sxw.report_sxw(
     'report.student.attendance', 'op.student',
     'addons/openeducat_erp/report/student_attendance_report.rml',
-    parser=student_attendance, header='external')
+    parser=StudentAttendance, header='external')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

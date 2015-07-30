@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class student_attendance(models.TransientModel):
+class StudentAttendance(models.TransientModel):
     _name = 'student.attendance'
 
     from_date = fields.Date(

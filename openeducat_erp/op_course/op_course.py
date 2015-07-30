@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_course(models.Model):
+class OpCourse(models.Model):
     _name = 'op.course'
 
     name = fields.Char('Name', size=32, required=True)

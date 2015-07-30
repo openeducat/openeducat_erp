@@ -23,7 +23,7 @@ from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
 
-class issue_book(models.TransientModel):
+class IssueBook(models.TransientModel):
 
     """ Issue Book """
     _name = 'issue.book'

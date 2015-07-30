@@ -34,7 +34,7 @@ week_number = {
 }
 
 
-class generate_time_table(models.TransientModel):
+class GenerateTimeTable(models.TransientModel):
     _name = 'generate.time.table'
     _description = 'Generate Time Table'
     _rec_name = 'standard_id'
@@ -124,7 +124,7 @@ class generate_time_table(models.TransientModel):
         return {'type': 'ir.actions.act_window_close'}
 
 
-class generate_time_table_line(models.TransientModel):
+class GenerateTimeTableLine(models.TransientModel):
     _name = 'gen.time.table.line'
     _description = 'Generate Time Table Lines'
     _rec_name = 'day'

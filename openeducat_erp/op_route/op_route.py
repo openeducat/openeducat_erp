@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_route(models.Model):
+class OpRoute(models.Model):
     _name = 'op.route'
 
     name = fields.Char('Name', size=16, required=True)

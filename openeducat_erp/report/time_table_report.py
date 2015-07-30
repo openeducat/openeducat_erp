@@ -27,10 +27,10 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class time_table_generate(report_sxw.rml_parse):
+class TimeTableGenerate(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(time_table_generate, self).__init__(
+        super(TimeTableGenerate, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
@@ -82,10 +82,10 @@ class time_table_generate(report_sxw.rml_parse):
         return final_list
 
 
-class report_time_table_student_generate(osv.AbstractModel):
+class ReportTimeTableStudentGenerate(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_time_table_student_generate'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_time_table_student_generate'
-    _wrapped_report_class = time_table_generate
+    _wrapped_report_class = TimeTableGenerate
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

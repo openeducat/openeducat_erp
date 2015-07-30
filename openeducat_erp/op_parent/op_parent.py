@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_parent(models.Model):
+class OpParent(models.Model):
     _name = 'op.parent'
 
     name = fields.Many2one('res.partner', 'Parent Name', required=True)

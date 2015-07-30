@@ -22,7 +22,7 @@
 from openerp import models, fields, api, _
 
 
-class student_migrate(models.TransientModel):
+class StudentMigrate(models.TransientModel):
 
     """ Student Migration Wizard """
     _name = 'student.migrate'

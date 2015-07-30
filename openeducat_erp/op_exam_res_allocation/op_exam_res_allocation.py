@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class op_exam_res_allocation(models.Model):
+class OpExamResAllocation(models.Model):
     _name = 'op.exam.res.allocation'
 
     exam_session_ids = fields.Many2many(

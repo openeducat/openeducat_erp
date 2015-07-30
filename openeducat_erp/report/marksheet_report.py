@@ -26,10 +26,10 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class marksheet_report(report_sxw.rml_parse):
+class MarksheetReport(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(marksheet_report, self).__init__(cr, uid, name, context=context)
+        super(MarksheetReport, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'get_lines': self.get_lines,
@@ -52,11 +52,11 @@ class marksheet_report(report_sxw.rml_parse):
         return sum(total)
 
 
-class report_marksheet_report(osv.AbstractModel):
+class ReportMarksheetReport(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_marksheet_report'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_marksheet_report'
-    _wrapped_report_class = marksheet_report
+    _wrapped_report_class = MarksheetReport
 
 
 # report_sxw.report_sxw('report.op.marksheet','op.marksheet.register',

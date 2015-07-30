@@ -27,12 +27,12 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class op_student(report_sxw.rml_parse):
+class OpStudent(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
         self.ctx = {}
         self.ctx = context.copy()
-        super(op_student, self).__init__(cr, uid, name, context=context)
+        super(OpStudent, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
             'render_image': self.render_image,
@@ -86,11 +86,11 @@ class op_student(report_sxw.rml_parse):
         return qr
 
 
-class report_student_idcard(osv.AbstractModel):
+class ReportStudentIdcard(osv.AbstractModel):
     _name = 'report.openeducat_erp.report_student_idcard'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_erp.report_student_idcard'
-    _wrapped_report_class = op_student
+    _wrapped_report_class = OpStudent
 
 # report_sxw.report_sxw('report.op.student.report','op.student',
 #                       'addons/openeducat_erp/report/id_card.rml',

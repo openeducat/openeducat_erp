@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class return_date(models.TransientModel):
+class ReturnDate(models.TransientModel):
 
     """ Assign return date """
     _name = 'return.date'

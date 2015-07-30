@@ -22,7 +22,7 @@
 from openerp import models, fields
 
 
-class op_religion(models.Model):
+class OpReligion(models.Model):
     _name = 'op.religion'
 
     name = fields.Char('Name', size=256, required=True)

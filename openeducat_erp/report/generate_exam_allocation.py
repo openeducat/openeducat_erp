@@ -25,10 +25,10 @@ from openerp.osv import osv
 from openerp.report import report_sxw
 
 
-class exam_allocation_report(report_sxw.rml_parse):
+class ExamAllocationReport(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        super(exam_allocation_report, self).__init__(
+        super(ExamAllocationReport, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
@@ -102,6 +102,6 @@ class exam_allocation_report(report_sxw.rml_parse):
 report_sxw.report_sxw(
     'report.op.exam.allocation', 'op.exam.res.allocation',
     'addons/openeducat_erp/report/generate_exam_allocation.rml',
-    parser=exam_allocation_report, header=False)
+    parser=ExamAllocationReport, header=False)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
