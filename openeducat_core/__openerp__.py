@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '1.1.0',
+    'version': '1.0',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Students, Faculties and Education Institute',
@@ -40,6 +40,7 @@
     'depends': ['document', 'hr', 'web', 'website'],
     'data': [
         'security/op_security.xml',
+        'security/ir.model.access.csv',
         'views/student_view.xml',
         'views/course_view.xml',
         'views/batch_view.xml',
