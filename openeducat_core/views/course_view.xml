@@ -11,7 +11,6 @@
                     <field name="code" />
                     <field name="section" />
                     <field name="evaluation_type" />
-                    <field name="payment_term" />
                     <field name="subject_ids" />
                 </tree>
             </field>
@@ -23,17 +22,13 @@
             <field name="arch" type="xml">
                 <form string="Course" version="7.0">
                     <sheet>
-                        <separator colspan="4" string="Course Detail" />
-                        <group colspan="4">
+                        <group colspan="4" col="4" name="main">
                             <field name="name" />
                             <field name="code" />
                             <field name="section" />
                             <field name="evaluation_type" />
                         </group>
-                        <group colspan="4">
-                            <field name="payment_term" />
-                        </group>
-                        <group string="Subjects">
+                        <group string="Subjects" name="subject">
                             <field name="subject_ids" nolabel="1"/>
                         </group>
                     </sheet>

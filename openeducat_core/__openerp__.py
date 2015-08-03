@@ -37,8 +37,7 @@
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['account_accountant', 'document',
-                'hr', 'web', 'website'],
+    'depends': ['document', 'hr', 'web', 'website'],
     'data': [
         'security/op_security.xml',
         'views/student_view.xml',

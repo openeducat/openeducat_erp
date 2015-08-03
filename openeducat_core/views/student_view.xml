@@ -81,14 +81,6 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Student" version="7.0">
-                    <header>
-                        <span
-                            groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
-                            <button name="create_invoice" string="Create Invoice"
-                                type="object" icon="gtk-apply" attrs="{'invisible': [('invoice_exists', '=', True)]}"/>
-                            <button name="action_view_invoice" string="View Invoice" type="object" class="oe_highlight" attrs="{'invisible': [('invoice_exists', '=', False)]}"/>
-                        </span>
-                    </header>
                     <sheet>
                         <field name="photo" widget="image" class="oe_left oe_avatar" />
                         <div class="oe_title">
@@ -104,7 +96,6 @@
                                 </table>
                             </h1>
                         </div>
-                        <separator colspan="4" string="Basic Information" />
                         <group col="6" colspan="4">
                             <field name="gender" />
                             <field name="birth_date" />
@@ -113,8 +104,7 @@
                         </group>
                         <notebook colspan="4">
                             <page string="Details">
-                                <separator colspan="4" string="Personal Detail" />
-                                <group col="4" colspan="4">
+                                <group col="4" colspan="4" string="Personal Detail" name="personal_detail">
                                     <field name="nationality" />
                                     <field name="lang" />
                                     <field name="blood_group" />
@@ -123,8 +113,7 @@
                                     <field name="emergency_contact" context="{'show_address': 1}"
                                         options='{"always_reload": True}' />
                                 </group>
-                                <separator colspan="4" string="Address Detail" />
-                                <group>
+                                <group string="Address Detail" name="address">
                                     <label for="type" />
                                     <div name="div_type">
                                         <field class="oe_inline" name="type" />
@@ -142,7 +131,6 @@
                                         <field name="country_id" placeholder="Country" class="oe_no_button"
                                             options='{"no_open": True}' />
                                     </div>
-                                    <field name="invoice_exists" invisible="1" readonly="0"/>
                                 </group>
                             </page>
                             <page string="Educational">

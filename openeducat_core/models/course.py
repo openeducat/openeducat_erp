@@ -32,7 +32,6 @@ class OpCourse(models.Model):
     evaluation_type = fields.Selection(
         [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
         'Evaluation Type', required=True)
-    payment_term = fields.Many2one('account.payment.term', 'Payment Term')
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
 
 
