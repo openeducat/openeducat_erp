@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="alumni_form_view">
+            <field name="name">op.student.form</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='roll_number']" position="after">
+                    <field name="alumni_boolean" />
+                </xpath>
+                <xpath expr="//notebook/page[@string='Educational']" position="after">
+                    <page string="Alumni Details" attrs="{'invisible':[('alumni_boolean','=',False)]}">
+                        <group colspan="4" col="4" >
+                            <separator string="Alumni Detail" colspan="4" />
+                            <field name="passing_year" />
+                            <field name="current_position" />
+                            <field name="current_job" />
+                            <field name="email" />
+                            <field name="phone" string="Phone" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
