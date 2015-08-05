@@ -20,22 +20,31 @@
 ###############################################################################
 
 {
-    'name': 'OpenEduCat Fees',
+    'name': 'Indian OpenEduCat',
     'version': '1.0',
     'category': 'Openerp Education',
-    'summary': 'Manage Fees',
+    "sequence": 3,
+    'summary': 'Indian Localization of OpenEduCat',
     'complexity': "easy",
     'description': """
-        This module provide feature of fees collection &
-        other finance operations.
+        This module adds Indian flavor to OpenEduCat_Core.
 
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account_accountant'],
+    'depends': ['openeducat_core'],
     'data': [
         'views/student_view.xml',
-        'views/course_view.xml',
+        'views/faculty_view.xml',
+        'views/category_view.xml',
+        'views/religion_view.xml',
+        'security/ir.model.access.csv'
+    ],
+    'demo': [
+        'demo/op.category.csv',
+        'demo/op.religion.csv',
+        'demo/op.student.csv',
+        'demo/op.faculty.csv'
     ],
     'installable': True,
     'auto_install': False,

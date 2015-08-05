@@ -19,28 +19,15 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Fees',
-    'version': '1.0',
-    'category': 'Openerp Education',
-    'summary': 'Manage Fees',
-    'complexity': "easy",
-    'description': """
-        This module provide feature of fees collection &
-        other finance operations.
+from openerp import models, fields
 
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account_accountant'],
-    'data': [
-        'views/student_view.xml',
-        'views/course_view.xml',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+
+class OpStudent(models.Model):
+    _inherit = 'op.student'
+
+    religion = fields.Many2one('op.religion', 'Religion')
+    pan_card = fields.Char('PAN Card', size=16)
+    category = fields.Many2one('op.category', 'Category', required=True)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
