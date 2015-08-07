@@ -20,25 +20,20 @@
 ##############################################################################
 
 {
-    'name': "Openeducat Admission",
+    'name': "Openeducat l10n India Admission",
     'version': '2.0.0',
     'category': 'Openerp Education',
     'sequence': 3,
-    'summary': "Manage Admissions""",
+    'summary': "Manage Indian Based Admission""",
     'complexity': "easy",
     'description': """
         This is gives the feature of admission process.
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_fees'],
+    'depends': ['openeducat_l10n_in', 'openeducat_admission'],
     'data': [
-        'admission_menu.xml',
         'views/admission_view.xml',
-        'views/admission_sequence.xml',
-        'report/report_menu.xml',
-        'report/report_admission_analysis.xml',
-        'wizard/admission_analysis_wizard_view.xml',
     ],
     'installable': True,
     'auto_install': False,

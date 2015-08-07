@@ -22,8 +22,8 @@
 from openerp import models, fields, api
 
 
-class Admission(models.Model):
-    _name = 'admission'
+class OpAdmission(models.Model):
+    _name = 'op.admission'
     _rec_name = 'application_number'
     _order = "application_number desc"
 
@@ -41,7 +41,7 @@ class Admission(models.Model):
     application_number = fields.Char(
         'Application Number', size=16, required=True, copy=False,
         states={'done': [('readonly', True)]},
-        default=lambda self: self.env['ir.sequence'].get('admission'))
+        default=lambda self: self.env['ir.sequence'].get('op.admission'))
     admission_date = fields.Date(
         'Admission Date', required=True, copy=False,
         states={'done': [('readonly', True)]},

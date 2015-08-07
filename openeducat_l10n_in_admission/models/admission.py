@@ -19,28 +19,29 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Alumni',
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    "sequence": 3,
-    'summary': 'Manage Alumni',
-    'complexity': "easy",
-    'description': """
-        This module provide alumni management system over OpenERP
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
-    'data': [
-        'views/alumni_view.xml'
-    ],
-    'demo': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from openerp import models, fields, api
+
+
+class OpAdmission(models.Model):
+
+    _inherit = 'op.admission'
+
+    religion_id = fields.Many2one(
+        'op.religion', 'Religion', states={'done': [('readonly', True)]})
+    category_id = fields.Many2one(
+        'op.category', 'Category', required=True,
+        states={'done': [('readonly', True)]})
+    is_old_student = fields.Boolean('Old Student??')
+    gr_no_old = fields.Char('GR Number old', size=10)
+    gr_no = fields.Char('GR Number new', size=10)
+
+    @api.one
+    def confirm_selection(self):
+        super(OpAdmission, self).confirm_selection()
+        gr = self.gr_no
+        if self.is_old_student:
+            gr = self.gr_no_old
+        self.student_id.gr_no = gr
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

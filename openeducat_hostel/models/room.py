@@ -19,28 +19,16 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Alumni',
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    "sequence": 3,
-    'summary': 'Manage Alumni',
-    'complexity': "easy",
-    'description': """
-        This module provide alumni management system over OpenERP
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
-    'data': [
-        'views/alumni_view.xml'
-    ],
-    'demo': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from openerp import models, fields
+
+
+class OpRoom(models.Model):
+    _name = 'op.room'
+
+    hostel_id = fields.Many2one('op.hostel', 'Hostel', required=True)
+    name = fields.Char('Room Name', required=True)
+    code = fields.Char('Code', required=True)
+    capacity = fields.Integer('Room Capacity', required=True)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

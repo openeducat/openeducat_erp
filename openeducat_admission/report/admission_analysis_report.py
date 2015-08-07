@@ -43,7 +43,7 @@ class AdmissionAnalysisReport(report_sxw.rml_parse):
 
     def get_data(self, data):
         lst = []
-        student_pool = self.pool.get('admission')
+        student_pool = self.pool.get('op.admission')
         student_search = student_pool.search(
             self.cr, self.uid, [('state', '=', 'done'),
                                 ('course_id', '=', data['course_id'][0]),

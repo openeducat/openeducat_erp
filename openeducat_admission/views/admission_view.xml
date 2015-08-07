@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record id="view_admission_tree" model="ir.ui.view">
-            <field name="name">admission.tree</field>
-            <field name="model">admission</field>
+        <record id="view_op_admission_tree" model="ir.ui.view">
+            <field name="name">op.admission.tree</field>
+            <field name="model">op.admission</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Admission">
@@ -21,9 +21,9 @@
                 </tree>
             </field>
         </record>
-        <record id="view_admission_form" model="ir.ui.view">
-            <field name="name">admission.form</field>
-            <field name="model">admission</field>
+        <record id="view_op_admission_form" model="ir.ui.view">
+            <field name="name">op.admission.form</field>
+            <field name="model">op.admission</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Admission" version="7.0">
@@ -116,9 +116,9 @@
                 </form>
             </field>
         </record>
-        <record id="view_admission_search" model="ir.ui.view">
-            <field name="name">admission.search</field>
-            <field name="model">admission</field>
+        <record id="view_op_admission_search" model="ir.ui.view">
+            <field name="name">op.admission.search</field>
+            <field name="model">op.admission</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Admission">
@@ -149,9 +149,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_admission_graph">
-            <field name="name">admission.graph</field>
-            <field name="model">admission</field>
+        <record model="ir.ui.view" id="view_op_admission_graph">
+            <field name="name">op.admission.graph</field>
+            <field name="model">op.admission</field>
             <field name="arch" type="xml">
                 <graph string="Course By Admission" type="pie">
                     <field name="course_id" />
@@ -160,27 +160,27 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="act_open_admission_view">
-            <field name="name">Admission</field>
+        <record model="ir.actions.act_window" id="act_open_op_admission_view">
+            <field name="name">op.admission</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">admission</field>
+            <field name="res_model">op.admission</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="search_view_id" ref="view_admission_search" />
+            <field name="search_view_id" ref="view_op_admission_search" />
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_admission_view_form">
-            <field name="act_window_id" ref="act_open_admission_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_admission_view_form">
+            <field name="act_window_id" ref="act_open_op_admission_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_admission_form" />
+            <field name="view_id" ref="view_op_admission_form" />
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_admission_view_tree">
-            <field name="act_window_id" ref="act_open_admission_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_admission_view_tree">
+            <field name="act_window_id" ref="act_open_op_admission_view" />
             <field name="sequence" eval="10" />
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_admission_tree" />
+            <field name="view_id" ref="view_op_admission_tree" />
         </record>
     </data>
 </openerp>

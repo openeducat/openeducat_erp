@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,30 +17,32 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
 {
-    'name': "Openeducat Admission",
+    'name': 'OpenEduCat Parent',
     'version': '2.0.0',
     'category': 'Openerp Education',
-    'sequence': 3,
-    'summary': "Manage Admissions""",
+    "sequence": 3,
+    'summary': 'Manage Parent',
     'complexity': "easy",
     'description': """
-        This is gives the feature of admission process.
+        This module provide parent management system over OpenERP
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_fees'],
+    'depends': ['openeducat_core'],
     'data': [
-        'admission_menu.xml',
-        'views/admission_view.xml',
-        'views/admission_sequence.xml',
-        'report/report_menu.xml',
-        'report/report_admission_analysis.xml',
-        'wizard/admission_analysis_wizard_view.xml',
+        'security/op_parent_security.xml',
+        'views/parent_view.xml',
+        'parent_menu.xml',
+    ],
+    'demo': [
     ],
     'installable': True,
     'auto_install': False,
     'application': True,
 }
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

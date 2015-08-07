@@ -19,28 +19,30 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Alumni',
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    "sequence": 3,
-    'summary': 'Manage Alumni',
-    'complexity': "easy",
-    'description': """
-        This module provide alumni management system over OpenERP
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
-    'data': [
-        'views/alumni_view.xml'
-    ],
-    'demo': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from openerp import models, fields, api
+from openerp.exceptions import ValidationError
+
+
+class OpHostel(models.Model):
+    _name = 'op.hostel'
+
+    name = fields.Char('Name', size=16, required=True)
+    capacity = fields.Integer('Hostel Capacity', required=True)
+#     room_ids = fields.Many2many('op.hostel.room', string='Room(s)')
+    hostel_room_lines = fields.One2many(
+        'op.hostel.room', 'hostel_id', 'Room(s)')
+    room_lines = fields.One2many(
+        'op.room', 'hostel_id', 'Room(s)')
+#     rooms = fields.Integer('Rooms', required=True)
+
+    @api.one
+    @api.constrains('hostel_room_lines')
+    def _check_hostel_capacity(self):
+        counter = 0.00
+        for room in self.hostel_room_lines:
+            counter += room.students_per_room
+            if counter > self.capacity:
+                raise ValidationError('Hostel Capacity Over')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

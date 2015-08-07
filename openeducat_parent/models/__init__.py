@@ -19,28 +19,7 @@
 #
 ##############################################################################
 
-{
-    'name': "Openeducat Admission",
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    'sequence': 3,
-    'summary': "Manage Admissions""",
-    'complexity': "easy",
-    'description': """
-        This is gives the feature of admission process.
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_fees'],
-    'data': [
-        'admission_menu.xml',
-        'views/admission_view.xml',
-        'views/admission_sequence.xml',
-        'report/report_menu.xml',
-        'report/report_admission_analysis.xml',
-        'wizard/admission_analysis_wizard_view.xml',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from . import parent
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
