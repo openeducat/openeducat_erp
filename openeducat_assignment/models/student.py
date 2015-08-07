@@ -19,33 +19,13 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Assignment',
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    'summary': 'Manage Assgiments',
-    'complexity': "easy",
-    'description': """
-        This module provide feature of Assignments.
+from openerp import models, fields
 
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
-    'data': [
-        'views/assignment_view.xml',
-        'views/assignment_sub_line_view.xml',
-        'views/student_view.xml',
-        'assignment_menu.xml'
-    ],
-    'demo': [
-        'demo/op.assignment.csv',
-        'demo/op.assignment.sub.line.csv'
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+
+class OpStudent(models.Model):
+    _inherit = 'op.student'
+
+    allocation_ids = fields.Many2many('op.assignment', string='Assignment')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
