@@ -37,8 +37,7 @@ class OpAdmission(models.Model):
 
     @api.one
     def confirm_selection(self):
-        res = super(OpAdmission, self).confirm_selection()
-        print "\n\n\n\n0000000000000000000000000000000000000000", self.student_id
+        super(OpAdmission, self).confirm_selection()
         gr = self.gr_no
         if self.is_old_student:
             gr = self.gr_no_old
