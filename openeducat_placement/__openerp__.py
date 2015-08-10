@@ -33,8 +33,9 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
-        'placement_menu.xml',
         'views/placement_view.xml',
+        'placement_menu.xml',
+        'security/ir.model.access.csv'
     ],
     'installable': True,
     'auto_install': False,
