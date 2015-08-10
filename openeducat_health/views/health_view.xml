@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="alumni_form_view">
+            <field name="name">op.student.form</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@string='Educational']" position="after">
+                    <page string="Health Detail">
+                        <field name="health_lines" colspan="4" nolabel="1" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_op_health_tree" model="ir.ui.view">
+            <field name="name">op.health.tree</field>
+            <field name="model">op.health</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Health">
+                    <field name="student_id" />
+                    <field name="faculty_id" />
+                    <field name="blood_group" />
+                    <field name="height" />
+                    <field name="weight" />
+                    <field name="eyeglasses" />
+                    <field name="physical_challenges" />
+                    <field name="major_diseases" />
+                    <field name="regular_checkup" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_health_form" model="ir.ui.view">
+            <field name="name">op.health.form</field>
+            <field name="model">op.health</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Health" version="7.0">
+                    <sheet>
+                        <separator colspan="4" string="Health Details" />
+                        <div class="oe_title">
+                            <h1>
+                                <field name="student_id" placeholder="Student Name" style="width: 100%%" />
+                                <field name="faculty_id" placeholder="Faculty Name" style="width: 100%%" />
+                            </h1>
+                        </div>
+                        <group colspan="4" col="6">
+                            <field name="height" />
+                            <field name="weight" />
+                            <field name="blood_group" />
+                        </group>
+                        <separator colspan="4" string="Other Details" />
+                        <group colspan="4">
+                            <group colspan="4" col="4">
+                                <field name="eyeglasses" />
+                                <field name="eyeglasses_no" attrs="{'invisible': [('eyeglasses','!=',True)]}" />
+                            </group>
+                            <group colspan="4" col="4">
+                                <field name="physical_challenges" />
+                                <field name="physical_challenges_note"
+                                    attrs="{'invisible': [('physical_challenges','!=',True)]}" />
+                            </group>
+                            <group colspan="4" col="4">
+                                <field name="major_diseases" />
+                                <field name="major_diseases_note"
+                                    attrs="{'invisible': [('major_diseases','!=',True)]}" />
+                            </group>
+                            <field name="regular_checkup" />
+                        </group>
+                        <separator colspan="4" string="Checkup Details" />
+                        <group colspan="4">
+                            <field name="health_line" nolabel="1">
+                                <tree string="Checkup Line">
+                                    <field name="date" />
+                                    <field name="name" />
+                                </tree>
+                                <form string="Checkup Line">
+                                    <group colspan="4">
+                                        <field name="date" />
+                                        <field name="name" />
+                                        <field name="recommendation" />
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_health_search" model="ir.ui.view">
+            <field name="name">op.health.search</field>
+            <field name="model">op.health</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Health">
+                    <field name="student_id" />
+                    <field name="faculty_id" />
+                    <field name="blood_group" />
+                    <field name="eyeglasses" />
+                    <field name="physical_challenges" />
+                    <field name="major_diseases" />
+                    <field name="regular_checkup" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Student Name" domain="[]" context="{'group_by':'student_id'}" />
+                        <filter string="Eye Glasses" domain="[]"
+                            context="{'group_by':'eyeglasses'}" />
+                        <filter string="blood_group" domain="[]"
+                            context="{'group_by':'blood_group'}" />
+                        <filter string="Physical Challenges" domain="[]"
+                            context="{'group_by':'physical_challenges'}" />
+                        <filter string="Major Diseases" domain="[]"
+                            context="{'group_by':'major_diseases'}" />
+                        <filter string="Regular Checkup" domain="[]"
+                            context="{'group_by':'regular_checkup'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_health_view">
+            <field name="name">Health</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.health</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_health_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_health_view_form">
+            <field name="act_window_id" ref="act_open_op_health_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_health_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_health_view_tree">
+            <field name="act_window_id" ref="act_open_op_health_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_health_tree" />
+        </record>
+    </data>
+</openerp>
