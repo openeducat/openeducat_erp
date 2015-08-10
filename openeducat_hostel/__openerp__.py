@@ -37,6 +37,7 @@
         'views/hostel_view.xml',
         'views/hostel_room_view.xml',
         'hostel_menu.xml',
+        'security/ir.model.access.csv'
     ],
     'demo': [
     ],
