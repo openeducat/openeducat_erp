@@ -28,12 +28,8 @@ class OpHostel(models.Model):
 
     name = fields.Char('Name', size=16, required=True)
     capacity = fields.Integer('Hostel Capacity', required=True)
-#     room_ids = fields.Many2many('op.hostel.room', string='Room(s)')
     hostel_room_lines = fields.One2many(
         'op.hostel.room', 'hostel_id', 'Room(s)')
-    room_lines = fields.One2many(
-        'op.room', 'hostel_id', 'Room(s)')
-#     rooms = fields.Integer('Rooms', required=True)
 
     @api.one
     @api.constrains('hostel_room_lines')
