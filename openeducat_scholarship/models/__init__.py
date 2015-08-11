@@ -19,8 +19,7 @@
 #
 ##############################################################################
 
-from . import facility_line
-from . import hostel
-from . import hostel_room
-from . import room
+from . import scholarship
+from . import scholarship_type
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

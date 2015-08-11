@@ -36,6 +36,7 @@
         'security/op_parent_security.xml',
         'views/parent_view.xml',
         'parent_menu.xml',
+        'security/ir.model.access.csv'
     ],
     'demo': [
     ],

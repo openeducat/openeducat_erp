@@ -19,28 +19,16 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Placement',
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    "sequence": 3,
-    'summary': 'Manage Placement',
-    'complexity': "easy",
-    'description': """
-        This module provide placement management system over OpenERP
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
-    'data': [
-        'views/placement_view.xml',
-        'placement_menu.xml',
-        'security/ir.model.access.csv'
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from openerp import models, fields
+
+
+class OpAsset(models.Model):
+    _name = 'op.asset'
+
+    asset_id = fields.Many2one('op.classroom', 'Asset')
+    product_id = fields.Many2one('product.product', 'Product', required=True)
+    code = fields.Char('Code', size=256)
+    product_uom_qty = fields.Float('Quantity', required=True)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

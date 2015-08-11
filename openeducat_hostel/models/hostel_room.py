@@ -27,8 +27,7 @@ class OpHostelRoomAllocation(models.Model):
     _name = 'op.hostel.room'
 
     hostel_id = fields.Many2one('op.hostel', 'Hostel', required=True)
-#     name = fields.Char('Room Number', size=8, required=True),
-    name = fields.Many2one('op.room', 'Name', required=True)
+    name = fields.Many2one('op.room', 'Room', required=True)
     student_ids = fields.Many2many('res.partner', string='Allocated Students ')
     students_per_room = fields.Integer('Students Per Room', required=True)
     rent = fields.Float('Rent')

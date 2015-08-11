@@ -27,7 +27,7 @@
     'summary': "Manage Indian Based Admission""",
     'complexity': "easy",
     'description': """
-        This is gives the feature of admission process.
+        This module provide indian based feature of admission.
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',

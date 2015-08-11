@@ -19,28 +19,31 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Placement',
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    "sequence": 3,
-    'summary': 'Manage Placement',
-    'complexity': "easy",
-    'description': """
-        This module provide placement management system over OpenERP
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
-    'data': [
-        'views/placement_view.xml',
-        'placement_menu.xml',
-        'security/ir.model.access.csv'
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from openerp import models, fields, api
+
+
+class OpScholarship(models.Model):
+    _name = 'op.scholarship'
+
+    name = fields.Char('Name', size=64, required=True)
+    student_id = fields.Many2one('op.student', 'Student', required=True)
+    type_id = fields.Many2one('op.scholarship.type', 'Type', required=True)
+    state = fields.Selection(
+        [('d', 'Draft'), ('c', 'Confirm'), ('r', 'Reject')], 'State',
+        default='d', readonly=True, select=True)
+
+    @api.one
+    def act_draft(self):
+        # Reminder... Delete This Method... Not used
+        self.state = 'd'
+
+    @api.one
+    def act_confirm(self):
+        self.state = 'c'
+
+    @api.one
+    def act_reject(self):
+        self.state = 'r'
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

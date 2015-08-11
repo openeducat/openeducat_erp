@@ -20,22 +20,24 @@
 ###############################################################################
 
 {
-    'name': 'OpenEduCat Placement',
+    'name': 'OpenEduCat Classroom',
     'version': '2.0.0',
     'category': 'Openerp Education',
     "sequence": 3,
-    'summary': 'Manage Placement',
+    'summary': 'Manage Classroom',
     'complexity': "easy",
     'description': """
-        This module provide placement management system over OpenERP
+        This module adds classroom management feature to OpenEduCat_Core.
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
+    'depends': ['openeducat_core', 'openeducat_facility', 'product'],
     'data': [
-        'views/placement_view.xml',
-        'placement_menu.xml',
+        'views/classroom_view.xml',
+        'classroom_menu.xml',
         'security/ir.model.access.csv'
+    ],
+    'demo': [
     ],
     'installable': True,
     'auto_install': False,

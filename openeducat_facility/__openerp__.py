@@ -20,22 +20,25 @@
 ###############################################################################
 
 {
-    'name': 'OpenEduCat Placement',
+    'name': 'OpenEduCat Facility',
     'version': '2.0.0',
     'category': 'Openerp Education',
     "sequence": 3,
-    'summary': 'Manage Placement',
+    'summary': 'Manage Facility',
     'complexity': "easy",
     'description': """
-        This module provide placement management system over OpenERP
+        This module adds the feature of facility in Openeducat
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
-        'views/placement_view.xml',
-        'placement_menu.xml',
-        'security/ir.model.access.csv'
+        'views/facility_view.xml',
+        'views/facility_line_view.xml',
+        'security/ir.model.access.csv',
+        'facility_menu.xml',
+    ],
+    'demo': [
     ],
     'installable': True,
     'auto_install': False,
