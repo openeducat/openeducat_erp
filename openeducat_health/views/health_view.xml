@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="alumni_form_view">
+        <record model="ir.ui.view" id="health_student_form_view">
             <field name="name">op.student.form</field>
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
@@ -9,6 +9,19 @@
                 <xpath expr="//notebook/page[@string='Educational']" position="after">
                     <page string="Health Detail">
                         <field name="health_lines" colspan="4" nolabel="1" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="health_faculty_form_view">
+            <field name="name">op.faculty.form</field>
+            <field name="model">op.faculty</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_faculty_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@string='Subjects Detail']" position="after">
+                    <page string="Health Detail">
+                        <field name="health_faculty_lines" colspan="4" nolabel="1" />
                     </page>
                 </xpath>
             </field>

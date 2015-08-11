@@ -28,7 +28,6 @@ class OpFacilityLine(models.Model):
 
     facility_id = fields.Many2one('op.facility', 'Facility', required=True)
     quantity = fields.Float('Quantity', required=True)
-#     classroom_id = fields.Many2one('op.classroom', 'Classroom')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
