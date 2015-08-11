@@ -29,6 +29,7 @@ class OpRoom(models.Model):
     name = fields.Char('Room Name', required=True)
     code = fields.Char('Code', required=True)
     capacity = fields.Integer('Room Capacity', required=True)
+    facility_line = fields.One2many('op.facility.line', 'room_id', 'Facility')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

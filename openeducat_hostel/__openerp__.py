@@ -31,13 +31,13 @@
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
+    'depends': ['openeducat_core', 'openeducat_facility'],
     'data': [
         'views/room_view.xml',
         'views/hostel_view.xml',
         'views/hostel_room_view.xml',
         'hostel_menu.xml',
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
     ],
     'demo': [
     ],
