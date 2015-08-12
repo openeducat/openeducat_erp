@@ -34,6 +34,7 @@
     'depends': ['openeducat_core'],
     'data': [
         'views/health_view.xml',
+        'security/ir.model.access.csv',
         'health_menu.xml',
     ],
     'installable': True,
