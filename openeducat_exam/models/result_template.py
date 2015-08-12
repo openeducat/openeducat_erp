@@ -43,7 +43,7 @@ class OpResultTemplate(models.Model):
             'exam_session_id': self.exam_session_id.id,
             'generated_date': fields.Date.today(),
             'generated_by': self.env.uid,
-            'status': 'd',
+            'status': 'draft',
         })
         student_list = []
         for exam_session in self.line_ids:
@@ -56,7 +56,7 @@ class OpResultTemplate(models.Model):
                         'exam_id': exam.exam_id.id,
                         'exam_tmpl_id': exam.id,
                         'marks': (exam.weightage / 100) * attd.marks,
-                        'status': attd.marks >= exam.pass_marks and 'p' or 'f',
+                        'status': attd.marks >= exam.pass_marks and 'pass' or 'fail',
                         'per': (100 * attd.marks) / exam.total_marks,
                         'student_id': attd.student_id.id,
                         'total_marks': (exam.weightage / 100) *
@@ -79,7 +79,7 @@ class OpResultTemplate(models.Model):
             pass_flg = True
             number_fail = 0
             for x in stu_dict[stu_id]:
-                if x[1]['status'] == 'f':
+                if x[1]['status'] == 'fail':
                     pass_flg = False
                     number_fail += 1
             if pass_flg:

@@ -31,21 +31,21 @@
                 <form string="Exam" version="7.0">
                     <header>
                         <span groups="base.group_user">
-                            <field name="state" widget="statusbar" statusbar_visible="n,h,s,d,c"
-                                statusbar_colors='{"c":"red"}' />
-                            <button name="act_held" states="n" type="workflow" string="Held Exam"
+                            <field name="state" widget="statusbar" statusbar_visible="new,held,scheduled,done,cancelled"
+                                statusbar_colors='{"cancelled":"red"}' />
+                            <button name="act_held" states="new" type="workflow" string="Held Exam"
                                 icon="gtk-go-forward" />
                                 
-                            <button name="act_schedule" states="h" type="workflow"
+                            <button name="act_schedule" states="held" type="workflow"
                                 string="Schedule Exam" icon="gtk-go-forward" />
                                 
-                            <button name="act_cancel" states="n,h,s" type="workflow"
+                            <button name="act_cancel" states="new,held,scheduled" type="workflow"
                                 string="Cancel" icon="gtk-go-forward" />
                             
-                            <button name="act_done" states="s" type="workflow"
+                            <button name="act_done" states="scheduled" type="workflow"
                                 string="Done" icon="gtk-convert" />
                             
-                            <button name="act_new_exam" states="c" type="workflow"
+                            <button name="act_new_exam" states="cancelled" type="workflow"
                                 string="New Exam" icon="gtk-convert" />
                         </span>
                     </header>

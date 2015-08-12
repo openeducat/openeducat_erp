@@ -28,7 +28,7 @@ class OpExamAttendees(models.Model):
 
     student_id = fields.Many2one('op.student', 'Student', required=True)
     status = fields.Selection(
-        [('p', 'Present'), ('a', 'Absent')], 'Status', required=True)
+        [('present', 'Present'), ('absent', 'Absent')], 'Status', required=True)
     marks = fields.Float('Marks')
     note = fields.Text('Note')
     exam_id = fields.Many2one('op.exam', 'Exam', required=True)

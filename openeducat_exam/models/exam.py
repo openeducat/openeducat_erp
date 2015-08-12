@@ -28,7 +28,6 @@ class OpExam(models.Model):
 
     session_id = fields.Many2one('op.exam.session', 'Exam Session')
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
-#     division_id = fields.Many2one('op.division', 'Division')
     exam_code = fields.Char('Exam Code', size=8, required=True)
     exam_type = fields.Many2one('op.exam.type', 'Exam Type', required=True)
     evaluation_type = fields.Selection(
@@ -40,8 +39,8 @@ class OpExam(models.Model):
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)
     state = fields.Selection(
-        [('n', 'New Exam'), ('h', 'Held'), ('s', 'Scheduled'), ('d', 'Done'),
-         ('c', 'Cancelled')], 'State', select=True, readonly=True, default='n')
+        [('new', 'New Exam'), ('held', 'Held'), ('scheduled', 'Scheduled'), ('done', 'Done'),
+         ('cancelled', 'Cancelled')], 'State', select=True, readonly=True, default='new')
     note = fields.Text('Note')
     responsible_id = fields.Many2many('op.faculty', string='Responsible')
     name = fields.Char('Exam', size=256, required=True)
@@ -56,23 +55,23 @@ class OpExam(models.Model):
 
     @api.one
     def act_held(self):
-        self.state = 'h'
+        self.state = 'held'
 
     @api.one
     def act_done(self):
-        self.state = 'd'
+        self.state = 'done'
 
     @api.one
     def act_schedule(self):
-        self.state = 's'
+        self.state = 'scheduled'
 
     @api.one
     def act_cancel(self):
-        self.state = 'c'
+        self.state = 'cancelled'
 
     @api.one
     def act_new_exam(self):
-        self.state = 'n'
+        self.state = 'new'
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
