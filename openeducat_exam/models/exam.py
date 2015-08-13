@@ -39,8 +39,9 @@ class OpExam(models.Model):
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)
     state = fields.Selection(
-        [('new', 'New Exam'), ('held', 'Held'), ('scheduled', 'Scheduled'), ('done', 'Done'),
-         ('cancelled', 'Cancelled')], 'State', select=True, readonly=True, default='new')
+        [('new', 'New Exam'), ('held', 'Held'), ('scheduled', 'Scheduled'),
+         ('done', 'Done'), ('cancelled', 'Cancelled')],
+        'State', select=True, readonly=True, default='new')
     note = fields.Text('Note')
     responsible_id = fields.Many2many('op.faculty', string='Responsible')
     name = fields.Char('Exam', size=256, required=True)

@@ -56,7 +56,8 @@ class OpResultTemplate(models.Model):
                         'exam_id': exam.exam_id.id,
                         'exam_tmpl_id': exam.id,
                         'marks': (exam.weightage / 100) * attd.marks,
-                        'status': attd.marks >= exam.pass_marks and 'pass' or 'fail',
+                        'status': attd.marks >= exam.pass_marks and
+                        'pass' or 'fail',
                         'per': (100 * attd.marks) / exam.total_marks,
                         'student_id': attd.student_id.id,
                         'total_marks': (exam.weightage / 100) *
