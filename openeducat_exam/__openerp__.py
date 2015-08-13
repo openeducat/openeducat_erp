@@ -39,7 +39,6 @@
         'views/exam_session_view.xml',
         'views/exam_type_view.xml',
         'views/exam_view.xml',
-        'views/exam_workflow.xml',
         'views/marksheet_line_view.xml',
         'views/marksheet_register_view.xml',
         'views/min_clearance_criteria_view.xml',
