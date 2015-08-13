@@ -35,6 +35,7 @@
     'data': [
         'views/scholarship_view.xml',
         'views/scholarship_type_view.xml',
+        'security/ir.model.access.csv',
         'scholarship_menu.xml',
     ],
     'installable': True,
