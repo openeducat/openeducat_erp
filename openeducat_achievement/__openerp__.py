@@ -35,6 +35,7 @@
     'data': [
         'views/achievement_view.xml',
         'views/achievement_type_view.xml',
+        'security/ir.model.access.csv',
         'achievement_menu.xml',
     ],
     'installable': True,
