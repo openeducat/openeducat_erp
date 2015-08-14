@@ -3,6 +3,11 @@
 Changelog
 =========
 
+`8.0.1.2.0`
+---------
+- Bug Fixes and Code Clean up
+
+
 `8.0.1.1.0`
 ---------
 - Refactor the code as per New API.
