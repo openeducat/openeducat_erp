@@ -80,8 +80,8 @@ class OpAdmission(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'), ('enroll', 'Enrolled'),
          ('done', 'Done'), ('reject', 'Rejected'), ('pending', 'Pending'),
-         ('cancel', 'Cancelled')], 'State',
-        readonly=True, select=True, default='draft', track_visibility='onchange')
+         ('cancel', 'Cancelled')], 'State', readonly=True, select=True,
+        default='draft', track_visibility='onchange')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
     prev_institute = fields.Char(
         'Previous Institute', size=256, states={'done': [('readonly', True)]})

@@ -31,8 +31,8 @@ class OpScholarship(models.Model):
     type_id = fields.Many2one('op.scholarship.type', 'Type', required=True)
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirm'),
-         ('reject', 'Reject')], 'State',
-        default='draft', readonly=True, select=True, track_visibility='onchange')
+         ('reject', 'Reject')], 'State', default='draft', readonly=True,
+        select=True, track_visibility='onchange')
 
     @api.one
     def act_confirm(self):
