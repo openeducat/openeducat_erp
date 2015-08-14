@@ -22,11 +22,11 @@
                 <form string="Scholarship">
                     <header>
                         <span groups="base.group_user">
-                            <field name="state" widget="statusbar" statusbar_visible="d,c,r"
-                                statusbar_colors='{"r":"red"}' />
-                            <button name="act_confirm" states="d" type="object"
+                            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,reject"
+                                statusbar_colors='{"reject":"red"}' />
+                            <button name="act_confirm" states="draft" type="object"
                                 string="Confirm" icon="gtk-go-forward" />
-                            <button name="act_reject" states="d" type="object" string="Reject"
+                            <button name="act_reject" states="draft" type="object" string="Reject"
                                 icon="gtk-go-forward" />
                         </span>
                     </header>
@@ -38,6 +38,10 @@
                             <field name="type_id" />
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>

@@ -59,8 +59,4 @@ class ReportMarksheetReport(osv.AbstractModel):
     _wrapped_report_class = MarksheetReport
 
 
-# report_sxw.report_sxw('report.op.marksheet','op.marksheet.register',
-#                       'addons/openeducat_erp/report/marksheet_report.rml',
-#                       parser=marksheet_report, header=False)
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -24,6 +24,7 @@ from openerp import models, fields, api
 
 class OpPlacementOffer(models.Model):
     _name = 'op.placement.offer'
+    _inherit = 'mail.thread'
     _description = 'Placement Offer'
 
     name = fields.Char('Company Name', required=True)
@@ -34,7 +35,7 @@ class OpPlacementOffer(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('offer', 'Offer'), ('join', 'Join'),
          ('rejected', 'Rejected'), ('cancel', 'Cancel')], 'State',
-        default='draft')
+        default='draft', track_visibility='onchange')
 
     @api.one
     def placement_offer(self):
@@ -63,5 +64,6 @@ class OpStudent(models.Model):
 
     placement_line = fields.One2many(
         'op.placement.offer', 'student_id', 'Placement Details')
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -24,6 +24,7 @@ from openerp import models, fields, api
 
 class OpAdmission(models.Model):
     _name = 'op.admission'
+    _inherit = 'mail.thread'
     _rec_name = 'application_number'
     _order = "application_number desc"
 
@@ -80,7 +81,7 @@ class OpAdmission(models.Model):
         [('draft', 'Draft'), ('confirm', 'Confirmed'), ('enroll', 'Enrolled'),
          ('done', 'Done'), ('reject', 'Rejected'), ('pending', 'Pending'),
          ('cancel', 'Cancelled')], 'State',
-        readonly=True, select=True, default='draft')
+        readonly=True, select=True, default='draft', track_visibility='onchange')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
     prev_institute = fields.Char(
         'Previous Institute', size=256, states={'done': [('readonly', True)]})
