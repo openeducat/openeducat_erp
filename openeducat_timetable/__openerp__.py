@@ -37,6 +37,7 @@
         'views/period_view.xml',
         'views/faculty_view.xml',
         'wizard/generate_timetable_view.xml',
+        'security/ir.model.access.csv',
         'timetable_menu.xml',
     ],
     'demo': [
