@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '1.0',
+    'version': '1.2.0',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Students, Faculties and Education Institute',
@@ -47,6 +47,7 @@
         'views/subject_view.xml',
         'views/roll_number_view.xml',
         'views/faculty_view.xml',
+        'views/res_company_view.xml',
         'views/openeducat_template.xml',
         'views/homepage_template.xml',
         'menu/openeducat_core_menu.xml',
