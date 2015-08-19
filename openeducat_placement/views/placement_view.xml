@@ -38,21 +38,18 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Placement Offer">
-                    <header>
-                        <span groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
-                            <field name="state" widget="statusbar" statusbar_visible="draft,offer,join"
-                                statusbar_colors='{"reject":"red"}' />
-                            <button name="placement_offer" states="draft" type="object"
-                                string="Offer" icon="gtk-go-forward" />
-                            <button name="placement_join" states="offer" type="object"
-                                string="Join" icon="gtk-go-forward" />
-                            <button name="confirm_rejected" states="draft,offer,join" string="Reject"
-                                type="object" icon="gtk-cancel" />
-                            <button name="confirm_cancel" states="draft,offer,join" string="Cancel"
-                                type="object" icon="gtk-cancel" />
-                            <button name="confirm_to_draft" states="confirm,reject" string="Set to Draft"
-                                type="object" icon="gtk-convert" />
-                        </span>
+                    <header groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
+                        <button name="placement_offer" states="draft" type="object"
+                            string="Offer" icon="gtk-go-forward" class="oe_highlight"/>
+                        <button name="placement_join" states="offer" type="object"
+                            string="Join" icon="gtk-go-forward" class="oe_highlight"/>
+                        <button name="confirm_rejected" states="draft,offer,join" string="Reject"
+                            type="object" icon="gtk-cancel" />
+                        <button name="confirm_cancel" states="draft,offer,join" string="Cancel"
+                            type="object" icon="gtk-cancel" />
+                        <button name="confirm_to_draft" states="reject,cancel" string="Set to Draft"
+                            type="object" icon="gtk-convert" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,offer,join" />
                     </header>
                     <sheet>
                         <div class="oe_title">

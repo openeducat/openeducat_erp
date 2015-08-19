@@ -8,13 +8,10 @@
             <field name="priority" eval="9" />
             <field name="arch" type="xml">
                 <sheet position="before">
-                    <header>
-                        <span
-                            groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
-                            <button name="create_invoice" string="Create Invoice"
-                                type="object" icon="gtk-apply" attrs="{'invisible': [('invoice_exists', '=', True)]}"/>
-                            <button name="action_view_invoice" string="View Invoice" type="object" class="oe_highlight" attrs="{'invisible': [('invoice_exists', '=', False)]}"/>
-                        </span>
+                    <header groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
+                        <button name="create_invoice" string="Create Invoice"
+                            type="object" icon="gtk-apply" attrs="{'invisible': [('invoice_exists', '=', True)]}"/>
+                        <button name="action_view_invoice" string="View Invoice" type="object" class="oe_highlight" attrs="{'invisible': [('invoice_exists', '=', False)]}"/>
                     </header>
                 </sheet>
                 <div name="div_address" position="after">

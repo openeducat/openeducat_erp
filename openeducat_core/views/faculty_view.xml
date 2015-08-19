@@ -28,9 +28,6 @@
                                         </a>
                                     </h4>
                                     <ul>
-<!--                                        <li t-if="record.id_number.raw_value"> -->
-<!--                                            <field name="id_number" /> -->
-<!--                                        </li> -->
                                         <li t-if="record.contact_address.raw_value">
                                             Address:
                                             <field name="contact_address" />
@@ -76,7 +73,6 @@
                     <field name="last_name" />
                     <field name="blood_group" />
                     <field name="emergency_contact" />
-<!--                    <field name="id_number" /> -->
                 </tree>
             </field>
         </record>
@@ -87,7 +83,7 @@
             <field name="arch" type="xml">
                 <form string="Faculty">
                 <header>
-                    <button name="create_employee" string="Create Employee" groups="base.group_user" type="object"/>
+                    <button name="create_employee" string="Create Employee" groups="base.group_user" type="object" class="oe_highlight"/>
                 </header>
                     <sheet>
                         <field name="photo" widget="image" class="oe_left oe_avatar" />
@@ -114,7 +110,6 @@
                             <page string="Personal Information">
                                 <group col="4">
                                     <field name="birth_date" />
-<!--                                    <field name="id_number" /> -->
                                     <field name="blood_group" />
                                     <field name="nationality" />
                                     <field name="lang" />
@@ -168,7 +163,6 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <!-- <field name="photo" /> -->
                 </form>
             </field>
         </record>
@@ -180,7 +174,6 @@
                 <search string="Faculty">
                     <field name="name" />
                     <field name="blood_group" />
-<!--                    <field name="id_number" /> -->
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="Blood Group" domain="[]"

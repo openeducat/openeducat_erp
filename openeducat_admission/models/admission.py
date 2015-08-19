@@ -104,9 +104,9 @@ class OpAdmission(models.Model):
     def confirm_in_progress(self):
         self.state = 'confirm'
 
-    @api.one
-    def confirm_selection(self):
-        vals = {
+    @api.multi
+    def get_student_vals(self):
+        return {
             'title': self.title and self.title.id or False,
             'name': self.name,
             'middle_name': self.middle_name,
@@ -125,6 +125,10 @@ class OpAdmission(models.Model):
             'country_id': self.country_id and self.country_id.id or False,
             'state_id': self.state_id and self.state_id.id or False,
         }
+
+    @api.one
+    def confirm_selection(self):
+        vals = self.get_student_vals()
         self.write({
             'state': 'enroll',
             'student_id': self.env['op.student'].create(vals).id,

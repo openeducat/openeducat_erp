@@ -34,7 +34,7 @@ class OpPlacementOffer(models.Model):
     training_period = fields.Char('Training Period', size=256)
     state = fields.Selection(
         [('draft', 'Draft'), ('offer', 'Offer'), ('join', 'Join'),
-         ('rejected', 'Rejected'), ('cancel', 'Cancel')], 'State',
+         ('reject', 'Rejected'), ('cancel', 'Cancel')], 'State',
         default='draft', track_visibility='onchange')
 
     @api.one
@@ -47,7 +47,7 @@ class OpPlacementOffer(models.Model):
 
     @api.one
     def confirm_rejected(self):
-        self.state = 'rejected'
+        self.state = 'reject'
 
     @api.one
     def confirm_to_draft(self):

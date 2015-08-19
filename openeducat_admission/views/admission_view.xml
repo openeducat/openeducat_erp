@@ -27,27 +27,24 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Admission">
-                    <header>
-                        <span groups="base.group_user">
-                            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,enroll,done"
-                                statusbar_colors='{"reject":"red"}' />
-                            <button name="confirm_in_progress" states="draft" type="object"
-                                string="Confirm" icon="gtk-go-forward" />
-                            <button name="confirm_selection" states="confirm" type="object"
-                                string="Enroll" icon="gtk-go-forward" />
-                            <button name="open_student" states="enroll,done" type="object"
-                                string="Open Student Profile" icon="gtk-go-forward" />
-                            <button name="create_student_invoice" states="enroll,done" type="object"
-                                string="Create Invoice" icon="gtk-apply"/>
-                            <button name="confirm_rejected" states="draft,confirm,pending" string="Reject"
-                                type="object" icon="gtk-cancel" />
-                            <button name="confirm_pending" states="confirm" string="Pending"
-                                type="object" icon="gtk-cancel" />
-                            <button name="confirm_cancel" states="draft,confirm" string="Cancel"
-                                type="object" icon="gtk-cancel" />
-                            <button name="confirm_to_draft" states="cancel,pending,reject" string="Set to Draft"
-                                type="object" icon="gtk-convert" />
-                        </span>
+                    <header groups="base.group_user">
+                        <button name="confirm_in_progress" states="draft" type="object"
+                            string="Confirm" class="oe_highlight"/>
+                        <button name="confirm_selection" states="confirm" type="object"
+                            string="Enroll" class="oe_highlight"/>
+                        <button name="create_student_invoice" states="enroll,done" type="object"
+                            string="Create Invoice" class="oe_highlight"/>
+                        <button name="open_student" states="enroll,done" type="object"
+                            string="Open Student Profile"/>
+                        <button name="confirm_rejected" states="draft,confirm,pending" string="Reject"
+                            type="object" />
+                        <button name="confirm_pending" states="confirm" string="Pending"
+                            type="object" />
+                        <button name="confirm_cancel" states="draft,confirm" string="Cancel"
+                            type="object" />
+                        <button name="confirm_to_draft" states="cancel,pending,reject" string="Set to Draft"
+                            type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,enroll,done" />
                     </header>
                     <sheet>
                         <field name="photo" widget="image" class="oe_left oe_avatar" />
