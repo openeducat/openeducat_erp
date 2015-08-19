@@ -30,16 +30,11 @@
             <field name="arch" type="xml">
                 <form string="Exam">
                     <header groups="base.group_user">
-                        <button name="act_held" states="new" type="object" string="Held Exam"
-                            icon="gtk-go-forward" class="oe_highlight"/>
-                        <button name="act_schedule" states="held" type="object"
-                            string="Schedule Exam" icon="gtk-go-forward" class="oe_highlight"/>
-                        <button name="act_done" states="schedule" type="object"
-                            string="Done" icon="gtk-convert" class="oe_highlight"/>
-                        <button name="act_new_exam" states="cancel" type="object"
-                            string="New Exam" icon="gtk-convert" class="oe_highlight"/>
-                        <button name="act_cancel" states="new,held,schedule" type="object"
-                            string="Cancel" icon="gtk-go-forward" />
+                        <button name="act_held" states="new" type="object" string="Held Exam" class="oe_highlight"/>
+                        <button name="act_schedule" states="held" type="object" string="Schedule Exam" class="oe_highlight"/>
+                        <button name="act_done" states="schedule" type="object" string="Done" class="oe_highlight"/>
+                        <button name="act_new_exam" states="cancel" type="object" string="New Exam" class="oe_highlight"/>
+                        <button name="act_cancel" states="new,held,schedule" type="object" string="Cancel" />
                         <field name="state" widget="statusbar" statusbar_visible="new,held,scheduled,done,cancelled" />
                     </header>
                     <sheet>
