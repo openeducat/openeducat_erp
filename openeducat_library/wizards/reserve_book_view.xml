@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="reserve_book_form">
+            <field name="name">reserve.book.form</field>
+            <field name="model">reserve.book</field>
+            <field name="arch" type="xml">
+                <form string="Book Reservation">
+                    <header groups="base.group_user">
+                        <button name="set_partner" type="object" string="Proceed" class="oe_highlight" />
+                        <button string="Cancel" special="cancel" />
+                    </header>
+                    <group>
+                        <field name="partner_id" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="reserve_book_act">
+            <field name="name">Book Reservation</field>
+            <field name="res_model">reserve.book</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="reserve_book_form" />
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

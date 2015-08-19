@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+###############################################################################
+#
+#    Tech-Receptives Solutions Pvt. Ltd.
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+###############################################################################
+
+from openerp import models, fields
+
+
+class OpBookUnit(models.Model):
+    _name = 'op.book.unit'
+
+    name = fields.Char('Name', required=True)
+    book_id = fields.Many2one('op.book', 'Book', required=True)
+    barcode = fields.Char('Barcode', size=20)
+    movement_lines = fields.One2many(
+        'op.book.movement', 'book_unit_id', 'Movement')
+    state = fields.Selection(
+        [('a', 'Available'), ('i', 'Issued'), ('r', 'Reserved'),
+         ('l', 'Lost')], 'State', default='a')
+
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

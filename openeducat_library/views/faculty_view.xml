@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_faculty_form_library_inherit" model="ir.ui.view">
+            <field name="name">op.faculty.form.library.inherit</field>
+            <field name="model">op.faculty</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_faculty_form" />
+            <field name="priority" eval="9" />
+            <field name="arch" type="xml">
+                <field name="blood_group" position="after">
+                    <field name="library_card_id" />
+                </field>
+                <notebook position="inside">
+                    <page string="Library">
+                        <field name="library_card_ids" colspan="4" nolabel="1" />
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>
