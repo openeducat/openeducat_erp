@@ -25,19 +25,22 @@ from openerp.exceptions import ValidationError
 
 class OpBookQueue(models.Model):
     _name = 'op.book.queue'
+    _inherit = 'mail.thread'
     _rec_name = 'partner_id'
-    _description = """ Book Queue Request Detail for Students and Faculties """
+    _description = """ Book Queue Request """
 
     name = fields.Char("Sequence No", readonly=True, copy=False, default='/')
     partner_id = fields.Many2one('res.partner', 'Student/Faculty')
-    book_id = fields.Many2one('op.book', 'Book', required=True)
+    book_id = fields.Many2one(
+        'op.book', 'Book', required=True, track_visibility='onchange')
     date_from = fields.Date('From Date', required=True)
     date_to = fields.Date('To Date', required=True)
     user_id = fields.Many2one(
         'res.users', 'User', readonly=True, default=lambda self: self.env.uid)
     state = fields.Selection(
-        [('request', 'Request'), ('accept', 'Accept'), ('reject', 'Reject')],
-        'Status', copy=False, default='request')
+        [('request', 'Request'), ('accept', 'Accepted'),
+         ('reject', 'Rejected')],
+        'Status', copy=False, default='request', track_visibility='onchange')
 
     @api.constrains('date_from', 'date_to')
     def _check_date(self):

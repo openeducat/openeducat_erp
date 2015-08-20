@@ -23,19 +23,22 @@ from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
-def days_between(d1, d2):
-    d1 = fields.Datetime.from_string(d1)
-    d2 = fields.Datetime.from_string(d2)
-    return abs((d2 - d1).days)
+def days_between(to_date, from_date):
+    to_date = fields.Datetime.from_string(to_date)
+    from_date = fields.Datetime.from_string(from_date)
+    return abs((from_date - to_date).days)
 
 
 class OpBookMovement(models.Model):
     _name = 'op.book.movement'
+    _inherit = 'mail.thread'
+    _description = """ Book Movement """
     _rec_name = 'book_id'
 
     book_id = fields.Many2one('op.book', 'Book', required=True)
     book_unit_id = fields.Many2one(
-        'op.book.unit', 'Book Unit', required=True)
+        'op.book.unit', 'Book Unit', required=True,
+        track_visibility='onchange')
     quantity = fields.Integer('No. Of Books', required=True)
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty',
@@ -43,16 +46,18 @@ class OpBookMovement(models.Model):
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     library_card_id = fields.Many2one(
-        'op.library.card', 'Library Card', required=True)
+        'op.library.card', 'Library Card', required=True,
+        track_visibility='onchange')
     issued_date = fields.Date('Issued Date', required=True)
     return_date = fields.Date('Return Date', required=True)
     actual_return_date = fields.Date('Actual Return Date')
     penalty = fields.Float('Penalty')
-    partner_id = fields.Many2one('res.partner', 'Person')
+    partner_id = fields.Many2one(
+        'res.partner', 'Person', track_visibility='onchange')
     reserver_name = fields.Char('Person Name', size=256)
     state = fields.Selection(
         [('a', 'Available'), ('r', 'Reserved'), ('i', 'Issued'),
-         ('l', 'Lost')], 'Status', default='a')
+         ('l', 'Lost')], 'Status', default='a', track_visibility='onchange')
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):

@@ -24,15 +24,18 @@ from openerp import models, fields
 
 class OpBookUnit(models.Model):
     _name = 'op.book.unit'
+    _inherit = 'mail.thread'
+    _description = """ Book Unit """
 
     name = fields.Char('Name', required=True)
-    book_id = fields.Many2one('op.book', 'Book', required=True)
+    book_id = fields.Many2one(
+        'op.book', 'Book', required=True, track_visibility='onchange')
     barcode = fields.Char('Barcode', size=20)
     movement_lines = fields.One2many(
         'op.book.movement', 'book_unit_id', 'Movement')
     state = fields.Selection(
         [('a', 'Available'), ('i', 'Issued'), ('r', 'Reserved'),
-         ('l', 'Lost')], 'State', default='a')
+         ('l', 'Lost')], 'State', default='a', track_visibility='onchange')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

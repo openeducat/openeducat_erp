@@ -24,13 +24,18 @@ from openerp import models, fields, api
 
 class OpBookPurchase(models.Model):
     _name = 'op.book.purchase'
+    _inherit = 'mail.thread'
+    _description = """ Book Purchase Request """
 
     name = fields.Char('Title', size=128, required=True)
-    author = fields.Char('Author(s)', size=256, required=True)
+    author = fields.Char(
+        'Author(s)', size=256, required=True, track_visibility='onchange')
     edition = fields.Char('Edition')
     publisher = fields.Char('Publisher(s)', size=256)
-    course_ids = fields.Many2one('op.course', 'Course', required=True)
-    subject_ids = fields.Many2one('op.subject', 'Subject', required=True)
+    course_ids = fields.Many2one(
+        'op.course', 'Course', required=True, track_visibility='onchange')
+    subject_ids = fields.Many2one(
+        'op.subject', 'Subject', required=True, track_visibility='onchange')
     student_id = fields.Many2one(
         'op.student', 'Student',
         default=lambda self: self.env.user.user_line and
@@ -40,7 +45,7 @@ class OpBookPurchase(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('request', 'Requested'), ('accept', 'Accepted'),
          ('reject', 'Rejected')], 'State', select=True, readonly=True,
-        default='draft')
+        default='draft', track_visibility='onchange')
 
     @api.one
     def act_requested(self):
