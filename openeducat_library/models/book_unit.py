@@ -35,7 +35,7 @@ class OpBookUnit(models.Model):
         'op.book', 'Book', required=True, track_visibility='onchange')
     barcode = fields.Char('Barcode', size=20)
     movement_lines = fields.One2many(
-        'op.book.movement', 'book_unit_id', 'Movement')
+        'op.book.movement', 'book_unit_id', 'Movements')
     state = fields.Selection(
         unit_states, 'State', default='available', track_visibility='onchange')
 
