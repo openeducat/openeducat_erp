@@ -7,22 +7,19 @@
             <field name="arch" type="xml">
                 <form string="Admission Analysis">
                     <header groups="base.group_user">
+	                    <button name="print_report" type="object" string="Print" class="oe_highlight"/>
 	                    <button string="_Cancel" special="cancel" />
-	                    <button name="print_report" type="object" string="Print" />
                     </header>
-                    <sheet>
-                        <group>
-                            <separator string="Print Admission Analysis Report" colspan="4" />
-                            <field name="course_id" />
-                            <field name="start_date" />
-                            <field name="end_date" />
-                        </group>
-                    </sheet>
+                    <group>
+                        <field name="course_id" />
+                        <field name="start_date" />
+                        <field name="end_date" />
+                    </group>
                 </form>
             </field>
         </record>
         <record model="ir.actions.act_window" id="admission_analysis_act">
-            <field name="name">Admission Analysis Wizard</field>
+            <field name="name">Admission Analysis Report</field>
             <field name="res_model">admission.analysis</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>

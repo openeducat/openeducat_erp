@@ -49,7 +49,7 @@ class OpFaculty(models.Model):
     last_login = fields.Date(
         'Latest Connection', related='partner_id.user_id.login_date',
         readonly=1)
-    faculty_subject_ids = fields.Many2many('op.subject', string='Subjects')
+    faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)')
     emp_id = fields.Many2one('hr.employee', 'Employee')
 
     @api.one
