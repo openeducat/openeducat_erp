@@ -24,6 +24,7 @@ from openerp import models, fields, api
 
 class OpAdmission(models.Model):
     _name = 'op.admission'
+    _inherit = 'mail.thread'
     _rec_name = 'application_number'
     _order = "application_number desc"
 
@@ -79,8 +80,8 @@ class OpAdmission(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'), ('enroll', 'Enrolled'),
          ('done', 'Done'), ('reject', 'Rejected'), ('pending', 'Pending'),
-         ('cancel', 'Cancelled')], 'State',
-        readonly=True, select=True, default='draft')
+         ('cancel', 'Cancelled')], 'State', readonly=True, select=True,
+        default='draft', track_visibility='onchange')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
     prev_institute = fields.Char(
         'Previous Institute', size=256, states={'done': [('readonly', True)]})
@@ -103,9 +104,9 @@ class OpAdmission(models.Model):
     def confirm_in_progress(self):
         self.state = 'confirm'
 
-    @api.one
-    def confirm_selection(self):
-        vals = {
+    @api.multi
+    def get_student_vals(self):
+        return {
             'title': self.title and self.title.id or False,
             'name': self.name,
             'middle_name': self.middle_name,
@@ -124,6 +125,10 @@ class OpAdmission(models.Model):
             'country_id': self.country_id and self.country_id.id or False,
             'state_id': self.state_id and self.state_id.id or False,
         }
+
+    @api.one
+    def confirm_selection(self):
+        vals = self.get_student_vals()
         self.write({
             'state': 'enroll',
             'student_id': self.env['op.student'].create(vals).id,

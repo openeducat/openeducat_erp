@@ -25,6 +25,7 @@ from openerp.exceptions import ValidationError
 
 class OpExam(models.Model):
     _name = 'op.exam'
+    _inherit = 'mail.thread'
 
     session_id = fields.Many2one('op.exam.session', 'Exam Session')
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
@@ -39,9 +40,9 @@ class OpExam(models.Model):
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)
     state = fields.Selection(
-        [('new', 'New Exam'), ('held', 'Held'), ('scheduled', 'Scheduled'),
-         ('done', 'Done'), ('cancelled', 'Cancelled')],
-        'State', select=True, readonly=True, default='new')
+        [('new', 'New Exam'), ('held', 'Held'), ('schedule', 'Scheduled'),
+         ('done', 'Done'), ('cancel', 'Cancelled')], 'State', select=True,
+        readonly=True, default='new', track_visibility='onchange')
     note = fields.Text('Note')
     responsible_id = fields.Many2many('op.faculty', string='Responsible')
     name = fields.Char('Exam', size=256, required=True)
@@ -64,11 +65,11 @@ class OpExam(models.Model):
 
     @api.one
     def act_schedule(self):
-        self.state = 'scheduled'
+        self.state = 'schedule'
 
     @api.one
     def act_cancel(self):
-        self.state = 'cancelled'
+        self.state = 'cancel'
 
     @api.one
     def act_new_exam(self):

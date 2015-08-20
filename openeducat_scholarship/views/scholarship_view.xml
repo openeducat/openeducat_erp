@@ -20,15 +20,10 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Scholarship">
-                    <header>
-                        <span groups="base.group_user">
-                            <field name="state" widget="statusbar" statusbar_visible="d,c,r"
-                                statusbar_colors='{"r":"red"}' />
-                            <button name="act_confirm" states="d" type="object"
-                                string="Confirm" icon="gtk-go-forward" />
-                            <button name="act_reject" states="d" type="object" string="Reject"
-                                icon="gtk-go-forward" />
-                        </span>
+                    <header groups="base.group_user">
+                        <button name="act_confirm" states="draft" type="object" string="Confirm" class="oe_highlight"/>
+                        <button name="act_reject" states="draft" type="object" string="Reject" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,reject"/>
                     </header>
                     <sheet>
                         <separator colspan="4" string="Scholarship" />
@@ -38,6 +33,10 @@
                             <field name="type_id" />
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -59,7 +58,7 @@
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_op_scholarship_view">
-            <field name="name">Scholarship</field>
+            <field name="name">Scholarships</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.scholarship</field>
             <field name="view_type">form</field>

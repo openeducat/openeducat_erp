@@ -43,7 +43,7 @@ class OpHealth(models.Model):
     regular_checkup = fields.Boolean(
         'Any Regular Checkup Required?', default=False)
     health_line = fields.One2many(
-        'op.health.line', 'health_id', 'Checkup Line')
+        'op.health.line', 'health_id', 'Checkup Lines')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

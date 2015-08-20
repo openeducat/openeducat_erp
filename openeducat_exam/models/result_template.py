@@ -31,7 +31,8 @@ class OpResultTemplate(models.Model):
         'op.exam.session', 'Exam Session', required=True)
     name = fields.Char("Name", size=254, required=True)
     result_date = fields.Date('Result Date', required=True)
-    line_ids = fields.One2many('op.result.template.line', 'result_id', 'Lines')
+    line_ids = fields.One2many(
+        'op.result.template.line', 'result_id', 'Session Lines')
     criteria_ids = fields.Many2many(
         'op.min.clear.criteria', string='Minimum qualification Criteria')
     pass_status_ids = fields.Many2many('op.pass.status', string='Pass Status')

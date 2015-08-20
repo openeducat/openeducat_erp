@@ -31,11 +31,10 @@
                 <form string="Assignment">
                     <header groups="base.group_user">
                         <button name="act_publish" states="draft" type="object"
-                            string="Publish" groups="openeducat_core.group_op_faculty" />
-                        <button name="act_finish" states="publish" type="object" string="Finish"
+                            string="Publish" class="oe_highlight" groups="openeducat_core.group_op_faculty" />
+                        <button name="act_finish" class="oe_highlight" states="publish" type="object" string="Finish"
                             groups="openeducat_core.group_op_faculty" />
-                        <field name="state" widget="statusbar" statusbar_visible="draft,publish,finish"
-                            statusbar_colors='{"r":"red"}' />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,publish,finish" />
                     </header>
                     <sheet>
                         <div>
@@ -70,7 +69,6 @@
                                         <field name="name" />
                                         <field name="middle_name" />
                                         <field name="last_name" />
-<!--                                        <field name="id_number" /> -->
                                         <field name="course_id" />
                                         <field name="batch_id" />
                                     </tree>
@@ -129,14 +127,12 @@
                             context="{'group_by':'issued_date'}" />
                         <filter string="Submission Date" domain="[]"
                             context="{'group_by':'submission_date'}" />
-                        <!-- <filter string="Allocated To" domain="[]" -->
-                        <!-- context="{'group_by':'allocation_ids'}" /> -->
                     </group>
                 </search>
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_op_assignment_view">
-            <field name="name">Assignment</field>
+            <field name="name">Assignments</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment</field>
             <field name="view_type">form</field>

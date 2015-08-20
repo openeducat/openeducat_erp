@@ -29,25 +29,13 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Exam">
-                    <header>
-                        <span groups="base.group_user">
-                            <field name="state" widget="statusbar" statusbar_visible="new,held,scheduled,done,cancelled"
-                                statusbar_colors='{"cancelled":"red"}' />
-                            <button name="act_held" states="new" type="object" string="Held Exam"
-                                icon="gtk-go-forward" />
-                                
-                            <button name="act_schedule" states="held" type="object"
-                                string="Schedule Exam" icon="gtk-go-forward" />
-                                
-                            <button name="act_cancel" states="new,held,scheduled" type="object"
-                                string="Cancel" icon="gtk-go-forward" />
-                            
-                            <button name="act_done" states="scheduled" type="object"
-                                string="Done" icon="gtk-convert" />
-                            
-                            <button name="act_new_exam" states="cancelled" type="object"
-                                string="New Exam" icon="gtk-convert" />
-                        </span>
+                    <header groups="base.group_user">
+                        <button name="act_held" states="new" type="object" string="Held Exam" class="oe_highlight"/>
+                        <button name="act_schedule" states="held" type="object" string="Schedule Exam" class="oe_highlight"/>
+                        <button name="act_done" states="schedule" type="object" string="Done" class="oe_highlight"/>
+                        <button name="act_new_exam" states="cancel" type="object" string="New Exam" class="oe_highlight"/>
+                        <button name="act_cancel" states="new,held,schedule" type="object" string="Cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="new,held,scheduled,done,cancelled" />
                     </header>
                     <sheet>
                         <group col="4" colspan="4">
@@ -68,6 +56,10 @@
                         <separator colspan="4" string="Discription" />
                         <field name="note" colspan="4" />
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -111,7 +103,7 @@
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_op_exam_view">
-            <field name="name">Exam</field>
+            <field name="name">Exams</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.exam</field>
             <field name="view_type">form</field>

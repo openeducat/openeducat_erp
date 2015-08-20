@@ -22,17 +22,17 @@
                 <form string="Assignment Sub Line">
                     <header groups="base.group_user">
                         <button name="act_submit" states="draft" type="object"
-                            string="Submit Assignment" />
+                            string="Submit Assignment" class="oe_highlight" />
                         <button name="act_accept" states="submit" type="object"
-                            string="Assignment Accepted" groups="openeducat_core.group_op_faculty" />
+                            string="Assignment Accepted" groups="openeducat_core.group_op_faculty" class="oe_highlight"/>
                         <button name="act_change_req" states="submit" type="object"
                             string="Change Require" groups="openeducat_core.group_op_faculty" />
                         <button name="act_reject" states="submit" type="object"
                             string="Assignment Rejected" groups="openeducat_core.group_op_faculty" />
-                        <button name="act_draft" states="reject" type="object"
-                            string="Re Submit Assignment" groups="openeducat_core.group_op_student" />
                         <button name="act_draft" states="change" type="object"
-                            string="Change And ReSubmit" groups="openeducat_core.group_op_student" />
+                            string="Change And ReSubmit" groups="openeducat_core.group_op_student" class="oe_highlight" />
+                        <button name="act_draft" states="reject" type="object"
+                            string="Re Submit Assignment" groups="openeducat_core.group_op_student" class="oe_highlight" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,submit,accept" />
                     </header>
                     <sheet>
@@ -84,7 +84,7 @@
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_op_assignment_sub_line_view">
-            <field name="name">Assignment Sub Line</field>
+            <field name="name">Assignment Submissions</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment.sub.line</field>
             <field name="view_type">form</field>
