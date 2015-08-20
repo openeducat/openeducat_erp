@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <menuitem id="menu_op_school_config_exam" name="Exam Management" parent="openeducat_core.menu_op_school_config"/>
-
-        <menuitem id="menu_op_exam_room_sub" name="Exam Rooms"
-            parent="menu_op_school_config_exam" sequence="350"
-            action="act_open_op_exam_room_view"
-            groups="openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_school_config_exam" name="Exam Management" parent="openeducat_core.menu_op_school_config" sequence="70"/>
 
         <menuitem id="menu_op_exam_type_sub" name="Exam Types"
-            parent="menu_op_school_config_exam" sequence="140"
+            parent="menu_op_school_config_exam" sequence="10"
             action="act_open_op_exam_type_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+
+        <menuitem id="menu_op_exam_room_sub" name="Exam Rooms"
+            parent="menu_op_school_config_exam" sequence="20"
+            action="act_open_op_exam_room_view"
+            groups="openeducat_core.group_op_back_office_admin" />
 
 
 
         <!--   Exam And marksheet Related Menus in faculty  -->
         <menuitem id="menu_op_exam_main_faculty" name="Exams"
-            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="180"
+            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="60"
             action="act_open_op_exam_view" />
 
         <menuitem id="menu_op_exam_attendees_sub_faculty" name="Exam Attendees"
-            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="200"
+            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="70"
             action="act_open_op_exam_attendees_view" />
 
         <menuitem id="menu_op_marksheet_line_sub_faculty" name="Marksheet Lines"
-            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="220"
+            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="80"
             action="act_open_op_marksheet_line_view" />
 
         <menuitem id="menu_op_result_line_sub_faculty" name="Result Lines"
-            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="240"
+            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="90"
             action="act_open_op_result_line_view" />
 
 
 
         <!--   Exam And marksheet Related Menus  -->
         <menuitem id="menu_op_school_exam_result" name="Exam Result"
-            parent="openeducat_core.menu_op_school_root" sequence="250"
+            parent="openeducat_core.menu_op_school_root" sequence="80"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
 
         <menuitem id="menu_op_pass_status" parent="menu_op_school_exam_result"
-            sequence="20" action="act_open_op_pass_status_view" />
+            sequence="10" action="act_open_op_pass_status_view" />
         <menuitem id="menu_op_result_template" parent="menu_op_school_exam_result"
             sequence="20" action="act_open_op_result_template_view" />
         <menuitem id="menu_op_min_clearance_criteria" parent="menu_op_school_exam_result"
-            sequence="20" action="act_open_op_min_clearance_criteria_view" />
+            sequence="30" action="act_open_op_min_clearance_criteria_view" />
         <menuitem id="menu_op_result_template_line" parent="menu_op_school_exam_result"
-            sequence="30" action="act_open_op_result_template_line_view" />
+            sequence="40" action="act_open_op_result_template_line_view" />
         <menuitem id="menu_op_result_exam_line" parent="menu_op_school_exam_result"
-            sequence="40" action="act_open_op_result_exam_line_view" />
+            sequence="50" action="act_open_op_result_exam_line_view" />
         <menuitem id="menu_op_exam_session" name="Exam Session"
-            parent="menu_op_school_exam_result" sequence="90"
+            parent="menu_op_school_exam_result" sequence="60"
             action="act_open_op_exam_session_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
         <menuitem id="menu_op_exam_main" name="Exams"
-            parent="menu_op_school_exam_result" sequence="100"
+            parent="menu_op_school_exam_result" sequence="70"
             action="act_open_op_exam_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin" />
         <menuitem id="menu_op_exam_res_allocation_main" name="Exams Resource Allocation"
-            parent="menu_op_school_exam_result" sequence="105"
+            parent="menu_op_school_exam_result" sequence="80"
             action="act_open_op_exam_res_allocation_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin" />
         <menuitem id="menu_op_exam_attendees_sub" name="Exam Attendees"
-            parent="menu_op_school_exam_result" sequence="120"
+            parent="menu_op_school_exam_result" sequence="90"
             action="act_open_op_exam_attendees_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin" />
         <menuitem id="menu_op_marksheet_register_sub" name="Marksheet Registers"
-            parent="menu_op_school_exam_result" sequence="140"
+            parent="menu_op_school_exam_result" sequence="100"
             action="act_open_op_marksheet_register_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
         <menuitem id="menu_op_marksheet_line_sub" name="Marksheet Lines"
-            parent="menu_op_school_exam_result" sequence="160"
+            parent="menu_op_school_exam_result" sequence="110"
             action="act_open_op_marksheet_line_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin" />
         <menuitem id="menu_op_result_line_sub" name="Result Lines"
-            parent="menu_op_school_exam_result" sequence="180"
+            parent="menu_op_school_exam_result" sequence="120"
             action="act_open_op_result_line_view"
             groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin" />
 
         <!-- wizard menu -->
         <menuitem id="menu_student_hall_ticket" name="Student Hall Tickets"
-            parent="openeducat_core.menu_op_general_main" sequence="280"
+            parent="openeducat_core.menu_op_general_main" sequence="30"
             action="student_hall_ticket_act" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
     </data>
 </openerp>
