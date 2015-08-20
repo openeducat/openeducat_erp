@@ -56,8 +56,9 @@ class OpBookMovement(models.Model):
         'res.partner', 'Person', track_visibility='onchange')
     reserver_name = fields.Char('Person Name', size=256)
     state = fields.Selection(
-        [('a', 'Available'), ('r', 'Reserved'), ('i', 'Issued'),
-         ('l', 'Lost')], 'Status', default='a', track_visibility='onchange')
+        [('available', 'Available'), ('reserve', 'Reserved'),
+         ('issue', 'Issued'), ('lost', 'Lost')], 'Status',
+        default='available', track_visibility='onchange')
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
@@ -69,12 +70,18 @@ class OpBookMovement(models.Model):
     def onchange_book_unit_id(self):
         self.state = self.book_unit_id.state
 
+    @api.onchange('library_card_id')
+    def onchange_library_card_id(self):
+        self.type = self.library_card_id.type
+        self.student_id = self.library_card_id.student_id.id
+        self.faculty_id = self.library_card_id.faculty_id.id
+
     @api.one
     def issue_book(self):
         ''' function to issue book '''
-        if self.book_unit_id.state and self.book_unit_id.state == 'a':
-            self.book_unit_id.state = 'i'
-            self.state = 'i'
+        if self.book_unit_id.state and self.book_unit_id.state == 'available':
+            self.book_unit_id.state = 'issue'
+            self.state = 'issue'
 
     @api.one
     def calculate_penalty(self):
@@ -94,7 +101,7 @@ class OpBookMovement(models.Model):
     @api.multi
     def return_book(self):
         ''' function to return book '''
-        if self.book_unit_id.state and self.book_unit_id.state == 'i':
+        if self.book_unit_id.state and self.book_unit_id.state == 'issue':
             return {
                 'name': _('Return Date'),
                 'view_type': 'form',

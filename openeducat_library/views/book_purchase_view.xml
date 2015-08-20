@@ -27,16 +27,15 @@
                 <form string="Purchase Request">
                     <header groups="base.group_user">
                         <button name="act_requested" states="draft" type="object"
-                            string="Request Book"
+                            string="Request Book" class="oe_highlight"
                             groups="openeducat_core.group_op_student,openeducat_core.group_op_faculty,group_op_library,openeducat_core.group_op_back_office_admin" />
                         <button name="act_accept" states="request" type="object"
-                            string="Accepted"
+                            string="Accept" class="oe_highlight"
                             groups="openeducat_core.group_op_back_office_admin" />
                         <button name="act_reject" states="request" type="object"
-                            string="Rejected"
+                            string="Reject"
                             groups="openeducat_core.group_op_back_office_admin" />
-                        <field name="state" widget="statusbar" statusbar_visible="draft,request,accept,reject"
-                            statusbar_colors='{"reject":"red"}' />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,request,accept,reject" />
                     </header>
                     <sheet>
                         <group col="4">

@@ -22,6 +22,8 @@
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
+from ..models import book_unit
+
 
 class IssueBook(models.TransientModel):
 
@@ -41,16 +43,22 @@ class IssueBook(models.TransientModel):
     issued_date = fields.Date('Issued Date', required=True)
     return_date = fields.Date('Return Date', required=True)
     state = fields.Selection(
-        [('i', 'Issued'), ('a', 'Available'),
-         ('l', 'Lost'), ('r', 'Reserved')],
-        'Status', default='i')
+        [('issue', 'Issued'), ('available', 'Available'),
+         ('lost', 'Lost'), ('reserve', 'Reserved')],
+        'Status', default='available')
+
+    @api.onchange('library_card_id')
+    def onchange_library_card_id(self):
+        self.type = self.library_card_id.type
+        self.student_id = self.library_card_id.student_id.id
+        self.faculty_id = self.library_card_id.faculty_id.id
 
     @api.one
     def check_issue(self, student_id, library_card_id):
         book_movement_search = self.env["op.book.movement"].search(
             [('library_card_id', '=', library_card_id),
              ('student_id', '=', student_id),
-             ('state', '=', 'i')])
+             ('state', '=', 'issue')])
         if len(book_movement_search) < self.env["op.library.card"].browse(
                 library_card_id).allow_book:
             return True
@@ -62,12 +70,13 @@ class IssueBook(models.TransientModel):
         value = {}
         total_book = 0
         for movement in self.book_unit_id.movement_lines:
-            if movement.state == 'i':
+            if movement.state == 'issue':
                 total_book += movement.quantity
         if self.book_id.number_book > 0 and \
                 self.book_id.number_book - total_book > 0:
             if self.check_issue(self.student_id.id, self.library_card_id.id):
-                if self.book_unit_id.state and self.book_unit_id.state == 'a':
+                if self.book_unit_id.state and \
+                        self.book_unit_id.state == 'available':
                     book_movement_create = {
                         'book_id': self.book_id.id,
                         'book_unit_id': self.book_unit_id.id,
@@ -78,20 +87,17 @@ class IssueBook(models.TransientModel):
                         'library_card_id': self.library_card_id.id,
                         'issued_date': self.issued_date,
                         'return_date': self.return_date,
-                        'state': 'i',
+                        'state': 'issue',
                     }
                     self.env['op.book.movement'].create(book_movement_create)
-                    self.book_unit_id.state = 'i'
+                    self.book_unit_id.state = 'issue'
                     value = {'type': 'ir.actions.act_window_close'}
                 else:
-                    book_state = self.book_unit_id.state == 'i' and 'Issued' \
-                        or self.book_unit_id.state == 'a' and 'Available' \
-                        or self.book_unit_id.state == 'l' and 'Lost' \
-                        or self.book_unit_id.state == 'r' and 'Reserved'
                     raise Warning(_('Error!'), _(
                         'Book Unit can not be issued because \
                         book state is : %s') %
-                        (book_state))
+                        (dict(book_unit.unit_states).get(
+                            self.book_unit_id.state)))
             else:
                 raise Warning(_('Error!'), _(
                     'Maximum Number of book allowed for %s is : %s') %

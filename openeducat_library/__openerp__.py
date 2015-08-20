@@ -57,6 +57,8 @@
         'menus/student_menu.xml'
     ],
     'demo': [
+        'demo/res.users.csv',
+        'demo/res.groups.csv',
         'demo/op.tag.csv',
         'demo/op.book.csv',
         'demo/op.author.csv',

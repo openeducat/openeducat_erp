@@ -22,6 +22,8 @@
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
+from ..models import book_unit
+
 
 class ReturnBook(models.TransientModel):
 
@@ -38,24 +40,20 @@ class ReturnBook(models.TransientModel):
     @api.one
     def do_return(self):
         book_movement = self.env['op.book.movement']
-        if self.book_unit_id.state and self.book_unit_id.state == 'i':
+        if self.book_unit_id.state and self.book_unit_id.state == 'issue':
             book_move_search = book_movement.search(
                 [('book_unit_id', '=', self.book_unit_id.id),
-                 ('state', '=', 'i')])
+                 ('state', '=', 'issue')])
             if not book_move_search:
                 return {'type': 'ir.actions.act_window_close'}
             book_move_search.actual_return_date = self.actual_return_date
             book_move_search.calculate_penalty()
-            book_move_search.state = 'a'
-            self.book_unit_id.state = 'a'
+            book_move_search.state = 'available'
+            self.book_unit_id.state = 'available'
         else:
-            book_unit_state = self.book_unit_id.state == 'i' and 'Issued' or \
-                self.book_unit_id.state == 'a' and 'Available' or \
-                self.book_unit_id.state == 'l' and 'Lost' or \
-                self.book_unit_id.state == 'r' and 'Reserved'
             raise Warning(_('Error!'), _(
                 'Book Unit can not be returned because state is : %s') %
-                (book_unit_state))
+                (dict(book_unit.unit_states).get(self.book_unit_id.state)))
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

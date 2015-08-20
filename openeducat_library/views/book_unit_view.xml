@@ -23,11 +23,12 @@
                     <header groups="base.group_user">
                         <button name="%(issue_book_act)d" string="Issue Book"
                             type="action" context="{'default_book_id': book_id, 'default_book_unit_id': active_id}"
-                            attrs="{'invisible':[('state','!=','a')]}" />
+                            attrs="{'invisible':[('state','!=','available')]}" class="oe_highlight"/>
                         <button name="%(return_book_act)d" string="Return Book"
                             type="action" context="{'default_book_id': book_id, 'default_book_unit_id': active_id}"
-                            attrs="{'invisible':[('state','!=','i')]}" groups="openeducat_library.group_op_library" />
-                        <field name="state" widget="statusbar" statusbar_visible="a,i,r,l"
+                            attrs="{'invisible':[('state','!=','issue')]}"
+                            class="oe_highlight" groups="openeducat_library.group_op_library" />
+                        <field name="state" widget="statusbar" statusbar_visible="available,issue,reserve,lost"
                             statusbar_colors='{"r":"red"}' />
                     </header>
                     <sheet>

@@ -67,17 +67,16 @@
                                         <field name="date_to" />
                                         <field name="state" />
                                         <button name="do_accept" string="Accept" type="object"
-                                            states="request" groups="openeducat_library.group_op_library" />
+                                            states="request" icon="gtk-go-forward" groups="openeducat_library.group_op_library" />
                                         <button name="do_reject" string="Reject" type="object"
-                                            states="request,accept"
+                                            states="request,accept" icon="terp-dialog-close"
                                             groups="openeducat_library.group_op_library" />
                                         <button name="do_request_again" string="Request Again"
-                                            states="reject" type="object"
+                                            states="reject" type="object" icon="STOCK_GO_BACK"
                                             groups="openeducat_library.group_op_library" />
                                     </tree>
                                 </field>
                             </page>
-
                         </notebook>
                     </sheet>
                 </form>
@@ -107,7 +106,7 @@
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_op_book_view">
-            <field name="name">Book</field>
+            <field name="name">Books</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.book</field>
             <field name="view_type">form</field>

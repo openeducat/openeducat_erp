@@ -38,8 +38,8 @@ class ReturnDate(models.TransientModel):
         book_movement.write(
             {'actual_return_date': self.actual_return_date})
         book_movement.calculate_penalty()
-        book_movement.state = 'a'
-        book_movement.book_unit_id.state = 'a'
+        book_movement.state = 'available'
+        book_movement.book_unit_id.state = 'available'
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
