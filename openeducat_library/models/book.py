@@ -40,7 +40,7 @@ class OpBook(models.Model):
     subject_ids = fields.Many2many(
         'op.subject', string='Subjects', required=True)
     internal_code = fields.Char('Internal Code', size=64)
-    queue_ids = fields.Many2many('op.book.queue', string='Book Queue')
+    queue_ids = fields.One2many('op.book.queue', 'book_id', 'Book Queue')
     unit_ids = fields.One2many('op.book.unit', 'book_id', 'Units')
 
 
