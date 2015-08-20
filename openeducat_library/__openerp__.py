@@ -20,53 +20,48 @@
 ###############################################################################
 
 {
-    'name': 'OpenEduCat Core',
-    'version': '1.2.0',
+    'name': 'OpenEduCat Library',
+    'version': '2.0.0',
     'category': 'Openerp Education',
-    "sequence": 3,
-    'summary': 'Manage Students, Faculties and Education Institute',
+    'summary': 'Manage Library',
     'complexity': "easy",
     'description': """
-        This module provide core education management system over OpenERP
-        Features includes managing
-            * Student
-            * Faculty
-            * Course
-            * Batch
+        This module provide feature of Library Management.
 
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['document', 'hr', 'web', 'website'],
+    'depends': ['openeducat_core'],
     'data': [
-        'security/op_security.xml',
+        'security/library_security.xml',
         'security/ir.model.access.csv',
+        'wizards/issue_book_view.xml',
+        'wizards/return_book_view.xml',
+        'wizards/returndate_view.xml',
+        'wizards/reserve_book_view.xml',
+        'views/book_view.xml',
+        'views/book_unit_view.xml',
+        'views/book_movement_view.xml',
+        'views/book_purchase_view.xml',
+        'views/book_queue_view.xml',
+        'views/library_view.xml',
+        'views/author_view.xml',
+        'views/publisher_view.xml',
+        'views/tag_view.xml',
         'views/student_view.xml',
-        'views/course_view.xml',
-        'views/batch_view.xml',
-        'views/subject_view.xml',
-        'views/roll_number_view.xml',
         'views/faculty_view.xml',
-        'views/res_company_view.xml',
-        'views/openeducat_template.xml',
-        'views/homepage_template.xml',
-        'menu/openeducat_core_menu.xml',
-        'menu/student_menu.xml',
-        'menu/faculty_menu.xml'
+        'book_queue_sequence.xml',
+        'menus/library_menu.xml',
+        'menus/openeducat_menu.xml',
+        'menus/faculty_menu.xml',
+        'menus/student_menu.xml'
     ],
     'demo': [
-        'demo/op.course.csv',
-        'demo/op.batch.csv',
-        'demo/res.users.csv',
-        'demo/op.student.csv',
-        'demo/op.faculty.csv',
-        'demo/op.subject.csv',
-        'demo/res.groups.csv'
+        'demo/op.tag.csv',
+        'demo/op.book.csv',
+        'demo/op.author.csv',
+        'demo/op.book.queue.csv',
     ],
-    'css': ['static/src/css/base.css'],
-    'qweb': [
-        'static/src/xml/base.xml'],
-    'js': ['static/src/js/chrome.js'],
     'installable': True,
     'auto_install': False,
     'application': True,
