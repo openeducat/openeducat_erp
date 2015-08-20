@@ -21,6 +21,9 @@
 
 from openerp import models, fields
 
+unit_states = [('available', 'Available'), ('issue', 'Issued'),
+               ('reserve', 'Reserved'), ('lost', 'Lost')]
+
 
 class OpBookUnit(models.Model):
     _name = 'op.book.unit'
@@ -34,8 +37,7 @@ class OpBookUnit(models.Model):
     movement_lines = fields.One2many(
         'op.book.movement', 'book_unit_id', 'Movement')
     state = fields.Selection(
-        [('a', 'Available'), ('i', 'Issued'), ('r', 'Reserved'),
-         ('l', 'Lost')], 'State', default='a', track_visibility='onchange')
+        unit_states, 'State', default='available', track_visibility='onchange')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -29,12 +29,12 @@
                 <form string="Book Movement">
                     <header groups="base.group_user">
                         <button name="issue_book" string="Issue Book" type="object"
-                            attrs="{'invisible':[('state','not in',('a','r'))]}" />
+                            attrs="{'invisible':[('state','not in',('available','reserve'))]}" />
                         <button name="return_book" string="Return Book" type="object"
-                            attrs="{'invisible':[('state','!=','i')]}" />
+                            attrs="{'invisible':[('state','!=','issue')]}" />
                         <button name="do_book_reservation" string="Reserve Book"
                             type="object" />
-                        <field name="state" widget="statusbar" statusbar_visible="a,i" />
+                        <field name="state" widget="statusbar" statusbar_visible="available,issue" />
                     </header>
                     <sheet>
                         <group col="4">
