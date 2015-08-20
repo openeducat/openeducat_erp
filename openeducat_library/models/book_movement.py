@@ -70,6 +70,12 @@ class OpBookMovement(models.Model):
     def onchange_book_unit_id(self):
         self.state = self.book_unit_id.state
 
+    @api.onchange('library_card_id')
+    def onchange_library_card_id(self):
+        self.type = self.library_card_id.type
+        self.student_id = self.library_card_id.student_id.id
+        self.faculty_id = self.library_card_id.faculty_id.id
+
     @api.one
     def issue_book(self):
         ''' function to issue book '''
