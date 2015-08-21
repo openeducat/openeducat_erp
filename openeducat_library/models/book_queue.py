@@ -26,7 +26,7 @@ from openerp.exceptions import ValidationError
 class OpBookQueue(models.Model):
     _name = 'op.book.queue'
     _inherit = 'mail.thread'
-    _rec_name = 'partner_id'
+    _rec_name = 'user_id'
     _description = """ Book Queue Request """
 
     name = fields.Char("Sequence No", readonly=True, copy=False, default='/')
@@ -41,6 +41,10 @@ class OpBookQueue(models.Model):
         [('request', 'Request'), ('accept', 'Accepted'),
          ('reject', 'Rejected')],
         'Status', copy=False, default='request', track_visibility='onchange')
+
+    @api.onchange('user_id')
+    def onchange_user(self):
+        self.partner_id = self.user_id.partner_id.id
 
     @api.constrains('date_from', 'date_to')
     def _check_date(self):

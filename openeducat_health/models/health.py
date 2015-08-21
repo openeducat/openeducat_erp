@@ -24,6 +24,7 @@ from openerp import models, fields
 
 class OpHealth(models.Model):
     _name = 'op.health'
+    _rec_name = 'student_id'
     _description = """ Health Detail for Students and Faculties """
 
     student_id = fields.Many2one('op.student', 'Student')
