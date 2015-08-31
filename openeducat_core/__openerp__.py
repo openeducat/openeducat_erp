@@ -42,6 +42,7 @@
         'security/op_security.xml',
         'security/ir.model.access.csv',
         'views/student_view.xml',
+        'views/hr_view.xml',
         'views/course_view.xml',
         'views/batch_view.xml',
         'views/subject_view.xml',

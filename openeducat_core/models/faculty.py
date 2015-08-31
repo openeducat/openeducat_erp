@@ -19,8 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp import models, fields, api
 
 
 class OpFaculty(models.Model):
@@ -61,39 +60,6 @@ class OpFaculty(models.Model):
         }
         emp_id = self.env['hr.employee'].create(vals)
         self.write({'emp_id': emp_id.id})
-
-
-class HrEmployee(models.Model):
-    _inherit = 'hr.employee'
-
-    @api.onchange('user_id')
-    def onchange_user(self):
-        if self.user_id:
-            self.user_id.partner_id.supplier = True
-            self.address_home_id = self.user_id.partner_id.id
-            self.work_email = self.user_id.email
-            self.identification_id = False
-            return {'domain':
-                    {'address_id': [('id', '=', self.user_id.partner_id.id)]}}
-
-    @api.onchange('address_id')
-    def onchange_address_id(self):
-        if self.address_home_id and self.address_id and \
-                self.address_home_id != self.address_id:
-            raise Warning(_('Configuration Error!'), _(
-                'Home Address and working address should be same!'))
-        if self.address_id:
-            self.work_phone = self.address_id.phone
-            self.mobile_phone = self.address_id.mobile
-
-    @api.onchange('address_home_id')
-    def onchange_address_home_id(self):
-        if self.address_home_id and self.address_id and \
-                self.address_home_id != self.address_id:
-            raise Warning(_('Configuration Error!'), _(
-                'Home Address and working address should be same!'))
-        if self.address_home_id:
-            self.address_home_id.write({'supplier': True, 'employee': True})
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
