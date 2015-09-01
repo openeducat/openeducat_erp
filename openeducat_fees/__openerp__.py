@@ -23,6 +23,7 @@
     'name': 'OpenEduCat Fees',
     'version': '1.0',
     'category': 'Openerp Education',
+    "sequence": 3,
     'summary': 'Manage Fees',
     'complexity': "easy",
     'description': """

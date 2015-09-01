@@ -25,7 +25,7 @@ from openerp import models, fields
 class OpParent(models.Model):
     _name = 'op.parent'
 
-    name = fields.Many2one('res.partner', 'Parent Name', required=True)
+    name = fields.Many2one('res.partner', 'Name', required=True)
     student_ids = fields.Many2many('op.student', string='Select Student')
     user_id = fields.Many2one('res.users', 'User', required=True)
 

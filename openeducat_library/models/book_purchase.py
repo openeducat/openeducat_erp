@@ -43,8 +43,8 @@ class OpBookPurchase(models.Model):
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     librarian_id = fields.Many2one('res.partner', 'Librarian')
     state = fields.Selection(
-        [('draft', 'Draft'), ('request', 'Requested'), ('accept', 'Accepted'),
-         ('reject', 'Rejected')], 'State', select=True, readonly=True,
+        [('draft', 'Draft'), ('request', 'Requested'), ('reject', 'Rejected'),
+         ('accept', 'Accepted')], 'State', select=True, readonly=True,
         default='draft', track_visibility='onchange')
 
     @api.one

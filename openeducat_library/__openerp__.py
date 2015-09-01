@@ -23,6 +23,7 @@
     'name': 'OpenEduCat Library',
     'version': '2.0.0',
     'category': 'Openerp Education',
+    "sequence": 3,
     'summary': 'Manage Library',
     'complexity': "easy",
     'description': """

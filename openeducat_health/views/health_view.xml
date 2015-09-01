@@ -8,7 +8,18 @@
             <field name="arch" type="xml">
                 <xpath expr="//notebook/page[@string='Educational']" position="after">
                     <page string="Health Detail">
-                        <field name="health_lines" colspan="4" nolabel="1" />
+                        <field name="health_lines" colspan="4" nolabel="1">
+                            <tree>
+                                <field name="student_id" />
+                                <field name="blood_group" />
+                                <field name="height" />
+                                <field name="weight" />
+                                <field name="eyeglasses" />
+                                <field name="physical_challenges" />
+                                <field name="major_diseases" />
+                                <field name="regular_checkup" />
+                            </tree>
+                        </field>
                     </page>
                 </xpath>
             </field>
@@ -21,7 +32,18 @@
             <field name="arch" type="xml">
                 <xpath expr="//notebook/page[@string='Subjects']" position="after">
                     <page string="Health Detail">
-                        <field name="health_faculty_lines" colspan="4" nolabel="1" />
+                        <field name="health_faculty_lines" colspan="4" nolabel="1">
+                            <tree>
+                                <field name="faculty_id" />
+                                <field name="blood_group" />
+                                <field name="height" />
+                                <field name="weight" />
+                                <field name="eyeglasses" />
+                                <field name="physical_challenges" />
+                                <field name="major_diseases" />
+                                <field name="regular_checkup" />
+                            </tree>
+                        </field>
                     </page>
                 </xpath>
             </field>
@@ -33,6 +55,7 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Health">
+                    <field name="type" />
                     <field name="student_id" />
                     <field name="faculty_id" />
                     <field name="blood_group" />
@@ -54,10 +77,11 @@
                 <form string="Health">
                     <sheet>
                         <div class="oe_title">
-                            <h1>
-                                <field name="student_id" placeholder="Student Name" style="width: 100%%" />
-                                <field name="faculty_id" placeholder="Faculty Name" style="width: 100%%" />
-                            </h1>
+                            <group>
+                                <field name="type" />
+                                <field name="student_id" style="width: 100%%" attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"/>
+                                <field name="faculty_id" style="width: 100%%" attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                            </group>
                         </div>
                         <group colspan="4" col="6">
                             <field name="height" />

@@ -25,6 +25,7 @@ from openerp import models, fields
 class OpResultExamLine(models.Model):
     _name = 'op.result.exam.line'
     _description = 'Result Exam Line'
+    _rec_name = "exam_id"
 
     result_id = fields.Many2one('op.result.template.line', 'Session Template')
     exam_id = fields.Many2one('op.exam', 'Exam')

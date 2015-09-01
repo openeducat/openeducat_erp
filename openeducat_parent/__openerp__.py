@@ -39,6 +39,7 @@
         'security/ir.model.access.csv'
     ],
     'demo': [
+        'demo/res.groups.csv',
         'demo/res.users.csv'
     ],
     'installable': True,

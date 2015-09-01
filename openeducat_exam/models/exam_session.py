@@ -31,14 +31,14 @@ class OpExamSession(models.Model):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     exam_code = fields.Char('Exam Code', size=8, required=True)
-    start_time = fields.Datetime('Start Time', required=True)
-    end_time = fields.Datetime('End Time', required=True)
+    start_date = fields.Date('Start Date', required=True)
+    end_date = fields.Date('End Date', required=True)
     room_id = fields.Many2one('op.exam.room', 'Room', required=True)
     exam_ids = fields.One2many('op.exam', 'session_id', 'Exams')
 
-    @api.constrains('start_time', 'end_time')
+    @api.constrains('start_date', 'end_date')
     def _check_date_time(self):
-        if self.start_time > self.end_time:
+        if self.start_date > self.end_date:
             raise ValidationError(
                 _('Start Time Should be greater than End Time.'))
 

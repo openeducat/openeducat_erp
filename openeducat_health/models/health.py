@@ -27,6 +27,9 @@ class OpHealth(models.Model):
     _rec_name = 'student_id'
     _description = """ Health Detail for Students and Faculties """
 
+    type = fields.Selection(
+        [('student', 'Student'), ('faculty', 'Faculty')],
+        'Type', default='student', required=True)
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     height = fields.Float('Height(C.M.)', required=True)

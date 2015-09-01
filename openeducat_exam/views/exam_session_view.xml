@@ -9,8 +9,8 @@
                 <tree string="exam Session">
                     <field name="name" />
                     <field name="exam_code" />
-                    <field name="start_time" />
-                    <field name="end_time" />
+                    <field name="start_date" />
+                    <field name="end_date" />
                     <field name="course_id" />
                     <field name="batch_id" />
                 </tree>
@@ -26,11 +26,13 @@
                         <group col="4" colspan="4">
                             <field name="name" select="1" />
                             <field name="exam_code" />
-                            <field name="start_time" />
-                            <field name="end_time" />
+                            <field name="start_date" />
+                            <field name="end_date" />
                             <field name="course_id" />
                             <field name="batch_id" domain="[('course_id', '=', course_id)]" />
                             <field name="room_id" />
+                        </group>
+                        <group string="Exams">
                             <field name="exam_ids" colspan="4" nolabel="1">
                                 <tree string="Exam">
                                     <field name="name" />
@@ -58,15 +60,15 @@
                 <search string="exam Session">
                     <field name="name" select="True" />
                     <field name="exam_code" select="True" />
-                    <field name="start_time" select="True" />
-                    <field name="end_time" select="True" />
+                    <field name="start_date" select="True" />
+                    <field name="end_date" select="True" />
                     <field name="course_id" select="True" />
                     <field name="batch_id" select="True" />
                 </search>
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_op_exam_session_view">
-            <field name="name">Exam Session</field>
+            <field name="name">Exam Sessions</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.exam.session</field>
             <field name="view_type">form</field>

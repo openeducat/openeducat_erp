@@ -25,7 +25,7 @@ from openerp import models, fields
 class OpFaculty(models.Model):
     _inherit = 'op.faculty'
 
-    category = fields.Many2one('op.category', 'Category', required=True)
+    category = fields.Many2one('op.category', 'Category')
     religion = fields.Many2one('op.religion', 'Religion')
     pan_card = fields.Char('PAN Card', size=16)
 
