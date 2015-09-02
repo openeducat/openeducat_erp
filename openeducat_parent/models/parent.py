@@ -26,7 +26,7 @@ class OpParent(models.Model):
     _name = 'op.parent'
 
     name = fields.Many2one('res.partner', 'Name', required=True)
-    student_ids = fields.Many2many('op.student', string='Select Student')
+    student_ids = fields.Many2many('op.student', string='Student(s)')
     user_id = fields.Many2one('res.users', 'User', required=True)
 
 
