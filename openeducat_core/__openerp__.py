@@ -56,6 +56,7 @@
         'menu/faculty_menu.xml'
     ],
     'demo': [
+        'demo/op_company_data.xml',
         'demo/op.course.csv',
         'demo/op.batch.csv',
         'demo/res.users.csv',

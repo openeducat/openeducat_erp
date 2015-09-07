@@ -30,7 +30,8 @@ class OpSubject(models.Model):
     course_id = fields.Many2one('op.course', 'Course')
     grade_waitage = fields.Float('Grade Waitage')
     type = fields.Selection(
-        [('p', 'Practical'), ('t', 'Theory'), ('pt', 'Both'), ('o', 'Other')],
+        [('practical', 'Practical'), ('theory', 'Theory'),
+         ('both', 'Both'), ('other', 'Other')],
         'Type', required=True)
 
 
