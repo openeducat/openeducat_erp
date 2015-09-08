@@ -99,6 +99,9 @@ class OpAdmission(models.Model):
     student_id = fields.Many2one(
         'op.student', 'Student', states={'done': [('readonly', True)]})
     nbr = fields.Integer('# of Admission', readonly=True)
+    register_id = fields.Many2one(
+        'op.admission.register', 'Admission Register', required=True,
+        states={'done': [('readonly', True)]})
 
     @api.one
     def confirm_in_progress(self):
@@ -175,5 +178,6 @@ class OpAdmission(models.Model):
     def create_student_invoice(self):
         self.student_id.create_invoice()
         self.state = 'done'
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -33,6 +33,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_fees'],
     'data': [
+        'views/admission_register_view.xml',
         'views/admission_view.xml',
         'views/admission_sequence.xml',
         'report/report_menu.xml',
