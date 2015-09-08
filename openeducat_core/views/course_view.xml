@@ -27,6 +27,7 @@
                             <field name="code" />
                             <field name="section" />
                             <field name="evaluation_type" />
+                            <field name="parent_id" />
                         </group>
                         <group string="Subjects" name="subject">
                             <field name="subject_ids" nolabel="1"/>
@@ -45,10 +46,13 @@
                     <field name="code" />
 <!--                    <field name="section" /> -->
                     <field name="evaluation_type" />
+                    <field name="parent_id" />
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="Evaluation Type" domain="[]"
                             context="{'group_by':'evaluation_type'}" />
+                        <filter string="Parent Course" domain="[]"
+                            context="{'group_by':'parent_id'}" />
                     </group>
                 </search>
             </field>

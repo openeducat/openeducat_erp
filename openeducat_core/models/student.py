@@ -26,11 +26,17 @@ class OpStudent(models.Model):
     _name = 'op.student'
     _inherits = {'res.partner': 'partner_id'}
 
-    @api.depends('roll_number_line', 'roll_number_line.roll_number',
-                 'roll_number_line.student_id')
+    @api.multi
+    @api.depends('roll_number_line', 'batch_id', 'course_id')
     def _get_curr_roll_number(self):
         # TO_DO:: Improve the logic by adding sequence field in course.
-        self.roll_number = 0
+        if self.roll_number_line:
+            for roll_no in self.roll_number_line:
+                if roll_no.course_id == self.course_id and \
+                        roll_no.batch_id == self.batch_id:
+                    self.roll_number = roll_no.roll_number
+        else:
+            self.roll_number = 0
 
     middle_name = fields.Char('Middle Name', size=128, required=True)
     last_name = fields.Char('Last Name', size=128, required=True)
