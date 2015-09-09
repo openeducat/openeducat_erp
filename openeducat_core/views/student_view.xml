@@ -82,10 +82,8 @@
                 <form string="Student">
                     <sheet>
                         <field name="photo" widget="image" class="oe_left oe_avatar" />
-                        <div class="oe_title">
-                            <h1>
-                                <field name="title" placeholder="Title" style="width: 30%%" />
-                            </h1>
+                        <div name="title_name" class="oe_title">
+                            <h3><field name="title" placeholder="Title" style="width: 30%%" /></h3>
                             <h1><table>
                                 <tr>
                                 <td><field name="name" placeholder="First Name" style="padding-right:10px" /></td>
@@ -95,14 +93,11 @@
                                 </table>
                             </h1>
                         </div>
-                        <group col="6" colspan="4">
-                            <field name="gender" />
-                            <field name="birth_date" />
-                            <field name="roll_number" />
-                        </group>
                         <notebook colspan="4">
                             <page string="Personal Information">
                                 <group col="4" colspan="4" name="personal_detail">
+                                    <field name="gender" />
+                                    <field name="birth_date" />
                                     <field name="nationality" />
                                     <field name="visa_info" />
                                     <field name="lang" />
@@ -136,6 +131,7 @@
                                     <field name="course_id" />
                                     <field name="batch_id" />
                                     <field name="gr_no" />
+                                    <field name="roll_number" />
                                     <separator colspan="4" string="Assigned Roll Numbers" />
                                     <field name="roll_number_line" colspan="4" nolabel="1"
                                         context="{'default_course_id':course_id,

@@ -32,10 +32,12 @@ class OpRollNumber(models.Model):
     student_id = fields.Many2one('op.student', 'Student', required=True)
 
     _sql_constraints = [
-        ('unique_name_roll_number_id', 'unique(roll_number,course_id,batch_id,student_id)',
-            'The roll number must be unique'),
-        ('unique_name_roll_number_course_id', 'unique(roll_number,course_id,batch_id)',
-            'The roll number must be unique per course'),
+        ('unique_name_roll_number_id',
+         'unique(roll_number,course_id,batch_id,student_id)',
+         'The roll number must be unique'),
+        ('unique_name_roll_number_course_id',
+         'unique(roll_number,course_id,batch_id)',
+         'The roll number must be unique per course'),
     ]
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
