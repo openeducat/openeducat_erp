@@ -28,23 +28,25 @@
             <field name="arch" type="xml">
                 <form string="Admission">
                     <header groups="base.group_user">
-                        <button name="confirm_in_progress" states="draft" type="object"
-                            string="Confirm" class="oe_highlight"/>
-                        <button name="confirm_selection" states="confirm" type="object"
-                            string="Enroll" class="oe_highlight"/>
-                        <button name="create_student_invoice" states="enroll,done" type="object"
-                            string="Create Invoice" class="oe_highlight"/>
-                        <button name="open_student" states="enroll,done" type="object"
-                            string="Open Student Profile"/>
-                        <button name="confirm_rejected" states="confirm,pending" string="Reject"
+                        <button name="confirm_in_progress" states="draft" string="Confirm"
+                            type="object" class="oe_highlight"/>
+                        <button name="create_invoice" states="confirm" string="Create Invoice"
+                            type="object" class="oe_highlight"/>
+                        <button name="payment_process" states="payment_process" string="Processed"
+                            type="object" class="oe_highlight"/>
+                        <button name="enroll_student" states="fees_paid,pending" string="Enroll"
+                            type="object" class="oe_highlight"/>
+                        <button name="confirm_rejected" states="payment_process,fees_paid,,pending" string="Reject"
                             type="object" />
-                        <button name="confirm_pending" states="confirm" string="Pending"
+                        <button name="confirm_pending" states="fees_paid" string="Pending"
                             type="object" />
                         <button name="confirm_cancel" states="draft,confirm" string="Cancel"
                             type="object" />
-                        <button name="confirm_to_draft" states="cancel,pending,reject" string="Set to Draft"
+                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft"
                             type="object" />
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,enroll,done" />
+                        <button name="open_student" states="done" string="Open Student Profile"
+                            type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,payment_process,fees_paid,enroll,done" />
                     </header>
                     <sheet>
                         <field name="photo" widget="image" class="oe_left oe_avatar" />
@@ -61,16 +63,10 @@
                                 </table>
                             </h1>
                         </div>
-                        <group col="8" colspan="4">
-                            <group col="6" colspan="4">
-                                <field name="gender" />
-                                <field name="birth_date" />
-                            </group>
-                        </group>
                         <notebook colspan="4">
                             <page string="Admission Detail">
                                 <group col="4" colspan="4">
-                                    <field name="register_id" />
+                                    <field name="register_id" domain="[('state', '=', 'application')]"/>
                                     <field name="application_number" />
                                     <field name="application_date" />
                                     <field name="admission_date" />
@@ -82,12 +78,16 @@
                             </page>
                             <page string="Educational Detail">
                                 <group col="4" colspan="4">
-                                    <field name="prev_institute" />
-                                    <field name="prev_course" />
+                                    <field name="prev_institute_id" />
+                                    <field name="prev_course_id" />
                                     <field name="prev_result" />
                                 </group>
                             </page>
                             <page string="Personal Detail">
+                                <group col="4" colspan="4">
+                                    <field name="gender" />
+                                    <field name="birth_date" />
+                                </group>
                                 <label for="street" string="Address" />
                                 <div>
                                     <field name="street" placeholder="Street..." />
@@ -137,8 +137,6 @@
                     <group expand="0" string="Group By...">
                         <filter string="Last Name" domain="[]"
                             context="{'group_by':'last_name'}" />
-                        <filter string="Application Number" domain="[]"
-                            context="{'group_by':'application_number'}" />
                         <filter string="Admission Date" domain="[]"
                             context="{'group_by':'admission_date'}" />
                         <filter string="Application Date" domain="[]"

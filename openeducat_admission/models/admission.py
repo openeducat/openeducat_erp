@@ -19,7 +19,9 @@
 #
 ##############################################################################
 
+from datetime import datetime
 from openerp import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class OpAdmission(models.Model):
@@ -44,9 +46,8 @@ class OpAdmission(models.Model):
         states={'done': [('readonly', True)]},
         default=lambda self: self.env['ir.sequence'].get('op.admission'))
     admission_date = fields.Date(
-        'Admission Date', required=True, copy=False,
-        states={'done': [('readonly', True)]},
-        default=lambda self: fields.Date.today())
+        'Admission Date', copy=False,
+        states={'done': [('readonly', True)]})
     application_date = fields.Datetime(
         'Application Date', required=True, copy=False,
         states={'done': [('readonly', True)]},
@@ -78,15 +79,18 @@ class OpAdmission(models.Model):
     fees = fields.Float('Fees', states={'done': [('readonly', True)]})
     photo = fields.Binary('Photo', states={'done': [('readonly', True)]})
     state = fields.Selection(
-        [('draft', 'Draft'), ('confirm', 'Confirmed'), ('enroll', 'Enrolled'),
-         ('done', 'Done'), ('reject', 'Rejected'), ('pending', 'Pending'),
-         ('cancel', 'Cancelled')], 'State', readonly=True, select=True,
+        [('draft', 'Draft'), ('confirm', 'Confirmed'),
+         ('payment_process', 'Payment Process'), ('fees_paid', 'Fees Paid'),
+         ('enroll', 'Enrolled'), ('reject', 'Rejected'),
+         ('pending', 'Pending'), ('cancel', 'Cancelled'), ('done', 'Done')],
+        'State', readonly=True, select=True,
         default='draft', track_visibility='onchange')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
-    prev_institute = fields.Char(
-        'Previous Institute', size=256, states={'done': [('readonly', True)]})
-    prev_course = fields.Char(
-        'Previous Course', size=256, states={'done': [('readonly', True)]})
+    prev_institute_id = fields.Many2one(
+        'res.partner', 'Previous Institute',
+        states={'done': [('readonly', True)]})
+    prev_course_id = fields.Many2one(
+        'op.course', 'Previous Course', states={'done': [('readonly', True)]})
     prev_result = fields.Char(
         'Previous Result', size=256, states={'done': [('readonly', True)]})
     family_business = fields.Char(
@@ -102,10 +106,29 @@ class OpAdmission(models.Model):
     register_id = fields.Many2one(
         'op.admission.register', 'Admission Register', required=True,
         states={'done': [('readonly', True)]})
+    partner_id = fields.Many2one('res.partner', 'Partner')
+
+    @api.onchange('register_id')
+    def onchange_register(self):
+        self.course_id = self.register_id.course_id
+        self.fees = self.register_id.product_id.lst_price
+
+    @api.one
+    @api.constrains('register_id')
+    def _check_admission_register(self):
+        start_date = datetime.strptime(self.register_id.start_date, "%Y-%m-%d")
+        if datetime.today() < start_date:
+            raise ValidationError("Check Admission Register Start Date")
+
+        end_date = datetime.strptime(self.register_id.end_date, "%Y-%m-%d")
+        if datetime.today() > end_date:
+            raise ValidationError("Check Admission Register End Date")
 
     @api.one
     def confirm_in_progress(self):
         self.state = 'confirm'
+        if self.partner_id:
+            self.state = 'payment_process'
 
     @api.multi
     def get_student_vals(self):
@@ -130,12 +153,22 @@ class OpAdmission(models.Model):
         }
 
     @api.one
-    def confirm_selection(self):
+    def enroll_student(self):
+        total_admission = self.env['op.admission'].search_count(
+            [('register_id', '=', self.register_id.id),
+             ('state', '=', 'enroll')])
+        if self.register_id.max_count:
+            if not total_admission < self.register_id.max_count:
+                msg = 'Max Admission In Admission Register :- (%s)' % (
+                    self.register_id.max_count)
+                raise ValidationError(msg)
+
         vals = self.get_student_vals()
+        vals.update({'partner_id': self.partner_id.id})
         self.write({
-            'state': 'enroll',
+            'nbr': 1,
+            'state': 'done',
             'student_id': self.env['op.student'].create(vals).id,
-            'nbr': 1
         })
 
     @api.one
@@ -153,6 +186,10 @@ class OpAdmission(models.Model):
     @api.one
     def confirm_cancel(self):
         self.state = 'cancel'
+
+    @api.one
+    def payment_process(self):
+        self.state = 'fees_paid'
 
     @api.multi
     def open_student(self):
@@ -174,10 +211,63 @@ class OpAdmission(models.Model):
         self.state = 'done'
         return value
 
-    @api.one
-    def create_student_invoice(self):
-        self.student_id.create_invoice()
-        self.state = 'done'
+    @api.multi
+    def create_invoice(self):
+        """ Create invoice for fee payment process of student """
+
+        invoice_pool = self.env['account.invoice']
+        invoice_line_pool = self.env['account.invoice.line']
+
+        partner_id = self.env['res.partner'].create({'name': self.name})
+
+        invoice_fields = invoice_pool.fields_get(self)
+        invoice_default = invoice_pool.default_get(invoice_fields)
+
+        line_fields = invoice_line_pool.fields_get(self)
+        invoice_line_default = invoice_line_pool.default_get(line_fields)
+
+        type = 'out_invoice'
+        onchange_partner = invoice_pool.onchange_partner_id(
+            type, partner_id.id)
+        invoice_default.update(onchange_partner['value'])
+
+        invoice_data = {
+            'partner_id': partner_id.id,
+            'date_invoice': fields.Date.today(),
+            'payment_term': self.course_id.payment_term and
+            self.course_id.payment_term.id or False,
+        }
+        invoice_default.update(invoice_data)
+        invoice_id = invoice_pool.create(invoice_default).id
+
+        onchange_producat = invoice_line_pool.product_id_change(
+            self.register_id.product_id.id, False, 0, '', type, partner_id.id)
+        invoice_line_default.update(onchange_producat['value'])
+        line_data = {'product_id': self.register_id.product_id.id,
+                     'price_unit': self.fees,
+                     'invoice_id': invoice_id}
+        invoice_line_default.update(line_data)
+        invoice_line_id = invoice_line_pool.create(invoice_line_default).id
+
+        self.write({'invoice_ids': [(4, invoice_id)], 'invoice_exists': True})
+        form_view = self.env.ref('account.invoice_form')
+        tree_view = self.env.ref('account.invoice_tree')
+        value = {
+            'domain': str([('id', '=', invoice_id)]),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'account.invoice',
+            'view_id': False,
+            'views': [(form_view and form_view.id or False, 'form'),
+                      (tree_view and tree_view.id or False, 'tree')],
+            'type': 'ir.actions.act_window',
+            'res_id': invoice_id,
+            'target': 'current',
+            'nodestroy': True
+        }
+        self.partner_id = partner_id
+        self.state = 'payment_process'
+        return value
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

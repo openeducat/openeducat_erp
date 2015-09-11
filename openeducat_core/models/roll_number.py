@@ -38,6 +38,9 @@ class OpRollNumber(models.Model):
         ('unique_name_roll_number_course_id',
          'unique(roll_number,course_id,batch_id)',
          'The roll number must be unique per course'),
+        ('unique_name_roll_number_student_id',
+         'unique(student_id,course_id,batch_id)',
+         'The student must be unique'),
     ]
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

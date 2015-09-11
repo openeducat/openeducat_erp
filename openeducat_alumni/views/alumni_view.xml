@@ -6,8 +6,8 @@
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='roll_number']" position="after">
-                    <field name="alumni_boolean" />
+                <xpath expr="//div/h3" position="before">
+                    <field name="alumni_boolean" /> <label for="alumni_boolean" string="Is a Alumni?"/>
                 </xpath>
                 <xpath expr="//notebook/page[@string='Educational']" position="after">
                     <page string="Alumni Details" attrs="{'invisible':[('alumni_boolean','=',False)]}">
