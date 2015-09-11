@@ -247,7 +247,7 @@ class OpAdmission(models.Model):
                      'price_unit': self.fees,
                      'invoice_id': invoice_id}
         invoice_line_default.update(line_data)
-        invoice_line_id = invoice_line_pool.create(invoice_line_default).id
+        invoice_line_pool.create(invoice_line_default).id
 
         self.write({'invoice_ids': [(4, invoice_id)], 'invoice_exists': True})
         form_view = self.env.ref('account.invoice_form')

@@ -40,6 +40,8 @@
         'assignment_menu.xml'
     ],
     'demo': [
+        'security/ir.model.access.csv',
+        'demo/op.assignment.type.csv',
         'demo/op.assignment.csv',
         'demo/op.assignment.sub.line.csv'
     ],

@@ -14,7 +14,7 @@
                     <field name="faculty_id" />
                     <field name="reviewer" />
                     <field name="marks" />
-                    <field name="type" />
+                    <field name="assignment_type_id" />
                     <field name="state" />
                     <field name="issued_date" />
                     <field name="submission_date" />
@@ -48,7 +48,7 @@
                             <field name="batch_id" attrs="{'readonly':[('state','!=','draft')]}" />
                             <field name="subject_id" attrs="{'readonly':[('state','!=','draft')]}" />
                             <field name="faculty_id" attrs="{'readonly':[('state','!=','draft')]}" />
-                            <field name="type" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="assignment_type_id" attrs="{'readonly':[('state','!=','draft')]}" />
                             <field name="reviewer" attrs="{'readonly':[('state','!=','draft')]}" />
                         </group>
                         <notebook colspan="4">
@@ -107,7 +107,7 @@
                     <field name="faculty_id" />
                     <field name="marks" />
                     <field name="description" />
-                    <field name="type" />
+                    <field name="assignment_type_id" />
                     <field name="state" />
                     <field name="issued_date" />
                     <field name="submission_date" />
@@ -121,7 +121,7 @@
                         <filter string="Subject" domain="[]" context="{'group_by':'subject_id'}" />
                         <filter string="Faculty" domain="[]" context="{'group_by':'faculty_id'}" />
                         <filter string="Marks" domain="[]" context="{'group_by':'marks'}" />
-                        <filter string="Type" domain="[]" context="{'group_by':'type'}" />
+                        <filter string="Assignment Type" domain="[]" context="{'group_by':'assignment_type_id'}" />
                         <filter string="State" domain="[]" context="{'group_by':'state'}" />
                         <filter string="Issued Date" domain="[]"
                             context="{'group_by':'issued_date'}" />

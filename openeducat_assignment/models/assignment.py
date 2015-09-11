@@ -31,9 +31,10 @@ class OpAssignment(models.Model):
     batch_id = fields.Many2one('op.batch', 'Batch')
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
+    assignment_type_id = fields.Many2one(
+        'op.assignment.type', 'Assignment Type', required=True)
     marks = fields.Float('Marks', track_visibility='onchange')
     description = fields.Text('Description', required=True)
-    type = fields.Char('Type')
     state = fields.Selection(
         [('draft', 'Draft'), ('publish', 'Published'),
          ('finish', 'Finished')], 'State', required=True, default='draft',
