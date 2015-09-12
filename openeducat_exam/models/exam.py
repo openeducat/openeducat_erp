@@ -46,8 +46,13 @@ class OpExam(models.Model):
     note = fields.Text('Note')
     responsible_id = fields.Many2many('op.faculty', string='Responsible')
     name = fields.Char('Exam', size=256, required=True)
-    total_marks = fields.Float('Total Marks')
-    min_marks = fields.Float('Passing Marks')
+    total_marks = fields.Float('Total Marks', required=True)
+    min_marks = fields.Float('Passing Marks', required=True)
+
+    @api.constrains('total_marks', 'min_marks')
+    def _check_marks(self):
+        if self.total_marks <= 0.0 or self.min_marks <= 0.0:
+            raise ValidationError(_('Enter proper marks.'))
 
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):

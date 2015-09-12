@@ -69,6 +69,7 @@ class GenerateTimeTable(models.TransientModel):
     def gen_datewise(self, line, st_date, en_date, self_obj):
         day_cnt = 7
         curr_date = st_date
+        en_date = en_date.replace(hour=23, minute=59, second=59)
         while curr_date <= en_date:
             hour = line.period_id.hour
             if line.period_id.am_pm == 'pm' and int(hour) != 12:
@@ -84,18 +85,19 @@ class GenerateTimeTable(models.TransientModel):
             curr_date = datetime.datetime.strptime(utc_dt, "%Y-%m-%d %H:%M:%S")
             end_time = datetime.timedelta(hours=line.period_id.duration)
             cu_en_date = curr_date + end_time
-            self.env['op.timetable'].create({
-                'faculty_id': line.faculty_id.id,
-                'subject_id': line.subject_id.id,
-                'course_id': self_obj.course_id.id,
-                'batch_id': self_obj.batch_id.id,
-                'period_id': line.period_id.id,
-                'start_datetime': curr_date.strftime("%Y-%m-%d %H:%M:%S"),
-                'end_datetime': cu_en_date.strftime("%Y-%m-%d %H:%M:%S"),
-                'type': curr_date.strftime('%A'),
-            })
+            s = fields.Datetime.from_string(self_obj.start_date)
+            if curr_date >= s and curr_date <= en_date:
+                self.env['op.timetable'].create({
+                    'faculty_id': line.faculty_id.id,
+                    'subject_id': line.subject_id.id,
+                    'course_id': self_obj.course_id.id,
+                    'batch_id': self_obj.batch_id.id,
+                    'period_id': line.period_id.id,
+                    'start_datetime': curr_date.strftime("%Y-%m-%d %H:%M:%S"),
+                    'end_datetime': cu_en_date.strftime("%Y-%m-%d %H:%M:%S"),
+                    'type': curr_date.strftime('%A'),
+                })
             curr_date = curr_date + datetime.timedelta(days=day_cnt)
-
         return True
 
     @api.one
@@ -138,7 +140,6 @@ class GenerateTimeTableLine(models.TransientModel):
         ('4', 'Thursday'),
         ('5', 'Friday'),
         ('6', 'Saturday'),
-        ('7', 'Sunday'),
     ], 'Day', required=True)
     period_id = fields.Many2one('op.period', 'Period',  required=True)
 
