@@ -81,8 +81,8 @@ class OpAdmission(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('payment_process', 'Payment Process'), ('fees_paid', 'Fees Paid'),
-         ('enroll', 'Enrolled'), ('reject', 'Rejected'),
-         ('pending', 'Pending'), ('cancel', 'Cancelled'), ('done', 'Done')],
+         ('reject', 'Rejected'), ('pending', 'Pending'),
+         ('cancel', 'Cancelled'), ('done', 'Done')],
         'State', readonly=True, select=True,
         default='draft', track_visibility='onchange')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
@@ -156,7 +156,7 @@ class OpAdmission(models.Model):
     def enroll_student(self):
         total_admission = self.env['op.admission'].search_count(
             [('register_id', '=', self.register_id.id),
-             ('state', '=', 'enroll')])
+             ('state', '=', 'done')])
         if self.register_id.max_count:
             if not total_admission < self.register_id.max_count:
                 msg = 'Max Admission In Admission Register :- (%s)' % (
