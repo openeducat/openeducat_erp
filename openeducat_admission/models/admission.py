@@ -58,8 +58,8 @@ class OpAdmission(models.Model):
         'op.course', 'Course', required=True,
         states={'done': [('readonly', True)]})
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=True,
-        states={'done': [('readonly', True)]})
+        'op.batch', 'Batch', required=False,
+        states={'done': [('readonly', True)], 'fees_paid': [('required', True)]})
     street = fields.Char(
         'Street', size=256, states={'done': [('readonly', True)]})
     street2 = fields.Char(
@@ -114,15 +114,15 @@ class OpAdmission(models.Model):
         self.fees = self.register_id.product_id.lst_price
 
     @api.one
-    @api.constrains('register_id')
+    @api.constrains('register_id', 'application_date')
     def _check_admission_register(self):
-        start_date = datetime.strptime(self.register_id.start_date, "%Y-%m-%d")
-        if datetime.today() < start_date:
-            raise ValidationError("Check Admission Register Start Date")
-
-        end_date = datetime.strptime(self.register_id.end_date, "%Y-%m-%d")
-        if datetime.today() > end_date:
-            raise ValidationError("Check Admission Register End Date")
+        start_date = fields.Date.from_string(self.register_id.start_date)
+        end_date = fields.Date.from_string(self.register_id.end_date)
+        application_date = fields.Date.from_string(self.application_date)
+        if application_date < start_date or application_date > end_date:
+            raise ValidationError(
+                "Application Date should be between Start Date &" +
+                "End Date of Admission Register.")
 
     @api.one
     def confirm_in_progress(self):
@@ -168,6 +168,7 @@ class OpAdmission(models.Model):
         self.write({
             'nbr': 1,
             'state': 'done',
+            'admission_date': fields.Date.today(),
             'student_id': self.env['op.student'].create(vals).id,
         })
 
