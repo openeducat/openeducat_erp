@@ -121,8 +121,8 @@ class OpAdmission(models.Model):
         application_date = fields.Date.from_string(self.application_date)
         if application_date < start_date or application_date > end_date:
             raise ValidationError(
-                "Application Date should be between Start Date &" +
-                "End Date of Admission Register.")
+                "Application Date should be between Start Date & \
+                End Date of Admission Register.")
 
     @api.one
     def confirm_in_progress(self):
