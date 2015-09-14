@@ -19,7 +19,6 @@
 #
 ##############################################################################
 
-from datetime import datetime
 from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 
@@ -59,7 +58,8 @@ class OpAdmission(models.Model):
         states={'done': [('readonly', True)]})
     batch_id = fields.Many2one(
         'op.batch', 'Batch', required=False,
-        states={'done': [('readonly', True)], 'fees_paid': [('required', True)]})
+        states={'done': [('readonly', True)],
+                'fees_paid': [('required', True)]})
     street = fields.Char(
         'Street', size=256, states={'done': [('readonly', True)]})
     street2 = fields.Char(

@@ -26,7 +26,7 @@ class OpStudent(models.Model):
     _name = 'op.student'
     _inherits = {'res.partner': 'partner_id'}
 
-    @api.multi
+    @api.one
     @api.depends('roll_number_line', 'batch_id', 'course_id')
     def _get_curr_roll_number(self):
         # TO_DO:: Improve the logic by adding sequence field in course.

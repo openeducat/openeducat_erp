@@ -34,13 +34,13 @@ class OpRollNumber(models.Model):
     _sql_constraints = [
         ('unique_name_roll_number_id',
          'unique(roll_number,course_id,batch_id,student_id)',
-         'The roll number must be unique'),
+         'The Roll Number must be unique!'),
         ('unique_name_roll_number_course_id',
          'unique(roll_number,course_id,batch_id)',
-         'The roll number must be unique per course'),
+         'The Roll Number must be unique per Course!'),
         ('unique_name_roll_number_student_id',
          'unique(student_id,course_id,batch_id)',
-         'The student must be unique'),
+         'The Student must be unique!'),
     ]
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
