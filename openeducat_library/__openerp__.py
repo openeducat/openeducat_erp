@@ -36,6 +36,8 @@
     'data': [
         'security/library_security.xml',
         'security/ir.model.access.csv',
+        'report/report_student_library_card.xml',
+        'report/report_menu.xml',
         'wizards/issue_book_view.xml',
         'wizards/return_book_view.xml',
         'wizards/returndate_view.xml',

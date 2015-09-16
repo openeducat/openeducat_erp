@@ -19,39 +19,7 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Timetable',
-    'version': '2.0.0',
-    'category': 'Openerp Education',
-    "sequence": 3,
-    'summary': 'Manage Timetables',
-    'complexity': "easy",
-    'description': """
-        This module provide feature of Timetable.
-
-    """,
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
-    'data': [
-        'views/timetable_view.xml',
-        'views/period_view.xml',
-        'views/faculty_view.xml',
-        'report/report_timetable_student_generate.xml',
-        'report/report_timetable_teacher_generate.xml',
-        'report/report_menu.xml',
-        'wizard/generate_timetable_view.xml',
-        'wizard/time_table_report.xml',
-        'security/ir.model.access.csv',
-        'timetable_menu.xml',
-    ],
-    'demo': [
-        'demo/op.period.csv',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from . import report_student_library_card
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
