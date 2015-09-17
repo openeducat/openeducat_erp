@@ -1,0 +1,82 @@
+<openerp>
+    <data>
+        <template id="student_attendance_report">
+            <style>
+                .font{
+                font-size:14px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+                .table.gridtable {
+                font-size:11px;
+                border-color: #cccccc;
+                border-collapse: collapse;
+                }
+                table.gridtable th {
+                border-style: solid;
+                border-color: #cccccc;
+                padding-bottom: 10px;
+                padding-top: 14px;
+                padding-right: 50px;
+                padding-left: 50px;
+                }
+                table.gridtable td {
+                border-style: solid;
+                border-color: #cccccc;
+                padding-bottom: 10px;
+                padding-top: 14px;
+                padding-right: 50px;
+                padding-left: 50px;
+                }
+            </style>
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <div class="row text-center">
+                            <h2>
+                                <strong>Student Attendance Detail</strong>
+                            </h2>
+                        </div>
+                        <div class="row text-center">
+                            <b>From Date: </b>
+                            <span t-esc="data['from_date']" />
+                            <b>To Date:</b>
+                            <span t-esc="data['to_date']" />
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <div class="text-left">
+                            <b>Student Name :</b>
+                            <span t-esc="get_student_name(data)" />
+                        </div>
+                        <table width="100%" class="gridtable">
+                            <thead>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Remark</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="get_data(data)" t-as="obj">
+	                                <tr t-foreach="obj['line']" t-as="l">
+	                                    <td class="text-center">
+	                                        <t t-esc="l['absent_date']" />
+	                                    </td>
+	                                    <td class="text-center">
+	                                        <t t-esc="l['remark']" />
+	                                    </td>
+	                                </tr>
+                                </t>
+                                <tr t-foreach="get_data(data)" t-as="obj">
+                                    <td class="text-center"><b>Total Absent(s)</b></td>
+                                    <td class="text-center"><t t-esc="obj['total']" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

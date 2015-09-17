@@ -39,6 +39,9 @@
         'views/attendance_sheet_view.xml',
         'views/attendance_line_view.xml',
         'wizards/attendance_import_view.xml',
+        'wizards/student_attendance_wizard_view.xml',
+        'report/student_attendance_report.xml',
+        'report/report_menu.xml',
         'attendance_menu.xml'
     ],
     'installable': True,

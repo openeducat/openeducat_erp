@@ -35,6 +35,7 @@
     'depends': ['openeducat_core'],
     'data': [
         'security/ir.model.access.csv',
+        'wizard/student_migrate_wizard_view.xml',
         'views/activity_view.xml',
         'views/activity_type_view.xml',
         'views/student_view.xml',

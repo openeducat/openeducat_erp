@@ -42,6 +42,7 @@
         'report/report_student_bonafide.xml',
         'report/report_student_idcard.xml',
         'report/report_menu.xml',
+        'wizard/students_create_user_wizard_view.xml',
         'security/op_security.xml',
         'security/ir.model.access.csv',
         'views/student_view.xml',
