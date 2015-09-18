@@ -55,9 +55,11 @@
         'views/res_company_view.xml',
         'views/openeducat_template.xml',
         'views/homepage_template.xml',
+        'dashboard/faculty_dashboard_view.xml',
+        'dashboard/student_dashboard_view.xml',
         'menu/openeducat_core_menu.xml',
-        'menu/student_menu.xml',
-        'menu/faculty_menu.xml'
+        'menu/faculty_menu.xml',
+        'menu/student_menu.xml'
     ],
     'demo': [
         'demo/op_company_data.xml',
