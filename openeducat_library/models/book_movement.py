@@ -39,7 +39,6 @@ class OpBookMovement(models.Model):
     book_unit_id = fields.Many2one(
         'op.book.unit', 'Book Unit', required=True,
         track_visibility='onchange')
-    quantity = fields.Integer('No. Of Books', required=True)
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty',
         required=True)

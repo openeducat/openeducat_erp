@@ -32,7 +32,6 @@ class IssueBook(models.TransientModel):
 
     book_id = fields.Many2one('op.book', 'Book', required=True)
     book_unit_id = fields.Many2one('op.book.unit', 'Book Unit', required=True)
-    quantity = fields.Integer('No. Of Books', required=True)
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Type', default='student', required=True)
@@ -42,10 +41,6 @@ class IssueBook(models.TransientModel):
         'op.library.card', 'Library Card', required=True)
     issued_date = fields.Date('Issued Date', required=True)
     return_date = fields.Date('Return Date', required=True)
-    state = fields.Selection(
-        [('issue', 'Issued'), ('available', 'Available'),
-         ('lost', 'Lost'), ('reserve', 'Reserved')],
-        'Status', default='available')
 
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
@@ -54,13 +49,13 @@ class IssueBook(models.TransientModel):
         self.faculty_id = self.library_card_id.faculty_id.id
 
     @api.one
-    def check_issue(self, student_id, library_card_id):
+    def check_max_issue(self, student_id, library_card_id):
         book_movement_search = self.env["op.book.movement"].search(
             [('library_card_id', '=', library_card_id),
              ('student_id', '=', student_id),
              ('state', '=', 'issue')])
         if len(book_movement_search) < self.env["op.library.card"].browse(
-                library_card_id).allow_book:
+                library_card_id).library_card_type_id.allow_book:
             return True
         else:
             return False
@@ -68,42 +63,34 @@ class IssueBook(models.TransientModel):
     @api.one
     def do_issue(self):
         value = {}
-        total_book = 0
-        for movement in self.book_unit_id.movement_lines:
-            if movement.state == 'issue':
-                total_book += movement.quantity
-        if self.book_id.number_book > 0 and \
-                self.book_id.number_book - total_book > 0:
-            if self.check_issue(self.student_id.id, self.library_card_id.id):
-                if self.book_unit_id.state and \
-                        self.book_unit_id.state == 'available':
-                    book_movement_create = {
-                        'book_id': self.book_id.id,
-                        'book_unit_id': self.book_unit_id.id,
-                        'quantity': self.quantity,
-                        'type': self.type,
-                        'student_id': self.student_id.id or False,
-                        'faculty_id': self.faculty_id.id or False,
-                        'library_card_id': self.library_card_id.id,
-                        'issued_date': self.issued_date,
-                        'return_date': self.return_date,
-                        'state': 'issue',
-                    }
-                    self.env['op.book.movement'].create(book_movement_create)
-                    self.book_unit_id.state = 'issue'
-                    value = {'type': 'ir.actions.act_window_close'}
-                else:
-                    raise Warning(_('Error!'), _(
-                        'Book Unit can not be issued because \
-                        book state is : %s') %
-                        (dict(book_unit.unit_states).get(
-                            self.book_unit_id.state)))
+        if self.check_max_issue(self.student_id.id, self.library_card_id.id):
+            if self.book_unit_id.state and \
+                    self.book_unit_id.state == 'available':
+                book_movement_create = {
+                    'book_id': self.book_id.id,
+                    'book_unit_id': self.book_unit_id.id,
+                    'type': self.type,
+                    'student_id': self.student_id.id or False,
+                    'faculty_id': self.faculty_id.id or False,
+                    'library_card_id': self.library_card_id.id,
+                    'issued_date': self.issued_date,
+                    'return_date': self.return_date,
+                    'state': 'issue',
+                }
+                self.env['op.book.movement'].create(book_movement_create)
+                self.book_unit_id.state = 'issue'
+                value = {'type': 'ir.actions.act_window_close'}
             else:
                 raise Warning(_('Error!'), _(
-                    'Maximum Number of book allowed for %s is : %s') %
-                    (self.student_id.name, self.library_card_id.allow_book))
+                    'Book Unit can not be issued because \
+                    book state is : %s') %
+                    (dict(book_unit.unit_states).get(
+                        self.book_unit_id.state)))
         else:
-            raise Warning(_('Error!'), _('There Is No Book Available'))
+            raise Warning(_('Error!'), _(
+                'Maximum Number of book allowed for %s is : %s') %
+                (self.student_id.name,
+                 self.library_card_id.library_card_type_id.allow_book))
         return value
 
 

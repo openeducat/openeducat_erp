@@ -27,6 +27,7 @@ class OpLibraryCardType(models.Model):
     _description = 'Library Card Type'
 
     name = fields.Char('Name', size=256, required=True)
+    allow_book = fields.Integer('No. Of Book Allow', size=10, required=True)
     duration = fields.Float(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
@@ -44,8 +45,6 @@ class OpLibraryCard(models.Model):
     library_card_type_id = fields.Many2one(
         'op.library.card.type', 'Card Type', required=True)
     issue_date = fields.Date('Issue Date', required=True)
-    allow_book = fields.Integer(
-        'No. Of Book Allow', size=10, required=True)
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Type', default='student', required=True)

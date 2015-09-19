@@ -28,7 +28,6 @@ from . import book_unit
 from . import faculty
 from . import library
 from . import publisher
-from . import res_partner
 from . import student
 from . import tag
 
