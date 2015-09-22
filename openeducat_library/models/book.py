@@ -26,7 +26,6 @@ class OpBook(models.Model):
     _name = 'op.book'
 
     name = fields.Char('Title', size=128, required=True)
-    number_book = fields.Integer('No. Of Books', required=True)
     isbn = fields.Char('ISBN Code', size=64)
     tags = fields.Many2many('op.tag', string='Tag(s)')
     author_ids = fields.Many2many(

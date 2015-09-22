@@ -1,0 +1,74 @@
+<openerp>
+    <data>
+        <template id="report_book_barcode">
+            <style>
+                .font{
+                font-size:14px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+                .table.gridtable {
+                font-size:11px;
+                border-color: #cccccc;
+                border-collapse: collapse;
+                }
+                table.gridtable th {
+                border-style: solid;
+                border-color: #cccccc;
+                padding-bottom: 10px;
+                padding-top: 14px;
+                padding-right: 50px;
+                padding-left: 50px;
+                }
+                table.gridtable td {
+                border-style: solid;
+                border-color: #cccccc;
+                padding-bottom: 10px;
+                padding-top: 14px;
+                padding-right: 50px;
+                padding-left: 50px;
+                }
+            </style>
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <div class="row text-center">
+                            <h2>
+                                <strong>Book(s) Barcode</strong>
+                            </h2>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <t t-foreach="get_books()" t-as="book">
+                            <h3>
+                                <strong><t t-raw="book['name']"/></strong>
+                            </h3>
+                            <br></br>
+	                        <table width="100%" class="gridtable">
+	                            <thead>
+	                                <th class="text-center">Book Unit</th>
+	                                <th class="text-center">Barcode</th>
+	                            </thead>
+	                            <tbody>
+                                    <tr t-foreach="book['unit']" t-as="unit">
+                                        <td class="text-center">
+                                            <t t-esc="unit.name" />
+                                        </td>
+                                        <td class="text-center">
+                                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('Code128',unit.barcode, 400, 50)"/>
+                                        </td>
+                                    </tr>
+	                            </tbody>
+	                        </table>
+	                        <br></br>
+	                        <br></br>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
