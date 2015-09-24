@@ -37,6 +37,7 @@
     'data': [
         'views/student_view.xml',
         'views/course_view.xml',
+        'security/ir.model.access.csv'
     ],
     'installable': True,
     'auto_install': False,
