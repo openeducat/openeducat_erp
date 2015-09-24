@@ -34,6 +34,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
+        'security/ir.model.access.csv',
         'views/assignment_view.xml',
         'views/assignment_sub_line_view.xml',
         'views/student_view.xml',
@@ -42,7 +43,6 @@
         'assignment_menu.xml'
     ],
     'demo': [
-        'security/ir.model.access.csv',
         'demo/op.assignment.type.csv',
         'demo/op.assignment.csv',
         'demo/op.assignment.sub.line.csv'
