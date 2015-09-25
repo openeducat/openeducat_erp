@@ -48,7 +48,7 @@ class ReturnBook(models.TransientModel):
                 return {'type': 'ir.actions.act_window_close'}
             book_move_search.actual_return_date = self.actual_return_date
             book_move_search.calculate_penalty()
-            book_move_search.state = 'available'
+            book_move_search.state = 'return'
             self.book_unit_id.state = 'available'
         else:
             raise Warning(_('Error!'), _(

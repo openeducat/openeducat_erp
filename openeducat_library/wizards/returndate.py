@@ -38,7 +38,7 @@ class ReturnDate(models.TransientModel):
         book_movement.write(
             {'actual_return_date': self.actual_return_date})
         book_movement.calculate_penalty()
-        book_movement.state = 'available'
+        book_movement.state = 'return'
         book_movement.book_unit_id.state = 'available'
 
 

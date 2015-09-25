@@ -56,7 +56,7 @@ class OpBookMovement(models.Model):
     reserver_name = fields.Char('Person Name', size=256)
     state = fields.Selection(
         [('available', 'Available'), ('reserve', 'Reserved'),
-         ('issue', 'Issued'), ('lost', 'Lost')], 'Status',
+         ('issue', 'Issued'), ('lost', 'Lost'), ('return', 'Returned')], 'Status',
         default='available', track_visibility='onchange')
 
     @api.constrains('issued_date', 'return_date')
