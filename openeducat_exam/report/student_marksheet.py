@@ -32,15 +32,22 @@ class MarksheetReport(report_sxw.rml_parse):
         super(MarksheetReport, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
+            'get_objects': self.get_objects,
             'get_lines': self.get_lines,
             'get_date': self.get_date,
             'get_total': self.get_total
         })
 
-    def get_lines(self, objects):
+    def get_objects(self, objects):
+        obj = []
+        for object in objects:
+            obj.extend(object)
+        return obj
+
+    def get_lines(self, obj):
         lines = []
-        for o in objects:
-            lines.extend(o.marksheet_line)
+        for line in obj.marksheet_line:
+            lines.extend(line)
         return lines
 
     def get_date(self, date):
