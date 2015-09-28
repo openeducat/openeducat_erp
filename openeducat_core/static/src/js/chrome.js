@@ -1,4 +1,4 @@
-openerp.openeducat_erp = function(instance) {
+openerp.openeducat_core = function(instance) {
     var QWeb = instance.web.qweb;
     var _t = instance.web._t;
 
