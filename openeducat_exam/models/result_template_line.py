@@ -25,7 +25,7 @@ from openerp import models, fields, api
 class OpResultTemplateLine(models.Model):
     _name = 'op.result.template.line'
     _rec_name = 'exam_session_id'
-    _description = 'Result template Line'
+    _description = 'Result Template Line'
 
     exam_session_id = fields.Many2one('op.exam.session', 'Exam Session')
     detailed_report = fields.Boolean('Detailed Report')

@@ -34,13 +34,13 @@ class OpExamSession(models.Model):
     start_date = fields.Date('Start Date', required=True)
     end_date = fields.Date('End Date', required=True)
     room_id = fields.Many2one('op.exam.room', 'Room', required=True)
-    exam_ids = fields.One2many('op.exam', 'session_id', 'Exams')
+    exam_ids = fields.One2many('op.exam', 'session_id', 'Exam(s)')
 
     @api.constrains('start_date', 'end_date')
     def _check_date_time(self):
         if self.start_date > self.end_date:
             raise ValidationError(
-                _('Start Time Should be greater than End Time.'))
+                _('Start Time should be greater than End Time!'))
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

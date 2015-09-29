@@ -34,7 +34,7 @@ class OpResultTemplate(models.Model):
     line_ids = fields.One2many(
         'op.result.template.line', 'result_id', 'Session Lines')
     criteria_ids = fields.Many2many(
-        'op.min.clear.criteria', string='Minimum qualification Criteria')
+        'op.min.clear.criteria', string='Minimum Qualification Criteria')
     pass_status_ids = fields.Many2many('op.pass.status', string='Pass Status')
 
     @api.one
