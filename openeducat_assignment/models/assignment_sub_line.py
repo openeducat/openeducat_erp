@@ -26,6 +26,7 @@ class OpAssignmentSubLine(models.Model):
     _name = 'op.assignment.sub.line'
     _inherit = 'mail.thread'
     _rec_name = 'assignment_id'
+    _description = 'Assignment Submission'
 
     assignment_id = fields.Many2one(
         'op.assignment', 'Assignment', required=True)
