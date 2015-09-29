@@ -28,6 +28,7 @@ class OpAdmission(models.Model):
     _inherit = 'mail.thread'
     _rec_name = 'application_number'
     _order = "application_number desc"
+    _description = "Admission"
 
     name = fields.Char(
         'First Name', size=128, required=True,
@@ -102,7 +103,7 @@ class OpAdmission(models.Model):
         required=True, states={'done': [('readonly', True)]})
     student_id = fields.Many2one(
         'op.student', 'Student', states={'done': [('readonly', True)]})
-    nbr = fields.Integer('# of Admission', readonly=True)
+    nbr = fields.Integer('No of Admission', readonly=True)
     register_id = fields.Many2one(
         'op.admission.register', 'Admission Register', required=True,
         states={'done': [('readonly', True)]})
