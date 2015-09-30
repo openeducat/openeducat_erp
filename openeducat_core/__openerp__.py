@@ -55,6 +55,7 @@
         'views/res_company_view.xml',
         'views/openeducat_template.xml',
         'views/homepage_template.xml',
+        'views/website_assets.xml',
         'dashboard/faculty_dashboard_view.xml',
         'dashboard/student_dashboard_view.xml',
         'menu/openeducat_core_menu.xml',
