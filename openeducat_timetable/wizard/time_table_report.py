@@ -31,8 +31,8 @@ class TimeTableReport(models.TransientModel):
     _description = 'Generate Time Table Report'
 
     state = fields.Selection(
-        [('teacher', 'Teacher'), ('student', 'Student')],
-        string='Select', required=True, default='teacher')
+        [('faculty', 'Faculty'), ('student', 'Student')],
+        string='Select', required=True, default='faculty')
     course_id = fields.Many2one('op.course', 'Course')
     batch_id = fields.Many2one('op.batch', 'Batch')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')

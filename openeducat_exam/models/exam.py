@@ -26,6 +26,7 @@ from openerp.exceptions import ValidationError
 class OpExam(models.Model):
     _name = 'op.exam'
     _inherit = 'mail.thread'
+    _description = 'Exam'
 
     session_id = fields.Many2one('op.exam.session', 'Exam Session')
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
@@ -52,13 +53,13 @@ class OpExam(models.Model):
     @api.constrains('total_marks', 'min_marks')
     def _check_marks(self):
         if self.total_marks <= 0.0 or self.min_marks <= 0.0:
-            raise ValidationError(_('Enter proper marks.'))
+            raise ValidationError(_('Enter proper marks!'))
 
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):
         if self.start_time > self.end_time:
             raise ValidationError(
-                _('Start Time Should be greater than End Time.'))
+                _('Start Time should be greater than End Time!'))
 
     @api.one
     def act_held(self):

@@ -49,7 +49,7 @@ class OpAttendanceSheet(models.Model):
         'Total Present', compute='_total_present')
     total_absent = fields.Integer(
         'Total Absent', compute='_total_absent')
-    teacher_id = fields.Many2one('op.faculty', 'Teacher')
+    faculty_id = fields.Many2one('op.faculty', 'Faculty')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -25,6 +25,7 @@ from openerp import models, fields, api
 class OpScholarship(models.Model):
     _name = 'op.scholarship'
     _inherit = 'mail.thread'
+    _description = 'Scholarship'
 
     name = fields.Char('Name', size=64, required=True)
     student_id = fields.Many2one('op.student', 'Student', required=True)
