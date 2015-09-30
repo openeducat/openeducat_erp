@@ -44,7 +44,8 @@ class OpAdmission(models.Model):
     application_number = fields.Char(
         'Application Number', size=16, required=True, copy=False,
         states={'done': [('readonly', True)]},
-        default=lambda self: self.env['ir.sequence'].get('op.admission'))
+        default=lambda self:
+        self.env['ir.sequence'].next_by_code('op.admission'))
     admission_date = fields.Date(
         'Admission Date', copy=False,
         states={'done': [('readonly', True)]})
