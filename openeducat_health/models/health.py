@@ -25,7 +25,7 @@ from openerp import models, fields
 class OpHealth(models.Model):
     _name = 'op.health'
     _rec_name = 'student_id'
-    _description = """ Health Detail for Students and Faculties """
+    _description = """Health Detail for Students and Faculties"""
 
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
