@@ -28,7 +28,7 @@ unit_states = [('available', 'Available'), ('issue', 'Issued'),
 class OpBookUnit(models.Model):
     _name = 'op.book.unit'
     _inherit = 'mail.thread'
-    _description = """ Book Unit """
+    _description = 'Book Unit'
 
     name = fields.Char('Name', required=True)
     book_id = fields.Many2one(

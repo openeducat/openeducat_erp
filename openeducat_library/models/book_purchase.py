@@ -25,7 +25,7 @@ from openerp import models, fields, api
 class OpBookPurchase(models.Model):
     _name = 'op.book.purchase'
     _inherit = 'mail.thread'
-    _description = """ Book Purchase Request """
+    _description = 'Book Purchase Request'
 
     name = fields.Char('Title', size=128, required=True)
     author = fields.Char(

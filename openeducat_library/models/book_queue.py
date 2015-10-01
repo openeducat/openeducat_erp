@@ -27,7 +27,7 @@ class OpBookQueue(models.Model):
     _name = 'op.book.queue'
     _inherit = 'mail.thread'
     _rec_name = 'user_id'
-    _description = """ Book Queue Request """
+    _description = 'Book Queue Request'
 
     name = fields.Char("Sequence No", readonly=True, copy=False, default='/')
     partner_id = fields.Many2one('res.partner', 'Student/Faculty')
@@ -50,7 +50,7 @@ class OpBookQueue(models.Model):
     def _check_date(self):
         if self.date_from > self.date_to:
             raise ValidationError(
-                _("From Date Should be greater than To Date !"))
+                _("From Date should be greater than To Date!"))
 
     @api.model
     def create(self, vals):

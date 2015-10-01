@@ -32,7 +32,7 @@ def days_between(to_date, from_date):
 class OpBookMovement(models.Model):
     _name = 'op.book.movement'
     _inherit = 'mail.thread'
-    _description = """ Book Movement """
+    _description = 'Book Movement'
     _rec_name = 'book_id'
 
     book_id = fields.Many2one('op.book', 'Book', required=True)
@@ -64,7 +64,7 @@ class OpBookMovement(models.Model):
     def _check_date(self):
         if self.issued_date > self.return_date:
             raise ValidationError(
-                _("Issue Date Should be greater than Return Date."))
+                _("Issue Date should be greater than Return Date."))
 
     @api.onchange('book_unit_id')
     def onchange_book_unit_id(self):

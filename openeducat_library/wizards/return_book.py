@@ -52,7 +52,7 @@ class ReturnBook(models.TransientModel):
             self.book_unit_id.state = 'available'
         else:
             raise Warning(_('Error!'), _(
-                'Book Unit can not be returned because state is : %s') %
+                "Book Unit can not be returned because it's state is : %s") %
                 (dict(book_unit.unit_states).get(self.book_unit_id.state)))
 
 
