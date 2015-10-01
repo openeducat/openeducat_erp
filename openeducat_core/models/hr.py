@@ -41,7 +41,7 @@ class HrEmployee(models.Model):
         if self.address_home_id and self.address_id and \
                 self.address_home_id != self.address_id:
             raise Warning(_('Configuration Error!'), _(
-                'Home Address and working address should be same!'))
+                'Home Address and Working Address should be same!'))
 
     @api.onchange('address_id')
     def onchange_address_id(self):

@@ -24,7 +24,7 @@ from openerp import models, fields, api
 
 class WizardOpStudent(models.TransientModel):
     _name = 'wizard.op.student'
-    _description = "Create User the selected Students"
+    _description = "Create User for selected Student(s)"
 
     def _get_students(self):
         if self.env.context and self.env.context.get('active_ids'):
