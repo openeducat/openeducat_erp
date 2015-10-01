@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': "Openeducat Admission",
+    'name': "OpenEduCat Admission",
     'version': '2.0.0',
     'category': 'Openerp Education',
     'sequence': 3,

@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': "Openeducat l10n India Admission",
+    'name': "Indian OpenEduCat Admission",
     'version': '2.0.0',
     'category': 'Openerp Education',
     'sequence': 3,
