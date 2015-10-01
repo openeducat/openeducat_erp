@@ -5,16 +5,16 @@
 #    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
+#    it under the terms of the GNU Lesser General Public License as
 #    published by the Free Software Foundation, either version 3 of the
 #    License, or (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
+#    GNU Lesser General Public License for more details.
 #
-#    You should have received a copy of the GNU Affero General Public License
+#    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
@@ -32,7 +32,7 @@ def days_between(to_date, from_date):
 class OpBookMovement(models.Model):
     _name = 'op.book.movement'
     _inherit = 'mail.thread'
-    _description = """ Book Movement """
+    _description = 'Book Movement'
     _rec_name = 'book_id'
 
     book_id = fields.Many2one('op.book', 'Book', required=True)
@@ -64,7 +64,7 @@ class OpBookMovement(models.Model):
     def _check_date(self):
         if self.issued_date > self.return_date:
             raise ValidationError(
-                _("Issue Date Should be greater than Return Date."))
+                _("Issue Date should be greater than Return Date."))
 
     @api.onchange('book_unit_id')
     def onchange_book_unit_id(self):

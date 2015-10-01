@@ -5,16 +5,16 @@
 #    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
+#    it under the terms of the GNU Lesser General Public License as
 #    published by the Free Software Foundation, either version 3 of the
 #    License, or (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
+#    GNU Lesser General Public License for more details.
 #
-#    You should have received a copy of the GNU Affero General Public License
+#    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
@@ -27,11 +27,11 @@ class OpLibraryCardType(models.Model):
     _description = 'Library Card Type'
 
     name = fields.Char('Name', size=256, required=True)
-    allow_book = fields.Integer('No. Of Book Allow', size=10, required=True)
+    allow_book = fields.Integer('No of Books Allowed', size=10, required=True)
     duration = fields.Float(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
-    penalty_amt_per_day = fields.Float('Penalty Amount Per Day', required=True)
+    penalty_amt_per_day = fields.Float('Penalty Amount per Day', required=True)
 
 
 class OpLibraryCard(models.Model):
