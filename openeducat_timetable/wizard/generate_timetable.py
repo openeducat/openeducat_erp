@@ -42,26 +42,25 @@ class GenerateTimeTable(models.TransientModel):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     time_table_lines = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
-        required=True)
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines')
     time_table_lines_1 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
-        domain=[('day', '=', '1')], required=True)
+        domain=[('day', '=', '1')])
     time_table_lines_2 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
-        domain=[('day', '=', '2')], required=True)
+        domain=[('day', '=', '2')])
     time_table_lines_3 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
-        domain=[('day', '=', '3')], required=True)
+        domain=[('day', '=', '3')])
     time_table_lines_4 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
-        domain=[('day', '=', '4')], required=True)
+        domain=[('day', '=', '4')])
     time_table_lines_5 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
-        domain=[('day', '=', '5')], required=True)
+        domain=[('day', '=', '5')])
     time_table_lines_6 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
-        domain=[('day', '=', '6')], required=True)
+        domain=[('day', '=', '6')])
     start_date = fields.Date('Start Date', required=True)
     end_date = fields.Date('End Date', required=True)
 

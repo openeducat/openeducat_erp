@@ -43,8 +43,7 @@ class OpAttendanceSheet(models.Model):
     attendance_date = fields.Date(
         'Date', required=True, default=lambda self: fields.Date.today())
     attendance_line = fields.One2many(
-        'op.attendance.line', 'attendance_id', 'Attendance Line',
-        required=True)
+        'op.attendance.line', 'attendance_id', 'Attendance Line')
     total_present = fields.Integer(
         'Total Present', compute='_total_present')
     total_absent = fields.Integer(
