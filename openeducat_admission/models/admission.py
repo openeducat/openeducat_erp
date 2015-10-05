@@ -222,20 +222,23 @@ class OpAdmission(models.Model):
         partner_id = self.env['res.partner'].create({'name': self.name})
 
         account_id = False
-        if self.register_id.product_id.id:
-            account_id = self.register_id.product_id.property_account_income_id.id
+        product = self.register_id.product_id
+        if product.id:
+            account_id = product.property_account_income_id.id
         if not account_id:
-            account_id = self.register_id.product_id.categ_id.property_account_income_categ_id.id
+            account_id = product.categ_id.property_account_income_categ_id.id
         if not account_id:
             raise Warning(
-                _('There is no income account defined for this product: "%s". You may have to install a chart of account from Accounting app, settings menu.') % \
-                    (self.register_id.product_id.name,))
+                _('There is no income account defined for this product: "%s". \
+                   You may have to install a chart of account from Accounting \
+                   app, settings menu.') % (product.name,))
 
         if self.fees <= 0.00:
-            raise UserError(_('The value of the deposit amount must be positive.'))
+            raise Warning(_('The value of the deposit amount must be \
+                             positive.'))
         else:
             amount = self.fees
-            name = self.register_id.product_id.name
+            name = product.name
 
         invoice = inv_obj.create({
             'name': self.name,
@@ -252,7 +255,7 @@ class OpAdmission(models.Model):
                 'quantity': 1.0,
                 'discount': 0.0,
                 'uom_id': self.register_id.product_id.uom_id.id,
-                'product_id': self.register_id.product_id.id,
+                'product_id': product.id,
             })],
         })
         invoice.compute_taxes()
