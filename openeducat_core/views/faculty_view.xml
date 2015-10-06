@@ -5,17 +5,17 @@
             <field name="name">Faculty Kanban</field>
             <field name="model">op.faculty</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban class="o_hr_employee_kanban">
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_employee_vignette">
-                                <div class="oe_employee_image">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
                                     <a type="open">
                                         <img t-att-src="kanban_image('op.faculty', 'photo', record.id.value)"
                                             class="oe_employee_picture" />
                                     </a>
                                 </div>
-                                <div class="oe_employee_details">
+                                <div class="oe_kanban_details">
                                     <h4>
                                         <a type="open">
                                             <field name="name" />
