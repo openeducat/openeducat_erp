@@ -10,38 +10,6 @@
                 @page{
                 size: A4;
                 }
-                table.center {
-                width:80%;
-                margin-left:10%;
-                }
-                table.center1 {
-                width:80%;
-                margin-left:50%;
-                }
-                td.spacer{
-                padding-bottom:5px;
-                }
-                td.spacer1{
-                padding-right:320px;
-                }
-                .table.gridtable {
-                font-size:11px;
-                border-width: 1px;
-                border-color: #cccccc;
-                border-collapse: collapse;
-                }
-                table.gridtable th {
-                border-width: 1px;
-                padding: 8px;
-                border-style: solid;
-                border-color: #cccccc;
-                }
-                table.gridtable td {
-                border-width: 1px;
-                padding: 8px;
-                border-style: solid;
-                border-color: #cccccc;
-                }
             </style>
 
             <t t-call="report.html_container">
@@ -64,7 +32,7 @@
                                     <table class="center">
                                         <tbody>
                                             <tr>
-                                                <td class="spacer1">
+                                                <td>
                                                     <b>Course : </b>
                                                     <span t-esc="s['course']" />
                                                 </td>
@@ -77,7 +45,7 @@
                                     <para>
                                         <font color="white">......</font>
                                     </para>
-                                    <table class="gridtable center">
+                                    <table class="table table-bordered">
                                         <tbody>
                                             <tr t-foreach="s['line']" t-as="ss">
                                                 <td>
