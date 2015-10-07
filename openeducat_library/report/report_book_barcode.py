@@ -19,8 +19,9 @@
 #
 ###############################################################################
 
+import base64
+from reportlab.graphics.barcode import createBarcodeDrawing
 import time
-from openerp import pooler
 from openerp.osv import osv
 from openerp.report import report_sxw
 
@@ -36,7 +37,7 @@ class BookBarcodeParser(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'get_books': self.get_books,
-            'render_image': self.render_image,
+            'get_barcode': self.get_barcode,
         })
 
     def get_books(self):
@@ -52,17 +53,22 @@ class BookBarcodeParser(report_sxw.rml_parse):
             book_list.append(book_data)
         return book_list
 
-    def render_image(self):
-        render_list = []
-        for data in self.ids_to_print:
-            book_obj = pooler.get_pool(self.cr.dbname).get(
-                self.model_name).browse(self.cr, self.uid, data)
-            render_data = {
-                'name': book_obj.name,
-                'isbn': book_obj.isbn
-            }
-            render_list.append(render_data)
-        return render_list
+    def get_barcode(self, type, value, width=350, height=60, hr=1):
+        """ genrating image for barcode """
+        options = {}
+        if width:
+            options['width'] = width
+        if height:
+            options['height'] = height
+        if hr:
+            options['humanReadable'] = hr
+        try:
+            ret_val = createBarcodeDrawing(
+                type, value=str(value), **options)
+        except Exception, e:
+            raise osv.except_osv('Error in barcode generation', e)
+        image_data = ret_val.asString('png')
+        return base64.encodestring(image_data)
 
 
 class ReportBookBarcode(osv.AbstractModel):
