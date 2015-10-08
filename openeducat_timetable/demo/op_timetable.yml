@@ -1,0 +1,46 @@
+-
+  Creating record for Generate Time Table.
+-
+  !record {model: generate.time.table, id: generate_time_table_01}:
+    course_id: openeducat_core.op_course_2
+    batch_id: openeducat_core.op_batch_1
+    start_date: !eval time.strftime('%Y-%m-01')
+    end_date: !eval time.strftime('%Y-%m-28')
+    time_table_lines_1:
+      - faculty_id: openeducat_core.op_faculty_1
+        subject_id: openeducat_core.op_subject_6
+        day: '1'
+        period_id: op_period_1
+      - faculty_id: openeducat_core.op_faculty_3
+        subject_id: openeducat_core.op_subject_7
+        day: '1'
+        period_id: op_period_2
+      - faculty_id: openeducat_core.op_faculty_4
+        subject_id: openeducat_core.op_subject_8
+        day: '2'
+        period_id: op_period_2
+      - faculty_id: openeducat_core.op_faculty_6
+        subject_id: openeducat_core.op_subject_9
+        day: '2'
+        period_id: op_period_3
+      - faculty_id: openeducat_core.op_faculty_7
+        subject_id: openeducat_core.op_subject_10
+        day: '3'
+        period_id: op_period_4
+      - faculty_id: openeducat_core.op_faculty_8
+        subject_id: openeducat_core.op_subject_11
+        day: '3'
+        period_id: op_period_3
+      - faculty_id: openeducat_core.op_faculty_9
+        subject_id: openeducat_core.op_subject_12
+        day: '4'
+        period_id: op_period_3
+      - faculty_id: openeducat_core.op_faculty_10
+        subject_id: openeducat_core.op_subject_13
+        day: '4'
+        period_id: op_period_3
+-
+  Clicking on "Generate Time Table" button.
+-
+  !python {model: generate.time.table}: |
+    self.act_gen_time_table(cr, uid, [ref('generate_time_table_01')], context=context)
