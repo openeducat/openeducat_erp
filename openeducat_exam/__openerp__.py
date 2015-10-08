@@ -56,6 +56,11 @@
         'exam_menu.xml',
     ],
     'demo': [
+        'demo/op.classroom.csv',
+        'demo/op.exam.room.csv',
+        'demo/op.exam.type.csv',
+        'demo/op.exam.session.csv',
+        'demo/op.exam.csv',
     ],
     'installable': True,
     'auto_install': False,
