@@ -64,12 +64,12 @@
     ],
     'demo': [
         'demo/op_company_data.xml',
+        'demo/op.subject.csv',
         'demo/op.course.csv',
         'demo/op.batch.csv',
         'demo/res.users.csv',
         'demo/op.student.csv',
         'demo/op.faculty.csv',
-        'demo/op.subject.csv',
         'demo/res.groups.csv'
     ],
     'css': ['static/src/css/base.css'],
