@@ -49,7 +49,7 @@
     ],
     'demo': [
         'demo/op.period.csv',
-        'demo/op_timetable.yml'
+        'demo/op_timetable_demo.xml'
     ],
     'installable': True,
     'auto_install': False,
