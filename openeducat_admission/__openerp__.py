@@ -47,6 +47,7 @@
         'demo/product.product.csv',
         'demo/op.admission.register.csv',
         'demo/op.admission.csv',
+        'demo/student_demo.xml',
     ],
     'installable': True,
     'auto_install': False,
