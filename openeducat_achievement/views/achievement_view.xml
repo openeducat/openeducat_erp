@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_achievement_tree" model="ir.ui.view">
+            <field name="name">op.achievement.tree</field>
+            <field name="model">op.achievement</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Achievement">
+                    <field name="student_id" />
+                    <field name="faculty_id" />
+                    <field name="achievement_type" />
+                    <field name="description" />
+                    <field name="achievement_date" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_achievement_form" model="ir.ui.view">
+            <field name="name">op.achievement.form</field>
+            <field name="model">op.achievement</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Achievement">
+                    <sheet>
+                        <div>
+                            <group col="4" colspan="4">
+                                <field name="student_id" />
+                                <field name="faculty_id" />
+                                <field name="achievement_type" />
+                                <field name="achievement_date" />
+                                <field name="description" colspan="4" />
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_achievement_search" model="ir.ui.view">
+            <field name="name">op.achievement.search</field>
+            <field name="model">op.achievement</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Achievement">
+                    <field name="student_id" />
+                    <field name="faculty_id" />
+                    <field name="achievement_type" />
+                    <field name="description" />
+                    <field name="achievement_date" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
+                        <filter string="Faculty" domain="[]" context="{'group_by':'faculty_id'}" />
+                        <filter string="Achievement Type" domain="[]"
+                            context="{'group_by':'achievement_type'}" />
+                        <filter string="Description" domain="[]"
+                            context="{'group_by':'description'}" />
+                        <filter string="Date" domain="[]"
+                            context="{'group_by':'achievement_date'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_achievement_view">
+            <field name="name">Achievements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.achievement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_achievement_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_achievement_view_form">
+            <field name="act_window_id" ref="act_open_op_achievement_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_achievement_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_achievement_view_tree">
+            <field name="act_window_id" ref="act_open_op_achievement_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_achievement_tree" />
+        </record>
+    </data>
+</openerp>

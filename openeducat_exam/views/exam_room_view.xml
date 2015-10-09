@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_exam_room_tree" model="ir.ui.view">
+            <field name="name">op.exam.room.tree</field>
+            <field name="model">op.exam.room</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Exam Room">
+                    <field name="name" />
+                    <field name="classroom_id" />
+                    <field name="capacity" />
+                    <field name="course_ids" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_exam_room_form" model="ir.ui.view">
+            <field name="name">op.exam.room.form</field>
+            <field name="model">op.exam.room</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Exam Room">
+                    <sheet>
+                        <div>
+                            <group col="4">
+                                <field name="name" />
+                                <field name="classroom_id" />
+                                <field name="capacity" />
+                            </group>
+                            <group string="Course(s)">
+                                <field name="course_ids" nolabel="1"/>
+                            </group>
+                            <group string="Student(s)">
+                                <field name="student_ids" nolabel="1"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_exam_room_search" model="ir.ui.view">
+            <field name="name">op.exam.room.search</field>
+            <field name="model">op.exam.room</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Exam Room">
+                    <field name="name" />
+                    <field name="classroom_id" />
+                    <field name="capacity" />
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_exam_room_view">
+            <field name="name">Exam Rooms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.exam.room</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_exam_room_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_room_view_form">
+            <field name="act_window_id" ref="act_open_op_exam_room_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_exam_room_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_room_view_tree">
+            <field name="act_window_id" ref="act_open_op_exam_room_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_exam_room_tree" />
+        </record>
+    </data>
+</openerp>

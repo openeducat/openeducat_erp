@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="admission_analysis_form">
+            <field name="name">admission.analysis.form</field>
+            <field name="model">admission.analysis</field>
+            <field name="arch" type="xml">
+                <form string="Admission Analysis">
+                    <header groups="base.group_user">
+	                    <button name="print_report" type="object" string="Print" class="oe_highlight"/>
+	                    <button string="Cancel" special="cancel" />
+                    </header>
+                    <group>
+                        <field name="course_id" />
+                        <field name="start_date" />
+                        <field name="end_date" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="admission_analysis_act">
+            <field name="name">Admission Analysis Report</field>
+            <field name="res_model">admission.analysis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="admission_analysis_form" />
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

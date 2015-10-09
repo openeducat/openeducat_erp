@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="kanban_view_faculty_in_inherit">
+            <field name="name">Faculty Kanban Indian</field>
+            <field name="model">op.faculty</field>
+            <field name="inherit_id" ref="openeducat_core.kanban_view_faculty" />
+            <field name="arch" type="xml">
+                <li t-if="record.email.raw_value" position="after">
+                    <li t-if="record.category.raw_value">
+                        Category:
+                        <field name="category" />
+                    </li>
+                </li>
+            </field>
+        </record>
+        <record id="view_op_faculty_tree_in_inherit" model="ir.ui.view">
+            <field name="name">op.faculty.tree.in.inherit</field>
+            <field name="model">op.faculty</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_faculty_tree" />
+            <field name="priority" eval="9" />
+            <field name="arch" type="xml">
+                <field name="blood_group" position="after">
+                    <field name="category" />
+                </field>
+            </field>
+        </record>
+        <record id="view_op_faculty_form_in_inherit" model="ir.ui.view">
+            <field name="name">op.faculty.form.in.inherit</field>
+            <field name="model">op.faculty</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_faculty_form" />
+            <field name="priority" eval="9" />
+            <field name="arch" type="xml">
+                <field name="nationality" position="after">
+                    <field name="pan_card" />
+                </field>
+                <field name="lang" position="after">
+                    <field name="category" required="1"/>
+                    <field name="religion"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_op_faculty_search" model="ir.ui.view">
+            <field name="name">op.faculty.search</field>
+            <field name="model">op.faculty</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_faculty_search" />
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <field name="blood_group" position="after">
+                    <field name="category" />
+                </field>
+                <filter name="language" position="after">
+                    <filter string="Category" domain="[]" context="{'group_by':'category'}" />
+                    <filter string="Religion" domain="[]" context="{'group_by':'religion'}" />
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>

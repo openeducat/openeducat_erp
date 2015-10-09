@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_hostel_room_tree" model="ir.ui.view">
+            <field name="name">op.hostel.room.tree</field>
+            <field name="model">op.hostel.room</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Hostel Room">
+                    <field name="hostel_id" />
+                    <field name="name" />
+                    <field name="students_per_room" />
+                    <field name="rent" />
+                    <field name="allocated_date" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_hostel_room_form" model="ir.ui.view">
+            <field name="name">op.hostel.room.form</field>
+            <field name="model">op.hostel.room</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Hostel Room">
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="hostel_id" />
+                            <field name="name" domain="[('hostel_id', '=', hostel_id)]"/>
+                        </group>
+                        <separator string="Allocated Students" />
+                        <group col="4" colspan="4">
+                            <field name="student_ids" colspan="4" nolabel="1" />
+                            <field name="students_per_room" />
+                            <field name="rent" />
+                            <field name="allocated_date" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_hostel_room_search" model="ir.ui.view">
+            <field name="name">op.hostel.room.search</field>
+            <field name="model">op.hostel.room</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Hostel Room">
+                    <field name="hostel_id" />
+                    <field name="name" />
+                    <field name="students_per_room" />
+                    <field name="rent" />
+                    <field name="allocated_date" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Hostel" domain="[]" context="{'group_by':'hostel_id'}" />
+                        <filter string="Room Number" domain="[]" context="{'group_by':'name'}" />
+                        <!-- <filter string="Allocated Students " domain="[]" -->
+                        <!-- context="{'group_by':'student_ids'}" /> -->
+                        <filter string="Students per Room" domain="[]"
+                            context="{'group_by':'students_per_room'}" />
+                        <filter string="Rent" domain="[]" context="{'group_by':'rent'}" />
+                        <filter string="Allocated Date" domain="[]"
+                            context="{'group_by':'allocated_date'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_hostel_room_view">
+            <field name="name">Hostel Room Allocations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.hostel.room</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_hostel_room_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_hostel_room_view_form">
+            <field name="act_window_id" ref="act_open_op_hostel_room_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_hostel_room_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_hostel_room_view_tree">
+            <field name="act_window_id" ref="act_open_op_hostel_room_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_hostel_room_tree" />
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_course_tree" model="ir.ui.view">
+            <field name="name">op.course.tree</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Course">
+                    <field name="name" />
+                    <field name="code" />
+                    <field name="section" />
+                    <field name="evaluation_type" />
+                    <field name="parent_id" />
+                    <field name="subject_ids" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_course_form" model="ir.ui.view">
+            <field name="name">op.course.form</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Course">
+                    <sheet>
+                        <group colspan="4" col="4" name="main">
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="section" />
+                            <field name="evaluation_type" />
+                            <field name="parent_id" />
+                        </group>
+                        <group string="Subjects" name="subject">
+                            <field name="subject_ids" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_course_search" model="ir.ui.view">
+            <field name="name">op.course.search</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Course">
+                    <field name="name" />
+                    <field name="code" />
+<!--                    <field name="section" /> -->
+                    <field name="evaluation_type" />
+                    <field name="parent_id" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Evaluation Type" domain="[]"
+                            context="{'group_by':'evaluation_type'}" />
+                        <filter string="Parent Course" domain="[]"
+                            context="{'group_by':'parent_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_course_view">
+            <field name="name">Courses</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.course</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_course_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_course_view_form">
+            <field name="act_window_id" ref="act_open_op_course_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_course_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_course_view_tree">
+            <field name="act_window_id" ref="act_open_op_course_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_course_tree" />
+        </record>
+    </data>
+</openerp>

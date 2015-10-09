@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_marksheet_report">
+            <style>
+                .font{
+                font-size:14px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+            </style>
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <div class="font">
+                        <div class="page">
+                            <t t-foreach="get_objects(docs)" t-as="objs">
+                                <t t-foreach="objs" t-as="obj">
+                                    <t t-foreach="get_lines(obj)" t-as="lines">
+                                        <t t-foreach="lines" t-as="line">
+                                            <div class="row text-center">
+                                                <h2>
+                                                    <strong>MarkSheet</strong>
+                                                </h2>
+                                            </div>
+                                            <br></br>
+                                            <br></br>
+                                            <table width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="17%">
+                                                            <b>Student Name</b>
+                                                        </td>
+                                                        <td>
+                                                            :
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' % line.student_id.name if line.student_id.name else ''" />
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' % line.student_id.middle_name if line.student_id.middle_name else ''" />
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' % line.student_id.last_name if line.student_id.last_name else ''" />
+                                                        </td>
+                                                        <td width="15%">
+                                                            <b>Course</b>
+                                                        </td>
+                                                        <td>
+                                                            :
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' %  line.marksheet_reg_id.exam_session_id.course_id.name if  line.marksheet_reg_id.exam_session_id.course_id.name else ''" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="17%">
+                                                            <b>Exam Name</b>
+                                                        </td>
+                                                        <td>
+                                                            :
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' %   line.marksheet_reg_id.exam_session_id.name if   line.marksheet_reg_id.exam_session_id.name else ''" />
+                                                        </td>
+                                                        <td width="15%">
+                                                            <b>Exam Code</b>
+                                                        </td>
+                                                        <td>
+                                                            :
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' %   line.marksheet_reg_id.exam_session_id.exam_code if   line.marksheet_reg_id.exam_session_id.exam_code else ''" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <br></br>
+                                            <br></br>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <th class="text-center">Subject</th>
+                                                    <th class="text-center">Exam Type</th>
+                                                    <th class="text-center">Total Marks</th>
+                                                    <th class="text-center">Passing Marks</th>
+                                                    <th class="text-center">Obtained Marks</th>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="line.result_line" t-as="result">
+                                                        <tr>
+                                                            <td class="text-left">
+                                                                <span
+                                                                    t-raw="'%s &lt;&gt;' % result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''" />
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <span
+                                                                    t-raw="'%s &lt;&gt;' %  result.exam_id.exam_type.name if  result.exam_id.exam_type.name else ''" />
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <span
+                                                                    t-raw="'%s &lt;&gt;' % formatLang(result.exam_id.total_marks) if formatLang(result.exam_id.total_marks) else ''" />
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <span
+                                                                    t-raw="'%s &lt;&gt;' %  formatLang(result.exam_id.min_marks) if  formatLang(result.exam_id.min_marks) else ''" />
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <span
+                                                                    t-raw="'%s &lt;&gt;' % formatLang(result.marks) if formatLang(result.marks) else ''" />
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                            <br></br>
+                                            <table width="100%" class="table table-bordered">
+                                                <thead>
+                                                    <th class="text-center">Month/Year of Passing</th>
+                                                    <th class="text-center">Obtained Marks/Total Marks</th>
+                                                    <th class="text-center">Percentage</th>
+                                                    <th class="text-center">Result</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' %  get_date(line.marksheet_reg_id.generated_date) if  get_date(line.marksheet_reg_id.generated_date) else ''" />
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' %  formatLang(line.total_marks) if  formatLang(line.total_marks) else ''" />
+                                                            /
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' %  formatLang(get_total(line)) if  formatLang(get_total(line)) else ''" />
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' %  formatLang(line.total_per)  if  formatLang(line.total_per)  else ''" />
+                                                            %
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span
+                                                                t-raw="'%s &lt;&gt;' % line.result if line.result else ''" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p style="page-break-after: always;"></p>
+                                        </t>
+                                    </t>
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

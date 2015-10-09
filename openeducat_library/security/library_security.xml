@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="group_op_library" model="res.groups">
+            <field name="name">Library</field>
+        </record>
+
+        <!-- Rule for Book Queue Request to see own Record. -->
+        <record model="ir.rule" id="group_student_book_request_rule">
+            <field name="name">See Own Book Queue Request</field>
+            <field name="model_id" ref="model_op_book_queue"/> 
+            <field name="domain_force"> [('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('openeducat_core.group_op_student'))]"/>
+        </record>
+    </data>
+</openerp>

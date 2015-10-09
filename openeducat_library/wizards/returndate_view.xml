@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="return_date_form">
+            <field name="name">return.date.form</field>
+            <field name="model">return.date</field>
+            <field name="arch" type="xml">
+                <form string="Return Date">
+                    <header groups="base.group_user">
+                        <button name="assign_return_date" type="object" string="Proceed"
+                            class="oe_highlight" />
+                        <button string="Cancel" special="cancel" />
+                    </header>
+                    <group>
+                        <field name="actual_return_date" required="1" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="return_date_act">
+            <field name="name">Return Date</field>
+            <field name="res_model">return.date</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="return_date_form" />
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

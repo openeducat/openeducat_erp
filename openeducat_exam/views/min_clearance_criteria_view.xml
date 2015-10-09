@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_min_clearance_criteria_tree" model="ir.ui.view">
+            <field name="name">op.min.clear.criteria.tree</field>
+            <field name="model">op.min.clear.criteria</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Qualification Criteria" editable="top">
+                    <field name="name" />
+                    <field name="number" />
+                    <field name="result" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_min_clearance_criteria_form" model="ir.ui.view">
+            <field name="name">op.min.clear.criteria.form</field>
+            <field name="model">op.min.clear.criteria</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Qualification Criteria">
+                    <sheet>
+                        <group colsapn="4">
+                            <field name="name" select="1" />
+                            <field name="number" />
+                            <field name="result" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_min_clearance_criteria_view">
+            <field name="name">Qualification Criteria</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.min.clear.criteria</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_min_clearance_criteria_view_form">
+            <field name="act_window_id" ref="act_open_op_min_clearance_criteria_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_min_clearance_criteria_form" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_min_clearance_criteria_view_tree">
+            <field name="act_window_id" ref="act_open_op_min_clearance_criteria_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_min_clearance_criteria_tree" />
+        </record>
+    </data>
+</openerp>
