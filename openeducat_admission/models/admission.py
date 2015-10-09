@@ -34,7 +34,7 @@ class OpAdmission(models.Model):
         'First Name', size=128, required=True,
         states={'done': [('readonly', True)]})
     middle_name = fields.Char(
-        'Middle Name', size=128, required=True,
+        'Middle Name', size=128,
         states={'done': [('readonly', True)]})
     last_name = fields.Char(
         'Last Name', size=128, required=True,

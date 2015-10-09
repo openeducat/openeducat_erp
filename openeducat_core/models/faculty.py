@@ -28,7 +28,7 @@ class OpFaculty(models.Model):
 
     partner_id = fields.Many2one(
         'res.partner', 'Partner', required=True, ondelete="cascade")
-    middle_name = fields.Char('Middle Name', size=128, required=True)
+    middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128, required=True)
     birth_date = fields.Date('Birth Date', required=True)
     blood_group = fields.Selection(
