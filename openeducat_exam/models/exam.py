@@ -36,7 +36,7 @@ class OpExam(models.Model):
         [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
         'Evaluation Type', required=True)
     attendees_line = fields.One2many(
-        'op.exam.attendees', 'exam_id', 'Attendees', required=True)
+        'op.exam.attendees', 'exam_id', 'Attendees')
     venue = fields.Many2one('res.partner', 'Venue')
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)

@@ -31,8 +31,7 @@ class OpClassroom(models.Model):
     capacity = fields.Integer(string='No of Person')
     facilities = fields.One2many(
         'op.facility.line', 'classroom_id', string='Facility Lines')
-    asset_line = fields.One2many(
-        'op.asset', 'asset_id', 'Asset', required=True)
+    asset_line = fields.One2many('op.asset', 'asset_id', 'Asset')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

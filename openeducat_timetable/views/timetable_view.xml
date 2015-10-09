@@ -51,6 +51,7 @@
                     <field name="subject_id" select="True" />
                     <field name="start_datetime" select="True" />
                     <field name="end_datetime" select="True" />
+                    <field name="type" select="True" />
                     <newline />
                     <filter string="Today" domain="[('start_datetime', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start_datetime', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]" />
                     <group expand="0" string="Group By...">
@@ -80,6 +81,7 @@
                     <field name="batch_id" />
                     <field name="period_id" />
                     <field name="subject_id" />
+                    <field name="type" />
                 </calendar>
             </field>
         </record>
@@ -88,23 +90,27 @@
             <field name="name">timetable.kanban</field>
             <field name="model">op.timetable</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="type" class="oe_background_grey">
+                <kanban default_group_by="type" class="o_kanban_small_column">
                     <field name="type"/>
                     <field name="color"/>
                     <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_project oe_kanban_global_click">
-                            <div class="oe_dropdown_toggle oe_dropdown_kanban" groups="base.group_user">
-                                <span class="oe_e">í</span>
-                                <ul class="oe_dropdown_menu">
-                                    <t t-if="widget.view.is_action_enabled('edit')"><li><a type="edit">Edit...</a></li></t>
-                                    <t t-if="widget.view.is_action_enabled('delete')"><li><a type="delete">Delete</a></li></t>
-                                    <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
-                                </ul>
-                            </div>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                        <span class="fa fa-bars fa-lg"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
+	                                    <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+	                                    <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
                             <div class="oe_kanban_content">
-                                <div><b><field name="period_id"/></b></div>
-                                <div class="oe_kanban_footer_left">
+                                <div>
+                                    <strong><field name="period_id"/></strong>
+                                </div>
+                                <div class="oe_kanban_left">
                                     <li t-if="record.faculty_id.raw_value">
                                         Faculty:
                                         <field name="faculty_id"/>

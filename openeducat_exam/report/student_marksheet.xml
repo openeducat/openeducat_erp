@@ -11,27 +11,6 @@
                 margin-top:1%;
                 size: A4;
                 }
-                .table.gridtable {
-                font-size:11px;
-                border-color: #cccccc;
-                border-collapse: collapse;
-                }
-                table.gridtable th {
-                border-style: solid;
-                border-color: #cccccc;
-                padding-bottom: 10px;
-                padding-top: 14px;
-                padding-right: 50px;
-                padding-left: 50px;
-                }
-                table.gridtable td {
-                border-style: solid;
-                border-color: #cccccc;
-                padding-bottom: 10px;
-                padding-top: 14px;
-                padding-right: 50px;
-                padding-left: 50px;
-                }
             </style>
             <t t-call="report.html_container">
                 <t t-call="report.external_layout">
@@ -48,7 +27,7 @@
                                             </div>
                                             <br></br>
                                             <br></br>
-                                            <table width="100%" class="center">
+                                            <table width="100%">
                                                 <tbody>
                                                     <tr>
                                                         <td width="17%">
@@ -93,13 +72,14 @@
                                                 </tbody>
                                             </table>
                                             <br></br>
-                                            <table class="gridtable center">
-                                                <thead class="text-center">
-                                                    <th>Subject</th>
-                                                    <th>Exam Type</th>
-                                                    <th>Total Marks</th>
-                                                    <th>Passing Marks</th>
-                                                    <th>Obtained Marks</th>
+                                            <br></br>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <th class="text-center">Subject</th>
+                                                    <th class="text-center">Exam Type</th>
+                                                    <th class="text-center">Total Marks</th>
+                                                    <th class="text-center">Passing Marks</th>
+                                                    <th class="text-center">Obtained Marks</th>
                                                 </thead>
                                                 <tbody>
                                                     <t t-foreach="line.result_line" t-as="result">
@@ -129,13 +109,12 @@
                                                 </tbody>
                                             </table>
                                             <br></br>
-                                            <br></br>
-                                            <table class="gridtable center">
-                                                <thead class="text-center">
-                                                    <th>Month/Year of Passing</th>
-                                                    <th>Obtained Marks/Total Marks</th>
-                                                    <th>Percentage</th>
-                                                    <th>Result</th>
+                                            <table width="100%" class="table table-bordered">
+                                                <thead>
+                                                    <th class="text-center">Month/Year of Passing</th>
+                                                    <th class="text-center">Obtained Marks/Total Marks</th>
+                                                    <th class="text-center">Percentage</th>
+                                                    <th class="text-center">Result</th>
                                                 </thead>
                                                 <tbody>
                                                     <tr>

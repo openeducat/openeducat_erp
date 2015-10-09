@@ -6,8 +6,8 @@
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page[@string='Educational']" position="after">
-                    <page string="Health Detail">
+                <xpath expr="//notebook/page[@name='educational']" position="after">
+                    <page name="health_detail" string="Health Detail">
                         <field name="health_lines" colspan="4" nolabel="1">
                             <tree>
                                 <field name="blood_group" />
@@ -29,8 +29,8 @@
             <field name="model">op.faculty</field>
             <field name="inherit_id" ref="openeducat_core.view_op_faculty_form" />
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page[@string='Subjects']" position="after">
-                    <page string="Health Detail">
+                <xpath expr="//notebook/page[@name='subjects']" position="after">
+                    <page name="health_detail" string="Health Detail">
                         <field name="health_faculty_lines" colspan="4" nolabel="1">
                             <tree>
                                 <field name="blood_group" />

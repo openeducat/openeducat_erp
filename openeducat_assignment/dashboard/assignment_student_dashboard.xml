@@ -2,13 +2,13 @@
 <openerp>
     <data>
         <record model="ir.actions.act_window" id="act_op_student_assignment">
-            <field name="name">Assignment</field>
+            <field name="name">Student Assignment</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment.sub.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_assignment_sub_line_search" />
-            <field name="domain">[('state', '=', 'd')]</field>
+            <field name="domain">[('state', 'in', ['draft','change'])]</field>
             <field name="context">{}</field>
         </record>
         <record model="ir.ui.view" id="assignment_student_dashboard_form_view">

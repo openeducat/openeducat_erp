@@ -9,39 +9,6 @@
                 @page{
                 size: A4;
                 }
-                td.a {
-                border-style:solid black;
-                border-width:3px;
-                border-color:#000000;
-                padding: 10px;
-                }
-                td.b {
-                border-style:solid black;
-                border-width:3px;
-                border-color:#333333;
-                padding:10px;
-                }
-                .table.gridtable {
-                font-size:11px;
-                border-color: #cccccc;
-                border-collapse: collapse;
-                }
-                table.gridtable th {
-                border-style: solid;
-                border-color: #cccccc;
-                padding-bottom: 10px;
-                padding-top: 14px;
-                padding-right: 50px;
-                padding-left: 50px;
-                }
-                table.gridtable td {
-                border-style: solid;
-                border-color: #cccccc;
-                padding-bottom: 10px;
-                padding-top: 14px;
-                padding-right: 50px;
-                padding-left: 50px;
-                }
             </style>
 
             <t t-call="report.html_container">
@@ -61,41 +28,20 @@
                                         <strong> Faculty Time Table</strong>
                                     </h2>
                                 </div>
-                                <para>
-                                    <font color="white">.......</font>
-                                </para>
-                                <para>
-                                    <font color="white">.......</font>
-                                </para>
+                                <br></br>
+                                <div class="text-left">
+                                    <b>Faculty Name :</b>
+                                    <span t-esc="get_full_name(data)" />
+                                </div>
+                                <br></br>
                                 <div class="row text-center">
                                     <b>From Date: </b>
                                     <span t-esc="data['start_date']" />
                                     <b>To Date:</b>
                                     <span t-esc="data['end_date']" />
                                 </div>
-                                <para>
-                                    <font color="white">.......</font>
-                                </para>
-                                <para>
-                                    <font color="white">......</font>
-                                </para>
-                                <para>
-                                    <font color="white">......</font>
-                                </para>
-                                <div class="text-left">
-                                    <b>Faculty Name :</b>
-                                    <span t-esc="get_full_name(data)" />
-                                </div>
-                                <para>
-                                    <font color="white">......</font>
-                                </para>
-                                <para>
-                                    <font color="white">......</font>
-                                </para>
-                                <para>
-                                    <font color="white">......</font>
-                                </para>
-                                <table class="gridtable center">
+                                <br></br>
+                                <table class="table table-bordered">
                                     <thead>
                                         <th class="text-left">PERIOD </th>
                                         <th class="text-center"> MON </th>

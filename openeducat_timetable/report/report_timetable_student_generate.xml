@@ -53,39 +53,30 @@
                                         <strong>Time Table</strong>
                                     </h2>
                                 </div>
-                                <para>
-                                    <font color="white">.......</font>
-                                </para>
-                                <para>
-                                    <font color="white">.......</font>
-                                </para>
-                                <table class="center">
+                                <br></br>
+                                <table width="100%">
                                     <tbody>
                                         <tr>
-                                            <td class="spacer1">
+                                            <td>
                                                 <b>Class: </b>
                                                 <span t-esc="data['course_id'][1]" />
                                             </td>
-                                            <td>
+                                            <td class="text-right">
                                                 <b>Batch:</b>
                                                 <span t-esc="data['batch_id'][1]" />
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <para>
-                                    <font color="white">.......</font>
-                                </para>
-                                <para>
-                                    <font color="white">.......</font>
-                                </para>
+                                <br></br>
                                 <div class="row text-center">
                                     <b>From Date: </b>
                                     <span t-esc="data['start_date']" />
                                     <b>To Date:</b>
                                     <span t-esc="data['end_date']" />
                                 </div>
-                                <table class="gridtable center">
+                                <br></br>
+                                <table class="table table-bordered">
                                     <thead>
                                         <th class="text-left">PERIOD </th>
                                         <th class="text-center"> MON </th>
@@ -101,37 +92,50 @@
                                                 <span t-raw="'%s &lt;&gt;' %  a['name'] if  a['name']  else ''" />
                                             </td>
                                             <td>
-                                                <span t-esc="a['line'].get('Monday',{'subject':''})['subject']" />
+                                                <b>
+                                                    <span t-esc="a['line'].get('Monday',{'subject':''})['subject']" />
+                                                </b>
                                                 <br></br>
                                                 <span
                                                     t-esc="a['line'].get('Monday',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
-                                                <span t-esc="a['line'].get('Tuesday',{'subject':''})['subject']" />
+                                                <b>
+                                                    <span t-esc="a['line'].get('Tuesday',{'subject':''})['subject']" />
+                                                </b>
                                                 <br></br>
                                                 <span
                                                     t-esc="a['line'].get('Tuesday',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
-                                                <span t-esc="a['line'].get('Wednesday',{'subject':''})['subject']" />
+                                                <b>
+                                                    <span
+                                                        t-esc="a['line'].get('Wednesday',{'subject':''})['subject']" />
+                                                </b>
                                                 <br></br>
                                                 <span
                                                     t-esc="a['line'].get('Wednesday',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
-                                                <span t-esc="a['line'].get('Thursday',{'subject':''})['subject']" />
+                                                <b>
+                                                    <span t-esc="a['line'].get('Thursday',{'subject':''})['subject']" />
+                                                </b>
                                                 <br></br>
                                                 <span
                                                     t-esc="a['line'].get('Thursday',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
-                                                <span t-esc="a['line'].get('Friday',{'subject':''})['subject']" />
+                                                <b>
+                                                    <span t-esc="a['line'].get('Friday',{'subject':''})['subject']" />
+                                                </b>
                                                 <br></br>
                                                 <span
                                                     t-esc="a['line'].get('Friday',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
-                                                <span t-esc="a['line'].get('Saturday',{'subject':''})['subject']" />
+                                                <b>
+                                                    <span t-esc="a['line'].get('Saturday',{'subject':''})['subject']" />
+                                                </b>
                                                 <br></br>
                                                 <span
                                                     t-esc="a['line'].get('Saturday',{'start_datetime':''})['start_datetime']" />

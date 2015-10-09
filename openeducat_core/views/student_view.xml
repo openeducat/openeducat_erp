@@ -5,17 +5,16 @@
             <field name="name">Student Kanban</field>
             <field name="model">op.student</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban class="o_hr_employee_kanban">
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_employee_vignette">
-                                <div class="oe_employee_image">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
                                     <a type="open">
-                                        <img t-att-src="kanban_image('op.student', 'photo', record.id.value)"
-                                            class="oe_employee_picture" />
+                                        <img t-att-src="kanban_image('op.student', 'photo', record.id.value)" class="oe_employee_picture"/>
                                     </a>
                                 </div>
-                                <div class="oe_employee_details">
+                                <div class="oe_kanban_details">
                                     <h4>
                                         <a type="open">
                                             <field name="name" />
@@ -86,7 +85,7 @@
                             <h3><field name="title" placeholder="Title" style="width: 30%%" /></h3>
                             <h1><table>
                                 <tr>
-                                <td><field name="name" placeholder="First Name" style="padding-right:10px" /></td>
+                                <td><field name="name" required="1" placeholder="First Name" style="padding-right:10px" /></td>
                                 <td><field name="middle_name" placeholder="Middle Name" style="padding-right:10px" /></td>
                                 <td><field name="last_name" placeholder="Last Name" style="padding-right:10px" /></td>
                                 </tr>
@@ -94,7 +93,7 @@
                             </h1>
                         </div>
                         <notebook colspan="4">
-                            <page string="Personal Information">
+                            <page name="personal_information" string="Personal Information">
                                 <group col="4" colspan="4" name="personal_detail">
                                     <field name="gender" />
                                     <field name="birth_date" />
@@ -126,7 +125,7 @@
                                     </div>
                                 </group>
                             </page>
-                            <page string="Educational">
+                            <page name="educational" string="Educational">
                                 <group col="4" colspan="4">
                                     <field name="course_id" />
                                     <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
@@ -156,13 +155,13 @@
                     <field name="batch_id" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Blood Group" domain="[]"
+                        <filter name="blood_group" string="Blood Group" domain="[]"
                             context="{'group_by':'blood_group'}" />
-                        <filter string="Nationality" domain="[]"
+                        <filter name="nationality" string="Nationality" domain="[]"
                             context="{'group_by':'nationality'}" />
-                        <filter string="Language" domain="[]" context="{'group_by':'language'}" />
-                        <filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
-                        <filter string="Batch" domain="[]" context="{'group_by':'batch_id'}" />
+                        <filter name="language" string="Language" domain="[]" context="{'group_by':'language'}" />
+                        <filter name="course" string="Course" domain="[]" context="{'group_by':'course_id'}" />
+                        <filter name="batch" string="Batch" domain="[]" context="{'group_by':'batch_id'}" />
                     </group>
                 </search>
             </field>

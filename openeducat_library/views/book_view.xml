@@ -40,10 +40,10 @@
                             <field name="tags" widget="many2many_tags" />
                         </group>
                         <notebook colspan="4">
-                            <page string="Description">
+                            <page name="description" string="Description">
                                 <field name="description" colspan="4" />
                             </page>
-                            <page string="Education Details">
+                            <page name="education_details" string="Education Details">
                                 <group colspan="4">
                                     <separator string="Courses" />
                                     <separator string="Subjects" />
@@ -51,13 +51,13 @@
                                     <field name="subject_ids" nolabel="1" widget="many2many_tags" />
                                 </group>
                             </page>
-                            <page string="Units">
+                            <page name="units" string="Units">
                                 <field name="unit_ids" colspan="4" nolabel="1" />
                             </page>
-                            <page string="Movements" groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin">
+                            <page name="movements" string="Movements" groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin">
                                 <field name="movement_line" colspan="4" nolabel="1" />
                             </page>
-                            <page string="Book Queue Requests">
+                            <page name="book_queue_requests" string="Book Queue Requests">
                                 <field name="queue_ids" colspan="4" nolabel="1">
                                     <tree string="Book Queue Request">
                                         <field name="partner_id" />

@@ -42,6 +42,13 @@
         'admission_menu.xml',
         'security/ir.model.access.csv',
     ],
+    'demo': [
+        'demo/product.category.csv',
+        'demo/product.product.csv',
+        'demo/op.admission.register.csv',
+        'demo/op.admission.csv',
+        'demo/student_demo.xml',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -37,7 +37,7 @@
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['document', 'hr', 'web', 'website'],
+    'depends': ['board', 'document', 'hr', 'web', 'website'],
     'data': [
         'report/report_student_bonafide.xml',
         'report/report_student_idcard.xml',
@@ -64,12 +64,14 @@
     ],
     'demo': [
         'demo/op_company_data.xml',
+        'demo/op.subject.csv',
         'demo/op.course.csv',
         'demo/op.batch.csv',
         'demo/res.users.csv',
         'demo/op.student.csv',
         'demo/op.faculty.csv',
-        'demo/op.subject.csv',
+        'demo/student_demo.xml',
+        'demo/faculty_demo.xml',
         'demo/res.groups.csv'
     ],
     'css': ['static/src/css/base.css'],

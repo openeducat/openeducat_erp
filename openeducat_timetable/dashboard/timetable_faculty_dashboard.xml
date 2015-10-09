@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record id="view_op_timetable_faculty_calendar_dash" model="ir.ui.view">
-            <field name="name">op.timetable.calendar</field>
-            <field name="model">op.timetable</field>
-            <field name="priority" eval="8" />
-            <field name="arch" type="xml">
-                <calendar string="Time Table" mode="day" date_start="start_datetime"
-                    date_stop="end_datetime">
-                    <field name="faculty_id" />
-                    <field name="period_id" />
-                    <field name="subject_id" />
-                </calendar>
-            </field>
-        </record>
         <record model="ir.actions.act_window" id="act_op_faculty_period_today">
             <field name="name">Book</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.timetable</field>
             <field name="view_type">form</field>
             <field name="view_mode">calendar,form</field>
-            <field name="view_id" ref="view_op_timetable_faculty_calendar_dash" />
+            <field name="view_id" ref="view_op_timetable_calendar" />
             <field name="search_view_id" ref="view_op_timetable_search" />
             <field name="domain">[('start_datetime','&gt;=',time.strftime('%Y-%m-%d
                 00:00:00')),('start_datetime','&lt;=',time.strftime('%Y-%m-%d

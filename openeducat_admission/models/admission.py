@@ -19,8 +19,8 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
-from openerp.exceptions import ValidationError
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError, Warning
 
 
 class OpAdmission(models.Model):
@@ -34,7 +34,7 @@ class OpAdmission(models.Model):
         'First Name', size=128, required=True,
         states={'done': [('readonly', True)]})
     middle_name = fields.Char(
-        'Middle Name', size=128, required=True,
+        'Middle Name', size=128,
         states={'done': [('readonly', True)]})
     last_name = fields.Char(
         'Last Name', size=128, required=True,
@@ -44,7 +44,8 @@ class OpAdmission(models.Model):
     application_number = fields.Char(
         'Application Number', size=16, required=True, copy=False,
         states={'done': [('readonly', True)]},
-        default=lambda self: self.env['ir.sequence'].get('op.admission'))
+        default=lambda self:
+        self.env['ir.sequence'].next_by_code('op.admission'))
     admission_date = fields.Date(
         'Admission Date', copy=False,
         states={'done': [('readonly', True)]})
@@ -217,45 +218,52 @@ class OpAdmission(models.Model):
     def create_invoice(self):
         """ Create invoice for fee payment process of student """
 
-        invoice_pool = self.env['account.invoice']
-        invoice_line_pool = self.env['account.invoice.line']
-
+        inv_obj = self.env['account.invoice']
         partner_id = self.env['res.partner'].create({'name': self.name})
 
-        invoice_fields = invoice_pool.fields_get(self)
-        invoice_default = invoice_pool.default_get(invoice_fields)
+        account_id = False
+        product = self.register_id.product_id
+        if product.id:
+            account_id = product.property_account_income_id.id
+        if not account_id:
+            account_id = product.categ_id.property_account_income_categ_id.id
+        if not account_id:
+            raise Warning(
+                _('There is no income account defined for this product: "%s". \
+                   You may have to install a chart of account from Accounting \
+                   app, settings menu.') % (product.name,))
 
-        line_fields = invoice_line_pool.fields_get(self)
-        invoice_line_default = invoice_line_pool.default_get(line_fields)
+        if self.fees <= 0.00:
+            raise Warning(_('The value of the deposit amount must be \
+                             positive.'))
+        else:
+            amount = self.fees
+            name = product.name
 
-        type = 'out_invoice'
-        onchange_partner = invoice_pool.onchange_partner_id(
-            type, partner_id.id)
-        invoice_default.update(onchange_partner['value'])
-
-        invoice_data = {
+        invoice = inv_obj.create({
+            'name': self.name,
+            'origin': self.application_number,
+            'type': 'out_invoice',
+            'reference': False,
+            'account_id': partner_id.property_account_receivable_id.id,
             'partner_id': partner_id.id,
-            'date_invoice': fields.Date.today(),
-            'payment_term': self.course_id.payment_term and
-            self.course_id.payment_term.id or False,
-        }
-        invoice_default.update(invoice_data)
-        invoice_id = invoice_pool.create(invoice_default).id
+            'invoice_line_ids': [(0, 0, {
+                'name': name,
+                'origin': self.application_number,
+                'account_id': account_id,
+                'price_unit': amount,
+                'quantity': 1.0,
+                'discount': 0.0,
+                'uom_id': self.register_id.product_id.uom_id.id,
+                'product_id': product.id,
+            })],
+        })
+        invoice.compute_taxes()
 
-        onchange_producat = invoice_line_pool.product_id_change(
-            self.register_id.product_id.id, False, 0, '', type, partner_id.id)
-        invoice_line_default.update(onchange_producat['value'])
-        line_data = {'product_id': self.register_id.product_id.id,
-                     'price_unit': self.fees,
-                     'invoice_id': invoice_id}
-        invoice_line_default.update(line_data)
-        invoice_line_pool.create(invoice_line_default).id
-
-        self.write({'invoice_ids': [(4, invoice_id)]})
         form_view = self.env.ref('account.invoice_form')
         tree_view = self.env.ref('account.invoice_tree')
         value = {
-            'domain': str([('id', '=', invoice_id)]),
+            'domain': str([('id', '=', invoice.id)]),
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'account.invoice',
@@ -263,7 +271,7 @@ class OpAdmission(models.Model):
             'views': [(form_view and form_view.id or False, 'form'),
                       (tree_view and tree_view.id or False, 'tree')],
             'type': 'ir.actions.act_window',
-            'res_id': invoice_id,
+            'res_id': invoice.id,
             'target': 'current',
             'nodestroy': True
         }

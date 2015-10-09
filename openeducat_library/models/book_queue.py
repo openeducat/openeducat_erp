@@ -55,7 +55,8 @@ class OpBookQueue(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'].get('op.book.queue') or '/'
+            vals['name'] = self.env['ir.sequence'].next_by_code(
+                'op.book.queue') or '/'
         return super(OpBookQueue, self).create(vals)
 
     @api.one
