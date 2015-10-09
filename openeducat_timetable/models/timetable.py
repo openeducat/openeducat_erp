@@ -40,11 +40,5 @@ class OpTimetable(models.Model):
          ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'),
          ('Friday', 'Friday'), ('Saturday', 'Saturday')], 'Days')
 
-    _sql_constraints = [
-        ('unique_start_end_time',
-         'unique(start_datetime,end_datetime)',
-         'Start Time & End Time must be unique!'),
-    ]
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
