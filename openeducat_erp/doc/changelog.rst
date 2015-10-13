@@ -3,6 +3,17 @@
 Changelog
 =========
 
+`9.0.2.2.0`
+---------
+- Made feature wise separate modules.
+- Made compatible with odoo v9.
+- Student management is now based on Courses and Batch instead of Standard and Division.
+- Made changes in admission process, Library.
+- Made demo data more enhanced.
+- Enhanced reports.
+- Bug fixes.
+
+
 `8.0.1.2.0`
 ---------
 - Bug Fixes and Code Clean up

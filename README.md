@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/openeducat/openeducat_erp.svg?branch=8.0)](https://travis-ci.org/openeducat/openeducat_erp)
-[![Coverage Status](https://coveralls.io/repos/ajaychauhan727/openeducat_erp/badge.svg?branch=master_refactor_cha&service=github)](https://coveralls.io/github/ajaychauhan727/openeducat_erp?branch=master_refactor_cha)
+[![Build Status](https://travis-ci.org/openeducat/openeducat_erp.svg?branch=9.0)](https://travis-ci.org/openeducat/openeducat_erp)
+[![Coverage Status](https://coveralls.io/repos/openeducat/openeducat_erp/badge.svg?branch=9.0&service=github)](https://coveralls.io/github/openeducat/openeducat_erp?branch=9.0)
 
-OpenEduCat for Odoo 8
+OpenEduCat for Odoo 9
 =====================
 
 OpenEduCat is a fully open source ERP system for educational institute, for efficient management of students, faculties, courses and classes keeping a collaborative platform.
