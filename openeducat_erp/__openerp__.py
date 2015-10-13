@@ -51,7 +51,7 @@
                 'openeducat_alumni', 'openeducat_assignment',
                 'openeducat_attendance', 'openeducat_exam',
                 'openeducat_health', 'openeducat_hostel',
-                'openeducat_library',
+                'openeducat_admission', 'openeducat_library',
                 'openeducat_parent', 'openeducat_placement',
                 'openeducat_scholarship', 'openeducat_timetable',
                 'openeducat_transportation'],
