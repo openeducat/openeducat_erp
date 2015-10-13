@@ -44,6 +44,11 @@
         'report/report_menu.xml',
         'attendance_menu.xml'
     ],
+    'demo': [
+        'demo/op.attendance.register.csv',
+        'demo/op.attendance.sheet.csv',
+        'demo/op.attendance.line.csv',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,
