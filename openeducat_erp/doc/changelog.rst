@@ -1,10 +1,8 @@
-.. _changelog:
-
 Changelog
 =========
 
 `9.0.2.2.0`
----------
+-----------
 - Made feature wise separate modules.
 - Made compatible with odoo v9.
 - Student management is now based on Courses and Batch instead of Standard and Division.
@@ -15,12 +13,12 @@ Changelog
 
 
 `8.0.1.2.0`
----------
+-----------
 - Bug Fixes and Code Clean up
 
 
 `8.0.1.1.0`
----------
+-----------
 - Refactor the code as per New API.
 - Follow pep8.
 - Apply testing for flake8 & pylint via travis.
@@ -29,7 +27,7 @@ Changelog
 
 
 `8.0.0`
----------
+-------
 - OpenEduCat Now compatible with Odoo v8.
 - Added demo portal
 
