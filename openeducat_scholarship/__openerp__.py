@@ -38,6 +38,10 @@
         'security/ir.model.access.csv',
         'scholarship_menu.xml',
     ],
+    'demo': [
+        'demo/op.scholarship.type.csv',
+        'demo/op.scholarship.csv',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

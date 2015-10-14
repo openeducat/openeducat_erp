@@ -29,6 +29,7 @@ class OpActivity(models.Model):
     student_id = fields.Many2one('op.student', 'Student', required=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     type_id = fields.Many2one('op.activity.type', 'Activity Type')
+    description = fields.Text('Description')
     date = fields.Date('Date')
 
 

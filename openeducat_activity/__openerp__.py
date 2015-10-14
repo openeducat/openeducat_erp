@@ -41,6 +41,10 @@
         'views/student_view.xml',
         'activity_menu.xml'
     ],
+    'demo': [
+        'demo/op.activity.type.csv',
+        'demo/op.activity.csv',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,
