@@ -37,6 +37,9 @@
         'placement_menu.xml',
         'security/ir.model.access.csv'
     ],
+    'demo': [
+        'demo/op.placement.offer.csv'
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

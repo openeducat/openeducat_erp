@@ -41,6 +41,9 @@
         'transportation_menu.xml'
     ],
     'demo': [
+        'demo/op.stop.csv',
+        'demo/op.vehicle.csv',
+        'demo/op.transportation.csv',
     ],
     'installable': True,
     'auto_install': False,
