@@ -37,6 +37,10 @@
         'security/ir.model.access.csv',
         'health_menu.xml',
     ],
+    'demo': [
+        'demo/op.health.line.csv',
+        'demo/op.health.csv'
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -39,6 +39,7 @@
         'facility_menu.xml',
     ],
     'demo': [
+        'demo/op.facility.csv'
     ],
     'installable': True,
     'auto_install': False,

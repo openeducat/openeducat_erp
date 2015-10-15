@@ -36,6 +36,8 @@
         'views/alumni_view.xml'
     ],
     'demo': [
+        'demo/op.student.csv',
+        'demo/student_demo.xml'
     ],
     'installable': True,
     'auto_install': False,

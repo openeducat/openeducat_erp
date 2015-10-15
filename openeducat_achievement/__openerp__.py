@@ -38,6 +38,10 @@
         'security/ir.model.access.csv',
         'achievement_menu.xml',
     ],
+    'demo': [
+        'demo/op.achievement.type.csv',
+        'demo/op.achievement.csv',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

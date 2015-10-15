@@ -38,6 +38,8 @@
         'security/ir.model.access.csv'
     ],
     'demo': [
+        'demo/op.classroom.csv',
+        'demo/op.facility.line.csv'
     ],
     'installable': True,
     'auto_install': False,
