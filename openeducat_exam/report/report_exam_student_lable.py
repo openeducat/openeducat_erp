@@ -20,7 +20,7 @@
 ###############################################################################
 
 import time
-from openerp.osv import osv
+from openerp import models
 from openerp.report import report_sxw
 
 
@@ -82,7 +82,7 @@ class ExamStudentLableReport(report_sxw.rml_parse):
         return ret_list
 
 
-class ReportExamStudentLable(osv.AbstractModel):
+class ReportExamStudentLable(models.AbstractModel):
     _name = 'report.openeducat_exam.report_exam_student_lable'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_exam.report_exam_student_lable'

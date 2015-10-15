@@ -22,7 +22,7 @@
 from datetime import datetime
 import time
 
-from openerp.osv import osv
+from openerp import models
 from openerp.report import report_sxw
 
 
@@ -59,7 +59,7 @@ class MarksheetReport(report_sxw.rml_parse):
         return sum(total)
 
 
-class ReportMarksheetReport(osv.AbstractModel):
+class ReportMarksheetReport(models.AbstractModel):
     _name = 'report.openeducat_exam.report_marksheet_report'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_exam.report_marksheet_report'
