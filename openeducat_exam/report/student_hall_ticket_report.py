@@ -38,12 +38,10 @@ class StudentHallTicketReport(report_sxw.rml_parse):
 
     def get_date(self, exam_line):
 
-        schedule_start = fields.Datetime.context_timestamp(
-                           self,
-                           fields.Datetime.from_string(exam_line.start_time))
-        schedule_end = fields.Datetime.context_timestamp(
-                         self,
-                         fields.Datetime.from_string(exam_line.end_time))
+        timestamp = fields.Datetime.context_timestamp
+        dt = fields.Datetime
+        schedule_start = timestamp(self, dt.from_string(exam_line.start_time))
+        schedule_end = timestamp(self, dt.from_string(exam_line.end_time))
         schedule_start = fields.Datetime.to_string(schedule_start)
         schedule_end = fields.Datetime.to_string(schedule_end)
 
