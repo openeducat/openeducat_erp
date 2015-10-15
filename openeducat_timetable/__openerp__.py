@@ -51,6 +51,9 @@
         'demo/op.period.csv',
         'demo/op_timetable_demo.xml'
     ],
+    'images': [
+        'static/description/openeducat_timetable_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

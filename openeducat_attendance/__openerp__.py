@@ -44,6 +44,9 @@
         'report/report_menu.xml',
         'attendance_menu.xml'
     ],
+    'images': [
+        'static/description/openeducat_attendance_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

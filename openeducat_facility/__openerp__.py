@@ -40,6 +40,9 @@
     ],
     'demo': [
     ],
+    'images': [
+        'static/description/openeducat_facility_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

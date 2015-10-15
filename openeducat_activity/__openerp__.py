@@ -41,6 +41,9 @@
         'views/student_view.xml',
         'activity_menu.xml'
     ],
+    'images': [
+        'static/description/openeducat_activity_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

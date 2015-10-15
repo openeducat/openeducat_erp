@@ -41,6 +41,9 @@
     ],
     'demo': [
     ],
+    'images': [
+        'static/description/openeducat_hostel_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

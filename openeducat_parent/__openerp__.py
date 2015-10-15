@@ -42,6 +42,9 @@
         'demo/res.users.csv',
         'demo/res.groups.csv',
     ],
+    'images': [
+        'static/description/openeducat_parent_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

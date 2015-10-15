@@ -62,6 +62,9 @@
         'demo/op.exam.session.csv',
         'demo/op.exam.csv',
     ],
+    'images': [
+        'static/description/openeducat_exam_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

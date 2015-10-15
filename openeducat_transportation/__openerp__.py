@@ -42,6 +42,9 @@
     ],
     'demo': [
     ],
+    'images': [
+        'static/description/openeducat_transportation_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

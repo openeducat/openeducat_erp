@@ -79,6 +79,9 @@
     'qweb': [
         'static/src/xml/base.xml'],
     'js': ['static/src/js/chrome.js'],
+    'images': [
+        'static/description/openeducat_core_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,
