@@ -35,6 +35,9 @@
     'data': [
         'views/admission_view.xml',
     ],
+    'demo': [
+        'demo/op.admission.csv'
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -41,6 +41,8 @@
     'demo': [
         'demo/res.users.csv',
         'demo/res.groups.csv',
+        'demo/res.partner.csv',
+        'demo/op.parent.csv',
     ],
     'installable': True,
     'auto_install': False,
