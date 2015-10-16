@@ -38,6 +38,9 @@
         'security/ir.model.access.csv',
         'scholarship_menu.xml',
     ],
+    'images': [
+        'static/description/openeducat_scholarship_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -38,6 +38,9 @@
         'security/ir.model.access.csv',
         'achievement_menu.xml',
     ],
+    'images': [
+        'static/description/openeducat_achievement_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

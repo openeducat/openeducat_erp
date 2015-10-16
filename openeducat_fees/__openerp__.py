@@ -39,6 +39,9 @@
         'views/course_view.xml',
         'security/ir.model.access.csv'
     ],
+    'images': [
+        'static/description/openeducat_fees_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

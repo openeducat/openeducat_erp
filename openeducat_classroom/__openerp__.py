@@ -39,6 +39,9 @@
     ],
     'demo': [
     ],
+    'images': [
+        'static/description/openeducat_classroom_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

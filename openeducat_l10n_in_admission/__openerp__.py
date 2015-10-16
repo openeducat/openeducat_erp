@@ -35,6 +35,9 @@
     'data': [
         'views/admission_view.xml',
     ],
+    'images': [
+        'static/description/indian_openeducat_admission_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

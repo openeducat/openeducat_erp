@@ -37,6 +37,9 @@
         'security/ir.model.access.csv',
         'health_menu.xml',
     ],
+    'images': [
+        'static/description/openeducat_health_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

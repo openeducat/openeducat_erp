@@ -21,7 +21,7 @@
 
 import time
 
-from openerp.osv import osv
+from openerp import models
 from openerp.report import report_sxw
 
 
@@ -64,7 +64,7 @@ class AdmissionAnalysisReport(report_sxw.rml_parse):
         return lst
 
 
-class ReportAdmissionAnalysis(osv.AbstractModel):
+class ReportAdmissionAnalysis(models.AbstractModel):
     _name = 'report.openeducat_admission.report_admission_analysis'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_admission.report_admission_analysis'

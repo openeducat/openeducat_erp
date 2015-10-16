@@ -20,7 +20,7 @@
 ###############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 
 from ..models import book_unit
 
@@ -81,12 +81,12 @@ class IssueBook(models.TransientModel):
                 self.book_unit_id.state = 'issue'
                 value = {'type': 'ir.actions.act_window_close'}
             else:
-                raise Warning(_('Error!'), _(
+                raise UserError(_(
                     "Book Unit can not be issued because it's state is : %s") %
                     (dict(book_unit.unit_states).get(
                         self.book_unit_id.state)))
         else:
-            raise Warning(_('Error!'), _(
+            raise UserError(_(
                 'Maximum Number of book allowed for %s is : %s') %
                 (self.student_id.name,
                  self.library_card_id.library_card_type_id.allow_book))

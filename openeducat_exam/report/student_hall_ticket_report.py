@@ -19,10 +19,9 @@
 #
 ###############################################################################
 
-from datetime import datetime
 import time
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 from openerp.report import report_sxw
 
 
@@ -35,24 +34,16 @@ class StudentHallTicketReport(report_sxw.rml_parse):
             'time': time,
             'get_data': self.get_data,
         })
-        self.context = context
+        self._context = context
 
     def get_date(self, exam_line):
 
-        context = self.context
-
-        schedule_start = datetime.strptime(
-            exam_line.start_time, "%Y-%m-%d %H:%M:%S")
-        schedule_end = datetime.strptime(
-            exam_line.end_time, "%Y-%m-%d %H:%M:%S")
-
-        schedule_start = fields.datetime.context_timestamp(
-            self.cr, self.uid, schedule_start, context=context).strftime(
-            "%Y-%m-%d %H:%M:%S")
-
-        schedule_end = fields.datetime.context_timestamp(
-            self.cr, self.uid, schedule_end, context=context).strftime(
-            "%Y-%m-%d %H:%M:%S")
+        timestamp = fields.Datetime.context_timestamp
+        dt = fields.Datetime
+        schedule_start = timestamp(self, dt.from_string(exam_line.start_time))
+        schedule_end = timestamp(self, dt.from_string(exam_line.end_time))
+        schedule_start = fields.Datetime.to_string(schedule_start)
+        schedule_end = fields.Datetime.to_string(schedule_end)
 
         return schedule_start[11:] + ' To ' + schedule_end[11:]
 
@@ -92,7 +83,7 @@ class StudentHallTicketReport(report_sxw.rml_parse):
         return final_lst
 
 
-class ReportTicket(osv.AbstractModel):
+class ReportTicket(models.AbstractModel):
     _name = 'report.openeducat_exam.report_ticket'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_exam.report_ticket'

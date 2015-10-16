@@ -63,7 +63,8 @@
         'menu/student_menu.xml'
     ],
     'demo': [
-        'demo/op_company_data.xml',
+        'demo/base_demo.xml',
+        'demo/website_demo.xml',
         'demo/op.subject.csv',
         'demo/op.course.csv',
         'demo/op.batch.csv',
@@ -78,6 +79,9 @@
     'qweb': [
         'static/src/xml/base.xml'],
     'js': ['static/src/js/chrome.js'],
+    'images': [
+        'static/description/openeducat_core_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,
