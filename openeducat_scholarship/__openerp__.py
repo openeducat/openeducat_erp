@@ -42,6 +42,9 @@
         'demo/op.scholarship.type.csv',
         'demo/op.scholarship.csv',
     ],
+    'images': [
+        'static/description/openeducat_scholarship_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -38,6 +38,9 @@
         'security/ir.model.access.csv',
         'achievement_menu.xml',
     ],
+    'images': [
+        'static/description/openeducat_achievement_banner.jpg',
+    ],
     'demo': [
         'demo/op.achievement.type.csv',
         'demo/op.achievement.csv',

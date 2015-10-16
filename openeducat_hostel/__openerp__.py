@@ -44,6 +44,9 @@
         'demo/op.room.csv',
         'demo/op.hostel.room.csv',
     ],
+    'images': [
+        'static/description/openeducat_hostel_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

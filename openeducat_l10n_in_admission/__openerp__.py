@@ -38,6 +38,9 @@
     'demo': [
         'demo/op.admission.csv'
     ],
+    'images': [
+        'static/description/indian_openeducat_admission_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

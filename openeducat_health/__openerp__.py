@@ -41,6 +41,9 @@
         'demo/op.health.line.csv',
         'demo/op.health.csv'
     ],
+    'images': [
+        'static/description/openeducat_health_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

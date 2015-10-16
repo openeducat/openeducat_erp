@@ -22,8 +22,7 @@
 from datetime import datetime
 import time
 
-from openerp import pooler
-from openerp.osv import osv
+from openerp import models, pooler
 from openerp.report import report_sxw
 
 
@@ -81,7 +80,7 @@ class TimeTableStudentGenerate(report_sxw.rml_parse):
         return final_list
 
 
-class ReportTimetableStudentGenerate(osv.AbstractModel):
+class ReportTimetableStudentGenerate(models.AbstractModel):
     _name = 'report.openeducat_timetable.report_timetable_student_generate'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_timetable.report_timetable_student_generate'

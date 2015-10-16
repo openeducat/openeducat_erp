@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError, Warning
+from openerp.exceptions import ValidationError, UserError
 
 
 class OpAdmission(models.Model):
@@ -228,13 +228,13 @@ class OpAdmission(models.Model):
         if not account_id:
             account_id = product.categ_id.property_account_income_categ_id.id
         if not account_id:
-            raise Warning(
+            raise UserError(
                 _('There is no income account defined for this product: "%s". \
                    You may have to install a chart of account from Accounting \
                    app, settings menu.') % (product.name,))
 
         if self.fees <= 0.00:
-            raise Warning(_('The value of the deposit amount must be \
+            raise UserError(_('The value of the deposit amount must be \
                              positive.'))
         else:
             amount = self.fees

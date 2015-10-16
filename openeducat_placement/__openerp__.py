@@ -40,6 +40,9 @@
     'demo': [
         'demo/op.placement.offer.csv'
     ],
+    'images': [
+        'static/description/openeducat_placement_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

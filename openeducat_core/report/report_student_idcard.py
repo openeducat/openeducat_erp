@@ -20,7 +20,7 @@
 ###############################################################################
 
 import time
-from openerp.osv import osv
+from openerp import models
 from openerp.report import report_sxw
 
 
@@ -34,7 +34,7 @@ class OpStudentIdcardReport(report_sxw.rml_parse):
         })
 
 
-class ReportStudentIdcard(osv.AbstractModel):
+class ReportStudentIdcard(models.AbstractModel):
     _name = 'report.openeducat_core.report_student_idcard'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_core.report_student_idcard'

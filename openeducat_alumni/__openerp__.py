@@ -39,6 +39,9 @@
         'demo/op.student.csv',
         'demo/student_demo.xml'
     ],
+    'images': [
+        'static/description/openeducat_alumni_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

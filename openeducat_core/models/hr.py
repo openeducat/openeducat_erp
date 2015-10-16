@@ -20,7 +20,7 @@
 ###############################################################################
 
 from openerp import models, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 
 
 class HrEmployee(models.Model):
@@ -40,7 +40,7 @@ class HrEmployee(models.Model):
     def check_address(self):
         if self.address_home_id and self.address_id and \
                 self.address_home_id != self.address_id:
-            raise Warning(_('Configuration Error!'), _(
+            raise UserError(_(
                 'Home Address and Working Address should be same!'))
 
     @api.onchange('address_id')

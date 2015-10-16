@@ -45,6 +45,9 @@
         'demo/op.vehicle.csv',
         'demo/op.transportation.csv',
     ],
+    'images': [
+        'static/description/openeducat_transportation_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

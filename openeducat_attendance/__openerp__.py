@@ -49,6 +49,9 @@
         'demo/op.attendance.sheet.csv',
         'demo/op.attendance.line.csv',
     ],
+    'images': [
+        'static/description/openeducat_attendance_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

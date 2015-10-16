@@ -47,6 +47,9 @@
         'demo/op.assignment.csv',
         'demo/op.assignment.sub.line.csv'
     ],
+    'images': [
+        'static/description/openeducat_assignment_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -21,7 +21,7 @@
 
 import time
 
-from openerp.osv import osv
+from openerp import models
 from openerp.report import report_sxw
 
 
@@ -70,7 +70,7 @@ class StudentAttendanceGenerate(report_sxw.rml_parse):
                  'line': lst}]
 
 
-class StudentAttendanceReport(osv.AbstractModel):
+class StudentAttendanceReport(models.AbstractModel):
     _name = 'report.openeducat_attendance.student_attendance_report'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_attendance.student_attendance_report'

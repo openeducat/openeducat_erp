@@ -71,6 +71,9 @@
         'demo/op.book.unit.csv',
         'demo/op.book.queue.csv',
     ],
+    'images': [
+        'static/description/openeducat_library_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

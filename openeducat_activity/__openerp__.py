@@ -45,6 +45,9 @@
         'demo/op.activity.type.csv',
         'demo/op.activity.csv',
     ],
+    'images': [
+        'static/description/openeducat_activity_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

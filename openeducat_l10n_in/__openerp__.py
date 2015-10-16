@@ -46,6 +46,9 @@
         'demo/op.student.csv',
         'demo/op.faculty.csv'
     ],
+    'images': [
+        'static/description/indian_openeducat_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,
