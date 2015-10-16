@@ -40,6 +40,9 @@
         'security/ir.model.access.csv',
     ],
     'demo': [
+        'demo/op.hostel.csv',
+        'demo/op.room.csv',
+        'demo/op.hostel.room.csv',
     ],
     'images': [
         'static/description/openeducat_hostel_banner.jpg',

@@ -41,6 +41,9 @@
         'transportation_menu.xml'
     ],
     'demo': [
+        'demo/op.stop.csv',
+        'demo/op.vehicle.csv',
+        'demo/op.transportation.csv',
     ],
     'images': [
         'static/description/openeducat_transportation_banner.jpg',
