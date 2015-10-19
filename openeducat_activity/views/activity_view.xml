@@ -27,9 +27,15 @@
                             <field name="faculty_id" />
                             <field name="type_id" />
                             <field name="date" />
-                            <field name="description" colspan="4" />
+                        </group>
+                        <group string="Description">
+                            <field name="description" nolabel="1" />
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
