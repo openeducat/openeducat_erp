@@ -41,7 +41,7 @@ class OpExam(models.Model):
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)
     state = fields.Selection(
-        [('new', 'New Exam'), ('held', 'Held'), ('schedule', 'Scheduled'),
+        [('new', 'New Exam'), ('schedule', 'Scheduled'), ('held', 'Held'),
          ('cancel', 'Cancelled'), ('done', 'Done')], 'State', select=True,
         readonly=True, default='new', track_visibility='onchange')
     note = fields.Text('Note')

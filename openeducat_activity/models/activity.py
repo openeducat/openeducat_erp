@@ -25,6 +25,7 @@ from openerp import models, fields
 class OpActivity(models.Model):
     _name = 'op.activity'
     _rec_name = 'student_id'
+    _inherit = 'mail.thread'
 
     student_id = fields.Many2one('op.student', 'Student', required=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty')

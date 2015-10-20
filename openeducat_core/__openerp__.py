@@ -73,6 +73,7 @@
         'demo/op.faculty.csv',
         'demo/student_demo.xml',
         'demo/faculty_demo.xml',
+        'demo/op.roll.number.csv',
         'demo/res.groups.csv'
     ],
     'css': ['static/src/css/base.css'],

@@ -37,6 +37,7 @@
     ],
     'demo': [
         'demo/op.student.csv',
+        'demo/op.roll.number.csv',
         'demo/student_demo.xml'
     ],
     'images': [
