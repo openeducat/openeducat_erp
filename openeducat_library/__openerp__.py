@@ -57,9 +57,6 @@
         'book_queue_sequence.xml',
         'dashboard/librarian_dashboard_view.xml',
         'menus/library_menu.xml',
-        'menus/openeducat_menu.xml',
-        'menus/faculty_menu.xml',
-        'menus/student_menu.xml'
     ],
     'demo': [
         'demo/res.users.csv',

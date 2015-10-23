@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <menuitem id="menu_op_timetable_main" parent="openeducat_core.menu_op_school_root"
-            sequence="40" name="Time Tables" />
+        <menuitem id="menu_op_timetable_root" name="Time Table" sequence="70" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+
+        <menuitem id="menu_op_timetable_main" parent="menu_op_timetable_root"
+            sequence="10" name="Time Tables" />
         <menuitem id="menu_op_period" parent="menu_op_timetable_main"
             sequence="10" action="act_open_op_period_view" />
         <menuitem id="menu_op_timetable" parent="menu_op_timetable_main"

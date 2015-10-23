@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <menuitem id="menu_op_attendance_main" parent="openeducat_core.menu_op_school_root"
-            sequence="50" name="Attendance" />
+        <menuitem id="menu_op_attendance_root" name="Attendance" sequence="50" />
+
+
+        <menuitem id="menu_op_attendance_main" name="Attendance"
+            parent="menu_op_attendance_root" sequence="10"/>
 
         <menuitem id="menu_op_attendance_register_sub" name="Attendance Registers"
             parent="menu_op_attendance_main" sequence="10"
-            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"
-            action="act_open_op_attendance_register_view" />
+            action="act_open_op_attendance_register_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
+
         <menuitem id="menu_op_attendance_sheet_sub" name="Attendance Sheets"
             parent="menu_op_attendance_main" sequence="20"
-            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"
-            action="act_open_op_attendance_sheet_view" />
+            action="act_open_op_attendance_sheet_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
+
         <menuitem id="menu_op_attendance_line_sub" name="Attendance lines"
             parent="menu_op_attendance_main" sequence="30"
-            action="act_open_op_attendance_line_view" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
-
-
-        <menuitem id="menu_op_attendance_register_sub_faculty" name="Attendance Registers"
-            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="40"
-            action="act_open_op_attendance_register_view" />
-        <menuitem id="menu_op_attendance_sheet_sub_faculty" name="Attendance Sheets"
-            parent="openeducat_core.menu_op_faculty_main_faculty" sequence="50"
-            action="act_open_op_attendance_sheet_view" />
+            action="act_open_op_attendance_line_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
     </data>
 </openerp>
