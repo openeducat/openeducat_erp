@@ -35,6 +35,9 @@
     'data': [
         'views/admission_view.xml',
     ],
+    'demo': [
+        'demo/op.admission.csv'
+    ],
     'images': [
         'static/description/indian_openeducat_admission_banner.jpg',
     ],

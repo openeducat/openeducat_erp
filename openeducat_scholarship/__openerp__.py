@@ -38,6 +38,10 @@
         'security/ir.model.access.csv',
         'scholarship_menu.xml',
     ],
+    'demo': [
+        'demo/op.scholarship.type.csv',
+        'demo/op.scholarship.csv',
+    ],
     'images': [
         'static/description/openeducat_scholarship_banner.jpg',
     ],

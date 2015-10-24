@@ -41,6 +41,8 @@
     'demo': [
         'demo/res.users.csv',
         'demo/res.groups.csv',
+        'demo/res.partner.csv',
+        'demo/op.parent.csv',
     ],
     'images': [
         'static/description/openeducat_parent_banner.jpg',

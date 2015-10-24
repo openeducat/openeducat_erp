@@ -61,6 +61,7 @@
         'demo/op.exam.type.csv',
         'demo/op.exam.session.csv',
         'demo/op.exam.csv',
+        'demo/op.exam.attendees.csv'
     ],
     'images': [
         'static/description/openeducat_exam_banner.jpg',
