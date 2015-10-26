@@ -33,7 +33,8 @@ class OpBookQueue(models.Model):
     partner_id = fields.Many2one('res.partner', 'Student/Faculty')
     book_id = fields.Many2one(
         'op.book', 'Book', required=True, track_visibility='onchange')
-    date_from = fields.Date('From Date', required=True)
+    date_from = fields.Date(
+        'From Date', required=True, default=fields.Date.today())
     date_to = fields.Date('To Date', required=True)
     user_id = fields.Many2one(
         'res.users', 'User', readonly=True, default=lambda self: self.env.uid)

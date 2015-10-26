@@ -44,7 +44,8 @@ class OpLibraryCard(models.Model):
     number = fields.Char('Number', size=256, required=True)
     library_card_type_id = fields.Many2one(
         'op.library.card.type', 'Card Type', required=True)
-    issue_date = fields.Date('Issue Date', required=True)
+    issue_date = fields.Date(
+        'Issue Date', required=True, default=fields.Date.today())
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Type', default='student', required=True)

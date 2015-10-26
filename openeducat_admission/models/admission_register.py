@@ -32,6 +32,7 @@ class OpAdmissionRegister(models.Model):
         states={'draft': [('readonly', False)]})
     start_date = fields.Date(
         'Start Date', required=True, readonly=True,
+        default=fields.Date.today(),
         states={'draft': [('readonly', False)]})
     end_date = fields.Date(
         'End Date', required=True, readonly=True,

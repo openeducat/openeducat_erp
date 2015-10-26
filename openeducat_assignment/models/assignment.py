@@ -40,7 +40,9 @@ class OpAssignment(models.Model):
         [('draft', 'Draft'), ('publish', 'Published'),
          ('finish', 'Finished')], 'State', required=True, default='draft',
         track_visibility='onchange')
-    issued_date = fields.Datetime('Issued Date', required=True)
+    issued_date = fields.Datetime(
+        'Issued Date', required=True,
+        default=lambda self: fields.Datetime.now())
     submission_date = fields.Datetime(
         'Submission Date', required=True,
         track_visibility='onchange')

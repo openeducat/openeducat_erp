@@ -31,7 +31,7 @@ class OpHostelRoomAllocation(models.Model):
     student_ids = fields.Many2many('res.partner', string='Allocated Students')
     students_per_room = fields.Integer('Students per Room', required=True)
     rent = fields.Float('Rent')
-    allocated_date = fields.Date('Allocated Date')
+    allocated_date = fields.Date('Allocated Date', default=fields.Date.today())
 
     @api.onchange('hostel_id')
     def onchange_hostel(self):

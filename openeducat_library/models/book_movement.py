@@ -47,7 +47,8 @@ class OpBookMovement(models.Model):
     library_card_id = fields.Many2one(
         'op.library.card', 'Library Card', required=True,
         track_visibility='onchange')
-    issued_date = fields.Date('Issued Date', required=True)
+    issued_date = fields.Date(
+        'Issued Date', required=True, default=fields.Date.today())
     return_date = fields.Date('Return Date', required=True)
     actual_return_date = fields.Date('Actual Return Date')
     penalty = fields.Float('Penalty')
