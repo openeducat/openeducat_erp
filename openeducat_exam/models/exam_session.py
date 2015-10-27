@@ -36,7 +36,8 @@ class OpExamSession(models.Model):
     start_date = fields.Date(
         'Start Date', required=True, default=fields.Date.today())
     end_date = fields.Date(
-        'End Date', default=(datetime.today() + relativedelta(days=30)), required=True)
+        'End Date', default=(datetime.today() + relativedelta(days=30)),
+        required=True)
     room_id = fields.Many2one('op.exam.room', 'Room', required=True)
     exam_ids = fields.One2many('op.exam', 'session_id', 'Exam(s)')
 
