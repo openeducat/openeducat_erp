@@ -40,6 +40,9 @@ class OpAttendanceSheet(models.Model):
     name = fields.Char('Name', size=8)
     register_id = fields.Many2one(
         'op.attendance.register', 'Register', required=True)
+    batch_id = fields.Many2one(
+        'op.batch', 'Batch', related='register_id.batch_id', store=True,
+        readonly=True)
     attendance_date = fields.Date(
         'Date', required=True, default=lambda self: fields.Date.today())
     attendance_line = fields.One2many(

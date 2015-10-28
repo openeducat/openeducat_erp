@@ -20,6 +20,7 @@
 ###############################################################################
 
 from openerp import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class OpAssignment(models.Model):
@@ -50,6 +51,15 @@ class OpAssignment(models.Model):
     assignment_sub_line = fields.One2many(
         'op.assignment.sub.line', 'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
+
+    @api.one
+    @api.constrains('issued_date', 'submission_date')
+    def check_dates(self):
+        issued_date = fields.Date.from_string(self.issued_date)
+        submission_date = fields.Date.from_string(self.submission_date)
+        if issued_date > submission_date:
+            raise ValidationError(
+                "Issue Date should be less than Submission Date!")
 
     @api.one
     def act_publish(self):

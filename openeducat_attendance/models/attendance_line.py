@@ -27,14 +27,16 @@ class OpAttendanceLine(models.Model):
     _rec_name = 'attendance_id'
 
     attendance_id = fields.Many2one(
-        'op.attendance.sheet', 'Attendance', required=True)
+        'op.attendance.sheet', 'Attendance Sheet', required=True)
     student_id = fields.Many2one('op.student', 'Student', required=True)
     present = fields.Boolean('Present ?', default=True)
     course_id = fields.Many2one(
-        'op.course', 'Course', related='student_id.course_id', store=True,
+        'op.course', 'Course',
+        related='attendance_id.register_id.course_id', store=True,
         readonly=True)
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', related='student_id.batch_id', store=True,
+        'op.batch', 'Batch',
+        related='attendance_id.register_id.batch_id', store=True,
         readonly=True)
     remark = fields.Char('Remark', size=256)
     attendance_date = fields.Date(

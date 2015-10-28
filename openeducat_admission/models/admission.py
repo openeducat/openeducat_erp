@@ -127,6 +127,13 @@ class OpAdmission(models.Model):
                 End Date of Admission Register.")
 
     @api.one
+    @api.constrains('birth_date')
+    def _check_birthdate(self):
+        if self.birth_date > fields.Date.today():
+            raise ValidationError(
+                "Birth Date can't be greater than current date!")
+
+    @api.one
     def confirm_in_progress(self):
         self.state = 'confirm'
         if self.partner_id:

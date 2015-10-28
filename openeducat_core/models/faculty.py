@@ -20,6 +20,7 @@
 ###############################################################################
 
 from openerp import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class OpFaculty(models.Model):
@@ -50,6 +51,13 @@ class OpFaculty(models.Model):
         readonly=1)
     faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)')
     emp_id = fields.Many2one('hr.employee', 'Employee')
+
+    @api.one
+    @api.constrains('birth_date')
+    def _check_birthdate(self):
+        if self.birth_date > fields.Date.today():
+            raise ValidationError(
+                "Birth Date can't be greater than current date!")
 
     @api.one
     def create_employee(self):
