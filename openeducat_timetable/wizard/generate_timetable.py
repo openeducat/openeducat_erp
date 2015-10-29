@@ -37,7 +37,7 @@ week_number = {
 
 class GenerateTimeTable(models.TransientModel):
     _name = 'generate.time.table'
-    _description = 'Generate Time Table'
+    _description = 'Generate TimeTables'
     _rec_name = 'course_id'
 
     course_id = fields.Many2one('op.course', 'Course', required=True)
