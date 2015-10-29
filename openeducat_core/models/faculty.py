@@ -62,12 +62,14 @@ class OpFaculty(models.Model):
     @api.one
     def create_employee(self):
         vals = {
-            'name': self.name + ' ' + self.middle_name + ' ' + self.last_name,
+            'name': self.name + ' ' + (self.middle_name or '') +
+            ' ' + self.last_name,
             'country_id': self.nationality.id,
             'gender': self.gender,
+            'address_home_id': self.partner_id.id
         }
         emp_id = self.env['hr.employee'].create(vals)
         self.write({'emp_id': emp_id.id})
-
+        self.partner_id.write({'supplier': True, 'employee': True})
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -19,8 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, api, _
-from openerp.exceptions import UserError
+from openerp import models, api
 
 
 class HrEmployee(models.Model):
@@ -30,28 +29,11 @@ class HrEmployee(models.Model):
     def onchange_user(self):
         if self.user_id:
             self.user_id.partner_id.supplier = True
-            self.address_home_id = self.user_id.partner_id.id
             self.work_email = self.user_id.email
             self.identification_id = False
-            return {'domain':
-                    {'address_id': [('id', '=', self.user_id.partner_id.id)]}}
-
-    @api.one
-    def check_address(self):
-        if self.address_home_id and self.address_id and \
-                self.address_home_id != self.address_id:
-            raise UserError(_(
-                'Home Address and Working Address should be same!'))
 
     @api.onchange('address_id')
     def onchange_address_id(self):
-        self.check_address()
         if self.address_id:
             self.work_phone = self.address_id.phone
             self.mobile_phone = self.address_id.mobile
-
-    @api.onchange('address_home_id')
-    def onchange_address_home_id(self):
-        self.check_address()
-        if self.address_home_id:
-            self.address_home_id.write({'supplier': True, 'employee': True})

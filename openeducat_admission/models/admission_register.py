@@ -72,7 +72,7 @@ class OpAdmissionRegister(models.Model):
     @api.one
     @api.constrains('min_count', 'max_count')
     def check_no_of_admission(self):
-        if self.min_count or self.max_count < 0:
+        if (self.min_count < 0) or (self.max_count < 0):
             raise ValidationError("No of Admission should be positive!")
 
     @api.one
