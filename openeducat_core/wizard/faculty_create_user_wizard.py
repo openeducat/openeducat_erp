@@ -22,7 +22,7 @@
 from openerp import models, fields, api
 
 
-class WizardOpStudent(models.TransientModel):
+class WizardOpFaculty(models.TransientModel):
     _name = 'wizard.op.faculty'
     _description = "Create User for selected Faculty(s)"
 

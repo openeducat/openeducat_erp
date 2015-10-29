@@ -22,32 +22,20 @@
 from openerp import models, fields, api
 
 
-class ResCompany(models.Model):
-    _inherit = "res.company"
+class WizardOpFacultyEmployee(models.TransientModel):
+    _name = 'wizard.op.faculty.employee'
+    _description = "Create Employee and User of Faculty"
 
-    signature = fields.Binary('Signature')
-    accreditation = fields.Text('Accreditation')
-    approval_authority = fields.Text('Approval Authority')
+    user_boolean = fields.Boolean("Want to create user too ?", default=True)
 
-
-class ResUsers(models.Model):
-    _inherit = "res.users"
-
-    user_line = fields.One2many('op.student', 'user_id', 'User Line')
-
-    @api.multi
-    def create_user(self, records, user_group=None):
-        for rec in records:
-            if not rec.user_id:
-                user_vals = {
-                    'name': rec.name,
-                    'login': rec.email or (rec.name + rec.last_name),
-                    'partner_id': rec.partner_id.id
-                }
-                user_id = self.create(user_vals)
-                rec.user_id = user_id
-                if user_group:
-                    user_group.users = user_group.users + user_id
+    @api.one
+    def create_employee(self):
+        active_id = self.env.context.get('active_ids', []) or []
+        record = self.env['op.faculty'].browse(active_id)
+        record.create_employee()
+        if self.user_boolean and not record.user_id:
+            user_group = self.env.ref('openeducat_core.group_op_faculty')
+            self.env['res.users'].create_user(record, user_group)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

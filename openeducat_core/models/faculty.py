@@ -72,4 +72,5 @@ class OpFaculty(models.Model):
         self.write({'emp_id': emp_id.id})
         self.partner_id.write({'supplier': True, 'employee': True})
 
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
