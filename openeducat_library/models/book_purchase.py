@@ -38,10 +38,16 @@ class OpBookPurchase(models.Model):
         'op.subject', 'Subject', required=True, track_visibility='onchange')
     student_id = fields.Many2one(
         'op.student', 'Student',
-        default=lambda self: self.env.user.user_line and
-        self.env.user.user_line[0].id or False)
-    faculty_id = fields.Many2one('op.faculty', 'Faculty')
-    librarian_id = fields.Many2one('res.partner', 'Librarian')
+        default=lambda self: self.env['op.student'].search(
+            [('user_id', '=', self.env.uid)]))
+    faculty_id = fields.Many2one(
+        'op.faculty', 'Faculty',
+        default=lambda self: self.env['op.faculty'].search(
+            [('user_id', '=', self.env.uid)]))
+    librarian_id = fields.Many2one(
+        'res.partner', 'Librarian',
+        default=lambda self: self.env['res.partner'].search(
+            [('user_id', '=', self.env.uid)]))
     state = fields.Selection(
         [('draft', 'Draft'), ('request', 'Requested'), ('reject', 'Rejected'),
          ('accept', 'Accepted')], 'State', select=True, readonly=True,
