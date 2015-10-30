@@ -30,9 +30,9 @@ class OpSubject(models.Model):
     course_id = fields.Many2one('op.course', 'Course')
     grade_weightage = fields.Float('Grade Weightage')
     type = fields.Selection(
-        [('practical', 'Practical'), ('theory', 'Theory'),
+        [('theory', 'Theory'), ('practical', 'Practical'),
          ('both', 'Both'), ('other', 'Other')],
-        'Type', required=True)
+        'Type', default="theory", required=True)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

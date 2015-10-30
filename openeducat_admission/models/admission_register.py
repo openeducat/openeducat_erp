@@ -19,6 +19,8 @@
 #
 ##############################################################################
 
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from openerp import models, fields, api
 
 
@@ -32,9 +34,10 @@ class OpAdmissionRegister(models.Model):
         states={'draft': [('readonly', False)]})
     start_date = fields.Date(
         'Start Date', required=True, readonly=True,
-        states={'draft': [('readonly', False)]})
+        default=fields.Date.today(), states={'draft': [('readonly', False)]})
     end_date = fields.Date(
         'End Date', required=True, readonly=True,
+        default=(datetime.today() + relativedelta(days=30)),
         states={'draft': [('readonly', False)]})
     course_id = fields.Many2one(
         'op.course', 'Course', required=True, readonly=True,
@@ -44,7 +47,7 @@ class OpAdmissionRegister(models.Model):
         states={'draft': [('readonly', False)]})
     max_count = fields.Integer(
         'Maximum No. of Admission', readonly=True,
-        states={'draft': [('readonly', False)]})
+        states={'draft': [('readonly', False)]}, default=30)
     product_id = fields.Many2one(
         'product.product', 'Product', required=True,
         domain=[('type', '=', 'service')], readonly=True,

@@ -24,7 +24,7 @@
     'version': '2.0.0',
     'category': 'Openerp Education',
     "sequence": 3,
-    'summary': 'Manage Timetables',
+    'summary': 'Manage TimeTables',
     'complexity': "easy",
     'description': """
         This module provide feature of Timetable.

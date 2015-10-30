@@ -36,6 +36,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/assignment_view.xml',
+        'views/assignment_type_view.xml',
         'views/assignment_sub_line_view.xml',
         'views/student_view.xml',
         'dashboard/assignment_faculty_dashboard.xml',

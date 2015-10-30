@@ -21,8 +21,9 @@
 
 import datetime
 import pytz
-from openerp import models, fields, api
+import time
 
+from openerp import models, fields, api
 week_number = {
     'Mon': 1,
     'Tue': 2,
@@ -36,7 +37,7 @@ week_number = {
 
 class GenerateTimeTable(models.TransientModel):
     _name = 'generate.time.table'
-    _description = 'Generate Time Table'
+    _description = 'Generate TimeTables'
     _rec_name = 'course_id'
 
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -61,7 +62,8 @@ class GenerateTimeTable(models.TransientModel):
     time_table_lines_6 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
         domain=[('day', '=', '6')])
-    start_date = fields.Date('Start Date', required=True)
+    start_date = fields.Date(
+        'Start Date', required=True, default=time.strftime('%Y-%m-01'))
     end_date = fields.Date('End Date', required=True)
 
     @api.one

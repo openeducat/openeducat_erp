@@ -24,11 +24,13 @@ from openerp import models, fields
 
 class OpTimetable(models.Model):
     _name = 'op.timetable'
-    _description = 'Time Table'
+    _description = 'TimeTables'
     _rec_name = 'faculty_id'
 
     period_id = fields.Many2one('op.period', 'Period', required=True)
-    start_datetime = fields.Datetime('Start Time', required=True)
+    start_datetime = fields.Datetime(
+        'Start Time', required=True,
+        default=lambda self: fields.Datetime.now())
     end_datetime = fields.Datetime('End Time', required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)

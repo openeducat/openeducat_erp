@@ -39,7 +39,8 @@ class IssueBook(models.TransientModel):
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     library_card_id = fields.Many2one(
         'op.library.card', 'Library Card', required=True)
-    issued_date = fields.Date('Issued Date', required=True)
+    issued_date = fields.Date(
+        'Issued Date', required=True, default=fields.Date.today())
     return_date = fields.Date('Return Date', required=True)
 
     @api.onchange('library_card_id')
