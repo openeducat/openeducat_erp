@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class OpTimetable(models.Model):
@@ -41,6 +42,12 @@ class OpTimetable(models.Model):
         [('Monday', 'Monday'), ('Tuesday', 'Tuesday'),
          ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'),
          ('Friday', 'Friday'), ('Saturday', 'Saturday')], 'Days')
+
+    @api.constrains('start_datetime', 'end_datetime')
+    def _check_date_time(self):
+        if self.start_datetime > self.end_datetime:
+            raise ValidationError(
+                'End Time cannot be set before Start Time.')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

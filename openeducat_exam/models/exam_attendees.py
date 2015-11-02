@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class OpExamAttendees(models.Model):
@@ -34,5 +35,9 @@ class OpExamAttendees(models.Model):
     note = fields.Text('Note')
     exam_id = fields.Many2one('op.exam', 'Exam', required=True)
 
+    @api.constrains('marks')
+    def _check_marks(self):
+        if self.marks < 0.0:
+            raise ValidationError("Enter proper marks!")
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

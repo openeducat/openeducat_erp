@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 
 
@@ -50,8 +50,7 @@ class OpBookQueue(models.Model):
     @api.constrains('date_from', 'date_to')
     def _check_date(self):
         if self.date_from > self.date_to:
-            raise ValidationError(
-                _("From Date should be greater than To Date!"))
+            raise ValidationError('To Date cannot be set before From Date.')
 
     @api.model
     def create(self, vals):

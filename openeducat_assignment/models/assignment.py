@@ -59,7 +59,7 @@ class OpAssignment(models.Model):
         submission_date = fields.Date.from_string(self.submission_date)
         if issued_date > submission_date:
             raise ValidationError(
-                "Issue Date should be less than Submission Date!")
+                "Submission Date cannot be set before Issue Date.")
 
     @api.one
     def act_publish(self):

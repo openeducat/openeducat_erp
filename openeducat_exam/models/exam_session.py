@@ -21,7 +21,7 @@
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 
 
@@ -45,7 +45,7 @@ class OpExamSession(models.Model):
     def _check_date_time(self):
         if self.start_date > self.end_date:
             raise ValidationError(
-                _('Start Time should be greater than End Time!'))
+                'End Date cannot be set before Start Date.')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

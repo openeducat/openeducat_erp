@@ -20,7 +20,7 @@
 ###############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import UserError
+from openerp.exceptions import UserError, ValidationError
 
 from ..models import book_unit
 
@@ -42,6 +42,12 @@ class IssueBook(models.TransientModel):
     issued_date = fields.Date(
         'Issued Date', required=True, default=fields.Date.today())
     return_date = fields.Date('Return Date', required=True)
+
+    @api.constrains('issued_date', 'return_date')
+    def _check_date(self):
+        if self.issued_date > self.return_date:
+            raise ValidationError(
+                'Return Date cannot be set before Issued Date.')
 
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):

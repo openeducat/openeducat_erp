@@ -22,8 +22,9 @@
 import datetime
 import pytz
 import time
-
 from openerp import models, fields, api
+from openerp.exceptions import ValidationError
+
 week_number = {
     'Mon': 1,
     'Tue': 2,
@@ -65,6 +66,13 @@ class GenerateTimeTable(models.TransientModel):
     start_date = fields.Date(
         'Start Date', required=True, default=time.strftime('%Y-%m-01'))
     end_date = fields.Date('End Date', required=True)
+
+    @api.constrains('start_date', 'end_date')
+    def check_dates(self):
+        start_date = fields.Date.from_string(self.start_date)
+        end_date = fields.Date.from_string(self.end_date)
+        if start_date > end_date:
+            raise ValidationError("End Date cannot be set before Start Date.")
 
     @api.one
     def gen_datewise(self, line, st_date, en_date, self_obj):

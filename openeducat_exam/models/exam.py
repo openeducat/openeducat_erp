@@ -34,7 +34,7 @@ class OpExam(models.Model):
     exam_type = fields.Many2one('op.exam.type', 'Exam Type', required=True)
     evaluation_type = fields.Selection(
         [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
-        'Evaluation Type', required=True)
+        'Evaluation Type', default="normal", required=True)
     attendees_line = fields.One2many(
         'op.exam.attendees', 'exam_id', 'Attendees')
     venue = fields.Many2one('res.partner', 'Venue')
@@ -58,8 +58,7 @@ class OpExam(models.Model):
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):
         if self.start_time > self.end_time:
-            raise ValidationError(
-                _('Start Time should be greater than End Time!'))
+            raise ValidationError('End Time cannot be set before Start Time.')
 
     @api.one
     def act_held(self):

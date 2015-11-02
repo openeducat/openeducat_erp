@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class OpTransportation(models.Model):
@@ -34,6 +35,11 @@ class OpTransportation(models.Model):
     from_stop_id = fields.Many2one('op.stop', 'From', required=True)
     to_stop_id = fields.Many2one('op.stop', 'To', required=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
+
+    @api.constrains('student_ids', 'vehicle_id')
+    def check_capacity(self):
+        if len(self.student_ids) > self.vehicle_id.capacity:
+            raise ValidationError('Students over than vehicle capacity.')
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
