@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '2.0.0',
+    'version': '2.2.0',
     'category': 'Openerp Education',
     "sequence": 1,
     'summary': 'Manage Students, Faculties and Education Institute',
