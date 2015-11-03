@@ -47,5 +47,9 @@ class OpExamSession(models.Model):
             raise ValidationError(
                 'End Date cannot be set before Start Date.')
 
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -30,7 +30,7 @@ class OpAssignment(models.Model):
 
     name = fields.Char('Name', size=16, required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
-    batch_id = fields.Many2one('op.batch', 'Batch')
+    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
     assignment_type_id = fields.Many2one(
@@ -60,6 +60,10 @@ class OpAssignment(models.Model):
         if issued_date > submission_date:
             raise ValidationError(
                 "Submission Date cannot be set before Issue Date.")
+
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
 
     @api.one
     def act_publish(self):

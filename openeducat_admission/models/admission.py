@@ -115,6 +115,10 @@ class OpAdmission(models.Model):
         self.course_id = self.register_id.course_id
         self.fees = self.register_id.product_id.lst_price
 
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
+
     @api.one
     @api.constrains('register_id', 'application_date')
     def _check_admission_register(self):

@@ -74,6 +74,10 @@ class GenerateTimeTable(models.TransientModel):
         if start_date > end_date:
             raise ValidationError("End Date cannot be set before Start Date.")
 
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
+
     @api.one
     def gen_datewise(self, line, st_date, en_date, self_obj):
         day_cnt = 7
