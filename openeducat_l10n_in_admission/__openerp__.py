@@ -21,7 +21,7 @@
 
 {
     'name': "Indian OpenEduCat Admission",
-    'version': '2.2.0',
+    'version': '2.3.0',
     'category': 'Openerp Education',
     'sequence': 3,
     'summary': "Manage Indian Based Admission""",
