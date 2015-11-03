@@ -1,6 +1,14 @@
 Changelog
 =========
 
+`9.0.2.3.0`
+-----------
+- Changed menu structure.
+- Added banner & index files for all modules.
+- Changed the footer of website homepage.
+- Added demo data.
+- Bug fixes.
+
 `9.0.2.2.0`
 -----------
 - Made feature wise separate modules.
