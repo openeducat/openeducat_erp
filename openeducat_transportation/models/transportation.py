@@ -41,5 +41,15 @@ class OpTransportation(models.Model):
         if len(self.student_ids) > self.vehicle_id.capacity:
             raise ValidationError('Students over than vehicle capacity.')
 
+    @api.constrains('from_stop_id', 'to_stop_id')
+    def check_places(self):
+        if self.from_stop_id == self.to_stop_id:
+            raise ValidationError('To place cannot be equal to From place.')
+
+    @api.constrains('start_time', 'end_time')
+    def _check_date_time(self):
+        if self.start_time >= self.end_time:
+            raise ValidationError(
+                'End Time cannot be set before or equal to Start Time.')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

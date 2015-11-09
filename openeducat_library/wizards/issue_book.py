@@ -21,8 +21,9 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import UserError, ValidationError
-
 from ..models import book_unit
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class IssueBook(models.TransientModel):
@@ -54,6 +55,9 @@ class IssueBook(models.TransientModel):
         self.type = self.library_card_id.type
         self.student_id = self.library_card_id.student_id.id
         self.faculty_id = self.library_card_id.faculty_id.id
+        self.return_date = datetime.today() + \
+            relativedelta(
+                days=self.library_card_id.library_card_type_id.duration)
 
     @api.one
     def check_max_issue(self, student_id, library_card_id):

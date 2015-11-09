@@ -43,5 +43,11 @@ class OpAttendanceLine(models.Model):
         'Date', related='attendance_id.attendance_date', store=True,
         readonly=True)
 
+    _sql_constraints = [
+        ('unique_student',
+         'unique(student_id,attendance_id,attendance_date)',
+         'Student must be unique per Attendance.'),
+    ]
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

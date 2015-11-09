@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 
 
@@ -53,7 +53,10 @@ class OpExam(models.Model):
     @api.constrains('total_marks', 'min_marks')
     def _check_marks(self):
         if self.total_marks <= 0.0 or self.min_marks <= 0.0:
-            raise ValidationError(_('Enter proper marks!'))
+            raise ValidationError('Enter proper marks!')
+        if self.min_marks > self.total_marks:
+            raise ValidationError(
+                "Passing Marks can't be greater than Total Marks")
 
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):

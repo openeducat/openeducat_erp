@@ -31,9 +31,10 @@ class OpRollNumber(models.Model):
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     student_id = fields.Many2one('op.student', 'Student', required=True)
 
-    @api.onchange('course_id')
-    def onchange_course(self):
-        self.batch_id = False
+    @api.onchange('student_id')
+    def onchange_student(self):
+        self.course_id = self.student_id.course_id
+        self.batch_id = self.student_id.batch_id
 
     _sql_constraints = [
         ('unique_name_roll_number_id',

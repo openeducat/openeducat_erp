@@ -37,7 +37,7 @@ class OpAttendanceSheet(models.Model):
         self.total_absent = len(self.attendance_line.filtered(
             lambda self: self.present is False))
 
-    name = fields.Char('Name', size=8)
+    name = fields.Char('Name', required=True, size=32)
     register_id = fields.Many2one(
         'op.attendance.register', 'Register', required=True)
     batch_id = fields.Many2one(

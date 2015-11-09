@@ -29,7 +29,7 @@ class OpLibraryCardType(models.Model):
 
     name = fields.Char('Name', size=256, required=True)
     allow_book = fields.Integer('No of Books Allowed', size=10, required=True)
-    duration = fields.Float(
+    duration = fields.Integer(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
     penalty_amt_per_day = fields.Float('Penalty Amount per Day', required=True)
