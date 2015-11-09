@@ -42,8 +42,11 @@ class OpResultLine(models.Model):
 
     @api.constrains('marks', 'per')
     def _check_marks(self):
-        if (self.marks < 0.0) or (self.per < 0.0):
-            raise ValidationError("Enter proper marks or percentage!")
+        if (self.marks < 0.0) or (self.per < 0.0) or \
+                (self.total_marks < 0.0) or (self.per > 100.0):
+            raise ValidationError("Enter proper Marks or Percentage!")
+        elif self.marks > self.total_marks:
+            raise ValidationError("Marks can't be greater than Total Marks")
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

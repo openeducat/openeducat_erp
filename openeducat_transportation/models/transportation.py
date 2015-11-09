@@ -48,7 +48,11 @@ class OpTransportation(models.Model):
 
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):
-        if self.start_time >= self.end_time:
+        if self.start_time < 0 or self.end_time < 0:
+            raise ValidationError("Enter proper Time.")
+        elif self.start_time > 24 or self.end_time > 24:
+            raise ValidationError("Time can't be greater than 24 hours.")
+        elif self.start_time >= self.end_time:
             raise ValidationError(
                 'End Time cannot be set before or equal to Start Time.')
 
