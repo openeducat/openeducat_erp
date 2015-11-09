@@ -26,7 +26,7 @@ from openerp.exceptions import ValidationError
 
 class OpTimetable(models.Model):
     _name = 'op.timetable'
-    _description = 'Time Table'
+    _description = 'TimeTables'
     _rec_name = 'faculty_id'
 
     period_id = fields.Many2one('op.period', 'Period', required=True)

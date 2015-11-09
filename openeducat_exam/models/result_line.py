@@ -35,7 +35,8 @@ class OpResultLine(models.Model):
     per = fields.Float('Percentage', required=True)
     student_id = fields.Many2one('op.student', 'Student', required=True)
     status = fields.Selection(
-        [('pass', 'Pass'), ('fail', 'Fail')], 'Status', required=True)
+        [('pass', 'Pass'), ('fail', 'Fail')],
+        'Status', default='pass', required=True)
     result_id = fields.Many2one('op.marksheet.line', 'Marksheet Line')
     total_marks = fields.Float('Total Marks')
 

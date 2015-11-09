@@ -32,7 +32,10 @@ class OpAssignment(models.Model):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
-    faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
+    faculty_id = fields.Many2one(
+        'op.faculty', 'Faculty', default=lambda self: self.env[
+            'op.faculty'].search([('user_id', '=', self.env.uid)]),
+        required=True)
     assignment_type_id = fields.Many2one(
         'op.assignment.type', 'Assignment Type', required=True)
     marks = fields.Float('Marks', track_visibility='onchange')

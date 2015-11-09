@@ -3,6 +3,8 @@
     <data>
         <record id="group_op_parent" model="res.groups">
             <field name="name">Parent</field>
+            <field name="category_id" ref="openeducat_core.module_category_openeducat"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
 
         <record model="ir.rule" id="parent_login_rule">

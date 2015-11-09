@@ -37,7 +37,7 @@ class OpMarksheetRegister(models.Model):
         default=lambda self: self.env.uid, required=True)
     status = fields.Selection(
         [('draft', 'Draft'), ('validated', 'Validated'),
-         ('cancelled', 'Cancelled')], 'Status', required=True)
+         ('cancelled', 'Cancelled')], 'Status', default="draft", required=True)
     total_pass = fields.Float('Total Pass')
     total_failed = fields.Float('Total Fail')
     name = fields.Char('Marksheet Register', size=256, required=True)

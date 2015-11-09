@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Exam',
-    'version': '2.0.0',
+    'version': '2.3.0',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Exam',

@@ -34,7 +34,7 @@ class OpHealth(models.Model):
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     height = fields.Float('Height(C.M.)', required=True)
-    weight = fields.Float('weight(K.G.)', required=True)
+    weight = fields.Float('Weight', required=True)
     blood_group = fields.Selection(
         [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
          ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
