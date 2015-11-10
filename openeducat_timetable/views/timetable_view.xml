@@ -28,7 +28,7 @@
                             <field name="faculty_id" />
                             <field name="period_id" />
                             <field name="course_id"/>
-                            <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                            <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}" />
                             <field name="subject_id" />
                             <field name="start_datetime" />
                             <field name="end_datetime" />

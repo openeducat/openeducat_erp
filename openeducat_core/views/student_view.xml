@@ -128,7 +128,7 @@
                             <page name="educational" string="Educational">
                                 <group col="4" colspan="4">
                                     <field name="course_id" />
-                                    <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                                    <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}" domain="[('course_id', '=', course_id)]"/>
                                     <field name="gr_no" />
                                     <field name="roll_number" />
                                     <separator colspan="4" string="Assigned Roll Numbers" />

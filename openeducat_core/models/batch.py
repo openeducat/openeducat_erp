@@ -41,4 +41,18 @@ class OpBatch(models.Model):
         if start_date > end_date:
             raise ValidationError("End Date cannot be set before Start Date.")
 
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        if self.env.context.get('get_parent_batch', False):
+            lst = []
+            lst.append(self.env.context.get('course_id'))
+            courses = self.env['op.course'].browse(lst)
+            while courses.parent_id:
+                lst.append(courses.parent_id.id)
+                courses = courses.parent_id
+            batches = self.env['op.batch'].search([('course_id', 'in', lst)])
+            return batches.name_get()
+        return super(OpBatch, self).name_search(
+            name, args, operator=operator, limit=limit)
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

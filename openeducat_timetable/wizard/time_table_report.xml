@@ -28,7 +28,7 @@
                             <group col="4" colspan="4">
                                 <field name="course_id"
                                     attrs="{'required':[('state','=','student')],'invisible':[('state','!=','student')]}" />
-                                <field name="batch_id" domain="[('course_id', '=', course_id)]"
+                                <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
                                     attrs="{'required':[('state','=','student')],'invisible':[('state','!=','student')]}" />
                             </group>
                         </div>

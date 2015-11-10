@@ -25,7 +25,7 @@
                             <field name="roll_number" />
                             <field name="student_id" />
                             <field name="course_id" />
-                            <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                            <field name="batch_id" context="{'course_id': course_id,'get_my_parent':1}" />
                         </group>
                     </sheet>
                 </form>
