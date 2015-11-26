@@ -33,11 +33,8 @@ class OpExamSession(models.Model):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     exam_code = fields.Char('Exam Code', size=8, required=True)
-    start_date = fields.Date(
-        'Start Date', required=True, default=fields.Date.today())
-    end_date = fields.Date(
-        'End Date', default=(datetime.today() + relativedelta(days=30)),
-        required=True)
+    start_date = fields.Date('Start Date', required=True)
+    end_date = fields.Date('End Date', required=True)
     room_id = fields.Many2one('op.exam.room', 'Room', required=True)
     exam_ids = fields.One2many('op.exam', 'session_id', 'Exam(s)')
 
