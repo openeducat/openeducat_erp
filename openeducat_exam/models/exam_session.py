@@ -19,8 +19,6 @@
 #
 ###############################################################################
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
