@@ -34,6 +34,14 @@ class OpExamAttendees(models.Model):
     marks = fields.Float('Marks')
     note = fields.Text('Note')
     exam_id = fields.Many2one('op.exam', 'Exam', required=True)
+    course_id = fields.Many2one('op.course', 'Course', readonly=True)
+    batch_id = fields.Many2one('op.batch', 'Batch', readonly=True)
+
+    @api.onchange('exam_id')
+    def onchange_exam(self):
+        self.course_id = self.exam_id.session_id.course_id
+        self.batch_id = self.exam_id.session_id.batch_id
+        self.student_id = False
 
     @api.constrains('marks')
     def _check_marks(self):

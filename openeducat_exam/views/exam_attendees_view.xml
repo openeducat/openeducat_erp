@@ -23,8 +23,10 @@
                 <form string="Exam Attendees">
                     <sheet>
                         <group col="4" colspan="4">
-                            <field name="student_id" />
+                            <field name="course_id" invisible="1" />
+                            <field name="batch_id" invisible="1" />
                             <field name="exam_id" />
+                            <field name="student_id" domain="[('course_id','=',course_id),('batch_id','=',batch_id)]" />
                             <field name="status" />
                             <field name="marks" />
                         </group>

@@ -39,5 +39,11 @@ class OpBookUnit(models.Model):
     state = fields.Selection(
         unit_states, 'State', default='available', track_visibility='onchange')
 
+    _sql_constraints = [
+        ('unique_name_barcode',
+         'unique(barcode)',
+         'Barcode must be unique per book unit!'),
+    ]
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
