@@ -19,9 +19,7 @@
 #
 ###############################################################################
 
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from openerp import models, fields, api, _
+from openerp import models, fields, api
 from openerp.exceptions import ValidationError
 
 
@@ -33,11 +31,8 @@ class OpExamSession(models.Model):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     exam_code = fields.Char('Exam Code', size=8, required=True)
-    start_date = fields.Date(
-        'Start Date', required=True, default=fields.Date.today())
-    end_date = fields.Date(
-        'End Date', default=(datetime.today() + relativedelta(days=30)),
-        required=True)
+    start_date = fields.Date('Start Date', required=True)
+    end_date = fields.Date('End Date', required=True)
     room_id = fields.Many2one('op.exam.room', 'Room', required=True)
     exam_ids = fields.One2many('op.exam', 'session_id', 'Exam(s)')
 
@@ -45,7 +40,11 @@ class OpExamSession(models.Model):
     def _check_date_time(self):
         if self.start_date > self.end_date:
             raise ValidationError(
-                _('Start Time should be greater than End Time!'))
+                'End Date cannot be set before Start Date.')
+
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

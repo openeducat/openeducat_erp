@@ -65,7 +65,14 @@ class OpBookMovement(models.Model):
     def _check_date(self):
         if self.issued_date > self.return_date:
             raise ValidationError(
-                _("Issue Date should be greater than Return Date."))
+                'Return Date cannot be set before Issued Date.')
+
+    @api.constrains('issued_date', 'actual_return_date')
+    def check_actual_return_date(self):
+        if self.actual_return_date:
+            if self.issued_date > self.actual_return_date:
+                raise ValidationError(
+                    'Actual Return Date cannot be set before Issued Date')
 
     @api.onchange('book_unit_id')
     def onchange_book_unit_id(self):

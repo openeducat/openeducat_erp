@@ -34,6 +34,8 @@ class OpHostel(models.Model):
     @api.one
     @api.constrains('hostel_room_lines')
     def _check_hostel_capacity(self):
+        if self.capacity <= 0:
+            raise ValidationError('Enter proper Hostel Capacity')
         counter = 0.00
         for room in self.hostel_room_lines:
             counter += room.students_per_room

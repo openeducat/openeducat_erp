@@ -25,8 +25,8 @@
                 <form string="Attendance Line">
                     <sheet>
                         <group col="4" colspan="4">
-                            <field name="student_id" />
                             <field name="attendance_id" />
+                            <field name="student_id" domain="[('course_id','=',course_id),('batch_id','=',batch_id)]" />
                             <field name="present" />
                             <field name="remark" />
                             <field name="course_id" />

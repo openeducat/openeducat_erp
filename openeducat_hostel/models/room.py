@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
+from openerp.exceptions import ValidationError
 
 
 class OpRoom(models.Model):
@@ -31,5 +32,9 @@ class OpRoom(models.Model):
     capacity = fields.Integer('Room Capacity', required=True)
     facility_line = fields.One2many('op.facility.line', 'room_id', 'Facility')
 
+    @api.constrains('capacity')
+    def check_capacity(self):
+        if self.capacity <= 0:
+            raise ValidationError('Enter proper Capacity')
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

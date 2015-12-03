@@ -33,6 +33,11 @@ class OpHostelRoomAllocation(models.Model):
     rent = fields.Float('Rent')
     allocated_date = fields.Date('Allocated Date', default=fields.Date.today())
 
+    @api.constrains('students_per_room')
+    def check_capacity(self):
+        if self.students_per_room <= 0:
+            raise ValidationError("Enter proper Student Per Room")
+
     @api.onchange('hostel_id')
     def onchange_hostel(self):
         if self.hostel_id:

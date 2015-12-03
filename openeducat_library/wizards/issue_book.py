@@ -20,9 +20,10 @@
 ###############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import UserError
-
+from openerp.exceptions import UserError, ValidationError
 from ..models import book_unit
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class IssueBook(models.TransientModel):
@@ -43,11 +44,20 @@ class IssueBook(models.TransientModel):
         'Issued Date', required=True, default=fields.Date.today())
     return_date = fields.Date('Return Date', required=True)
 
+    @api.constrains('issued_date', 'return_date')
+    def _check_date(self):
+        if self.issued_date > self.return_date:
+            raise ValidationError(
+                'Return Date cannot be set before Issued Date.')
+
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
         self.type = self.library_card_id.type
         self.student_id = self.library_card_id.student_id.id
         self.faculty_id = self.library_card_id.faculty_id.id
+        self.return_date = datetime.today() + \
+            relativedelta(
+                days=self.library_card_id.library_card_type_id.duration)
 
     @api.one
     def check_max_issue(self, student_id, library_card_id):

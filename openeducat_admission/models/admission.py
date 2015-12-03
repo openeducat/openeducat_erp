@@ -115,6 +115,10 @@ class OpAdmission(models.Model):
         self.course_id = self.register_id.course_id
         self.fees = self.register_id.product_id.lst_price
 
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
+
     @api.one
     @api.constrains('register_id', 'application_date')
     def _check_admission_register(self):
@@ -125,6 +129,13 @@ class OpAdmission(models.Model):
             raise ValidationError(
                 "Application Date should be between Start Date & \
                 End Date of Admission Register.")
+
+    @api.one
+    @api.constrains('birth_date')
+    def _check_birthdate(self):
+        if self.birth_date > fields.Date.today():
+            raise ValidationError(
+                "Birth Date can't be greater than current date!")
 
     @api.one
     def confirm_in_progress(self):

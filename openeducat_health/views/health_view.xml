@@ -31,7 +31,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//notebook/page[@name='subjects']" position="after">
                     <page name="health_detail" string="Health Detail">
-                        <field name="health_faculty_lines" colspan="4" nolabel="1">
+                        <field name="health_faculty_lines" context="{'default_type': 'faculty'}" colspan="4" nolabel="1">
                             <tree>
                                 <field name="blood_group" />
                                 <field name="height" />

@@ -51,9 +51,14 @@ class TimeTableReport(models.TransientModel):
     def _check_dates(self):
         start_date = fields.Date.from_string(self.start_date)
         end_date = fields.Date.from_string(self.end_date)
-        if end_date < start_date or \
-                end_date > (start_date + timedelta(days=6)):
+        if end_date < start_date:
+            raise ValidationError('End Date cannot be set before Start Date.')
+        elif end_date > (start_date + timedelta(days=6)):
             raise ValidationError("Select date range for a week!")
+
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
 
     @api.multi
     def gen_time_table_report(self):

@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '2.3.0',
+    'version': '2.4.0',
     'category': 'Openerp Education',
     "sequence": 1,
     'summary': 'Manage Students, Faculties and Education Institute',
@@ -42,6 +42,8 @@
         'report/report_student_bonafide.xml',
         'report/report_student_idcard.xml',
         'report/report_menu.xml',
+        'wizard/faculty_create_employee_wizard_view.xml',
+        'wizard/faculty_create_user_wizard_view.xml',
         'wizard/students_create_user_wizard_view.xml',
         'security/op_security.xml',
         'security/ir.model.access.csv',
