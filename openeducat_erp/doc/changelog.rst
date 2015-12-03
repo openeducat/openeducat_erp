@@ -1,6 +1,13 @@
 Changelog
 =========
 
+`9.0.2.4.0`
+-----------
+- Added default values & constraints for fields.
+- Added onchange & domain on many fields.
+- Added option to create user for faculty while creating employee.
+- Added wizard to create users for multiple employees.
+
 `9.0.2.3.0`
 -----------
 - Changed menu structure.
