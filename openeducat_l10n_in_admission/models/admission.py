@@ -29,8 +29,7 @@ class OpAdmission(models.Model):
     religion_id = fields.Many2one(
         'op.religion', 'Religion', states={'done': [('readonly', True)]})
     category_id = fields.Many2one(
-        'op.category', 'Category', required=True,
-        states={'done': [('readonly', True)]})
+        'op.category', 'Category', states={'done': [('readonly', True)]})
     is_old_student = fields.Boolean('Old Student?')
     gr_no_old = fields.Char('GR Number old', size=10)
     gr_no = fields.Char('GR Number new', size=10)
