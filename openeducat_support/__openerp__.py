@@ -26,6 +26,7 @@
     "sequence": 3,
     'description': """Application Planner""",
     'author': 'Tech Receptives',
+    'website': 'http://www.openeducat.org',
     'depends': ['web'],
     'data': [
         'views/web_planner_templates.xml',
