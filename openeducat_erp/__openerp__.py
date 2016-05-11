@@ -49,7 +49,7 @@
     'website': 'http://www.openeducat.org',
     'images': [],
     'depends': ['account_accountant',
-                'hr','web'],
+                'hr', 'web', 'report_custom_filename'],
     'init_xml': [],
     'update_xml': [
         'security/op_security.xml',
@@ -132,7 +132,7 @@
         'op_exam/op_exam_workflow.xml',
         'op_admission/op_admission_workflow_view.xml',
         'res_company/res_company.xml',
-        
+
 
     ],
     'demo_xml': [
@@ -159,7 +159,7 @@
     'css': ['static/src/css/base.css'],
     'qweb': [
         'static/src/xml/base.xml'],
-    'js': ['static/src/js/chrome.js'],        
+    'js': ['static/src/js/chrome.js'],
     'test': [
              'test/configuration.yml',
              'test/new_admission.yml',
