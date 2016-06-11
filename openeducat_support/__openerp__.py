@@ -31,7 +31,7 @@
     'data': [
         'views/web_planner_templates.xml',
     ],
-    'qweb': ['static/src/xml/web_planner.xml','static/src/xml/web.xml'],
+    'qweb': ['static/src/xml/web_planner.xml', 'static/src/xml/web.xml'],
     'installable': True,
     'auto_install': False,
 }

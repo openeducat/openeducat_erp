@@ -116,7 +116,7 @@ var PlannerDialog = Widget.extend({
         this.set('progress', this.planner.progress); // set progress to trigger initial UI update
     },
     _render_done_page: function (page) {
-        var mark_as_done_button = this.$('.mark_as_done')
+        var mark_as_done_button = this.$('.mark_as_done');
         var mark_as_done_li = mark_as_done_button.find('i');
         var next_button = this.$('a.btn-next');
         var active_menu = $(page.menu_item).find('span');
