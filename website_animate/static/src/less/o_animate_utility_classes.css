@@ -1,0 +1,176 @@
+/*
+  ========================================
+  ==== website builder menu integration
+  ========================================
+*/
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate > a,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration > a,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay > a,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_options > a {
+  padding-left: 30px;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate > a:before,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration > a:before,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay > a:before,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_options > a:before {
+  content: " ";
+  display: block;
+  width: 16px;
+  height: 17px;
+  top: 5px;
+  background-image: url("../images/icon.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  left: 5px;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate li.active > a,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration li.active > a,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay li.active > a,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_options li.active > a {
+  color: #555;
+  background-color: #EFEFEF;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate li.active > a:after,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration li.active > a:after,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay li.active > a:after,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_options li.active > a:after {
+  font-family: FontAwesome;
+  content: "\f00c";
+  color: #16A085;
+  float: right;
+  text-shadow: -1px 0px 0px #ffffff;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration > ul,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay > ul {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 0;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration span.timeline,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay span.timeline {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #eaeaea;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration span.timeline > span,
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay span.timeline > span {
+  float: left;
+  display: inline-block;
+  position: relative;
+  height: 5px;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration span.timeline span[simulate="duration"],
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay span.timeline span[simulate="duration"] {
+  position: absolute;
+  float: left;
+  left: 0;
+  height: 100%;
+  background: #21b799;
+  width: 0%;
+  -webkit-animation-name: o_animate_timeline_duration;
+  animation-name: o_animate_timeline_duration;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration span.timeline span[simulate="delay"],
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay span.timeline span[simulate="delay"] {
+  position: absolute;
+  float: left;
+  left: 0;
+  height: 100%;
+  background: #a4498c;
+  width: 0%;
+  -webkit-animation-name: o_animate_timeline_delay;
+  animation-name: o_animate_timeline_delay;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_duration > a:before {
+  background-image: url("../images/time.png");
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_delay > a:before {
+  background-image: url("../images/delay.png");
+}
+#oe_manipulators .dropdown-menu li.snippet-option-o_animate_options > a:before {
+  background-image: url("../images/opt.png");
+}
+/*
+  =====================================
+  ======== Utility classes
+  =====================================
+*/
+.o_animate {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-rendering: geometricPrecision;
+  visibility: hidden;
+}
+.o_animate_preview {
+  visibility: visible;
+}
+/*
+  =====================================
+  ======== Durations
+  =====================================
+*/
+.o_anim_dur500 {
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms;
+}
+.o_anim_dur1500 {
+  -webkit-animation-duration: 1500ms;
+  animation-duration: 1500ms;
+}
+.o_anim_dur2000 {
+  -webkit-animation-duration: 2000ms;
+  animation-duration: 2000ms;
+}
+.o_anim_dur2500 {
+  -webkit-animation-duration: 2500ms;
+  animation-duration: 2500ms;
+}
+.o_anim_dur3000 {
+  -webkit-animation-duration: 3000ms;
+  animation-duration: 3000ms;
+}
+/*
+  =====================================
+  ======== Delays
+  =====================================
+*/
+.o_anim_del500 {
+  -webkit-animation-delay: 500ms;
+  animation-delay: 500ms;
+}
+.o_anim_del1000 {
+  -webkit-animation-delay: 1000ms;
+  animation-delay: 1000ms;
+}
+.o_anim_del1500 {
+  -webkit-animation-delay: 1500ms;
+  animation-delay: 1500ms;
+}
+.o_anim_del2000 {
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+}
+.o_anim_del2500 {
+  -webkit-animation-delay: 2500ms;
+  animation-delay: 2500ms;
+}

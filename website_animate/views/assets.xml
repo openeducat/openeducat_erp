@@ -1,0 +1,24 @@
+<openerp>
+<data>
+  <template id="o_animate_assets_frontend_js" name="Website Animate Frontend Assets" inherit_id="website.assets_frontend">
+    <xpath expr="//script[last()]" position="after">
+
+      <!-- LESS 1.7 required
+      ==============================================================================================================
+      <link href="/website_animate/static/src/less/o_animate_library.less" rel="stylesheet" type="text/less"/>
+      <link href="/website_animate/static/src/less/o_animate_utility_classes.less" rel="stylesheet" type="text/less"/> -->
+
+      <link href="/website_animate/static/src/less/o_animate_library.css" rel="stylesheet" type="text/css"/>
+      <link href="/website_animate/static/src/less/o_animate_utility_classes.css" rel="stylesheet" type="text/css"/>
+
+      <script type="text/javascript" src="/website_animate/static/src/js/o_animate.frontend.js"/>
+    </xpath>
+  </template>
+
+  <template id="o_animate_assets_editor" name="Website Animate Editor Assets" inherit_id="website.assets_editor" active="True">
+    <xpath expr="." position="inside">
+      <script type="text/javascript" src="/website_animate/static/src/js/o_animate.editor.js"/>
+    </xpath>
+  </template>
+</data>
+</openerp>

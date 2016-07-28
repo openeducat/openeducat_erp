@@ -1,0 +1,199 @@
+/*
+  ========================================
+  ==== website builder menu integration
+  ========================================
+*/
+
+// variables
+@o_animate-timeline-bg-color       : #F7F7F7;
+@o_animate-timeline-border-bottom  : 1px solid #EAEAEA;
+@o_animate-timeline-height         : 5px;
+
+@o_animate-timeline-duration-color : #21b799;
+@o_animate-timeline-delay-color    : #A4498C;
+
+// default style
+#oe_manipulators .dropdown-menu {
+  li.snippet-option-o_animate,
+  li.snippet-option-o_animate_duration,
+  li.snippet-option-o_animate_delay,
+  li.snippet-option-o_animate_options{
+    > a {
+      padding-left: 30px;
+      &:before {
+        content:" ";
+        display: block;
+        width: 16px;
+        height: 17px;
+        top: 5px;
+        background-image: url("../images/icon.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        position: absolute;
+        left: 5px;
+      }
+    }
+
+    li.active {
+      > a{
+        color: #555;
+        background-color: #EFEFEF;
+      }
+      > a:after {
+        font-family: FontAwesome;
+        content: "\f00c";
+        color: #16A085;
+        float: right;
+        text-shadow: -1px 0px 0px #FFF;
+      }
+    }
+  }
+
+  li.snippet-option-o_animate_duration,
+  li.snippet-option-o_animate_delay, {
+    > ul {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      padding-top: 0;
+    }
+    span.timeline{
+      display: block;
+      width: 100%;
+      height: @o_animate-timeline-height;
+      margin-bottom: 5px;
+      position: relative;
+      background-color: @o_animate-timeline-bg-color;
+      border-bottom: @o_animate-timeline-border-bottom;
+      > span {
+        float: left;
+        display: inline-block;
+        position: relative;
+        height: @o_animate-timeline-height;
+      }
+      span[simulate="duration"]{
+        position: absolute;
+        float: left;
+        left: 0;
+        height: 100%;
+        background: @o_animate-timeline-duration-color;
+        width: 0%;
+        .animation-name(o_animate_timeline_duration);
+        .animation-timing-function(linear);
+        .animation-fill-mode(forwards);
+      }
+      span[simulate="delay"]{
+        position: absolute;
+        float: left;
+        left: 0;
+        height: 100%;
+        background: @o_animate-timeline-delay-color;
+        width: 0%;
+        .animation-name(o_animate_timeline_delay);
+        .animation-timing-function(linear);
+        .animation-fill-mode(forwards);
+      }
+    }
+  }
+
+  // li.snippet-option-o_animate_delay, {
+  //   span.timeline{
+  //     height: @o_animate-timeline-delay-height;
+  //     background-color: @o_animate-timeline-delay-bg-color;
+  //     border-bottom: @o_animate-timeline-delay-border-bottom;
+  //     span{
+  //       background: @o_animate-timeline-delay-span-color;
+  //     }
+  //   }
+  // }
+
+  li.snippet-option-o_animate_duration > a:before{
+    background-image: url("../images/time.png");
+  }
+  li.snippet-option-o_animate_delay > a:before{
+    background-image: url("../images/delay.png");
+  }
+  li.snippet-option-o_animate_options > a:before{
+    background-image: url("../images/opt.png");
+  }
+}
+
+/*
+  =====================================
+  ======== Utility classes
+  =====================================
+*/
+
+.o_animate {
+  .animation-duration(1s);
+  .animation-fill-mode(both);
+
+  // force GPU acceleration
+  .translate3d(0,0,0);
+
+  // avoid flickering
+  .backface-visibility(hidden);
+
+  // take care of animated titles
+  text-rendering: geometricPrecision;
+
+  visibility: hidden;
+}
+
+.o_animate_preview {
+  visibility: visible;
+}
+
+/*
+  =====================================
+  ======== Durations
+  =====================================
+*/
+
+.o_anim_dur500{
+  .animation-duration(500ms);
+}
+
+// DEFAULT 1000ms;
+
+.o_anim_dur1500{
+  .animation-duration(1500ms);
+}
+
+.o_anim_dur2000{
+  .animation-duration(2000ms);
+}
+
+.o_anim_dur2500{
+  .animation-duration(2500ms);
+}
+
+.o_anim_dur3000{
+  .animation-duration(3000ms);
+}
+
+/*
+  =====================================
+  ======== Delays
+  =====================================
+*/
+
+.o_anim_del500{
+  .animation-delay(500ms);
+}
+
+.o_anim_del1000{
+  .animation-delay(1000ms);
+}
+
+.o_anim_del1500{
+  .animation-delay(1500ms);
+}
+
+.o_anim_del2000{
+  .animation-delay(2000ms);
+}
+
+.o_anim_del2500{
+  .animation-delay(2500ms);
+}
+
