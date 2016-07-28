@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+  <template id="no-js_fallback" inherit_id="website.layout">
+    <xpath expr="//head" position="inside">
+      <!-- Show elements if js is disabled -->
+      <noscript id="o_animate-no-js_fallback">
+        <style type="text/css">
+
+          .o_animate{
+            /* If no js - force elements rendering */
+            visibility:visible;
+
+            /* If browser support css animations support - reset animation */
+            -webkit-animation-name: none-dummy;
+                    animation-name: none-dummy;
+          }
+
+        </style>
+      </noscript>
+    </xpath>
+  </template>
+
+  <!--
+  How to define an animable element in your theme
+  ===============================================
+  <xpath expr="//t[@t-set='o_animate_elements']" position="after">
+    <t t-set="o_animate_elements" t-value="o_animate_elements + ['.myclass']"/>
+  </xpath>
+  ===============================================
+  -->
+
+  <template id="o_animate_options" inherit_id="website.snippet_options">
+    <xpath expr="(//div[@data-js])[last()]" position="after">
+
+      <t t-set="o_animate_elements" t-value="['.o_animable', 'section','img','[class^=\'s_\']','.fa','h1','h2','h3', 'h4','h5','h6','p','[class^=\'col-md\']','.btn']"/>
+      <t t-set="o_animate_selector" t-value="'.o_animate' + ', '.join([s + ':not(.o_not-animable )' for s in o_animate_elements])"/>
+
+      <div data-js='o_animate' t-att-data-selector="o_animate_selector">
+
+        <li class="dropdown-submenu o_anim_li">
+          <a href="#">Animate when visible</a>
+          <ul class="dropdown-menu">
+            <li data-select_class=""><a>Disable animation</a></li>
+            <li class="divider"/>
+            <li class="dropdown-submenu o_anim_entrance-fading_li">
+              <a href="#">Fading</a>
+              <ul class="dropdown-menu">
+                <li data-select_class="o_anim_fade_in"><a>Fade In</a></li>
+                <li data-select_class="o_anim_fade_in_down"><a>Fade In-Down</a></li>
+                <li data-select_class="o_anim_fade_in_left"><a>Fade In-Left</a></li>
+                <li data-select_class="o_anim_fade_in_right"><a>Fade In-Right</a></li>
+                <li data-select_class="o_anim_fade_in_up"><a>Fade In-Up</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu o_anim_entrance-bounce_li">
+              <a href="#">Bouncing</a>
+              <ul class="dropdown-menu">
+                <li data-select_class="o_anim_bounce_in"><a>Bounce In</a></li>
+                <li data-select_class="o_anim_bounce_in_down"><a>Bounce In-Down</a></li>
+                <li data-select_class="o_anim_bounce_in_left"><a>Bounce In-Left</a></li>
+                <li data-select_class="o_anim_bounce_in_right"><a>Bounce In-Right</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu o_anim_entrance-rotate_li">
+              <a href="#">Rotating</a>
+              <ul class="dropdown-menu">
+                <li data-select_class="o_anim_rotate_in"><a>Rotate In</a></li>
+                <li data-select_class="o_anim_rotate_in_down_left"><a>Rotate In-Down-Left</a></li>
+                <li data-select_class="o_anim_rotate_in_down_right"><a>Rotate In-Down-Right</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu o_anim_entrance-rotate_li">
+              <a href="#">Zoom</a>
+              <ul class="dropdown-menu">
+                <li data-select_class="o_anim_zoom_in"><a>Zoom In</a></li>
+                <li data-select_class="o_anim_zoom_in_down"><a>Zoom In-Down</a></li>
+                <li data-select_class="o_anim_zoom_in_left"><a>Zoom In-Left</a></li>
+                <li data-select_class="o_anim_zoom_in_right"><a>Zoom In-Right</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu o_anim_effects-attention_li">
+              <a href="#">Attention Seekers</a>
+              <ul class="dropdown-menu">
+                <li data-select_class="o_anim_flash"><a>Flash</a></li>
+                <li data-select_class="o_anim_pulse"><a>Pulse</a></li>
+                <li data-select_class="o_anim_shake"><a>Shake</a></li>
+                <li data-select_class="o_anim_tada"><a>Tada</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu o_anim_effects-flippers_li">
+              <a href="#">Flippers</a>
+              <ul class="dropdown-menu">
+                <li data-select_class="o_anim_flip_in_x"><a>Flip-In-X</a></li>
+                <li data-select_class="o_anim_flip_in_y"><a>Flip-In-Y</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </xpath>
+  </template>
+
+  <template id="o_animate_options_options" inherit_id="website_animate.o_animate_options" active="False">
+    <xpath expr='//div[@data-js="o_animate"]' position="after">
+
+      <div data-js='o_animate_duration' t-att-data-selector="o_animate_selector">
+        <li class="dropdown-submenu hidden"> <!-- Visible only if an animation is active (js) -->
+          <a href="#">Animation Duration</a>
+          <ul class="dropdown-menu o_anim_ul_timing">
+            <span class="timeline duration">
+              <span>
+                <span simulate="delay"/>
+              </span>
+              <span>
+                <span simulate="duration"/>
+              </span>
+            </span>
+            <li data-select_class="o_anim_dur500"><a>500ms</a></li>
+            <li data-select_class=""><a>1000ms (default)</a></li>
+            <li data-select_class="o_anim_dur1500"><a>1500ms</a></li>
+            <li data-select_class="o_anim_dur2000"><a>2000ms</a></li>
+            <li data-select_class="o_anim_dur2500"><a>2500ms</a></li>
+            <li data-select_class="o_anim_dur3000"><a>3000ms</a></li>
+          </ul>
+        </li>
+      </div>
+
+      <div data-js='o_animate_delay' t-att-data-selector="o_animate_selector">
+        <li class="dropdown-submenu hidden"> <!-- Visible only if an animation is active (js) -->
+          <a href="#">Animation Delay</a>
+          <ul class="dropdown-menu o_anim_ul_timing">
+            <span class="timeline delay">
+              <span>
+                <span simulate="delay"/>
+              </span>
+              <span>
+                <span simulate="duration"/>
+              </span>
+            </span>
+            <li data-select_class=""><a>No delay (default)</a></li>
+            <li data-select_class="o_anim_del500"><a>500ms</a></li>
+            <li data-select_class="o_anim_del1000"><a>1000ms</a></li>
+            <li data-select_class="o_anim_del1500"><a>1500ms</a></li>
+            <li data-select_class="o_anim_del2000"><a>2000ms</a></li>
+            <li data-select_class="o_anim_del2500"><a>2500ms</a></li>
+          </ul>
+        </li>
+      </div>
+
+      <div data-js='o_animate_options' t-att-data-selector="o_animate_selector">
+        <li class="dropdown-submenu hidden"> <!-- Visible only if an animation is active (js) -->
+          <a href="#">Animation Options</a>
+          <ul class="dropdown-menu o_anim_ul_options">
+            <li data-toggle_class="o_animate_both_scroll"><a>Each time it becomes visible</a></li>
+          </ul>
+        </li>
+      </div>
+
+    </xpath>
+  </template>
+
+</data>
+</openerp>
