@@ -38,7 +38,5 @@
      ],
     'depends': [
         'website',
-        'theme_default',
-        'website_animate',
     ],
 }
