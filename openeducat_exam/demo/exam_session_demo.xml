@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+
+		<record id="op_exam_session_1" model="op.exam.session">
+			<field name="exam_code">BOA-E001</field>
+			<field name="name">BOA-Exam-001</field>
+			<field name="room_id" ref="op_exam_room_1"/>
+			<field name="course_id" ref="openeducat_core.op_course_2"/>
+			<field name="batch_id" ref="openeducat_core.op_batch_1"/>
+			<field name="start_date" eval="'%s-%s-01' %(datetime.now().year,datetime.now().month-2)"/>
+			<field name="end_date" eval="'%s-%s-04' %(datetime.now().year,datetime.now().month-2)"/>
+		</record>
+
+		<record id="op_exam_session_2" model="op.exam.session">
+			<field name="exam_code">LRTP-E01</field>
+			<field name="name">LRTP-Exam-001</field>
+			<field name="room_id" ref="op_exam_room_2"/>
+			<field name="course_id" ref="openeducat_core.op_course_1"/>
+			<field name="batch_id" ref="openeducat_core.op_batch_2"/>
+			<field name="start_date" eval="'%s-%s-11' %(datetime.now().year,datetime.now().month-2)"/>
+			<field name="end_date" eval="'%s-%s-15' %(datetime.now().year,datetime.now().month-2)"/>
+		</record>
+
+	</data>
+</openerp>

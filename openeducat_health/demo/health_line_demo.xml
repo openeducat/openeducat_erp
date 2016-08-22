@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+
+		<record id="op_health_line_1" model="op.health.line">
+			<field name="name">Weekly check up for eyes</field>
+			<field name="recommendation">Yes weekly regular</field>
+			<field name="date" eval="'%s-%s-%s' %(datetime.now().year,datetime.now().month,datetime.now().day+4)"/>
+		</record>
+
+		<record id="op_health_line_2" model="op.health.line">
+			<field name="name">Hand Check Up</field>
+			<field name="recommendation">Yes</field>
+			<field name="date" eval="'%s-%s-%s' %(datetime.now().year,datetime.now().month,datetime.now().day+10)"/>
+		</record>
+
+	</data>
+</openerp>
