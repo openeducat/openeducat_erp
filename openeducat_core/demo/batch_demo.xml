@@ -5,40 +5,40 @@
 		<record id="op_batch_1" model="op.batch">
 			<field name="code">BOA</field>
 			<field name="name">BOA</field>
-			<field name="start_date" eval="'%s-06-02' %(datetime.now().year-1)"/>
-			<field name="end_date" eval="'%s-06-02' %(datetime.now().year+2)"/>
+			<field name="start_date" eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-02 %H:%M')"/>
+			<field name="end_date" eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-02 %H:%M')"/>
 			<field name="course_id" ref="op_course_2" />
 		</record>
 
 		<record id="op_batch_2" model="op.batch">
 			<field name="code">LRTP57</field>
 			<field name="name">LRTP</field>
-			<field name="start_date" eval="'%s-06-05' %(datetime.now().year-1)"/>
-			<field name="end_date" eval="'%s-06-05' %(datetime.now().year+2)"/>
+			<field name="start_date" eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-05 %H:%M')"/>
+			<field name="end_date" eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-05 %H:%M')"/>
 			<field name="course_id" ref="op_course_1" />
 		</record>
 
 		<record id="op_batch_3" model="op.batch">
 			<field name="code">ELTS151G</field>
 			<field name="name">IELTS-General</field>
-			<field name="start_date" eval="'%s-06-11' %(datetime.now().year-1)"/>
-			<field name="end_date" eval="'%s-06-11' %(datetime.now().year+2)"/>
+			<field name="start_date" eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-11 %H:%M')"/>
+			<field name="end_date" eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-11 %H:%M')"/>
 			<field name="course_id" ref="op_course_5" />
 		</record>
 
 		<record id="op_batch_4" model="op.batch">
 			<field name="code">ELTS151A</field>
 			<field name="name">IELTS-Academic</field>
-			<field name="start_date" eval="'%s-06-01' %(datetime.now().year-1)"/>
-			<field name="end_date" eval="'%s-06-01' %(datetime.now().year+2)"/>
+			<field name="start_date" eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-01 %H:%M')"/>
+			<field name="end_date" eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-01 %H:%M')"/>
 			<field name="course_id" ref="op_course_5" />
 		</record>
 
 		<record id="op_batch_5" model="op.batch">
 			<field name="code">G8</field>
 			<field name="name">G-8</field>
-			<field name="start_date" eval="'%s-06-12' %(datetime.now().year-1)"/>
-			<field name="end_date" eval="'%s-06-12' %(datetime.now().year+2)"/>
+			<field name="start_date" eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-12 %H:%M')"/>
+			<field name="end_date" eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-12 %H:%M')"/>
 			<field name="course_id" ref="op_course_6" />
 		</record>
 

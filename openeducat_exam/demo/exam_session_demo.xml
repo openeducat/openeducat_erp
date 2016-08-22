@@ -8,8 +8,8 @@
 			<field name="room_id" ref="op_exam_room_1"/>
 			<field name="course_id" ref="openeducat_core.op_course_2"/>
 			<field name="batch_id" ref="openeducat_core.op_batch_1"/>
-			<field name="start_date" eval="'%s-%s-01' %(datetime.now().year,datetime.now().month-2)"/>
-			<field name="end_date" eval="'%s-%s-04' %(datetime.now().year,datetime.now().month-2)"/>
+			<field name="start_date" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-01 %H:%M')"/>
+			<field name="end_date" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-04 %H:%M')"/>
 		</record>
 
 		<record id="op_exam_session_2" model="op.exam.session">
@@ -18,8 +18,8 @@
 			<field name="room_id" ref="op_exam_room_2"/>
 			<field name="course_id" ref="openeducat_core.op_course_1"/>
 			<field name="batch_id" ref="openeducat_core.op_batch_2"/>
-			<field name="start_date" eval="'%s-%s-11' %(datetime.now().year,datetime.now().month-2)"/>
-			<field name="end_date" eval="'%s-%s-15' %(datetime.now().year,datetime.now().month-2)"/>
+			<field name="start_date" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-11 %H:%M')"/>
+			<field name="end_date" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-15 %H:%M')"/>
 		</record>
 
 	</data>
