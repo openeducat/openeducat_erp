@@ -39,10 +39,10 @@
         'security/ir.model.access.csv'
     ],
     'demo': [
-        'demo/res.users.csv',
-        'demo/res.groups.csv',
-        'demo/res.partner.csv',
-        'demo/op.parent.csv',
+        'demo/res_users_demo.xml',
+        'demo/res_groups_demo.xml',
+        'demo/res_partner_demo.xml',
+        'demo/parent_demo.xml',
     ],
     'images': [
         'static/description/openeducat_parent_banner.jpg',

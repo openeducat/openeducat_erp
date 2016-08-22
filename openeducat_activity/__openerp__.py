@@ -42,8 +42,8 @@
         'activity_menu.xml'
     ],
     'demo': [
-        'demo/op.activity.type.csv',
-        'demo/op.activity.csv',
+        'demo/activity_type_demo.xml',
+        'demo/activity_demo.xml',
     ],
     'images': [
         'static/description/openeducat_activity_banner.jpg',

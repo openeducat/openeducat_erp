@@ -42,8 +42,8 @@
         'static/description/openeducat_achievement_banner.jpg',
     ],
     'demo': [
-        'demo/op.achievement.type.csv',
-        'demo/op.achievement.csv',
+        'demo/achievement_type_demo.xml',
+        'demo/achievement_demo.xml',
     ],
     'installable': True,
     'auto_install': False,

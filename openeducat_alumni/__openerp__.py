@@ -36,9 +36,8 @@
         'views/alumni_view.xml'
     ],
     'demo': [
-        'demo/op.student.csv',
-        'demo/op.roll.number.csv',
-        'demo/student_demo.xml'
+        'demo/student_demo.xml',
+        'demo/roll_number_demo.xml',
     ],
     'images': [
         'static/description/openeducat_alumni_banner.jpg',

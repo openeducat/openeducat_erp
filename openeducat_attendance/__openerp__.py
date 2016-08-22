@@ -45,9 +45,9 @@
         'attendance_menu.xml'
     ],
     'demo': [
-        'demo/op.attendance.register.csv',
-        'demo/op.attendance.sheet.csv',
-        'demo/op.attendance.line.csv',
+        'demo/attendance_register_demo.xml',
+        'demo/attendance_sheet_demo.xml',
+        'demo/attendance_line_demo.xml',
     ],
     'images': [
         'static/description/openeducat_attendance_banner.jpg',

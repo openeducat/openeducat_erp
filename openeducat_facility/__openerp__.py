@@ -39,7 +39,7 @@
         'facility_menu.xml',
     ],
     'demo': [
-        'demo/op.facility.csv'
+        'demo/facility_demo.xml'
     ],
     'images': [
         'static/description/openeducat_facility_banner.jpg',

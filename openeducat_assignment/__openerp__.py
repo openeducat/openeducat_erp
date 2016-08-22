@@ -44,9 +44,9 @@
         'assignment_menu.xml'
     ],
     'demo': [
-        'demo/op.assignment.type.csv',
-        'demo/op.assignment.csv',
-        'demo/op.assignment.sub.line.csv'
+        'demo/assignment_type_demo.xml',
+        'demo/assignment_demo.xml',
+        'demo/assignment_sub_line_demo.xml'
     ],
     'images': [
         'static/description/openeducat_assignment_banner.jpg',

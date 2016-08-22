@@ -39,8 +39,8 @@
         'scholarship_menu.xml',
     ],
     'demo': [
-        'demo/op.scholarship.type.csv',
-        'demo/op.scholarship.csv',
+        'demo/scholarship_type_demo.xml',
+        'demo/scholarship_demo.xml',
     ],
     'images': [
         'static/description/openeducat_scholarship_banner.jpg',

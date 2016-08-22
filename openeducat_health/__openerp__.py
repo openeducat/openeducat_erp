@@ -38,8 +38,8 @@
         'health_menu.xml',
     ],
     'demo': [
-        'demo/op.health.line.csv',
-        'demo/op.health.csv'
+        'demo/health_line_demo.xml',
+        'demo/health_demo.xml'
     ],
     'images': [
         'static/description/openeducat_health_banner.jpg',

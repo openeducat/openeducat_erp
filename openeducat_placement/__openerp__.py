@@ -38,7 +38,7 @@
         'security/ir.model.access.csv'
     ],
     'demo': [
-        'demo/op.placement.offer.csv'
+        'demo/placement_offer_demo.xml'
     ],
     'images': [
         'static/description/openeducat_placement_banner.jpg',

@@ -38,8 +38,8 @@
         'security/ir.model.access.csv'
     ],
     'demo': [
-        'demo/op.classroom.csv',
-        'demo/op.facility.line.csv'
+        'demo/classroom_demo.xml',
+        'demo/facility_line_demo.xml'
     ],
     'images': [
         'static/description/openeducat_classroom_banner.jpg',

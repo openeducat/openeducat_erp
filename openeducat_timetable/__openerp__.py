@@ -48,7 +48,7 @@
         'timetable_menu.xml',
     ],
     'demo': [
-        'demo/op.period.csv',
+        'demo/period_demo.xml',
         'demo/op_timetable_demo.xml'
     ],
     'images': [

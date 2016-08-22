@@ -56,12 +56,11 @@
         'exam_menu.xml',
     ],
     'demo': [
-        'demo/op.classroom.csv',
-        'demo/op.exam.room.csv',
-        'demo/op.exam.type.csv',
-        'demo/op.exam.session.csv',
-        'demo/op.exam.csv',
-        'demo/op.exam.attendees.csv'
+        'demo/exam_room_demo.xml',
+        'demo/exam_type_demo.xml',
+        'demo/exam_session_demo.xml',
+        'demo/exam_demo.xml',
+        'demo/exam_attendees_demo.xml'
     ],
     'images': [
         'static/description/openeducat_exam_banner.jpg',

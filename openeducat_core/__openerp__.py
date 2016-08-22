@@ -67,16 +67,14 @@
     'demo': [
         'demo/base_demo.xml',
         'demo/website_demo.xml',
-        'demo/op.subject.csv',
-        'demo/op.course.csv',
-        'demo/op.batch.csv',
-        'demo/res.users.csv',
-        'demo/op.student.csv',
-        'demo/op.faculty.csv',
+        'demo/subject_demo.xml',
+        'demo/course_demo.xml',
+        'demo/batch_demo.xml',
+        'demo/res_users_demo.xml',
         'demo/student_demo.xml',
         'demo/faculty_demo.xml',
-        'demo/op.roll.number.csv',
-        'demo/res.groups.csv'
+        'demo/roll_number_demo.xml',
+        'demo/res_groups_demo.xml'
     ],
     'css': ['static/src/css/base.css'],
     'qweb': [
