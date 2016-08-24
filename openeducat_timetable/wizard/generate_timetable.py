@@ -22,7 +22,7 @@
 import datetime
 import pytz
 import time
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 week_number = {
@@ -72,7 +72,8 @@ class GenerateTimeTable(models.TransientModel):
         start_date = fields.Date.from_string(self.start_date)
         end_date = fields.Date.from_string(self.end_date)
         if start_date > end_date:
-            raise ValidationError("End Date cannot be set before Start Date.")
+            raise ValidationError(_("End Date cannot be set before \
+            Start Date."))
 
     @api.onchange('course_id')
     def onchange_course(self):
@@ -154,7 +155,4 @@ class GenerateTimeTableLine(models.TransientModel):
         ('5', 'Friday'),
         ('6', 'Saturday'),
     ], 'Day', required=True)
-    period_id = fields.Many2one('op.period', 'Period',  required=True)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    period_id = fields.Many2one('op.period', 'Period', required=True)

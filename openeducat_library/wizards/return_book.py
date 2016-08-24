@@ -53,6 +53,3 @@ class ReturnBook(models.TransientModel):
             raise UserError(_(
                 "Book Unit can not be returned because it's state is : %s") %
                 (dict(book_unit.unit_states).get(self.book_unit_id.state)))
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

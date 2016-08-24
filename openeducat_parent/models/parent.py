@@ -45,6 +45,3 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     parent_ids = fields.One2many('op.parent', 'user_id', 'Parents')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

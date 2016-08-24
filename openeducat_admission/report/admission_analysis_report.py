@@ -69,6 +69,3 @@ class ReportAdmissionAnalysis(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_admission.report_admission_analysis'
     _wrapped_report_class = AdmissionAnalysisReport
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

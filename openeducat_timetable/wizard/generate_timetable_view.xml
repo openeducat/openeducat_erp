@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="view_gen_time_table_line_tree" model="ir.ui.view">
             <field name="name">gen.time.table.line.tree</field>
@@ -32,51 +32,59 @@
             <field name="model">generate.time.table</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <form string="TimeTables" >
+                <form string="TimeTables">
                     <header groups="base.group_user">
                         <button string="Proceed" type="object"
                             name="act_gen_time_table" class="oe_highlight" />
-                        <button special="cancel" string="Close" type="object" />
+                        <button special="cancel" string="Close"
+                            type="object" />
                     </header>
                     <sheet>
-	                    <group col="4" colspan="4">
-	                        <field name="course_id"/>
-	                        <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}" />
-	                        <field name="start_date" />
-	                        <field name="end_date" />
-	                    </group>
-	                    <notebook>
-	                         <page name="monday" string="Monday">
-	                            <group>
-	                                <field name="time_table_lines_1" nolabel="1" context="{'default_day': '1'}" />
-	                            </group>
-	                        </page>
-	                        <page name="tuesday" string="Tuesday">
-	                            <group>
-	                                <field name="time_table_lines_2" nolabel="1" context="{'default_day': '2'}" />
-	                            </group>
-	                        </page>
-	                        <page name="wednesday" string="Wednesday">
-	                            <group>
-	                                <field name="time_table_lines_3" nolabel="1" context="{'default_day': '3'}" />
-	                            </group>
-	                        </page>
-	                        <page name="thursday" string="Thursday">
-	                            <group>
-	                                <field name="time_table_lines_4" nolabel="1" context="{'default_day': '4'}" />
-	                            </group>
-	                        </page>
-	                        <page name="friday" string="Friday">
-	                            <group>
-	                                <field name="time_table_lines_5" nolabel="1" context="{'default_day': '5'}" />
-	                            </group>
-	                        </page>
-	                        <page name="saturday" string="Saturday">
-	                            <group>
-	                                <field name="time_table_lines_6" nolabel="1" context="{'default_day': '6'}" />
-	                            </group>
-	                        </page>
-	                    </notebook>
+                        <group col="4" colspan="4">
+                            <field name="course_id" />
+                            <field name="batch_id"
+                                context="{'course_id': course_id,'get_parent_batch':1}" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                        </group>
+                        <notebook>
+                            <page name="monday" string="Monday">
+                                <group>
+                                    <field name="time_table_lines_1"
+                                        nolabel="1" context="{'default_day': '1'}" />
+                                </group>
+                            </page>
+                            <page name="tuesday" string="Tuesday">
+                                <group>
+                                    <field name="time_table_lines_2"
+                                        nolabel="1" context="{'default_day': '2'}" />
+                                </group>
+                            </page>
+                            <page name="wednesday" string="Wednesday">
+                                <group>
+                                    <field name="time_table_lines_3"
+                                        nolabel="1" context="{'default_day': '3'}" />
+                                </group>
+                            </page>
+                            <page name="thursday" string="Thursday">
+                                <group>
+                                    <field name="time_table_lines_4"
+                                        nolabel="1" context="{'default_day': '4'}" />
+                                </group>
+                            </page>
+                            <page name="friday" string="Friday">
+                                <group>
+                                    <field name="time_table_lines_5"
+                                        nolabel="1" context="{'default_day': '5'}" />
+                                </group>
+                            </page>
+                            <page name="saturday" string="Saturday">
+                                <group>
+                                    <field name="time_table_lines_6"
+                                        nolabel="1" context="{'default_day': '6'}" />
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -98,4 +106,4 @@
             <field name="view_id" ref="view_generate_time_table_form" />
         </record>
     </data>
-</openerp>
+</odoo>

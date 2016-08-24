@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -53,7 +53,4 @@ class OpHealth(models.Model):
     @api.constrains('height', 'weight')
     def check_height_weight(self):
         if self.height <= 0.0 or self.weight <= 0.0:
-            raise ValidationError("Enter proper height and weight!")
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+            raise ValidationError(_("Enter proper height and weight!"))

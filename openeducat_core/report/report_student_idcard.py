@@ -39,6 +39,3 @@ class ReportStudentIdcard(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_core.report_student_idcard'
     _wrapped_report_class = OpStudentIdcardReport
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

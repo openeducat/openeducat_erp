@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -38,7 +38,7 @@ class OpLibraryCardType(models.Model):
     def check_details(self):
         if self.allow_book < 0 or self.duration < 0.0 or \
                 self.penalty_amt_per_day < 0.0:
-            raise ValidationError('Enter proper value')
+            raise ValidationError(_('Enter proper value'))
 
 
 class OpLibraryCard(models.Model):
@@ -63,5 +63,3 @@ class OpLibraryCard(models.Model):
         ('unique_library_card_number',
          'unique(number)', 'Library card Number should be unique per card!'),
     ]
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

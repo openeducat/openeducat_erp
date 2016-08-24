@@ -36,6 +36,3 @@ class WizardOpFacultyEmployee(models.TransientModel):
         if self.user_boolean and not record.user_id:
             user_group = self.env.ref('openeducat_core.group_op_faculty')
             self.env['res.users'].create_user(record, user_group)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

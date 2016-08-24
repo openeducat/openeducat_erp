@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -35,12 +35,10 @@ class OpExamRoom(models.Model):
     @api.constrains('capacity')
     def check_capacity(self):
         if self.capacity < 0:
-            raise ValidationError('Enter proper Capacity')
+            raise ValidationError(_('Enter proper Capacity'))
         elif self.capacity > self.classroom_id.capacity:
-            raise ValidationError('Capacity over Classroom capacity!')
+            raise ValidationError(_('Capacity over Classroom capacity!'))
 
     @api.onchange('classroom_id')
     def onchange_classroom(self):
         self.capacity = self.classroom_id.capacity
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

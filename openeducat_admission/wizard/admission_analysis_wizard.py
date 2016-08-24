@@ -20,7 +20,7 @@
 ###############################################################################
 
 import time
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -39,13 +39,11 @@ class AdmissionAnalysis(models.TransientModel):
         start_date = fields.Date.from_string(self.start_date)
         end_date = fields.Date.from_string(self.end_date)
         if start_date > end_date:
-            raise ValidationError("End Date cannot be set before Start Date.")
+            raise ValidationError(_("End Date cannot be set before \
+            Start Date."))
         else:
             data = self.read(
                 ['course_id', 'start_date', 'end_date'])[0]
             return self.env['report'].get_action(
                 self, 'openeducat_admission.report_admission_analysis',
                 data=data)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

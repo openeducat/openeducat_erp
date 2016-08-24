@@ -40,6 +40,3 @@ class WizardOpFaculty(models.TransientModel):
         active_ids = self.env.context.get('active_ids', []) or []
         records = self.env['op.faculty'].browse(active_ids)
         self.env['res.users'].create_user(records, user_group)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

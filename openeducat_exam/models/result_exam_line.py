@@ -36,6 +36,3 @@ class OpResultExamLine(models.Model):
     weightage = fields.Float('Weightage')
     result_lines = fields.One2many(
         'op.result.line', 'exam_tmpl_id', 'Result Lines')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

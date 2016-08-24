@@ -44,6 +44,3 @@ class OpBookUnit(models.Model):
          'unique(barcode)',
          'Barcode must be unique per book unit!'),
     ]
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

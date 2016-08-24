@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-	<data>
+<odoo>
+    <data>
 
-		<record id="op_hostel_room_1" model="op.hostel.room">
-			<field name="name" ref="op_room_1" />
-			<field name="rent">2300</field>
-			<field name="students_per_room">5</field>
-			<field name="allocated_date" eval="(DateTime.today() - relativedelta(months=5)).strftime('%Y-%m-13 %H:%M')" />
-			<field name="hostel_id" ref="op_hostel_1" />
-			<field name="student_ids"
-				eval="[(4, ref('openeducat_core.op_student_17_res_partner')), (4, ref('openeducat_core.op_student_4_res_partner')), (4, ref('openeducat_core.op_student_1_res_partner')), (4, ref('openeducat_core.op_student_8_res_partner'))]" />
-		</record>
+        <record id="op_hostel_room_1" model="op.hostel.room">
+            <field name="name" ref="op_room_1" />
+            <field name="rent">2300</field>
+            <field name="students_per_room">5</field>
+            <field name="allocated_date"
+                eval="(DateTime.today() - relativedelta(months=5)).strftime('%Y-%m-13 %H:%M')" />
+            <field name="hostel_id" ref="op_hostel_1" />
+            <field name="student_ids"
+                eval="[(4, ref('openeducat_core.op_student_17_res_partner')), (4, ref('openeducat_core.op_student_4_res_partner')), (4, ref('openeducat_core.op_student_1_res_partner')), (4, ref('openeducat_core.op_student_8_res_partner'))]" />
+        </record>
 
-		<record id="op_hostel_room_2" model="op.hostel.room">
-			<field name="name" ref="op_room_3" />
-			<field name="rent"></field>
-			<field name="students_per_room">5</field>
-			<field name="allocated_date" eval=""/>
-			<field name="hostel_id" ref="op_hostel_1" />
-			<field name="student_ids" eval="" />
-		</record>
+        <record id="op_hostel_room_2" model="op.hostel.room">
+            <field name="name" ref="op_room_3" />
+            <field name="rent"></field>
+            <field name="students_per_room">5</field>
+            <field name="allocated_date" eval="" />
+            <field name="hostel_id" ref="op_hostel_1" />
+            <field name="student_ids" eval="" />
+        </record>
 
-		<record id="op_hostel_room_3" model="op.hostel.room">
-			<field name="name" ref="op_room_2" />
-			<field name="rent">2500</field>
-			<field name="students_per_room">6</field>
-			<field name="allocated_date" eval="(DateTime.today() - relativedelta(months=5)).strftime('%Y-%m-10 %H:%M')" />
-			<field name="hostel_id" ref="op_hostel_2" />
-			<field name="student_ids"
-				eval="[(4, ref('openeducat_core.op_student_10_res_partner')), (4, ref('openeducat_core.op_student_16_res_partner')), (4, ref('openeducat_core.op_student_7_res_partner')), (4, ref('openeducat_core.op_student_6_res_partner')), (4, ref('openeducat_core.op_student_5_res_partner')), (4, ref('openeducat_core.op_student_2_res_partner'))]" />
-		</record>
+        <record id="op_hostel_room_3" model="op.hostel.room">
+            <field name="name" ref="op_room_2" />
+            <field name="rent">2500</field>
+            <field name="students_per_room">6</field>
+            <field name="allocated_date"
+                eval="(DateTime.today() - relativedelta(months=5)).strftime('%Y-%m-10 %H:%M')" />
+            <field name="hostel_id" ref="op_hostel_2" />
+            <field name="student_ids"
+                eval="[(4, ref('openeducat_core.op_student_10_res_partner')), (4, ref('openeducat_core.op_student_16_res_partner')), (4, ref('openeducat_core.op_student_7_res_partner')), (4, ref('openeducat_core.op_student_6_res_partner')), (4, ref('openeducat_core.op_student_5_res_partner')), (4, ref('openeducat_core.op_student_2_res_partner'))]" />
+        </record>
 
-		<record id="op_hostel_room_4" model="op.hostel.room">
-			<field name="name" ref="op_room_4" />
-			<field name="rent"></field>
-			<field name="students_per_room">5</field>
-			<field name="allocated_date" eval=""/>
-			<field name="hostel_id" ref="op_hostel_2" />
-			<field name="student_ids" eval="" />
-		</record>
+        <record id="op_hostel_room_4" model="op.hostel.room">
+            <field name="name" ref="op_room_4" />
+            <field name="rent"></field>
+            <field name="students_per_room">5</field>
+            <field name="allocated_date" eval="" />
+            <field name="hostel_id" ref="op_hostel_2" />
+            <field name="student_ids" eval="" />
+        </record>
 
-	</data>
-</openerp>
+    </data>
+</odoo>

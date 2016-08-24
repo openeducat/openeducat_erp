@@ -29,6 +29,3 @@ class OpHealthLine(models.Model):
     date = fields.Date('Date', default=lambda self: fields.Date.today())
     name = fields.Text('Checkup Detail', required=True)
     recommendation = fields.Text('Checkup Recommendation')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

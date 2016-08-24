@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -61,8 +61,8 @@ class OpAssignment(models.Model):
         issued_date = fields.Date.from_string(self.issued_date)
         submission_date = fields.Date.from_string(self.submission_date)
         if issued_date > submission_date:
-            raise ValidationError(
-                "Submission Date cannot be set before Issue Date.")
+            raise ValidationError(_(
+                "Submission Date cannot be set before Issue Date."))
 
     @api.onchange('course_id')
     def onchange_course(self):
@@ -75,6 +75,3 @@ class OpAssignment(models.Model):
     @api.one
     def act_finish(self):
         self.state = 'finish'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

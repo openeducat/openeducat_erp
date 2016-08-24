@@ -48,6 +48,3 @@ class ResUsers(models.Model):
                 rec.user_id = user_id
                 if user_group:
                     user_group.users = user_group.users + user_id
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
         <template id="report_student_library_card">
             <t t-call="report.html_container">
@@ -53,32 +53,42 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <img class="image" t-att-src="'data:image/png;base64,%s' % o.photo"
+                                                <img class="image"
+                                                    t-att-src="'data:image/png;base64,%s' % o.photo"
                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
                                             </td>
                                             <td style="vertical-align: top;">
                                                 <div
                                                     style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
                                                     <b>
-                                                        <span t-field='o.name' />
-                                                        <span t-field='o.middle_name' />
-                                                        <span t-field='o.last_name' />
+                                                        <span
+                                                            t-field='o.name' />
+                                                        <span
+                                                            t-field='o.middle_name' />
+                                                        <span
+                                                            t-field='o.last_name' />
                                                     </b>
                                                     <br></br>
                                                     Library Card No :
-	                                                <span t-if="o.library_card_id">
-	                                                    <span t-field='o.library_card_id.number' />
-	                                                </span>
+                                                    <span
+                                                        t-if="o.library_card_id">
+                                                        <span
+                                                            t-field='o.library_card_id.number' />
+                                                    </span>
                                                     <br></br>
                                                     Library Card Type :
-	                                                <span t-if="o.library_card_id">
-	                                                    <span t-field='o.library_card_id.library_card_type_id.name' />
-	                                                </span>
+                                                    <span
+                                                        t-if="o.library_card_id">
+                                                        <span
+                                                            t-field='o.library_card_id.library_card_type_id.name' />
+                                                    </span>
                                                     <br></br>
                                                     Issue Date :
-	                                                <span t-if="o.library_card_id">
-	                                                    <span t-field='o.library_card_id.issue_date' />
-	                                                </span>
+                                                    <span
+                                                        t-if="o.library_card_id">
+                                                        <span
+                                                            t-field='o.library_card_id.issue_date' />
+                                                    </span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -91,4 +101,4 @@
             </t>
         </template>
     </data>
-</openerp>
+</odoo>

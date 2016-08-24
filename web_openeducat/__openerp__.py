@@ -35,7 +35,7 @@
         'demo/footer_template.xml',
         'demo/homepage.xml',
         'demo/feature_template.xml',
-     ],
+    ],
     'depends': [
         'website',
     ],

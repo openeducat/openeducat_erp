@@ -33,6 +33,3 @@ class OpSubject(models.Model):
         [('theory', 'Theory'), ('practical', 'Practical'),
          ('both', 'Both'), ('other', 'Other')],
         'Type', default="theory", required=True)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

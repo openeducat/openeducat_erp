@@ -50,6 +50,3 @@ class OpBook(models.Model):
          'unique(internal_code)',
          'Internal Code must be unique per book!'),
     ]
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -33,5 +33,3 @@ class OpAchievement(models.Model):
     description = fields.Text('Description', required=True)
     achievement_date = fields.Date(
         'Date', required=True, default=fields.Date.today())
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

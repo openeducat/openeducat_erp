@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -45,7 +45,4 @@ class OpMarksheetRegister(models.Model):
     @api.constrains('total_pass', 'total_failed')
     def _check_marks(self):
         if (self.total_pass < 0.0) or (self.total_failed < 0.0):
-            raise ValidationError('Enter proper pass or fail!')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+            raise ValidationError(_('Enter proper pass or fail!'))

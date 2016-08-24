@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -38,17 +38,18 @@ class StudentMigrate(models.TransientModel):
     @api.constrains('course_from_id', 'course_to_id')
     def _check_admission_register(self):
         if self.course_from_id == self.course_to_id:
-            raise ValidationError("From Course must not be same as To Course!")
+            raise ValidationError(_("From Course must not be same \
+            as To Course!"))
 
         if self.course_from_id.parent_id:
             if self.course_from_id.parent_id != \
                     self.course_to_id.parent_id:
-                raise ValidationError(
+                raise ValidationError(_(
                     "Can't migrate, As selected courses don't \
-                    share same parent course!")
+                    share same parent course!"))
         else:
-            raise ValidationError(
-                "Can't migrate, Proceed for new admission")
+            raise ValidationError(_(
+                "Can't migrate, Proceed for new admission"))
 
     @api.one
     @api.onchange('course_from_id')
@@ -70,6 +71,3 @@ class StudentMigrate(models.TransientModel):
             }
             self.env['op.activity'].create(activity_vals)
             student.write({'course_id': self.course_to_id.id})
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
