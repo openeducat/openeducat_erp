@@ -21,7 +21,8 @@
 
 {
     'name': 'Indian OpenEduCat',
-    'version': '2.4.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Indian Localization of OpenEduCat',
