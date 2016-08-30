@@ -22,7 +22,7 @@
 from datetime import datetime
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -52,9 +52,10 @@ class TimeTableReport(models.TransientModel):
         start_date = fields.Date.from_string(self.start_date)
         end_date = fields.Date.from_string(self.end_date)
         if end_date < start_date:
-            raise ValidationError('End Date cannot be set before Start Date.')
+            raise ValidationError(_('End Date cannot be set before \
+            Start Date.'))
         elif end_date > (start_date + timedelta(days=6)):
-            raise ValidationError("Select date range for a week!")
+            raise ValidationError(_("Select date range for a week!"))
 
     @api.onchange('course_id')
     def onchange_course(self):
@@ -88,6 +89,3 @@ class TimeTableReport(models.TransientModel):
             return self.env['report'].get_action(
                 self, 'openeducat_timetable.report_timetable_teacher_generate',
                 data=data)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

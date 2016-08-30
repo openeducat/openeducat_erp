@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -50,7 +50,7 @@ class OpBookQueue(models.Model):
     @api.constrains('date_from', 'date_to')
     def _check_date(self):
         if self.date_from > self.date_to:
-            raise ValidationError('To Date cannot be set before From Date.')
+            raise ValidationError(_('To Date cannot be set before From Date.'))
 
     @api.model
     def create(self, vals):
@@ -70,6 +70,3 @@ class OpBookQueue(models.Model):
     @api.one
     def do_request_again(self):
         self.state = 'request'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

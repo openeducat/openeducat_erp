@@ -21,7 +21,8 @@
 
 {
     'name': 'OpenEduCat Library',
-    'version': '2.4.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Library',
@@ -59,14 +60,17 @@
         'menus/library_menu.xml',
     ],
     'demo': [
-        'demo/res.users.csv',
-        'demo/res.groups.csv',
-        'demo/op.tag.csv',
-        'demo/op.publisher.csv',
-        'demo/op.author.csv',
-        'demo/op.book.csv',
-        'demo/op.book.unit.csv',
-        'demo/op.book.queue.csv',
+        'demo/res_users_demo.xml',
+        'demo/res_groups_demo.xml',
+        'demo/tag_demo.xml',
+        'demo/publisher_demo.xml',
+        'demo/author_demo.xml',
+        'demo/book_demo.xml',
+        'demo/book_unit_demo.xml',
+        'demo/book_queue_demo.xml',
+        'demo/library_card_type_demo.xml',
+        'demo/library_card_demo.xml',
+        'demo/book_movement_demo.xml',
     ],
     'images': [
         'static/description/openeducat_library_banner.jpg',
@@ -75,6 +79,3 @@
     'auto_install': False,
     'application': True,
 }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -39,6 +39,3 @@ class OpPeriod(models.Model):
     am_pm = fields.Selection(
         [('am', 'AM'), ('pm', 'PM')], 'AM/PM', required=True)
     sequence = fields.Integer('Sequence')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

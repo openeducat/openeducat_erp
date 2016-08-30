@@ -46,6 +46,3 @@ class OpAdmission(models.Model):
             'religion': self.religion_id and self.religion_id.id or False
         })
         return vals
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

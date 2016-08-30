@@ -48,6 +48,3 @@ class OpAttendanceLine(models.Model):
          'unique(student_id,attendance_id,attendance_date)',
          'Student must be unique per Attendance.'),
     ]
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

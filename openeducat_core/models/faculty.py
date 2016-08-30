@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -56,8 +56,8 @@ class OpFaculty(models.Model):
     @api.constrains('birth_date')
     def _check_birthdate(self):
         if self.birth_date > fields.Date.today():
-            raise ValidationError(
-                "Birth Date can't be greater than current date!")
+            raise ValidationError(_(
+                "Birth Date can't be greater than current date!"))
 
     @api.one
     def create_employee(self):
@@ -71,6 +71,3 @@ class OpFaculty(models.Model):
         emp_id = self.env['hr.employee'].create(vals)
         self.write({'emp_id': emp_id.id})
         self.partner_id.write({'supplier': True, 'employee': True})
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

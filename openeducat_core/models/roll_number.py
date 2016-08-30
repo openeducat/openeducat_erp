@@ -47,5 +47,3 @@ class OpRollNumber(models.Model):
          'unique(student_id,course_id,batch_id)',
          'Student must be unique per Batch!'),
     ]
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

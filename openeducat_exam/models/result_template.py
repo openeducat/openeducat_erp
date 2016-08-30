@@ -123,6 +123,3 @@ class OpResultTemplate(models.Model):
                 [x[0].id for x in stu_dict[stu_id]]).write(
                 {'result_id': mark_line_id.id})
         return True
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

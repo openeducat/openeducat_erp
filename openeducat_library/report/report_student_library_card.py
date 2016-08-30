@@ -40,6 +40,3 @@ class ReportLibraryIdcard(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_library.report_student_library_card'
     _wrapped_report_class = OpStudentLibraryCardReport
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

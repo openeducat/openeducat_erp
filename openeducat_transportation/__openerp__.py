@@ -21,7 +21,8 @@
 
 {
     'name': 'OpenEduCat Transportation',
-    'version': '2.4.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Transportations',
@@ -41,9 +42,9 @@
         'transportation_menu.xml'
     ],
     'demo': [
-        'demo/op.stop.csv',
-        'demo/op.vehicle.csv',
-        'demo/op.transportation.csv',
+        'demo/stop_demo.xml',
+        'demo/vehicle_demo.xml',
+        'demo/transportation_demo.xml',
     ],
     'images': [
         'static/description/openeducat_transportation_banner.jpg',
@@ -52,6 +53,3 @@
     'auto_install': False,
     'application': True,
 }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -64,15 +64,15 @@ class OpBookMovement(models.Model):
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
         if self.issued_date > self.return_date:
-            raise ValidationError(
-                'Return Date cannot be set before Issued Date.')
+            raise ValidationError(_(
+                'Return Date cannot be set before Issued Date.'))
 
     @api.constrains('issued_date', 'actual_return_date')
     def check_actual_return_date(self):
         if self.actual_return_date:
             if self.issued_date > self.actual_return_date:
-                raise ValidationError(
-                    'Actual Return Date cannot be set before Issued Date')
+                raise ValidationError(_(
+                    'Actual Return Date cannot be set before Issued Date'))
 
     @api.onchange('book_unit_id')
     def onchange_book_unit_id(self):
@@ -131,6 +131,3 @@ class OpBookMovement(models.Model):
             'type': 'ir.actions.act_window',
             'target': 'new',
         }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

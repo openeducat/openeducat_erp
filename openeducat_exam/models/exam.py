@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -53,15 +53,16 @@ class OpExam(models.Model):
     @api.constrains('total_marks', 'min_marks')
     def _check_marks(self):
         if self.total_marks <= 0.0 or self.min_marks <= 0.0:
-            raise ValidationError('Enter proper marks!')
+            raise ValidationError(_('Enter proper marks!'))
         if self.min_marks > self.total_marks:
-            raise ValidationError(
-                "Passing Marks can't be greater than Total Marks")
+            raise ValidationError(_(
+                "Passing Marks can't be greater than Total Marks"))
 
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):
         if self.start_time > self.end_time:
-            raise ValidationError('End Time cannot be set before Start Time.')
+            raise ValidationError(_('End Time cannot be set \
+            before Start Time.'))
 
     @api.one
     def act_held(self):
@@ -82,6 +83,3 @@ class OpExam(models.Model):
     @api.one
     def act_new_exam(self):
         self.state = 'new'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

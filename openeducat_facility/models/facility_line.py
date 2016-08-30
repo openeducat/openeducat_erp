@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -33,7 +33,4 @@ class OpFacilityLine(models.Model):
     @api.constrains('quantity')
     def check_quantity(self):
         if self.quantity <= 0.0:
-            raise ValidationError("Enter proper Quantity in Facilities!")
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+            raise ValidationError(_("Enter proper Quantity in Facilities!"))

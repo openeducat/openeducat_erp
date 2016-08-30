@@ -21,7 +21,7 @@
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -59,7 +59,7 @@ class OpAdmissionRegister(models.Model):
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('cancel', 'Cancelled'), ('application', 'Application Gathering'),
          ('admission', 'Admission Process'), ('done', 'Done')],
-        'Status',  default='draft', track_visibility='onchange')
+        'Status', default='draft', track_visibility='onchange')
 
     @api.one
     @api.constrains('start_date', 'end_date')
@@ -67,16 +67,17 @@ class OpAdmissionRegister(models.Model):
         start_date = fields.Date.from_string(self.start_date)
         end_date = fields.Date.from_string(self.end_date)
         if start_date > end_date:
-            raise ValidationError("End Date cannot be set before Start Date.")
+            raise ValidationError(_("End Date cannot be set before \
+            Start Date."))
 
     @api.one
     @api.constrains('min_count', 'max_count')
     def check_no_of_admission(self):
         if (self.min_count < 0) or (self.max_count < 0):
-            raise ValidationError("No of Admission should be positive!")
+            raise ValidationError(_("No of Admission should be positive!"))
         if self.min_count > self.max_count:
-            raise ValidationError(
-                "Min Admission can't be greater than Max Admission")
+            raise ValidationError(_(
+                "Min Admission can't be greater than Max Admission"))
 
     @api.one
     def confirm_register(self):
@@ -101,6 +102,3 @@ class OpAdmissionRegister(models.Model):
     @api.one
     def close_register(self):
         self.state = 'done'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

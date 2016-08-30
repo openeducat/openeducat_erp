@@ -88,6 +88,3 @@ class ReportTicket(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_exam.report_ticket'
     _wrapped_report_class = StudentHallTicketReport
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

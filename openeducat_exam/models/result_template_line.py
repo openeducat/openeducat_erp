@@ -43,6 +43,3 @@ class OpResultTemplateLine(models.Model):
         for exam_obj in self.exam_session_id.exam_ids:
             self.exam_lines += self.exam_lines.create(
                 {'exam_id': exam_obj.id, 'weightage': 100})
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

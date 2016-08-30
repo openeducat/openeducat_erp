@@ -64,6 +64,3 @@ class OpStudent(models.Model):
 
     placement_line = fields.One2many(
         'op.placement.offer', 'student_id', 'Placement Details')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

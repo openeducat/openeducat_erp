@@ -33,6 +33,3 @@ from . import result_exam_line
 from . import result_line
 from . import result_template
 from . import result_template_line
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

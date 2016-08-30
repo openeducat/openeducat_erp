@@ -47,8 +47,8 @@ class IssueBook(models.TransientModel):
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
         if self.issued_date > self.return_date:
-            raise ValidationError(
-                'Return Date cannot be set before Issued Date.')
+            raise ValidationError(_(
+                'Return Date cannot be set before Issued Date.'))
 
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
@@ -102,6 +102,3 @@ class IssueBook(models.TransientModel):
                 (self.student_id.name,
                  self.library_card_id.library_card_type_id.allow_book))
         return value
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

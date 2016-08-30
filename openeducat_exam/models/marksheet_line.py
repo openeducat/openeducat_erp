@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -40,6 +40,4 @@ class OpMarksheetLine(models.Model):
     @api.constrains('total_marks', 'total_per')
     def _check_marks(self):
         if (self.total_marks < 0.0) or (self.total_per < 0.0):
-            raise ValidationError("Enter proper marks or percentage!")
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+            raise ValidationError(_("Enter proper marks or percentage!"))

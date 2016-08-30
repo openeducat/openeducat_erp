@@ -87,6 +87,3 @@ class ReportExamStudentLable(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_exam.report_exam_student_lable'
     _wrapped_report_class = ExamStudentLableReport
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

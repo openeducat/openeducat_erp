@@ -34,6 +34,3 @@ class OpAttendanceRegister(models.Model):
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

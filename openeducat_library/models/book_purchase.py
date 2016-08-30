@@ -56,6 +56,3 @@ class OpBookPurchase(models.Model):
     @api.one
     def act_reject(self):
         self.state = 'reject'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

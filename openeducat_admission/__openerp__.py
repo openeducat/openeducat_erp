@@ -21,7 +21,8 @@
 
 {
     'name': "OpenEduCat Admission",
-    'version': '2.4.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     'sequence': 3,
     'summary': "Manage Admissions""",
@@ -43,11 +44,10 @@
         'security/ir.model.access.csv',
     ],
     'demo': [
-        'demo/product.category.csv',
-        'demo/product.product.csv',
-        'demo/op.admission.register.csv',
-        'demo/op.admission.csv',
-        'demo/student_demo.xml',
+        'demo/product_category_demo.xml',
+        'demo/product_demo.xml',
+        'demo/admission_register_demo.xml',
+        'demo/admission_demo.xml',
     ],
     'images': [
         'static/description/openeducat_admission_banner.jpg',

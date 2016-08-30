@@ -21,7 +21,8 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '2.4.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     "sequence": 1,
     'summary': 'Manage Students, Faculties and Education Institute',
@@ -67,16 +68,14 @@
     'demo': [
         'demo/base_demo.xml',
         'demo/website_demo.xml',
-        'demo/op.subject.csv',
-        'demo/op.course.csv',
-        'demo/op.batch.csv',
-        'demo/res.users.csv',
-        'demo/op.student.csv',
-        'demo/op.faculty.csv',
+        'demo/subject_demo.xml',
+        'demo/course_demo.xml',
+        'demo/batch_demo.xml',
+        'demo/res_users_demo.xml',
         'demo/student_demo.xml',
         'demo/faculty_demo.xml',
-        'demo/op.roll.number.csv',
-        'demo/res.groups.csv'
+        'demo/roll_number_demo.xml',
+        'demo/res_groups_demo.xml'
     ],
     'css': ['static/src/css/base.css'],
     'qweb': [
@@ -89,6 +88,3 @@
     'auto_install': False,
     'application': True,
 }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

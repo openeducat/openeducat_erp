@@ -100,6 +100,3 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_timetable.report_timetable_teacher_generate'
     _wrapped_report_class = TimeTableTeacherGenerate
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

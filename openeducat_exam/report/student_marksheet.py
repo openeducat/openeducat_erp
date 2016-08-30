@@ -64,6 +64,3 @@ class ReportMarksheetReport(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_exam.report_marksheet_report'
     _wrapped_report_class = MarksheetReport
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

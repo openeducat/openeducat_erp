@@ -75,6 +75,3 @@ class StudentAttendanceReport(models.AbstractModel):
     _inherit = 'report.abstract_report'
     _template = 'openeducat_attendance.student_attendance_report'
     _wrapped_report_class = StudentAttendanceGenerate
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
