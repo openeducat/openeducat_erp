@@ -22,7 +22,8 @@
 import base64
 from reportlab.graphics.barcode import createBarcodeDrawing
 import time
-from openerp.osv import osv
+from openerp import models, _
+from openerp.exceptions import ValidationError
 from openerp.report import report_sxw
 
 
@@ -66,16 +67,13 @@ class BookBarcodeParser(report_sxw.rml_parse):
             ret_val = createBarcodeDrawing(
                 type, value=str(value), **options)
         except Exception, e:
-            raise osv.except_osv('Error in barcode generation', e)
+            raise ValidationError(_('Error in barcode generation', e))
         image_data = ret_val.asString('png')
         return base64.encodestring(image_data)
 
 
-class ReportBookBarcode(osv.AbstractModel):
+class ReportBookBarcode(models.AbstractModel):
     _name = 'report.openeducat_library.report_book_barcode'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_library.report_book_barcode'
     _wrapped_report_class = BookBarcodeParser
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

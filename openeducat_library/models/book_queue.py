@@ -33,7 +33,8 @@ class OpBookQueue(models.Model):
     partner_id = fields.Many2one('res.partner', 'Student/Faculty')
     book_id = fields.Many2one(
         'op.book', 'Book', required=True, track_visibility='onchange')
-    date_from = fields.Date('From Date', required=True)
+    date_from = fields.Date(
+        'From Date', required=True, default=fields.Date.today())
     date_to = fields.Date('To Date', required=True)
     user_id = fields.Many2one(
         'res.users', 'User', readonly=True, default=lambda self: self.env.uid)
@@ -49,8 +50,7 @@ class OpBookQueue(models.Model):
     @api.constrains('date_from', 'date_to')
     def _check_date(self):
         if self.date_from > self.date_to:
-            raise ValidationError(
-                _("From Date should be greater than To Date!"))
+            raise ValidationError(_('To Date cannot be set before From Date.'))
 
     @api.model
     def create(self, vals):
@@ -70,6 +70,3 @@ class OpBookQueue(models.Model):
     @api.one
     def do_request_again(self):
         self.state = 'request'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

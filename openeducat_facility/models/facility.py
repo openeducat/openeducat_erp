@@ -24,9 +24,7 @@ from openerp import models, fields
 
 class OpFacility(models.Model):
     _name = 'op.facility'
-    _rec_name = 'Name'
+    _rec_name = 'name'
 
-    Name = fields.Char('Name', size=16, required=True)
-    Code = fields.Char('Code', size=4, required=True)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    name = fields.Char('Name', size=16, required=True)
+    code = fields.Char('Code', size=4, required=True)

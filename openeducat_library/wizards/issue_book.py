@@ -20,9 +20,10 @@
 ###############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
-
+from openerp.exceptions import UserError, ValidationError
 from ..models import book_unit
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class IssueBook(models.TransientModel):
@@ -39,14 +40,24 @@ class IssueBook(models.TransientModel):
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     library_card_id = fields.Many2one(
         'op.library.card', 'Library Card', required=True)
-    issued_date = fields.Date('Issued Date', required=True)
+    issued_date = fields.Date(
+        'Issued Date', required=True, default=fields.Date.today())
     return_date = fields.Date('Return Date', required=True)
+
+    @api.constrains('issued_date', 'return_date')
+    def _check_date(self):
+        if self.issued_date > self.return_date:
+            raise ValidationError(_(
+                'Return Date cannot be set before Issued Date.'))
 
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
         self.type = self.library_card_id.type
         self.student_id = self.library_card_id.student_id.id
         self.faculty_id = self.library_card_id.faculty_id.id
+        self.return_date = datetime.today() + \
+            relativedelta(
+                days=self.library_card_id.library_card_type_id.duration)
 
     @api.one
     def check_max_issue(self, student_id, library_card_id):
@@ -81,16 +92,13 @@ class IssueBook(models.TransientModel):
                 self.book_unit_id.state = 'issue'
                 value = {'type': 'ir.actions.act_window_close'}
             else:
-                raise Warning(_('Error!'), _(
+                raise UserError(_(
                     "Book Unit can not be issued because it's state is : %s") %
                     (dict(book_unit.unit_states).get(
                         self.book_unit_id.state)))
         else:
-            raise Warning(_('Error!'), _(
+            raise UserError(_(
                 'Maximum Number of book allowed for %s is : %s') %
                 (self.student_id.name,
                  self.library_card_id.library_card_type_id.allow_book))
         return value
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

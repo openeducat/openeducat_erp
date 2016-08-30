@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class OpScholarshipType(models.Model):
@@ -28,5 +29,7 @@ class OpScholarshipType(models.Model):
     name = fields.Char('Name', size=64, required=True)
     amount = fields.Integer('Amount')
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    @api.constrains('amount')
+    def check_amount(self):
+        if self.amount <= 0:
+            raise ValidationError(_('Enter proper Amount'))

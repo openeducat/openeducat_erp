@@ -46,6 +46,3 @@ class OpStudent(models.Model):
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = inv_ids and inv_ids[0] or False
         return result
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

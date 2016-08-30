@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="op_course_1" model="op.course">
+            <field name="code">LRTP</field>
+            <field name="name">Land Restoration Programme</field>
+            <field name="evaluation_type">normal</field>
+            <field name="section">Bachelors Course</field>
+            <field name="subject_ids"
+                eval="[(4, ref('op_subject_1')), (4, ref('op_subject_20')), (4, ref('op_subject_3')), (4, ref('op_subject_4')), (4, ref('op_subject_5'))]" />
+        </record>
+
+        <record id="op_course_2" model="op.course">
+            <field name="code">BOA</field>
+            <field name="name">Bachelor of Accountancy</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="section">Bachelors Course</field>
+            <field name="subject_ids" eval="" />
+        </record>
+
+        <record id="op_course_3" model="op.course">
+            <field name="code">BOA1</field>
+            <field name="name">BOA-Sem-1</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="section">Bachelor's Degree-Sem 1</field>
+            <field name="parent_id" ref="op_course_2" />
+            <field name="subject_ids"
+                eval="[(4, ref('op_subject_6')), (4, ref('op_subject_7')), (4, ref('op_subject_8')), (4, ref('op_subject_9')), (4, ref('op_subject_2'))]" />
+        </record>
+
+        <record id="op_course_4" model="op.course">
+            <field name="code">BOA2</field>
+            <field name="name">BOA-Sem-2</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="section">Bachelor's Degree-Sem 2</field>
+            <field name="parent_id" ref="op_course_2" />
+            <field name="subject_ids"
+                eval="[(4, ref('op_subject_10')), (4, ref('op_subject_11')), (4, ref('op_subject_12')), (4, ref('op_subject_13')), (4, ref('op_subject_2'))]" />
+        </record>
+
+        <record id="op_course_5" model="op.course">
+            <field name="code">IELTS151</field>
+            <field name="name">IELTS-001</field>
+            <field name="evaluation_type">normal</field>
+            <field name="section">2015-I</field>
+            <field name="subject_ids"
+                eval="[(4, ref('op_subject_14')), (4, ref('op_subject_15')), (4, ref('op_subject_16')), (4, ref('op_subject_17'))]" />
+        </record>
+
+        <record id="op_course_6" model="op.course">
+            <field name="code">G8C</field>
+            <field name="name">Grade-8-Course</field>
+            <field name="evaluation_type">normal</field>
+            <field name="section">K-12-Grade 8</field>
+            <field name="subject_ids"
+                eval="[(4, ref('op_subject_18')), (4, ref('op_subject_19')), (4, ref('op_subject_20'))]" />
+        </record>
+
+    </data>
+</odoo>

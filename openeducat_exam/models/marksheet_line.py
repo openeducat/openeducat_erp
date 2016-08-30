@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class OpMarksheetLine(models.Model):
@@ -36,5 +37,7 @@ class OpMarksheetLine(models.Model):
     total_per = fields.Float("Total Percentage")
     result = fields.Char("Result", size=256)
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    @api.constrains('total_marks', 'total_per')
+    def _check_marks(self):
+        if (self.total_marks < 0.0) or (self.total_per < 0.0):
+            raise ValidationError(_("Enter proper marks or percentage!"))

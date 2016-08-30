@@ -32,11 +32,6 @@ class ReserveBook(models.TransientModel):
     @api.one
     def set_partner(self):
         self.env['op.book.movement'].browse(
-            self.env.context.get('active_ids', False)).write({
-                'partner_id': self.partner_id.id,
-                'reserver_name': self.partner_id.name,
-                'state': 'reserve'
-            })
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+            self.env.context.get('active_ids', False)).write(
+            {'partner_id': self.partner_id.id,
+             'reserver_name': self.partner_id.name, 'state': 'reserve'})

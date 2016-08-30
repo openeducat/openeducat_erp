@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class OpStudent(models.Model):
@@ -65,5 +66,13 @@ class OpStudent(models.Model):
         size=8, store=True)
     gr_no = fields.Char("GR Number", size=20)
 
+    @api.one
+    @api.constrains('birth_date')
+    def _check_birthdate(self):
+        if self.birth_date > fields.Date.today():
+            raise ValidationError(_(
+                "Birth Date can't be greater than current date!"))
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False

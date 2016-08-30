@@ -30,7 +30,8 @@ class OpResultTemplate(models.Model):
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session', required=True)
     name = fields.Char("Name", size=254, required=True)
-    result_date = fields.Date('Result Date', required=True)
+    result_date = fields.Date(
+        'Result Date', required=True, default=fields.Date.today())
     line_ids = fields.One2many(
         'op.result.template.line', 'result_id', 'Session Lines')
     criteria_ids = fields.Many2many(
@@ -122,6 +123,3 @@ class OpResultTemplate(models.Model):
                 [x[0].id for x in stu_dict[stu_id]]).write(
                 {'result_id': mark_line_id.id})
         return True
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

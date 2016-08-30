@@ -39,8 +39,9 @@ class OpExamSession(models.Model):
     @api.constrains('start_date', 'end_date')
     def _check_date_time(self):
         if self.start_date > self.end_date:
-            raise ValidationError(
-                _('Start Time should be greater than End Time!'))
+            raise ValidationError(_(
+                'End Date cannot be set before Start Date.'))
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False

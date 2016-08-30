@@ -38,5 +38,3 @@ class OpExamResAllocation(models.Model):
                 [('course_id', '=', session.course_id.id)])
             self.exam_ids = session.exam_ids.ids
             self.student_ids = students.ids
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

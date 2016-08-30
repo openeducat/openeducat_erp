@@ -28,6 +28,3 @@ class OpStop(models.Model):
 
     name = fields.Char('Name', size=64, required=True)
     sequence = fields.Integer('Sequence')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -29,7 +29,7 @@ class OpPlacementOffer(models.Model):
 
     name = fields.Char('Company Name', required=True)
     student_id = fields.Many2one('op.student', 'Student Name', required=True)
-    join_date = fields.Date('Join Date')
+    join_date = fields.Date('Join Date', default=fields.Date.today())
     offer_package = fields.Char('Offered Package', size=256)
     training_period = fields.Char('Training Period', size=256)
     state = fields.Selection(
@@ -64,6 +64,3 @@ class OpStudent(models.Model):
 
     placement_line = fields.One2many(
         'op.placement.offer', 'student_id', 'Placement Details')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

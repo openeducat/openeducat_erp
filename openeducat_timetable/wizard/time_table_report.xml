@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="view_time_table_report_form" model="ir.ui.view">
             <field name="name">time.table.report.form</field>
@@ -28,7 +28,7 @@
                             <group col="4" colspan="4">
                                 <field name="course_id"
                                     attrs="{'required':[('state','=','student')],'invisible':[('state','!=','student')]}" />
-                                <field name="batch_id" domain="[('course_id', '=', course_id)]"
+                                <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
                                     attrs="{'required':[('state','=','student')],'invisible':[('state','!=','student')]}" />
                             </group>
                         </div>
@@ -37,7 +37,7 @@
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_time_table_report_view">
-            <field name="name">Generate Time Table Report</field>
+            <field name="name">Generate TimeTable Report</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">time.table.report</field>
             <field name="view_type">form</field>
@@ -53,4 +53,4 @@
             <field name="view_id" ref="view_time_table_report_form" />
         </record>
     </data>
-</openerp>
+</odoo>

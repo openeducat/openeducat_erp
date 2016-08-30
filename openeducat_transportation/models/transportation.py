@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class OpTransportation(models.Model):
@@ -35,5 +36,22 @@ class OpTransportation(models.Model):
     to_stop_id = fields.Many2one('op.stop', 'To', required=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
 
+    @api.constrains('student_ids', 'vehicle_id')
+    def check_capacity(self):
+        if len(self.student_ids) > self.vehicle_id.capacity:
+            raise ValidationError(_('Students over than vehicle capacity.'))
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    @api.constrains('from_stop_id', 'to_stop_id')
+    def check_places(self):
+        if self.from_stop_id == self.to_stop_id:
+            raise ValidationError(_('To place cannot be equal to From place.'))
+
+    @api.constrains('start_time', 'end_time')
+    def _check_date_time(self):
+        if self.start_time < 0 or self.end_time < 0:
+            raise ValidationError(_("Enter proper Time."))
+        elif self.start_time > 24 or self.end_time > 24:
+            raise ValidationError(_("Time can't be greater than 24 hours."))
+        elif self.start_time >= self.end_time:
+            raise ValidationError(_(
+                'End Time cannot be set before or equal to Start Time.'))

@@ -36,12 +36,10 @@ class OpBookPurchase(models.Model):
         'op.course', 'Course', required=True, track_visibility='onchange')
     subject_ids = fields.Many2one(
         'op.subject', 'Subject', required=True, track_visibility='onchange')
-    student_id = fields.Many2one(
-        'op.student', 'Student',
-        default=lambda self: self.env.user.user_line and
-        self.env.user.user_line[0].id or False)
-    faculty_id = fields.Many2one('op.faculty', 'Faculty')
-    librarian_id = fields.Many2one('res.partner', 'Librarian')
+    requested_id = fields.Many2one(
+        'res.partner', 'Requested By',
+        default=lambda self: self.env['res.partner'].search(
+            [('user_id', '=', self.env.uid)]))
     state = fields.Selection(
         [('draft', 'Draft'), ('request', 'Requested'), ('reject', 'Rejected'),
          ('accept', 'Accepted')], 'State', select=True, readonly=True,
@@ -58,6 +56,3 @@ class OpBookPurchase(models.Model):
     @api.one
     def act_reject(self):
         self.state = 'reject'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

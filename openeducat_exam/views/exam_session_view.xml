@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="view_op_exam_session_tree" model="ir.ui.view">
             <field name="name">op.exam.session.tree</field>
@@ -29,7 +29,7 @@
                             <field name="start_date" />
                             <field name="end_date" />
                             <field name="course_id" />
-                            <field name="batch_id" domain="[('course_id', '=', course_id)]" />
+                            <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}" />
                             <field name="room_id" />
                         </group>
                         <group string="Exam(s)">
@@ -90,4 +90,4 @@
             <field name="view_id" ref="view_op_exam_session_tree" />
         </record>
     </data>
-</openerp>
+</odoo>

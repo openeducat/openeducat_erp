@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record model="ir.ui.view" id="parent_student_form_view">
             <field name="name">op.student.form</field>
@@ -34,7 +34,7 @@
                     <sheet>
                         <group col="4">
                             <field name="name" placeholder="Parent Name"/>
-                            <field name="user_id" placeholder="User Id"/>
+                            <field name="user_id" domain="[('partner_id', '=', name)]" placeholder="User Id"/>
                         </group>
                         <separator colspan="4" string="Student(s)"/>
                         <field name="student_ids">
@@ -68,7 +68,7 @@
             </field>
         </record>
         <record model="ir.actions.act_window" id="act_open_op_parent_view">
-            <field name="name">Parent</field>
+            <field name="name">Parents</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.parent</field>
             <field name="view_type">form</field>
@@ -90,4 +90,4 @@
             <field name="view_id" ref="view_op_parent_tree" />
         </record>
     </data>
-</openerp>
+</odoo>

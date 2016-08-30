@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="view_op_roll_number_tree" model="ir.ui.view">
             <field name="name">op.roll.number.tree</field>
@@ -25,7 +25,8 @@
                             <field name="roll_number" />
                             <field name="student_id" />
                             <field name="course_id" />
-                            <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                            <field name="batch_id"
+                                context="{'course_id': course_id,'get_parent_batch':1}" />
                         </group>
                     </sheet>
                 </form>
@@ -44,9 +45,12 @@
                     <group expand="0" string="Group By...">
                         <filter string="Roll Number" domain="[]"
                             context="{'group_by':'roll_number'}" />
-                        <filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
-                        <filter string="Batch" domain="[]" context="{'group_by':'batch_id'}" />
-                        <filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
+                        <filter string="Course" domain="[]"
+                            context="{'group_by':'course_id'}" />
+                        <filter string="Batch" domain="[]"
+                            context="{'group_by':'batch_id'}" />
+                        <filter string="Student" domain="[]"
+                            context="{'group_by':'student_id'}" />
                     </group>
                 </search>
             </field>
@@ -74,4 +78,4 @@
             <field name="view_id" ref="view_op_roll_number_tree" />
         </record>
     </data>
-</openerp>
+</odoo>

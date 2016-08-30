@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class OpLibraryCardType(models.Model):
@@ -28,10 +29,16 @@ class OpLibraryCardType(models.Model):
 
     name = fields.Char('Name', size=256, required=True)
     allow_book = fields.Integer('No of Books Allowed', size=10, required=True)
-    duration = fields.Float(
+    duration = fields.Integer(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
     penalty_amt_per_day = fields.Float('Penalty Amount per Day', required=True)
+
+    @api.constrains('allow_book', 'duration', 'penalty_amt_per_day')
+    def check_details(self):
+        if self.allow_book < 0 or self.duration < 0.0 or \
+                self.penalty_amt_per_day < 0.0:
+            raise ValidationError(_('Enter proper value'))
 
 
 class OpLibraryCard(models.Model):
@@ -44,12 +51,15 @@ class OpLibraryCard(models.Model):
     number = fields.Char('Number', size=256, required=True)
     library_card_type_id = fields.Many2one(
         'op.library.card.type', 'Card Type', required=True)
-    issue_date = fields.Date('Issue Date', required=True)
+    issue_date = fields.Date(
+        'Issue Date', required=True, default=fields.Date.today())
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Type', default='student', required=True)
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    _sql_constraints = [
+        ('unique_library_card_number',
+         'unique(number)', 'Library card Number should be unique per card!'),
+    ]

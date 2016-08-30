@@ -40,10 +40,6 @@ class OpResultTemplateLine(models.Model):
 
     @api.onchange('exam_session_id')
     def onchange_exam_session(self):
-        ret_val = []
         for exam_obj in self.exam_session_id.exam_ids:
-            ret_val.append({'exam_id': exam_obj.id, 'weightage': 100})
-        self.exam_lines = ret_val
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+            self.exam_lines += self.exam_lines.create(
+                {'exam_id': exam_obj.id, 'weightage': 100})

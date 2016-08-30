@@ -21,7 +21,9 @@
 
 import datetime
 import pytz
-from openerp import models, fields, api
+import time
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 week_number = {
     'Mon': 1,
@@ -36,7 +38,7 @@ week_number = {
 
 class GenerateTimeTable(models.TransientModel):
     _name = 'generate.time.table'
-    _description = 'Generate Time Table'
+    _description = 'Generate TimeTables'
     _rec_name = 'course_id'
 
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -61,8 +63,21 @@ class GenerateTimeTable(models.TransientModel):
     time_table_lines_6 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
         domain=[('day', '=', '6')])
-    start_date = fields.Date('Start Date', required=True)
+    start_date = fields.Date(
+        'Start Date', required=True, default=time.strftime('%Y-%m-01'))
     end_date = fields.Date('End Date', required=True)
+
+    @api.constrains('start_date', 'end_date')
+    def check_dates(self):
+        start_date = fields.Date.from_string(self.start_date)
+        end_date = fields.Date.from_string(self.end_date)
+        if start_date > end_date:
+            raise ValidationError(_("End Date cannot be set before \
+            Start Date."))
+
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
 
     @api.one
     def gen_datewise(self, line, st_date, en_date, self_obj):
@@ -140,7 +155,4 @@ class GenerateTimeTableLine(models.TransientModel):
         ('5', 'Friday'),
         ('6', 'Saturday'),
     ], 'Day', required=True)
-    period_id = fields.Many2one('op.period', 'Period',  required=True)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    period_id = fields.Many2one('op.period', 'Period', required=True)

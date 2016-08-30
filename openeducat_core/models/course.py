@@ -31,8 +31,5 @@ class OpCourse(models.Model):
     section = fields.Char('Section', size=32, required=True)
     evaluation_type = fields.Selection(
         [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
-        'Evaluation Type', required=True)
+        'Evaluation Type', default="normal", required=True)
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -21,7 +21,8 @@
 
 {
     'name': 'OpenEduCat Parent',
-    'version': '2.0.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Parent',
@@ -39,13 +40,15 @@
         'security/ir.model.access.csv'
     ],
     'demo': [
-        'demo/res.users.csv',
-        'demo/res.groups.csv',
+        'demo/res_users_demo.xml',
+        'demo/res_groups_demo.xml',
+        'demo/res_partner_demo.xml',
+        'demo/parent_demo.xml',
+    ],
+    'images': [
+        'static/description/openeducat_parent_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,
     'application': True,
 }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

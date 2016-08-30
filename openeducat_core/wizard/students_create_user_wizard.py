@@ -35,25 +35,8 @@ class WizardOpStudent(models.TransientModel):
         'op.student', default=_get_students, string='Students')
 
     @api.one
-    def create_user(self):
-        user_pool = self.env['res.users']
-        user_fields = user_pool.fields_get(self)
-        user_default = user_pool.default_get(user_fields)
-        user_default_group_lst = user_default['groups_id']
-        student_group_id = self.env.ref('openeducat_core.group_op_student').id
-        user_default_group_lst[0][2].append(student_group_id)
-        user_default['groups_id'] = user_default_group_lst
+    def create_student_user(self):
+        user_group = self.env.ref('openeducat_core.group_op_student')
         active_ids = self.env.context.get('active_ids', []) or []
-        for stud in self.env['op.student'].browse(active_ids):
-            if not stud.user_id:
-                user_vals = {
-                    'name': stud.name,
-                    'login': stud.name,
-                    'partner_id': stud.partner_id.id
-                }
-                user_default.update(user_vals)
-                user_id = user_pool.create(user_default)
-                stud.user_id = user_id
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+        records = self.env['op.student'].browse(active_ids)
+        self.env['res.users'].create_user(records, user_group)

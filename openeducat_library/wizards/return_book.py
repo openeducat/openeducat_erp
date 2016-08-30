@@ -20,8 +20,7 @@
 ###############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
-
+from openerp.exceptions import UserError
 from ..models import book_unit
 
 
@@ -51,9 +50,6 @@ class ReturnBook(models.TransientModel):
             book_move_search.state = 'return'
             self.book_unit_id.state = 'available'
         else:
-            raise Warning(_('Error!'), _(
+            raise UserError(_(
                 "Book Unit can not be returned because it's state is : %s") %
                 (dict(book_unit.unit_states).get(self.book_unit_id.state)))
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

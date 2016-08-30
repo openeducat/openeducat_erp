@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record model="ir.ui.view" id="health_student_form_view">
             <field name="name">op.student.form</field>
@@ -31,7 +31,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//notebook/page[@name='subjects']" position="after">
                     <page name="health_detail" string="Health Detail">
-                        <field name="health_faculty_lines" colspan="4" nolabel="1">
+                        <field name="health_faculty_lines" context="{'default_type': 'faculty'}" colspan="4" nolabel="1">
                             <tree>
                                 <field name="blood_group" />
                                 <field name="height" />
@@ -178,4 +178,4 @@
             <field name="view_id" ref="view_op_health_tree" />
         </record>
     </data>
-</openerp>
+</odoo>

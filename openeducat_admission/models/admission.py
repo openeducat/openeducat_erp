@@ -20,7 +20,7 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError, Warning
+from openerp.exceptions import ValidationError, UserError
 
 
 class OpAdmission(models.Model):
@@ -115,6 +115,10 @@ class OpAdmission(models.Model):
         self.course_id = self.register_id.course_id
         self.fees = self.register_id.product_id.lst_price
 
+    @api.onchange('course_id')
+    def onchange_course(self):
+        self.batch_id = False
+
     @api.one
     @api.constrains('register_id', 'application_date')
     def _check_admission_register(self):
@@ -122,9 +126,16 @@ class OpAdmission(models.Model):
         end_date = fields.Date.from_string(self.register_id.end_date)
         application_date = fields.Date.from_string(self.application_date)
         if application_date < start_date or application_date > end_date:
-            raise ValidationError(
+            raise ValidationError(_(
                 "Application Date should be between Start Date & \
-                End Date of Admission Register.")
+                End Date of Admission Register."))
+
+    @api.one
+    @api.constrains('birth_date')
+    def _check_birthdate(self):
+        if self.birth_date > fields.Date.today():
+            raise ValidationError(_(
+                "Birth Date can't be greater than current date!"))
 
     @api.one
     def confirm_in_progress(self):
@@ -163,7 +174,7 @@ class OpAdmission(models.Model):
             if not total_admission < self.register_id.max_count:
                 msg = 'Max Admission In Admission Register :- (%s)' % (
                     self.register_id.max_count)
-                raise ValidationError(msg)
+                raise ValidationError(_(msg))
 
         vals = self.get_student_vals()
         vals.update({'partner_id': self.partner_id.id})
@@ -228,13 +239,13 @@ class OpAdmission(models.Model):
         if not account_id:
             account_id = product.categ_id.property_account_income_categ_id.id
         if not account_id:
-            raise Warning(
+            raise UserError(
                 _('There is no income account defined for this product: "%s". \
                    You may have to install a chart of account from Accounting \
                    app, settings menu.') % (product.name,))
 
         if self.fees <= 0.00:
-            raise Warning(_('The value of the deposit amount must be \
+            raise UserError(_('The value of the deposit amount must be \
                              positive.'))
         else:
             amount = self.fees
@@ -278,6 +289,3 @@ class OpAdmission(models.Model):
         self.partner_id = partner_id
         self.state = 'payment_process'
         return value
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

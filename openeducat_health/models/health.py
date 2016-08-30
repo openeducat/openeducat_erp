@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
 
 
 class OpHealth(models.Model):
@@ -33,7 +34,7 @@ class OpHealth(models.Model):
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     height = fields.Float('Height(C.M.)', required=True)
-    weight = fields.Float('weight(K.G.)', required=True)
+    weight = fields.Float('Weight', required=True)
     blood_group = fields.Selection(
         [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
          ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
@@ -49,5 +50,7 @@ class OpHealth(models.Model):
     health_line = fields.One2many(
         'op.health.line', 'health_id', 'Checkup Lines')
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    @api.constrains('height', 'weight')
+    def check_height_weight(self):
+        if self.height <= 0.0 or self.weight <= 0.0:
+            raise ValidationError(_("Enter proper height and weight!"))

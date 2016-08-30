@@ -21,7 +21,8 @@
 
 {
     'name': 'OpenEduCat Assignment',
-    'version': '2.0.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Assgiments',
@@ -36,6 +37,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/assignment_view.xml',
+        'views/assignment_type_view.xml',
         'views/assignment_sub_line_view.xml',
         'views/student_view.xml',
         'dashboard/assignment_faculty_dashboard.xml',
@@ -43,14 +45,14 @@
         'assignment_menu.xml'
     ],
     'demo': [
-        'demo/op.assignment.type.csv',
-        'demo/op.assignment.csv',
-        'demo/op.assignment.sub.line.csv'
+        'demo/assignment_type_demo.xml',
+        'demo/assignment_demo.xml',
+        'demo/assignment_sub_line_demo.xml'
+    ],
+    'images': [
+        'static/description/openeducat_assignment_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,
     'application': True,
 }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

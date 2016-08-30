@@ -29,6 +29,3 @@ class OpPassStatus(models.Model):
     name = fields.Char('Name', size=256)
     number = fields.Float('Minimum Percentage')
     result = fields.Char('Result to Display')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

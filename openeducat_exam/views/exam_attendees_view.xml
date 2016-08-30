@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="view_op_exam_attendees_tree" model="ir.ui.view">
             <field name="name">op.exam.attendees.tree</field>
@@ -23,10 +23,12 @@
                 <form string="Exam Attendees">
                     <sheet>
                         <group col="4" colspan="4">
-                            <field name="student_id" />
+                            <field name="course_id" invisible="1" />
+                            <field name="batch_id" invisible="1" />
+                            <field name="exam_id" />
+                            <field name="student_id" domain="[('course_id','=',course_id),('batch_id','=',batch_id)]" />
                             <field name="status" />
                             <field name="marks" />
-                            <field name="exam_id" />
                         </group>
                         <group string="Note">
                             <field name="note" nolabel="1"/>
@@ -78,4 +80,4 @@
             <field name="view_id" ref="view_op_exam_attendees_tree" />
         </record>
     </data>
-</openerp>
+</odoo>

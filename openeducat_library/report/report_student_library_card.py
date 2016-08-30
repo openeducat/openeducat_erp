@@ -21,7 +21,7 @@
 
 import time
 
-from openerp.osv import osv
+from openerp import models
 from openerp.report import report_sxw
 
 
@@ -35,11 +35,8 @@ class OpStudentLibraryCardReport(report_sxw.rml_parse):
         })
 
 
-class ReportLibraryIdcard(osv.AbstractModel):
+class ReportLibraryIdcard(models.AbstractModel):
     _name = 'report.openeducat_library.report_student_library_card'
     _inherit = 'report.abstract_report'
     _template = 'openeducat_library.report_student_library_card'
     _wrapped_report_class = OpStudentLibraryCardReport
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

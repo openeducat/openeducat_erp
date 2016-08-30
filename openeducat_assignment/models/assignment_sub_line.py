@@ -30,7 +30,10 @@ class OpAssignmentSubLine(models.Model):
 
     assignment_id = fields.Many2one(
         'op.assignment', 'Assignment', required=True)
-    student_id = fields.Many2one('op.student', 'Student', required=True)
+    student_id = fields.Many2one(
+        'op.student', 'Student',
+        default=lambda self: self.env['op.student'].search(
+            [('user_id', '=', self.env.uid)]), required=True)
     description = fields.Text('Description', track_visibility='onchange')
     state = fields.Selection(
         [('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
@@ -60,6 +63,3 @@ class OpAssignmentSubLine(models.Model):
     @api.one
     def act_reject(self):
         self.state = 'reject'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

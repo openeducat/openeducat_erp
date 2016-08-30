@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -34,11 +34,10 @@ class OpHostel(models.Model):
     @api.one
     @api.constrains('hostel_room_lines')
     def _check_hostel_capacity(self):
+        if self.capacity <= 0:
+            raise ValidationError(_('Enter proper Hostel Capacity'))
         counter = 0.00
         for room in self.hostel_room_lines:
             counter += room.students_per_room
             if counter > self.capacity:
-                raise ValidationError('Hostel Capacity Over')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+                raise ValidationError(_('Hostel Capacity Over'))

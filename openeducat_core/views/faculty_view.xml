@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record model="ir.ui.view" id="kanban_view_faculty">
             <field name="name">Faculty Kanban</field>
@@ -83,7 +83,7 @@
             <field name="arch" type="xml">
                 <form string="Faculty">
                 <header groups="openeducat_core.group_op_back_office_admin">
-                    <button name="create_employee" string="Create Employee" type="object" class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/>
+                    <button name="%(faculty_create_employee_act)d" string="Create Employee" type="action" class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/>
                 </header>
                     <sheet>
                         <field name="photo" widget="image" class="oe_left oe_avatar" />
@@ -194,4 +194,4 @@
             <field name="view_id" ref="kanban_view_faculty" />
         </record>
     </data>
-</openerp>
+</odoo>

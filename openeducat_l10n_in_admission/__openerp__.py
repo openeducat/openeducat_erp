@@ -21,7 +21,8 @@
 
 {
     'name': "Indian OpenEduCat Admission",
-    'version': '2.0.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     'sequence': 3,
     'summary': "Manage Indian Based Admission""",
@@ -34,6 +35,12 @@
     'depends': ['openeducat_l10n_in', 'openeducat_admission'],
     'data': [
         'views/admission_view.xml',
+    ],
+    'demo': [
+        'demo/op.admission.csv'
+    ],
+    'images': [
+        'static/description/indian_openeducat_admission_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,

@@ -21,7 +21,8 @@
 
 {
     'name': 'OpenEduCat Classroom',
-    'version': '2.0.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
     "sequence": 3,
     'summary': 'Manage Classroom',
@@ -38,11 +39,13 @@
         'security/ir.model.access.csv'
     ],
     'demo': [
+        'demo/classroom_demo.xml',
+        'demo/facility_line_demo.xml'
+    ],
+    'images': [
+        'static/description/openeducat_classroom_banner.jpg',
     ],
     'installable': True,
     'auto_install': False,
     'application': True,
 }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

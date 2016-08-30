@@ -55,6 +55,3 @@ class OpAllStudentWizard(models.TransientModel):
                 if student_data.id in self.student_ids.ids:
                     vals.update({'present': False})
                 self.env['op.attendance.line'].create(vals)
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

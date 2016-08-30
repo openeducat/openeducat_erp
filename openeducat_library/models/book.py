@@ -42,5 +42,11 @@ class OpBook(models.Model):
     queue_ids = fields.One2many('op.book.queue', 'book_id', 'Book Queue')
     unit_ids = fields.One2many('op.book.unit', 'book_id', 'Units')
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    _sql_constraints = [
+        ('unique_name_isbn',
+         'unique(isbn)',
+         'ISBN code must be unique per book!'),
+        ('unique_name_internal_code',
+         'unique(internal_code)',
+         'Internal Code must be unique per book!'),
+    ]

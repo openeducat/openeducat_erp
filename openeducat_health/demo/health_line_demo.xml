@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="op_health_line_1" model="op.health.line">
+            <field name="name">Weekly check up for eyes</field>
+            <field name="recommendation">Yes weekly regular</field>
+            <field name="date"
+                eval="(DateTime.today() + relativedelta(days=4)).strftime('%Y-%m-%d %H:%M')" />
+        </record>
+
+        <record id="op_health_line_2" model="op.health.line">
+            <field name="name">Hand Check Up</field>
+            <field name="recommendation">Yes</field>
+            <field name="date"
+                eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d %H:%M')" />
+
+        </record>
+
+    </data>
+</odoo>

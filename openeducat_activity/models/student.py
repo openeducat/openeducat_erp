@@ -27,6 +27,3 @@ class OpStudent(models.Model):
 
     activity_log = fields.One2many(
         'op.activity', 'student_id', 'Activity Log')
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

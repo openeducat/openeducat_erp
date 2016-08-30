@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="op_health_1" model="op.health">
+            <field name="type">student</field>
+            <field name="height">5.5</field>
+            <field name="weight">50</field>
+            <field name="blood_group">A+</field>
+            <field name="eyeglasses" eval="True" />
+            <field name="eyeglasses_no">2</field>
+            <field name="regular_checkup" eval="True" />
+            <field name="physical_challenges" eval="False" />
+            <field name="physical_challenges_note"></field>
+            <field name="major_diseases" eval="False" />
+            <field name="major_diseases_note"></field>
+            <field name="health_line" eval="[(4, ref('op_health_line_1'))]" />
+            <field name="student_id" ref="openeducat_core.op_student_1" />
+        </record>
+
+        <record id="op_health_2" model="op.health">
+            <field name="type">student</field>
+            <field name="height">6.1</field>
+            <field name="weight">80</field>
+            <field name="blood_group">A+</field>
+            <field name="eyeglasses" eval="True" />
+            <field name="eyeglasses_no">1.5</field>
+            <field name="regular_checkup" eval="True" />
+            <field name="physical_challenges" eval="True" />
+            <field name="physical_challenges_note">Hand check up</field>
+            <field name="major_diseases" eval="False" />
+            <field name="major_diseases_note"></field>
+            <field name="health_line" eval="[(4, ref('op_health_line_2'))]" />
+            <field name="student_id" ref="openeducat_core.op_student_2" />
+        </record>
+
+    </data>
+</odoo>

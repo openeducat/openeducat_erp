@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="view_op_facility_tree" model="ir.ui.view">
             <field name="name">op.facility.tree</field>
@@ -7,8 +7,8 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Facility">
-                    <field name="Name" />
-                    <field name="Code" />
+                    <field name="name" />
+                    <field name="code" />
                 </tree>
             </field>
         </record>
@@ -20,8 +20,8 @@
                 <form string="Facility">
                     <sheet>
                         <group colspan="4" col="4">
-                            <field name="Name" />
-                            <field name="Code" />
+                            <field name="name" />
+                            <field name="code" />
                         </group>
                     </sheet>
                 </form>
@@ -33,12 +33,12 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Facility">
-                    <field name="Name" />
-                    <field name="Code" />
+                    <field name="name" />
+                    <field name="code" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Name" domain="[]" context="{'group_by':'Name'}" />
-                        <filter string="Code" domain="[]" context="{'group_by':'Code'}" />
+                        <filter string="Name" domain="[]" context="{'group_by':'name'}" />
+                        <filter string="Code" domain="[]" context="{'group_by':'code'}" />
                     </group>
                 </search>
             </field>
@@ -66,4 +66,4 @@
             <field name="view_id" ref="view_op_facility_tree" />
         </record>
     </data>
-</openerp>
+</odoo>

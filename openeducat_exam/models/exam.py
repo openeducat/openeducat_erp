@@ -34,14 +34,14 @@ class OpExam(models.Model):
     exam_type = fields.Many2one('op.exam.type', 'Exam Type', required=True)
     evaluation_type = fields.Selection(
         [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
-        'Evaluation Type', required=True)
+        'Evaluation Type', default="normal", required=True)
     attendees_line = fields.One2many(
-        'op.exam.attendees', 'exam_id', 'Attendees')
+        'op.exam.attendees', 'exam_id', 'Attendees', readonly=True)
     venue = fields.Many2one('res.partner', 'Venue')
     start_time = fields.Datetime('Start Time', required=True)
     end_time = fields.Datetime('End Time', required=True)
     state = fields.Selection(
-        [('new', 'New Exam'), ('held', 'Held'), ('schedule', 'Scheduled'),
+        [('new', 'New Exam'), ('schedule', 'Scheduled'), ('held', 'Held'),
          ('cancel', 'Cancelled'), ('done', 'Done')], 'State', select=True,
         readonly=True, default='new', track_visibility='onchange')
     note = fields.Text('Note')
@@ -54,12 +54,15 @@ class OpExam(models.Model):
     def _check_marks(self):
         if self.total_marks <= 0.0 or self.min_marks <= 0.0:
             raise ValidationError(_('Enter proper marks!'))
+        if self.min_marks > self.total_marks:
+            raise ValidationError(_(
+                "Passing Marks can't be greater than Total Marks"))
 
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):
         if self.start_time > self.end_time:
-            raise ValidationError(
-                _('Start Time should be greater than End Time!'))
+            raise ValidationError(_('End Time cannot be set \
+            before Start Time.'))
 
     @api.one
     def act_held(self):
@@ -80,6 +83,3 @@ class OpExam(models.Model):
     @api.one
     def act_new_exam(self):
         self.state = 'new'
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

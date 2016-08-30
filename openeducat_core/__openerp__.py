@@ -21,9 +21,10 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '2.0.0',
+    'version': '9.0.2.4.0',
+    'license': 'LGPL-3',
     'category': 'Openerp Education',
-    "sequence": 3,
+    "sequence": 1,
     'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
     'description': """
@@ -42,6 +43,8 @@
         'report/report_student_bonafide.xml',
         'report/report_student_idcard.xml',
         'report/report_menu.xml',
+        'wizard/faculty_create_employee_wizard_view.xml',
+        'wizard/faculty_create_user_wizard_view.xml',
         'wizard/students_create_user_wizard_view.xml',
         'security/op_security.xml',
         'security/ir.model.access.csv',
@@ -63,25 +66,25 @@
         'menu/student_menu.xml'
     ],
     'demo': [
-        'demo/op_company_data.xml',
-        'demo/op.subject.csv',
-        'demo/op.course.csv',
-        'demo/op.batch.csv',
-        'demo/res.users.csv',
-        'demo/op.student.csv',
-        'demo/op.faculty.csv',
+        'demo/base_demo.xml',
+        'demo/website_demo.xml',
+        'demo/subject_demo.xml',
+        'demo/course_demo.xml',
+        'demo/batch_demo.xml',
+        'demo/res_users_demo.xml',
         'demo/student_demo.xml',
         'demo/faculty_demo.xml',
-        'demo/res.groups.csv'
+        'demo/roll_number_demo.xml',
+        'demo/res_groups_demo.xml'
     ],
     'css': ['static/src/css/base.css'],
     'qweb': [
         'static/src/xml/base.xml'],
     'js': ['static/src/js/chrome.js'],
+    'images': [
+        'static/description/openeducat_core_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,
 }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

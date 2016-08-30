@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
         <record id="view_op_activity_tree" model="ir.ui.view">
             <field name="name">op.activity.tree</field>
@@ -11,6 +11,7 @@
                     <field name="faculty_id" />
                     <field name="type_id" />
                     <field name="date" />
+                    <field name="description" />
                 </tree>
             </field>
         </record>
@@ -27,7 +28,14 @@
                             <field name="type_id" />
                             <field name="date" />
                         </group>
+                        <group string="Description">
+                            <field name="description" nolabel="1" />
+                        </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -67,4 +75,4 @@
             <field name="view_id" ref="view_op_activity_tree" />
         </record>
     </data>
-</openerp>
+</odoo>
