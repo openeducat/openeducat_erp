@@ -22,8 +22,8 @@
 from openerp import models, fields
 
 
-class OpBook(models.Model):
-    _name = 'op.book'
+class OpMedia(models.Model):
+    _name = 'op.media'
 
     name = fields.Char('Title', size=128, required=True)
     isbn = fields.Char('ISBN Code', size=64)
@@ -35,18 +35,20 @@ class OpBook(models.Model):
     publisher_ids = fields.Many2many(
         'op.publisher', string='Publisher(s)', required=True)
     course_ids = fields.Many2many('op.course', string='Course', required=True)
-    movement_line = fields.One2many('op.book.movement', 'book_id', 'Movements')
+    movement_line = fields.One2many('op.media.movement', 'media_id',
+                                    'Movements')
     subject_ids = fields.Many2many(
         'op.subject', string='Subjects', required=True)
     internal_code = fields.Char('Internal Code', size=64)
-    queue_ids = fields.One2many('op.book.queue', 'book_id', 'Book Queue')
-    unit_ids = fields.One2many('op.book.unit', 'book_id', 'Units')
+    queue_ids = fields.One2many('op.media.queue', 'media_id', 'Media Queue')
+    unit_ids = fields.One2many('op.media.unit', 'media_id', 'Units')
+    media_type_id = fields.Many2one('op.media.type', 'Media Type')
 
     _sql_constraints = [
         ('unique_name_isbn',
          'unique(isbn)',
-         'ISBN code must be unique per book!'),
+         'ISBN code must be unique per media!'),
         ('unique_name_internal_code',
          'unique(internal_code)',
-         'Internal Code must be unique per book!'),
+         'Internal Code must be unique per media!'),
     ]

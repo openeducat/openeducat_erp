@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="view_op_book_queue_tree" model="ir.ui.view">
-            <field name="name">op.book.queue.tree</field>
-            <field name="model">op.book.queue</field>
+        <record id="view_op_media_queue_tree" model="ir.ui.view">
+            <field name="name">op.media.queue.tree</field>
+            <field name="model">op.media.queue</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <tree string="Book Queue Request">
+                <tree string="Media Queue Request">
                     <field name='name'/>
-                    <field name="book_id"/>
+                    <field name="media_id"/>
                     <field name="user_id" />
                     <field name="date_from" />
                     <field name="date_to" />
@@ -17,12 +17,12 @@
             </field>
         </record>
 
-        <record id="view_op_book_queue_form" model="ir.ui.view">
-            <field name="name">op.book.queue.form</field>
-            <field name="model">op.book.queue</field>
+        <record id="view_op_media_queue_form" model="ir.ui.view">
+            <field name="name">op.media.queue.form</field>
+            <field name="model">op.media.queue</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <form string="Book Queue Request">
+                <form string="media Queue Request">
                     <header groups="base.group_user">
                         <button name="do_accept" string="Accept" type="object"
                             states="request" class="oe_highlight"
@@ -42,7 +42,7 @@
                         </div>
                         <group col="4">
                             <field name="user_id" placeholder="Name" />
-                            <field name="book_id" placeholder="Book"/>
+                            <field name="media_id" placeholder="Media"/>
                             <field name="date_from" />
                             <field name="date_to" />
                         </group>
@@ -55,46 +55,46 @@
             </field>
         </record>
 
-        <record id="view_op_book_queue_search" model="ir.ui.view">
-            <field name="name">op.book.queue.search</field>
-            <field name="model">op.book.queue</field>
+        <record id="view_op_media_queue_search" model="ir.ui.view">
+            <field name="name">op.media.queue.search</field>
+            <field name="model">op.media.queue</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <search string="Book Queue Request">
+                <search string="Media Queue Request">
                     <field name="user_id" />
                     <field name="date_from" />
                     <field name="date_to" />
                     <field name="state" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Book" domain="[]" context="{'group_by':'book_id'}"/>
+                        <filter string="Media" domain="[]" context="{'group_by':'media_id'}"/>
                         <filter string="Partner" domain="[]" context="{'group_by':'user_id'}" />
                         <filter string="Status" domain="[]" context="{'group_by':'state'}" />
                     </group>
                 </search>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="act_open_op_book_queue_view">
-            <field name="name">Book Queue Requests</field>
+        <record model="ir.actions.act_window" id="act_open_op_media_queue_view">
+            <field name="name">Media Queue Requests</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">op.book.queue</field>
+            <field name="res_model">op.media.queue</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_op_book_queue_search" />
+            <field name="search_view_id" ref="view_op_media_queue_search" />
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_op_book_queue_view_form">
-            <field name="act_window_id" ref="act_open_op_book_queue_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_media_queue_view_form">
+            <field name="act_window_id" ref="act_open_op_media_queue_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_book_queue_form" />
+            <field name="view_id" ref="view_op_media_queue_form" />
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_op_book_queue_view_tree">
-            <field name="act_window_id" ref="act_open_op_book_queue_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_media_queue_view_tree">
+            <field name="act_window_id" ref="act_open_op_media_queue_view" />
             <field name="sequence" eval="10" />
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_book_queue_tree" />
+            <field name="view_id" ref="view_op_media_queue_tree" />
         </record>
 
     </data>

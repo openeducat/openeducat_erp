@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from . import issue_book
-from . import reserve_book
-from . import return_book
+from . import issue_media
+from . import reserve_media
+from . import return_media
 from . import returndate

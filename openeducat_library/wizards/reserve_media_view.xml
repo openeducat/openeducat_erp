@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <record model="ir.ui.view" id="reserve_book_form">
-            <field name="name">reserve.book.form</field>
-            <field name="model">reserve.book</field>
+        <record model="ir.ui.view" id="reserve_media_form">
+            <field name="name">reserve.media.form</field>
+            <field name="model">reserve.media</field>
             <field name="arch" type="xml">
-                <form string="Book Reservation">
+                <form string="Media Reservation">
                     <header groups="base.group_user">
                         <button name="set_partner" type="object" string="Proceed" class="oe_highlight" />
                         <button string="Cancel" special="cancel" />
@@ -16,12 +16,12 @@
                 </form>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="reserve_book_act">
-            <field name="name">Book Reservation</field>
-            <field name="res_model">reserve.book</field>
+        <record model="ir.actions.act_window" id="reserve_media_act">
+            <field name="name">Media Reservation</field>
+            <field name="res_model">reserve.media</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="reserve_book_form" />
+            <field name="view_id" ref="reserve_media_form" />
             <field name="target">new</field>
         </record>
     </data>

@@ -51,11 +51,10 @@
     'depends': ['openeducat_achievement', 'openeducat_activity',
                 'openeducat_alumni', 'openeducat_assignment',
                 'openeducat_attendance', 'openeducat_exam',
-                'openeducat_health', 'openeducat_hostel',
-                'openeducat_admission', 'openeducat_library',
-                'openeducat_parent', 'openeducat_placement',
-                'openeducat_scholarship', 'openeducat_timetable',
-                'openeducat_transportation'],
+                'openeducat_health', 'openeducat_admission',
+                'openeducat_library', 'openeducat_parent',
+                'openeducat_placement', 'openeducat_scholarship',
+                'openeducat_timetable', 'openeducat_transportation'],
     'data': [
     ],
     'demo': [

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="view_op_book_movement_tree" model="ir.ui.view">
-            <field name="name">op.book.movement.tree</field>
-            <field name="model">op.book.movement</field>
+        <record id="view_op_media_movement_tree" model="ir.ui.view">
+            <field name="name">op.media.movement.tree</field>
+            <field name="model">op.media.movement</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <tree string="Book Movement">
-                    <field name="book_id" />
-                    <field name="book_unit_id" />
+                <tree string="media Movement">
+                    <field name="media_id" />
+                    <field name="media_unit_id" />
                     <field name="type" />
                     <field name="student_id" />
                     <field name="library_card_id" />
@@ -20,26 +20,27 @@
                 </tree>
             </field>
         </record>
-        <record id="view_op_book_movement_form" model="ir.ui.view">
-            <field name="name">op.book.movement.form</field>
-            <field name="model">op.book.movement</field>
+        <record id="view_op_media_movement_form" model="ir.ui.view">
+            <field name="name">op.media.movement.form</field>
+            <field name="model">op.media.movement</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <form string="Book Movement">
+                <form string="media Movement">
                     <header groups="base.group_user">
-                        <button name="issue_book" string="Issue Book" type="object" class="oe_highlight"
+                        <button name="issue_media" string="Issue media" type="object" class="oe_highlight"
                             attrs="{'invisible':[('state','not in',('available','reserve'))]}" />
-                        <button name="return_book" string="Return Book" type="object" class="oe_highlight"
+                        <button name="return_media" string="Return media" type="object" class="oe_highlight"
                             attrs="{'invisible':[('state','!=','issue')]}" />
-                        <button name="do_book_reservation" string="Reserve Book"
+                        <button name="do_media_reservation" string="Reserve media"
                             type="object" states="available" />
                         <field name="state" widget="statusbar" statusbar_visible="available,issue" />
                     </header>
                     <sheet>
                         <group col="4">
-                            <field name="book_id"/>
-                            <field name="book_unit_id" domain="[('book_id','=',book_id)]"
-                                context="{'default_book_id': book_id}"/>
+                            <field name="media_id"/>
+                            <field name="media_unit_id" domain="[('media_id','=',media_id)]"
+                                context="{'default_media_id': media_id}"/>
+                            <field name="media_type_id"/>
                         </group>
                         <group col="4" string="Student/Faculty Detail">
                             <field name="library_card_id" />
@@ -65,13 +66,13 @@
                 </form>
             </field>
         </record>
-        <record id="view_op_book_movement_search" model="ir.ui.view">
-            <field name="name">op.book.movement.search</field>
-            <field name="model">op.book.movement</field>
+        <record id="view_op_media_movement_search" model="ir.ui.view">
+            <field name="name">op.media.movement.search</field>
+            <field name="model">op.media.movement</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <search string="Book Movement">
-                    <field name="book_id" />
+                <search string="media Movement">
+                    <field name="media_id" />
                     <field name="student_id" />
                     <field name="library_card_id" />
                     <field name="issued_date" />
@@ -81,7 +82,7 @@
                     <field name="penalty" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Book" domain="[]" context="{'group_by':'book_id'}" />
+                        <filter string="media" domain="[]" context="{'group_by':'media_id'}" />
                         <filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
                         <filter string="Library Card" domain="[]"
                             context="{'group_by':'library_card_id'}" />
@@ -95,27 +96,27 @@
                 </search>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="act_open_op_book_movement_view">
-            <field name="name">Book Movements</field>
+        <record model="ir.actions.act_window" id="act_open_op_media_movement_view">
+            <field name="name">media Movements</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">op.book.movement</field>
+            <field name="res_model">op.media.movement</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_op_book_movement_search" />
+            <field name="search_view_id" ref="view_op_media_movement_search" />
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_op_book_movement_view_form">
-            <field name="act_window_id" ref="act_open_op_book_movement_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_media_movement_view_form">
+            <field name="act_window_id" ref="act_open_op_media_movement_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_book_movement_form" />
+            <field name="view_id" ref="view_op_media_movement_form" />
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_op_book_movement_view_tree">
-            <field name="act_window_id" ref="act_open_op_book_movement_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_media_movement_view_tree">
+            <field name="act_window_id" ref="act_open_op_media_movement_view" />
             <field name="sequence" eval="10" />
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_book_movement_tree" />
+            <field name="view_id" ref="view_op_media_movement_tree" />
         </record>
     </data>
 </odoo>

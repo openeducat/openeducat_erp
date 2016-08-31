@@ -59,7 +59,9 @@ class TimeTableReport(models.TransientModel):
 
     @api.onchange('course_id')
     def onchange_course(self):
-        self.batch_id = False
+        if self.batch_id and self.course_id:
+            if self.batch_id.course_id != self.course_id:
+                self.batch_id = False
 
     @api.multi
     def gen_time_table_report(self):

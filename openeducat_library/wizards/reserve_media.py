@@ -22,16 +22,16 @@
 from openerp import models, fields, api
 
 
-class ReserveBook(models.TransientModel):
+class ReserveMedia(models.TransientModel):
 
-    """ Reserve Book """
-    _name = 'reserve.book'
+    """ Reserve Media """
+    _name = 'reserve.media'
 
     partner_id = fields.Many2one('res.partner', required=True)
 
     @api.one
     def set_partner(self):
-        self.env['op.book.movement'].browse(
+        self.env['op.media.movement'].browse(
             self.env.context.get('active_ids', False)).write(
             {'partner_id': self.partner_id.id,
              'reserver_name': self.partner_id.name, 'state': 'reserve'})

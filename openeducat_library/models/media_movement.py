@@ -29,15 +29,15 @@ def days_between(to_date, from_date):
     return abs((from_date - to_date).days)
 
 
-class OpBookMovement(models.Model):
-    _name = 'op.book.movement'
+class OpMediaMovement(models.Model):
+    _name = 'op.media.movement'
     _inherit = 'mail.thread'
-    _description = 'Book Movement'
-    _rec_name = 'book_id'
+    _description = 'Media Movement'
+    _rec_name = 'media_id'
 
-    book_id = fields.Many2one('op.book', 'Book', required=True)
-    book_unit_id = fields.Many2one(
-        'op.book.unit', 'Book Unit', required=True,
+    media_id = fields.Many2one('op.media', 'Media', required=True)
+    media_unit_id = fields.Many2one(
+        'op.media.unit', 'Media Unit', required=True,
         track_visibility='onchange')
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty',
@@ -60,6 +60,8 @@ class OpBookMovement(models.Model):
          ('issue', 'Issued'), ('lost', 'Lost'),
          ('return', 'Returned')], 'Status',
         default='available', track_visibility='onchange')
+    media_type_id = fields.Many2one(related='media_id.media_type_id',
+                                    store=True, string='Media Type')
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
@@ -74,9 +76,9 @@ class OpBookMovement(models.Model):
                 raise ValidationError(_(
                     'Actual Return Date cannot be set before Issued Date'))
 
-    @api.onchange('book_unit_id')
-    def onchange_book_unit_id(self):
-        self.state = self.book_unit_id.state
+    @api.onchange('media_unit_id')
+    def onchange_media_unit_id(self):
+        self.state = self.media_unit_id.state
 
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
@@ -85,10 +87,11 @@ class OpBookMovement(models.Model):
         self.faculty_id = self.library_card_id.faculty_id.id
 
     @api.one
-    def issue_book(self):
-        ''' function to issue book '''
-        if self.book_unit_id.state and self.book_unit_id.state == 'available':
-            self.book_unit_id.state = 'issue'
+    def issue_media(self):
+        ''' function to issue media '''
+        if self.media_unit_id.state and \
+                self.media_unit_id.state == 'available':
+            self.media_unit_id.state = 'issue'
             self.state = 'issue'
 
     @api.one
@@ -107,9 +110,9 @@ class OpBookMovement(models.Model):
         self.write({'penalty': penalty_amt})
 
     @api.multi
-    def return_book(self):
-        ''' function to return book '''
-        if self.book_unit_id.state and self.book_unit_id.state == 'issue':
+    def return_media(self):
+        ''' function to return media '''
+        if self.media_unit_id.state and self.media_unit_id.state == 'issue':
             return {
                 'name': _('Return Date'),
                 'view_type': 'form',
@@ -121,13 +124,13 @@ class OpBookMovement(models.Model):
         return True
 
     @api.multi
-    def do_book_reservation(self):
-        ''' function to reserve book '''
+    def do_media_reservation(self):
+        ''' function to reserve media '''
         return {
-            'name': _('Book Reservation'),
+            'name': _('media Reservation'),
             'view_type': 'form',
             'view_mode': 'form',
-            'res_model': 'reserve.book',
+            'res_model': 'reserve.media',
             'type': 'ir.actions.act_window',
             'target': 'new',
         }

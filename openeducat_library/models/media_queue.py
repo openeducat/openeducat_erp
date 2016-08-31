@@ -23,16 +23,16 @@ from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
-class OpBookQueue(models.Model):
-    _name = 'op.book.queue'
+class OpMediaQueue(models.Model):
+    _name = 'op.media.queue'
     _inherit = 'mail.thread'
     _rec_name = 'user_id'
-    _description = 'Book Queue Request'
+    _description = 'Media Queue Request'
 
     name = fields.Char("Sequence No", readonly=True, copy=False, default='/')
     partner_id = fields.Many2one('res.partner', 'Student/Faculty')
-    book_id = fields.Many2one(
-        'op.book', 'Book', required=True, track_visibility='onchange')
+    media_id = fields.Many2one(
+        'op.media', 'Media', required=True, track_visibility='onchange')
     date_from = fields.Date(
         'From Date', required=True, default=fields.Date.today())
     date_to = fields.Date('To Date', required=True)
@@ -56,8 +56,8 @@ class OpBookQueue(models.Model):
     def create(self, vals):
         if vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].next_by_code(
-                'op.book.queue') or '/'
-        return super(OpBookQueue, self).create(vals)
+                'op.media.queue') or '/'
+        return super(OpMediaQueue, self).create(vals)
 
     @api.one
     def do_reject(self):

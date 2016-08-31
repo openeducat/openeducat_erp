@@ -1,6 +1,6 @@
 <odoo>
     <data>
-        <template id="report_book_barcode">
+        <template id="report_media_barcode">
             <style type="text/css">
                 .font{
                 font-size:14px;
@@ -16,25 +16,25 @@
                     <div class="page">
                         <div class="row text-center">
                             <h2>
-                                <strong>Book(s) Barcode</strong>
+                                <strong>Media(s) Barcode</strong>
                             </h2>
                         </div>
                         <br></br>
                         <br></br>
-                        <t t-foreach="get_books()" t-as="book">
+                        <t t-foreach="get_medias()" t-as="media">
                             <h3>
                                 <strong>
-                                    <t t-raw="book['name']" />
+                                    <t t-raw="media['name']" />
                                 </strong>
                             </h3>
                             <br></br>
                             <table width="100%" class="table table-bordered">
                                 <thead>
-                                    <th class="text-center">Book Unit</th>
+                                    <th class="text-center">Media Unit</th>
                                     <th class="text-center">Barcode</th>
                                 </thead>
                                 <tbody>
-                                    <tr t-foreach="book['unit']" t-as="unit">
+                                    <tr t-foreach="media['unit']" t-as="unit">
                                         <td class="text-center">
                                             <h4><t t-esc="unit.name" /></h4>
                                         </td>

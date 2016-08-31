@@ -25,22 +25,24 @@ unit_states = [('available', 'Available'), ('issue', 'Issued'),
                ('reserve', 'Reserved'), ('lost', 'Lost')]
 
 
-class OpBookUnit(models.Model):
-    _name = 'op.book.unit'
+class OpMediaUnit(models.Model):
+    _name = 'op.media.unit'
     _inherit = 'mail.thread'
-    _description = 'Book Unit'
+    _description = 'Media Unit'
 
     name = fields.Char('Name', required=True)
-    book_id = fields.Many2one(
-        'op.book', 'Book', required=True, track_visibility='onchange')
+    media_id = fields.Many2one(
+        'op.media', 'Media', required=True, track_visibility='onchange')
     barcode = fields.Char('Barcode', size=20)
     movement_lines = fields.One2many(
-        'op.book.movement', 'book_unit_id', 'Movements')
+        'op.media.movement', 'media_unit_id', 'Movements')
     state = fields.Selection(
         unit_states, 'State', default='available', track_visibility='onchange')
+    media_type_id = fields.Many2one(related='media_id.media_type_id',
+                                    store=True, string='Media Type')
 
     _sql_constraints = [
         ('unique_name_barcode',
          'unique(barcode)',
-         'Barcode must be unique per book unit!'),
+         'Barcode must be unique per Media unit!'),
     ]

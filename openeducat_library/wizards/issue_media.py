@@ -21,18 +21,19 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import UserError, ValidationError
-from ..models import book_unit
+from ..models import media_unit
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-class IssueBook(models.TransientModel):
+class IssueMedia(models.TransientModel):
 
-    """ Issue Book """
-    _name = 'issue.book'
+    """ Issue Media """
+    _name = 'issue.media'
 
-    book_id = fields.Many2one('op.book', 'Book', required=True)
-    book_unit_id = fields.Many2one('op.book.unit', 'Book Unit', required=True)
+    media_id = fields.Many2one('op.media', 'Media', required=True)
+    media_unit_id = fields.Many2one('op.media.unit', 'Media Unit',
+                                    required=True)
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Type', default='student', required=True)
@@ -61,12 +62,12 @@ class IssueBook(models.TransientModel):
 
     @api.one
     def check_max_issue(self, student_id, library_card_id):
-        book_movement_search = self.env["op.book.movement"].search(
+        media_movement_search = self.env["op.media.movement"].search(
             [('library_card_id', '=', library_card_id),
              ('student_id', '=', student_id),
              ('state', '=', 'issue')])
-        if len(book_movement_search) < self.env["op.library.card"].browse(
-                library_card_id).library_card_type_id.allow_book:
+        if len(media_movement_search) < self.env["op.library.card"].browse(
+                library_card_id).library_card_type_id.allow_media:
             return True
         else:
             return False
@@ -75,11 +76,11 @@ class IssueBook(models.TransientModel):
     def do_issue(self):
         value = {}
         if self.check_max_issue(self.student_id.id, self.library_card_id.id):
-            if self.book_unit_id.state and \
-                    self.book_unit_id.state == 'available':
-                book_movement_create = {
-                    'book_id': self.book_id.id,
-                    'book_unit_id': self.book_unit_id.id,
+            if self.media_unit_id.state and \
+                    self.media_unit_id.state == 'available':
+                media_movement_create = {
+                    'media_id': self.media_id.id,
+                    'media_unit_id': self.media_unit_id.id,
                     'type': self.type,
                     'student_id': self.student_id.id or False,
                     'faculty_id': self.faculty_id.id or False,
@@ -88,17 +89,16 @@ class IssueBook(models.TransientModel):
                     'return_date': self.return_date,
                     'state': 'issue',
                 }
-                self.env['op.book.movement'].create(book_movement_create)
-                self.book_unit_id.state = 'issue'
+                self.env['op.media.movement'].create(media_movement_create)
+                self.media_unit_id.state = 'issue'
                 value = {'type': 'ir.actions.act_window_close'}
             else:
-                raise UserError(_(
-                    "Book Unit can not be issued because it's state is : %s") %
-                    (dict(book_unit.unit_states).get(
-                        self.book_unit_id.state)))
+                raise UserError(_("media Unit can not be issued because it's \
+                state is : %s") % (dict(media_unit.unit_states).get(
+                    self.media_unit_id.state)))
         else:
             raise UserError(_(
-                'Maximum Number of book allowed for %s is : %s') %
+                'Maximum Number of media allowed for %s is : %s') %
                 (self.student_id.name,
-                 self.library_card_id.library_card_type_id.allow_book))
+                 self.library_card_id.library_card_type_id.allow_media))
         return value

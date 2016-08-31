@@ -27,32 +27,32 @@ from openerp.exceptions import ValidationError
 from openerp.report import report_sxw
 
 
-class BookBarcodeParser(report_sxw.rml_parse):
+class MediaBarcodeParser(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
         self.ids_to_print = []
         self.ids_to_print = context.get('active_ids', False)
         self.model_name = context.get('active_model', False)
-        super(BookBarcodeParser, self).__init__(
+        super(MediaBarcodeParser, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'get_books': self.get_books,
+            'get_medias': self.get_medias,
             'get_barcode': self.get_barcode,
         })
 
-    def get_books(self):
-        book_list = []
-        for book_id in self.ids_to_print:
-            book_obj = self.pool.get(self.model_name).browse(
-                self.cr, self.uid, book_id)
-            book_data = {
-                'name': book_obj.name,
-                'unit': book_obj.unit_ids,
-                'isbn': book_obj.isbn
+    def get_medias(self):
+        media_list = []
+        for media_id in self.ids_to_print:
+            media_obj = self.pool.get(self.model_name).browse(
+                self.cr, self.uid, media_id)
+            media_data = {
+                'name': media_obj.name,
+                'unit': media_obj.unit_ids,
+                'isbn': media_obj.isbn
             }
-            book_list.append(book_data)
-        return book_list
+            media_list.append(media_data)
+        return media_list
 
     def get_barcode(self, type, value, width=350, height=60, hr=1):
         """ genrating image for barcode """
@@ -72,8 +72,8 @@ class BookBarcodeParser(report_sxw.rml_parse):
         return base64.encodestring(image_data)
 
 
-class ReportBookBarcode(models.AbstractModel):
-    _name = 'report.openeducat_library.report_book_barcode'
+class ReportMediaBarcode(models.AbstractModel):
+    _name = 'report.openeducat_library.report_media_barcode'
     _inherit = 'report.abstract_report'
-    _template = 'openeducat_library.report_book_barcode'
-    _wrapped_report_class = BookBarcodeParser
+    _template = 'openeducat_library.report_media_barcode'
+    _wrapped_report_class = MediaBarcodeParser

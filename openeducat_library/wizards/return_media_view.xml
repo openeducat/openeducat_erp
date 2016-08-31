@@ -1,30 +1,30 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <record model="ir.ui.view" id="return_book_form">
-            <field name="name">return.book.form</field>
-            <field name="model">return.book</field>
+        <record model="ir.ui.view" id="return_media_form">
+            <field name="name">return.media.form</field>
+            <field name="model">return.media</field>
             <field name="arch" type="xml">
-                <form string="Book Return">
+                <form string="Media Return">
                     <header groups="base.group_user">
                         <button name="do_return" type="object" string="Proceed" class="oe_highlight"/>
                         <button string="Cancel" special="cancel" />
                     </header>
                     <group col="4">
-                        <field name="book_id" />
-                        <field name="book_unit_id" domain="[('book_id','=',book_id)]" />
+                        <field name="media_id" />
+                        <field name="media_unit_id" domain="[('media_id','=',media_id)]" />
                         <field name="actual_return_date" />
                     </group>
                     
                 </form>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="return_book_act">
-            <field name="name">Return Book</field>
-            <field name="res_model">return.book</field>
+        <record model="ir.actions.act_window" id="return_media_act">
+            <field name="name">Return Media</field>
+            <field name="res_model">return.media</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="return_book_form" />
+            <field name="view_id" ref="return_media_form" />
             <field name="context">{}</field>
             <field name="target">new</field>
         </record>

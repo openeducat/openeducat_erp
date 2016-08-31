@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="view_op_book_tree" model="ir.ui.view">
-            <field name="name">op.book.tree</field>
-            <field name="model">op.book</field>
+        <record id="view_op_media_tree" model="ir.ui.view">
+            <field name="name">op.media.tree</field>
+            <field name="model">op.media</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <tree string="Book">
+                <tree string="Media">
                     <field name="name" />
                     <field name="isbn" />
+                    <field name="media_type_id"/>
                     <field name="tags" />
                     <field name="author_ids" />
                     <field name="edition" />
@@ -18,16 +19,16 @@
                 </tree>
             </field>
         </record>
-        <record id="view_op_book_form" model="ir.ui.view">
-            <field name="name">op.book.form</field>
-            <field name="model">op.book</field>
+        <record id="view_op_media_form" model="ir.ui.view">
+            <field name="name">op.media.form</field>
+            <field name="model">op.media</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <form string="Book">
+                <form string="Media">
                     <sheet>
                         <div>
                             <h1>
-                                <field name="name" placeholder="Book Name" style="width: 100%%" />
+                                <field name="name" placeholder="Media Name" style="width: 100%%" />
                             </h1>
                         </div>
                         <newline/>
@@ -38,6 +39,7 @@
                             <field name="internal_code" />
                             <field name="edition" />
                             <field name="tags" widget="many2many_tags" />
+                            <field name="media_type_id"/>
                         </group>
                         <notebook colspan="4">
                             <page name="description" string="Description">
@@ -57,9 +59,9 @@
                             <page name="movements" string="Movements" groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin">
                                 <field name="movement_line" colspan="4" nolabel="1" />
                             </page>
-                            <page name="book_queue_requests" string="Book Queue Requests">
+                            <page name="media_queue_requests" string="Media Queue Requests">
                                 <field name="queue_ids" colspan="4" nolabel="1">
-                                    <tree string="Book Queue Request">
+                                    <tree string="Media Queue Request">
                                         <field name="partner_id" />
                                         <field name="date_from" />
                                         <field name="date_to" />
@@ -80,12 +82,12 @@
                 </form>
             </field>
         </record>
-        <record id="view_op_book_search" model="ir.ui.view">
-            <field name="name">op.book.search</field>
-            <field name="model">op.book</field>
+        <record id="view_op_media_search" model="ir.ui.view">
+            <field name="name">op.media.search</field>
+            <field name="model">op.media</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <search string="Book">
+                <search string="Media">
                     <field name="name" />
                     <field name="isbn" />
                     <field name="tags" />
@@ -103,27 +105,27 @@
                 </search>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="act_open_op_book_view">
-            <field name="name">Books</field>
+        <record model="ir.actions.act_window" id="act_open_op_media_view">
+            <field name="name">All Media</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">op.book</field>
+            <field name="res_model">op.media</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_op_book_search" />
+            <field name="search_view_id" ref="view_op_media_search" />
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_op_book_view_form">
-            <field name="act_window_id" ref="act_open_op_book_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_media_view_form">
+            <field name="act_window_id" ref="act_open_op_media_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_book_form" />
+            <field name="view_id" ref="view_op_media_form" />
         </record>
-        <record model="ir.actions.act_window.view" id="act_open_op_book_view_tree">
-            <field name="act_window_id" ref="act_open_op_book_view" />
+        <record model="ir.actions.act_window.view" id="act_open_op_media_view_tree">
+            <field name="act_window_id" ref="act_open_op_media_view" />
             <field name="sequence" eval="10" />
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_book_tree" />
+            <field name="view_id" ref="view_op_media_tree" />
         </record>
     </data>
 </odoo>
