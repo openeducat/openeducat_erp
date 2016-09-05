@@ -77,7 +77,9 @@ class GenerateTimeTable(models.TransientModel):
 
     @api.onchange('course_id')
     def onchange_course(self):
-        self.batch_id = False
+        if self.batch_id and self.course_id:
+            if self.batch_id.course_id != self.course_id:
+                self.batch_id = False
 
     @api.one
     def gen_datewise(self, line, st_date, en_date, self_obj):

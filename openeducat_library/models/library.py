@@ -28,15 +28,16 @@ class OpLibraryCardType(models.Model):
     _description = 'Library Card Type'
 
     name = fields.Char('Name', size=256, required=True)
-    allow_book = fields.Integer('No of Books Allowed', size=10, required=True)
+    allow_media = fields.Integer('No of medias Allowed', size=10,
+                                 required=True)
     duration = fields.Integer(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
     penalty_amt_per_day = fields.Float('Penalty Amount per Day', required=True)
 
-    @api.constrains('allow_book', 'duration', 'penalty_amt_per_day')
+    @api.constrains('allow_media', 'duration', 'penalty_amt_per_day')
     def check_details(self):
-        if self.allow_book < 0 or self.duration < 0.0 or \
+        if self.allow_media < 0 or self.duration < 0.0 or \
                 self.penalty_amt_per_day < 0.0:
             raise ValidationError(_('Enter proper value'))
 

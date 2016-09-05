@@ -33,10 +33,10 @@ class ReturnDate(models.TransientModel):
 
     @api.one
     def assign_return_date(self):
-        book_movement = self.env['op.book.movement'].browse(
+        media_movement = self.env['op.media.movement'].browse(
             self.env.context.get('active_ids', False))
-        book_movement.write(
+        media_movement.write(
             {'actual_return_date': self.actual_return_date})
-        book_movement.calculate_penalty()
-        book_movement.state = 'return'
-        book_movement.book_unit_id.state = 'available'
+        media_movement.calculate_penalty()
+        media_movement.state = 'return'
+        media_movement.media_unit_id.state = 'available'

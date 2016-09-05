@@ -9,7 +9,7 @@
                 <tree string="Publisher">
                     <field name="name" />
                     <field name="address_id" />
-                    <field name="book_ids" />
+                    <field name="media_ids" />
                 </tree>
             </field>
         </record>
@@ -25,8 +25,8 @@
                             <field name="address_id" context="{'show_address': 1}"
                                 options='{"always_reload": True}' />
                         </group>
-                        <group col="4" string="Book(s)">
-                            <field name="book_ids" colspan="4" nolabel="1" />
+                        <group col="4" string="Media(s)">
+                            <field name="media_ids" colspan="4" nolabel="1" />
                         </group>
                     </sheet>
                 </form>
@@ -40,7 +40,7 @@
                 <search string="Publisher">
                     <field name="name" />
                     <field name="address_id" />
-                    <field name="book_ids" />
+                    <field name="media_ids" />
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="Publisher" domain="[]" context="{'group_by':'name'}" />

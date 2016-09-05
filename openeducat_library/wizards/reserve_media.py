@@ -19,12 +19,19 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
-class OpAuthor(models.Model):
-    _name = 'op.author'
+class ReserveMedia(models.TransientModel):
 
-    name = fields.Char('Name', size=128, required=True)
-    address = fields.Many2one('res.partner', 'Address')
-    media_ids = fields.Many2many('op.media', string='media(s)')
+    """ Reserve Media """
+    _name = 'reserve.media'
+
+    partner_id = fields.Many2one('res.partner', required=True)
+
+    @api.one
+    def set_partner(self):
+        self.env['op.media.movement'].browse(
+            self.env.context.get('active_ids', False)).write(
+            {'partner_id': self.partner_id.id,
+             'reserver_name': self.partner_id.name, 'state': 'reserve'})

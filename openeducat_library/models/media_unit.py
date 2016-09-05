@@ -21,10 +21,28 @@
 
 from openerp import models, fields
 
+unit_states = [('available', 'Available'), ('issue', 'Issued'),
+               ('reserve', 'Reserved'), ('lost', 'Lost')]
 
-class OpAuthor(models.Model):
-    _name = 'op.author'
 
-    name = fields.Char('Name', size=128, required=True)
-    address = fields.Many2one('res.partner', 'Address')
-    media_ids = fields.Many2many('op.media', string='media(s)')
+class OpMediaUnit(models.Model):
+    _name = 'op.media.unit'
+    _inherit = 'mail.thread'
+    _description = 'Media Unit'
+
+    name = fields.Char('Name', required=True)
+    media_id = fields.Many2one(
+        'op.media', 'Media', required=True, track_visibility='onchange')
+    barcode = fields.Char('Barcode', size=20)
+    movement_lines = fields.One2many(
+        'op.media.movement', 'media_unit_id', 'Movements')
+    state = fields.Selection(
+        unit_states, 'State', default='available', track_visibility='onchange')
+    media_type_id = fields.Many2one(related='media_id.media_type_id',
+                                    store=True, string='Media Type')
+
+    _sql_constraints = [
+        ('unique_name_barcode',
+         'unique(barcode)',
+         'Barcode must be unique per Media unit!'),
+    ]

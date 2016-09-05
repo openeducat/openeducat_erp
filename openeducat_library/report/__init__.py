@@ -19,5 +19,5 @@
 #
 ###############################################################################
 
-from . import report_book_barcode
+from . import report_media_barcode
 from . import report_student_library_card
