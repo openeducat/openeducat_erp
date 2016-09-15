@@ -22,7 +22,7 @@
 from datetime import datetime
 import time
 
-from openerp import models, pooler
+from openerp import models
 from openerp.report import report_sxw
 
 
@@ -68,8 +68,7 @@ class TimeTableTeacherGenerate(report_sxw.rml_parse):
                      'Thursday', 'Friday', 'Saturday', 'Sunday']
 
         data_list = []
-        for timetable_obj in pooler.get_pool(self.cr.dbname).get(
-            'op.timetable').browse(
+        for timetable_obj in self.env['op.timetable'].browse(
                 self.cr, self.uid, data['teacher_time_table_ids']):
             oldDate = datetime.strptime(
                 timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")

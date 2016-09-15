@@ -48,12 +48,10 @@
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_achievement', 'openeducat_activity',
-                'openeducat_alumni', 'openeducat_assignment',
+    'depends': ['openeducat_activity', 'openeducat_assignment',
                 'openeducat_attendance', 'openeducat_exam',
                 'openeducat_health', 'openeducat_admission',
                 'openeducat_library', 'openeducat_parent',
-                'openeducat_placement', 'openeducat_scholarship',
                 'openeducat_timetable', 'openeducat_transportation'],
     'data': [
     ],
