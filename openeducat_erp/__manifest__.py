@@ -52,7 +52,7 @@
                 'openeducat_attendance', 'openeducat_exam',
                 'openeducat_health', 'openeducat_admission',
                 'openeducat_library', 'openeducat_parent',
-                'openeducat_timetable', 'openeducat_transportation'],
+                'openeducat_timetable'],
     'data': [
     ],
     'demo': [
