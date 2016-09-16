@@ -65,6 +65,7 @@ class OpStudent(models.Model):
         'Current Roll Number', compute='_get_curr_roll_number',
         size=8, store=True)
     gr_no = fields.Char("GR Number", size=20)
+    category_id = fields.Many2one('op.category', 'Category')
 
     @api.one
     @api.constrains('birth_date')
