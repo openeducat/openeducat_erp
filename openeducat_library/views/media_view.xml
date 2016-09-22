@@ -42,6 +42,9 @@
                             <field name="media_type_id"/>
                         </group>
                         <notebook colspan="4">
+                            <page name="units" string="Units">
+                                <field name="unit_ids" colspan="4" nolabel="1" />
+                            </page>
                             <page name="description" string="Description">
                                 <field name="description" colspan="4" />
                             </page>
@@ -52,9 +55,6 @@
                                     <field name="course_ids" nolabel="1" widget="many2many_tags" />
                                     <field name="subject_ids" nolabel="1" widget="many2many_tags" />
                                 </group>
-                            </page>
-                            <page name="units" string="Units">
-                                <field name="unit_ids" colspan="4" nolabel="1" />
                             </page>
                             <page name="movements" string="Movements" groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin">
                                 <field name="movement_line" colspan="4" nolabel="1" />

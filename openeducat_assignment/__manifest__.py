@@ -40,7 +40,6 @@
         'views/assignment_type_view.xml',
         'views/assignment_sub_line_view.xml',
         'views/student_view.xml',
-        'dashboard/assignment_faculty_dashboard.xml',
         'dashboard/assignment_student_dashboard.xml',
         'assignment_menu.xml'
     ],
