@@ -44,7 +44,6 @@
         'wizard/generate_timetable_view.xml',
         'wizard/time_table_report.xml',
         'dashboard/timetable_student_dashboard.xml',
-        'dashboard/timetable_faculty_dashboard.xml',
         'security/ir.model.access.csv',
         'timetable_menu.xml',
     ],
