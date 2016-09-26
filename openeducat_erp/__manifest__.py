@@ -50,9 +50,8 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_activity', 'openeducat_assignment',
                 'openeducat_attendance', 'openeducat_exam',
-                'openeducat_health', 'openeducat_admission',
-                'openeducat_library', 'openeducat_parent',
-                'openeducat_timetable'],
+                'openeducat_admission', 'openeducat_library',
+                'openeducat_parent', 'openeducat_timetable'],
     'data': [
     ],
     'demo': [

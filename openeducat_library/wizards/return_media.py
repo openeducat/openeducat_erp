@@ -50,5 +50,5 @@ class ReturnMedia(models.TransientModel):
             self.media_unit_id.state = 'available'
         else:
             raise UserError(_(
-                "media Unit can not be returned because it's state is : %s") %
+                "Media Unit can not be returned because it's state is : %s") %
                 (dict(media_unit.unit_states).get(self.media_unit_id.state)))
