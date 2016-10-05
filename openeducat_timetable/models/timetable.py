@@ -43,6 +43,23 @@ class OpTimetable(models.Model):
         [('Monday', 'Monday'), ('Tuesday', 'Tuesday'),
          ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'),
          ('Friday', 'Friday'), ('Saturday', 'Saturday')], 'Days')
+    user_ids = fields.Many2many(
+        'res.users', compute='_compute_batch_users',
+        store=True, string='Users')
+
+    # For record rule on student and faculty dashboard
+    @api.one
+    @api.depends('batch_id', 'faculty_id')
+    def _compute_batch_users(self):
+        usr = []
+        students = self.env['op.student'].search(
+            [('batch_id', '=', self.batch_id.id)])
+        for x in students:
+            if x.user_id:
+                usr.append(x.user_id.id)
+        if self.faculty_id.user_id:
+            usr.append(self.faculty_id.user_id.id)
+        self.user_ids = usr
 
     @api.constrains('start_datetime', 'end_datetime')
     def _check_date_time(self):

@@ -56,6 +56,7 @@
         'views/media_type_view.xml',
         'views/student_view.xml',
         'views/faculty_view.xml',
+        'dashboard/library_student_dashboard.xml',
         'media_queue_sequence.xml',
         'menus/library_menu.xml',
     ],

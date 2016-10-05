@@ -62,6 +62,8 @@ class OpMediaMovement(models.Model):
         default='available', track_visibility='onchange')
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
+    user_id = fields.Many2one(
+        'res.users', related='student_id.user_id', string='Users')
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
