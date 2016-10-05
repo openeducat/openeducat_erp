@@ -30,29 +30,12 @@ from openerp.report import report_sxw
 class MediaBarcodeParser(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context=None):
-        self.ids_to_print = []
-        self.ids_to_print = context.get('active_ids', False)
-        self.model_name = context.get('active_model', False)
         super(MediaBarcodeParser, self).__init__(
             cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'get_medias': self.get_medias,
             'get_barcode': self.get_barcode,
         })
-
-    def get_medias(self):
-        media_list = []
-        for media_id in self.ids_to_print:
-            media_obj = self.pool.get(self.model_name).browse(
-                self.cr, self.uid, media_id)
-            media_data = {
-                'name': media_obj.name,
-                'unit': media_obj.unit_ids,
-                'isbn': media_obj.isbn
-            }
-            media_list.append(media_data)
-        return media_list
 
     def get_barcode(self, type, value, width=350, height=60, hr=1):
         """ genrating image for barcode """
