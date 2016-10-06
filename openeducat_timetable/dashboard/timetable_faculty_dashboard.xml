@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record model="ir.actions.act_window" id="act_op_student_period_today">
-            <field name="name">Period</field>
+        <record model="ir.actions.act_window" id="act_op_faculty_period_today">
+            <field name="name">Book</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.timetable</field>
             <field name="view_type">form</field>
@@ -12,14 +12,14 @@
             <field name="domain">[('user_ids','in',[uid])]</field>
             <field name="context">{'search_default_today':1}</field>
         </record>
-        <record model="ir.ui.view" id="timetable_student_dashboard_form_view">
-            <field name="name">board.student.form</field>
+        <record model="ir.ui.view" id="timetable_faculty_dashboard_form_view">
+            <field name="name">board.faculty.form</field>
             <field name="model">board.board</field>
-            <field name="inherit_id" ref="openeducat_core.board_student_form" />
+            <field name="inherit_id" ref="openeducat_core.board_faculty_form" />
             <field name="arch" type="xml">
                 <xpath expr="//board" position="inside">
                     <column>
-                        <action name="%(act_op_student_period_today)d" string="Period for Today" />
+                        <action name="%(act_op_faculty_period_today)d" string="Lectures for Today" />
                     </column>
                 </xpath>
             </field>

@@ -19,11 +19,13 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import UserError, ValidationError
-from ..models import media_unit
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+
+from openerp import models, fields, api, _
+from openerp.exceptions import UserError, ValidationError
+
+from ..models import media_unit
 
 
 class IssueMedia(models.TransientModel):

@@ -43,6 +43,11 @@ class OpAssignmentSubLine(models.Model):
         'Submission Date', readonly=True,
         default=lambda self: fields.Datetime.now(), required=True)
     note = fields.Text('Note')
+    user_id = fields.Many2one(
+        'res.users', related='student_id.user_id', string='User')
+    faculty_user_id = fields.Many2one(
+        'res.users', related='assignment_id.faculty_id.user_id',
+        string='Faculty User')
 
     @api.one
     def act_draft(self):

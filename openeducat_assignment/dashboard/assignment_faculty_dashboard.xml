@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record model="ir.actions.act_window" id="act_op_student_assignment">
-            <field name="name">Student Assignment</field>
+        <record model="ir.actions.act_window" id="act_op_faculty_assignment">
+            <field name="name">Faculty Assignment</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment.sub.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_assignment_sub_line_search" />
-            <field name="domain">[('user_id','=',uid), ('state', 'in', ['draft','change'])]</field>
+            <field name="domain">[('faculty_user_id','=',uid), ('state','=','submit')]</field>
             <field name="context">{}</field>
         </record>
-        <record model="ir.ui.view" id="assignment_student_dashboard_form_view">
+        <record model="ir.ui.view" id="assignment_faculty_dashboard_form_view">
             <field name="name">board.faculty.form</field>
             <field name="model">board.board</field>
-            <field name="inherit_id" ref="openeducat_core.board_student_form" />
+            <field name="inherit_id" ref="openeducat_core.board_faculty_form" />
             <field name="arch" type="xml">
                 <xpath expr="//board" position="inside">
                     <column>
-                        <action name="%(act_op_student_assignment)d" string="Assignment To Submit" />
+                        <action name="%(act_op_faculty_assignment)d" string="Assignments to Approve" />
                     </column>
                 </xpath>
             </field>

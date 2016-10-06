@@ -49,7 +49,7 @@ class OpMediaMovement(models.Model):
         track_visibility='onchange')
     issued_date = fields.Date(
         'Issued Date', required=True, default=fields.Date.today())
-    return_date = fields.Date('Return Date', required=True)
+    return_date = fields.Date('Due Date', required=True)
     actual_return_date = fields.Date('Actual Return Date')
     penalty = fields.Float('Penalty')
     partner_id = fields.Many2one(
@@ -62,6 +62,8 @@ class OpMediaMovement(models.Model):
         default='available', track_visibility='onchange')
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
+    user_id = fields.Many2one(
+        'res.users', related='student_id.user_id', string='Users')
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
@@ -100,12 +102,10 @@ class OpMediaMovement(models.Model):
         penalty_days = 0
         standard_diff = days_between(self.return_date, self.issued_date)
         actual_diff = days_between(self.actual_return_date, self.issued_date)
-        owned_days = standard_diff + \
-            self.library_card_id.library_card_type_id.duration
         if self.library_card_id and self.library_card_id.library_card_type_id:
-            penalty_days = actual_diff > owned_days and actual_diff - \
-                owned_days or penalty_days
-            penalty_amt = round(penalty_days - penalty_days / 7) * \
+            penalty_days = actual_diff > standard_diff and actual_diff - \
+                standard_diff or penalty_days
+            penalty_amt = penalty_days * \
                 self.library_card_id.library_card_type_id.penalty_amt_per_day
         self.write({'penalty': penalty_amt})
 
