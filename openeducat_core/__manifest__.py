@@ -40,9 +40,9 @@
     'website': 'http://www.openeducat.org',
     'depends': ['board', 'document', 'hr', 'web', 'website'],
     'data': [
+        'report/report_menu.xml',
         'report/report_student_bonafide.xml',
         'report/report_student_idcard.xml',
-        'report/report_menu.xml',
         'wizard/faculty_create_employee_wizard_view.xml',
         'wizard/faculty_create_user_wizard_view.xml',
         'wizard/students_create_user_wizard_view.xml',
@@ -54,7 +54,6 @@
         'views/course_view.xml',
         'views/batch_view.xml',
         'views/subject_view.xml',
-        'views/roll_number_view.xml',
         'views/faculty_view.xml',
         'views/res_company_view.xml',
         'views/openeducat_template.xml',
@@ -76,7 +75,6 @@
         'demo/res_users_demo.xml',
         'demo/student_demo.xml',
         'demo/faculty_demo.xml',
-        'demo/roll_number_demo.xml',
         'demo/res_groups_demo.xml'
     ],
     'css': ['static/src/css/base.css'],

@@ -22,19 +22,11 @@
 from datetime import datetime
 import time
 
-from openerp import models
-from openerp.report import report_sxw
+from openerp import models, api
 
 
-class TimeTableStudentGenerate(report_sxw.rml_parse):
-
-    def __init__(self, cr, uid, name, context=None):
-        super(TimeTableStudentGenerate, self).__init__(
-            cr, uid, name, context=context)
-        self.localcontext.update({
-            'time': time,
-            'get_object': self.get_object,
-        })
+class ReportTimetableStudentGenerate(models.AbstractModel):
+    _name = 'report.openeducat_timetable.report_timetable_student_generate'
 
     def sort_tt(self, data_list):
         main_list = []
@@ -59,7 +51,7 @@ class TimeTableStudentGenerate(report_sxw.rml_parse):
 
         data_list = []
         for timetable_obj in self.env['op.timetable'].browse(
-                self.cr, self.uid, data['time_table_ids']):
+                data['time_table_ids']):
 
             oldDate = datetime.strptime(
                 timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
@@ -78,9 +70,18 @@ class TimeTableStudentGenerate(report_sxw.rml_parse):
         final_list = self.sort_tt(ttdl)
         return final_list
 
-
-class ReportTimetableStudentGenerate(models.AbstractModel):
-    _name = 'report.openeducat_timetable.report_timetable_student_generate'
-    _inherit = 'report.abstract_report'
-    _template = 'openeducat_timetable.report_timetable_student_generate'
-    _wrapped_report_class = TimeTableStudentGenerate
+    @api.model
+    def render_html(self, docids, data=None):
+        model = self.env.context.get('active_model')
+        docs = self.env[model].browse(self.env.context.get('active_id'))
+        docargs = {
+            'doc_ids': self.ids,
+            'doc_model': model,
+            'docs': docs,
+            'data': data,
+            'time': time,
+            'get_object': self.get_object,
+        }
+        return self.env['report'] \
+            .render('openeducat_timetable.report_timetable_student_generate',
+                    docargs)

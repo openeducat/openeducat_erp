@@ -20,16 +20,17 @@
                             </div>
                             <div class="text-center">
                                 <b>From Date: </b>
-                                <span t-raw="'%s &lt;&gt;' %  formatLang(data['start_date'], date=True) if  formatLang(data['start_date'], date=True) else ''" />
+                                <span t-esc="from_date" />
+                                <span t-raw="'%s' % start_date if start_date else ''" />
                                 <b>To Date:</b>
-                                <span t-raw="'%s &lt;&gt;' %   formatLang(data['end_date'], date=True) if   formatLang(data['end_date'], date=True)  else ''" />
+                                <span t-raw="'%s' % end_date if end_date else ''" />
                             </div>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <b>Course : </b>
-                                            <span t-raw="'%s &lt;&gt;' % data['course_id'][1] if data['course_id'][1] else ''" />
+                                            <span t-raw="'%s' % data['course_id'][1] if data['course_id'][1] else ''" />
                                         </td>
                                     </tr>
                                 </tbody>
@@ -41,24 +42,24 @@
                                     <th>Application No.</th>
                                 </thead>
                                 <tbody>
-                                    <tr t-foreach="get_data(data)" t-as="o">
+                                    <tr t-foreach="get_data" t-as="o">
                                         <td class="text-left">
                                             <span t-esc="o['name']" />
                                             <span
-                                                t-raw="'%s &lt;&gt;' %  o['middle_name'] if  o['middle_name']  else ''" />
+                                                t-raw="'%s' %  o['middle_name'] if  o['middle_name']  else ''" />
                                             <span
-                                                t-raw="'%s &lt;&gt;' %   o['last_name']  if  o['last_name']  else ''" />
+                                                t-raw="'%s' %   o['last_name']  if  o['last_name']  else ''" />
                                         </td>
                                         <td class="text-left">
                                             <span
-                                                t-raw="'%s &lt;&gt;' %   o['application_no']  if   o['application_no']   else ''" />
+                                                t-raw="'%s' %   o['application_no']  if   o['application_no']   else ''" />
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <br></br>
                             <h5><strong>Total Number of Students :</strong>
-                            <span t-esc="get_total_student(data)" /></h5>
+                            <span t-esc="get_total_student" /></h5>
                         </div>
                     </div>
                 </t>

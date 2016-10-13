@@ -35,6 +35,6 @@ class OpExamResAllocation(models.Model):
     def onchange_exam_session_res(self):
         for session in self.exam_session_ids:
             students = self.env['op.student'].search(
-                [('course_id', '=', session.course_id.id)])
+                [('course_detail_ids.course_id', '=', session.course_id.id)])
             self.exam_ids = session.exam_ids.ids
             self.student_ids = students.ids

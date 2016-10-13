@@ -36,6 +36,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core', 'account_accountant'],
     'data': [
+        'views/fees_terms_view.xml',
         'views/student_view.xml',
         'views/course_view.xml',
         'security/ir.model.access.csv'

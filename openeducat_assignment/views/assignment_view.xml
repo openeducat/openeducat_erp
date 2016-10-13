@@ -62,15 +62,13 @@
                                     colspan="4" />
                             </page>
                             <page name="allocation_infomation" string="Allocation Infomation">
-                                <field name="allocation_ids" domain="[('course_id','=',course_id),('batch_id','=',batch_id)]" colspan="4" nolabel="1">
+                                <field name="allocation_ids" domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]" colspan="4" nolabel="1">
                                     <tree string="Allocation">
-                                        <field name="roll_number" />
                                         <field name="title" />
                                         <field name="name" />
                                         <field name="middle_name" />
                                         <field name="last_name" />
-                                        <field name="course_id" />
-                                        <field name="batch_id" />
+                                        <field name="course_detail_ids" />
                                     </tree>
                                 </field>
                             </page>

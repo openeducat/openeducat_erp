@@ -53,7 +53,7 @@ class OpTimetable(models.Model):
     def _compute_batch_users(self):
         usr = []
         students = self.env['op.student'].search(
-            [('batch_id', '=', self.batch_id.id)])
+            [('course_detail_ids.batch_id', '=', self.batch_id.id)])
         for x in students:
             if x.user_id:
                 usr.append(x.user_id.id)
