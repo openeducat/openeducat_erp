@@ -11,7 +11,9 @@
                             <div class="oe_kanban_global_click">
                                 <div class="o_kanban_image">
                                     <a type="open">
-                                        <img t-att-src="kanban_image('op.student', 'photo', record.id.value)" class="oe_employee_picture" />
+                                        <img
+                                            t-att-src="kanban_image('op.student', 'photo', record.id.value)"
+                                            class="oe_employee_picture" />
                                     </a>
                                 </div>
                                 <div class="oe_kanban_details">
@@ -28,21 +30,6 @@
                                             </t>
                                         </a>
                                     </h4>
-                                    <ul>
-                                        <li t-if="record.course_id.raw_value">
-                                            Course:
-                                            <field name="course_id" />
-                                        </li>
-                                        <li t-if="record.batch_id.raw_value">
-                                            Batch:
-                                            <field name="batch_id" />
-                                        </li>
-                                        <li
-                                            t-if="record.roll_number.raw_value">
-                                            Roll Number:
-                                            <field name="roll_number" />
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                             <script>
@@ -65,15 +52,14 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Student">
-                    <field name="roll_number" />
                     <field name="title" />
                     <field name="name" />
                     <field name="middle_name" />
                     <field name="last_name" />
                     <field name="blood_group" />
                     <field name="emergency_contact" />
-                    <field name="course_id" />
-                    <field name="batch_id" />
+                    <!-- <field name="course_id" />
+                    <field name="batch_id" /> -->
                     <field name="nationality" />
                     <field name="lang" />
                 </tree>
@@ -167,18 +153,20 @@
                             </page>
                             <page name="educational" string="Educational">
                                 <group col="4" colspan="4">
-                                    <field name="course_id" />
-                                    <field name="batch_id"
-                                        context="{'course_id': course_id,'get_parent_batch':1}"
-                                        domain="[('course_id', '=', course_id)]" />
                                     <field name="gr_no" />
-                                    <field name="roll_number" />
-                                    <separator colspan="4"
-                                        string="Assigned Roll Numbers" />
-                                    <field name="roll_number_line"
-                                        colspan="4" nolabel="1"
-                                        context="{'default_course_id':course_id,
-                                     'default_batch_id':batch_id}" />
+                                </group>
+                                <group>
+                                    <separator string="Admission Details"
+                                        colspan="4" />
+                                    <field name="course_detail_ids"
+                                        nolabel="1">
+                                        <tree string="Course Details"
+                                            editable="bottom">
+                                            <field name="course_id" />
+                                            <field name="batch_id" domain="[('course_id', '=', course_id)]" />
+                                            <field name="roll_number" />
+                                        </tree>
+                                    </field>
                                 </group>
                             </page>
                         </notebook>
@@ -195,8 +183,8 @@
                     <field name="name" />
                     <field name="blood_group" />
                     <!-- <field name="id_number" /> -->
-                    <field name="course_id" />
-                    <field name="batch_id" />
+                    <!-- <field name="course_id" />
+                    <field name="batch_id" /> -->
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter name="blood_group" string="Blood Group"
@@ -205,10 +193,10 @@
                             domain="[]" context="{'group_by':'nationality'}" />
                         <filter name="language" string="Language"
                             domain="[]" context="{'group_by':'lang'}" />
-                        <filter name="course" string="Course"
+                        <!-- <filter name="course" string="Course"
                             domain="[]" context="{'group_by':'course_id'}" />
                         <filter name="batch" string="Batch"
-                            domain="[]" context="{'group_by':'batch_id'}" />
+                            domain="[]" context="{'group_by':'batch_id'}" /> -->
                     </group>
                 </search>
             </field>

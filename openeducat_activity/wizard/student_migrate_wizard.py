@@ -42,8 +42,7 @@ class StudentMigrate(models.TransientModel):
             as To Course!"))
 
         if self.course_from_id.parent_id:
-            if self.course_from_id.parent_id != \
-                    self.course_to_id.parent_id:
+            if self.course_from_id.parent_id != self.course_to_id.parent_id:
                 raise ValidationError(_(
                     "Can't migrate, As selected courses don't \
                     share same parent course!"))
@@ -51,7 +50,6 @@ class StudentMigrate(models.TransientModel):
             raise ValidationError(_(
                 "Can't migrate, Proceed for new admission"))
 
-    @api.one
     @api.onchange('course_from_id')
     def onchange_course_id(self):
         self.student_ids = False
@@ -67,7 +65,12 @@ class StudentMigrate(models.TransientModel):
             activity_vals = {
                 'student_id': student.id,
                 'type_id': act_type.id,
-                'date': self.date
+                'date': self.date,
+                'description': 'Migration From' +
+                self.course_from_id.name + ' to ' + self.course_to_id.name
             }
             self.env['op.activity'].create(activity_vals)
-            student.write({'course_id': self.course_to_id.id})
+            student_course = self.env['op.student.course'].search(
+                [('student_id', '=', student.id), ('course_id', '=',
+                                                   self.course_from_id.id)])
+            student_course.write({'course_id': self.course_to_id.id})

@@ -22,20 +22,12 @@
 import base64
 from reportlab.graphics.barcode import createBarcodeDrawing
 import time
-from openerp import models, _
+from openerp import models, api, _
 from openerp.exceptions import ValidationError
-from openerp.report import report_sxw
 
 
-class MediaBarcodeParser(report_sxw.rml_parse):
-
-    def __init__(self, cr, uid, name, context=None):
-        super(MediaBarcodeParser, self).__init__(
-            cr, uid, name, context=context)
-        self.localcontext.update({
-            'time': time,
-            'get_barcode': self.get_barcode,
-        })
+class ReportMediaBarcode(models.AbstractModel):
+    _name = 'report.openeducat_library.report_media_barcode'
 
     def get_barcode(self, type, value, width=350, height=60, hr=1):
         """ genrating image for barcode """
@@ -54,9 +46,14 @@ class MediaBarcodeParser(report_sxw.rml_parse):
         image_data = ret_val.asString('png')
         return base64.encodestring(image_data)
 
-
-class ReportMediaBarcode(models.AbstractModel):
-    _name = 'report.openeducat_library.report_media_barcode'
-    _inherit = 'report.abstract_report'
-    _template = 'openeducat_library.report_media_barcode'
-    _wrapped_report_class = MediaBarcodeParser
+    @api.model
+    def render_html(self, docids, data=None):
+        docs = self.env['op.media'].browse(docids)
+        docargs = {
+            'doc_model': 'op.media',
+            'docs': docs,
+            'time': time,
+            'get_barcode': self.get_barcode,
+        }
+        return self.env['report'] \
+            .render('openeducat_library.report_media_barcode', docargs)

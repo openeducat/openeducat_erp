@@ -25,6 +25,5 @@ from . import course
 from . import faculty
 from . import hr
 from . import res_company
-from . import roll_number
 from . import student
 from . import subject

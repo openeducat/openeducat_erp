@@ -21,23 +21,13 @@
 
 import time
 
-from openerp import models, fields
-from openerp.report import report_sxw
+from openerp import models, fields, api
 
 
-class StudentHallTicketReport(report_sxw.rml_parse):
-
-    def __init__(self, cr, uid, name, context=None):
-        super(StudentHallTicketReport, self).__init__(
-            cr, uid, name, context=context)
-        self.localcontext.update({
-            'time': time,
-            'get_data': self.get_data,
-        })
-        self._context = context
+class ReportTicket(models.AbstractModel):
+    _name = 'report.openeducat_exam.report_ticket'
 
     def get_date(self, exam_line):
-
         timestamp = fields.Datetime.context_timestamp
         dt = fields.Datetime
         schedule_start = timestamp(self, dt.from_string(exam_line.start_time))
@@ -47,9 +37,9 @@ class StudentHallTicketReport(report_sxw.rml_parse):
 
         return schedule_start[11:] + ' To ' + schedule_end[11:]
 
-    def get_subject(self, datas):
+    def get_subject(self, exam_session):
         lst = []
-        for exam_line in datas['exam_ids']:
+        for exam_line in exam_session['exam_ids']:
             res1 = {
                 'subject': exam_line.subject_id.name,
                 'date': exam_line.start_time[:10],
@@ -61,30 +51,38 @@ class StudentHallTicketReport(report_sxw.rml_parse):
 
     def get_data(self, data):
         final_lst = []
-        exam_session_pool = self.pool.get('op.exam.session')
-        exam_student = self.pool.get('op.student')
-        datas = exam_session_pool.browse(
-            self.cr, self.uid, data['exam_session_id'][0])
-        student_search = exam_student.search(
-            self.cr, self.uid, [('course_id', '=', datas.course_id.id)])
-        for student in exam_student.browse(self.cr, self.uid, student_search):
+        exam_session = self.env['op.exam.session'].browse(
+            data['exam_session_id'][0])
+        student_search = self.env['op.student'].search(
+            [('course_detail_ids.course_id', '=', exam_session.course_id.id)])
+        for student in student_search:
+            student_course = self.env['op.student.course'].search(
+                [('student_id', '=', student.id),
+                 ('course_id', '=', exam_session.course_id.id)])
             res = {
-                'exam': datas.name,
-                'exam_code': datas.exam_code,
-                'course': datas.course_id.name,
+                'exam': exam_session.name,
+                'exam_code': exam_session.exam_code,
+                'course': exam_session.course_id.name,
                 'student': student.name,
                 'photo': student.photo,
                 'student_middle': student.middle_name,
                 'student_last': student.last_name,
-                'roll_number': student.roll_number,
-                'line': self.get_subject(datas),
+                'roll_number': student_course.roll_number,
+                'line': self.get_subject(exam_session),
             }
             final_lst.append(res)
         return final_lst
 
-
-class ReportTicket(models.AbstractModel):
-    _name = 'report.openeducat_exam.report_ticket'
-    _inherit = 'report.abstract_report'
-    _template = 'openeducat_exam.report_ticket'
-    _wrapped_report_class = StudentHallTicketReport
+    @api.model
+    def render_html(self, docids, data=None):
+        model = self.env.context.get('active_model')
+        docs = self.env[model].browse(self.env.context.get('active_id'))
+        docargs = {
+            'doc_ids': self.ids,
+            'doc_model': model,
+            'docs': docs,
+            'time': time,
+            'get_data': self.get_data(data),
+        }
+        return self.env['report'] \
+            .render('openeducat_exam.report_ticket', docargs)

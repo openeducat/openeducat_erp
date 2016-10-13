@@ -14,7 +14,7 @@
             </style>
 
             <t t-call="report.html_container">
-                <t t-foreach="get_data(data)" t-as="o">
+                <t t-foreach="get_data" t-as="o">
                     <div class="header" style="margin-left:10%">
                         <div class="row">
                             <div>
@@ -30,8 +30,8 @@
                                     <b>Hall Ticket</b>
                                 </h3>
                                 (
-                                <span t-raw="'%s &lt;&gt;' % o['exam'] if o['exam'] else ''" />
-                                <span t-raw="'%s &lt;&gt;' % o['exam_code'] if o['exam_code'] else ''" />
+                                <span t-raw="'%s' % o['exam'] if o['exam'] else ''" />
+                                <span t-raw="'%s' % o['exam_code'] if o['exam_code'] else ''" />
                                 )
                             </div>
                             <br></br>
@@ -46,21 +46,21 @@
                                                         <b>Student Name : </b>
                                                         <span t-esc="o['student']" />
                                                         <span
-                                                            t-raw="'%s &lt;&gt;' %  o['student_middle'] if  o['student_middle']  else ''" />
+                                                            t-raw="'%s' %  o['student_middle'] if  o['student_middle']  else ''" />
                                                         <span
-                                                            t-raw="'%s &lt;&gt;' %   o['student_last']  if  o['student_last']  else ''" />
+                                                            t-raw="'%s' %   o['student_last']  if  o['student_last']  else ''" />
                                                     </td>
                                                     <td>
                                                         <b>Roll No : </b>
                                                         <span
-                                                            t-raw="'%s &lt;&gt;' %   o['roll_number']  if  o['roll_number']  else ''" />
+                                                            t-raw="'%s' %   o['roll_number']  if  o['roll_number']  else ''" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <b>Course : </b>
                                                         <span
-                                                            t-raw="'%s &lt;&gt;' %   o['course']  if  o['course']  else ''" />
+                                                            t-raw="'%s' %   o['course']  if  o['course']  else ''" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -86,18 +86,18 @@
                                     <tr t-foreach="o['line']" t-as='s'>
                                         <td class="text-left">
                                             <span
-                                                t-raw="'%s &lt;&gt;' %  s['subject'] if  s['subject']  else ''" />
+                                                t-raw="'%s' %  s['subject'] if  s['subject']  else ''" />
                                         </td>
                                         <td class="text-center">
                                             <span
-                                                t-raw="'%s &lt;&gt;' %   formatLang(s['date'], date=True)  if  formatLang(s['date'], date=True)  else ''" />
+                                                t-raw="'%s' %   s['date'] if  s['date'] else ''" />
                                         </td>
                                         <td class="text-center">
                                             <span t-esc="s['time']" />
                                         </td>
                                         <td class="text-left">
                                             <span
-                                                t-raw="'%s &lt;&gt;' %   s['sup_sign']  if  s['sup_sign']  else ''" />
+                                                t-raw="'%s' %   s['sup_sign']  if  s['sup_sign']  else ''" />
                                         </td>
                                     </tr>
                                 </tbody>

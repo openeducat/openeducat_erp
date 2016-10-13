@@ -29,13 +29,13 @@
                                     <tr>
                                         <td>
                                             This is to certify that
-                                            <span t-raw="'%s &lt;&gt;' % o.title.name if o.title.name else ''" />
+                                            <span t-raw="'%s' % o.title.name if o.title.name else ''" />
                                             <strong>
                                                 <u>
-                                                    <span t-raw="'%s &lt;&gt;' % o.name if o.name else ''" />
+                                                    <span t-raw="'%s' % o.name if o.name else ''" />
                                                     <span
-                                                        t-raw="'%s &lt;&gt;' % o.middle_name if o.middle_name else ''" />
-                                                    <span t-raw="'%s &lt;&gt;' % o.last_name if o.last_name else ''" />
+                                                        t-raw="'%s' % o.middle_name if o.middle_name else ''" />
+                                                    <span t-raw="'%s' % o.last_name if o.last_name else ''" />
                                                 </u>
                                             </strong>
                                             <font color="white">.</font>
@@ -45,7 +45,7 @@
                                             <strong>
                                                 <u>
                                                     <span
-                                                        t-raw="'%s &lt;&gt;' % o.course_id.name if o.course_id.name else ''" />
+                                                        t-raw="'%s' % o.course_detail_ids[0].course_id.name if o.course_detail_ids else ''" />
                                                 </u>
                                             </strong>
                                             Year
@@ -53,7 +53,7 @@
                                                 (
                                                 <u>
                                                     <span
-                                                        t-raw="'%s &lt;&gt;' % o.batch_id.name if o.batch_id.name else ''" />
+                                                        t-raw="'%s' % o.course_detail_ids[0].batch_id.name if o.course_detail_ids else ''" />
                                                 </u>
                                                 ).
                                             </strong>
@@ -63,7 +63,7 @@
                                             <strong>
                                                 (
                                                 <u>
-                                                    <span t-esc="formatLang(o.birth_date, date=True)" />
+                                                    <span t-esc="o.birth_date" />
                                                 </u>
                                                 ).
                                             </strong>
@@ -82,7 +82,7 @@
                                     <tr>
                                         <td>
                                             <b>DATE: </b>
-                                            <span t-esc="formatLang(time.strftime('%Y-%m-%d'), date=True)" />
+                                            <span t-esc="time.strftime('%Y-%m-%d')" />
                                         </td>
                                         <td class="text-center">
                                             <b>PRINCIPAL</b>

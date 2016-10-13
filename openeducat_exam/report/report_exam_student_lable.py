@@ -20,19 +20,11 @@
 ###############################################################################
 
 import time
-from openerp import models
-from openerp.report import report_sxw
+from openerp import models, api
 
 
-class ExamStudentLableReport(report_sxw.rml_parse):
-
-    def __init__(self, cr, uid, name, context=None):
-        super(ExamStudentLableReport, self).__init__(
-            cr, uid, name, context=context)
-        self.localcontext.update({
-            'time': time,
-            'get_student_data': self.get_student_data
-        })
+class ReportExamStudentLable(models.AbstractModel):
+    _name = 'report.openeducat_exam.report_exam_student_lable'
 
     def format_list(self, temp_list):
         cnt = 1
@@ -58,32 +50,42 @@ class ExamStudentLableReport(report_sxw.rml_parse):
                 {'1': temp_list[-3], '2': temp_list[-2], '3': temp_list[-1]})
         return lst
 
-    def get_student_data(self, exam_session_ids):
+    def get_student_data(self, docs):
+        main_list = []
+        for d in docs:
+            ret_list = []
+            for line in d.exam_session_ids:
+                student_ids = self.env['op.student'].search(
+                    [('course_detail_ids.course_id', '=', line.course_id.id)],
+                    order='id asc')
+                temp_list = []
+                for student in student_ids:
+                    student_course = self.env['op.student.course'].search(
+                        [('student_id', '=', student.id),
+                         ('course_id', '=', line.course_id.id)])
+                    res = {
+                        'student': student.name,
+                        'middle_name': student.middle_name,
+                        'last_name': student.last_name,
+                        'course': line.course_id.name,
+                        'roll_number': student_course and
+                        student_course.roll_number or '',
+                    }
+                    temp_list.append(res)
+                if temp_list:
+                    ret_list.append({'course': line.course_id.name,
+                                     'line': self.format_list(temp_list)})
+            main_list.append(ret_list)
+        return main_list
 
-        student_pool = self.pool.get('op.student')
-        ret_list = []
-        for line in exam_session_ids:
-            student_ids = student_pool.search(
-                self.cr, self.uid, [('course_id', '=', line.course_id.id),
-                                    ], order='id asc')
-
-            temp_list = []
-            for student in student_pool.browse(self.cr, self.uid, student_ids):
-                res = {
-                    'student': student.name,
-                    'middle_name': student.middle_name,
-                    'last_name': student.last_name,
-                    'course': student.course_id.name,
-                    'roll_number': student.roll_number,
-                }
-                temp_list.append(res)
-            ret_list.append({'course': line.course_id.name,
-                             'line': self.format_list(temp_list)})
-        return ret_list
-
-
-class ReportExamStudentLable(models.AbstractModel):
-    _name = 'report.openeducat_exam.report_exam_student_lable'
-    _inherit = 'report.abstract_report'
-    _template = 'openeducat_exam.report_exam_student_lable'
-    _wrapped_report_class = ExamStudentLableReport
+    @api.model
+    def render_html(self, docids, data=None):
+        docs = self.env['op.exam.res.allocation'].browse(docids)
+        docargs = {
+            'doc_model': 'op.exam.res.allocation',
+            'docs': docs,
+            'time': time,
+            'get_student_data': self.get_student_data(docs),
+        }
+        return self.env['report'] \
+            .render('openeducat_exam.report_exam_student_lable', docargs)

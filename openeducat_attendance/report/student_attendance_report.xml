@@ -12,15 +12,15 @@
                         </div>
                         <div class="text-center">
                             <b>From Date: </b>
-                            <span t-esc="data['from_date']" />
+                            <span t-esc="from_date" />
                             <b>To Date:</b>
-                            <span t-esc="data['to_date']" />
+                            <span t-esc="to_date" />
                         </div>
                         <br></br>
                         <br></br>
                         <div class="text-left">
                             <b>Student Name :</b>
-                            <span t-esc="get_student_name(data)" />
+                            <span t-esc="get_student_name" />
                         </div>
                         <table width="100%" class="table">
                             <thead>
@@ -28,7 +28,7 @@
                                 <th class="text-center">Remark</th>
                             </thead>
                             <tbody>
-                                <t t-foreach="get_data(data)" t-as="obj">
+                                <t t-foreach="get_data" t-as="obj">
                                     <tr t-foreach="obj['line']" t-as="l">
                                         <td class="text-center">
                                             <t t-esc="l['absent_date']" />
@@ -38,7 +38,7 @@
                                         </td>
                                     </tr>
                                 </t>
-                                <tr t-foreach="get_data(data)" t-as="obj">
+                                <tr t-foreach="get_data" t-as="obj">
                                     <td class="text-center">
                                         <b>Total Absence</b>
                                     </td>

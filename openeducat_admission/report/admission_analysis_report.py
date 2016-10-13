@@ -21,38 +21,31 @@
 
 import time
 
-from openerp import models
-from openerp.report import report_sxw
+from openerp import models, api
 
 
-class AdmissionAnalysisReport(report_sxw.rml_parse):
-
-    _name = 'report.openeducat_admission.admission_analysis_report'
-
-    def __init__(self, cr, uid, name, context=None):
-        super(AdmissionAnalysisReport, self).__init__(
-            cr, uid, name, context=context)
-        self.localcontext.update({
-            'time': time,
-            'get_data': self.get_data,
-            'get_total_student': self.get_total_student,
-        })
+class ReportAdmissionAnalysis(models.AbstractModel):
+    _name = 'report.openeducat_admission.report_admission_analysis'
 
     def get_total_student(self, data):
-        return self.total_student
+        student_search = self.env['op.admission'].search_count(
+            [('state', '=', 'done'),
+             ('course_id', '=', data['course_id'][0]),
+             ('admission_date', '>=', data['start_date']),
+             ('admission_date', '<=', data['end_date'])])
+        return student_search
 
     def get_data(self, data):
         lst = []
-        student_pool = self.pool.get('op.admission')
-        student_search = student_pool.search(
-            self.cr, self.uid, [('state', '=', 'done'),
-                                ('course_id', '=', data['course_id'][0]),
-                                ('admission_date', '>=', data['start_date']),
-                                ('admission_date', '<=', data['end_date'])],
+        student_search = self.env['op.admission'].search(
+            [('state', '=', 'done'),
+             ('course_id', '=', data['course_id'][0]),
+             ('admission_date', '>=', data['start_date']),
+             ('admission_date', '<=', data['end_date'])],
             order='admission_date desc')
         res = {}
         self.total_student = 0
-        for student in student_pool.browse(self.cr, self.uid, student_search):
+        for student in student_search:
             self.total_student += 1
             res = {
                 'name': student.name,
@@ -63,9 +56,20 @@ class AdmissionAnalysisReport(report_sxw.rml_parse):
             lst.append(res)
         return lst
 
-
-class ReportAdmissionAnalysis(models.AbstractModel):
-    _name = 'report.openeducat_admission.report_admission_analysis'
-    _inherit = 'report.abstract_report'
-    _template = 'openeducat_admission.report_admission_analysis'
-    _wrapped_report_class = AdmissionAnalysisReport
+    @api.model
+    def render_html(self, docids, data=None):
+        model = self.env.context.get('active_model')
+        docs = self.env[model].browse(self.env.context.get('active_id'))
+        docargs = {
+            'doc_ids': self.ids,
+            'doc_model': model,
+            'docs': docs,
+            'time': time,
+            'data': data,
+            'start_date': data['start_date'],
+            'end_date': data['end_date'],
+            'get_total_student': self.get_total_student(data),
+            'get_data': self.get_data(data),
+        }
+        return self.env['report'] \
+            .render('openeducat_admission.report_admission_analysis', docargs)

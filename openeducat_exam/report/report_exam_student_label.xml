@@ -14,21 +14,17 @@
 
             <t t-call="report.html_container">
                 <t t-call="report.external_layout">
-                    <t t-foreach="docs" t-as="o">
-                        <div class="font">
-                            <div class="page">
-                                <div class="row text-center">
-                                    <h2>
-                                        <strong>Seating Arrangement for Student Examination</strong>
-                                    </h2>
-                                </div>
-                                <para>
-                                    <font color="white"> ......</font>
-                                </para>
-                                <para>
-                                    <font color="white">......</font>
-                                </para>
-                                <t t-foreach="get_student_data(o.exam_session_ids)" t-as="s">
+                    <div class="font">
+                        <div class="page">
+                            <br></br>
+                            <div class="row text-center">
+                                <h2>
+                                    <strong>Seating Arrangement for
+                                        Student Examination</strong>
+                                </h2>
+                            </div>
+                            <t t-foreach="get_student_data" t-as="es">
+                                <t t-foreach="es" t-as="s">
                                     <table class="center">
                                         <tbody>
                                             <tr>
@@ -39,58 +35,62 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <para>
-                                        <font color="white"> ......</font>
-                                    </para>
-                                    <para>
-                                        <font color="white">......</font>
-                                    </para>
                                     <table class="table table-bordered">
                                         <tbody>
-                                            <tr t-foreach="s['line']" t-as="ss">
+                                            <tr t-foreach="s['line']"
+                                                t-as="ss">
                                                 <td>
                                                     <span t-if="ss.get('1')">
                                                         Name :
-                                                        <span t-esc="ss['1']['student']" />
+                                                        <span
+                                                            t-esc="ss['1']['student']" />
                                                         <br></br>
                                                         Course :
-                                                        <span t-esc="ss['1']['course']" />
+                                                        <span
+                                                            t-esc="ss['1']['course']" />
                                                         <br></br>
                                                         Roll No :
-                                                        <span t-esc="ss['1']['roll_number']" />
+                                                        <span
+                                                            t-esc="ss['1']['roll_number']" />
                                                     </span>
                                                 </td>
                                                 <td>
                                                     <span t-if="ss.get('2')">
                                                         Name :
-                                                        <span t-esc="ss['2']['student']" />
+                                                        <span
+                                                            t-esc="ss['2']['student']" />
                                                         <br></br>
                                                         Course :
-                                                        <span t-esc="ss['2']['course']" />
+                                                        <span
+                                                            t-esc="ss['2']['course']" />
                                                         <br></br>
                                                         Roll No :
-                                                        <span t-esc="ss['2']['roll_number']" />
+                                                        <span
+                                                            t-esc="ss['2']['roll_number']" />
                                                     </span>
                                                 </td>
                                                 <td>
                                                     <span t-if="ss.get('3')">
                                                         Name :
-                                                        <span t-esc="ss['3']['student']" />
+                                                        <span
+                                                            t-esc="ss['3']['student']" />
                                                         <br></br>
                                                         Course :
-                                                        <span t-esc="ss['3']['course']" />
+                                                        <span
+                                                            t-esc="ss['3']['course']" />
                                                         <br></br>
                                                         Roll No :
-                                                        <span t-esc="ss['3']['roll_number']" />
+                                                        <span
+                                                            t-esc="ss['3']['roll_number']" />
                                                     </span>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </t>
-                            </div>
+                            </t>
                         </div>
-                    </t>
+                    </div>
                 </t>
             </t>
         </template>

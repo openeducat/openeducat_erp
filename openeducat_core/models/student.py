@@ -23,21 +23,31 @@ from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
+class OpStudentCourse(models.Model):
+    _name = 'op.student.course'
+    _description = 'Student Course Details'
+
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
+    student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
+    roll_number = fields.Char('Roll Number')
+
+#     _sql_constraints = [
+#         ('unique_name_roll_number_id',
+#          'unique(roll_number,course_id,batch_id,student_id)',
+#          'Roll Number & Student must be unique per Batch!'),
+#         ('unique_name_roll_number_course_id',
+#          'unique(roll_number,course_id,batch_id)',
+#          'Roll Number must be unique per Batch!'),
+#         ('unique_name_roll_number_student_id',
+#          'unique(student_id,course_id,batch_id)',
+#          'Student must be unique per Batch!'),
+#     ]
+
+
 class OpStudent(models.Model):
     _name = 'op.student'
     _inherits = {'res.partner': 'partner_id'}
-
-    @api.one
-    @api.depends('roll_number_line', 'batch_id', 'course_id')
-    def _get_curr_roll_number(self):
-        # TO_DO:: Improve the logic by adding sequence field in course.
-        if self.roll_number_line:
-            for roll_no in self.roll_number_line:
-                if roll_no.course_id == self.course_id and \
-                        roll_no.batch_id == self.batch_id:
-                    self.roll_number = roll_no.roll_number
-        else:
-            self.roll_number = 0
 
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128, required=True)
@@ -55,17 +65,12 @@ class OpStudent(models.Model):
     visa_info = fields.Char('Visa Info', size=64)
     id_number = fields.Char('ID Card Number', size=64)
     photo = fields.Binary('Photo')
-    course_id = fields.Many2one('op.course', 'Course', required=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    roll_number_line = fields.One2many(
-        'op.roll.number', 'student_id', 'Roll Number')
     partner_id = fields.Many2one(
         'res.partner', 'Partner', required=True, ondelete="cascade")
-    roll_number = fields.Char(
-        'Current Roll Number', compute='_get_curr_roll_number',
-        size=8, store=True)
     gr_no = fields.Char("GR Number", size=20)
     category_id = fields.Many2one('op.category', 'Category')
+    course_detail_ids = fields.One2many('op.student.course', 'student_id',
+                                        'Course Details')
 
     @api.one
     @api.constrains('birth_date')
@@ -73,7 +78,3 @@ class OpStudent(models.Model):
         if self.birth_date > fields.Date.today():
             raise ValidationError(_(
                 "Birth Date can't be greater than current date!"))
-
-    @api.onchange('course_id')
-    def onchange_course(self):
-        self.batch_id = False
