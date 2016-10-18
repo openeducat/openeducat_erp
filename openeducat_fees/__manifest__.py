@@ -44,6 +44,11 @@
     'images': [
         'static/description/openeducat_fees_banner.jpg',
     ],
+    'demo': [
+        'demo/fees_terms_line_demo.xml',
+        'demo/fees_terms_demo.xml',
+        'demo/course_demo.xml',
+    ],
     'installable': True,
     'auto_install': False,
     'application': True,

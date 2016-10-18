@@ -117,9 +117,8 @@ class OpResultTemplate(models.Model):
                  'result': result,
                  'total_marks': total_marks,
                  'total_per': per,
-                 'total_exam_marks': total_exam,
                  })
             self.env['op.result.line'].browse(
                 [x[0].id for x in stu_dict[stu_id]]).write(
-                {'result_id': mark_line_id.id})
+                {'marksheet_line_id': mark_line_id.id})
         return True

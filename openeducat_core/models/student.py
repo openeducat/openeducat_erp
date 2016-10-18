@@ -27,22 +27,22 @@ class OpStudentCourse(models.Model):
     _name = 'op.student.course'
     _description = 'Student Course Details'
 
+    student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     roll_number = fields.Char('Roll Number')
 
-#     _sql_constraints = [
-#         ('unique_name_roll_number_id',
-#          'unique(roll_number,course_id,batch_id,student_id)',
-#          'Roll Number & Student must be unique per Batch!'),
-#         ('unique_name_roll_number_course_id',
-#          'unique(roll_number,course_id,batch_id)',
-#          'Roll Number must be unique per Batch!'),
-#         ('unique_name_roll_number_student_id',
-#          'unique(student_id,course_id,batch_id)',
-#          'Student must be unique per Batch!'),
-#     ]
+    _sql_constraints = [
+        ('unique_name_roll_number_id',
+         'unique(roll_number,course_id,batch_id,student_id)',
+         'Roll Number & Student must be unique per Batch!'),
+        ('unique_name_roll_number_course_id',
+         'unique(roll_number,course_id,batch_id)',
+         'Roll Number must be unique per Batch!'),
+        ('unique_name_roll_number_student_id',
+         'unique(student_id,course_id,batch_id)',
+         'Student must be unique per Batch!'),
+    ]
 
 
 class OpStudent(models.Model):
