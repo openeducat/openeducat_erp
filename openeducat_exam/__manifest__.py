@@ -61,7 +61,16 @@
         'demo/exam_type_demo.xml',
         'demo/exam_session_demo.xml',
         'demo/exam_demo.xml',
-        'demo/exam_attendees_demo.xml'
+        'demo/exam_attendees_demo.xml',
+        'demo/exam_res_allocation_demo.xml',
+        'demo/pass_status_demo.xml',
+        'demo/min_clear_criteria_demo.xml',
+        'demo/result_template_demo.xml',
+        'demo/result_template_line_demo.xml',
+        'demo/result_exam_line_demo.xml',
+        'demo/marksheet_register_demo.xml',
+        'demo/marksheet_line_demo.xml',
+        'demo/result_line_demo.xml',
     ],
     'images': [
         'static/description/openeducat_exam_banner.jpg',

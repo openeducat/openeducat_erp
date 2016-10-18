@@ -37,7 +37,6 @@ class OpResultLine(models.Model):
     status = fields.Selection(
         [('pass', 'Pass'), ('fail', 'Fail')],
         'Status', default='pass', required=True)
-    result_id = fields.Many2one('op.marksheet.line', 'Marksheet Line')
     total_marks = fields.Float('Total Marks')
 
     @api.constrains('marks', 'per')

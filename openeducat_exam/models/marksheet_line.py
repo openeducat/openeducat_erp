@@ -32,7 +32,8 @@ class OpMarksheetLine(models.Model):
     exam_session_id = fields.Many2one(
         'op.result.template.line', 'Session Template')
     student_id = fields.Many2one('op.student', 'Student', required=True)
-    result_line = fields.One2many('op.result.line', 'result_id', 'Results')
+    result_line = fields.One2many(
+        'op.result.line', 'marksheet_line_id', 'Results')
     total_marks = fields.Float("Total Marks")
     total_per = fields.Float("Total Percentage")
     result = fields.Char("Result", size=256)

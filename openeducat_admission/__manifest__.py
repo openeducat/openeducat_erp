@@ -49,6 +49,7 @@
         'demo/product_demo.xml',
         'demo/admission_register_demo.xml',
         'demo/admission_demo.xml',
+        'demo/student_fees_details_demo.xml',
     ],
     'images': [
         'static/description/openeducat_admission_banner.jpg',
