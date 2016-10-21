@@ -33,11 +33,12 @@
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
+    'depends': ['openeducat_core', 'account_accountant'],
     'data': [
         'security/library_security.xml',
         'security/ir.model.access.csv',
         'report/report_media_barcode.xml',
+        'report/report_library_card_barcode.xml',
         'report/report_student_library_card.xml',
         'report/report_menu.xml',
         'wizards/issue_media_view.xml',
