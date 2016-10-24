@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <template id="report_library_card_barcode">
+            <style type="text/css">
+                .font{
+                font-size:14px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+            </style>
+            <t t-call="report.html_container">
+                <div class="page">
+                    <div class="row text-center">
+                        <h2>
+                            <strong>Library Card(s) Barcode</strong>
+                        </h2>
+                    </div>
+                    <br></br>
+                    <br></br>
+                    <table width="100%" class="table table-bordered">
+                        <thead>
+                            <th class="text-center">Student</th>
+                            <th class="text-center">Library Card Barcode</th>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="card">
+                                <tr>
+                                    <td class="text-center" width="50%">
+                                        <h4>
+                                            <t t-esc="card.student_id.name" />
+                                        </h4>
+                                    </td>
+                                    <td class="text-center" width="50%">
+                                        <img
+                                            t-att-src="'data:image/png;base64,%s'% (get_barcode('Code128',card.number))" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <br></br>
+                    <br></br>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
