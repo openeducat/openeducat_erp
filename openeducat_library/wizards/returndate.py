@@ -38,5 +38,9 @@ class ReturnDate(models.TransientModel):
         media_movement.write(
             {'actual_return_date': self.actual_return_date})
         media_movement.calculate_penalty()
-        media_movement.state = 'return'
+        if media_movement.penalty > 0.0:
+            media_movement.create_penalty_invoice()
+            media_movement.state = 'return'
+        else:
+            media_movement.state = 'return_done'
         media_movement.media_unit_id.state = 'available'

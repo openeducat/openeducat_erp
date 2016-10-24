@@ -46,7 +46,10 @@ class ReturnMedia(models.TransientModel):
                 return {'type': 'ir.actions.act_window_close'}
             media_move_search.actual_return_date = self.actual_return_date
             media_move_search.calculate_penalty()
-            media_move_search.state = 'return'
+            if media_move_search.penalty > 0.0:
+                media_move_search.state = 'return'
+            else:
+                media_move_search.state = 'return_done'
             self.media_unit_id.state = 'available'
         else:
             raise UserError(_(
