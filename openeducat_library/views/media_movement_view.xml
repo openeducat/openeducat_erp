@@ -16,6 +16,7 @@
                     <field name="return_date" />
                     <field name="actual_return_date" />
                     <field name="penalty" />
+                    <field name="invoice_id" />
                     <field name="state" />
                 </tree>
             </field>
@@ -29,16 +30,16 @@
                     <header groups="base.group_user">
                         <button name="issue_media" string="Issue media" type="object" class="oe_highlight"
                             attrs="{'invisible':[('state','not in',('available','reserve'))]}" />
-                        <button name="return_media" string="Return media" type="object" class="oe_highlight"
-                            attrs="{'invisible':[('state','!=','issue')]}" />
-                        <button name="do_media_reservation" string="Reserve media"
-                            type="object" states="available" />
+                        <button name="%(return_media_act)d" string="Return Media"
+                            type="action" context="{'default_media_id': media_id, 'default_media_unit_id': media_unit_id}"
+                            attrs="{'invisible':[('state','!=','issue')]}"
+                            class="oe_highlight" groups="openeducat_library.group_op_library" />
                         <field name="state" widget="statusbar" statusbar_visible="available,issue" />
                     </header>
                     <sheet>
                         <group col="4">
                             <field name="media_id"/>
-                            <field name="media_unit_id" domain="[('media_id','=',media_id),('state','=','available')]"
+                            <field name="media_unit_id" domain="[('state','=','available')]"
                                 context="{'default_media_id': media_id}"/>
                             <field name="media_type_id"/>
                             <field name="invoice_id"/>

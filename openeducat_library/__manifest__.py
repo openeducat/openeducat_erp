@@ -43,7 +43,6 @@
         'report/report_menu.xml',
         'wizards/issue_media_view.xml',
         'wizards/return_media_view.xml',
-        'wizards/returndate_view.xml',
         'wizards/reserve_media_view.xml',
         'views/media_view.xml',
         'views/media_unit_view.xml',

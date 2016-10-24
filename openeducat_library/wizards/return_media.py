@@ -43,14 +43,9 @@ class ReturnMedia(models.TransientModel):
                 [('media_unit_id', '=', self.media_unit_id.id),
                  ('state', '=', 'issue')])
             if not media_move_search:
+                raise UserError(_("Can't return media."))
                 return {'type': 'ir.actions.act_window_close'}
-            media_move_search.actual_return_date = self.actual_return_date
-            media_move_search.calculate_penalty()
-            if media_move_search.penalty > 0.0:
-                media_move_search.state = 'return'
-            else:
-                media_move_search.state = 'return_done'
-            self.media_unit_id.state = 'available'
+            media_move_search.return_media(self.actual_return_date)
         else:
             raise UserError(_(
                 "Media Unit can not be returned because it's state is : %s") %
