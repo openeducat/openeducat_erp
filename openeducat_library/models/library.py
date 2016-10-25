@@ -64,3 +64,16 @@ class OpLibraryCard(models.Model):
         ('unique_library_card_number',
          'unique(number)', 'Library card Number should be unique per card!'),
     ]
+
+    @api.onchange('type')
+    def onchange_type(self):
+        self.student_id = False
+        self.faculty_id = False
+        self.partner_id = False
+
+    @api.onchange('student_id', 'faculty_id')
+    def onchange_student_faculty(self):
+        if self.student_id:
+            self.partner_id = self.student_id.partner_id
+        if not self.student_id and self.faculty_id:
+            self.partner_id = self.faculty_id.partner_id
