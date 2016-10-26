@@ -42,5 +42,13 @@
                 eval="[(4, ref('openeducat_core.group_op_student'))]" />
             <field name="domain_force"> [('user_id','=',user.id)]</field>
         </record>
+
+        <record model="ir.rule" id="view_students_rule">
+            <field name="name">View Students</field>
+            <field name="model_id" ref="model_op_student" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
+            <field name="domain_force"> [(1,'=',1)]</field>
+        </record>
     </data>
 </odoo>
