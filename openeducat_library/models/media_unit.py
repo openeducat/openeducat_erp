@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 unit_states = [('available', 'Available'), ('issue', 'Issued'),
                ('reserve', 'Reserved'), ('lost', 'Lost')]
@@ -46,3 +46,15 @@ class OpMediaUnit(models.Model):
          'unique(barcode)',
          'Barcode must be unique per Media unit!'),
     ]
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        recs = self.browse()
+        if name:
+            recs = self.search(
+                [('name', operator, name)] + args, limit=limit)
+        if not recs:
+            recs = self.search(
+                [('barcode', operator, name)] + args, limit=limit)
+        return recs.name_get()
