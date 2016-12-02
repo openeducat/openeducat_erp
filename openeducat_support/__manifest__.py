@@ -32,6 +32,9 @@
         'views/web_planner_templates.xml',
     ],
     'qweb': ['static/src/xml/web_planner.xml', 'static/src/xml/web.xml'],
+    'images': [
+        'static/description/openeducat_support_banner.jpg',
+    ],
     'installable': True,
     'auto_install': False,
 }

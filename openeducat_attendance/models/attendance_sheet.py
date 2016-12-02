@@ -19,11 +19,12 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class OpAttendanceSheet(models.Model):
     _name = 'op.attendance.sheet'
+    _inherit = ['mail.thread']
 
     @api.one
     @api.depends('attendance_line.present')
@@ -39,7 +40,8 @@ class OpAttendanceSheet(models.Model):
 
     name = fields.Char('Name', required=True, size=32)
     register_id = fields.Many2one(
-        'op.attendance.register', 'Register', required=True)
+        'op.attendance.register', 'Register', required=True,
+        track_visibility="onchange")
     course_id = fields.Many2one(
         'op.course', related='register_id.course_id', store=True,
         readonly=True)
@@ -47,11 +49,12 @@ class OpAttendanceSheet(models.Model):
         'op.batch', 'Batch', related='register_id.batch_id', store=True,
         readonly=True)
     attendance_date = fields.Date(
-        'Date', required=True, default=lambda self: fields.Date.today())
+        'Date', required=True, default=lambda self: fields.Date.today(),
+        track_visibility="onchange")
     attendance_line = fields.One2many(
         'op.attendance.line', 'attendance_id', 'Attendance Line')
     total_present = fields.Integer(
-        'Total Present', compute='_total_present')
+        'Total Present', compute='_total_present', track_visibility="onchange")
     total_absent = fields.Integer(
-        'Total Absent', compute='_total_absent')
+        'Total Absent', compute='_total_absent', track_visibility="onchange")
     faculty_id = fields.Many2one('op.faculty', 'Faculty')

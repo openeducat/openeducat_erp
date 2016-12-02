@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, fields, _
-from openerp.exceptions import UserError
+from odoo import models, api, fields, _
+from odoo.exceptions import UserError
 
 
 class OpStudentFeesDetails(models.Model):

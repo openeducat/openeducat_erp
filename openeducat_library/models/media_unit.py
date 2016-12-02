@@ -19,10 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
-
-unit_states = [('available', 'Available'), ('issue', 'Issued'),
-               ('reserve', 'Reserved'), ('lost', 'Lost')]
+from odoo import models, fields, api
 
 
 class OpMediaUnit(models.Model):
@@ -37,7 +34,8 @@ class OpMediaUnit(models.Model):
     movement_lines = fields.One2many(
         'op.media.movement', 'media_unit_id', 'Movements')
     state = fields.Selection(
-        unit_states, 'State', default='available', track_visibility='onchange')
+        [('available', 'Available'), ('issue', 'Issued')],
+        'State', default='available', track_visibility='onchange')
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
 
@@ -46,6 +44,13 @@ class OpMediaUnit(models.Model):
          'unique(barcode)',
          'Barcode must be unique per Media unit!'),
     ]
+
+    @api.model
+    def create(self, vals):
+        x = self.env['ir.sequence'].next_by_code(
+            'op.media.unit') or '/'
+        vals['barcode'] = x
+        return super(OpMediaUnit, self).create(vals)
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):

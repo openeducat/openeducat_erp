@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpStudentCourse(models.Model):
@@ -31,6 +31,7 @@ class OpStudentCourse(models.Model):
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     roll_number = fields.Char('Roll Number')
+    subject_ids = fields.Many2many('op.subject', string='Subjects')
 
     _sql_constraints = [
         ('unique_name_roll_number_id',

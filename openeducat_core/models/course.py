@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from odoo import models, fields
 
 
 class OpCourse(models.Model):
@@ -33,3 +33,5 @@ class OpCourse(models.Model):
         [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
         'Evaluation Type', default="normal", required=True)
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
+    max_unit_load = fields.Float("Maximum Unit Load")
+    min_unit_load = fields.Float("Minimum Unit Load")

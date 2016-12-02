@@ -23,8 +23,8 @@ import base64
 from reportlab.graphics.barcode import createBarcodeDrawing
 import time
 
-from openerp import models, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, api, _
+from odoo.exceptions import ValidationError
 
 
 class ReportLibraryCardBarcode(models.AbstractModel):
@@ -42,7 +42,7 @@ class ReportLibraryCardBarcode(models.AbstractModel):
         try:
             ret_val = createBarcodeDrawing(
                 type, value=str(value), **options)
-        except Exception, e:
+        except Exception as e:
             raise ValidationError(_('Error in barcode generation', e))
         image_data = ret_val.asString('png')
         return base64.encodestring(image_data)

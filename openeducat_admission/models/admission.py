@@ -22,8 +22,8 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError, UserError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError, UserError
 
 
 class OpAdmission(models.Model):
@@ -88,8 +88,7 @@ class OpAdmission(models.Model):
          ('confirm', 'Confirmed'), ('admission', 'Admission Confirm'),
          ('reject', 'Rejected'), ('pending', 'Pending'),
          ('cancel', 'Cancelled'), ('done', 'Done')],
-        'State', readonly=True, select=True,
-        default='draft', track_visibility='onchange')
+        'State', default='draft', track_visibility='onchange')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
     prev_institute_id = fields.Many2one(
         'res.partner', 'Previous Institute',
@@ -279,6 +278,15 @@ class OpAdmission(models.Model):
             'admission_date': fields.Date.today(),
             'student_id': student_id,
         })
+        reg_id = self.env['op.subject.registration'].create({
+            'student_id': student_id,
+            'batch_id': self.batch_id.id,
+            'course_id': self.course_id.id,
+            'min_unit_load': self.course_id.min_unit_load or 0.0,
+            'max_unit_load': self.course_id.max_unit_load or 0.0,
+            'state': 'draft',
+        })
+        reg_id.get_subjects()
 
     @api.one
     def confirm_rejected(self):

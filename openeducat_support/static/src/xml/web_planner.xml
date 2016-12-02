@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<templates id="web_planner.template">
-    <t t-name="UserMenu.about">
-        <div class="oe_about">
-
-            <div class="container-fluid">
-                <div class="row">
-                    <a class="oe_activate_debug_mode oe_right label label-primary" href="?debug" >Activate the developer mode</a>
-                </div>
-                <div class="row">
-                    <div class="col-sm-offset-2 col-md-offset-2 col-sm-8 col-md-8 user-details">
-                        <div class="user-image">
-                            <img src="/openeducat_core/static/src/img/openeducat_logo.png" alt="OpenEduCat" title="OpenEduCat" />
-                        </div>
-                        <div class="user-info-block">
-                            <div class="user-heading">
-                                <h3>
-                                    Version <t t-esc="db_info.server_version"/>
-                                    (<span t-esc="db_info.server_version_info[5] == 'e'?'Enterprise':'Community'"/> Edition)
-                                </h3>
-                                <t t-if="db_info.expiration_date">
-                                    <h5>Database expiration: <t t-esc="new moment(db_info.expiration_date).format('LL')"/></h5>
-                                </t>
-                            </div>
-                            <div class="user-body">
-                                <div class="tab-content">
-                                    <div id="settings" class="tab-pane active">
-                                        <h4>Copyright © 2009-2015 OpenEduCat</h4>
-                                        <p>OpenEduCat is a trademark of <a target="_blank" href="https://www.techreceptives.com" style="text-decoration: underline;">Tech-Receptives</a></p>
-                                        <p>Licenced under the terms of <a target="_blank" href="http://www.gnu.org/licenses/lgpl.html" style="text-decoration: underline;">GNU Lesser General Public License</a></p>
-                                        <p>For more information visit <a target="_blank" href="https://www.openeducat.org" style="text-decoration: underline;">openeducat.org</a></p>
-                                        <p>
-                                          <a href="https://facebook.com/openeducat"><i class="fa fa-facebook-square fa-3x social-fb"></i></a>
-                                          <a href="https://twitter.com/openeducat"><i class="fa fa-twitter-square fa-3x social-tw"></i></a>
-                                          <a href="https://plus.google.com/+OpenEduCat"><i class="fa fa-google-plus-square fa-3x social-gp"></i></a>
-                                          <a href="https://github.com/openeducat"><i class="fa fa-github-square fa-3x"></i></a>
-                                          <a href="https://youtube.com/channel/UC7HLHTgfsOTE-ueRVNZ4Avg"><i class="fa fa-youtube-square fa-3x"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
+<templates id="web_settings_dashboard.template">
+    <t t-name="DashboardShare">
+        <div class="text-center o_web_settings_dashboard_share">
+            <i class="fa fa-share-alt fa-4x text-muted"/>
+            <div class="o_web_settings_dashboard_header">Share the Love</div>
+            <div>
+                <small class="text-muted text-center o_web_settings_dashboard_compact_subtitle">
+                    Help us spread the word: Share OpenEduCat with your friends!
+                </small>
+            </div>
+            <div class="row mt16">
+                <a href="https://facebook.com/openeducat"><i class="fa fa-facebook-square fa-3x social-fb"></i></a>
+                <a href="https://twitter.com/openeducat"><i class="fa fa-twitter-square fa-3x social-tw"></i></a>
+                <a href="https://plus.google.com/+OpenEduCat"><i class="fa fa-google-plus-square fa-3x social-gp"></i></a>
+                <a href="https://github.com/openeducat"><i class="fa fa-github-square fa-3x"></i></a>
+                <a href="https://youtube.com/channel/UC7HLHTgfsOTE-ueRVNZ4Avg"><i class="fa fa-youtube-square fa-3x"></i></a>
+            </div>
+            <hr/>
+            <t t-set="server_version" t-value="widget.data.server_version"/>
+            <t t-set="debug" t-value="widget.data.debug"/>
+            <div class="row">
+                <div class="text-center">
+                    <div class="user-heading">
+                        <h2>
+                            <b>OpenEduCat</b>
+                        </h2>
+                    </div>
+                    <div>
+                        <div class="tab-content">
+                            <div id="settings" class="tab-pane active text-muted text-center o_web_settings_dashboard_compact_subtitle">
+                                <p>Copyright © 2009-2015 OpenEduCat</p>
+                                <p>OpenEduCat is a trademark of <a target="_blank" href="https://www.techreceptives.com" style="text-decoration: underline;">Tech-Receptives</a></p>
+                                <p>Licenced under the terms of <a target="_blank" href="http://www.gnu.org/licenses/lgpl.html" style="text-decoration: underline;">GNU Lesser General Public License</a></p>
+                                <p>For more information visit <a target="_blank" href="https://www.openeducat.org" style="text-decoration: underline;">openeducat.org</a></p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-12">
+                    <a t-if="debug != true" class="oe_activate_debug_mode pull-right" href="?debug" >Activate the developer mode</a>
+                    <br t-if="debug != true"/>
+                    <a t-if="debug != 'assets'" class="oe_activate_debug_mode pull-right" href="?debug=assets" >Activate the developer mode (with assets)</a>
+                    <br t-if="debug != 'assets'"/>
+                    <a t-if="debug != false" class="oe_activate_debug_mode pull-right" href="/web" >Deactivate the developer mode</a>
                 </div>
             </div>
         </div>

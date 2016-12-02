@@ -21,8 +21,8 @@
 
 from datetime import timedelta, date
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError, UserError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError, UserError
 
 
 def days_between(to_date, from_date):
@@ -109,7 +109,6 @@ class OpMediaMovement(models.Model):
         self.actual_return_date = return_date
         self.calculate_penalty()
         if self.penalty > 0.0:
-            self.create_penalty_invoice()
             self.state = 'return'
         else:
             self.state = 'return_done'

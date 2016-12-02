@@ -11,9 +11,6 @@
                     <field name="name" />
                     <field name="subject_id" />
                     <field name="exam_code" />
-                    <field name="exam_type" />
-                    <field name="evaluation_type" />
-                    <field name="venue" />
                     <field name="start_time" />
                     <field name="end_time" />
                     <field name="state" />
@@ -30,26 +27,27 @@
             <field name="arch" type="xml">
                 <form string="Exam">
                     <header groups="base.group_user">
-                        <button name="act_schedule" states="new" type="object" string="Schedule Exam" class="oe_highlight"/>
-                        <button name="act_held" states="schedule" type="object" string="Held Exam" class="oe_highlight"/>
-                        <button name="act_done" states="held" type="object" string="Done" class="oe_highlight"/>
-                        <button name="act_new_exam" states="cancel" type="object" string="New Exam" class="oe_highlight"/>
-                        <button name="act_cancel" states="new,held,schedule" type="object" string="Cancel" />
-                        <field name="state" widget="statusbar" statusbar_visible="new,held,scheduled,done" />
+                        <button name="%(act_open_op_room_distribution_view)d"
+                            states="draft" type="action" string="Schedule Exam" class="oe_highlight"/>
+                        <button name="%(act_open_op_held_exam_view)d" states="schedule" type="action" string="Held Exam" class="oe_highlight"/>
+                        <button name="act_done" states="result_updated" type="object" string="Done" class="oe_highlight"/>
+                        <button name="act_draft" states="cancel" type="object" string="Draft" class="oe_highlight"/>
+                        <button string="Result Updated" class="oe_highlight"
+                            states="held" type="object" name="act_result_updated"/>
+                        <button name="act_cancel" states="draft,held,schedule" type="object" string="Cancel" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,held,scheduled,result_updated,done" />
                     </header>
                     <sheet>
                         <group col="4" colspan="4">
-                            <field name="session_id" />
+                            <field name="session_id" required="1"/>
                             <field name="name" />
-                            <field name="subject_id" />
+                            <field name="subject_id"/>
                             <field name="exam_code" />
-                            <field name="exam_type" />
-                            <field name="evaluation_type" />
                             <field name="start_time" />
                             <field name="end_time" />
                             <field name="total_marks" />
                             <field name="min_marks" />
-                            <field name="venue" context="{'show_address': 1}" options='{"always_reload": True}' />
                         </group>
                         <group string="Attendees">
                             <field name="attendees_line" colspan="4" nolabel="1" />
@@ -74,9 +72,6 @@
                     <field name="name" />
                     <field name="subject_id" />
                     <field name="exam_code" />
-                    <field name="exam_type" />
-                    <field name="evaluation_type" />
-                    <field name="venue" />
                     <field name="start_time" />
                     <field name="end_time" />
                     <field name="state" />
@@ -92,11 +87,6 @@
                             context="{'group_by':'standard_id'}" />
                         <filter string="Exam Code" domain="[]"
                             context="{'group_by':'exam_code'}" />
-                        <filter string="Exam Type" domain="[]"
-                            context="{'group_by':'exam_type'}" />
-                        <filter string="Evaluation Type" domain="[]"
-                            context="{'group_by':'evaluation_type'}" />
-                        <filter string="Venue" domain="[]" context="{'group_by':'venue'}" />
                         <filter string="State" domain="[]" context="{'group_by':'state'}" />
                         <filter string="Exam" domain="[]" context="{'group_by':'name'}" />
                     </group>

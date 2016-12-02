@@ -32,7 +32,7 @@
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_fees'],
+    'depends': ['openeducat_fees', 'openeducat_core'],
     'data': [
         'views/admission_register_view.xml',
         'views/admission_view.xml',

@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from odoo import models, fields
 
 
 class OpParent(models.Model):

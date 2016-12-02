@@ -19,22 +19,26 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpExamSession(models.Model):
     _name = 'op.exam.session'
     _description = 'Exam Session'
 
-    name = fields.Char('Exam', size=256, required=True)
+    name = fields.Char('Exam Session', size=256, required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    exam_code = fields.Char('Exam Code', size=8, required=True)
+    exam_code = fields.Char('Exam Session Code', size=8, required=True)
     start_date = fields.Date('Start Date', required=True)
     end_date = fields.Date('End Date', required=True)
-    room_id = fields.Many2one('op.exam.room', 'Room', required=True)
     exam_ids = fields.One2many('op.exam', 'session_id', 'Exam(s)')
+    exam_type = fields.Many2one('op.exam.type', 'Exam Type', required=True)
+    evolution_type = fields.Selection(
+        [('normal', 'Normal'), ('grade', 'Grade')],
+        'Evolution type', default="normal", required=True)
+    venue = fields.Many2one('res.partner', 'Venue')
 
     @api.constrains('start_date', 'end_date')
     def _check_date_time(self):

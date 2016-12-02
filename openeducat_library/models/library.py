@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpLibraryCardType(models.Model):
@@ -49,7 +49,7 @@ class OpLibraryCard(models.Model):
 
     partner_id = fields.Many2one(
         'res.partner', 'Student/Faculty', required=True)
-    number = fields.Char('Number', size=256, required=True)
+    number = fields.Char('Number', size=256, readonly=True)
     library_card_type_id = fields.Many2one(
         'op.library.card.type', 'Card Type', required=True)
     issue_date = fields.Date(
@@ -64,6 +64,13 @@ class OpLibraryCard(models.Model):
         ('unique_library_card_number',
          'unique(number)', 'Library card Number should be unique per card!'),
     ]
+
+    @api.model
+    def create(self, vals):
+        x = self.env['ir.sequence'].next_by_code(
+            'op.library.card') or '/'
+        vals['number'] = x
+        return super(OpLibraryCard, self).create(vals)
 
     @api.onchange('type')
     def onchange_type(self):

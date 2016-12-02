@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpExamAttendees(models.Model):
@@ -31,11 +31,18 @@ class OpExamAttendees(models.Model):
     status = fields.Selection(
         [('present', 'Present'), ('absent', 'Absent')],
         'Status', default="present", required=True)
-    marks = fields.Float('Marks')
+    marks = fields.Integer('Marks')
     note = fields.Text('Note')
     exam_id = fields.Many2one('op.exam', 'Exam', required=True)
     course_id = fields.Many2one('op.course', 'Course', readonly=True)
     batch_id = fields.Many2one('op.batch', 'Batch', readonly=True)
+    room_id = fields.Many2one('op.exam.room', 'Room')
+
+    _sql_constraints = [
+        ('unique_attendees',
+         'unique(student_id,exam_id)',
+         'Attendee must be unique per exam.'),
+    ]
 
     @api.onchange('exam_id')
     def onchange_exam(self):

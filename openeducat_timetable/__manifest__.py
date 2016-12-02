@@ -33,7 +33,7 @@
     """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
+    'depends': ['openeducat_classroom'],
     'data': [
         'views/timetable_view.xml',
         'views/period_view.xml',
@@ -46,6 +46,7 @@
         'dashboard/timetable_student_dashboard.xml',
         'dashboard/timetable_faculty_dashboard.xml',
         'security/ir.model.access.csv',
+        'security/op_timetable_security.xml',
         'timetable_menu.xml',
     ],
     'demo': [

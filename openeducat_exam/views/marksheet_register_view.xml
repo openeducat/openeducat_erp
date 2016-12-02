@@ -23,15 +23,18 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Marksheet Register">
+                    <header groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
+                        <field name="status" widget="statusbar" statusbar_visible="draft,validated,cancelled" />
+                    </header>
                     <sheet>
                         <group colspan="4" col="4">
+                            <field name="name" />
                             <field name="exam_session_id" />
-                            <field name="generated_date" />
                             <field name="generated_by" />
-                            <field name="status" />
+                            <field name="generated_date" />
                             <field name="total_pass" />
                             <field name="total_failed" />
-                            <field name="name" />
+                            <field name="result_template_id" />
                         </group>
                         <separator string="Marksheets" colspan="4" />
                         <group colspan="4">

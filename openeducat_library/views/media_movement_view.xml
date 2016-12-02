@@ -47,14 +47,19 @@
                         <group col="4" string="Student/Faculty Detail">
                             <field name="library_card_id" />
                             <field name="type" />
-                            <field name="student_id" attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}" />
+                            <field name="student_id" attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}" context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
                             <field name="faculty_id" attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
                         </group>
                         <group col="4">
                             <field name="issued_date" />
                             <field name="return_date" />
                             <field name="actual_return_date" />
-                            <field name="penalty" />
+                            <label for="penalty" string="Penalty"/>
+                            <div>
+                                <field name="penalty" widget="monetary"/>
+                                <button name="create_penalty_invoice" string="Create Invoice" type="object" class="oe_highlight"
+                                    attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}" />
+                            </div>
                         </group>
                         <group col="4" string="Reservation Detail" invisible="1">
                             <field name="partner_id" />

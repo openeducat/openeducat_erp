@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpAssignment(models.Model):
@@ -28,7 +28,7 @@ class OpAssignment(models.Model):
     _inherit = 'mail.thread'
     _description = 'Assignment'
 
-    name = fields.Char('Name', size=16, required=True)
+    name = fields.Char('Name', size=64, required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)

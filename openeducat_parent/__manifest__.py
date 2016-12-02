@@ -35,14 +35,14 @@
     'depends': ['openeducat_core'],
     'data': [
         'security/op_parent_security.xml',
+        'views/student_view.xml',
         'views/parent_view.xml',
         'parent_menu.xml',
         'security/ir.model.access.csv'
     ],
     'demo': [
-        'demo/res_users_demo.xml',
-        'demo/res_groups_demo.xml',
         'demo/res_partner_demo.xml',
+        'demo/res_users_demo.xml',
         'demo/parent_demo.xml',
     ],
     'images': [

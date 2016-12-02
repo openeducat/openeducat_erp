@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import UserError
+from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 from ..models import media_unit
 
 

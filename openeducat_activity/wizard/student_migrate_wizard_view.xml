@@ -17,9 +17,17 @@
                         <group>
                             <field name="date" />
                         </group>
-                        <group col="4" colspan="4">
-                            <field name="course_from_id" />
-                            <field name="course_to_id" />
+                        <group col="2">
+                            <group>
+                                <field name="course_from_id" />
+                                <field name="optional_sub"/>
+                            </group>
+                            <group>
+                                <field name="course_to_id"/>
+                                <field name="batch_id"
+                                    required="1"
+                                    domain="[('course_id','=', course_to_id)]"/>
+                            </group>
                         </group>
                         <group col="4" colspan="4" string="Student(s)">
                             <field name="student_ids" colspan="4" nolabel="1"

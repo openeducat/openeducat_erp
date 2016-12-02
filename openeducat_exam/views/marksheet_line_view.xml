@@ -9,8 +9,10 @@
                 <tree string="Marksheet Line">
                     <field name="student_id" />
                     <field name="total_marks" />
-                    <field name="total_per" />
-                    <field name="result" />
+                    <field name="percentage" />
+                    <field name="grade" attrs="{'invisible':[('evolution_type','!=','grade')]}"/>
+                    <field name="status" />
+                    <field name="evolution_type" invisible="1" />
                 </tree>
             </field>
         </record>
@@ -21,11 +23,13 @@
             <field name="arch" type="xml">
                 <form string="Marksheet Line">
                     <sheet>
-                        <group colspan="4">
+                        <group colspan="4" col="4">
                             <field name="student_id" />
+                            <field name="status" />
                             <field name="total_marks" />
-                            <field name="total_per" />
-                            <field name="result" />
+                            <field name="percentage" />
+                            <field name="grade" attrs="{'invisible':[('evolution_type','!=','grade')]}"/>
+                            <field name="evolution_type" invisible="1" />
                         </group>
                         <group string="Results">
                             <field name="result_line" nolabel="1"/>
@@ -43,14 +47,12 @@
                     <field name="marksheet_reg_id" />
                     <field name="student_id" />
                     <field name="total_marks" />
-                    <field name="total_per" />
-                    <field name="result" />
+                    <field name="percentage" />
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter string="Marksheet Register" domain="[]"
                             context="{'group_by':'marksheet_reg_id'}" />
                         <filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
-                        <filter string="Result" domain="[]" context="{'group_by':'result'}" />
                     </group>
                 </search>
             </field>

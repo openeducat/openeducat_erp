@@ -36,6 +36,7 @@
     'depends': ['openeducat_core'],
     'data': [
         'security/ir.model.access.csv',
+        'security/op_assignment_security.xml',
         'views/assignment_view.xml',
         'views/assignment_type_view.xml',
         'views/assignment_sub_line_view.xml',

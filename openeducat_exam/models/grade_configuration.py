@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-###############################################################################
+##############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -17,14 +17,14 @@
 #    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-###############################################################################
+##############################################################################
+from odoo import models, fields
 
-from openerp import models, fields
 
+class OpGradeConfiguration(models.Model):
+    _name = 'op.grade.configuration'
+    _rec_name = 'result'
 
-class OpMinClearanceCriteria(models.Model):
-    _name = "op.min.clear.criteria"
-
-    name = fields.Char('Name', size=256)
-    number = fields.Float('Number of Failed Subject')
-    result = fields.Char('Result to Display')
+    min_per = fields.Integer('Minimum Percentage', required=True)
+    max_per = fields.Integer('Maximum Percentage', required=True)
+    result = fields.Char('Result to Display', required=True)
