@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class OpAllStudentWizard(models.TransientModel):
@@ -44,8 +44,10 @@ class OpAllStudentWizard(models.TransientModel):
             absent_list = [
                 x.student_id for x in sheet_browse.attendance_line]
             all_student_search = self.env['op.student'].search(
-                [('course_id', '=', sheet_browse.register_id.course_id.id),
-                 ('batch_id', '=', sheet_browse.register_id.batch_id.id)]
+                [('course_detail_ids.course_id', '=',
+                  sheet_browse.register_id.course_id.id),
+                 ('course_detail_ids.batch_id', '=',
+                  sheet_browse.register_id.batch_id.id)]
             )
             all_student_search = list(
                 set(all_student_search) - set(absent_list))

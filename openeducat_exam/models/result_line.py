@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpResultLine(models.Model):
@@ -28,21 +28,37 @@ class OpResultLine(models.Model):
     _rec_name = 'marks'
 
     marksheet_line_id = fields.Many2one(
-        'op.marksheet.line', 'Marksheet Line')
+        'op.marksheet.line', 'Marksheet Line', ondelete='cascade')
     exam_id = fields.Many2one('op.exam', 'Exam', required=True)
-    exam_tmpl_id = fields.Many2one('op.result.exam.line', 'Exam Template')
-    marks = fields.Float('Marks', required=True)
-    per = fields.Float('Percentage', required=True)
+    evolution_type = fields.Selection(
+        related='exam_id.session_id.evolution_type', store=True)
+    marks = fields.Integer('Marks', required=True)
+    grade = fields.Char('Grade', readonly=True, compute='_compute_grade')
     student_id = fields.Many2one('op.student', 'Student', required=True)
-    status = fields.Selection(
-        [('pass', 'Pass'), ('fail', 'Fail')],
-        'Status', default='pass', required=True)
-    total_marks = fields.Float('Total Marks')
+    status = fields.Selection([('pass', 'Pass'), ('fail', 'Fail')], 'Status',
+                              compute='_compute_status')
 
-    @api.constrains('marks', 'per')
+    @api.constrains('marks', 'marks')
     def _check_marks(self):
-        if (self.marks < 0.0) or (self.per < 0.0) or \
-                (self.total_marks < 0.0) or (self.per > 100.0):
+        if (self.marks < 0.0):
             raise ValidationError(_("Enter proper Marks or Percentage!"))
-        elif self.marks > self.total_marks:
-            raise ValidationError(_("Marks can't be greater than Total Marks"))
+
+    @api.multi
+    @api.depends('marks')
+    def _compute_grade(self):
+        for record in self:
+            if record.evolution_type == 'grade':
+                grades = record.marksheet_line_id.marksheet_reg_id.\
+                    result_template_id.grade_ids
+                for grade in grades:
+                    if grade.min_per <= record.marks and \
+                            grade.max_per >= record.marks:
+                        record.grade = grade.result
+
+    @api.multi
+    @api.depends('marks')
+    def _compute_status(self):
+        for record in self:
+            record.status = 'pass'
+            if record.marks < record.exam_id.min_marks:
+                record.status = 'fail'

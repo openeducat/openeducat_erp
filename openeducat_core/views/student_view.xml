@@ -159,12 +159,22 @@
                                         colspan="4" />
                                     <field name="course_detail_ids"
                                         nolabel="1">
-                                        <tree string="Course Details"
-                                            editable="bottom">
+                                        <tree string="Course Details">
                                             <field name="course_id" />
-                                            <field name="batch_id" domain="[('course_id', '=', course_id)]" />
+                                            <field name="batch_id" />
                                             <field name="roll_number" />
+                                            <field name="subject_ids" widget="many2many_tags" />
                                         </tree>
+                                        <form>
+                                            <group cols="2" colspan="2">
+                                                <field name="course_id" />
+                                                <field name="batch_id" domain="[('course_id', '=', course_id)]" />
+                                                <field name="roll_number" />
+                                            </group>
+                                            <group col="4" string="Subjects">
+                                                <field name="subject_ids" colspan="4" nolabel="1" />
+                                            </group>
+                                        </form>
                                     </field>
                                 </group>
                             </page>
@@ -181,9 +191,6 @@
                 <search string="Student">
                     <field name="name" />
                     <field name="blood_group" />
-                    <!-- <field name="id_number" /> -->
-                    <!-- <field name="course_id" />
-                    <field name="batch_id" /> -->
                     <newline />
                     <group expand="0" string="Group By...">
                         <filter name="blood_group" string="Blood Group"
@@ -192,10 +199,6 @@
                             domain="[]" context="{'group_by':'nationality'}" />
                         <filter name="language" string="Language"
                             domain="[]" context="{'group_by':'lang'}" />
-                        <!-- <filter name="course" string="Course"
-                            domain="[]" context="{'group_by':'course_id'}" />
-                        <filter name="batch" string="Batch"
-                            domain="[]" context="{'group_by':'batch_id'}" /> -->
                     </group>
                 </search>
             </field>

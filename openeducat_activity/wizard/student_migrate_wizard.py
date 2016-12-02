@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class StudentMigrate(models.TransientModel):
@@ -31,6 +31,8 @@ class StudentMigrate(models.TransientModel):
     date = fields.Date('Date', required=True, default=fields.Date.today())
     course_from_id = fields.Many2one('op.course', 'From Course', required=True)
     course_to_id = fields.Many2one('op.course', 'To Course', required=True)
+    batch_id = fields.Many2one('op.batch', 'To Batch')
+    optional_sub = fields.Boolean("Optional Subjects")
     student_ids = fields.Many2many(
         'op.student', string='Student(s)', required=True)
 
@@ -74,3 +76,15 @@ class StudentMigrate(models.TransientModel):
                 [('student_id', '=', student.id), ('course_id', '=',
                                                    self.course_from_id.id)])
             student_course.write({'course_id': self.course_to_id.id})
+            reg_id = self.env['op.subject.registration'].create({
+                'student_id': student.id,
+                'batch_id': self.batch_id.id,
+                'course_id': self.course_to_id.id,
+                'min_unit_load': self.course_to_id.min_unit_load or 0.0,
+                'max_unit_load': self.course_to_id.max_unit_load or 0.0,
+                'state': 'draft',
+            })
+            reg_id.get_subjects()
+            if not self.optional_sub:
+                reg_id.action_submitted()
+                reg_id.action_approve()

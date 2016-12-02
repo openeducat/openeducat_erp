@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_subject_registration_tree" model="ir.ui.view">
+            <field name="name">op.subject.registration.tree</field>
+            <field name="model">op.subject.registration</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Course Registration" create="false">
+                    <field name="name" />
+                    <field name="student_id" />
+                    <field name="course_id" />
+                    <field name="batch_id" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_subject_registration_form" model="ir.ui.view">
+            <field name="name">op.subject.registration.form</field>
+            <field name="model">op.subject.registration</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Course Registration" create="false">
+                    <header>
+                        <button name="action_submitted" string="Submit"
+                            type="object" class="oe_highlight" states="draft" />
+                        <button name="action_approve" string="Approve"
+                            type="object" class="oe_highlight"
+                            states="submitted" />
+                        <button name="action_reject" string="Reject"
+                            type="object" class="oe_highlight"
+                            states="submitted" />
+                        <button string="Reset to Draft" class="oe_highlight"
+                            states="rejected" type="object"
+                            name="action_reset_draft"/>
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,submitted,approved,rejected" />
+                    </header>
+                    <sheet>
+                        <h1><field name="name" /></h1>
+                        <group colspan="4" col="4">
+                            <field name="student_id" />
+                            <field name="course_id" />
+                            <field name="batch_id" />
+                            <field name="min_unit_load" />
+                            <field name="max_unit_load" />
+                        </group>
+                        <button name="get_subjects" type="object" string="Get Subjects" class="oe_highlight" />
+                        <group>
+                            <separator string="Compulsory Subjects"
+                                colspan="2" />
+                            <field name="compulsory_subject_ids" nolabel="1" />
+                            <separator string="Elective Subjects"
+                                colspan="2" />
+                            <field name="elective_subject_ids" nolabel="1"
+                                domain="[('subject_type', '=', 'elective')]"
+                                attrs="{'readonly':[('state','!=','draft')]}" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"
+                            groups="base.group_user" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_subject_registration_search" model="ir.ui.view">
+            <field name="name">op.subject.registration.search</field>
+            <field name="model">op.subject.registration</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Course Registration">
+                    <field name="student_id" />
+                    <field name="course_id" />
+                    <field name="batch_id" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Course" domain="[]"
+                            context="{'group_by':'course_id'}" />
+                        <filter string="Batch" domain="[]"
+                            context="{'group_by':'batch_id'}" />
+                        <filter string="Status" domain="[]"
+                            context="{'group_by':'state'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_subject_registration_view">
+            <field name="name">Subject Registration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.subject.registration</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_subject_registration_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="seq_op_subject_registration" model="ir.sequence">
+            <field name="name">Subject Registration</field>
+            <field name="code">op.subject.registration</field>
+            <field name="prefix">SR</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+    </data>
+</odoo>

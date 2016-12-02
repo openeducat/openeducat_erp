@@ -6,14 +6,16 @@
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page[@name='educational']" position="after">
+                <xpath expr="//notebook/page[@name='educational']"
+                    position="after">
                     <page name="parents" string="Parents">
-                        <field name="parent_ids" colspan="4" nolabel="1" />
+                        <field name="parent_ids" colspan="4"
+                            nolabel="1" />
                     </page>
                 </xpath>
             </field>
         </record>
-        
+
         <record id="view_op_parent_tree" model="ir.ui.view">
             <field name="name">op.parent.tree</field>
             <field name="model">op.parent</field>
@@ -33,18 +35,13 @@
                 <form string="Parent">
                     <sheet>
                         <group col="4">
-                            <field name="name" placeholder="Parent Name"/>
-                            <field name="user_id" domain="[('partner_id', '=', name)]" placeholder="User Id"/>
+                            <field name="name" placeholder="Parent Name" />
+                            <field name="user_id"
+                                domain="[('partner_id', '=', name)]"
+                                placeholder="User Id" />
                         </group>
-                        <separator colspan="4" string="Student(s)"/>
-                        <field name="student_ids">
-                            <tree>
-                                <field name="title"/>
-                                <field name="name"/>
-                                <field name="middle_name"/>
-                                <field name="last_name"/>
-                            </tree>
-                        </field>
+                        <separator colspan="4" string="Student(s)" />
+                        <field name="student_ids" context="{'form_view_ref':'openeducat_parent.view_op_student_parent_form'}"/>
                     </sheet>
                 </form>
             </field>
@@ -59,7 +56,8 @@
                     <field name="student_ids" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Name" domain="[]" context="{'group_by':'name'}" />
+                        <filter string="Name" domain="[]"
+                            context="{'group_by':'name'}" />
                     </group>
                 </search>
             </field>

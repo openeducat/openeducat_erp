@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class OpMediaPurchase(models.Model):
@@ -42,7 +42,7 @@ class OpMediaPurchase(models.Model):
             [('user_id', '=', self.env.uid)]))
     state = fields.Selection(
         [('draft', 'Draft'), ('request', 'Requested'), ('reject', 'Rejected'),
-         ('accept', 'Accepted')], 'State', select=True, readonly=True,
+         ('accept', 'Accepted')], 'State', readonly=True,
         default='draft', track_visibility='onchange')
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
 

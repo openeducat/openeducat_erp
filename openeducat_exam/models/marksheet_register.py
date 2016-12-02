@@ -19,15 +19,15 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpMarksheetRegister(models.Model):
     _name = 'op.marksheet.register'
 
     exam_session_id = fields.Many2one(
-        'op.exam.session', 'Exam', required=True)
+        'op.exam.session', 'Exam Session', required=True)
     marksheet_line = fields.One2many(
         'op.marksheet.line', 'marksheet_reg_id', 'Marksheets')
     generated_date = fields.Date(
@@ -38,11 +38,34 @@ class OpMarksheetRegister(models.Model):
     status = fields.Selection(
         [('draft', 'Draft'), ('validated', 'Validated'),
          ('cancelled', 'Cancelled')], 'Status', default="draft", required=True)
-    total_pass = fields.Float('Total Pass')
-    total_failed = fields.Float('Total Fail')
+    total_pass = fields.Integer('Total Pass', compute='_compute_total_pass')
+    total_failed = fields.Integer(
+        'Total Fail', compute='_compute_total_failed')
     name = fields.Char('Marksheet Register', size=256, required=True)
+    result_template_id = fields.Many2one(
+        'op.result.template', 'Result Template', required=True)
 
     @api.constrains('total_pass', 'total_failed')
     def _check_marks(self):
         if (self.total_pass < 0.0) or (self.total_failed < 0.0):
             raise ValidationError(_('Enter proper pass or fail!'))
+
+    @api.multi
+    @api.depends('marksheet_line.status')
+    def _compute_total_pass(self):
+        for record in self:
+            count = 0
+            for marksheet in record.marksheet_line:
+                if marksheet.status == 'pass':
+                    count += 1
+            record.total_pass = count
+
+    @api.multi
+    @api.depends('marksheet_line.status')
+    def _compute_total_failed(self):
+        for record in self:
+            count = 0
+            for marksheet in record.marksheet_line:
+                if marksheet.status == 'fail':
+                    count += 1
+            record.total_failed = count

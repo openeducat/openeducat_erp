@@ -19,30 +19,49 @@
 #
 ###############################################################################
 
+import calendar
 import datetime
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+week_days = [(calendar.day_name[0], calendar.day_name[0]),
+             (calendar.day_name[1], calendar.day_name[1]),
+             (calendar.day_name[2], calendar.day_name[2]),
+             (calendar.day_name[3], calendar.day_name[3]),
+             (calendar.day_name[4], calendar.day_name[4]),
+             (calendar.day_name[5], calendar.day_name[5]),
+             (calendar.day_name[6], calendar.day_name[6])]
 
 
 class OpTimetable(models.Model):
     _name = 'op.timetable'
+    _inherit = ['mail.thread']
     _description = 'TimeTables'
     _rec_name = 'faculty_id'
 
-    period_id = fields.Many2one('op.period', 'Period', required=True)
+    period_id = fields.Many2one(
+        'op.period', 'Period', required=True, track_visibility="onchange")
     start_datetime = fields.Datetime(
         'Start Time', required=True,
-        default=lambda self: fields.Datetime.now())
-    end_datetime = fields.Datetime('End Time', required=True)
-    course_id = fields.Many2one('op.course', 'Course', required=True)
-    faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    subject_id = fields.Many2one('op.subject', 'Subject', required=True)
+        default=lambda self: fields.Datetime.now(),
+        track_visibility="onchange")
+    end_datetime = fields.Datetime(
+        'End Time', required=True, track_visibility="onchange")
+    course_id = fields.Many2one(
+        'op.course', 'Course', required=True, track_visibility="onchange")
+    faculty_id = fields.Many2one(
+        'op.faculty', 'Faculty', required=True, track_visibility="onchange")
+    batch_id = fields.Many2one(
+        'op.batch', 'Batch', required=True, track_visibility="onchange")
+    subject_id = fields.Many2one(
+        'op.subject', 'Subject', required=True, track_visibility="onchange")
+    classroom_id = fields.Many2one(
+        'op.classroom', 'Classroom', track_visibility='onchange')
     color = fields.Integer('Color Index')
-    type = fields.Selection(
-        [('Monday', 'Monday'), ('Tuesday', 'Tuesday'),
-         ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'),
-         ('Friday', 'Friday'), ('Saturday', 'Saturday')], 'Days')
+    type = fields.Selection(week_days, 'Days', track_visibility="onchange")
+    state = fields.Selection(
+        [('draft', 'Draft'), ('done', 'Done'), ('cancel', 'Canceled')],
+        'Status', default='draft')
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
@@ -61,6 +80,14 @@ class OpTimetable(models.Model):
             usr.append(self.faculty_id.user_id.id)
         self.user_ids = usr
 
+    @api.one
+    def lecture_done(self):
+        self.state = 'done'
+
+    @api.one
+    def lecture_cancel(self):
+        self.state = 'cancel'
+
     @api.constrains('start_datetime', 'end_datetime')
     def _check_date_time(self):
         if self.start_datetime > self.end_datetime:
@@ -76,14 +103,14 @@ class OpTimetable(models.Model):
         start_datetime = datetime.datetime.strptime(
             self.start_datetime, "%Y-%m-%d %H:%M:%S")
         if start_datetime and start_datetime.weekday() == 0:
-            self.type = 'Monday'
+            self.type = calendar.day_name[0]
         elif start_datetime and start_datetime.weekday() == 1:
-            self.type = 'Tuesday'
+            self.type = calendar.day_name[1]
         elif start_datetime and start_datetime.weekday() == 2:
-            self.type = 'Wednesday'
+            self.type = calendar.day_name[2]
         elif start_datetime and start_datetime.weekday() == 3:
-            self.type = 'Thursday'
+            self.type = calendar.day_name[3]
         elif start_datetime and start_datetime.weekday() == 4:
-            self.type = 'Friday'
+            self.type = calendar.day_name[4]
         elif start_datetime and start_datetime.weekday() == 5:
-            self.type = 'Saturday'
+            self.type = calendar.day_name[5]

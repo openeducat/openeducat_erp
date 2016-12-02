@@ -27,3 +27,4 @@ from . import hr
 from . import res_company
 from . import student
 from . import subject
+from . import subject_registration

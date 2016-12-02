@@ -22,20 +22,19 @@
                     <br></br>
                     <table width="100%" class="table table-bordered">
                         <thead>
-                            <th class="text-center">Student</th>
-                            <th class="text-center">Library Card Barcode</th>
+                            <th class="text-center">Card Holder</th>
+                            <th class="text-center">Card Barcode</th>
                         </thead>
                         <tbody>
                             <t t-foreach="docs" t-as="card">
-                                <tr>
-                                    <td class="text-center" width="50%">
+                                <tr class="text-center">
+                                    <td style="vertical-align: middle;" width="50%">
                                         <h4>
                                             <t t-esc="card.student_id.name" />
                                         </h4>
                                     </td>
-                                    <td class="text-center" width="50%">
-                                        <img
-                                            t-att-src="'data:image/png;base64,%s'% (get_barcode('Code128',card.number))" />
+                                    <td style="padding:15px 0px 15px 0px;" width="50%">
+                                        <img t-att-src="'data:image/png;base64,%s'% (get_barcode('Code128',card.number))" />
                                     </td>
                                 </tr>
                             </t>

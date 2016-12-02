@@ -22,8 +22,8 @@
 from datetime import datetime
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class TimeTableReport(models.TransientModel):

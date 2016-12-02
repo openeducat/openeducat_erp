@@ -20,7 +20,7 @@
 ##############################################################################
 
 
-from openerp import models, api
+from odoo import models, api
 
 
 class account_invoice(models.Model):
@@ -33,5 +33,6 @@ class account_invoice(models.Model):
         if paid_invoice and self:
             movement = self.env['op.media.movement'].search(
                 [('invoice_id', '=', self.id)])
-            movement.state = 'return_done'
+            if movement:
+                movement.state = 'return_done'
         return paid_invoice

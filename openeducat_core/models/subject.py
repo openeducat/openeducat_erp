@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from openerp import models, fields
+from odoo import models, fields
 
 
 class OpSubject(models.Model):
@@ -33,3 +33,6 @@ class OpSubject(models.Model):
         [('theory', 'Theory'), ('practical', 'Practical'),
          ('both', 'Both'), ('other', 'Other')],
         'Type', default="theory", required=True)
+    subject_type = fields.Selection(
+        [('compulsory', 'Compulsory'), ('elective', 'Elective')],
+        'Subject Type', default="compulsory", required=True)

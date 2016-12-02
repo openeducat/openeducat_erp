@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpResultTemplate(models.Model):
@@ -29,14 +30,39 @@ class OpResultTemplate(models.Model):
 
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session', required=True)
+    evolution_type = fields.Selection(
+        related='exam_session_id.evolution_type', store=True)
     name = fields.Char("Name", size=254, required=True)
     result_date = fields.Date(
         'Result Date', required=True, default=fields.Date.today())
-    line_ids = fields.One2many(
-        'op.result.template.line', 'result_id', 'Session Lines')
-    criteria_ids = fields.Many2many(
-        'op.min.clear.criteria', string='Minimum Qualification Criteria')
-    pass_status_ids = fields.Many2many('op.pass.status', string='Pass Status')
+    grade_ids = fields.Many2many(
+        'op.grade.configuration', string='Grade Configuration')
+    state = fields.Selection(
+        [('draft', 'Draft'), ('result_generated', 'Result Generated')],
+        'State', default='draft')
+
+    @api.one
+    @api.constrains('exam_session_id')
+    def _check_exam_session(self):
+        for exam in self.exam_session_id.exam_ids:
+            if exam.state != 'done':
+                raise ValidationError(_('All subject exam should be done.'))
+
+    @api.one
+    @api.constrains('grade_ids')
+    def _check_min_max_per(self):
+        count = 0
+        for grade in self.grade_ids:
+            for sub_grade in self.grade_ids:
+                if grade != sub_grade:
+                    if (sub_grade.min_per <= grade.min_per and
+                            sub_grade.max_per >= grade.min_per) or \
+                            (sub_grade.min_per <= grade.max_per and
+                             sub_grade.max_per >= grade.max_per):
+                        count += 1
+        if count > 0:
+            raise ValidationError(
+                _('Percentage range conflict with other record.'))
 
     @api.one
     def generate_result(self):
@@ -46,79 +72,25 @@ class OpResultTemplate(models.Model):
             'generated_date': fields.Date.today(),
             'generated_by': self.env.uid,
             'status': 'draft',
+            'result_template_id': self.id
         })
-        student_list = []
-        for exam_session in self.line_ids:
-            total_exam = 0.0
-            for exam in exam_session.exam_lines:
-                total_exam += exam.exam_id.total_marks
-
-                for attd in exam.exam_id.attendees_line:
-                    result_dict = {
-                        'exam_id': exam.exam_id.id,
-                        'exam_tmpl_id': exam.id,
-                        'marks': (exam.weightage / 100) * attd.marks,
-                        'status': attd.marks >= exam.pass_marks and
-                        'pass' or 'fail',
-                        'per': (100 * attd.marks) / exam.total_marks,
-                        'student_id': attd.student_id.id,
-                        'total_marks': (exam.weightage / 100) *
-                        exam.total_marks,
-                    }
-                    ret_id = self.env['op.result.line'].create(result_dict)
-                    student_list.append(
-                        [ret_id, attd.student_id.id, result_dict])
-        stu_dict = {}
-        for ret_id, stu_id, data in student_list:
-            if stu_id not in stu_dict:
-                stu_dict[stu_id] = []
-
-            stu_dict[stu_id].append([ret_id, data])
-        for stu_id in stu_dict:
-
-            total_marks = sum([x[1]['marks'] for x in stu_dict[stu_id]])
-            per = (total_exam and (100 / total_exam) * total_marks) or 0.0
-            result = ''
-            pass_flg = True
-            number_fail = 0
-            for x in stu_dict[stu_id]:
-                if x[1]['status'] == 'fail':
-                    pass_flg = False
-                    number_fail += 1
-            if pass_flg:
-
-                pass_st_ids = self.pass_status_ids
-                to_consider = False
-                min_pass = 0.0
-
-                for pass_st in pass_st_ids:
-                    if pass_st.number <= per and pass_st.number > min_pass:
-                        min_pass = pass_st.number
-                        to_consider = pass_st
-
-                if to_consider:
-                    result = to_consider.result
-            else:
-                crit_ids = self.criteria_ids
-                to_consider = False
-                max_pass = False
-                for crit_id in crit_ids:
-                    if crit_id.number == number_fail:
-                        to_consider = crit_id
-                    if not max_pass or crit_id.number > max_pass.number:
-                        max_pass = crit_id
-                if not to_consider:
-                    to_consider = max_pass
-                result = to_consider.result
-            mark_line_id = self.env['op.marksheet.line'].create(
-                {'student_id': stu_id,
-                 'marksheet_reg_id': marksheet_reg_id.id,
-                 'exam_session_id': exam_session.id,
-                 'result': result,
-                 'total_marks': total_marks,
-                 'total_per': per,
-                 })
-            self.env['op.result.line'].browse(
-                [x[0].id for x in stu_dict[stu_id]]).write(
-                {'marksheet_line_id': mark_line_id.id})
+        student_dict = {}
+        for exam in self.exam_session_id.exam_ids:
+            for attendee in exam.attendees_line:
+                result_line_id = self.env['op.result.line'].create({
+                    'student_id': attendee.student_id.id,
+                    'exam_id': exam.id,
+                    'marks': str(attendee.marks and attendee.marks or 0),
+                })
+                if attendee.student_id.id not in student_dict:
+                    student_dict[attendee.student_id.id] = []
+                student_dict[attendee.student_id.id].append(result_line_id)
+        for student in student_dict:
+            marksheet_line_id = self.env['op.marksheet.line'].create({
+                'student_id': student,
+                'marksheet_reg_id': marksheet_reg_id.id,
+            })
+            for result_line in student_dict[student]:
+                result_line.marksheet_line_id = marksheet_line_id
+        self.state = 'result_generated'
         return True

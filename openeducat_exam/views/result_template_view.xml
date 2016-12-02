@@ -21,21 +21,18 @@
             <field name="arch" type="xml">
                 <form string="Result Template">
                     <header groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
-                        <button string="Generate Result" type="object" name="generate_result" class="oe_highlight"/>
+                        <button string="Generate Result" type="object" states="draft" name="generate_result" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,result_generated" />
                     </header>
                     <sheet>
                         <group colspan="4" col="4">
                             <field name="name" select="1" />
                             <field name="result_date" />
                             <field name="exam_session_id" />
+                            <field name="evolution_type" invisible="1" />
                         </group>
-                        <separator string="Minimum Qualification Criteria"
-                            colspan="4" />
-                        <field name="criteria_ids" colspan="4" nolabel="1" />
-                        <separator string="Passing Status" colspan="4" />
-                        <field name="pass_status_ids" colspan="4" nolabel="1" />
-                        <separator string="Session Templates" colspan="4" />
-                        <field name="line_ids" colspan="4" nolabel="1" />
+                        <separator string="Grades" colspan="4" attrs="{'invisible':[('evolution_type','!=','grade')]}" />
+                        <field name="grade_ids" colspan="4" nolabel="1" attrs="{'invisible':[('evolution_type','!=','grade')],'required':[('evolution_type','=','grade')]}" />
                     </sheet>
                 </form>
             </field>

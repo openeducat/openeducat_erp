@@ -15,12 +15,13 @@
             <field name="name">Student</field>
             <field name="category_id" ref="module_category_openeducat"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         </record>
         <record id="group_op_faculty" model="res.groups">
             <field name="name">Faculty</field>
             <field name="category_id" ref="module_category_openeducat"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
-            <field name="implied_ids" eval="[(4, ref('openeducat_core.group_op_student'))]"/>
+            <field name="implied_ids" eval="[(4, ref('openeducat_core.group_op_student')), (4, ref('base.group_user'))]"/>
         </record>
         <record id="group_op_back_office" model="res.groups">
             <field name="name">Back Office</field>
@@ -48,6 +49,22 @@
             <field name="model_id" ref="model_op_student" />
             <field name="groups"
                 eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
+            <field name="domain_force"> [(1,'=',1)]</field>
+        </record>
+
+        <record model="ir.rule" id="faculty_login_rule">
+            <field name="name">Faculty Login rule</field>
+            <field name="model_id" ref="model_op_faculty" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
+            <field name="domain_force"> [('user_id','=',user.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="view_faculty_rule">
+            <field name="name">View Faculties</field>
+            <field name="model_id" ref="model_op_faculty" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_back_office'))]" />
             <field name="domain_force"> [(1,'=',1)]</field>
         </record>
     </data>
