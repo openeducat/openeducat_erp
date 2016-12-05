@@ -50,7 +50,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
                      'Thursday', 'Friday', 'Saturday']
 
         data_list = []
-        for timetable_obj in self.env['op.timetable'].browse(
+        for timetable_obj in self.env['op.session'].browse(
                 data['time_table_ids']):
 
             oldDate = datetime.strptime(
@@ -58,8 +58,8 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
             day = dayofWeek[datetime.weekday(oldDate)]
 
             timetable_data = {
-                'period': timetable_obj.period_id.name,
-                'sequence': timetable_obj.period_id.sequence,
+                'period': timetable_obj.timing_id.name,
+                'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': timetable_obj.start_datetime,
                 'day': day,
                 'subject': timetable_obj.subject_id.name,

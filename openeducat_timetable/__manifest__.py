@@ -36,7 +36,7 @@
     'depends': ['openeducat_classroom'],
     'data': [
         'views/timetable_view.xml',
-        'views/period_view.xml',
+        'views/timing_view.xml',
         'views/faculty_view.xml',
         'report/report_timetable_student_generate.xml',
         'report/report_timetable_teacher_generate.xml',
@@ -50,7 +50,7 @@
         'timetable_menu.xml',
     ],
     'demo': [
-        'demo/period_demo.xml',
+        'demo/timing_demo.xml',
         'demo/op_timetable_demo.xml'
     ],
     'images': [

@@ -25,4 +25,4 @@ from odoo import models, fields
 class OpFaculty(models.Model):
     _inherit = 'op.faculty'
 
-    timetable_ids = fields.One2many('op.timetable', 'faculty_id', 'TimeTables')
+    session_ids = fields.One2many('op.session', 'faculty_id', 'Sessions')

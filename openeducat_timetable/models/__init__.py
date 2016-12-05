@@ -20,5 +20,5 @@
 ##############################################################################
 
 from . import faculty
-from . import period
 from . import timetable
+from . import timing

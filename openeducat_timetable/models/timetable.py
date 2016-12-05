@@ -33,14 +33,14 @@ week_days = [(calendar.day_name[0], calendar.day_name[0]),
              (calendar.day_name[6], calendar.day_name[6])]
 
 
-class OpTimetable(models.Model):
-    _name = 'op.timetable'
+class OpSession(models.Model):
+    _name = 'op.session'
     _inherit = ['mail.thread']
-    _description = 'TimeTables'
+    _description = 'Sessions'
     _rec_name = 'faculty_id'
 
-    period_id = fields.Many2one(
-        'op.period', 'Period', required=True, track_visibility="onchange")
+    timing_id = fields.Many2one(
+        'op.timing', 'Timing', required=True, track_visibility="onchange")
     start_datetime = fields.Datetime(
         'Start Time', required=True,
         default=lambda self: fields.Datetime.now(),
