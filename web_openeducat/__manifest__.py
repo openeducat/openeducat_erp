@@ -37,6 +37,9 @@
         'demo/homepage.xml',
         'demo/feature_template.xml',
     ],
+    'images': [
+        'static/description/web_openeducat_banner.jpg',
+    ],
     'depends': [
         'website',
     ],

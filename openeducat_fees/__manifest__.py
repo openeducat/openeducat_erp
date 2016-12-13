@@ -39,6 +39,7 @@
         'views/fees_terms_view.xml',
         'views/student_view.xml',
         'views/course_view.xml',
+        'security/fees_security.xml',
         'security/ir.model.access.csv'
     ],
     'images': [

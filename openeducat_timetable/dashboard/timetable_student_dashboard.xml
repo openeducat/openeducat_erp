@@ -2,17 +2,17 @@
 <odoo>
     <data>
         <record model="ir.actions.act_window" id="act_op_student_period_today">
-            <field name="name">Period</field>
+            <field name="name">Sessions</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">op.timetable</field>
+            <field name="res_model">op.session</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_op_timetable_tree" />
-            <field name="search_view_id" ref="view_op_timetable_search" />
+            <field name="view_id" ref="view_op_session_tree" />
+            <field name="search_view_id" ref="view_op_session_search" />
             <field name="domain">[('user_ids','in',[uid])]</field>
             <field name="context">{'search_default_today':1}</field>
         </record>
-        <record model="ir.ui.view" id="timetable_student_dashboard_form_view">
+        <record model="ir.ui.view" id="session_student_dashboard_form_view">
             <field name="name">board.student.form</field>
             <field name="model">board.board</field>
             <field name="inherit_id" ref="openeducat_core.board_student_form" />

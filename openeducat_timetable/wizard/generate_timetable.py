@@ -28,9 +28,9 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
-class GenerateTimeTable(models.TransientModel):
+class GenerateSession(models.TransientModel):
     _name = 'generate.time.table'
-    _description = 'Generate TimeTables'
+    _description = 'Generate Sessions'
     _rec_name = 'course_id'
 
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -82,10 +82,10 @@ class GenerateTimeTable(models.TransientModel):
             curr_date = start_date + datetime.timedelta(n)
             for line in self.time_table_lines:
                 if int(line.day) == curr_date.weekday():
-                    hour = line.period_id.hour
-                    if line.period_id.am_pm == 'pm' and int(hour) != 12:
+                    hour = line.timing_id.hour
+                    if line.timing_id.am_pm == 'pm' and int(hour) != 12:
                         hour = int(hour) + 12
-                    per_time = '%s:%s:00' % (hour, line.period_id.minute)
+                    per_time = '%s:%s:00' % (hour, line.timing_id.minute)
                     final_date = datetime.datetime.strptime(
                         curr_date.strftime('%Y-%m-%d ') +
                         per_time, '%Y-%m-%d %H:%M:%S')
@@ -97,13 +97,13 @@ class GenerateTimeTable(models.TransientModel):
                     curr_start_date = datetime.datetime.strptime(
                         utc_dt, "%Y-%m-%d %H:%M:%S")
                     curr_end_date = curr_start_date + datetime.timedelta(
-                        hours=line.period_id.duration)
-                    self.env['op.timetable'].create({
+                        hours=line.timing_id.duration)
+                    self.env['op.session'].create({
                         'faculty_id': line.faculty_id.id,
                         'subject_id': line.subject_id.id,
                         'course_id': self.course_id.id,
                         'batch_id': self.batch_id.id,
-                        'period_id': line.period_id.id,
+                        'timing_id': line.timing_id.id,
                         'classroom_id': line.classroom_id.id,
                         'start_datetime':
                         curr_start_date.strftime("%Y-%m-%d %H:%M:%S"),
@@ -114,7 +114,7 @@ class GenerateTimeTable(models.TransientModel):
         return {'type': 'ir.actions.act_window_close'}
 
 
-class GenerateTimeTableLine(models.TransientModel):
+class GenerateSessionLine(models.TransientModel):
     _name = 'gen.time.table.line'
     _description = 'Generate Time Table Lines'
     _rec_name = 'day'
@@ -123,7 +123,7 @@ class GenerateTimeTableLine(models.TransientModel):
         'generate.time.table', 'Time Table', required=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
-    period_id = fields.Many2one('op.period', 'Period', required=True)
+    timing_id = fields.Many2one('op.timing', 'Timing', required=True)
     classroom_id = fields.Many2one('op.classroom', 'Classroom')
     day = fields.Selection([
         ('0', calendar.day_name[0]),

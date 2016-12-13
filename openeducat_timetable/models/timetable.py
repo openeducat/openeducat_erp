@@ -33,14 +33,14 @@ week_days = [(calendar.day_name[0], calendar.day_name[0]),
              (calendar.day_name[6], calendar.day_name[6])]
 
 
-class OpTimetable(models.Model):
-    _name = 'op.timetable'
+class OpSession(models.Model):
+    _name = 'op.session'
     _inherit = ['mail.thread']
-    _description = 'TimeTables'
+    _description = 'Sessions'
     _rec_name = 'faculty_id'
 
-    period_id = fields.Many2one(
-        'op.period', 'Period', required=True, track_visibility="onchange")
+    timing_id = fields.Many2one(
+        'op.timing', 'Timing', required=True, track_visibility="onchange")
     start_datetime = fields.Datetime(
         'Start Time', required=True,
         default=lambda self: fields.Datetime.now(),
@@ -60,7 +60,8 @@ class OpTimetable(models.Model):
     color = fields.Integer('Color Index')
     type = fields.Selection(week_days, 'Days', track_visibility="onchange")
     state = fields.Selection(
-        [('draft', 'Draft'), ('done', 'Done'), ('cancel', 'Canceled')],
+        [('draft', 'Draft'), ('confirm', 'Confirm'),
+         ('done', 'Done'), ('cancel', 'Canceled')],
         'Status', default='draft')
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
@@ -79,6 +80,10 @@ class OpTimetable(models.Model):
         if self.faculty_id.user_id:
             usr.append(self.faculty_id.user_id.id)
         self.user_ids = usr
+
+    @api.one
+    def lecture_confirm(self):
+        self.state = 'confirm'
 
     @api.one
     def lecture_done(self):

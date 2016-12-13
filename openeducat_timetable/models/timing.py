@@ -22,8 +22,8 @@
 from odoo import models, fields
 
 
-class OpPeriod(models.Model):
-    _name = 'op.period'
+class OpTiming(models.Model):
+    _name = 'op.timing'
     _description = 'Period'
     _order = 'sequence'
 

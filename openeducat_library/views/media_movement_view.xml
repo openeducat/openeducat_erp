@@ -29,7 +29,8 @@
                 <form string="media Movement">
                     <header groups="base.group_user">
                         <button name="issue_media" string="Issue media" type="object" class="oe_highlight"
-                            attrs="{'invisible':[('state','not in',('available','reserve'))]}" />
+                            attrs="{'invisible':[('state','not in',('available','reserve'))]}"
+                            groups="openeducat_library.group_op_library" />
                         <button name="%(return_media_act)d" string="Return Media"
                             type="action" context="{'default_media_id': media_id, 'default_media_unit_id': media_unit_id}"
                             attrs="{'invisible':[('state','!=','issue')]}"
