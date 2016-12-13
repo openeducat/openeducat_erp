@@ -60,7 +60,8 @@ class OpSession(models.Model):
     color = fields.Integer('Color Index')
     type = fields.Selection(week_days, 'Days', track_visibility="onchange")
     state = fields.Selection(
-        [('draft', 'Draft'), ('done', 'Done'), ('cancel', 'Canceled')],
+        [('draft', 'Draft'), ('confirm', 'Confirm'),
+         ('done', 'Done'), ('cancel', 'Canceled')],
         'Status', default='draft')
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
@@ -79,6 +80,10 @@ class OpSession(models.Model):
         if self.faculty_id.user_id:
             usr.append(self.faculty_id.user_id.id)
         self.user_ids = usr
+
+    @api.one
+    def lecture_confirm(self):
+        self.state = 'confirm'
 
     @api.one
     def lecture_done(self):
