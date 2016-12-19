@@ -1,0 +1,91 @@
+-
+  Backoffice Admin can also create faculty and emplyee with user there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+  I create Partner for faculty
+-
+  !record {model: res.partner, id: partner_aadolf_test}:
+    name: 'Aadolf'
+-
+  In order to check employee creation create Faculty first
+-
+  !record {model: op.faculty, id: faculty_aadolf_test}:
+    name: 'Aadolf'
+    title: base.res_partner_title_mister
+    middle_name: 'D'
+    last_name: 'Church'
+    gender: 'male'
+    birth_date: '1983-02-01'
+    blood_group: 'A+'
+    email: 'aadolfdchurch@demo.com'
+    city: 'New York'
+    country_id: base.us
+    nationality: base.us
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_aadolf_test
+-
+  I called the "Create Employee" wizard
+-
+  !record {model: wizard.op.faculty.employee, id: faculty_employee_wiz_0}:
+    user_boolean: True
+-
+  I clicked on Create Employee Button
+-
+  !python {model: wizard.op.faculty.employee, id: False}: |
+    self.browse(ref("faculty_employee_wiz_0")).with_context({"lang": 'en_US',
+      "tz": False, "active_model": "op.faculty", "active_ids": [ref("faculty_aadolf_test")],
+      "active_id": ref("faculty_aadolf_test"), }).create_employee()
+-
+  I check that the employee field is set automatically when create employee.
+-
+  !assert {model: op.faculty, id: faculty_aadolf_test}:
+    - emp_id.id != False
+
+-
+  I create Partner for faculty
+-
+  !record {model: res.partner, id: partner_dylan_test}:
+    name: 'Dylan'
+-
+  In order to check employee creation without user create Faculty first
+-
+  !record {model: op.faculty, id: faculty_dylan_test}:
+    name: 'Dylan'
+    title: base.res_partner_title_mister
+    middle_name: 'Q'
+    last_name: 'Hidalgo'
+    gender: 'male'
+    birth_date: '1983-02-01'
+    blood_group: 'O+'
+    email: 'dylanqhidalgo@demo.com'
+    city: 'New Jersey'
+    country_id: base.us
+    nationality: base.us
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_dylan_test
+-
+  I called again the "Create Employee" wizard
+-
+  !record {model: wizard.op.faculty.employee, id: faculty_employee_wiz_1}:
+    user_boolean: False
+-
+  I clicked on Create Employee Button
+-
+  !python {model: wizard.op.faculty.employee, id: False}: |
+    self.browse(ref("faculty_employee_wiz_1")).with_context({"lang": 'en_US',
+      "tz": False, "active_model": "op.faculty", "active_ids": [ref("faculty_dylan_test")],
+      "active_id": ref("faculty_dylan_test"), }).create_employee()
+-
+  I check that the Employee field is set automatically when create Employee.
+-
+  !assert {model: op.faculty, id: faculty_dylan_test}:
+    - emp_id.id != False
+
+
+

@@ -23,7 +23,7 @@
     'name': 'OpenEduCat Assignment',
     'version': '9.0.2.4.0',
     'license': 'LGPL-3',
-    'category': 'Openerp Education',
+    'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Assgiments',
     'complexity': "easy",
@@ -49,6 +49,11 @@
         'demo/assignment_type_demo.xml',
         'demo/assignment_demo.xml',
         'demo/assignment_sub_line_demo.xml'
+    ],
+    'test': [
+        'test/res_users_test.yml',
+        'test/assignment_sub_values.yml',
+        'test/assignment_creation_submission.yml'
     ],
     'images': [
         'static/description/openeducat_assignment_banner.jpg',

@@ -62,7 +62,7 @@ class OpSession(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirm'),
          ('done', 'Done'), ('cancel', 'Canceled')],
-        'Status', default='draft')
+        'Status', default='draft', track_visibility="onchange")
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
@@ -98,6 +98,38 @@ class OpSession(models.Model):
         if self.start_datetime > self.end_datetime:
             raise ValidationError(_(
                 'End Time cannot be set before Start Time.'))
+
+    @api.model
+    def create(self, values):
+        res = super(OpSession, self).create(values)
+        mfids = res.message_follower_ids
+        partner_val = []
+        partner_ids = []
+        for val in mfids:
+            partner_val.append(val.partner_id.id)
+        if res.faculty_id and res.faculty_id.user_id:
+            partner_ids.append(res.faculty_id.user_id.partner_id.id)
+        if res.batch_id and res.course_id:
+            course_val = self.env['op.student.course'].search([
+                ('batch_id', '=', res.batch_id.id),
+                ('course_id', '=', res.course_id.id)
+            ])
+            for val in course_val:
+                if val.student_id.user_id:
+                    partner_ids.append(val.student_id.user_id.partner_id.id)
+        subtype_id = self.env['mail.message.subtype'].sudo().search([
+            ('name', '=', 'Discussions')])
+        if partner_ids and subtype_id:
+            for partner in partner_ids:
+                if partner in partner_val:
+                    continue
+                val = self.env['mail.followers'].sudo().create({
+                    'res_model': res._name,
+                    'res_id': res.id,
+                    'partner_id': partner,
+                    'subtype_ids': [[6, 0, [subtype_id[0].id]]]
+                })
+        return res
 
     @api.onchange('course_id')
     def onchange_course(self):

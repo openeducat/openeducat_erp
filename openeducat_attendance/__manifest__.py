@@ -23,7 +23,7 @@
     'name': 'OpenEduCat Attendance',
     'version': '9.0.2.4.0',
     'license': 'LGPL-3',
-    'category': 'Openerp Education',
+    'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Attendances',
     'complexity': "easy",
@@ -45,6 +45,11 @@
         'report/report_menu.xml',
         'attendance_menu.xml'
     ],
+    'test': [
+         'test/res_users_test.yml',
+         'test/attendance_sub_value_test.yml',
+         'test/attendance_process_test.yml'
+     ],
     'demo': [
         'demo/attendance_register_demo.xml',
         'demo/attendance_sheet_demo.xml',

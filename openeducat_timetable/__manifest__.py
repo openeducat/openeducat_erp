@@ -23,7 +23,7 @@
     'name': 'OpenEduCat Timetable',
     'version': '9.0.2.4.0',
     'license': 'LGPL-3',
-    'category': 'Openerp Education',
+    'category': 'Education',
     "sequence": 3,
     'summary': 'Manage TimeTables',
     'complexity': "easy",
@@ -53,6 +53,10 @@
         'demo/timing_demo.xml',
         'demo/op_timetable_demo.xml'
     ],
+    'test': [
+         'test/timetable_sub_value.yml',
+         'test/generate_timetable.yml'
+     ],
     'images': [
         'static/description/openeducat_timetable_banner.jpg',
     ],

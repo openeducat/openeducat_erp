@@ -23,7 +23,7 @@
     'name': 'OpenEduCat Facility',
     'version': '9.0.2.4.0',
     'license': 'LGPL-3',
-    'category': 'Openerp Education',
+    'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Facility',
     'complexity': "easy",

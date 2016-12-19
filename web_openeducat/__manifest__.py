@@ -31,11 +31,9 @@
     'data': [
         'views/assets.xml',
         'views/navbar_template.xml',
-    ],
-    'demo': [
-        'demo/footer_template.xml',
-        'demo/homepage.xml',
-        'demo/feature_template.xml',
+        'views/footer_template.xml',
+        'views/homepage.xml',
+        'views/feature_template.xml',
     ],
     'images': [
         'static/description/web_openeducat_banner.jpg',

@@ -29,8 +29,6 @@ class OpExamRoom(models.Model):
     name = fields.Char('Name', size=256, required=True)
     classroom_id = fields.Many2one('op.classroom', 'Classroom', required=True)
     capacity = fields.Integer('Capacity', required=True)
-    course_ids = fields.Many2many('op.course', string='Course(s)')
-    student_ids = fields.Many2many('op.student', string='Student(s)')
 
     @api.constrains('capacity')
     def check_capacity(self):

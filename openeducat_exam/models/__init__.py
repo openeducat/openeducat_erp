@@ -21,7 +21,6 @@
 
 from . import exam
 from . import exam_attendees
-from . import exam_res_allocation
 from . import exam_room
 from . import exam_session
 from . import exam_type

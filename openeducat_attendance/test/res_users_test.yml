@@ -1,0 +1,29 @@
+-
+   Create a user as 'Backoffice user'
+-
+  !record {model: res.users, id: res_users_backoffice_user_test, view: False}:
+    company_id: base.main_company
+    name: Backoffice Test
+    login: backoffice
+    email: backofficetest@openeducat.org
+-
+  I added groups to Backoffice User.
+-
+  !record {model: res.users, id: res_users_backoffice_user_test}:
+    groups_id:
+      - openeducat_core.group_op_back_office
+-
+   Create an user as 'Faculty'
+-
+  !record {model: res.users, id: res_users_faculty_user_test, view: False}:
+    company_id: base.main_company
+    name: Faculty Test
+    login: faculty
+    email: facultytest@openeducat.org
+-
+  I added groups to Faculty User.
+-
+  !record {model: res.users, id: res_users_faculty_user_test}:
+    groups_id:
+      - openeducat_core.group_op_faculty
+

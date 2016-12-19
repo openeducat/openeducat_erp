@@ -1,0 +1,88 @@
+-
+  Student can create media purchase request there for I checked it with that user who is Student.
+-
+  !context
+    uid: res_users_student_user_test
+-
+  in order to move media purchase request workflow I create media purchase request
+-
+  !record {model: op.media.purchase, id: media_purchase_test}:
+    name: media_test
+    state: 'draft'
+    course_ids: course_test
+    author: 'Nanda Thakare'
+    media_type_id: media_type_test
+    subject_ids: subject_fa_test
+-
+  I check that Now media purchase request is "Draft"
+-
+  !assert {model: op.media.purchase, id: media_purchase_test}:
+    - state == 'draft'
+-
+  I clicked on Request button in 1st media queue request
+-
+  !python {model: op.media.purchase, id: media_purchase_test}: |
+    self.act_requested()
+-
+  I check that Now media purchase request is "Requested"
+-
+  !assert {model: op.media.purchase, id: media_purchase_test}:
+    - state == 'request'
+-
+  Faculty can create media purchase request there for I checked it with that user who is Faculty.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+  in order to move media purchase request workflow I create 2nd media purchase request
+-
+  !record {model: op.media.purchase, id: media_purchase2_test}:
+    name: media_test
+    state: 'draft'
+    course_ids: course_test
+    author: 'R Kummar'
+    media_type_id: media_type_test
+    subject_ids: subject_fa_test
+-
+  I check that Now 2nd media purchase request is "Draft"
+-
+  !assert {model: op.media.purchase, id: media_purchase2_test}:
+    - state == 'draft'
+-
+  I clicked on Request button in 2nd media purchase request
+-
+  !python {model: op.media.purchase, id: media_purchase2_test}: |
+    self.act_requested()
+-
+  I check that Now 2nd media purchase request is "Request"
+-
+  !assert {model: op.media.purchase, id: media_purchase2_test}:
+    - state == 'request'
+-
+  Librarian can Accept or Reject media purchase request there for I checked it with that user who is Librarian.
+-
+  !context
+    uid: res_users_librarian_user_test
+-
+  I clicked on Accept button in 1st media purchase request
+-
+  !python {model: op.media.purchase, id: media_purchase_test}: |
+    self.act_accept()
+-
+  I check that Now media purchase request is "Accepted"
+-
+  !assert {model: op.media.purchase, id: media_purchase_test}:
+    - state == 'accept'
+-
+  I clicked on Reject button in 2nd media purchase request
+-
+  !python {model: op.media.purchase, id: media_purchase2_test}: |
+    self.act_reject()
+-
+  I check that Now media purchase request is "Rejected"
+-
+  !assert {model: op.media.purchase, id: media_purchase2_test}:
+    - state == 'reject'
+
+
+
