@@ -9,8 +9,10 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_op_session_tree" />
             <field name="search_view_id" ref="view_op_session_search" />
-            <field name="domain">[('user_ids','in',[uid])]</field>
-            <field name="context">{'search_default_today':1}</field>
+            <field name="domain">[('user_ids','in',[uid]),('start_datetime','&gt;=',time.strftime('%Y-%m-%d
+                00:00:00')),('start_datetime','&lt;=',time.strftime('%Y-%m-%d
+                23:59:59')),('state','=','confirm')]
+            </field>
         </record>
         <record model="ir.ui.view" id="session_faculty_dashboard_form_view">
             <field name="name">board.faculty.form</field>
@@ -19,7 +21,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//board" position="inside">
                     <column>
-                        <action name="%(act_op_faculty_period_today)d" string="Lectures for Today" />
+                        <action name="%(act_op_faculty_period_today)d"
+                            string="Sessions for Today" />
                     </column>
                 </xpath>
             </field>

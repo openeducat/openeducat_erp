@@ -10,4 +10,4 @@ Based on best of class enterprise level architecture make OpenEduCat ready to us
 
 To install OpenEduCat, Install Odoo / OpenERP  and go to `Settings -> Apps` and search `OpenEduCat` and that's it module is available for installation, click on `install`, that's it. 
 
-Documentation for OpenEduCat can be found here : http://openeducat.readthedocs.org/en/latest/
+Documentation for OpenEduCat can be found here : http://doc.openeducat.org/

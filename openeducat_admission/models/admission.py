@@ -74,7 +74,8 @@ class OpAdmission(models.Model):
     mobile = fields.Char(
         'Mobile', size=16, states={'done': [('readonly', True)]})
     email = fields.Char(
-        'Email', size=256, states={'done': [('readonly', True)]})
+        'Email', size=256, required=True,
+        states={'done': [('readonly', True)]})
     city = fields.Char('City', size=64, states={'done': [('readonly', True)]})
     zip = fields.Char('Zip', size=8, states={'done': [('readonly', True)]})
     state_id = fields.Many2one(
@@ -196,6 +197,8 @@ class OpAdmission(models.Model):
 
     @api.one
     def confirm_in_progress(self):
+        if not self.batch_id:
+            raise ValidationError(_('Please assign batch.'))
         if not self.partner_id:
             partner_id = self.env['res.partner'].create({
                 'name': self.name
@@ -218,6 +221,7 @@ class OpAdmission(models.Model):
             'street': self.street or False,
             'street2': self.street2 or False,
             'phone': self.phone or False,
+            'email': self.email or False,
             'mobile': self.mobile or False,
             'zip': self.zip or False,
             'city': self.city or False,

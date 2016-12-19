@@ -33,7 +33,7 @@
             <field name="name">Back Office Admin</field>
             <field name="category_id" ref="module_category_openeducat"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
-            <field name="implied_ids" eval="[(4, ref('openeducat_core.group_op_back_office'))]"/>
+            <field name="implied_ids" eval="[(4, ref('openeducat_core.group_op_back_office')),(4, ref('base.group_system'))]"/>
         </record>
 
         <record model="ir.rule" id="student_login_rule">
@@ -67,5 +67,22 @@
                 eval="[(4, ref('openeducat_core.group_op_back_office'))]" />
             <field name="domain_force"> [(1,'=',1)]</field>
         </record>
+
+        <record model="ir.rule" id="student_subject_registration_rule">
+            <field name="name">Student Subject Registration Rule</field>
+            <field name="model_id" ref="model_op_subject_registration" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_student'))]" />
+            <field name="domain_force"> [('student_id.user_id','=',user.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="view_all_subject_registration_rule">
+            <field name="name">View Students Registration</field>
+            <field name="model_id" ref="model_op_subject_registration" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
+            <field name="domain_force"> [(1,'=',1)]</field>
+        </record>
+
     </data>
 </odoo>

@@ -1,0 +1,71 @@
+-
+  I called the "Generate Sessions" wizard
+-
+  !record {model: generate.time.table, id: time_table_wiz_0}:
+    course_id: course_test
+    batch_id: batch_test
+    start_date: '2016-01-01'
+    end_date: '2016-06-30'
+    time_table_lines_1:
+      - day: '0'
+        timing_id: time1_test
+        faculty_id: faculty_dylan_test
+        subject_id: subject_fa_test
+        classroom_id: room1_test
+    time_table_lines_2:
+      - day: '1'
+        timing_id: time1_test
+        faculty_id: faculty_dylan_test
+        subject_id: subject_fa_test
+        classroom_id: room1_test
+    time_table_lines_4:
+      - day: '3'
+        timing_id: time1_test
+        faculty_id: faculty_dylan_test
+        subject_id: subject_fa_test
+        classroom_id: room1_test
+    time_table_lines_5:
+      - day: '4'
+        timing_id: time1_test
+        faculty_id: faculty_dylan_test
+        subject_id: subject_fa_test
+        classroom_id: room1_test
+    time_table_lines_6:
+      - day: '5'
+        timing_id: time1_test
+        faculty_id: faculty_dylan_test
+        subject_id: subject_fa_test
+        classroom_id: room1_test
+-
+  I clicked on PROCEED Button
+-
+  !python {model: generate.time.table, id: False}: |
+    self.browse(ref("time_table_wiz_0")).with_context({"lang": 'en_US',
+      "tz": False,}).act_gen_time_table()
+-
+  Faculty can confirm, done and cancel lecture sessions there for I checked it with that user who is Faculty.
+-
+  !context
+    uid: res_users_faculty_user_test
+
+-
+  I check time table session generated and confirm it
+-
+  !python {model: op.session, id: False}: |
+    sessions = self.search([('state', '=', 'draft')], limit=1)
+    if sessions:
+      sessions[0].lecture_confirm()
+-
+  I check confirmed time table session and make it done
+-
+  !python {model: op.session, id: False}: |
+    sessions = self.search([('state', '=', 'confirm')], limit=1)
+    if sessions:
+      sessions[0].lecture_done()
+-
+  I check time table session generated and cancel it
+-
+  !python {model: op.session, id: False}: |
+    sessions = self.search([('state', '=', 'draft')], limit=1)
+    if sessions:
+      sessions[0].lecture_cancel()
