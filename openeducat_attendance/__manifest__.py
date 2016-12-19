@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Attendance',
-    'version': '9.0.2.4.0',
+    'version': '3.0.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,

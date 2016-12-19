@@ -1,6 +1,38 @@
 Changelog
 =========
 
+`10.0.3.0.0`
+------------
+- Added renew media feature for library.
+- Enhanced the penalty calculation.
+- Added sequence for library card & media unit barcode.
+- Added barcode interface for library media unit issue. `Enterprise`
+- Added dashboard for librarian. `Enterprise`
+
+- Enhanced admission process & added fees term feature.
+- Added multiple course admission for single student.
+- Added elective subject & student can opt.
+- Added fees reminder for students. 'Enterprise`
+- Added feature of online admission process. 'Enterprise`
+
+- Enhanced hostel management with broad coverage of campus. `Enterprise`
+- Added invoicing feature for campus facilities. `Enterprise`
+- Enhanced the transportation with trips & students per stop. `Enterprise`
+
+- Added classroom detail in session(timetable) generation and manage states.
+- Enhanced exam management.
+- Improve menu structure.
+- Added dashboards for course, batch & KPIs. `Enterprise`
+
+- Switched Health, achievement, scholarship, placement, alumni to enterprise. `Enterprise`
+- Made bigbluebutton integration for online session. `Enterprise`
+- Added meeting feature for parent, faculty & back office. `Enterprise`
+- Added feature to manage board affiliation details. `Enterprise`
+- Added feature of gamification for students. `Enterprise`
+- Added new backend theme for OpenEduCat. `Enterprise`
+- Improved access rights & rules for security.
+- Solve reported issues #60 #76.
+
 `9.0.2.4.0`
 -----------
 - Added default values & constraints for fields.
