@@ -5,20 +5,20 @@
             <field name="name">student.attendance.form</field>
             <field name="model">student.attendance</field>
             <field name="arch" type="xml">
-                <form string="Student Attendance">
-                    <header>
-                        <span groups="base.group_user">
-                            <button
-                                string="Student Attendance Report Between These Dates"
-                                type="object" name="print_report" class="oe_highlight" />
-                            <button special="cancel" string="Close"
-                                type="object" />
-                        </span>
-                    </header>
+                <form string="Student Attendance Report">
                     <group col="4" colspan="4">
                         <field name="from_date" />
                         <field name="to_date" />
                     </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button
+                                string="Print"
+                                type="object" name="print_report" class="oe_highlight" />
+                            <button special="cancel" string="Close"
+                                type="object" />
+                        </span>
+                    </footer>
                 </form>
             </field>
         </record>

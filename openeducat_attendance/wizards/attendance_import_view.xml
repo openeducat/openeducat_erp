@@ -6,10 +6,6 @@
             <field name="model">op.all.student</field>
             <field name="arch" type="xml">
                 <form string="Add Student(s)">
-                    <header groups="base.group_user">
-                        <button name="confirm_student" string="Confirm Student Selection"
-                            type="object" class="oe_highlight" />
-                    </header>
                     <sheet>
                         <group col="4">
                             <field name="course_id" />
@@ -21,6 +17,10 @@
                                 domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]" />
                         </group>
                     </sheet>
+                    <footer groups="base.group_user">
+                        <button name="confirm_student" string="Confirm Student Selection"
+                            type="object" class="oe_highlight" />
+                    </footer>
                 </form>
             </field>
         </record>
