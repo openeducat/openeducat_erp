@@ -6,10 +6,6 @@
             <field name="model">issue.media</field>
             <field name="arch" type="xml">
                 <form string="media Issue">
-                    <header groups="base.group_user">
-                        <button name="do_issue" type="object" string="Proceed" class="oe_highlight" />
-                        <button string="Cancel" special="cancel" />
-                    </header>
                     <sheet>
                         <group col="4">
                             <field name="media_id" />
@@ -26,6 +22,10 @@
                             <field name="return_date" />
                         </group>
                     </sheet>
+                    <footer groups="base.group_user">
+                        <button name="do_issue" type="object" string="Proceed" class="oe_highlight" />
+                        <button string="Cancel" special="cancel" />
+                    </footer>
                 </form>
             </field>
         </record>

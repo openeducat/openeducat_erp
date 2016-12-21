@@ -35,12 +35,6 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Sessions">
-                    <header groups="base.group_user">
-                        <button string="Proceed" type="object"
-                            name="act_gen_time_table" class="oe_highlight" />
-                        <button special="cancel" string="Close"
-                            type="object" />
-                    </header>
                     <sheet>
                         <group col="4" colspan="4">
                             <field name="course_id" />
@@ -88,6 +82,12 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <footer groups="base.group_user">
+                        <button string="Proceed" type="object"
+                            name="act_gen_time_table" class="oe_highlight" />
+                        <button special="cancel" string="Close"
+                            type="object" />
+                    </footer>
                 </form>
             </field>
         </record>

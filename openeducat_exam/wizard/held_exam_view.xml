@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        
+
         <record id="view_op_held_exam_form" model="ir.ui.view">
             <field name="name">op.held.exam.form</field>
             <field name="model">op.held.exam</field>
             <field name="type">form</field>
-            <field name="priority" eval="8"/>
+            <field name="priority" eval="8" />
             <field name="arch" type="xml">
-            <form string="Held Exam Wizard">
-                <header>
-                    <button string="Held" class="oe_highlight" type="object"
-                        name="held_exam"/>
-                </header>
-                <group col="2">
-                    <group>
-                        <field name="exam_id" invisible="1"/>
-                        <field name="subject_id" readonly="1"/>
+                <form string="Held Exam Wizard">
+                    <group col="2">
+                        <group>
+                            <field name="exam_id" invisible="1" />
+                            <field name="subject_id" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="course_id" readonly="1" />
+                            <field name="batch_id" readonly="1" />
+                        </group>
                     </group>
-                    <group>
-                        <field name="course_id" readonly="1"/>
-                        <field name="batch_id" readonly="1"/>
-                    </group>
-                </group>
-                <separator string="Absent Attendees" colspan="4"/>
-                <field name="attendees_line" nolabel="1"
-                    domain="[('exam_id','=', exam_id)]"/>
-            </form>
+                    <separator string="Absent Attendees"
+                        colspan="4" />
+                    <field name="attendees_line" nolabel="1"
+                        domain="[('exam_id','=', exam_id)]" />
+                    <footer>
+                        <button string="Held" class="oe_highlight"
+                            type="object" name="held_exam" />
+                    </footer>
+                </form>
             </field>
         </record>
-        
+
         <record model="ir.actions.act_window" id="act_open_op_held_exam_view">
             <field name="name">Held Exam Wizard</field>
             <field name="type">ir.actions.act_window</field>
@@ -38,13 +39,13 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
-        
+
         <record model="ir.actions.act_window.view" id="act_open_op_held_exam_view_form">
-            <field name="act_window_id" ref="act_open_op_held_exam_view"/>
-            <field name="sequence" eval="20"/>
+            <field name="act_window_id" ref="act_open_op_held_exam_view" />
+            <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_held_exam_form"/>
+            <field name="view_id" ref="view_op_held_exam_form" />
         </record>
-        
+
     </data>
 </openerp>
