@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_exam_student_lable">
+            <style>
+                .font{
+                font-size:20px;
+                font-family:"Helvetica"
+                }
+                @page{
+                size: A4;
+                }
+            </style>
+
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="font">
+                            <div class="page">
+                                <div class="row text-center">
+                                    <h2>
+                                        <strong>Seating Arrangement for Student Examination</strong>
+                                    </h2>
+                                </div>
+                                <para>
+                                    <font color="white"> ......</font>
+                                </para>
+                                <para>
+                                    <font color="white">......</font>
+                                </para>
+                                <t t-foreach="get_student_data(o.exam_session_ids)" t-as="s">
+                                    <table class="center">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <b>Course : </b>
+                                                    <span t-esc="s['course']" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <para>
+                                        <font color="white"> ......</font>
+                                    </para>
+                                    <para>
+                                        <font color="white">......</font>
+                                    </para>
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr t-foreach="s['line']" t-as="ss">
+                                                <td>
+                                                    <span t-if="ss.get('1')">
+                                                        Name :
+                                                        <span t-esc="ss['1']['student']" />
+                                                        <br></br>
+                                                        Course :
+                                                        <span t-esc="ss['1']['course']" />
+                                                        <br></br>
+                                                        Roll No :
+                                                        <span t-esc="ss['1']['roll_number']" />
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-if="ss.get('2')">
+                                                        Name :
+                                                        <span t-esc="ss['2']['student']" />
+                                                        <br></br>
+                                                        Course :
+                                                        <span t-esc="ss['2']['course']" />
+                                                        <br></br>
+                                                        Roll No :
+                                                        <span t-esc="ss['2']['roll_number']" />
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span t-if="ss.get('3')">
+                                                        Name :
+                                                        <span t-esc="ss['3']['student']" />
+                                                        <br></br>
+                                                        Course :
+                                                        <span t-esc="ss['3']['course']" />
+                                                        <br></br>
+                                                        Roll No :
+                                                        <span t-esc="ss['3']['roll_number']" />
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

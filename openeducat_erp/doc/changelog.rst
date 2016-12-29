@@ -39,3 +39,4 @@ Changelog
 - Removed un-necessary files from ``__openerp__.py``
 
 - Fixed bug for admission to student conversion
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_book_unit_tree" model="ir.ui.view">
+            <field name="name">op.book.unit.tree</field>
+            <field name="model">op.book.unit</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Book Units">
+                    <field name="name" />
+                    <field name="book_id" />
+                    <field name="barcode" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_book_unit_form" model="ir.ui.view">
+            <field name="name">op.book.unit.form</field>
+            <field name="model">op.book.unit</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Book Units">
+                    <header groups="base.group_user">
+                        <button name="%(issue_book_act)d" string="Issue Book"
+                            type="action" context="{'default_book_id': book_id, 'default_book_unit_id': active_id}"
+                            attrs="{'invisible':[('state','!=','available')]}" class="oe_highlight"/>
+                        <button name="%(return_book_act)d" string="Return Book"
+                            type="action" context="{'default_book_id': book_id, 'default_book_unit_id': active_id}"
+                            attrs="{'invisible':[('state','!=','issue')]}"
+                            class="oe_highlight" groups="openeducat_library.group_op_library" />
+                        <field name="state" widget="statusbar" statusbar_visible="available,issue,reserve,lost"
+                            statusbar_colors='{"r":"red"}' />
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="name" />
+                            <field name="book_id" />
+                            <field name="barcode" />
+                        </group>
+                        <notebook>
+                            <page name="movements" string="Movements">
+                                <field name="movement_lines" nolabel="1" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_book_unit_search" model="ir.ui.view">
+            <field name="name">op.book.unit.search</field>
+            <field name="model">op.book.unit</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Book Units">
+                    <field name="name" />
+                    <field name="barcode" />
+                    <field name="book_id" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Book" domain="[]" context="{'group_by':'book_id'}" />
+                        <filter string="State" domain="[]" context="{'group_by':'state'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_book_unit_view">
+            <field name="name">Book Units</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.book.unit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_book_unit_view_form">
+            <field name="act_window_id" ref="act_open_book_unit_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_book_unit_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_book_unit_view_tree">
+            <field name="act_window_id" ref="act_open_book_unit_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_book_unit_tree" />
+        </record>
+    </data>
+</openerp>

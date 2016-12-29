@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_exam_res_allocation_tree" model="ir.ui.view">
+            <field name="name">op.exam.res.allocation.tree</field>
+            <field name="model">op.exam.res.allocation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Exam Resource Allocation">
+                    <field name="exam_ids" />
+                    <field name="faculty_ids" />
+                    <field name="student_ids" />
+                    <field name="exam_session_ids" />
+
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_exam_res_allocation_form" model="ir.ui.view">
+            <field name="name">op.exam.res.allocation.form</field>
+            <field name="model">op.exam.res.allocation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Exam Resource Allocation">
+                    <sheet>
+                        <div>
+                            <group col="2" colspan="4">
+                                <separator colspan="4" string="Session" />
+                                <field name="exam_session_ids" colspan="4" nolabel="1"/>
+
+                                <separator colspan="4" string="Exam" />
+                                <field name="exam_ids" colspan="4" nolabel="1"/>
+
+                                <separator colspan="4" string="Faculty" />
+                                <field name="faculty_ids" colspan="4" nolabel="1">
+                                    <tree string="Faculty">
+                                        <field name="title" />
+                                        <field name="name" />
+                                        <field name="middle_name" />
+                                        <field name="last_name" />
+                                    </tree>
+                                </field>
+
+                                <separator colspan="4" string="Student" />
+                                <field name="student_ids" colspan="4" nolabel="1">
+                                    <tree>
+                                        <field name="title" />
+                                        <field name="name" />
+                                        <field name="middle_name" />
+                                        <field name="last_name" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_exam_res_allocation_search" model="ir.ui.view">
+            <field name="name">op.exam.res.allocation.search</field>
+            <field name="model">op.exam.res.allocation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Exam Resource Allocation">
+                    <field name="exam_ids" />
+                    <field name="faculty_ids" />
+                    <field name="student_ids" />
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_exam_res_allocation_view">
+            <field name="name">Exam Resource Allocation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.exam.res.allocation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_exam_res_allocation_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_res_allocation_view_form">
+            <field name="act_window_id" ref="act_open_op_exam_res_allocation_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_exam_res_allocation_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_res_allocation_view_tree">
+            <field name="act_window_id" ref="act_open_op_exam_res_allocation_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_exam_res_allocation_tree" />
+        </record>
+    </data>
+</openerp>

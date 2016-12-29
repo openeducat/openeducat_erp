@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_book_tree" model="ir.ui.view">
+            <field name="name">op.book.tree</field>
+            <field name="model">op.book</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Book">
+                    <field name="name" />
+                    <field name="isbn" />
+                    <field name="tags" />
+                    <field name="author_ids" />
+                    <field name="edition" />
+                    <field name="publisher_ids" />
+                    <field name="course_ids" />
+                    <field name="internal_code" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_book_form" model="ir.ui.view">
+            <field name="name">op.book.form</field>
+            <field name="model">op.book</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Book">
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name" placeholder="Book Name" style="width: 100%%" />
+                            </h1>
+                        </div>
+                        <newline/>
+                        <group col="4">
+                            <field name="author_ids" widget="many2many_tags" />
+                            <field name="publisher_ids" widget="many2many_tags" />
+                            <field name="isbn" />
+                            <field name="internal_code" />
+                            <field name="edition" />
+                            <field name="tags" widget="many2many_tags" />
+                        </group>
+                        <notebook colspan="4">
+                            <page name="description" string="Description">
+                                <field name="description" colspan="4" />
+                            </page>
+                            <page name="education_details" string="Education Details">
+                                <group colspan="4">
+                                    <separator string="Courses" />
+                                    <separator string="Subjects" />
+                                    <field name="course_ids" nolabel="1" widget="many2many_tags" />
+                                    <field name="subject_ids" nolabel="1" widget="many2many_tags" />
+                                </group>
+                            </page>
+                            <page name="units" string="Units">
+                                <field name="unit_ids" colspan="4" nolabel="1" />
+                            </page>
+                            <page name="movements" string="Movements" groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin">
+                                <field name="movement_line" colspan="4" nolabel="1" />
+                            </page>
+                            <page name="book_queue_requests" string="Book Queue Requests">
+                                <field name="queue_ids" colspan="4" nolabel="1">
+                                    <tree string="Book Queue Request">
+                                        <field name="partner_id" />
+                                        <field name="date_from" />
+                                        <field name="date_to" />
+                                        <field name="state" />
+                                        <button name="do_accept" string="Accept" type="object"
+                                            states="request" icon="gtk-go-forward" groups="openeducat_library.group_op_library" />
+                                        <button name="do_reject" string="Reject" type="object"
+                                            states="request,accept" icon="terp-dialog-close"
+                                            groups="openeducat_library.group_op_library" />
+                                        <button name="do_request_again" string="Request Again"
+                                            states="reject" type="object" icon="STOCK_GO_BACK"
+                                            groups="openeducat_library.group_op_library" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_book_search" model="ir.ui.view">
+            <field name="name">op.book.search</field>
+            <field name="model">op.book</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Book">
+                    <field name="name" />
+                    <field name="isbn" />
+                    <field name="tags" />
+                    <field name="unit_ids" />
+                    <field name="author_ids" />
+                    <field name="edition" />
+                    <field name="publisher_ids" />
+                    <field name="course_ids" />
+                    <field name="subject_ids" />
+                    <field name="internal_code" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Edition" domain="[]" context="{'group_by':'edition'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_book_view">
+            <field name="name">Books</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.book</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_book_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_book_view_form">
+            <field name="act_window_id" ref="act_open_op_book_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_book_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_book_view_tree">
+            <field name="act_window_id" ref="act_open_op_book_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_book_tree" />
+        </record>
+    </data>
+</openerp>

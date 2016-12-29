@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="student_hall_ticket_form">
+            <field name="name">student.hall.ticket.form</field>
+            <field name="model">student.hall.ticket</field>
+            <field name="arch" type="xml">
+                <form string="Student Hall Ticket">
+                    <header groups="base.group_user">
+                        <button name="print_report" type="object" string="Print" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel" />
+                    </header>
+                    <group>
+                        <field name="exam_session_id" />
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="student_hall_ticket_act">
+            <field name="name">Student Hall Tickets</field>
+            <field name="res_model">student.hall.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="student_hall_ticket_form" />
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

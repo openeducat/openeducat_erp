@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_admission_analysis">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <div class="font">
+                        <div class="page">
+                            <br></br>
+                            <div>
+                                Phone : <span t-esc="res_company.phone" />
+                                <br></br>
+                                <u>Mail : <span t-esc="res_company.email" /></u>
+                            </div>
+                            <br></br>
+                            <div class="text-center">
+                                <h3>
+                                    <strong>Admission Analysis</strong>
+                                </h3>
+                            </div>
+                            <div class="text-center">
+                                <b>From Date: </b>
+                                <span t-raw="'%s &lt;&gt;' %  formatLang(data['start_date'], date=True) if  formatLang(data['start_date'], date=True) else ''" />
+                                <b>To Date:</b>
+                                <span t-raw="'%s &lt;&gt;' %   formatLang(data['end_date'], date=True) if   formatLang(data['end_date'], date=True)  else ''" />
+                            </div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Course : </b>
+                                            <span t-raw="'%s &lt;&gt;' % data['course_id'][1] if data['course_id'][1] else ''" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <table class="table">
+                                <thead>
+                                    <th>Student Name</th>
+                                    <th>Application No.</th>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="get_data(data)" t-as="o">
+                                        <td class="text-left">
+                                            <span t-esc="o['name']" />
+                                            <span
+                                                t-raw="'%s &lt;&gt;' %  o['middle_name'] if  o['middle_name']  else ''" />
+                                            <span
+                                                t-raw="'%s &lt;&gt;' %   o['last_name']  if  o['last_name']  else ''" />
+                                        </td>
+                                        <td class="text-left">
+                                            <span
+                                                t-raw="'%s &lt;&gt;' %   o['application_no']  if   o['application_no']   else ''" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <h5><strong>Total Number of Students :</strong>
+                            <span t-esc="get_total_student(data)" /></h5>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

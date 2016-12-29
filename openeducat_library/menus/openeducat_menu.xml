@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Library Management -->
+        <menuitem id="menu_op_school_library_root" name="Library"
+            parent="openeducat_core.menu_op_school_root" sequence="70"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+
+        <menuitem id="menu_op_book_sub" name="Books" sequence="10"
+            parent="menu_op_school_library_root" action="act_open_op_book_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_book_unit_openeducat" name="Books Units" sequence="20"
+            parent="menu_op_school_library_root" action="act_open_book_unit_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_book_movement_sub" name="Book Movements" sequence="30"
+            parent="menu_op_school_library_root" action="act_open_op_book_movement_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_book_queue_sub" name="Book Queue Requests" sequence="40"
+            parent="menu_op_school_library_root" action="act_open_op_book_queue_view"
+            groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+
+
+
+        <!-- Configuration Management -->
+        <menuitem id="menu_op_school_library_config" name="Library"
+            parent="openeducat_core.menu_op_config_root" sequence="10"
+            groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin" />
+        
+        <menuitem id="menu_op_library_card_sub" name="Library Cards"
+            parent="menu_op_school_library_config" sequence="10"
+            action="act_open_op_library_card_view" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_library_card_type_sub" name="Library Card Types"
+            parent="menu_op_school_library_config" sequence="20"
+            action="act_open_op_library_card_type_view" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_author_sub" name="Authors"
+            parent="menu_op_school_library_config" sequence="30"
+            action="act_open_op_author_view" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_publisher_sub" name="Publishers"
+            parent="menu_op_school_library_config" sequence="40"
+            action="act_open_op_publisher_view" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+        <menuitem id="menu_op_tag_sub" name="Tags"
+            parent="menu_op_school_library_config" sequence="50"
+            action="act_open_op_tag_view" groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+    </data>
+</openerp>

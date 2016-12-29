@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="placement_student_form_view">
+            <field name="name">op.student.form</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='educational']" position="after">
+                    <page name="placement_offers" string="Placement Offers">
+                        <field name="placement_line" colspan="4" nolabel="1" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_op_placement_offer_tree" model="ir.ui.view">
+            <field name="name">op.placement.offer.tree</field>
+            <field name="model">op.placement.offer</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Placement Offer">
+                    <field name="name" />
+                    <field name="student_id" />
+                    <field name="join_date" />
+                    <field name="offer_package" />
+                    <field name="training_period" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_placement_offer_form" model="ir.ui.view">
+            <field name="name">op.placement.offer.form</field>
+            <field name="model">op.placement.offer</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Placement Offer">
+                    <header groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
+                        <button name="placement_offer" states="draft" type="object" string="Offer" class="oe_highlight"/>
+                        <button name="placement_join" states="offer" type="object" string="Join" class="oe_highlight"/>
+                        <button name="confirm_rejected" states="offer,join" string="Reject" type="object"/>
+                        <button name="confirm_cancel" states="draft,offer,join" string="Cancel" type="object"/>
+                        <button name="confirm_to_draft" states="reject,cancel" string="Set to Draft" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,offer,join" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Company Name" style="width: 100%%" />
+                            </h1>
+                            <h1>
+                                <field name="student_id" placeholder="Student Name" style="width: 80%%" />
+                            </h1>
+                        </div>
+                        <group col="8" colspan="4">
+                            <group col="6" colspan="4">
+                                <field name="join_date" />
+                                <field name="offer_package" />
+                                <field name="training_period" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_placement_offer_search" model="ir.ui.view">
+            <field name="name">op.placement.offer.search</field>
+            <field name="model">op.placement.offer</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Placement Offer">
+                    <field name="name" />
+                    <field name="student_id" />
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_placement_offer_view">
+            <field name="name">Placement Offers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.placement.offer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_placement_offer_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_placement_offer_view_form">
+            <field name="act_window_id" ref="act_open_op_placement_offer_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_placement_offer_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_placement_offer_view_tree">
+            <field name="act_window_id" ref="act_open_op_placement_offer_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_placement_offer_tree" />
+        </record>
+    </data>
+</openerp>

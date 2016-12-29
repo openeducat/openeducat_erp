@@ -1,0 +1,55 @@
+<openerp>
+    <data>
+        <template id="report_book_barcode">
+            <style type="text/css">
+                .font{
+                font-size:14px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+            </style>
+            <t t-call="report.html_container">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <div class="row text-center">
+                            <h2>
+                                <strong>Book(s) Barcode</strong>
+                            </h2>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <t t-foreach="get_books()" t-as="book">
+                            <h3>
+                                <strong>
+                                    <t t-raw="book['name']" />
+                                </strong>
+                            </h3>
+                            <br></br>
+                            <table width="100%" class="table table-bordered">
+                                <thead>
+                                    <th class="text-center">Book Unit</th>
+                                    <th class="text-center">Barcode</th>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="book['unit']" t-as="unit">
+                                        <td class="text-center">
+                                            <h4><t t-esc="unit.name" /></h4>
+                                        </td>
+                                        <td class="text-center">
+                                            <img t-att-src="'data:image/png;base64,%s'% (get_barcode('Code128',unit.barcode))" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <br></br>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

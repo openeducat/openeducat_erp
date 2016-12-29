@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Library Card Type -->
+        <record id="view_op_library_card_type_tree" model="ir.ui.view">
+            <field name="name">op.library.card.type.tree</field>
+            <field name="model">op.library.card.type</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Library Card Type">
+                    <field name="name" />
+                    <field name="allow_book" />
+                    <field name="duration" />
+                    <field name="penalty_amt_per_day" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_library_card_type_form" model="ir.ui.view">
+            <field name="name">op.library.card.type.form</field>
+            <field name="model">op.library.card.type</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Library Card Type">
+                    <sheet>
+                        <group col="4">
+                            <field name="name" />
+                            <field name="allow_book" />
+                            <field name="duration" />
+                            <field name="penalty_amt_per_day" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_library_card_type_search" model="ir.ui.view">
+            <field name="name">op.library.card.type.search</field>
+            <field name="model">op.library.card.type</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Library Card Type">
+                    <field name="name" />
+                    <field name="duration" />
+                    <field name="penalty_amt_per_day" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_library_card_type_view">
+            <field name="name">Library Card Types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.library.card.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_library_card_type_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_library_card_type_view_form">
+            <field name="act_window_id" ref="act_open_op_library_card_type_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_library_card_type_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_library_card_type_view_tree">
+            <field name="act_window_id" ref="act_open_op_library_card_type_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_library_card_type_tree" />
+        </record>
+        <!-- Library Card -->
+        <record id="view_op_library_card_tree" model="ir.ui.view">
+            <field name="name">op.library.card.tree</field>
+            <field name="model">op.library.card</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Library Card">
+                    <field name="number" />
+                    <field name="issue_date" />
+                    <field name="partner_id" />
+                    <field name="library_card_type_id" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_library_card_form" model="ir.ui.view">
+            <field name="name">op.library.card.form</field>
+            <field name="model">op.library.card</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Library Card">
+                    <sheet>
+                        <group col="4">
+                            <field name="number" />
+                            <field name="issue_date" />
+                            <field name="library_card_type_id" />
+                            <field name="type" />
+                            <field name="partner_id" />
+                            <field name="student_id" attrs="{'invisible':[('type','!=','student')],'required':[('type','=','student')]}" />
+                            <field name="faculty_id" attrs="{'invisible':[('type','!=','faculty')],'required':[('type','=','faculty')]}" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_library_card_search" model="ir.ui.view">
+            <field name="name">op.library.card.search</field>
+            <field name="model">op.library.card</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Library Card">
+                    <field name="number" />
+                    <field name="issue_date" />
+                    <field name="partner_id" />
+                    <field name="library_card_type_id" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_library_card_view">
+            <field name="name">Library Cards</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.library.card</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_library_card_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_library_card_view_form">
+            <field name="act_window_id" ref="act_open_op_library_card_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_library_card_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_library_card_view_tree">
+            <field name="act_window_id" ref="act_open_op_library_card_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_library_card_tree" />
+        </record>
+    </data>
+</openerp>

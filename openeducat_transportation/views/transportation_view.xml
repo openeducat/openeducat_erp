@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_op_transportation_tree" model="ir.ui.view">
+            <field name="name">op.transportation.tree</field>
+            <field name="model">op.transportation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Transportation">
+                    <field name="name" />
+                    <field name="vehicle_id" />
+                    <field name="from_stop_id" />
+                    <field name="to_stop_id" />
+                    <field name="start_time" widget="float_time" />
+                    <field name="end_time" widget="float_time" />
+                    <field name="cost" />
+                    <field name="stop_ids" />
+                    <field name="student_ids" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_transportation_form" model="ir.ui.view">
+            <field name="name">op.transportation.form</field>
+            <field name="model">op.transportation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Transportation">
+                    <sheet>
+                        <group col="4">
+                            <field name="name" />
+                            <field name="vehicle_id" />
+                            <field name="from_stop_id" />
+                            <field name="to_stop_id" />
+                            <field name="start_time" widget="float_time"/>
+                            <field name="end_time" widget="float_time"/>
+                            <field name="cost" />
+                        </group>
+                        <group string="Stop(s)">
+                            <field name="stop_ids" nolabel="1"/>
+                        </group>
+                        <group string="Student(s)">
+                            <field name="student_ids" nolabel="1">
+                                <tree>
+                                    <field name="title" />
+                                    <field name="name" />
+                                    <field name="middle_name" />
+                                    <field name="last_name" />
+                                    <field name="course_id" />
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_transportation_search" model="ir.ui.view">
+            <field name="name">op.transportation.search</field>
+            <field name="model">op.transportation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Transportation">
+                    <field name="name" />
+                    <field name="stop_ids" />
+                    <field name="vehicle_id" />
+                    <field name="start_time" />
+                    <field name="end_time" />
+                    <field name="from_stop_id" />
+                    <field name="to_stop_id" />
+                    <field name="cost" />
+                    <field name="student_ids" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Vehicle" domain="[]" context="{'group_by':'vehicle_id'}" />
+                        <filter string="From Stop" domain="[]" context="{'group_by':'from_stop_id'}" />
+                        <filter string="To Stop" domain="[]" context="{'group_by':'to_stop_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_transportation_view">
+            <field name="name">Transportations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.transportation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_transportation_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_transportation_view_form">
+            <field name="act_window_id" ref="act_open_op_transportation_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_transportation_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_transportation_view_tree">
+            <field name="act_window_id" ref="act_open_op_transportation_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_transportation_tree" />
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_ticket">
+            <style>
+                .font{
+                font-size:14px;
+                font-family:"Helvetica"
+                }
+                @page{
+                margin-top:1%;
+                size: A4;
+                }
+            </style>
+
+            <t t-call="report.html_container">
+                <t t-foreach="get_data(data)" t-as="o">
+                    <div class="header" style="margin-left:10%">
+                        <div class="row">
+                            <div>
+                                <img t-if="res_company.logo" t-att-src="'data:image/png;base64,%s' % res_company.logo"
+                                    width="380" hight="880" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="font">
+                        <div class="page">
+                            <div class="row text-center">
+                                <h3>
+                                    <b>Hall Ticket</b>
+                                </h3>
+                                (
+                                <span t-raw="'%s &lt;&gt;' % o['exam'] if o['exam'] else ''" />
+                                <span t-raw="'%s &lt;&gt;' % o['exam_code'] if o['exam_code'] else ''" />
+                                )
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <table width="100%">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <table width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <b>Student Name : </b>
+                                                        <span t-esc="o['student']" />
+                                                        <span
+                                                            t-raw="'%s &lt;&gt;' %  o['student_middle'] if  o['student_middle']  else ''" />
+                                                        <span
+                                                            t-raw="'%s &lt;&gt;' %   o['student_last']  if  o['student_last']  else ''" />
+                                                    </td>
+                                                    <td>
+                                                        <b>Roll No : </b>
+                                                        <span
+                                                            t-raw="'%s &lt;&gt;' %   o['roll_number']  if  o['roll_number']  else ''" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <b>Course : </b>
+                                                        <span
+                                                            t-raw="'%s &lt;&gt;' %   o['course']  if  o['course']  else ''" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <img t-if="o['photo']" t-att-src="'data:image/png;base64,%s' % o['photo']"
+                                                width="80" hight="80" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <th class="text-center">Subject</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Time</th>
+                                    <th class="text-center">Supervisor Sign</th>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o['line']" t-as='s'>
+                                        <td class="text-left">
+                                            <span
+                                                t-raw="'%s &lt;&gt;' %  s['subject'] if  s['subject']  else ''" />
+                                        </td>
+                                        <td class="text-center">
+                                            <span
+                                                t-raw="'%s &lt;&gt;' %   formatLang(s['date'], date=True)  if  formatLang(s['date'], date=True)  else ''" />
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="s['time']" />
+                                        </td>
+                                        <td class="text-left">
+                                            <span
+                                                t-raw="'%s &lt;&gt;' %   s['sup_sign']  if  s['sup_sign']  else ''" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
