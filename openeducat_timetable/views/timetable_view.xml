@@ -8,13 +8,14 @@
             <field name="arch" type="xml">
                 <tree string="Sessions">
                     <field name="faculty_id" />
-                    <field name="course_id" />
+                    <!-- <field name="course_id" /> -->
                     <field name="batch_id" />
-                    <field name="timing_id" />
+                    <!-- <field name="timing_id" /> -->
                     <field name="subject_id" />
                     <field name="classroom_id" />
                     <field name="start_datetime" />
                     <field name="end_datetime" />
+                    <field name="state" />
                 </tree>
             </field>
         </record>
@@ -27,7 +28,8 @@
                     <header>
                         <button type="object" name="lecture_confirm" states="draft" string="Confirm" groups="openeducat_core.group_op_faculty" class="oe_highlight" />
                         <button type="object" name="lecture_done" states="confirm" string="Done" groups="openeducat_core.group_op_faculty" class="oe_highlight" />
-                        <button type="object" name="lecture_cancel" states="draft" string="Cancel" groups="openeducat_core.group_op_faculty" />
+                        <button type="object" name="lecture_draft" states="cancel" string="Set to Draft" groups="openeducat_core.group_op_faculty" class="oe_highlight" />
+                        <button type="object" name="lecture_cancel" states="draft,confirm" string="Cancel" groups="openeducat_core.group_op_faculty" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm" />
                     </header>
                     <sheet>
@@ -79,6 +81,8 @@
                             context="{'group_by':'timing_id'}" />
                         <filter string="Subject" domain="[]"
                             context="{'group_by':'subject_id'}" />
+                        <filter string="State" domain="[]"
+                            context="{'group_by':'state'}" />
                     </group>
                 </search>
             </field>
@@ -143,21 +147,29 @@
                                     <div class="oe_kanban_left">
                                         <li
                                             t-if="record.faculty_id.raw_value">
-                                            Faculty:
+                                            <b>Faculty:</b>
                                             <field name="faculty_id" />
                                         </li>
                                         <li
                                             t-if="record.subject_id.raw_value">
-                                            Subject:
+                                            <b>Subject:</b>
                                             <field name="subject_id" />
                                         </li>
                                         <li t-if="record.course_id.raw_value">
-                                            Course:
+                                            <b>Course:</b>
                                             <field name="course_id" />
                                         </li>
                                         <li t-if="record.batch_id.raw_value">
-                                            Batch:
+                                            <b>Batch:</b>
                                             <field name="batch_id" />
+                                        </li>
+                                        <li t-if="record.start_datetime.raw_value">
+											<b>Start Date:</b>
+                                            <field name="start_datetime" />
+                                        </li>
+                                        <li t-if="record.end_datetime.raw_value">
+											<b>End Date:</b>
+                                            <field name="end_datetime" />
                                         </li>
                                     </div>
                                     <div class="oe_kanban_bottom_right">

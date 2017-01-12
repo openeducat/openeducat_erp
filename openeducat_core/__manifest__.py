@@ -79,9 +79,9 @@
         'demo/faculty_demo.xml',
     ],
     'test': [
-         'test/res_users_test.yml',
-         'test/faculty_emp_user_creation.yml',
-     ],
+        'test/res_users_test.yml',
+        'test/faculty_emp_user_creation.yml',
+    ],
     'css': ['static/src/css/base.css'],
     'qweb': [
         'static/src/xml/base.xml'],

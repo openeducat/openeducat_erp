@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -17,9 +17,19 @@
 #    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
+
+from odoo import models, api
 
 
-from . import generate_timetable
-from . import session_confirmation
-from . import time_table_report
+class SessionConfirmation(models.TransientModel):
+    _name = 'session.confirmation'
+    _description = 'Wizard for Multiple Session Confirmation'
+
+    @api.multi
+    def state_confirmation(self):
+        active_ids = self.env.context['active_ids']
+        lines = self.env['op.session'].search([('id', 'in', active_ids),
+                                               ('state', '=', 'draft')])
+        for line in lines:
+            line.lecture_confirm()

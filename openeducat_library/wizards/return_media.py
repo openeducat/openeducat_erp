@@ -44,7 +44,6 @@ class ReturnMedia(models.TransientModel):
                  ('state', '=', 'issue')])
             if not media_move_search:
                 raise UserError(_("Can't return media."))
-                return {'type': 'ir.actions.act_window_close'}
             media_move_search.return_media(self.actual_return_date)
         else:
             raise UserError(_(

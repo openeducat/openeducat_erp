@@ -24,6 +24,7 @@ import datetime
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+
 week_days = [(calendar.day_name[0], calendar.day_name[0]),
              (calendar.day_name[1], calendar.day_name[1]),
              (calendar.day_name[2], calendar.day_name[2]),
@@ -43,26 +44,25 @@ class OpSession(models.Model):
         'op.timing', 'Timing', required=True, track_visibility="onchange")
     start_datetime = fields.Datetime(
         'Start Time', required=True,
-        default=lambda self: fields.Datetime.now(),
-        track_visibility="onchange")
+        default=lambda self: fields.Datetime.now())
     end_datetime = fields.Datetime(
-        'End Time', required=True, track_visibility="onchange")
+        'End Time', required=True)
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True, track_visibility="onchange")
+        'op.course', 'Course', required=True)
     faculty_id = fields.Many2one(
-        'op.faculty', 'Faculty', required=True, track_visibility="onchange")
+        'op.faculty', 'Faculty', required=True)
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=True, track_visibility="onchange")
+        'op.batch', 'Batch', required=True)
     subject_id = fields.Many2one(
-        'op.subject', 'Subject', required=True, track_visibility="onchange")
+        'op.subject', 'Subject', required=True)
     classroom_id = fields.Many2one(
-        'op.classroom', 'Classroom', track_visibility='onchange')
+        'op.classroom', 'Classroom')
     color = fields.Integer('Color Index')
-    type = fields.Selection(week_days, 'Days', track_visibility="onchange")
+    type = fields.Selection(week_days, 'Days')
     state = fields.Selection(
-        [('draft', 'Draft'), ('confirm', 'Confirm'),
+        [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('done', 'Done'), ('cancel', 'Canceled')],
-        'Status', default='draft', track_visibility="onchange")
+        'Status', default='draft')
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
@@ -80,6 +80,10 @@ class OpSession(models.Model):
         if self.faculty_id.user_id:
             usr.append(self.faculty_id.user_id.id)
         self.user_ids = usr
+
+    @api.one
+    def lecture_draft(self):
+        self.state = 'draft'
 
     @api.one
     def lecture_confirm(self):
@@ -151,3 +155,33 @@ class OpSession(models.Model):
             self.type = calendar.day_name[4]
         elif start_datetime and start_datetime.weekday() == 5:
             self.type = calendar.day_name[5]
+
+    @api.one
+    def notify_user(self):
+        template = self.env.ref('openeducat_timetable.session_details_changes',
+                                raise_if_not_found=False)
+        template.send_mail(self.id)
+
+    @api.multi
+    def get_emails(self, follower_ids):
+        email_ids = ''
+        for user in follower_ids:
+            if email_ids:
+                email_ids = email_ids + ',' + str(user.partner_id.email)
+            else:
+                email_ids = str(user.partner_id.email)
+        return email_ids
+
+    @api.multi
+    def get_subject(self):
+        return 'lacture of ' + self.faculty_id.name + \
+            ' for ' + self.subject_id.name + ' is ' + self.state
+
+    @api.multi
+    @api.model
+    def write(self, vals):
+        data = super(OpSession,
+                     self.with_context(check_move_validity=False)).write(vals)
+        if self.state not in ('draft', 'done'):
+            self.notify_user()
+        return data
