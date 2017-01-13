@@ -26,22 +26,24 @@ class OpRoomDistribution(models.TransientModel):
     """ Exam Room Distribution """
     _name = 'op.room.distribution'
 
-    @api.one
+    @api.multi
     @api.depends('student_ids')
-    def _get_total_student(self):
-        total_student = 0
-        if self.student_ids:
-            total_student = len(self.student_ids)
-        self.total_student = total_student
+    def _compute_get_total_student(self):
+        for record in self:
+            total_student = 0
+            if record.student_ids:
+                total_student = len(record.student_ids)
+            record.total_student = total_student
 
-    @api.one
+    @api.multi
     @api.depends('room_ids', 'room_ids.capacity')
-    def _get_room_capacity(self):
-        room_capacity = 0
-        if self.room_ids:
-            for room in self.room_ids:
-                room_capacity += (room.capacity or 0)
-        self.room_capacity = room_capacity
+    def _compute_get_room_capacity(self):
+        for record in self:
+            room_capacity = 0
+            if record.room_ids:
+                for room in record.room_ids:
+                    room_capacity += (room.capacity or 0)
+            record.room_capacity = room_capacity
 
     exam_id = fields.Many2one('op.exam', 'Exam')
     subject_id = fields.Many2one('op.subject', 'Subject')
@@ -52,9 +54,9 @@ class OpRoomDistribution(models.TransientModel):
     course_id = fields.Many2one("op.course", 'Course')
     batch_id = fields.Many2one("op.batch", 'Batch')
     total_student = fields.Integer(
-        "Total Student", compute="_get_total_student")
+        "Total Student", compute="_compute_get_total_student")
     room_capacity = fields.Integer(
-        "Room Capacity", compute="_get_room_capacity")
+        "Room Capacity", compute="_compute_get_room_capacity")
     room_ids = fields.Many2many("op.exam.room", string="Exam Rooms")
     student_ids = fields.Many2many("op.student", String='Student')
 
@@ -89,27 +91,28 @@ class OpRoomDistribution(models.TransientModel):
         })
         return res
 
-    @api.one
+    @api.multi
     def schedule_exam(self):
-        if self.total_student > self.room_capacity:
-            raise exceptions.AccessError(
-                _("Room capacity must be greater than total number \
-                  of student"))
-        student_ids = []
-        for student in self.student_ids:
-            student_ids.append(student.id)
-        for room in self.room_ids:
-            for i in range(room.capacity):
-                if not student_ids:
-                    continue
-                self.env['op.exam.attendees'].create({
-                    'exam_id': self.exam_id.id,
-                    'student_id': student_ids[0],
-                    'status': 'present',
-                    'course_id': self.course_id.id,
-                    'batch_id': self.batch_id.id,
-                    'room_id': room.id
-                })
-                student_ids.remove(student_ids[0])
-        self.exam_id.state = 'schedule'
-        return True
+        for exam in self:
+            if exam.total_student > exam.room_capacity:
+                raise exceptions.AccessError(
+                    _("Room capacity must be greater than total number \
+                      of student"))
+            student_ids = []
+            for student in exam.student_ids:
+                student_ids.append(student.id)
+            for room in exam.room_ids:
+                for i in range(room.capacity):
+                    if not student_ids:
+                        continue
+                    self.env['op.exam.attendees'].create({
+                        'exam_id': exam.exam_id.id,
+                        'student_id': student_ids[0],
+                        'status': 'present',
+                        'course_id': exam.course_id.id,
+                        'batch_id': exam.batch_id.id,
+                        'room_id': room.id
+                    })
+                    student_ids.remove(student_ids[0])
+            exam.exam_id.state = 'schedule'
+            return True

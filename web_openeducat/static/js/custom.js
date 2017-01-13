@@ -27,5 +27,5 @@ $(document).ready(function() {
         demo1.start();
         demo2.start();
         demo3.start();
-    }
+    };
 });

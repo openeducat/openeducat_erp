@@ -94,38 +94,45 @@ class OpMediaMovement(models.Model):
         self.return_date = date.today() + \
             timedelta(days=self.library_card_id.library_card_type_id.duration)
 
-    @api.one
+    @api.multi
     def issue_media(self):
         ''' function to issue media '''
-        if self.media_unit_id.state and \
-                self.media_unit_id.state == 'available':
-            self.media_unit_id.state = 'issue'
-            self.state = 'issue'
+        for record in self:
+            if record.media_unit_id.state and \
+                    record.media_unit_id.state == 'available':
+                record.media_unit_id.state = 'issue'
+                record.state = 'issue'
 
-    @api.one
+    @api.multi
     def return_media(self, return_date):
-        if not return_date:
-            return_date = fields.Date.today()
-        self.actual_return_date = return_date
-        self.calculate_penalty()
-        if self.penalty > 0.0:
-            self.state = 'return'
-        else:
-            self.state = 'return_done'
-        self.media_unit_id.state = 'available'
+        for record in self:
+            if not return_date:
+                return_date = fields.Date.today()
+            record.actual_return_date = return_date
+            record.calculate_penalty()
+            if record.penalty > 0.0:
+                record.state = 'return'
+            else:
+                record.state = 'return_done'
+            record.media_unit_id.state = 'available'
 
-    @api.one
+    @api.multi
     def calculate_penalty(self):
-        penalty_amt = 0
-        penalty_days = 0
-        standard_diff = days_between(self.return_date, self.issued_date)
-        actual_diff = days_between(self.actual_return_date, self.issued_date)
-        if self.library_card_id and self.library_card_id.library_card_type_id:
-            penalty_days = actual_diff > standard_diff and actual_diff - \
-                standard_diff or penalty_days
-            penalty_amt = penalty_days * \
-                self.library_card_id.library_card_type_id.penalty_amt_per_day
-        self.write({'penalty': penalty_amt})
+        for record in self:
+            penalty_amt = 0
+            penalty_days = 0
+            standard_diff = days_between(
+                record.return_date, record.issued_date)
+            actual_diff = days_between(
+                record.actual_return_date, record.issued_date)
+            if record.library_card_id and \
+                    record.library_card_id.library_card_type_id:
+                penalty_days = actual_diff > standard_diff and actual_diff - \
+                    standard_diff or penalty_days
+                penalty_amt = penalty_days * \
+                    record.library_card_id.library_card_type_id.\
+                    penalty_amt_per_day
+            record.write({'penalty': penalty_amt})
 
     @api.multi
     def create_penalty_invoice(self):

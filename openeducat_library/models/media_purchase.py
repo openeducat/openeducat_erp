@@ -46,14 +46,14 @@ class OpMediaPurchase(models.Model):
         default='draft', track_visibility='onchange')
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
 
-    @api.one
+    @api.multi
     def act_requested(self):
         self.state = 'request'
 
-    @api.one
+    @api.multi
     def act_accept(self):
         self.state = 'accept'
 
-    @api.one
+    @api.multi
     def act_reject(self):
         self.state = 'reject'

@@ -21,21 +21,12 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '3.0.0',
+    'version': '10.0.3.0.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
     'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
-    'description': """
-        This module provide core education management system over OpenERP
-        Features includes managing
-            * Student
-            * Faculty
-            * Course
-            * Batch
-
-    """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['board', 'document', 'hr', 'web', 'website'],

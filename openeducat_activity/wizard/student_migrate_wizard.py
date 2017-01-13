@@ -36,55 +36,60 @@ class StudentMigrate(models.TransientModel):
     student_ids = fields.Many2many(
         'op.student', string='Student(s)', required=True)
 
-    @api.one
+    @api.multi
     @api.constrains('course_from_id', 'course_to_id')
     def _check_admission_register(self):
-        if self.course_from_id == self.course_to_id:
-            raise ValidationError(_("From Course must not be same \
-            as To Course!"))
+        for record in self:
+            if record.course_from_id == record.course_to_id:
+                raise ValidationError(_("From Course must not be same \
+                as To Course!"))
 
-        if self.course_from_id.parent_id:
-            if self.course_from_id.parent_id != self.course_to_id.parent_id:
+            if record.course_from_id.parent_id:
+                if record.course_from_id.parent_id != \
+                        record.course_to_id.parent_id:
+                    raise ValidationError(_(
+                        "Can't migrate, As selected courses don't \
+                        share same parent course!"))
+            else:
                 raise ValidationError(_(
-                    "Can't migrate, As selected courses don't \
-                    share same parent course!"))
-        else:
-            raise ValidationError(_(
-                "Can't migrate, Proceed for new admission"))
+                    "Can't migrate, Proceed for new admission"))
 
     @api.onchange('course_from_id')
     def onchange_course_id(self):
         self.student_ids = False
 
-    @api.one
+    @api.multi
     def student_migrate_forward(self):
-        activity_type = self.env["op.activity.type"]
-        act_type = activity_type.search([('name', '=', 'Migration')], limit=1)
-        if not act_type:
-            act_type = activity_type.create({'name': 'Migration'})
+        for record in self:
+            activity_type = self.env["op.activity.type"]
+            act_type = activity_type.search(
+                [('name', '=', 'Migration')], limit=1)
+            if not act_type:
+                act_type = activity_type.create({'name': 'Migration'})
 
-        for student in self.student_ids:
-            activity_vals = {
-                'student_id': student.id,
-                'type_id': act_type.id,
-                'date': self.date,
-                'description': 'Migration From' +
-                self.course_from_id.name + ' to ' + self.course_to_id.name
-            }
-            self.env['op.activity'].create(activity_vals)
-            student_course = self.env['op.student.course'].search(
-                [('student_id', '=', student.id), ('course_id', '=',
-                                                   self.course_from_id.id)])
-            student_course.write({'course_id': self.course_to_id.id})
-            reg_id = self.env['op.subject.registration'].create({
-                'student_id': student.id,
-                'batch_id': self.batch_id.id,
-                'course_id': self.course_to_id.id,
-                'min_unit_load': self.course_to_id.min_unit_load or 0.0,
-                'max_unit_load': self.course_to_id.max_unit_load or 0.0,
-                'state': 'draft',
-            })
-            reg_id.get_subjects()
-            if not self.optional_sub:
-                reg_id.action_submitted()
-                reg_id.action_approve()
+            for student in record.student_ids:
+                activity_vals = {
+                    'student_id': student.id,
+                    'type_id': act_type.id,
+                    'date': self.date,
+                    'description': 'Migration From' +
+                    record.course_from_id.name +
+                    ' to ' + record.course_to_id.name
+                }
+                self.env['op.activity'].create(activity_vals)
+                student_course = self.env['op.student.course'].search(
+                    [('student_id', '=', student.id),
+                     ('course_id', '=', record.course_from_id.id)])
+                student_course.write({'course_id': record.course_to_id.id})
+                reg_id = self.env['op.subject.registration'].create({
+                    'student_id': student.id,
+                    'batch_id': record.batch_id.id,
+                    'course_id': record.course_to_id.id,
+                    'min_unit_load': record.course_to_id.min_unit_load or 0.0,
+                    'max_unit_load': record.course_to_id.max_unit_load or 0.0,
+                    'state': 'draft',
+                })
+                reg_id.get_subjects()
+                if not record.optional_sub:
+                    reg_id.action_submitted()
+                    reg_id.action_approve()

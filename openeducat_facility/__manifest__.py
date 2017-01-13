@@ -21,15 +21,12 @@
 
 {
     'name': 'OpenEduCat Facility',
-    'version': '3.0.0',
+    'version': '10.0.3.0.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Facility',
     'complexity': "easy",
-    'description': """
-        This module adds the feature of facility in Openeducat
-    """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],

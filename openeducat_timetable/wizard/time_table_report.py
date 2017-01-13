@@ -46,16 +46,17 @@ class SessionReport(models.TransientModel):
         default=(datetime.today() + relativedelta(days=6 - datetime.date(
             datetime.today()).weekday())).strftime('%Y-%m-%d'))
 
-    @api.one
+    @api.multi
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
-        start_date = fields.Date.from_string(self.start_date)
-        end_date = fields.Date.from_string(self.end_date)
-        if end_date < start_date:
-            raise ValidationError(_('End Date cannot be set before \
-            Start Date.'))
-        elif end_date > (start_date + timedelta(days=6)):
-            raise ValidationError(_("Select date range for a week!"))
+        for session in self:
+            start_date = fields.Date.from_string(session.start_date)
+            end_date = fields.Date.from_string(session.end_date)
+            if end_date < start_date:
+                raise ValidationError(_('End Date cannot be set before \
+                Start Date.'))
+            elif end_date > (start_date + timedelta(days=6)):
+                raise ValidationError(_("Select date range for a week!"))
 
     @api.onchange('course_id')
     def onchange_course(self):

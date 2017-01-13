@@ -49,37 +49,34 @@ class OpSubjectRegistration(models.Model):
     min_unit_load = fields.Float('Minimum Unit Load',
                                  track_visibility='onchange')
 
-    @api.one
+    @api.multi
     def action_reset_draft(self):
         self.state = 'draft'
-        return True
 
-    @api.one
+    @api.multi
     def action_reject(self):
         self.state = 'rejected'
-        return True
 
-    @api.one
+    @api.multi
     def action_approve(self):
-        subject_ids = []
-        for sub in self.compulsory_subject_ids:
-            subject_ids.append(sub.id)
-        for sub in self.elective_subject_ids:
-            subject_ids.append(sub.id)
-        course_ids = self.env['op.student.course'].search([
-            ('student_id', '=', self.student_id.id),
-            ('course_id', '=', self.course_id.id)
-        ])
-        course_ids[0].write({
-            'subject_ids': [[6, 0, list(set(subject_ids))]]
-        })
-        self.state = 'approved'
-        return True
+        for record in self:
+            subject_ids = []
+            for sub in record.compulsory_subject_ids:
+                subject_ids.append(sub.id)
+            for sub in record.elective_subject_ids:
+                subject_ids.append(sub.id)
+            course_ids = self.env['op.student.course'].search([
+                ('student_id', '=', record.student_id.id),
+                ('course_id', '=', record.course_id.id)
+            ])
+            course_ids[0].write({
+                'subject_ids': [[6, 0, list(set(subject_ids))]]
+            })
+            record.state = 'approved'
 
-    @api.one
+    @api.multi
     def action_submitted(self):
         self.state = 'submitted'
-        return True
 
     @api.model
     def create(self, vals):
@@ -88,11 +85,12 @@ class OpSubjectRegistration(models.Model):
                 'op.subject.registration') or '/'
         return super(OpSubjectRegistration, self).create(vals)
 
-    @api.one
+    @api.multi
     def get_subjects(self):
-        subject_ids = []
-        if self.course_id and self.course_id.subject_ids:
-            for subject in self.course_id.subject_ids:
-                if subject.subject_type == 'compulsory':
-                    subject_ids.append(subject.id)
-        self.compulsory_subject_ids = [(6, 0, subject_ids)]
+        for record in self:
+            subject_ids = []
+            if record.course_id and record.course_id.subject_ids:
+                for subject in record.course_id.subject_ids:
+                    if subject.subject_type == 'compulsory':
+                        subject_ids.append(subject.id)
+            record.compulsory_subject_ids = [(6, 0, subject_ids)]

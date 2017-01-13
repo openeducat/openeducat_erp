@@ -21,16 +21,12 @@
 
 {
     'name': 'OpenEduCat Activity',
-    'version': '3.0.0',
+    'version': '10.0.3.0.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Activities',
     'complexity': "easy",
-    'description': """
-        This module provide feature of Activity Manangement.
-
-    """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],

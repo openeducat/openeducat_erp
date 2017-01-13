@@ -68,32 +68,33 @@ class OpSession(models.Model):
         store=True, string='Users')
 
     # For record rule on student and faculty dashboard
-    @api.one
+    @api.multi
     @api.depends('batch_id', 'faculty_id')
     def _compute_batch_users(self):
-        usr = []
-        students = self.env['op.student'].search(
-            [('course_detail_ids.batch_id', '=', self.batch_id.id)])
-        for x in students:
-            if x.user_id:
-                usr.append(x.user_id.id)
-        if self.faculty_id.user_id:
-            usr.append(self.faculty_id.user_id.id)
-        self.user_ids = usr
+        for session in self:
+            usr = []
+            students = self.env['op.student'].search(
+                [('course_detail_ids.batch_id', '=', session.batch_id.id)])
+            for x in students:
+                if x.user_id:
+                    usr.append(x.user_id.id)
+            if session.faculty_id.user_id:
+                usr.append(session.faculty_id.user_id.id)
+            session.user_ids = usr
 
-    @api.one
+    @api.multi
     def lecture_draft(self):
         self.state = 'draft'
 
-    @api.one
+    @api.multi
     def lecture_confirm(self):
         self.state = 'confirm'
 
-    @api.one
+    @api.multi
     def lecture_done(self):
         self.state = 'done'
 
-    @api.one
+    @api.multi
     def lecture_cancel(self):
         self.state = 'cancel'
 
@@ -156,11 +157,13 @@ class OpSession(models.Model):
         elif start_datetime and start_datetime.weekday() == 5:
             self.type = calendar.day_name[5]
 
-    @api.one
+    @api.multi
     def notify_user(self):
-        template = self.env.ref('openeducat_timetable.session_details_changes',
-                                raise_if_not_found=False)
-        template.send_mail(self.id)
+        for session in self:
+            template = self.env.ref(
+                'openeducat_timetable.session_details_changes',
+                raise_if_not_found=False)
+            template.send_mail(session.id)
 
     @api.multi
     def get_emails(self, follower_ids):

@@ -23,13 +23,13 @@
 from odoo import models, api
 
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
 
     @api.multi
     def action_invoice_paid(self):
-        paid_invoice = super(account_invoice, self).action_invoice_paid()
+        paid_invoice = super(AccountInvoice, self).action_invoice_paid()
         if paid_invoice and self:
             movement = self.env['op.media.movement'].search(
                 [('invoice_id', '=', self.id)])
