@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_session_confirmation_form" model="ir.ui.view">
+            <field name="name">session.confirmation.form</field>
+            <field name="model">session.confirmation</field>
+            <field name="arch" type="xml">
+                <form string="Session Confirmation" version="7.0">
+                    <h2>Are you sure you want to confirm selected
+                        sessions ?</h2>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button string="Yes" type="object"
+                                name="state_confirmation" class="oe_highlight" />
+                            or
+                            <button special="cancel" string="No"
+                                type="object" />
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_session_confirmation_view"
+            multi="True" name="Confirmation" res_model="session.confirmation"
+            src_model="op.session" view_mode="form" target="new"
+            view_type="form" />
+    </data>
+</odoo>

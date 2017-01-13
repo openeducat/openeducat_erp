@@ -59,14 +59,14 @@ class OpMediaQueue(models.Model):
                 'op.media.queue') or '/'
         return super(OpMediaQueue, self).create(vals)
 
-    @api.one
+    @api.multi
     def do_reject(self):
         self.state = 'reject'
 
-    @api.one
+    @api.multi
     def do_accept(self):
         self.state = 'accept'
 
-    @api.one
+    @api.multi
     def do_request_again(self):
         self.state = 'request'

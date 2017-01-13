@@ -73,9 +73,10 @@ class OpStudent(models.Model):
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details')
 
-    @api.one
+    @api.multi
     @api.constrains('birth_date')
     def _check_birthdate(self):
-        if self.birth_date > fields.Date.today():
-            raise ValidationError(_(
-                "Birth Date can't be greater than current date!"))
+        for record in self:
+            if record.birth_date > fields.Date.today():
+                raise ValidationError(_(
+                    "Birth Date can't be greater than current date!"))

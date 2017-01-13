@@ -21,31 +21,12 @@
 
 {
     'name': 'OpenEduCat ERP',
-    'version': '3.0.0',
+    'version': '10.0.3.0.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
-    'description': """
-        This module provide overall education management system overOpenERP
-        Features includes managing
-            * Student
-            * Faculty
-            * Admission
-            * Course
-            * Batch
-            * Standard
-            * Books
-            * Library
-            * Lectures
-            * Exams
-            * Marksheet
-            * Result
-            * Transportation
-            * Hostel
-
-    """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_activity', 'openeducat_admission',

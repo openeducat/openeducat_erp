@@ -36,17 +36,19 @@ class ReturnMedia(models.TransientModel):
         'Actual Return Date', default=lambda self: fields.Date.today(),
         required=True)
 
-    @api.one
+    @api.multi
     def do_return(self):
-        if self.media_unit_id.state and self.media_unit_id.state == 'issue':
-            media_move_search = self.env['op.media.movement'].search(
-                [('media_unit_id', '=', self.media_unit_id.id),
-                 ('state', '=', 'issue')])
-            if not media_move_search:
-                raise UserError(_("Can't return media."))
-                return {'type': 'ir.actions.act_window_close'}
-            media_move_search.return_media(self.actual_return_date)
-        else:
-            raise UserError(_(
-                "Media Unit can not be returned because it's state is : %s") %
-                (dict(media_unit.unit_states).get(self.media_unit_id.state)))
+        for media in self:
+            if media.media_unit_id.state and \
+                    media.media_unit_id.state == 'issue':
+                media_move_search = self.env['op.media.movement'].search(
+                    [('media_unit_id', '=', media.media_unit_id.id),
+                     ('state', '=', 'issue')])
+                if not media_move_search:
+                    raise UserError(_("Can't return media."))
+                media_move_search.return_media(media.actual_return_date)
+            else:
+                raise UserError(_("Media Unit can not be returned \
+                because it's state is : %s") % (dict(
+                    media_unit.unit_states).get(
+                    media.media_unit_id.state)))

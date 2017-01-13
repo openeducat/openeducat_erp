@@ -8,13 +8,14 @@
             <field name="arch" type="xml">
                 <tree string="Sessions">
                     <field name="faculty_id" />
-                    <field name="course_id" />
+                    <!-- <field name="course_id" /> -->
                     <field name="batch_id" />
-                    <field name="timing_id" />
+                    <!-- <field name="timing_id" /> -->
                     <field name="subject_id" />
                     <field name="classroom_id" />
                     <field name="start_datetime" />
                     <field name="end_datetime" />
+                    <field name="state" />
                 </tree>
             </field>
         </record>
@@ -25,16 +26,29 @@
             <field name="arch" type="xml">
                 <form string="Session">
                     <header>
-                        <button type="object" name="lecture_confirm" states="draft" string="Confirm" groups="openeducat_core.group_op_faculty" class="oe_highlight" />
-                        <button type="object" name="lecture_done" states="confirm" string="Done" groups="openeducat_core.group_op_faculty" class="oe_highlight" />
-                        <button type="object" name="lecture_cancel" states="draft" string="Cancel" groups="openeducat_core.group_op_faculty" />
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm" />
+                        <button type="object" name="lecture_confirm"
+                            states="draft" string="Confirm"
+                            groups="openeducat_core.group_op_faculty"
+                            class="oe_highlight" />
+                        <button type="object" name="lecture_done"
+                            states="confirm" string="Done"
+                            groups="openeducat_core.group_op_faculty"
+                            class="oe_highlight" />
+                        <button type="object" name="lecture_draft"
+                            states="cancel" string="Set to Draft"
+                            groups="openeducat_core.group_op_faculty"
+                            class="oe_highlight" />
+                        <button type="object" name="lecture_cancel"
+                            states="draft,confirm" string="Cancel"
+                            groups="openeducat_core.group_op_faculty" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,confirm" />
                     </header>
                     <sheet>
                         <group colspan="4" col="4">
                             <field name="faculty_id" options='{"no_open": True}' />
                             <field name="timing_id" />
-                            <field name="course_id" options='{"no_open": True}'/>
+                            <field name="course_id" options='{"no_open": True}' />
                             <field name="batch_id" options='{"no_open": True}'
                                 context="{'course_id': course_id,'get_parent_batch':1}" />
                             <field name="subject_id" />
@@ -45,8 +59,9 @@
                         </group>
                     </sheet>
                     <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="message_follower_ids" widget="mail_followers"
+                            groups="base.group_user" />
+                        <field name="message_ids" widget="mail_thread" />
                     </div>
                 </form>
             </field>
@@ -79,6 +94,8 @@
                             context="{'group_by':'timing_id'}" />
                         <filter string="Subject" domain="[]"
                             context="{'group_by':'subject_id'}" />
+                        <filter string="State" domain="[]"
+                            context="{'group_by':'state'}" />
                     </group>
                 </search>
             </field>
@@ -143,21 +160,31 @@
                                     <div class="oe_kanban_left">
                                         <li
                                             t-if="record.faculty_id.raw_value">
-                                            Faculty:
+                                            <b>Faculty:</b>
                                             <field name="faculty_id" />
                                         </li>
                                         <li
                                             t-if="record.subject_id.raw_value">
-                                            Subject:
+                                            <b>Subject:</b>
                                             <field name="subject_id" />
                                         </li>
                                         <li t-if="record.course_id.raw_value">
-                                            Course:
+                                            <b>Course:</b>
                                             <field name="course_id" />
                                         </li>
                                         <li t-if="record.batch_id.raw_value">
-                                            Batch:
+                                            <b>Batch:</b>
                                             <field name="batch_id" />
+                                        </li>
+                                        <li
+                                            t-if="record.start_datetime.raw_value">
+                                            <b>Start Date:</b>
+                                            <field name="start_datetime" />
+                                        </li>
+                                        <li
+                                            t-if="record.end_datetime.raw_value">
+                                            <b>End Date:</b>
+                                            <field name="end_datetime" />
                                         </li>
                                     </div>
                                     <div class="oe_kanban_bottom_right">

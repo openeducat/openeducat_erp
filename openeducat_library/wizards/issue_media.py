@@ -62,7 +62,6 @@ class IssueMedia(models.TransientModel):
             relativedelta(
                 days=self.library_card_id.library_card_type_id.duration)
 
-    @api.one
     def check_max_issue(self, student_id, library_card_id):
         media_movement_search = self.env["op.media.movement"].search(
             [('library_card_id', '=', library_card_id),
@@ -74,33 +73,36 @@ class IssueMedia(models.TransientModel):
         else:
             return False
 
-    @api.one
+    @api.multi
     def do_issue(self):
-        value = {}
-        if self.check_max_issue(self.student_id.id, self.library_card_id.id):
-            if self.media_unit_id.state and \
-                    self.media_unit_id.state == 'available':
-                media_movement_create = {
-                    'media_id': self.media_id.id,
-                    'media_unit_id': self.media_unit_id.id,
-                    'type': self.type,
-                    'student_id': self.student_id.id or False,
-                    'faculty_id': self.faculty_id.id or False,
-                    'library_card_id': self.library_card_id.id,
-                    'issued_date': self.issued_date,
-                    'return_date': self.return_date,
-                    'state': 'issue',
-                }
-                self.env['op.media.movement'].create(media_movement_create)
-                self.media_unit_id.state = 'issue'
-                value = {'type': 'ir.actions.act_window_close'}
+        for media in self:
+            value = {}
+            if media.check_max_issue(media.student_id.id,
+                                     media.library_card_id.id):
+                if media.media_unit_id.state and \
+                        media.media_unit_id.state == 'available':
+                    media_movement_create = {
+                        'media_id': media.media_id.id,
+                        'media_unit_id': media.media_unit_id.id,
+                        'type': media.type,
+                        'student_id': media.student_id.id or False,
+                        'faculty_id': media.faculty_id.id or False,
+                        'library_card_id': media.library_card_id.id,
+                        'issued_date': media.issued_date,
+                        'return_date': media.return_date,
+                        'state': 'issue',
+                    }
+                    self.env['op.media.movement'].create(media_movement_create)
+                    media.media_unit_id.state = 'issue'
+                    value = {'type': 'ir.actions.act_window_close'}
+                else:
+                    raise UserError(_("media Unit can not be issued \
+                    because it's state is : %s") % (dict(
+                        media_unit.unit_states).get(
+                        media.media_unit_id.state)))
             else:
-                raise UserError(_("media Unit can not be issued because it's \
-                state is : %s") % (dict(media_unit.unit_states).get(
-                    self.media_unit_id.state)))
-        else:
-            raise UserError(_(
-                'Maximum Number of media allowed for %s is : %s') %
-                (self.student_id.name,
-                 self.library_card_id.library_card_type_id.allow_media))
-        return value
+                raise UserError(_(
+                    'Maximum Number of media allowed for %s is : %s') %
+                    (media.student_id.name,
+                     media.library_card_id.library_card_type_id.allow_media))
+            return value

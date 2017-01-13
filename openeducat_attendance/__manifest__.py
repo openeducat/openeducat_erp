@@ -21,16 +21,12 @@
 
 {
     'name': 'OpenEduCat Attendance',
-    'version': '3.0.0',
+    'version': '10.0.3.0.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Attendances',
     'complexity': "easy",
-    'description': """
-        This module provide feature of Attendance Management.
-
-    """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
@@ -46,10 +42,10 @@
         'attendance_menu.xml'
     ],
     'test': [
-         'test/res_users_test.yml',
-         'test/attendance_sub_value_test.yml',
-         'test/attendance_process_test.yml'
-     ],
+        'test/res_users_test.yml',
+        'test/attendance_sub_value_test.yml',
+        'test/attendance_process_test.yml'
+    ],
     'demo': [
         'demo/attendance_register_demo.xml',
         'demo/attendance_sheet_demo.xml',

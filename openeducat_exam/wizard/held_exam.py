@@ -45,10 +45,11 @@ class OpHeldExam(models.TransientModel):
         })
         return res
 
-    @api.one
+    @api.multi
     def held_exam(self):
-        if self.attendees_line:
-            for attendee in self.attendees_line:
-                attendee.status = 'absent'
-        self.exam_id.state = 'held'
-        return True
+        for record in self:
+            if record.attendees_line:
+                for attendee in record.attendees_line:
+                    attendee.status = 'absent'
+            record.exam_id.state = 'held'
+            return True

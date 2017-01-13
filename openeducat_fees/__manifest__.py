@@ -21,17 +21,12 @@
 
 {
     'name': 'OpenEduCat Fees',
-    'version': '3.0.0',
+    'version': '10.0.3.0.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Fees',
     'complexity': "easy",
-    'description': """
-        This module provide feature of fees collection &
-        other finance operations.
-
-    """,
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core', 'account_accountant'],

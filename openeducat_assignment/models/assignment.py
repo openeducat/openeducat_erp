@@ -55,23 +55,24 @@ class OpAssignment(models.Model):
         'op.assignment.sub.line', 'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
 
-    @api.one
+    @api.multi
     @api.constrains('issued_date', 'submission_date')
     def check_dates(self):
-        issued_date = fields.Date.from_string(self.issued_date)
-        submission_date = fields.Date.from_string(self.submission_date)
-        if issued_date > submission_date:
-            raise ValidationError(_(
-                "Submission Date cannot be set before Issue Date."))
+        for record in self:
+            issued_date = fields.Date.from_string(record.issued_date)
+            submission_date = fields.Date.from_string(record.submission_date)
+            if issued_date > submission_date:
+                raise ValidationError(_(
+                    "Submission Date cannot be set before Issue Date."))
 
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
 
-    @api.one
+    @api.multi
     def act_publish(self):
         self.state = 'publish'
 
-    @api.one
+    @api.multi
     def act_finish(self):
         self.state = 'finish'

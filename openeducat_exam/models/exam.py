@@ -60,18 +60,18 @@ class OpExam(models.Model):
             raise ValidationError(_('End Time cannot be set \
             before Start Time.'))
 
-    @api.one
+    @api.multi
     def act_result_updated(self):
         self.state = 'result_updated'
 
-    @api.one
+    @api.multi
     def act_done(self):
         self.state = 'done'
 
-    @api.one
+    @api.multi
     def act_draft(self):
         self.state = 'draft'
 
-    @api.one
+    @api.multi
     def act_cancel(self):
         self.state = 'cancel'

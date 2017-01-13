@@ -61,44 +61,46 @@ class OpAdmissionRegister(models.Model):
          ('admission', 'Admission Process'), ('done', 'Done')],
         'Status', default='draft', track_visibility='onchange')
 
-    @api.one
+    @api.multi
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
-        start_date = fields.Date.from_string(self.start_date)
-        end_date = fields.Date.from_string(self.end_date)
-        if start_date > end_date:
-            raise ValidationError(_("End Date cannot be set before \
-            Start Date."))
+        for record in self:
+            start_date = fields.Date.from_string(record.start_date)
+            end_date = fields.Date.from_string(record.end_date)
+            if start_date > end_date:
+                raise ValidationError(_("End Date cannot be set before \
+                Start Date."))
 
-    @api.one
+    @api.multi
     @api.constrains('min_count', 'max_count')
     def check_no_of_admission(self):
-        if (self.min_count < 0) or (self.max_count < 0):
-            raise ValidationError(_("No of Admission should be positive!"))
-        if self.min_count > self.max_count:
-            raise ValidationError(_(
-                "Min Admission can't be greater than Max Admission"))
+        for record in self:
+            if (record.min_count < 0) or (record.max_count < 0):
+                raise ValidationError(_("No of Admission should be positive!"))
+            if record.min_count > record.max_count:
+                raise ValidationError(_(
+                    "Min Admission can't be greater than Max Admission"))
 
-    @api.one
+    @api.multi
     def confirm_register(self):
         self.state = 'confirm'
 
-    @api.one
+    @api.multi
     def set_to_draft(self):
         self.state = 'draft'
 
-    @api.one
+    @api.multi
     def cancel_register(self):
         self.state = 'cancel'
 
-    @api.one
+    @api.multi
     def start_application(self):
         self.state = 'application'
 
-    @api.one
+    @api.multi
     def start_admission(self):
         self.state = 'admission'
 
-    @api.one
+    @api.multi
     def close_register(self):
         self.state = 'done'

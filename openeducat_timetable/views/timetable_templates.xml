@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Email template -->
+        <record id="session_details_changes" model="mail.template">
+            <field name="name">Session details - Send by Email</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="email_to">${object.get_emails(object.message_follower_ids)}
+            </field>
+            <field name="subject">${object.get_subject()}</field>
+            <field name="model_id" ref="openeducat_timetable.model_op_session" />
+            <field name="auto_delete" eval="False" />
+            <field name="body_html"><![CDATA[
+                <ul class="o_mail_thread_message_tracking">
+                    <li>
+                        Faculty:
+                            <span> ${object.faculty_id.name} </span>
+                    </li>
+                    <li>
+                        Subject:
+                            <span> ${object.subject_id.name} </span>
+                    </li>
+                    <li>
+                        Course:
+                            <span> ${object.course_id.name} </span>
+                    </li>
+                    <li>
+                        Batch:
+                            <span> ${object.batch_id.name} </span>
+                    </li>
+                    <li>
+                        Classroom:
+                            <span> ${object.classroom_id.name} </span>
+                    </li>
+                    <li>
+                        Start Time:
+                            <span> ${format_tz(object.start_datetime, tz=user.tz, format='%B %d, %Y %I:%M %p')} </span>
+                    </li>
+                    <li>
+                        End Time:
+                            <span> ${format_tz(object.end_datetime, tz=user.tz, format='%B %d, %Y %I:%M %p')} </span>
+                    </li>
+                    <li>
+                        Status:
+                            % if object.state == 'confirm':
+                                <span> Confirmed </span>
+                            % elif object.state == 'cancel'
+                                <span> Canceled </span>
+                            % endif
+                    </li>
+                </ul>
+            ]]></field>
+        </record>
+    </data>
+</odoo>

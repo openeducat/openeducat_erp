@@ -26,17 +26,19 @@ class OpAttendanceSheet(models.Model):
     _name = 'op.attendance.sheet'
     _inherit = ['mail.thread']
 
-    @api.one
+    @api.multi
     @api.depends('attendance_line.present')
-    def _total_present(self):
-        self.total_present = len(self.attendance_line.filtered(
-            lambda self: self.present))
+    def _compute_total_present(self):
+        for record in self:
+            record.total_present = self.env['op.attendance.line'].search_count(
+                [('present', '=', True), ('attendance_id', '=', record.id)])
 
-    @api.one
+    @api.multi
     @api.depends('attendance_line.present')
-    def _total_absent(self):
-        self.total_absent = len(self.attendance_line.filtered(
-            lambda self: self.present is False))
+    def _compute_total_absent(self):
+        for record in self:
+            record.total_absent = self.env['op.attendance.line'].search_count(
+                [('present', '=', False), ('attendance_id', '=', record.id)])
 
     name = fields.Char('Name', required=True, size=32)
     register_id = fields.Many2one(
@@ -54,7 +56,9 @@ class OpAttendanceSheet(models.Model):
     attendance_line = fields.One2many(
         'op.attendance.line', 'attendance_id', 'Attendance Line')
     total_present = fields.Integer(
-        'Total Present', compute='_total_present', track_visibility="onchange")
+        'Total Present', compute='_compute_total_present',
+        track_visibility="onchange")
     total_absent = fields.Integer(
-        'Total Absent', compute='_total_absent', track_visibility="onchange")
+        'Total Absent', compute='_compute_total_absent',
+        track_visibility="onchange")
     faculty_id = fields.Many2one('op.faculty', 'Faculty')

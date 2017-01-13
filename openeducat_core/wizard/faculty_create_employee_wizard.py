@@ -28,11 +28,12 @@ class WizardOpFacultyEmployee(models.TransientModel):
 
     user_boolean = fields.Boolean("Want to create user too ?", default=True)
 
-    @api.one
+    @api.multi
     def create_employee(self):
-        active_id = self.env.context.get('active_ids', []) or []
-        record = self.env['op.faculty'].browse(active_id)
-        record.create_employee()
-        if self.user_boolean and not record.user_id:
-            user_group = self.env.ref('openeducat_core.group_op_faculty')
-            self.env['res.users'].create_user(record, user_group)
+        for record in self:
+            active_id = self.env.context.get('active_ids', []) or []
+            faculty = self.env['op.faculty'].browse(active_id)
+            faculty.create_employee()
+            if record.user_boolean and not faculty.user_id:
+                user_group = self.env.ref('openeducat_core.group_op_faculty')
+                self.env['res.users'].create_user(faculty, user_group)
