@@ -80,7 +80,7 @@ class OpResultTemplate(models.Model):
             })
             student_dict = {}
             for exam in record.exam_session_id.exam_ids:
-                for attendee in record.attendees_line:
+                for attendee in exam.attendees_line:
                     result_line_id = self.env['op.result.line'].create({
                         'student_id': attendee.student_id.id,
                         'exam_id': exam.id,

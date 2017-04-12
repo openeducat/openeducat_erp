@@ -79,66 +79,63 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <th class="text-left">PERIOD </th>
-                                        <th class="text-center"> MON </th>
-                                        <th class="text-center"> TUES </th>
-                                        <th class="text-center"> WED </th>
-                                        <th class="text-center"> THUR </th>
-                                        <th class="text-center"> FRI </th>
-                                        <th class="text-center"> SAT </th>
+                                        <span t-foreach="get_heading()" t-as="n">
+                                            <th class="text-center"><span t-raw="n" /></th>
+                                        </span>
                                     </thead>
                                     <tbody>
                                         <tr t-foreach="get_object(data)" t-as="a">
                                             <td>
-                                                <span t-raw="'%s &lt;&gt;' %  a['name'] if  a['name']  else ''" />
+                                                <span t-raw="a['name'] if  a['name']  else ''" />
                                             </td>
                                             <td>
                                                 <b>
-                                                    <span t-esc="a['line'].get('Monday',{'subject':''})['subject']" />
+                                                    <span t-esc="a['line'].get('0',{'subject':''})['subject']" />
                                                 </b>
                                                 <br></br>
                                                 <span
-                                                    t-esc="a['line'].get('Monday',{'start_datetime':''})['start_datetime']" />
+                                                    t-esc="a['line'].get('0',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
                                                 <b>
-                                                    <span t-esc="a['line'].get('Tuesday',{'subject':''})['subject']" />
+                                                    <span t-esc="a['line'].get('1',{'subject':''})['subject']" />
                                                 </b>
                                                 <br></br>
                                                 <span
-                                                    t-esc="a['line'].get('Tuesday',{'start_datetime':''})['start_datetime']" />
+                                                    t-esc="a['line'].get('1',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
                                                 <b>
                                                     <span
-                                                        t-esc="a['line'].get('Wednesday',{'subject':''})['subject']" />
+                                                        t-esc="a['line'].get('2',{'subject':''})['subject']" />
                                                 </b>
                                                 <br></br>
                                                 <span
-                                                    t-esc="a['line'].get('Wednesday',{'start_datetime':''})['start_datetime']" />
+                                                    t-esc="a['line'].get('2',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
                                                 <b>
-                                                    <span t-esc="a['line'].get('Thursday',{'subject':''})['subject']" />
+                                                    <span t-esc="a['line'].get('3',{'subject':''})['subject']" />
                                                 </b>
                                                 <br></br>
                                                 <span
-                                                    t-esc="a['line'].get('Thursday',{'start_datetime':''})['start_datetime']" />
+                                                    t-esc="a['line'].get('3',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
                                                 <b>
-                                                    <span t-esc="a['line'].get('Friday',{'subject':''})['subject']" />
+                                                    <span t-esc="a['line'].get('4',{'subject':''})['subject']" />
                                                 </b>
                                                 <br></br>
                                                 <span
-                                                    t-esc="a['line'].get('Friday',{'start_datetime':''})['start_datetime']" />
+                                                    t-esc="a['line'].get('4',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                             <td>
                                                 <b>
-                                                    <span t-esc="a['line'].get('Saturday',{'subject':''})['subject']" />
+                                                    <span t-esc="a['line'].get('5',{'subject':''})['subject']" />
                                                 </b>
                                                 <br></br>
                                                 <span
-                                                    t-esc="a['line'].get('Saturday',{'start_datetime':''})['start_datetime']" />
+                                                    t-esc="a['line'].get('5',{'start_datetime':''})['start_datetime']" />
                                             </td>
                                         </tr>
                                     </tbody>
