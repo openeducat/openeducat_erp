@@ -1,4 +1,4 @@
-openerp.openeducat_core = function(instance) {
+odoo.openeducat_core = function(instance) {
     var QWeb = instance.web.qweb;
     var _t = instance.web._t;
 
@@ -19,7 +19,7 @@ instance.web.WebClient.include({
         }
         var self = this;
         var config_parameter = new instance.web.Model('ir.config_parameter');
-        $(openerp.qweb.render('WebClient.announcement_bar')).prependTo($('body'));
+        $(odoo.qweb.render('WebClient.announcement_bar')).prependTo($('body'));
         var $bar = this.$el.find('#announcement_bar_table');
         return config_parameter.call('get_param', ['database.uuid', false]).then(function(dbuuid) {
             if (!dbuuid) {
