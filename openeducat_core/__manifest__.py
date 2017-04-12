@@ -76,7 +76,7 @@
     'css': ['static/src/css/base.css'],
     'qweb': [
         'static/src/xml/base.xml'],
-    'js': ['static/src/js/chrome.js'],
+    'js': [],
     'images': [
         'static/description/openeducat_core_banner.jpg',
     ],
