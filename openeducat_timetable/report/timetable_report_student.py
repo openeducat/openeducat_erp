@@ -19,10 +19,11 @@
 #
 ###############################################################################
 
+import calendar
 from datetime import datetime
 import time
 
-from odoo import models, api
+from odoo import models, api, _
 
 
 class ReportTimetableStudentGenerate(models.AbstractModel):
@@ -44,10 +45,17 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
                         m['line'][d['day']] = d
         return main_list
 
-    def get_object(self, data):
+    def get_heading(self):
 
-        dayofWeek = ['Monday', 'Tuesday', 'Wednesday',
-                     'Thursday', 'Friday', 'Saturday']
+        dayofWeek = [_(calendar.day_name[0]),
+                     _(calendar.day_name[1]),
+                     _(calendar.day_name[2]),
+                     _(calendar.day_name[3]),
+                     _(calendar.day_name[4]),
+                     _(calendar.day_name[5])]
+        return dayofWeek
+
+    def get_object(self, data):
 
         data_list = []
         for timetable_obj in self.env['op.session'].browse(
@@ -55,17 +63,16 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
 
             oldDate = datetime.strptime(
                 timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
-            day = dayofWeek[datetime.weekday(oldDate)]
+            day = datetime.weekday(oldDate)
 
             timetable_data = {
                 'period': timetable_obj.timing_id.name,
                 'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': timetable_obj.start_datetime,
-                'day': day,
+                'day': str(day),
                 'subject': timetable_obj.subject_id.name,
             }
             data_list.append(timetable_data)
-
         ttdl = sorted(data_list, key=lambda k: k['sequence'])
         final_list = self.sort_tt(ttdl)
         return final_list
@@ -81,6 +88,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
             'data': data,
             'time': time,
             'get_object': self.get_object,
+            'get_heading': self.get_heading,
         }
         return self.env['report'] \
             .render('openeducat_timetable.report_timetable_student_generate',

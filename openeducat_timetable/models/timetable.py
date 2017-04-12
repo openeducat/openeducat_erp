@@ -25,13 +25,13 @@ import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-week_days = [(calendar.day_name[0], calendar.day_name[0]),
-             (calendar.day_name[1], calendar.day_name[1]),
-             (calendar.day_name[2], calendar.day_name[2]),
-             (calendar.day_name[3], calendar.day_name[3]),
-             (calendar.day_name[4], calendar.day_name[4]),
-             (calendar.day_name[5], calendar.day_name[5]),
-             (calendar.day_name[6], calendar.day_name[6])]
+week_days = [(calendar.day_name[0], _(calendar.day_name[0])),
+             (calendar.day_name[1], _(calendar.day_name[1])),
+             (calendar.day_name[2], _(calendar.day_name[2])),
+             (calendar.day_name[3], _(calendar.day_name[3])),
+             (calendar.day_name[4], _(calendar.day_name[4])),
+             (calendar.day_name[5], _(calendar.day_name[5])),
+             (calendar.day_name[6], _(calendar.day_name[6]))]
 
 
 class OpSession(models.Model):
@@ -58,7 +58,7 @@ class OpSession(models.Model):
     classroom_id = fields.Many2one(
         'op.classroom', 'Classroom')
     color = fields.Integer('Color Index')
-    type = fields.Selection(week_days, 'Days')
+    type = fields.Selection(week_days, 'Days', translate=True)
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('done', 'Done'), ('cancel', 'Canceled')],

@@ -51,20 +51,25 @@ class OpAssignmentSubLine(models.Model):
 
     @api.multi
     def act_draft(self):
-        self.state = 'draft'
+        result = self.state = 'draft'
+        return result and result or False
 
     @api.multi
     def act_submit(self):
-        self.state = 'submit'
+        result = self.state = 'submit'
+        return result and result or False
 
     @api.multi
     def act_accept(self):
-        self.state = 'accept'
+        result = self.state = 'accept'
+        return result and result or False
 
     @api.multi
     def act_change_req(self):
-        self.state = 'change'
+        result = self.state = 'change'
+        return result and result or False
 
     @api.multi
     def act_reject(self):
-        self.state = 'reject'
+        result = self.state = 'reject'
+        return result and result or False
