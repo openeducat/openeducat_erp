@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from openerp import models, fields, api
+from odoo.exceptions import ValidationError
+from openerp import models, fields, api, _
 
 
 class OpSubjectRegistration(models.Model):
@@ -65,14 +66,18 @@ class OpSubjectRegistration(models.Model):
                 subject_ids.append(sub.id)
             for sub in record.elective_subject_ids:
                 subject_ids.append(sub.id)
-            course_ids = self.env['op.student.course'].search([
+            course_id = self.env['op.student.course'].search([
                 ('student_id', '=', record.student_id.id),
                 ('course_id', '=', record.course_id.id)
-            ])
-            course_ids[0].write({
-                'subject_ids': [[6, 0, list(set(subject_ids))]]
-            })
-            record.state = 'approved'
+            ], limit=1)
+            if course_id:
+                course_id.write({
+                    'subject_ids': [[6, 0, list(set(subject_ids))]]
+                })
+                record.state = 'approved'
+            else:
+                raise ValidationError(
+                    _("Course not found on student's admission!"))
 
     @api.multi
     def action_submitted(self):
