@@ -50,6 +50,7 @@ class OpAttendanceSheet(models.Model):
     batch_id = fields.Many2one(
         'op.batch', 'Batch', related='register_id.batch_id', store=True,
         readonly=True)
+    session_id = fields.Many2one('op.session', 'Session')
     attendance_date = fields.Date(
         'Date', required=True, default=lambda self: fields.Date.today(),
         track_visibility="onchange")
@@ -62,3 +63,9 @@ class OpAttendanceSheet(models.Model):
         'Total Absent', compute='_compute_total_absent',
         track_visibility="onchange")
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
+
+    _sql_constraints = [
+        ('unique_register_sheet',
+         'unique(register_id,session_id,attendance_date)',
+         'Sheet must be unique per Register/Session.'),
+    ]
