@@ -38,8 +38,9 @@ class OpSession(models.Model):
     _name = 'op.session'
     _inherit = ['mail.thread']
     _description = 'Sessions'
-    _rec_name = 'faculty_id'
+    _rec_name = 'name'
 
+    name = fields.Char(compute='_compute_name', string='Name', store=True)
     timing_id = fields.Many2one(
         'op.timing', 'Timing', required=True, track_visibility="onchange")
     start_datetime = fields.Datetime(
@@ -66,6 +67,13 @@ class OpSession(models.Model):
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
+
+    @api.multi
+    @api.depends('faculty_id', 'subject_id', 'start_datetime')
+    def _compute_name(self):
+        for session in self:
+            session.name = session. faculty_id.name + ':' + \
+                session.subject_id.name + ':' + str(session.start_datetime)
 
     # For record rule on student and faculty dashboard
     @api.multi

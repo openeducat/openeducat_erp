@@ -29,14 +29,11 @@ class OpenEduCatAppController(http.Controller):
     @http.route(['/openeducat_core/get_app_dash_data'], type='json',
                 auth='none', methods=['POST'], csrf=False)
     def compute_app_dashboard_data(self, **post):
-        user_id = False
+        user_id = post.get('user_id', False)
         total_assignments = 0
         total_submissions = 0
         today_lectures = 0
         assigned_books = 0
-
-        if post.get('args', False) and len(post.get('args', False)) > 1:
-            user_id = post.get('args', False)[1]
 
         if user_id:
             student = request.env['op.student'].sudo().search(
@@ -78,3 +75,42 @@ class OpenEduCatAppController(http.Controller):
                 'total_submissions': total_submissions,
                 'today_lectures': today_lectures,
                 'assigned_books': assigned_books}
+
+    @http.route(['/openeducat_core/get_faculty_dash_data'], type='json',
+                auth='none', methods=['POST'], csrf=False)
+    def compute_faculty_dashboard_data(self, **post):
+        user_id = post.get('user_id', False)
+        total_assignments = 0
+        total_submissions = 0
+        today_lectures = 0
+
+        if user_id:
+            faculty = request.env['op.faculty'].sudo().search(
+                [('user_id', '=', user_id)], limit=1)
+            if faculty:
+                assignment = request.env['ir.model'].sudo().search(
+                    [('model', '=', 'op.assignment')])
+                if assignment:
+                    total_assignments = request.env['op.assignment'] \
+                        .sudo().search_count(
+                        [('faculty_id', '=', faculty.id),
+                         ('state', 'in', ['draft', 'publish'])])
+                    total_submissions = request.env['op.assignment.sub.line'] \
+                        .sudo().search_count(
+                        [('assignment_id.faculty_id', '=', faculty.id),
+                         ('state', '=', 'submit')])
+
+                session = request.env['ir.model'].sudo().search(
+                    [('model', '=', 'op.session')])
+                if session:
+                    today_lectures = request.env['op.session'] \
+                        .sudo().search_count(
+                        [('faculty_id', '=', faculty.id),
+                         ('start_datetime', '>=',
+                          datetime.today().strftime('%Y-%m-%d 00:00:00')),
+                         ('start_datetime', '<=',
+                          datetime.today().strftime('%Y-%m-%d 23:59:59'))])
+
+        return {'total_assignments': total_assignments,
+                'total_submissions': total_submissions,
+                'today_lectures': today_lectures, }

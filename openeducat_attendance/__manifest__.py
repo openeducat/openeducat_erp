@@ -29,7 +29,7 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core'],
+    'depends': ['openeducat_core', 'openeducat_timetable'],
     'data': [
         'security/ir.model.access.csv',
         'views/attendance_register_view.xml',
