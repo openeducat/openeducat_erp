@@ -82,6 +82,5 @@ class OpAssignmentSubLine(models.Model):
                     'openeducat_core.group_op_faculty'):
                 raise ValidationError(
                     _("You can't delete none draft submissions!"))
-                return False
         res = super(OpAssignmentSubLine, self).unlink()
         return res
