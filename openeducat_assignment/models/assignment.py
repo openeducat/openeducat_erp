@@ -71,8 +71,10 @@ class OpAssignment(models.Model):
 
     @api.multi
     def act_publish(self):
-        self.state = 'publish'
+        result = self.state = 'publish'
+        return result and result or False
 
     @api.multi
     def act_finish(self):
-        self.state = 'finish'
+        result = self.state = 'finish'
+        return result and result or False

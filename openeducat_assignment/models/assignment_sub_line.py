@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpAssignmentSubLine(models.Model):
@@ -73,3 +74,14 @@ class OpAssignmentSubLine(models.Model):
     def act_reject(self):
         result = self.state = 'reject'
         return result and result or False
+
+    @api.multi
+    def unlink(self):
+        for record in self:
+            if not record.state == 'draft' and not self.env.user.has_group(
+                    'openeducat_core.group_op_faculty'):
+                raise ValidationError(
+                    _("You can't delete none draft submissions!"))
+                return False
+        res = super(OpAssignmentSubLine, self).unlink()
+        return res
