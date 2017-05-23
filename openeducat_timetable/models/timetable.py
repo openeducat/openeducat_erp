@@ -178,9 +178,9 @@ class OpSession(models.Model):
         email_ids = ''
         for user in follower_ids:
             if email_ids:
-                email_ids = email_ids + ',' + str(user.partner_id.email)
+                email_ids = email_ids + ',' + str(user.sudo().partner_id.email)
             else:
-                email_ids = str(user.partner_id.email)
+                email_ids = str(user.sudo().partner_id.email)
         return email_ids
 
     @api.multi
