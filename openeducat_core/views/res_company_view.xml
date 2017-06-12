@@ -24,5 +24,16 @@
                 </notebook>
             </field>
         </record>
+
+        <record id="view_inherit_user_form_openeducat_core" model="ir.ui.view">
+            <field name="name">res.user.form.openeducat.core</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="child_ids" widget="many2many_tags" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

@@ -49,6 +49,7 @@
         'report/report_menu.xml',
         'wizard/student_hall_tickets_wizard_view.xml',
         'security/ir.model.access.csv',
+        'security/op_exam_security.xml',
         'exam_menu.xml',
     ],
     'demo': [

@@ -25,7 +25,7 @@ from odoo import models, fields
 class OpCourse(models.Model):
     _name = 'op.course'
 
-    name = fields.Char('Name', size=32, required=True)
+    name = fields.Char('Name', required=True)
     code = fields.Char('Code', size=8, required=True)
     parent_id = fields.Many2one('op.course', 'Parent Course')
     section = fields.Char('Section', size=32, required=True)

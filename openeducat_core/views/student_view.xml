@@ -96,7 +96,7 @@
                                     <tr>
                                         <td style="padding-right:10px;"><field name="name" required="1" placeholder="First Name" /></td>
                                         <td style="padding-right:10px;"><field name="middle_name" placeholder="Middle Name" /></td>
-                                        <td style="padding-right:10px;"><field name="last_name" placeholder="Last Name" /></td>
+                                        <td style="padding-right:10px;"><field name="last_name" placeholder="Last Name" required="1" /></td>
                                     </tr>
                                 </table>
                             </h1>
@@ -106,8 +106,8 @@
                                 string="Personal Information">
                                 <group col="4" colspan="4"
                                     name="personal_detail">
-                                    <field name="gender" />
-                                    <field name="birth_date" />
+                                    <field name="gender" required="1" />
+                                    <field name="birth_date" required="1" />
                                     <field name="nationality" />
                                     <field name="visa_info" />
                                     <field name="lang" />
@@ -116,7 +116,7 @@
                                     <field name="emergency_contact"
                                         context="{'show_address': 1}"
                                         options='{"always_reload": True}' />
-                                    <field name="user_id" string="User" />
+                                    <field name="user_id" string="User" readonly="1"/>
                                     <field name="email" required="1" />
                                 </group>
                                 <group string="Address Detail"

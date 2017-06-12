@@ -25,21 +25,26 @@ from odoo.exceptions import ValidationError
 
 class OpResultTemplate(models.Model):
     _name = 'op.result.template'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
     _description = 'Result Template'
     _rec_name = 'name'
 
     exam_session_id = fields.Many2one(
-        'op.exam.session', 'Exam Session', required=True)
+        'op.exam.session', 'Exam Session',
+        required=True, track_visibility='onchange')
     evolution_type = fields.Selection(
-        related='exam_session_id.evolution_type', store=True)
-    name = fields.Char("Name", size=254, required=True)
+        related='exam_session_id.evolution_type',
+        store=True, track_visibility='onchange')
+    name = fields.Char("Name", size=254,
+                       required=True, track_visibility='onchange')
     result_date = fields.Date(
-        'Result Date', required=True, default=fields.Date.today())
+        'Result Date', required=True,
+        default=fields.Date.today(), track_visibility='onchange')
     grade_ids = fields.Many2many(
         'op.grade.configuration', string='Grade Configuration')
     state = fields.Selection(
         [('draft', 'Draft'), ('result_generated', 'Result Generated')],
-        'State', default='draft')
+        'State', default='draft', track_visibility='onchange')
 
     @api.multi
     @api.constrains('exam_session_id')

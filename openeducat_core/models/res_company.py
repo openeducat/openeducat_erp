@@ -34,6 +34,9 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     user_line = fields.One2many('op.student', 'user_id', 'User Line')
+    child_ids = fields.Many2many(
+        'res.users', 'res_user_first_rel1',
+        'user_id', 'res_user_second_rel1', string='Childs')
 
     @api.multi
     def create_user(self, records, user_group=None):

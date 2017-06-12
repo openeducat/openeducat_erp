@@ -12,7 +12,17 @@
         <record model="ir.rule" id="group_student_media_request_rule">
             <field name="name">See Own media Queue Request</field>
             <field name="model_id" ref="model_op_media_queue" />
-            <field name="domain_force"> [('user_id','=',user.id)]</field>
+            <field name="domain_force"> ['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids)]</field>
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_student'))]" />
+        </record>
+
+
+        <!-- Rule for Media Movement to see own Record. -->
+        <record model="ir.rule" id="group_student_media_Movement_rule">
+            <field name="name">Media Movement For Student</field>
+            <field name="model_id" ref="model_op_media_movement" />
+            <field name="domain_force"> ['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids), ('state','in',['issue'])]</field>
             <field name="groups"
                 eval="[(4, ref('openeducat_core.group_op_student'))]" />
         </record>

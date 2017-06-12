@@ -12,14 +12,13 @@
             <field name="name">Parent Login rule</field>
             <field name="model_id" ref="model_op_parent" />
             <field name="groups" eval="[(4, ref('openeducat_parent.group_op_parent'))]" />
-            <field name="domain_force"> [('user_id','=',user.id)]</field>
+            <field name="domain_force"> ['|', ('user_id','=',user.id), ('user_id','in',user.child_ids.ids)]</field>
         </record>
         <record model="ir.rule" id="student_parent_login_rule">
             <field name="name">Student Parent Login rule</field>
             <field name="model_id" ref="model_op_student" />
             <field name="groups" eval="[(4, ref('openeducat_parent.group_op_parent'))]" />
-            <field name="domain_force"> [('parent_ids','in',[x.id for x in
-                user.parent_ids])]</field>
+            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id','in',user.child_ids.ids)]</field>
         </record>
     </data>
 </odoo>

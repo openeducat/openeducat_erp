@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, Warning
 
 
 class OpMediaQueue(models.Model):
@@ -54,10 +54,20 @@ class OpMediaQueue(models.Model):
 
     @api.model
     def create(self, vals):
+        if self.env.user.child_ids:
+            raise Warning(_('Invalid Action!\n Parent can not create \
+            Media Queue Requests!'))
         if vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'op.media.queue') or '/'
         return super(OpMediaQueue, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if self.env.user.child_ids:
+            raise Warning(_('Invalid Action!\n Parent can not edit \
+            Media Queue Requests!'))
+        return super(OpMediaQueue, self).write(vals)
 
     @api.multi
     def do_reject(self):
