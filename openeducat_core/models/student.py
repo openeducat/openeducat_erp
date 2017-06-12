@@ -67,7 +67,7 @@ class OpStudent(models.Model):
     id_number = fields.Char('ID Card Number', size=64)
     photo = fields.Binary('Photo')
     partner_id = fields.Many2one(
-        'res.partner', 'Partner', ondelete="cascade")
+        'res.partner', 'Partner', required=True, ondelete="cascade")
     gr_no = fields.Char("GR Number", size=20)
     category_id = fields.Many2one('op.category', 'Category')
     course_detail_ids = fields.One2many('op.student.course', 'student_id',

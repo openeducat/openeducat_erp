@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-extend="DashboardMain">
+        <t t-jquery=".o_web_settings_dashboard_apps" t-operation="after">
+            <div class="o_dashboard_org_info"></div>
+        </t>
+    </t>
+
+    <t t-name="DashboardOrgInfo">
+        <div class="mt8 o_dashboard_org_info"></div>
+    </t>
+
+     <!--Customizable Template -->
+     <t t-extend="DashboardOrgInfo">
+         <t t-jquery=".o_dashboard_org_info" t-operation="append">
+             <a class="center-block inside_a_org_uuid"
+                href="https://www.openeducat.org" target="_blank">
+                 <img class="center-block img img-responsive org_logo_with_uuid_name"
+                      data-app-name="openeducat_erp"
+                      src=""/>
+                 <div class="o_web_settings_dashboard_pills text-center">
+                     <a href="https://www.openeducat.org/page/contactus" target="_blank" class="btn btn-primary" style="margin-left: 18px;"><i class="fa fa-envelope fa-2x" style="padding-right: 6px; line-height: 1.2;"/>Contact Support</a>
+                 </div>
+             </a>
+         </t>
+     </t>
+</templates>
