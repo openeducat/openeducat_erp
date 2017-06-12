@@ -1,6 +1,6 @@
 #wrapwrap .navbar-default .navbar-nav > li > a {
-    color: #1d2127 !important;
-    line-height: 57px;
+    color: black !important;
+    //line-height: 57px;
 }
 .text-white{
 	color: @font-white !important;
@@ -14,13 +14,13 @@ header a.navbar-brand img {
 }
 
 .navbar.navbar-static-top ul.nav > li.divider {
-    margin-top: 32px;
+    margin-top: 37px;
     padding-top: 20px;
     border-right: 1px solid black;
 }
 #custom-pre-header
 {
-	background-color: @color-primary;
+	background-color: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0) 100%);
 	padding: 6px 0px;
 }
 #wrapwrap .navbar-default {
@@ -74,4 +74,91 @@ header a.navbar-brand img {
 
 #social .img-circle{
     border-radius: 10%;
+}
+#company_details{
+    span,i{
+        color:@color-primary;
+        }
+}
+
+
+/* New Less */
+#top_menu > li > a {
+
+    background-color:transparent !important;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    display: block;
+}
+#top_menu > li > a > span{
+
+    border-bottom: 3px solid @color-primary;
+    padding-bottom: 12px;
+
+}
+#top_menu > li > a > b > span{
+
+    border-bottom: 3px solid @color-primary;
+    padding-bottom: 12px;
+
+}
+#top_menu > li > a > .caret{
+
+    border-bottom: 0px !important;
+}
+#top_menu > li > a > b > .caret{
+
+    border-bottom: 0px !important;
+}
+#top_menu > li > a>span:hover{
+    color: @color-danger;
+    background-color: transparent;
+    border-bottom: 3px solid @color-danger;
+
+}
+#top_menu > li > a> b > span:hover{
+    color: @color-danger;
+    background-color: transparent;
+    border-bottom: 3px solid @color-danger;
+
+}
+#top_menu > li.cart > span > a {
+    color:@color-info !important;
+}
+
+#top_menu > li.cart > span > a:hover{
+
+    border:none !important;
+    color:@color-primary !important;
+}
+#top_menu > li.active > a :hover,.navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover
+{
+    color: @color-primary !important;
+}
+
+#top_menu > li.open > a > span
+{
+    color: @color-danger;
+    border-bottom: 3px solid @color-danger;
+}
+#top_menu > li.open > a > b > span
+{
+    color: @color-danger;
+    border-bottom: 3px solid @color-danger;
+}
+
+@media (min-width: 768px){
+    .navbar-nav > li > a {
+        padding-top: 34px;
+        padding-bottom: 32px;
+    }
+}
+@media screen and (min-width: 768px){
+    #top_menu .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+}
+#wrapwrap .navbar-default .navbar-nav > li.active > a > span{
+    border-bottom: 3px solid @color-danger;
 }
