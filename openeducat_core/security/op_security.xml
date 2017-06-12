@@ -73,7 +73,7 @@
             <field name="model_id" ref="model_op_subject_registration" />
             <field name="groups"
                 eval="[(4, ref('openeducat_core.group_op_student'))]" />
-            <field name="domain_force"> [('student_id.user_id','=',user.id)]</field>
+            <field name="domain_force">['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in', user.child_ids.ids)]</field>
         </record>
 
         <record model="ir.rule" id="view_all_subject_registration_rule">

@@ -25,20 +25,33 @@ from odoo.exceptions import ValidationError
 
 class OpExamSession(models.Model):
     _name = 'op.exam.session'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
     _description = 'Exam Session'
 
-    name = fields.Char('Exam Session', size=256, required=True)
-    course_id = fields.Many2one('op.course', 'Course', required=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    exam_code = fields.Char('Exam Session Code', size=8, required=True)
-    start_date = fields.Date('Start Date', required=True)
-    end_date = fields.Date('End Date', required=True)
-    exam_ids = fields.One2many('op.exam', 'session_id', 'Exam(s)')
-    exam_type = fields.Many2one('op.exam.type', 'Exam Type', required=True)
+    name = fields.Char(
+        'Exam Session', size=256, required=True, track_visibility='onchange')
+    course_id = fields.Many2one(
+        'op.course', 'Course', required=True, track_visibility='onchange')
+    batch_id = fields.Many2one(
+        'op.batch', 'Batch', required=True, track_visibility='onchange')
+    exam_code = fields.Char(
+        'Exam Session Code', size=8,
+        required=True, track_visibility='onchange')
+    start_date = fields.Date(
+        'Start Date', required=True, track_visibility='onchange')
+    end_date = fields.Date(
+        'End Date', required=True, track_visibility='onchange')
+    exam_ids = fields.One2many(
+        'op.exam', 'session_id', 'Exam(s)')
+    exam_type = fields.Many2one(
+        'op.exam.type', 'Exam Type',
+        required=True, track_visibility='onchange')
     evolution_type = fields.Selection(
         [('normal', 'Normal'), ('grade', 'Grade')],
-        'Evolution type', default="normal", required=True)
-    venue = fields.Many2one('res.partner', 'Venue')
+        'Evolution type', default="normal",
+        required=True, track_visibility='onchange')
+    venue = fields.Many2one(
+        'res.partner', 'Venue', track_visibility='onchange')
 
     @api.constrains('start_date', 'end_date')
     def _check_date_time(self):

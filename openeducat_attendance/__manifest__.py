@@ -32,6 +32,7 @@
     'depends': ['openeducat_core', 'openeducat_timetable'],
     'data': [
         'security/ir.model.access.csv',
+        'security/op_attendance_security.xml',
         'views/attendance_register_view.xml',
         'views/attendance_sheet_view.xml',
         'views/attendance_line_view.xml',

@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, Warning
 
 
 class OpAssignmentSubLine(models.Model):
@@ -84,3 +84,17 @@ class OpAssignmentSubLine(models.Model):
                     _("You can't delete none draft submissions!"))
         res = super(OpAssignmentSubLine, self).unlink()
         return res
+
+    @api.model
+    def create(self, vals):
+        if self.env.user.child_ids:
+            raise Warning(_('Invalid Action!\n Parent can not \
+            create Assignment Submissions!'))
+        return super(OpAssignmentSubLine, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if self.env.user.child_ids:
+            raise Warning(_('Invalid Action!\n Parent can not edit \
+            Assignment Submissions!'))
+        return super(OpAssignmentSubLine, self).write(vals)

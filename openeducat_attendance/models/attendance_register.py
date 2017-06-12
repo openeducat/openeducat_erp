@@ -24,12 +24,18 @@ from odoo import models, fields, api
 
 class OpAttendanceRegister(models.Model):
     _name = 'op.attendance.register'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
 
-    name = fields.Char('Name', size=16, required=True)
-    code = fields.Char('Code', size=8, required=True)
-    course_id = fields.Many2one('op.course', 'Course', required=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    subject_id = fields.Many2one('op.subject', 'Subject')
+    name = fields.Char(
+        'Name', size=16, required=True, track_visibility='onchange')
+    code = fields.Char(
+        'Code', size=8, required=True, track_visibility='onchange')
+    course_id = fields.Many2one(
+        'op.course', 'Course', required=True, track_visibility='onchange')
+    batch_id = fields.Many2one(
+        'op.batch', 'Batch', required=True, track_visibility='onchange')
+    subject_id = fields.Many2one(
+        'op.subject', 'Subject', track_visibility='onchange')
 
     @api.onchange('course_id')
     def onchange_course(self):

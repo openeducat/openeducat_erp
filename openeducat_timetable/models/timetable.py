@@ -21,7 +21,6 @@
 
 import calendar
 import datetime
-
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -72,23 +71,28 @@ class OpSession(models.Model):
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
     def _compute_name(self):
         for session in self:
-            session.name = session. faculty_id.name + ':' + \
-                session.subject_id.name + ':' + str(session.start_datetime)
+            if session.faculty_id and session.subject_id \
+                    and session.start_datetime:
+                session.name = session.faculty_id.name + ':' + \
+                    session.subject_id.name + ':' + str(session.start_datetime)
 
     # For record rule on student and faculty dashboard
     @api.multi
-    @api.depends('batch_id', 'faculty_id')
+    @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
     def _compute_batch_users(self):
+        student_obj = self.env['op.student']
+        users_obj = self.env['res.users']
         for session in self:
-            usr = []
-            students = self.env['op.student'].search(
+            student_ids = student_obj.search(
                 [('course_detail_ids.batch_id', '=', session.batch_id.id)])
-            for x in students:
-                if x.user_id:
-                    usr.append(x.user_id.id)
+            user_list = [student_id.user_id.id for student_id
+                         in student_ids if student_id.user_id]
             if session.faculty_id.user_id:
-                usr.append(session.faculty_id.user_id.id)
-            session.user_ids = usr
+                user_list.append(session.faculty_id.user_id.id)
+            user_ids = users_obj.search([('child_ids', 'in', user_list)])
+            if user_ids:
+                user_list.extend(user_ids.ids)
+            session.user_ids = user_list
 
     @api.multi
     def lecture_draft(self):

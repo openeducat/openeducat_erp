@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import Warning
 
 
 class OpMediaPurchase(models.Model):
@@ -38,8 +39,7 @@ class OpMediaPurchase(models.Model):
         'op.subject', 'Subject', required=True, track_visibility='onchange')
     requested_id = fields.Many2one(
         'res.partner', 'Requested By',
-        default=lambda self: self.env['res.partner'].search(
-            [('user_id', '=', self.env.uid)]))
+        default=lambda self: self.env.user.partner_id.id)
     state = fields.Selection(
         [('draft', 'Draft'), ('request', 'Requested'), ('reject', 'Rejected'),
          ('accept', 'Accepted')], 'State', readonly=True,
@@ -57,3 +57,17 @@ class OpMediaPurchase(models.Model):
     @api.multi
     def act_reject(self):
         self.state = 'reject'
+
+    @api.model
+    def create(self, vals):
+        if self.env.user.child_ids:
+            raise Warning(_('Invalid Action!\n Parent can not create \
+            Media Purchase Requests!'))
+        return super(OpMediaPurchase, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if self.env.user.child_ids:
+            raise Warning(_('Invalid Action!\n Parent can not edit \
+            Media Purchase Requests!'))
+        return super(OpMediaPurchase, self).write(vals)
