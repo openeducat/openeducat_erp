@@ -30,8 +30,8 @@ class OpResultLine(models.Model):
     marksheet_line_id = fields.Many2one(
         'op.marksheet.line', 'Marksheet Line', ondelete='cascade')
     exam_id = fields.Many2one('op.exam', 'Exam', required=True)
-    evolution_type = fields.Selection(
-        related='exam_id.session_id.evolution_type', store=True)
+    evaluation_type = fields.Selection(
+        related='exam_id.session_id.evaluation_type', store=True)
     marks = fields.Integer('Marks', required=True)
     grade = fields.Char('Grade', readonly=True, compute='_compute_grade')
     student_id = fields.Many2one('op.student', 'Student', required=True)
@@ -47,7 +47,7 @@ class OpResultLine(models.Model):
     @api.depends('marks')
     def _compute_grade(self):
         for record in self:
-            if record.evolution_type == 'grade':
+            if record.evaluation_type == 'grade':
                 grades = record.marksheet_line_id.marksheet_reg_id.\
                     result_template_id.grade_ids
                 for grade in grades:

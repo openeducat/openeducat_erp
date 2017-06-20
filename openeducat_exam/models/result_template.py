@@ -32,8 +32,8 @@ class OpResultTemplate(models.Model):
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session',
         required=True, track_visibility='onchange')
-    evolution_type = fields.Selection(
-        related='exam_session_id.evolution_type',
+    evaluation_type = fields.Selection(
+        related='exam_session_id.evaluation_type',
         store=True, track_visibility='onchange')
     name = fields.Char("Name", size=254,
                        required=True, track_visibility='onchange')
