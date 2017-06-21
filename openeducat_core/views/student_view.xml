@@ -86,6 +86,11 @@
             <field name="arch" type="xml">
                 <form string="Student">
                     <sheet>
+                        <div class="oe_title">
+                            <field name="already_partner"/>
+                            <label string="Already Partner"/>
+                            <field name="partner_id" placeholder="Partner" options="{'no_create_edit': True}"  attrs="{'required':[('already_partner','=',True)],'invisible': [('already_partner','=', False)]}"/>
+                        </div>
                         <field name="photo" widget="image" class="oe_left oe_avatar" />
                         <div class="oe_title">
                             <h3>
