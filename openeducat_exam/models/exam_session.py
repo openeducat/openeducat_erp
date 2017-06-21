@@ -46,7 +46,7 @@ class OpExamSession(models.Model):
     exam_type = fields.Many2one(
         'op.exam.type', 'Exam Type',
         required=True, track_visibility='onchange')
-    evolution_type = fields.Selection(
+    evaluation_type = fields.Selection(
         [('normal', 'Normal'), ('grade', 'Grade')],
         'Evolution type', default="normal",
         required=True, track_visibility='onchange')

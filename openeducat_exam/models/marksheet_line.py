@@ -29,8 +29,8 @@ class OpMarksheetLine(models.Model):
 
     marksheet_reg_id = fields.Many2one(
         'op.marksheet.register', 'Marksheet Register')
-    evolution_type = fields.Selection(
-        related='marksheet_reg_id.exam_session_id.evolution_type', store=True)
+    evaluation_type = fields.Selection(
+        related='marksheet_reg_id.exam_session_id.evaluation_type', store=True)
     student_id = fields.Many2one('op.student', 'Student', required=True)
     result_line = fields.One2many(
         'op.result.line', 'marksheet_line_id', 'Results')
@@ -65,7 +65,7 @@ class OpMarksheetLine(models.Model):
     @api.depends('percentage')
     def _compute_grade(self):
         for record in self:
-            if record.evolution_type == 'grade':
+            if record.evaluation_type == 'grade':
                 grades = record.marksheet_reg_id.result_template_id.grade_ids
                 for grade in grades:
                     if grade.min_per <= record.percentage and \

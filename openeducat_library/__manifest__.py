@@ -30,7 +30,7 @@
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core', 'account_accountant',
-                'openeducat_activity'],
+                'openeducat_activity', 'base_action_rule'],
     'data': [
         'data/custom_paperformat.xml',
         'security/library_security.xml',
@@ -57,6 +57,7 @@
         'dashboard/library_student_dashboard.xml',
         'media_queue_sequence.xml',
         'menus/library_menu.xml',
+        'data/action_rule_data.xml',
     ],
     'demo': [
         'demo/product_demo.xml',
