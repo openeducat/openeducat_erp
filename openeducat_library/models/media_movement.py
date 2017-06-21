@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
@@ -67,6 +67,15 @@ class OpMediaMovement(models.Model):
     user_id = fields.Many2one(
         'res.users', related='student_id.user_id', string='Users')
     invoice_id = fields.Many2one('account.invoice', 'Invoice', readonly=True)
+
+    @api.multi
+    def get_diff_day(self):
+        for media_mov_id in self:
+            today_date = datetime.strptime(fields.Date.today(), '%Y-%m-%d')
+            return_date = datetime.strptime(
+                media_mov_id.return_date, '%Y-%m-%d')
+            diff = today_date - return_date
+            return abs(diff.days)
 
     @api.constrains('issued_date', 'return_date')
     def _check_date(self):
