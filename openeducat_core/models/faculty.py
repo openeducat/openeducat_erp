@@ -43,7 +43,6 @@ class OpFaculty(models.Model):
         'res.partner', 'Emergency Contact')
     visa_info = fields.Char('Visa Info', size=64)
     id_number = fields.Char('ID Card Number', size=64)
-    photo = fields.Binary('Photo')
     login = fields.Char(
         'Login', related='partner_id.user_id.login', readonly=1)
     last_login = fields.Datetime(
