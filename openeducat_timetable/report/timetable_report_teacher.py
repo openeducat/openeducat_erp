@@ -60,7 +60,8 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
                      _(calendar.day_name[2]),
                      _(calendar.day_name[3]),
                      _(calendar.day_name[4]),
-                     _(calendar.day_name[5])]
+                     _(calendar.day_name[5]),
+                     _(calendar.day_name[6])]
         return dayofWeek
 
     def get_object(self, data):
