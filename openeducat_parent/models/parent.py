@@ -26,18 +26,15 @@ from odoo.exceptions import Warning
 class OpParent(models.Model):
     _name = 'op.parent'
 
-    name = fields.Many2one(
-        'res.partner', 'Name', default=lambda self: self.env[
-            'res.partner'].search([('user_id', '=', self.env.uid)]),
-        required=True)
+    name = fields.Many2one('res.partner', 'Name', required=True)
+    user_id = fields.Many2one('res.users', related='name.user_id',
+                              string='User', store=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
-    user_id = fields.Many2one(
-        'res.users', 'User', default=lambda self: self.env.uid, required=True)
 
     @api.model
     def create(self, vals):
         res = super(OpParent, self).create(vals)
-        if vals.get('student_ids', False):
+        if vals.get('student_ids', False) and res.name.user_id:
             student_ids = self.student_ids.browse(res.student_ids.ids)
             user_ids = [student_id.user_id.id for student_id in student_ids
                         if student_id.user_id]
@@ -46,19 +43,40 @@ class OpParent(models.Model):
 
     @api.multi
     def write(self, vals):
-        res = super(OpParent, self).write(vals)
-        if vals.get('student_ids', False):
-            student_ids = self.student_ids.browse(self.student_ids.ids)
-            user_ids = [student_id.user_id.id for student_id in student_ids
-                        if student_id.user_id]
-            self.user_id.child_ids = [(6, 0, user_ids)]
-        self.clear_caches()
-        return res
+        for record in self:
+            res = super(OpParent, self).write(vals)
+            if vals.get('student_ids', False) and record.name.user_id:
+                student_ids = record.student_ids.browse(record.student_ids.ids)
+                user_ids = [student_id.user_id.id for student_id in student_ids
+                            if student_id.user_id]
+                record.user_id.child_ids = [(6, 0, user_ids)]
+            record.clear_caches()
+            return res
 
     @api.multi
     def unlink(self):
-        self.user_id.child_ids = [(6, 0, [])]
-        return super(OpParent, self).unlink()
+        for record in self:
+            if record.name.user_id:
+                record.user_id.child_ids = [(6, 0, [])]
+            return super(OpParent, self).unlink()
+
+    @api.multi
+    def create_parent_user(self):
+        for record in self:
+            if not record.name.email:
+                raise Warning(_('Update parent email id first.'))
+            if not record.name.user_id:
+                groups_id = self.env.ref(
+                    'openeducat_parent.parent_template_user') and self.env.ref(
+                    'openeducat_parent.parent_template_user'
+                ).groups_id or False
+                user_id = self.env['res.users'].create(
+                    {'name': record.name.name, 'partner_id': record.name.id,
+                     'login': record.name.email, 'groups_id': groups_id})
+                record.name.user_id = user_id
+                user_ids = [
+                    x.user_id.id for x in record.student_ids if x.user_id]
+                record.name.user_id.child_ids = [(6, 0, user_ids)]
 
 
 class OpStudent(models.Model):
@@ -72,9 +90,10 @@ class OpStudent(models.Model):
         res = super(OpStudent, self).create(vals)
         if vals.get('parent_ids', False):
             for parent_id in res.parent_ids:
-                user_ids = [student_id.user_id.id for student_id in
-                            parent_id.student_ids if student_id.user_id]
-                parent_id.user_id.child_ids = [(6, 0, user_ids)]
+                if parent_id.user_id:
+                    user_ids = [x.user_id.id for x in parent_id.student_ids
+                                if x.user_id]
+                    parent_id.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
     @api.multi
@@ -84,9 +103,10 @@ class OpStudent(models.Model):
             user_ids = []
             if self.parent_ids:
                 for parent_id in self.parent_ids:
-                    user_ids = [student_id.user_id.id for student_id in
-                                parent_id.student_ids if student_id.user_id]
-                    parent_id.user_id.child_ids = [(6, 0, user_ids)]
+                    if parent_id.user_id:
+                        user_ids = [x.user_id.id for x in parent_id.student_ids
+                                    if x.user_id]
+                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
             else:
                 user_ids = self.env['res.users'].search([
                     ('child_ids', 'in', self.user_id.id)])
@@ -98,7 +118,7 @@ class OpStudent(models.Model):
             for parent_id in self.parent_ids:
                 child_ids = parent_id.user_id.child_ids.ids
                 child_ids.append(vals['user_id'])
-                parent_id.user_id.child_ids = [(6, 0, child_ids)]
+                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         self.clear_caches()
         return res
 
@@ -108,7 +128,7 @@ class OpStudent(models.Model):
             for parent_id in self.parent_ids:
                 child_ids = parent_id.user_id.child_ids.ids
                 child_ids.remove(self.user_id.id)
-                parent_id.user_id.child_ids = [(6, 0, child_ids)]
+                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         return super(OpStudent, self).unlink()
 
 
@@ -128,9 +148,3 @@ class OpSubjectRegistration(models.Model):
             raise Warning(_('Invalid Action!\n Parent can not edit \
             Subject Registration!'))
         return super(OpSubjectRegistration, self).write(vals)
-
-
-# class ResUsers(models.Model):
-#     _inherit = "res.users"
-
-#     parent_ids = fields.One2many('op.parent', 'user_id', 'Parents')
