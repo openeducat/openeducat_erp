@@ -83,7 +83,7 @@ class OpAdmission(models.Model):
     country_id = fields.Many2one(
         'res.country', 'Country', states={'done': [('readonly', True)]})
     fees = fields.Float('Fees', states={'done': [('readonly', True)]})
-    photo = fields.Binary('Photo', states={'done': [('readonly', True)]})
+    image = fields.Binary('image', states={'done': [('readonly', True)]})
     state = fields.Selection(
         [('draft', 'Draft'), ('submit', 'Submitted'),
          ('confirm', 'Confirmed'), ('admission', 'Admission Confirm'),
@@ -125,7 +125,7 @@ class OpAdmission(models.Model):
             self.last_name = student.last_name
             self.birth_date = student.birth_date
             self.gender = student.gender
-            self.photo = student.photo or False
+            self.image = student.image or False
             self.street = student.street or False
             self.street2 = student.street2 or False
             self.phone = student.phone or False
@@ -145,7 +145,7 @@ class OpAdmission(models.Model):
             self.last_name = ''
             self.birth_date = ''
             self.gender = ''
-            self.photo = False
+            self.image = False
             self.street = ''
             self.street2 = ''
             self.phone = ''
@@ -223,7 +223,7 @@ class OpAdmission(models.Model):
                 student.course_id and student.course_id.id or False,
                 'batch_id':
                 student.batch_id and student.batch_id.id or False,
-                'photo': student.photo or False,
+                'image': student.image or False,
                 'street': student.street or False,
                 'street2': student.street2 or False,
                 'phone': student.phone or False,

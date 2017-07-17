@@ -55,6 +55,9 @@ class GenerateSession(models.TransientModel):
     time_table_lines_6 = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
         domain=[('day', '=', '5')])
+    time_table_lines_7 = fields.One2many(
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        domain=[('day', '=', '6')])
     start_date = fields.Date(
         'Start Date', required=True, default=time.strftime('%Y-%m-01'))
     end_date = fields.Date('End Date', required=True)
@@ -134,4 +137,5 @@ class GenerateSessionLine(models.TransientModel):
         ('3', calendar.day_name[3]),
         ('4', calendar.day_name[4]),
         ('5', calendar.day_name[5]),
+        ('6', calendar.day_name[6]),
     ], 'Day', required=True)

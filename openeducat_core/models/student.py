@@ -65,7 +65,6 @@ class OpStudent(models.Model):
         'res.partner', 'Emergency Contact')
     visa_info = fields.Char('Visa Info', size=64)
     id_number = fields.Char('ID Card Number', size=64)
-    photo = fields.Binary('Photo')
     already_partner = fields.Boolean('Already Partner')
     partner_id = fields.Many2one(
         'res.partner', 'Partner', required=True, ondelete="cascade")
