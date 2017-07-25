@@ -48,7 +48,6 @@
         'views/faculty_view.xml',
         'views/res_company_view.xml',
         'views/openeducat_template.xml',
-        'views/homepage_template.xml',
         'views/website_assets.xml',
         'views/subject_registration_view.xml',
         'dashboard/student_dashboard_view.xml',
@@ -58,6 +57,7 @@
         'menu/student_menu.xml',
     ],
     'demo': [
+        'demo/homepage_template.xml',
         'demo/base_demo.xml',
         'demo/res_partner_demo.xml',
         'demo/res_users_demo.xml',
