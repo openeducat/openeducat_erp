@@ -130,6 +130,7 @@ class OpAdmission(models.Model):
             self.street2 = student.street2 or False
             self.phone = student.phone or False
             self.mobile = student.mobile or False
+            self.email = student.email or False
             self.zip = student.zip or False
             self.city = student.city or False
             self.country_id = student.country_id and \

@@ -29,13 +29,17 @@ class OpAttendanceRegister(models.Model):
     name = fields.Char(
         'Name', size=16, required=True, track_visibility='onchange')
     code = fields.Char(
-        'Code', size=8, required=True, track_visibility='onchange')
+        'Code', size=16, required=True, track_visibility='onchange')
     course_id = fields.Many2one(
         'op.course', 'Course', required=True, track_visibility='onchange')
     batch_id = fields.Many2one(
         'op.batch', 'Batch', required=True, track_visibility='onchange')
     subject_id = fields.Many2one(
         'op.subject', 'Subject', track_visibility='onchange')
+
+    _sql_constraints = [
+        ('unique_attendance_register_code',
+         'unique(code)', 'Code should be unique per attendance register!')]
 
     @api.onchange('course_id')
     def onchange_course(self):

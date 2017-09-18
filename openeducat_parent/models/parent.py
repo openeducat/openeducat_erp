@@ -124,11 +124,12 @@ class OpStudent(models.Model):
 
     @api.multi
     def unlink(self):
-        if self.parent_ids:
-            for parent_id in self.parent_ids:
-                child_ids = parent_id.user_id.child_ids.ids
-                child_ids.remove(self.user_id.id)
-                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
+        for record in self:
+            if record.parent_ids:
+                for parent_id in record.parent_ids:
+                    child_ids = parent_id.user_id.child_ids.ids
+                    child_ids.remove(record.user_id.id)
+                    parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         return super(OpStudent, self).unlink()
 
 

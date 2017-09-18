@@ -40,6 +40,7 @@
                             <field name="student_id" domain="[('user_id','=',uid)]"/>
                             <field name="assignment_id" domain="[('allocation_ids','=',student_id),('state','=','publish')]"/>
                             <field name="submission_date" />
+                            <field name="marks" attrs="{'readonly':[('state','=','accept')]}" />
                         </group>
                         <group string="Description">
                             <field name="description" nolabel="1" />

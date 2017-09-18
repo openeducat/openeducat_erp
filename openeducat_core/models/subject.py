@@ -36,3 +36,8 @@ class OpSubject(models.Model):
     subject_type = fields.Selection(
         [('compulsory', 'Compulsory'), ('elective', 'Elective')],
         'Subject Type', default="compulsory", required=True)
+
+    _sql_constraints = [
+        ('unique_subject_code',
+         'unique(code)', 'Code should be unique per subject!'),
+    ]
