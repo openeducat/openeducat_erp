@@ -67,6 +67,28 @@ class OpSession(models.Model):
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
 
+    @api.constrains('faculty_id')
+    def _check_faculty_sessions(self):
+        for record in self:
+            if record.faculty_id and record.start_datetime and \
+                    record.end_datetime:
+                sessions = self.search(
+                    ['&',
+                     ('faculty_id', '=', record.faculty_id.id),
+                     '|', '&',
+                     ('start_datetime', '<=', record.start_datetime),
+                     ('end_datetime', '>=', record.start_datetime),
+                     '&',
+                     ('start_datetime', '<=', record.end_datetime),
+                     ('end_datetime', '>=', record.end_datetime)])
+                if len(sessions) > 1:
+                    msg = ''
+                    for x in sessions:
+                        if not x.id == record.id:
+                            msg += (x.name + '\n')
+                    raise ValidationError(
+                        _('Session will conflict with : \n %s' % msg))
+
     @api.multi
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
     def _compute_name(self):
