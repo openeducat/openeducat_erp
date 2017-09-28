@@ -11,14 +11,14 @@
 -
   !record {model: op.subject, id: subject_fa_test}:
     name: 'Financial Accounting'
-    code: 'BOA1-001'
+    code: 'BOA1-001T'
     type: 'theory'
 -
    In order to use it in timetable I create Batch
 -
   !record {model: op.batch, id: batch_test}:
     name: 'BOA-S1'
-    code: 'boas1'
+    code: 'boas1t'
     course_id: course_test
     start_date: !eval str(int(time.strftime('%Y')) - 1) +'-06-02'
     end_date: !eval str(int(time.strftime('%Y')) + 2) +'-06-02'
@@ -27,7 +27,7 @@
 -
   !record {model: op.classroom, id: room1_test}:
     name: 'R003'
-    code: 'R003'
+    code: 'R003T'
     capacity: 30
     course_id: course_test
 -

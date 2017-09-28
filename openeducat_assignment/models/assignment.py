@@ -38,7 +38,7 @@ class OpAssignment(models.Model):
         required=True)
     assignment_type_id = fields.Many2one(
         'op.assignment.type', 'Assignment Type', required=True)
-    marks = fields.Float('Marks', track_visibility='onchange')
+    marks = fields.Float('Marks', required=True, track_visibility='onchange')
     description = fields.Text('Description', required=True)
     state = fields.Selection(
         [('draft', 'Draft'), ('publish', 'Published'),

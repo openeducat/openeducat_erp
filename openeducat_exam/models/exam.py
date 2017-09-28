@@ -30,7 +30,7 @@ class OpExam(models.Model):
 
     session_id = fields.Many2one('op.exam.session', 'Exam Session')
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
-    exam_code = fields.Char('Exam Code', size=8, required=True)
+    exam_code = fields.Char('Exam Code', size=16, required=True)
     attendees_line = fields.One2many(
         'op.exam.attendees', 'exam_id', 'Attendees', readonly=True)
     start_time = fields.Datetime('Start Time', required=True)
@@ -45,6 +45,10 @@ class OpExam(models.Model):
     name = fields.Char('Exam', size=256, required=True)
     total_marks = fields.Integer('Total Marks', required=True)
     min_marks = fields.Integer('Passing Marks', required=True)
+
+    _sql_constraints = [
+        ('unique_exam_code',
+         'unique(exam_code)', 'Code should be unique per exam!')]
 
     @api.constrains('total_marks', 'min_marks')
     def _check_marks(self):

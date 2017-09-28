@@ -40,7 +40,7 @@
                     <sheet>
                         <group col="4">
                             <field name="media_id"/>
-                            <field name="media_unit_id" domain="[('state','=','available')]"
+                            <field name="media_unit_id" domain="['&amp;',('media_id','=',media_id),('state','=','available')]"
                                 context="{'default_media_id': media_id}"/>
                             <field name="media_type_id"/>
                             <field name="invoice_id"/>

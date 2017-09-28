@@ -35,7 +35,7 @@ class OpExamSession(models.Model):
     batch_id = fields.Many2one(
         'op.batch', 'Batch', required=True, track_visibility='onchange')
     exam_code = fields.Char(
-        'Exam Session Code', size=8,
+        'Exam Session Code', size=16,
         required=True, track_visibility='onchange')
     start_date = fields.Date(
         'Start Date', required=True, track_visibility='onchange')
@@ -52,6 +52,10 @@ class OpExamSession(models.Model):
         required=True, track_visibility='onchange')
     venue = fields.Many2one(
         'res.partner', 'Venue', track_visibility='onchange')
+
+    _sql_constraints = [
+        ('unique_exam_session_code',
+         'unique(exam_code)', 'Code should be unique per exam session!')]
 
     @api.constrains('start_date', 'end_date')
     def _check_date_time(self):

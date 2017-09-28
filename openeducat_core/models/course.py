@@ -26,7 +26,7 @@ class OpCourse(models.Model):
     _name = 'op.course'
 
     name = fields.Char('Name', required=True)
-    code = fields.Char('Code', size=8, required=True)
+    code = fields.Char('Code', size=16, required=True)
     parent_id = fields.Many2one('op.course', 'Parent Course')
     section = fields.Char('Section', size=32, required=True)
     evaluation_type = fields.Selection(
@@ -35,3 +35,7 @@ class OpCourse(models.Model):
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
     max_unit_load = fields.Float("Maximum Unit Load")
     min_unit_load = fields.Float("Minimum Unit Load")
+
+    _sql_constraints = [
+        ('unique_course_code',
+         'unique(code)', 'Code should be unique per course!')]
