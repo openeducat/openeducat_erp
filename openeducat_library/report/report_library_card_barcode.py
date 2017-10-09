@@ -48,7 +48,7 @@ class ReportLibraryCardBarcode(models.AbstractModel):
         return base64.encodestring(image_data)
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         docs = self.env['op.library.card'].browse(docids)
         docargs = {
             'doc_model': 'op.library.card',
@@ -56,5 +56,4 @@ class ReportLibraryCardBarcode(models.AbstractModel):
             'time': time,
             'get_barcode': self.get_barcode,
         }
-        return self.env['report'] \
-            .render('openeducat_library.report_library_card_barcode', docargs)
+        return docargs

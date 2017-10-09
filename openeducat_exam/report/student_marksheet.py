@@ -49,7 +49,7 @@ class ReportMarksheetReport(models.AbstractModel):
         return sum(total)
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         docs = self.env['op.marksheet.register'].browse(docids)
         docargs = {
             'doc_model': 'op.marksheet.register',
@@ -60,5 +60,4 @@ class ReportMarksheetReport(models.AbstractModel):
             'get_date': self.get_date,
             'get_total': self.get_total,
         }
-        return self.env['report'] \
-            .render('openeducat_exam.report_marksheet_report', docargs)
+        return docargs

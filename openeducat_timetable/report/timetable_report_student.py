@@ -79,7 +79,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         return final_list
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {
@@ -91,6 +91,4 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
             'get_object': self.get_object,
             'get_heading': self.get_heading,
         }
-        return self.env['report'] \
-            .render('openeducat_timetable.report_timetable_student_generate',
-                    docargs)
+        return docargs

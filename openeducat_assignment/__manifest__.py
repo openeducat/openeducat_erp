@@ -29,7 +29,7 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'base_action_rule'],
+    'depends': ['openeducat_core', 'base_automation'],
     'data': [
         'security/ir.model.access.csv',
         'security/op_assignment_security.xml',

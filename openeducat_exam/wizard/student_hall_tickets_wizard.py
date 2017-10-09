@@ -33,5 +33,4 @@ class StudentHallTicket(models.TransientModel):
     @api.multi
     def print_report(self):
         data = self.read(['exam_session_id'])[0]
-        return self.env['report'].get_action(
-            self, 'openeducat_exam.report_ticket', data=data)
+        return self.env.ref('openeducat_exam.action_student_hall_ticket_report').report_action(self, data=data)

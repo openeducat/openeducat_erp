@@ -47,7 +47,7 @@ class ReportMediaBarcode(models.AbstractModel):
         return base64.encodestring(image_data)
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         docs = self.env['op.media'].browse(docids)
         docargs = {
             'doc_model': 'op.media',
@@ -55,5 +55,4 @@ class ReportMediaBarcode(models.AbstractModel):
             'time': time,
             'get_barcode': self.get_barcode,
         }
-        return self.env['report'] \
-            .render('openeducat_library.report_media_barcode', docargs)
+        return docargs
