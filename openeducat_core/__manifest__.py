@@ -50,8 +50,6 @@
         'views/openeducat_template.xml',
         'views/website_assets.xml',
         'views/subject_registration_view.xml',
-        'dashboard/student_dashboard_view.xml',
-        'dashboard/faculty_dashboard_view.xml',
         'menu/openeducat_core_menu.xml',
         'menu/faculty_menu.xml',
         'menu/student_menu.xml',
