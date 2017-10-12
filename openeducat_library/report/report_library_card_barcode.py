@@ -19,12 +19,8 @@
 #
 ###############################################################################
 
-import base64
-from reportlab.graphics.barcode import createBarcodeDrawing
 import time
-
-from odoo import models, api, _
-from odoo.exceptions import ValidationError
+from odoo import models, api
 
 
 class ReportLibraryCardBarcode(models.AbstractModel):

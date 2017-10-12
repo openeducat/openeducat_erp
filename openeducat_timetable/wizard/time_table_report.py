@@ -89,4 +89,6 @@ class SessionReport(models.TransientModel):
                 order='start_datetime asc')
 
             data.update({'teacher_time_table_ids': teacher_time_table_ids.ids})
-            return self.env.ref('openeducat_timetable.report_teacher_timetable_generate').report_action(self, data=data)
+            return self.env.ref(
+                'openeducat_timetable.report_teacher_timetable_generate') \
+                .report_action(self, data=data)

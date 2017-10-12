@@ -46,4 +46,6 @@ class StudentAttendance(models.TransientModel):
         data = self.read(['from_date', 'to_date'])[0]
         data.update({'student_id': self.env.context.get('active_id', False)})
 
-        return self.env.ref('openeducat_attendance.action_report_student_attendance').report_action(self, data=data)
+        return self.env.ref(
+            'openeducat_attendance.action_report_student_attendance') \
+            .report_action(self, data=data)
