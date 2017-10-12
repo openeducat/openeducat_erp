@@ -21,7 +21,7 @@
                                 <div class="row">
                                     <div>
                                         <img t-if="res_company.logo"
-                                             t-att-src="'data:image/png;base64,%s' % res_company.logo"
+                                             t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
                                              width="380" hight="880"/>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                                 </td>
                                                 <td>
                                                     <img t-if="o['image']"
-                                                         t-att-src="'data:image/png;base64,%s' % o['image']"
+                                                         t-att-src="'data:image/png;base64,%s' % to_text(o['image'])"
                                                          width="80" hight="80"/>
                                                 </td>
                                             </tr>
