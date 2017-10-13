@@ -1,6 +1,14 @@
 Changelog
 =========
 
+`11.0.1.0.0`
+------------
+- Make code compatible with python 3.x and v11.
+- Fix the issues related to js.
+- Change the structure of reports as per new format.
+- Fix the barcode generation issue.
+- Minor improvements and bug fixes.
+
 `10.0.3.0.0`
 ------------
 - Added renew media feature for library.

@@ -24,7 +24,7 @@
     'description': 'Beautifies Website',
     'category': 'Website',
     "sequence": 3,
-    'version': '10.0.3.0.0',
+    'version': '11.0.1.0.0',
     'license': 'LGPL-3',
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
