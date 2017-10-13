@@ -39,8 +39,6 @@
         'report/report_menu.xml',
         'wizard/generate_timetable_view.xml',
         'wizard/time_table_report.xml',
-        'dashboard/timetable_student_dashboard.xml',
-        'dashboard/timetable_faculty_dashboard.xml',
         'security/ir.model.access.csv',
         'security/op_timetable_security.xml',
         'timetable_menu.xml',

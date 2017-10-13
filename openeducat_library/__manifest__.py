@@ -29,8 +29,8 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account_accountant',
-                'openeducat_activity', 'base_action_rule'],
+    'depends': ['openeducat_core', 'account',
+                'openeducat_activity', 'base_automation'],
     'data': [
         'data/custom_paperformat.xml',
         'security/library_security.xml',
@@ -54,7 +54,6 @@
         'views/media_type_view.xml',
         'views/student_view.xml',
         'views/faculty_view.xml',
-        'dashboard/library_student_dashboard.xml',
         'media_queue_sequence.xml',
         'menus/library_menu.xml',
         'data/action_rule_data.xml',

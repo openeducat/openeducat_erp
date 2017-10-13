@@ -44,6 +44,7 @@ class AdmissionAnalysis(models.TransientModel):
         else:
             data = self.read(
                 ['course_id', 'start_date', 'end_date'])[0]
-            return self.env['report'].get_action(
-                self, 'openeducat_admission.report_admission_analysis',
-                data=data)
+            return self.env.ref(
+                'openeducat_admission. \
+                action_report_report_admission_analysis') \
+                .report_action(self, data=data)

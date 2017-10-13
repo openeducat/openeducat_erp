@@ -57,7 +57,7 @@ class ReportAdmissionAnalysis(models.AbstractModel):
         return lst
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {
@@ -71,5 +71,4 @@ class ReportAdmissionAnalysis(models.AbstractModel):
             'get_total_student': self.get_total_student(data),
             'get_data': self.get_data(data),
         }
-        return self.env['report'] \
-            .render('openeducat_admission.report_admission_analysis', docargs)
+        return docargs

@@ -25,7 +25,7 @@ from odoo.exceptions import ValidationError
 
 class OpExamSession(models.Model):
     _name = 'op.exam.session'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread']
     _description = 'Exam Session'
 
     name = fields.Char(

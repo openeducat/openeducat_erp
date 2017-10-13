@@ -2,9 +2,9 @@
 <odoo>
     <data>
         <template id="report_student_idcard">
-            <t t-call="report.html_container">
+            <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-call="report.external_layout">
+                    <t t-call="web.external_layout">
                         <div class="page">
                             <br></br>
                             <br></br>
@@ -17,7 +17,7 @@
                                         <tr>
                                             <td>
                                                 <img class="image"
-                                                    t-att-src="'data:image/png;base64,%s' % res_company.logo"
+                                                    t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
                                             </td>
                                             <td style="vertical-align: top;">
@@ -53,7 +53,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <img class="image" t-att-src="'data:image/png;base64,%s' % o.image"
+                                                <img class="image" t-att-src="'data:image/png;base64,%s' % to_text(o.image)"
                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
                                             </td>
                                             <td style="vertical-align: top;">

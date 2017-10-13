@@ -25,7 +25,7 @@ from odoo.exceptions import ValidationError
 
 class OpResultTemplate(models.Model):
     _name = 'op.result.template'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread']
     _description = 'Result Template'
     _rec_name = 'name'
 

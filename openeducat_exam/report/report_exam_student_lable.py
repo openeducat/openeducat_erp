@@ -79,7 +79,7 @@ class ReportExamStudentLable(models.AbstractModel):
         return main_list
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         docs = self.env['op.exam.res.allocation'].browse(docids)
         docargs = {
             'doc_model': 'op.exam.res.allocation',
@@ -87,5 +87,4 @@ class ReportExamStudentLable(models.AbstractModel):
             'time': time,
             'get_student_data': self.get_student_data(docs),
         }
-        return self.env['report'] \
-            .render('openeducat_exam.report_exam_student_lable', docargs)
+        return docargs

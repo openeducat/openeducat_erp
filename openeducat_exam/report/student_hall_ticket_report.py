@@ -74,7 +74,7 @@ class ReportTicket(models.AbstractModel):
         return final_lst
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {
@@ -84,5 +84,4 @@ class ReportTicket(models.AbstractModel):
             'time': time,
             'get_data': self.get_data(data),
         }
-        return self.env['report'] \
-            .render('openeducat_exam.report_ticket', docargs)
+        return docargs

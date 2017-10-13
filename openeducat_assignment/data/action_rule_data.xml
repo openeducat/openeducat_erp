@@ -24,15 +24,15 @@
         <field name="template_id" ref="email_template_assignment_submission"/>
     </record>
 
-    <record id="test_rule_assignment_sub_line" model="base.action.rule">
+    <record id="test_rule_assignment_sub_line" model="base.automation">
         <field name="name">Assignment Submission Line</field>
-        <field name="kind">on_time</field>
+        <field name="trigger">on_time</field>
         <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
         <field name="filter_domain">[('state', '!=', 'accept')]</field>
         <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]"/>
         <field name="trg_date_range">-1</field>
         <field name="trg_date_range_type">day</field>
-        <field name="server_action_ids" eval="[(4, ref('assignment_sub_line_action'))]"/>
+        <!--<field name="server_action_ids" eval="[(4, ref('assignment_sub_line_action'))]"/>-->
     </record>
 
     <record id="email_template_assignment_submission_after" model="mail.template">
@@ -59,14 +59,14 @@
         <field name="template_id" ref="email_template_assignment_submission_after"/>
     </record>
 
-    <record id="test_rule_assignment_sub_line_after" model="base.action.rule">
+    <record id="test_rule_assignment_sub_line_after" model="base.automation">
         <field name="name">Assignment Submission Line after 1 Days</field>
-        <field name="kind">on_time</field>
+        <field name="trigger">on_time</field>
         <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
         <field name="filter_domain">[('state', '!=', 'accept')]</field>
         <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]"/>
         <field name="trg_date_range">1</field>
         <field name="trg_date_range_type">day</field>
-        <field name="server_action_ids" eval="[(4, ref('assignment_sub_line_action_after'))]"/>
+        <!--<field name="server_action_ids" eval="[(4, ref('assignment_sub_line_action_after'))]"/>-->
     </record>
 </odoo>

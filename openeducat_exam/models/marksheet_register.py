@@ -25,7 +25,7 @@ from odoo.exceptions import ValidationError
 
 class OpMarksheetRegister(models.Model):
     _name = 'op.marksheet.register'
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread']
 
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session',

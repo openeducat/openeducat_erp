@@ -57,7 +57,7 @@ class StudentAttendanceReport(models.AbstractModel):
                  'line': lst}]
 
     @api.model
-    def render_html(self, docids, data=None):
+    def get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {
@@ -70,5 +70,4 @@ class StudentAttendanceReport(models.AbstractModel):
             'get_student_name': self.get_student_name(data),
             'get_data': self.get_data(data),
         }
-        return self.env['report'] \
-            .render('openeducat_attendance.student_attendance_report', docargs)
+        return docargs

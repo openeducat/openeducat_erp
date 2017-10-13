@@ -29,7 +29,7 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account_accountant'],
+    'depends': ['openeducat_core', 'account'],
     'data': [
         'views/fees_terms_view.xml',
         'views/student_view.xml',
