@@ -69,9 +69,11 @@ class OpExam(models.Model):
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):
         session_start = datetime.datetime.combine(
-            fields.Date.from_string(self.session_id.start_date), datetime.time.min)
+            fields.Date.from_string(self.session_id.start_date),
+            datetime.time.min)
         session_end = datetime.datetime.combine(
-            fields.Date.from_string(self.session_id.end_date), datetime.time.max)
+            fields.Date.from_string(self.session_id.end_date),
+            datetime.time.max)
         start_time = fields.Datetime.from_string(self.start_time)
         end_time = fields.Datetime.from_string(self.end_time)
         if start_time > end_time:
