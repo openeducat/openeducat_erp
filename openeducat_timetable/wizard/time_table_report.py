@@ -78,9 +78,7 @@ class SessionReport(models.TransientModel):
                 order='start_datetime asc')
 
             data.update({'time_table_ids': time_table_ids.ids})
-            return self.env['report'].get_action(
-                self, 'openeducat_timetable.report_timetable_student_generate',
-                data=data)
+            return self.env.ref('openeducat_timetable.report_timetable_student_generate').report_action(self, data=data)
         else:
             teacher_time_table_ids = self.env['op.session'].search(
                 [('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
