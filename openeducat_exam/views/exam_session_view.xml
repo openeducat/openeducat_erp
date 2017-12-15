@@ -35,7 +35,7 @@
                             <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}" />
                             <field name="exam_type" />
                             <field name="evaluation_type" />
-                            <field name="venue" required="1"/>
+                            <field name="venue" domain="[('is_venue','=',True)]" required="1"/>
                         </group>
                         <group string="Exam(s)">
                             <field name="exam_ids" colspan="4" readonly="1" nolabel="1">

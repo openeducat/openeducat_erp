@@ -46,7 +46,7 @@
                         <h1><field name="name" /></h1>
                         <group colspan="4" col="4">
                             <field name="student_id" />
-                            <field name="course_id" />
+                            <field name="course_id" options="{'no_open': True, 'no_create': True}" />
                             <field name="batch_id" domain="[('course_id', '=', course_id)]" />
                             <field name="min_unit_load" />
                             <field name="max_unit_load" />
@@ -55,10 +55,10 @@
                         <group>
                             <separator string="Compulsory Subjects"
                                 colspan="2" />
-                            <field name="compulsory_subject_ids" nolabel="1" />
+                            <field name="compulsory_subject_ids" widget="many2many_tags" />
                             <separator string="Elective Subjects"
                                 colspan="2" />
-                            <field name="elective_subject_ids" nolabel="1"
+                            <field name="elective_subject_ids" widget="many2many_tags"
                                 domain="[('subject_type', '=', 'elective')]"
                                 attrs="{'readonly':[('state','!=','draft')]}" />
                         </group>

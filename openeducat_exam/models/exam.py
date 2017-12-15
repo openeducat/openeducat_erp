@@ -19,6 +19,8 @@
 #
 ###############################################################################
 
+import datetime
+
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -29,6 +31,12 @@ class OpExam(models.Model):
     _description = 'Exam'
 
     session_id = fields.Many2one('op.exam.session', 'Exam Session')
+    course_id = fields.Many2one(
+        'op.course', related='session_id.course_id', store=True,
+        readonly=True)
+    batch_id = fields.Many2one(
+        'op.batch', 'Batch', related='session_id.batch_id', store=True,
+        readonly=True)
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
     exam_code = fields.Char('Exam Code', size=16, required=True)
     attendees_line = fields.One2many(
@@ -60,9 +68,21 @@ class OpExam(models.Model):
 
     @api.constrains('start_time', 'end_time')
     def _check_date_time(self):
-        if self.start_time > self.end_time:
+        session_start = datetime.datetime.combine(
+            fields.Date.from_string(self.session_id.start_date),
+            datetime.time.min)
+        session_end = datetime.datetime.combine(
+            fields.Date.from_string(self.session_id.end_date),
+            datetime.time.max)
+        start_time = fields.Datetime.from_string(self.start_time)
+        end_time = fields.Datetime.from_string(self.end_time)
+        if start_time > end_time:
             raise ValidationError(_('End Time cannot be set \
             before Start Time.'))
+        elif start_time < session_start or start_time > session_end or \
+                end_time < session_start or end_time > session_end:
+            raise ValidationError(
+                _('Exam Time should in between Exam Session Dates.'))
 
     @api.multi
     def act_result_updated(self):

@@ -42,12 +42,14 @@
                         <group col="4" colspan="4">
                             <field name="session_id" required="1"/>
                             <field name="name" />
-                            <field name="subject_id" />
+                            <field name="subject_id" domain="[('course_id', '=', course_id)]" />
                             <field name="exam_code" />
                             <field name="start_time" />
                             <field name="end_time" />
                             <field name="total_marks" />
                             <field name="min_marks" />
+                            <field name="course_id" invisible="1" />
+                            <field name="batch_id" invisible="1" />
                         </group>
                         <group string="Attendees">
                             <field name="attendees_line" colspan="4" nolabel="1" />
@@ -80,11 +82,7 @@
                     <field name="min_marks" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
-                        <filter string="Batch" domain="[]" context="{'group_by':'batch_id'}" />
                         <filter string="Subject" domain="[]" context="{'group_by':'subject_id'}" />
-                        <filter string="Standard" domain="[]"
-                            context="{'group_by':'standard_id'}" />
                         <filter string="Exam Code" domain="[]"
                             context="{'group_by':'exam_code'}" />
                         <filter string="State" domain="[]" context="{'group_by':'state'}" />

@@ -31,6 +31,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core', 'openeducat_classroom'],
     'data': [
+        'views/res_partner_view.xml',
         'views/exam_attendees_view.xml',
         'views/exam_room_view.xml',
         'views/exam_session_view.xml',
