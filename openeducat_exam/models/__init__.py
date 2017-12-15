@@ -27,5 +27,6 @@ from . import exam_type
 from . import grade_configuration
 from . import marksheet_line
 from . import marksheet_register
+from . import res_partner
 from . import result_line
 from . import result_template

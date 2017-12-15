@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-###############################################################################
+##############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -17,22 +17,12 @@
 #    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-###############################################################################
+##############################################################################
+
+from odoo import models, fields
 
 
-from odoo import models, api
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
 
-
-class AccountInvoice(models.Model):
-
-    _inherit = "account.invoice"
-
-    @api.multi
-    def action_invoice_paid(self):
-        paid_invoice = super(AccountInvoice, self).action_invoice_paid()
-        if paid_invoice and self:
-            movement = self.env['op.media.movement'].search(
-                [('invoice_id', '=', self.id)])
-            if movement:
-                movement.state = 'return_done'
-        return paid_invoice
+    is_venue = fields.Boolean('Venue')

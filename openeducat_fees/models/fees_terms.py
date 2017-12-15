@@ -23,6 +23,7 @@ from odoo import models, api, fields, exceptions, _
 
 class OpFeesTermsLine(models.Model):
     _name = 'op.fees.terms.line'
+    _rec_name = 'due_days'
 
     due_days = fields.Integer('Due Days')
     value = fields.Float('Value (%)')

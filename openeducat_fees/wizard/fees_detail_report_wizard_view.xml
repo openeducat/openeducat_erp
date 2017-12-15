@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="fees_detail_report_wizard_form">
+        <field name="name">fees.detail.report.wizard.form</field>
+        <field name="model">fees.detail.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Fees Details">
+                <group>
+                    <field name="fees_filter" />
+                    <field name="student_id" attrs="{'invisible':[('fees_filter','!=','student')],'required':[('fees_filter','=','student')]}" />
+                    <field name="course_id" attrs="{'invisible':[('fees_filter','!=','course')],'required':[('fees_filter','=','course')]}" />
+                </group>
+                <footer groups="base.group_user">
+                    <button name="print_report" type="object" string="Print"
+                        class="oe_highlight" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="fees_detail_report_wizard_act">
+        <field name="name">Fees Details Report</field>
+        <field name="res_model">fees.detail.report.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="fees_detail_report_wizard_form" />
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

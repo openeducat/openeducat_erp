@@ -24,8 +24,21 @@
                 </form>
             </field>
         </record>
-        <act_window id="op_all_student_act" name="Attandance Sheet Import"
-            res_model="op.all.student" src_model="op.attendance.sheet"
-            view_mode="form" target="new" view_type="form" />
+
+        <record model="ir.actions.act_window" id="act_open_op_attendance_import_view">
+            <field name="name">Attendance Sheet Import</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.all.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_attendance_import_view_form">
+            <field name="act_window_id" ref="act_open_op_attendance_import_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="op_all_student_form" />
+        </record>
     </data>
 </odoo>

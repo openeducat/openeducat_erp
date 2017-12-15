@@ -1,4 +1,4 @@
-This module provide overall education management system overOpenERP
+This module provide overall education management system.
     Features includes managing
         * Student
         * Faculty

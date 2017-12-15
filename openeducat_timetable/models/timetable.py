@@ -20,7 +20,6 @@
 ###############################################################################
 
 import calendar
-import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -58,7 +57,7 @@ class OpSession(models.Model):
     classroom_id = fields.Many2one(
         'op.classroom', 'Classroom')
     color = fields.Integer('Color Index')
-    type = fields.Selection(week_days, 'Days', translate=True)
+    type = fields.Char(compute='_compute_day', string='Day', store=True)
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('done', 'Done'), ('cancel', 'Canceled')],
@@ -67,27 +66,12 @@ class OpSession(models.Model):
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
 
-    @api.constrains('faculty_id')
-    def _check_faculty_sessions(self):
+    @api.multi
+    @api.depends('start_datetime')
+    def _compute_day(self):
         for record in self:
-            if record.faculty_id and record.start_datetime and \
-                    record.end_datetime:
-                sessions = self.search(
-                    ['&',
-                     ('faculty_id', '=', record.faculty_id.id),
-                     '|', '&',
-                     ('start_datetime', '<=', record.start_datetime),
-                     ('end_datetime', '>=', record.start_datetime),
-                     '&',
-                     ('start_datetime', '<=', record.end_datetime),
-                     ('end_datetime', '>=', record.end_datetime)])
-                if len(sessions) > 1:
-                    msg = ''
-                    for x in sessions:
-                        if not x.id == record.id:
-                            msg += (x.name + '\n')
-                    raise ValidationError(
-                        _('Session will conflict with : \n %s' % msg))
+            record.type = fields.Datetime.from_string(
+                record.start_datetime).strftime("%A")
 
     @api.multi
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
@@ -96,7 +80,7 @@ class OpSession(models.Model):
             if session.faculty_id and session.subject_id \
                     and session.start_datetime:
                 session.name = session.faculty_id.name + ':' + \
-                    session.subject_id.name + ':' + str(session.start_datetime)
+                    session.subject_id.name + ':' + str(session.timing_id.name)
 
     # For record rule on student and faculty dashboard
     @api.multi
@@ -173,23 +157,6 @@ class OpSession(models.Model):
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
-
-    @api.onchange('start_datetime')
-    def onchange_start_date(self):
-        start_datetime = datetime.datetime.strptime(
-            self.start_datetime, "%Y-%m-%d %H:%M:%S")
-        if start_datetime and start_datetime.weekday() == 0:
-            self.type = calendar.day_name[0]
-        elif start_datetime and start_datetime.weekday() == 1:
-            self.type = calendar.day_name[1]
-        elif start_datetime and start_datetime.weekday() == 2:
-            self.type = calendar.day_name[2]
-        elif start_datetime and start_datetime.weekday() == 3:
-            self.type = calendar.day_name[3]
-        elif start_datetime and start_datetime.weekday() == 4:
-            self.type = calendar.day_name[4]
-        elif start_datetime and start_datetime.weekday() == 5:
-            self.type = calendar.day_name[5]
 
     @api.multi
     def notify_user(self):

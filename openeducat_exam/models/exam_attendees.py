@@ -33,7 +33,8 @@ class OpExamAttendees(models.Model):
         'Status', default="present", required=True)
     marks = fields.Integer('Marks')
     note = fields.Text('Note')
-    exam_id = fields.Many2one('op.exam', 'Exam', required=True)
+    exam_id = fields.Many2one(
+        'op.exam', 'Exam', required=True, ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', readonly=True)
     batch_id = fields.Many2one('op.batch', 'Batch', readonly=True)
     room_id = fields.Many2one('op.exam.room', 'Room')

@@ -22,18 +22,27 @@
 from odoo import models, fields, api
 
 
-class WizardOpFacultyEmployee(models.TransientModel):
-    _name = 'wizard.op.faculty.employee'
-    _description = "Create Employee and User of Faculty"
+class FeesDetailReportWizard(models.TransientModel):
 
-    user_boolean = fields.Boolean("Want to create user too ?", default=True)
+    """ Admission Analysis Wizard """
+    _name = 'fees.detail.report.wizard'
+
+    fees_filter = fields.Selection(
+        [('student', 'Student'), ('course', 'Course')], 'Fees Filter',
+        required=True)
+    student_id = fields.Many2one('op.student', 'Student')
+    course_id = fields.Many2one('op.course', 'Course')
 
     @api.multi
-    def create_employee(self):
-        for record in self:
-            active_id = self.env.context.get('active_ids', []) or []
-            faculty = self.env['op.faculty'].browse(active_id)
-            faculty.create_employee()
-            if record.user_boolean and not faculty.user_id:
-                user_group = self.env.ref('openeducat_core.group_op_faculty')
-                self.env['res.users'].create_user(faculty, user_group)
+    def print_report(self):
+        data = {}
+        if self.fees_filter == 'student':
+            data['fees_filter'] = self.fees_filter
+            data['student'] = self.student_id.id
+        else:
+            data['fees_filter'] = self.fees_filter
+            data['course'] = self.course_id.id
+
+        report = self.env.ref(
+            'openeducat_fees.action_report_fees_detail_analysis')
+        return report.report_action(self, data=data)

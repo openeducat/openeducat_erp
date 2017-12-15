@@ -263,7 +263,6 @@ class OpAdmission(models.Model):
                 student_id = record.student_id.id
                 record.student_id.write({
                     'course_detail_ids': [[0, False, {
-                        'date': fields.Date.today(),
                         'course_id':
                         record.course_id and record.course_id.id or False,
                         'batch_id':

@@ -32,7 +32,7 @@ class StudentAttendanceReport(models.AbstractModel):
         student = self.env['op.student'].browse(data['student_id'])
         if student:
             return ' '.join([student.name,
-                             student.middle_name,
+                             student.middle_name and student.middle_name or '',
                              student.last_name])
 
     def get_data(self, data):

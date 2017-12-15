@@ -18,7 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from openerp import models, api, fields
+
+from odoo import models, api, fields
 
 
 class OpHeldExam(models.TransientModel):
