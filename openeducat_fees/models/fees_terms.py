@@ -27,7 +27,17 @@ class OpFeesTermsLine(models.Model):
     due_days = fields.Integer('Due Days')
     value = fields.Float('Value (%)')
     fees_id = fields.Many2one('op.fees.terms', 'Fees')
+    name = fields.Char(string='Name', compute='_compute_name', readonly=True, store=True)
 
+    @api.one
+    def _compute_name(self):
+        new_name = ''
+        if self.fees_id:
+            new_name = self.fees_id.name + ' - '
+        
+        new_name = new_name + str(self.value or 0) + _('% for ') + str(self.due_days or 0) + _('day(s)')
+        
+        self.name = new_name
 
 class OpFeesTerms(models.Model):
     _name = 'op.fees.terms'

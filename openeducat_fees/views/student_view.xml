@@ -17,6 +17,32 @@
                         <div><strong><field name="total_invoiced" widget="monetary"/></strong><br/>Invoiced</div>
                     </button>
                 </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Fees Collection Details">
+                        <field name="fees_detail_ids" readonly="1">
+                            <tree string="Fees Collection Details"
+                                editable="top">
+                                <field name="fees_line_id"
+                                    invisible="1" />
+                                <field name="date" />
+                                <field name="amount" />
+                                <field name="product_id"
+                                    invisible="0" />
+                                <field name="invoice_id"
+                                    invisible="1" />
+                                <field name="state" />
+                                <field name="invoice_state" />
+                                <button string="Create Invoice"
+                                    states="draft" type="object" name="get_invoice"
+                                    groups="openeducat_core.group_op_back_office" />
+                                <button string="View Invoice"
+                                    groups="openeducat_core.group_op_back_office"
+                                    states="invoice" type="object"
+                                    name="action_get_invoice" />
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
             </field>
         </record>
     </data>
