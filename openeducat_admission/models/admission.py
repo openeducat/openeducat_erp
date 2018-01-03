@@ -277,9 +277,11 @@ class OpAdmission(models.Model):
                     no_days = line.due_days
                     per_amount = line.value
                     amount = (per_amount * record.fees) / 100
+                    reference = 'op.admission,'+str(self.id)
                     date = (
                         datetime.today() + relativedelta(days=no_days)).date()
                     dict_val = {
+                        'reference': reference,
                         'fees_line_id': line.id,
                         'amount': amount,
                         'date': date,

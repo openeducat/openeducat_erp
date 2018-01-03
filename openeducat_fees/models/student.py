@@ -27,6 +27,7 @@ class OpStudentFeesDetails(models.Model):
     _description = 'Student Fees Details'
 
     student_id = fields.Many2one('op.student', 'Student')
+    reference = fields.Reference(string='Origin', selection='_get_document_types')
     fees_line_id = fields.Many2one('op.fees.terms.line', 'Fees Line')
     invoice_id = fields.Many2one('account.invoice', 'Invoice')
     amount = fields.Float('Fees Amount')
@@ -40,6 +41,13 @@ class OpStudentFeesDetails(models.Model):
         ('paid', 'Paid'), ('cancel', 'Cancelled')], 'State',
         related="invoice_id.state", readonly=True)
 
+
+    @api.model
+    def _get_document_types(self):
+        records = self.env['ir.model'].search([('model', '=', 'op.batch')])
+        return [(record.model, record.name) for record in records] + [('', '')]
+    
+    
     @api.multi
     def get_invoice(self):
         """ Create invoice for fee payment process of student """
@@ -74,6 +82,7 @@ class OpStudentFeesDetails(models.Model):
             'reference': False,
             'account_id': partner_id.property_account_receivable_id.id,
             'partner_id': partner_id.id,
+            'date_invoice': self.date,
             'invoice_line_ids': [(0, 0, {
                 'name': name,
                 'origin': student.gr_no,
@@ -89,6 +98,7 @@ class OpStudentFeesDetails(models.Model):
         self.state = 'invoice'
         self.invoice_id = invoice.id
         return True
+
 
     def action_get_invoice(self):
         value = True

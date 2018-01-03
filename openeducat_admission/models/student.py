@@ -19,6 +19,16 @@
 #
 ##############################################################################
 
-from . import admission
-from . import admission_register
-from . import student
+from odoo import models, api, fields, exceptions, _
+
+
+class OpStudentFeesDetails(models.Model):
+    _inherit = 'op.student.fees.details'
+
+    @api.model
+    def _get_document_types(self):
+        records = self.env['ir.model'].search([('model', '=', 'op.admission')])
+        result = [(record.model, record.name) for record in records]
+        
+        return result + super(OpStudentFeesDetails,self)._get_document_types()
+    
