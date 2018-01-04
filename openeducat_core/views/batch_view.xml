@@ -29,6 +29,29 @@
                             <field name="end_date" />
                             <field name="course_id" />
                         </group>
+                        <notebook colspan="4">
+                        	<page name="students_assigned" string="Students Assigned">
+                                <group>
+                                    <separator string="Students Assigned" colspan="4" />
+                                    <field name="student_detail_ids" nolabel="1" readonly="1">
+                                        <tree string="Course Details">
+                                            <field name="student_id" />
+                                            <field name="roll_number" />
+                                            <field name="subject_ids" widget="many2many_tags" />
+                                        </tree>
+                                        <form>
+                                            <group cols="2" colspan="2">
+                                                <field name="student_id" />
+                                                <field name="roll_number" />
+                                            </group>
+                                            <group col="4" string="Subjects">
+                                                <field name="subject_ids" colspan="4" nolabel="1" />
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                        	</page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
