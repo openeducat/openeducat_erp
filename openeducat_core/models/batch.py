@@ -62,3 +62,14 @@ class OpBatch(models.Model):
             return batches.name_get()
         return super(OpBatch, self).name_search(
             name, args, operator=operator, limit=limit)
+        
+    @api.multi
+    def create_roll_number(self):
+        roll = 0
+        for record in self:
+            for student in record.student_detail_ids:
+                roll=roll+1
+                student.roll_number = format(roll, "06d")
+    
+
+                
