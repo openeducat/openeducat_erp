@@ -17,6 +17,9 @@
                         <div><strong><field name="total_invoiced" widget="monetary"/></strong><br/>Invoiced</div>
                     </button>
                 </xpath>
+                <xpath expr="//page[@name='educational']" position="inside">
+                    <button string="Generate Fees" class="oe_highlight" type="object" name="generate_fees"/>
+                </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page string="Fees Collection Details">
                         <field name="fees_detail_ids" readonly="1">
@@ -28,16 +31,16 @@
                                 <field name="date" />
                                 <field name="amount" />
                                 <field name="product_id"
-                                    invisible="0" />
+                                    invisible="1" />
                                 <field name="invoice_id"
                                     invisible="1" />
                                 <field name="state" />
                                 <field name="invoice_state" />
                                 <button string="Create Invoice"
                                     states="draft" type="object" name="get_invoice"
-                                    groups="openeducat_core.group_op_back_office" />
+                                    groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
                                 <button string="View Invoice"
-                                    groups="openeducat_core.group_op_back_office"
+                                    groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin"
                                     states="invoice" type="object"
                                     name="action_get_invoice" />
                             </tree>

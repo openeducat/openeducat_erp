@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_batch_form_fees_inherit" model="ir.ui.view">
+            <field name="name">op.batch.form.fees.inherit</field>
+            <field name="model">op.batch</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_batch_form" />
+            <field name="priority" eval="9" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='create_roll_number']" position="after">
+                    <button string="Generate Fees" class="oe_highlight"
+                        type="object" name="generate_fees"/>                
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+    

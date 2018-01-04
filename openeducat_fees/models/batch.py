@@ -19,36 +19,23 @@
 #
 ###############################################################################
 
-{
-    'name': 'OpenEduCat Fees',
-    'version': '10.0.3.0.0',
-    'license': 'LGPL-3',
-    'category': 'Education',
-    "sequence": 3,
-    'summary': 'Manage Fees',
-    'complexity': "easy",
-    'author': 'Tech Receptives',
-    'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account_accountant'],
-    'data': [
-        'views/fees_terms_view.xml',
-        'views/student_view.xml',
-        'views/course_view.xml',
-        'views/batch_view.xml',
-        'security/fees_security.xml',
-        'security/ir.model.access.csv'
-    ],
-    'images': [
-        'static/description/openeducat_fees_banner.jpg',
-    ],
-    'demo': [
-        'demo/fees_terms_line_demo.xml',
-        'demo/fees_terms_demo.xml',
-        'demo/product_category_demo.xml',
-        'demo/product_demo.xml',
-        'demo/course_demo.xml',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
-}
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+
+
+class OpBatch(models.Model):
+    _inherit = 'op.batch'
+    
+    
+    @api.multi
+    def generate_fees(self):
+        count=0
+        for record in self:
+            for student in record.student_detail_ids:
+                count = count + student.generate_fees()
+            
+        #if count > 0:
+        #    text = _('Fees generation finished with ') +str(count) + _('fees created')
+        #else:
+        #    text = _('Fees generation finished with none fee created')
+            

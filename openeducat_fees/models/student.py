@@ -20,6 +20,8 @@
 ##############################################################################
 
 from odoo import models, api, fields, exceptions, _
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class OpStudentFeesDetails(models.Model):
@@ -34,7 +36,7 @@ class OpStudentFeesDetails(models.Model):
     date = fields.Date('Submit Date')
     product_id = fields.Many2one('product.product', 'Product')
     state = fields.Selection([
-        ('draft', 'Draft'), ('invoice', 'Invoice Created')], 'Status')
+        ('draft', 'Draft'), ('invoice', 'Invoice Created')], 'Status', default='draft')
     invoice_state = fields.Selection([
         ('draft', 'Draft'), ('proforma', 'Pro-forma'),
         ('proforma2', 'Pro-forma'), ('open', 'Open'),
@@ -120,7 +122,45 @@ class OpStudentFeesDetails(models.Model):
             }
         return value
         
+class OpStudentCourse(models.Model):
+    _inherit = 'op.student.course'
+    
+    
+    def create_reference(self):
+        return 'op.student.course,'+str(self.id)
+    
+    
+    def check_fee_exist(self, term_line):
+        model = self.env['op.student.fees.details']
+        
+        fees = model.search([('student_id', '=', self.student_id.id),\
+                             ('reference', '=', self.create_reference()),\
+                             ('product_id', '=', self.course_id.product_id.id),\
+                             ('fees_line_id', '=', term_line.id)])
+        
+        return len(fees) > 0
+    
 
+    def generate_fees(self):
+        count = 0
+        if self.course_id.fees_term_id and self.course_id.product_id:
+            for term_line in self.course_id.fees_term_id.line_ids:
+                if not self.check_fee_exist(term_line):
+                    record = {}
+                    record['student_id'] = self.student_id.id
+                    record['reference'] = self.create_reference()
+                    record['fees_line_id'] = term_line.id
+                    record['amount'] = self.course_id.product_id.list_price * term_line.value / 100.00
+                    record['date'] = (fields.Date.from_string(self.batch_id.start_date) + relativedelta(days=term_line.due_days))
+                    record['product_id'] = self.course_id.product_id.id
+                    record['state'] = 'draft'
+                    val = [[0, False, record]]
+                    self.student_id.write({'fees_detail_ids': val})
+                    count+=1
+        return count
+
+
+        
 class OpStudent(models.Model):
     _inherit = 'op.student'
     
@@ -148,3 +188,17 @@ class OpStudent(models.Model):
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = inv_ids and inv_ids[0] or False
         return result
+
+    @api.multi
+    def generate_fees(self):
+        count=0
+        for record in self:
+            for course in record.course_detail_ids:
+                count = count + course.generate_fees()
+        
+        #if count > 0:
+        #    text = _('Fees generation finished with ') +str(count) + _('fees created')
+        #else:
+        #    text = _('Fees generation finished with none fee created')
+        
+

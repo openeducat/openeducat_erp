@@ -22,3 +22,4 @@
 from . import fees_terms
 from . import course
 from . import student
+from . import batch

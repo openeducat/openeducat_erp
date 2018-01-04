@@ -32,6 +32,7 @@ class OpStudentCourse(models.Model):
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     roll_number = fields.Char('Roll Number')
     subject_ids = fields.Many2many('op.subject', string='Subjects')
+    name = fields.Char(string='Name', compute='_compute_name', readonly=True, store=False)
 
     _sql_constraints = [
         ('unique_name_roll_number_id',
@@ -45,6 +46,16 @@ class OpStudentCourse(models.Model):
          'Student must be unique per Batch!'),
     ]
 
+
+    @api.one
+    def _compute_name(self):
+        name = ''
+        if self.course_id:
+            name = self.course_id.name
+        if self.batch_id:
+            name = name + '(' + (self.batch_id.code or '') + ')'
+        self.name = name
+            
 
 class OpStudent(models.Model):
     _name = 'op.student'
