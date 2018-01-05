@@ -21,6 +21,9 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class OpBatch(models.Model):
@@ -34,8 +37,9 @@ class OpBatch(models.Model):
             for student in record.student_detail_ids:
                 count = count + student.generate_fees()
             
-        #if count > 0:
-        #    text = _('Fees generation finished with ') +str(count) + _('fees created')
-        #else:
-        #    text = _('Fees generation finished with none fee created')
-            
+        if count > 0:
+            text = _('Fees generation finished with ') +str(count) + _('fees created')
+        else:
+            text = _('Fees generation finished with none fee created')
+        
+        _logger.info(text)

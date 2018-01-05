@@ -22,6 +22,9 @@
 from odoo import models, api, fields, exceptions, _
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class OpStudentFeesDetails(models.Model):
@@ -196,9 +199,9 @@ class OpStudent(models.Model):
             for course in record.course_detail_ids:
                 count = count + course.generate_fees()
         
-        #if count > 0:
-        #    text = _('Fees generation finished with ') +str(count) + _('fees created')
-        #else:
-        #    text = _('Fees generation finished with none fee created')
+        if count > 0:
+            text = _('Fees generation finished with ') +str(count) + _('fees created')
+        else:
+            text = _('Fees generation finished with none fee created')
         
-
+        _logger.info(text)
