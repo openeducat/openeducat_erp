@@ -278,8 +278,10 @@ class OpAdmission(models.Model):
                     per_amount = line.value
                     amount = (per_amount * record.fees) / 100
                     reference = 'op.admission,'+str(self.id)
+                    months = int(round(no_days / 30))
+                    days = int(round(no_days % 30))
                     date = (
-                        datetime.today() + relativedelta(days=no_days)).date()
+                        datetime.today() + relativedelta(months=months, days=days)).date()
                     dict_val = {
                         'reference': reference,
                         'fees_line_id': line.id,

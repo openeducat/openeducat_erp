@@ -154,7 +154,9 @@ class OpStudentCourse(models.Model):
                     record['reference'] = self.create_reference()
                     record['fees_line_id'] = term_line.id
                     record['amount'] = self.course_id.product_id.list_price * term_line.value / 100.00
-                    record['date'] = (fields.Date.from_string(self.batch_id.start_date) + relativedelta(days=term_line.due_days))
+                    months = int(round(term_line.due_days / 30))
+                    days = int(round(term_line.due_days % 30))
+                    record['date'] = (fields.Date.from_string(self.batch_id.start_date) + relativedelta(months=months, days=days))
                     record['product_id'] = self.course_id.product_id.id
                     record['state'] = 'draft'
                     val = [[0, False, record]]
