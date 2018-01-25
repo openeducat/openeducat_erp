@@ -79,7 +79,7 @@ class SessionReport(models.TransientModel):
 
             data.update({'time_table_ids': time_table_ids.ids})
             return self.env.ref(
-                'openeducat_timetable.report_timetable_student_generate') \
+                'openeducat_timetable.report_student_timetable_generate') \
                 .report_action(self, data=data)
         else:
             teacher_time_table_ids = self.env['op.session'].search(
