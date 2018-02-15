@@ -24,7 +24,7 @@ from openerp import models, fields, api
 
 class WizardOpFaculty(models.TransientModel):
     _name = 'wizard.op.faculty'
-    _description = "Create User for selected Faculty(s)"
+    _description = "Create User for selected Faculty"
 
     def _get_faculties(self):
         if self.env.context and self.env.context.get('active_ids'):
@@ -32,7 +32,7 @@ class WizardOpFaculty(models.TransientModel):
         return []
 
     faculty_ids = fields.Many2many(
-        'op.faculty', default=_get_faculties, string='Faculties')
+        'op.faculty', default=_get_faculties, string='Faculty')
 
     @api.multi
     def create_faculty_user(self):
