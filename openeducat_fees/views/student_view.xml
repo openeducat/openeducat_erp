@@ -50,5 +50,76 @@
                 </xpath>
             </field>
         </record>
+        
+        <record id="view_op_student_fees_treeview" model="ir.ui.view">
+            <field name="name">op.student.fees.treeview</field>
+            <field name="model">op.student.fees.details</field>
+            <field name="arch" type="xml">
+                <tree string="Student Fees">
+                    <field name="reference"/>
+                    <field name="student_id"/>
+                    <field name="fees_line_id"/>
+                    <field name="invoice_id"/>
+                    <field name="amount"/>
+                    <field name="date"/>
+                    <field name="product_id"/>
+                    <field name="state"/>
+                    <field name="invoice_state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_op_student_fees_search" model="ir.ui.view">
+            <field name="name">op.student.fees.search</field>
+            <field name="model">op.student.fees.details</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Student">
+                    <field name="reference" />
+                    <field name="fees_line_id" />
+                    <field name="student_id" />
+                    <field name="date" />
+                    <field name="product_id" />
+                    <field name="state" />
+                    <field name="invoice_state" />
+                    <field name="date" />
+                </search>
+            </field>
+        </record>
+
+        <record id="view_op_student_fees_form" model="ir.ui.view">
+            <field name="name">op.student.fees.form</field>
+            <field name="model">op.student.fees.details</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Student Fees">
+                	<notebook colspan="4" name="student_fees_notebook">
+                		<group cols="2" colspan="2">
+                			<field name="reference"/>
+                			<field name="student_id"/>
+                		</group>
+                		<page name="account_info" string="Account">
+                			<group cols="2" colspan="2">
+	                        	<field name="fees_line_id"/>
+	                        	<field name="invoice_id"/>
+	                        	<field name="amount"/>
+	                        	<field name="date"/>
+	                        	<field name="product_id"/>
+	                        	<field name="state"/>
+	                        	<field name="invoice_state"/>
+                        	</group>
+                        </page>
+                	</notebook>
+                </form>
+            </field>
+        </record>
+                      
+        <record model="ir.actions.act_window" id="act_open_op_student_fee_view">
+            <field name="name">Student Fees</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.student.fees.details</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree,form</field>
+        </record>
     </data>
 </odoo>

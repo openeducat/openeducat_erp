@@ -35,6 +35,7 @@
         'views/student_view.xml',
         'views/course_view.xml',
         'views/batch_view.xml',
+        'menu/student_menu.xml',
         'security/fees_security.xml',
         'security/ir.model.access.csv'
     ],
