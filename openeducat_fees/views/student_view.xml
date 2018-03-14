@@ -20,6 +20,14 @@
                 <xpath expr="//page[@name='educational']" position="inside">
                     <button string="Generate Fees" class="oe_highlight" type="object" name="generate_fees"/>
                 </xpath>
+                <xpath expr="//field[@name='course_detail_ids']//tree//field[@name='roll_number']" position="after">
+                    <field name="discount"/>
+                </xpath>
+                <xpath expr="//field[@name='course_detail_ids']//form//field[@name='roll_number']" position="after">
+                    <field name="discount"/>
+                </xpath>
+
+                                
                 <xpath expr="//notebook" position="inside">
                     <page string="Fees Collection Details">
                         <field name="fees_detail_ids" readonly="0" 
@@ -31,6 +39,7 @@
                                     invisible="1" />
                                 <field name="date" />
                                 <field name="amount" />
+                                <field name="discount" />
                                 <field name="product_id"
                                     invisible="1" />
                                 <field name="invoice_id"
@@ -55,16 +64,26 @@
             <field name="name">op.student.fees.treeview</field>
             <field name="model">op.student.fees.details</field>
             <field name="arch" type="xml">
-                <tree string="Student Fees">
-                    <field name="reference"/>
-                    <field name="student_id"/>
-                    <field name="fees_line_id"/>
-                    <field name="invoice_id"/>
-                    <field name="amount"/>
-                    <field name="date"/>
-                    <field name="product_id"/>
-                    <field name="state"/>
-                    <field name="invoice_state"/>
+                <tree string="Student Fees" editable="True">
+                    <field name="reference" readonly="True"/>
+                    <field name="student_id" readonly="True"/>
+                    <field name="middle_name" readonly="True"/>
+                    <field name="last_name" readonly="True"/>
+                    <field name="fees_line_id" readonly="True"/>
+                    <field name="invoice_id" readonly="True"/>
+                    <field name="amount" attrs="{'readonly':[('invoice_id', '>', '0')]}"/>
+                    <field name="discount" attrs="{'readonly':[('invoice_id', '>', '0')]}"/>
+                    <field name="date" attrs="{'readonly':[('invoice_id', '>', '0')]}"/>
+                    <field name="product_id" readonly="True"/>
+                    <field name="state" readonly="True"/>
+                    <field name="invoice_state" readonly="True"/>
+                    <button string="Create Invoice"
+                        states="draft" type="object" name="get_invoice"
+                        groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin" />
+                    <button string="View Invoice"
+                        groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin"
+                        states="invoice" type="object"
+                        name="action_get_invoice" />
                 </tree>
             </field>
         </record>
@@ -75,14 +94,18 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Student">
-                    <field name="reference" />
+                    <field name="reference"/>
                     <field name="fees_line_id" />
                     <field name="student_id" />
+                    <field name="middle_name" />
+                    <field name="last_name" />
+                    <field name="amount"/>
+                    <field name="discount"/>
                     <field name="date" />
                     <field name="product_id" />
                     <field name="state" />
                     <field name="invoice_state" />
-                    <field name="date" />
+                   
                 </search>
             </field>
         </record>
@@ -100,12 +123,17 @@
                 		</group>
                 		<page name="account_info" string="Account">
                 			<group cols="2" colspan="2">
-	                        	<field name="fees_line_id"/>
-	                        	<field name="invoice_id"/>
+	                        	<field name="reference" readonly="True"/>
+	                        	<field name="fees_line_id" readonly="True"/>
+			                    <field name="student_id" readonly="True"/>
+			                    <field name="middle_name" readonly="True"/>
+			                    <field name="last_name" readonly="True"/>
+	                        	<field name="invoice_id" readonly="True"/>
 	                        	<field name="amount"/>
+	                        	<field name="discount"/>
 	                        	<field name="date"/>
-	                        	<field name="product_id"/>
-	                        	<field name="state"/>
+	                        	<field name="product_id" readonly="True"/>
+	                        	<field name="state" readonly="True"/>
 	                        	<field name="invoice_state"/>
                         	</group>
                         </page>
@@ -118,7 +146,7 @@
             <field name="name">Student Fees</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.student.fees.details</field>
-            <field name="view_type">tree</field>
+            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
     </data>

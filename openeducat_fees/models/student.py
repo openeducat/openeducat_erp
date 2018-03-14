@@ -32,10 +32,14 @@ class OpStudentFeesDetails(models.Model):
     _description = 'Student Fees Details'
 
     student_id = fields.Many2one('op.student', 'Student')
+    middle_name = fields.Char('Middle Name', size=128, related="student_id.middle_name")
+    last_name = fields.Char('Last Name', size=128, related="student_id.last_name")
+
     reference = fields.Reference(string='Origin', selection='_get_document_types')
     fees_line_id = fields.Many2one('op.fees.terms.line', 'Fees Line')
     invoice_id = fields.Many2one('account.invoice', 'Invoice')
     amount = fields.Float('Fees Amount')
+    discount = fields.Float('Discount')
     date = fields.Date('Submit Date')
     product_id = fields.Many2one('product.product', 'Product')
     state = fields.Selection([
@@ -78,6 +82,11 @@ class OpStudentFeesDetails(models.Model):
                              positive.'))
         else:
             amount = self.amount
+            
+            discount = self.discount
+            if discount > 100.00:
+                discount = 100.00
+                
             name = product.name
 
         invoice = inv_obj.create({
@@ -94,7 +103,7 @@ class OpStudentFeesDetails(models.Model):
                 'account_id': account_id,
                 'price_unit': amount,
                 'quantity': 1.0,
-                'discount': 0.0,
+                'discount': discount,
                 'uom_id': product.uom_id.id,
                 'product_id': product.id,
             })],
@@ -128,6 +137,7 @@ class OpStudentFeesDetails(models.Model):
 class OpStudentCourse(models.Model):
     _inherit = 'op.student.course'
     
+    discount = fields.Float('Discount')
     
     def create_reference(self):
         return 'op.student.course,'+str(self.id)
@@ -156,6 +166,7 @@ class OpStudentCourse(models.Model):
                     record['amount'] = self.course_id.product_id.list_price * term_line.value / 100.00
                     months = int(round(term_line.due_days / 30))
                     days = int(round(term_line.due_days % 30))
+                    record['discount'] = self.discount
                     record['date'] = (fields.Date.from_string(self.batch_id.start_date) + relativedelta(months=months, days=days))
                     record['product_id'] = self.course_id.product_id.id
                     record['state'] = 'draft'
