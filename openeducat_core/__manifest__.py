@@ -25,7 +25,7 @@
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
-    'summary': 'Manage Students, Faculties and Education Institute',
+    'summary': 'Manage Students, Faculty, and Educational Institute',
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
