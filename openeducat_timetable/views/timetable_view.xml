@@ -207,6 +207,26 @@
                 </kanban>
             </field>
         </record>
+        <record id="view_op_session_pivot" model="ir.ui.view">
+            <field name="name">op.session.pivot</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <pivot string="Session Analysis">
+                    <field name="name" />
+                    <field name="faculty_id" />
+                    <field name="timing_id" />
+                    <field name="course_id" />
+                    <field name="batch_id"/>
+                    <field name="subject_id" />
+                    <field name="classroom_id" />
+                    <field name="start_datetime" />
+                    <field name="end_datetime" />
+                    <field name="type" />
+                </pivot>
+            </field>
+        </record>
+
 
         <record model="ir.actions.act_window" id="act_open_op_session_view">
             <field name="name">Sessions</field>
@@ -236,5 +256,12 @@
             <field name="view_mode">kanban</field>
             <field name="view_id" ref="view_session_kanban" />
         </record>
+        <record model="ir.actions.act_window" id="act_open_op_session_view_pivot">
+            <field name="name">Session Analysis Pivot</field>
+            <field name="res_model">op.session</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_op_session_pivot"/>
+        </record>
+
     </data>
 </odoo>
