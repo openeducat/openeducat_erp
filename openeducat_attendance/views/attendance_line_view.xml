@@ -63,6 +63,24 @@
                 </search>
             </field>
         </record>
+        <record id="view_op_attendance_line_pivot" model="ir.ui.view">
+            <field name="name">op.attendance.line.pivot</field>
+            <field name="model">op.attendance.line</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <pivot string="Attendance Analysis">
+                            <field name="attendance_id"/>
+                            <field name="student_id"/>
+                            <field name="present" />
+                            <field name="remark" />
+                            <field name="course_id"/>
+                            <field name="batch_id"/>
+                            <field name="attendance_date" />
+                            <field name="register_id" />
+                </pivot>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_attendance_line_view">
             <field name="name">Attendance Line</field>
             <field name="type">ir.actions.act_window</field>
@@ -85,5 +103,12 @@
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_op_attendance_line_tree" />
         </record>
+        <record model="ir.actions.act_window" id="act_open_op_attendance_view_pivot">
+            <field name="name">Attendance Analysis Pivot</field>
+            <field name="res_model">op.attendance.line</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_op_attendance_line_pivot"/>
+        </record>
+
     </data>
 </odoo>

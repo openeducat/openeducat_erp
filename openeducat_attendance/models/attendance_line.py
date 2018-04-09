@@ -46,6 +46,8 @@ class OpAttendanceLine(models.Model):
     attendance_date = fields.Date(
         'Date', related='attendance_id.attendance_date', store=True,
         readonly=True, track_visibility="onchange")
+    register_id = fields.Many2one(
+        related='attendance_id.register_id', store=True)
 
     _sql_constraints = [
         ('unique_student',

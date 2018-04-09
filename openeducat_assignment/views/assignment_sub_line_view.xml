@@ -56,6 +56,20 @@
                 </form>
             </field>
         </record>
+         <record id="view_op_assignment_sub_line_pivot" model="ir.ui.view">
+            <field name="name">op.assignment.sub.line.pivot</field>
+            <field name="model">op.assignment.sub.line</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <pivot string="Assignment Sub Line">
+                    <field name="assignment_id" />
+                    <field name="student_id" />
+                    <field name="submission_date" />
+                    <field name="state" />
+                </pivot>
+            </field>
+        </record>
+
         <record id="view_op_assignment_sub_line_search" model="ir.ui.view">
             <field name="name">op.assignment.sub.line.search</field>
             <field name="model">op.assignment.sub.line</field>
