@@ -78,6 +78,23 @@
                 </search>
             </field>
         </record>
+        <record id="view_op_admission_register_pivot" model="ir.ui.view">
+            <field name="name">op.admission.register.pivot</field>
+            <field name="model">op.admission.register</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <pivot string="Admission Register">
+                    <field name="name" />
+                    <field name="course_id" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="min_count" />
+                    <field name="max_count" />
+                    <field name="product_id" />
+                    <field name="state" />
+                </pivot>
+            </field>
+        </record>
 
         <record model="ir.actions.act_window" id="act_open_op_admission_register_view">
             <field name="name">Admission Registers</field>

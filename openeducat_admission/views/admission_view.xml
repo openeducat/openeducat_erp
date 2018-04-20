@@ -168,6 +168,27 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_op_admission_pivot">
+            <field name="name">op.admission.pivot</field>
+            <field name="model">op.admission</field>
+            <field name="arch" type="xml">
+                <pivot string="Course By Admission">
+                    <field name="title" />
+                    <field name="name" />
+                    <field name="middle_name" />
+                    <field name="last_name" />
+                    <field name="application_number" />
+                    <field name="register_id"/>
+                    <field name="admission_date" />
+                    <field name="application_date" />
+                    <field name="birth_date" />
+                    <field name="course_id" />
+                    <field name="batch_id" />
+                    <field name="state" />
+                </pivot>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_admission_view">
             <field name="name">Registration</field>
             <field name="type">ir.actions.act_window</field>
@@ -189,6 +210,12 @@
             <field name="sequence" eval="10" />
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_op_admission_tree" />
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_admission_view_pivot">
+            <field name="name">Admission Analysis</field>
+            <field name="res_model">op.admission</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_op_admission_pivot"/>
         </record>
     </data>
 </odoo>
