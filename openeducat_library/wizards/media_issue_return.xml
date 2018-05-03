@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_media_issue_return_wizard_form" model="ir.ui.view">
+            <field name="name">media.issue.return.wizard.form</field>
+            <field name="model">media.issue.return</field>
+            <field name="arch" type="xml">
+                <form string="Issue/Return">
+                    <group>
+                        <group>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button string="Yes" type="object"
+                                    name="issue_return_media" class="oe_highlight"/>
+                            or
+                            <button special="cancel" string="No" type="object"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_set_issue_return_media" multi="True"
+                    name="Issue/Return" res_model="media.issue.return" src_model="op.media.movement"
+                    view_mode="form" target="new" view_type="form"/>
+    </data>
+</odoo>
