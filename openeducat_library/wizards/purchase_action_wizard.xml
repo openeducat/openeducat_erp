@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_purchase_action_wizard_form" model="ir.ui.view">
+            <field name="name">purchase.action.wizard.form</field>
+            <field name="model">purchase.action.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Action">
+                    <group>
+                        <group>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button string="Yes" type="object"
+                                    name="purchase_action" class="oe_highlight"/>
+                            or
+                            <button special="cancel" string="No" type="object"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_set_purchase_wizard" multi="True"
+                    name="Request/Issue/Return" res_model="purchase.action.wizard" src_model="op.media.purchase"
+                    view_mode="form" target="new" view_type="form"/>
+    </data>
+</odoo>

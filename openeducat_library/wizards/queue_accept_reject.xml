@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_queue_accept_reject_wizard_form" model="ir.ui.view">
+            <field name="name">queue.accept.reject.wizard.form</field>
+            <field name="model">queue.accept.reject</field>
+            <field name="arch" type="xml">
+                <form string="Accept/Reject">
+                    <group>
+                        <group>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button string="Yes" type="object"
+                                    name="accept_reject_queue" class="oe_highlight"/>
+                            or
+                            <button special="cancel" string="No" type="object"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_set_accept_reject_queue" multi="True"
+                    name="Accept/Reject" res_model="queue.accept.reject" src_model="op.media.queue"
+                    view_mode="form" target="new" view_type="form"/>
+    </data>
+</odoo>

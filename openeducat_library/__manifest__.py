@@ -57,6 +57,9 @@
         'media_queue_sequence.xml',
         'menus/library_menu.xml',
         'data/action_rule_data.xml',
+        'wizards/media_issue_return.xml',
+        'wizards/queue_accept_reject.xml',
+        'wizards/purchase_action_wizard.xml',
     ],
     'demo': [
         'demo/product_demo.xml',
