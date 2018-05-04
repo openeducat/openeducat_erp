@@ -101,7 +101,7 @@ class OpMediaMovement(models.Model):
         self.student_id = self.library_card_id.student_id.id
         self.faculty_id = self.library_card_id.faculty_id.id
         self.return_date = date.today() + \
-            timedelta(days=self.library_card_id.library_card_type_id.duration)
+                           timedelta(days=self.library_card_id.library_card_type_id.duration)
 
     @api.multi
     def issue_media(self):
@@ -137,10 +137,10 @@ class OpMediaMovement(models.Model):
             if record.library_card_id and \
                     record.library_card_id.library_card_type_id:
                 penalty_days = actual_diff > standard_diff and actual_diff - \
-                    standard_diff or penalty_days
+                               standard_diff or penalty_days
                 penalty_amt = penalty_days * \
-                    record.library_card_id.library_card_type_id.\
-                    penalty_amt_per_day
+                              record.library_card_id.library_card_type_id. \
+                                  penalty_amt_per_day
             record.write({'penalty': penalty_amt})
 
     @api.multi
@@ -166,7 +166,7 @@ class OpMediaMovement(models.Model):
                 'reference': False,
                 'date_invoice': fields.Date.today(),
                 'account_id':
-                self.student_id.partner_id.property_account_receivable_id.id,
+                    self.student_id.partner_id.property_account_receivable_id.id,
                 'invoice_line_ids': [(0, 0, {
                     'name': product.name,
                     'account_id': account_id,
@@ -180,3 +180,27 @@ class OpMediaMovement(models.Model):
             invoice.compute_taxes()
             invoice.action_invoice_open()
             self.invoice_id = invoice.id
+
+    @api.onchange('type')
+    def onchange_type(self):
+        self.library_card_id = False
+        if not self.type:
+            return
+        card_ids = self.env['op.library.card'].search([('type', '=', self.type)])
+        member_ids = [x.faculty_id.id or x.student_id.id for x in card_ids]
+        type = 'student_id' if self.type == 'student' else 'faculty_id'
+        return {'domain': {
+            type: [('id', 'in', member_ids)]
+        }}
+
+    @api.onchange('student_id', 'faculty_id')
+    def onchange_stud_faculty(self):
+        domain = []
+        if not self.type:
+            return
+        elif self.type == 'student':
+            domain.append(('student_id', '=', self.student_id.id))
+        else:
+            domain.append(('faculty_id', '=', self.faculty_id.id))
+        card_id = self.env['op.library.card'].search(domain, limit=1).id
+        self.library_card_id = card_id
