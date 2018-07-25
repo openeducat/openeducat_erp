@@ -68,6 +68,11 @@ class OpAssignment(models.Model):
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
+        if self.course_id:
+            subject_ids = self.env['op.course'].search([
+                ('id', '=', self.course_id.id)]).subject_ids
+            return {
+                'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
 
     @api.multi
     def act_publish(self):
