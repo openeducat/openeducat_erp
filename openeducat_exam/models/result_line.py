@@ -36,7 +36,7 @@ class OpResultLine(models.Model):
     grade = fields.Char('Grade', readonly=True, compute='_compute_grade')
     student_id = fields.Many2one('op.student', 'Student', required=True)
     status = fields.Selection([('pass', 'Pass'), ('fail', 'Fail')], 'Status',
-                              compute='_compute_status')
+                              compute='_compute_status', store=True)
 
     @api.constrains('marks', 'marks')
     def _check_marks(self):
