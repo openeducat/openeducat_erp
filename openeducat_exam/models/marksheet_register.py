@@ -19,8 +19,9 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+
+from odoo import models, fields, api, _
 
 
 class OpMarksheetRegister(models.Model):
@@ -84,7 +85,10 @@ class OpMarksheetRegister(models.Model):
     def action_validate(self):
         self.state = 'validated'
 
-
     @api.multi
     def act_cancel(self):
         self.state = 'cancelled'
+
+    @api.multi
+    def act_draft(self):
+        self.state = 'draft'
