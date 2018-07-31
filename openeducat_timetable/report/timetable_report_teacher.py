@@ -20,14 +20,28 @@
 ###############################################################################
 
 import calendar
-from datetime import datetime
 import time
+from datetime import datetime
+
+import pytz
 
 from odoo import models, api, _
 
 
 class ReportTimeTableTeacherGenerate(models.AbstractModel):
     _name = 'report.openeducat_timetable.report_timetable_teacher_generate'
+
+    @api.multi
+    def _convert_to_local_timezone(self, time):
+        '''
+            Converts time as per local timezone.
+        '''
+        if time:
+            timezone = pytz.timezone(self._context['tz'])
+            utc_in_time = pytz.utc.localize(
+                datetime.strptime(time, "%Y-%m-%d %H:%M:%S"))
+            local_time = utc_in_time.astimezone(timezone)
+            return local_time
 
     def get_full_name(self, data):
         faculty_name = self.env['op.faculty'].browse(data['faculty_id'][0])
@@ -65,7 +79,6 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
         return dayofWeek
 
     def get_object(self, data):
-
         data_list = []
         for timetable_obj in self.env['op.session'].browse(
                 data['teacher_time_table_ids']):
@@ -76,18 +89,21 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
             timetable_data = {
                 'period': timetable_obj.timing_id.name,
                 'period_time': timetable_obj.timing_id.hour + ':' +
-                timetable_obj.timing_id.minute +
-                timetable_obj.timing_id.am_pm,
+                               timetable_obj.timing_id.minute +
+                               timetable_obj.timing_id.am_pm,
                 'sequence': timetable_obj.timing_id.sequence,
-                'start_datetime': timetable_obj.start_datetime,
-                'end_datetime': timetable_obj.end_datetime[10:],
+                'start_datetime': self._convert_to_local_timezone(
+                    timetable_obj.start_datetime).strftime(
+                    "%Y-%m-%d %H:%M:%S"),
+                'end_datetime': self._convert_to_local_timezone(
+                    timetable_obj.end_datetime).strftime(
+                    "%Y-%m-%d %H:%M:%S"),
                 'day': str(day),
                 'subject': timetable_obj.subject_id.name,
                 'course': timetable_obj.course_id.name,
                 'batch': timetable_obj.batch_id.name,
             }
             data_list.append(timetable_data)
-
         ttdl = sorted(data_list, key=lambda k: k['sequence'])
         final_list = self.sort_tt(ttdl)
         return final_list
