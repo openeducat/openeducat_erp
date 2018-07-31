@@ -21,9 +21,11 @@
 
 from datetime import datetime
 from datetime import timedelta
+
 from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+
+from odoo import models, fields, api, _
 
 
 class SessionReport(models.TransientModel):
@@ -66,6 +68,8 @@ class SessionReport(models.TransientModel):
 
     @api.multi
     def gen_time_table_report(self):
+        template = self.env.ref(
+                'openeducat_timetable.report_teacher_timetable_generate')
         data = self.read(
             ['start_date', 'end_date', 'course_id', 'batch_id', 'state',
              'faculty_id'])[0]
@@ -73,22 +77,17 @@ class SessionReport(models.TransientModel):
             time_table_ids = self.env['op.session'].search(
                 [('course_id', '=', data['course_id'][0]),
                  ('batch_id', '=', data['batch_id'][0]),
-                 ('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
-                 ('end_datetime', '<', data['end_date'] + '%H:%M:%S')],
+                 ('start_datetime', '>=', data['start_date']),
+                 ('end_datetime', '<=', data['end_date'])],
                 order='start_datetime asc')
-
             data.update({'time_table_ids': time_table_ids.ids})
-            return self.env.ref(
-                'openeducat_timetable.report_student_timetable_generate') \
-                .report_action(self, data=data)
+            template = self.env.ref(
+                'openeducat_timetable.report_student_timetable_generate')
         else:
             teacher_time_table_ids = self.env['op.session'].search(
-                [('start_datetime', '>', data['start_date'] + '%H:%M:%S'),
-                 ('end_datetime', '<', data['end_date'] + '%H:%M:%S'),
+                [('start_datetime', '>=', data['start_date']),
+                 ('end_datetime', '<=', data['end_date']),
                  ('faculty_id', '=', data['faculty_id'][0])],
                 order='start_datetime asc')
-
             data.update({'teacher_time_table_ids': teacher_time_table_ids.ids})
-            return self.env.ref(
-                'openeducat_timetable.report_teacher_timetable_generate') \
-                .report_action(self, data=data)
+        return template.report_action(self, data=data)
