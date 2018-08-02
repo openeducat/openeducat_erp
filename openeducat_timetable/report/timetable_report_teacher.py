@@ -20,14 +20,26 @@
 ###############################################################################
 
 import calendar
-from datetime import datetime
+import pytz
 import time
-
+from datetime import datetime
 from odoo import models, api, _
 
 
 class ReportTimeTableTeacherGenerate(models.AbstractModel):
     _name = 'report.openeducat_timetable.report_timetable_teacher_generate'
+
+    @api.multi
+    def _convert_to_local_timezone(self, time):
+        '''
+            Converts time as per local timezone.
+        '''
+        if time:
+            timezone = pytz.timezone(self._context['tz'])
+            utc_in_time = pytz.utc.localize(
+                datetime.strptime(time, "%Y-%m-%d %H:%M:%S"))
+            local_time = utc_in_time.astimezone(timezone)
+            return local_time
 
     def get_full_name(self, data):
         faculty_name = self.env['op.faculty'].browse(data['faculty_id'][0])
@@ -76,11 +88,15 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
             timetable_data = {
                 'period': timetable_obj.timing_id.name,
                 'period_time': timetable_obj.timing_id.hour + ':' +
-                timetable_obj.timing_id.minute +
-                timetable_obj.timing_id.am_pm,
+                               timetable_obj.timing_id.minute +
+                               timetable_obj.timing_id.am_pm,
                 'sequence': timetable_obj.timing_id.sequence,
-                'start_datetime': timetable_obj.start_datetime,
-                'end_datetime': timetable_obj.end_datetime[10:],
+                'start_datetime': self._convert_to_local_timezone(
+                    timetable_obj.start_datetime).strftime(
+                    "%Y-%m-%d %H:%M:%S"),
+                'end_datetime': self._convert_to_local_timezone(
+                    timetable_obj.end_datetime).strftime(
+                    "%Y-%m-%d %H:%M:%S"),
                 'day': str(day),
                 'subject': timetable_obj.subject_id.name,
                 'course': timetable_obj.course_id.name,
