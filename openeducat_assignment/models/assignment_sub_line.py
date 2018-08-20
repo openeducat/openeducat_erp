@@ -29,6 +29,19 @@ class OpAssignmentSubLine(models.Model):
     _rec_name = 'assignment_id'
     _description = 'Assignment Submission'
 
+    @api.multi
+    def get_user_group(self):
+        for user in self:
+            if self.env.user.has_group(
+                    'openeducat_core.group_op_back_office_admin') or \
+                    self.env.user.has_group(
+                        'openeducat_core.group_op_back_office') or \
+                    self.env.user.has_group(
+                        'openeducat_core.group_op_faculty'):
+                user.user_boolean = True
+            else:
+                user.user_boolean = False
+
     assignment_id = fields.Many2one(
         'op.assignment', 'Assignment', required=True)
     student_id = fields.Many2one(
@@ -50,6 +63,8 @@ class OpAssignmentSubLine(models.Model):
     faculty_user_id = fields.Many2one(
         'res.users', related='assignment_id.faculty_id.user_id',
         string='Faculty User')
+    user_boolean = fields.Boolean(string='Check user',
+                                  compute='get_user_group')
 
     @api.multi
     def act_draft(self):
