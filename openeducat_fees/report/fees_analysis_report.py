@@ -32,11 +32,15 @@ class ReportFeesAnalysis(models.AbstractModel):
         return total_amount
 
     def get_total_left(self, student_id):
-        total_left = 0.0
+        total_amount = self.get_total_amount(student_id)
+        total_paid = self.get_paid_amount(student_id)
+        return total_amount - total_paid
+
+    def get_paid_amount(self, student_id):
+        total_paid = 0.0
         for fees in student_id.fees_detail_ids:
-            if not fees.invoice_state == 'paid':
-                total_left += fees.amount
-        return total_left
+            total_paid += fees.invoice_id.amount_total - fees.invoice_id.residual
+        return total_paid
 
     @api.model
     def get_report_values(self, docids, data=None):
@@ -52,6 +56,7 @@ class ReportFeesAnalysis(models.AbstractModel):
             'doc_model': 'op.student',
             'docs': student_ids,
             'get_total_amount': self.get_total_amount,
+            'get_paid_amount': self.get_paid_amount,
             'get_total_left': self.get_total_left,
         }
         return docargs
