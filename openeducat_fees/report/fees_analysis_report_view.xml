@@ -17,6 +17,7 @@
                                 <th>Student Name</th>
                                 <th>Total Amount</th>
                                 <th>Total Invoiced</th>
+                                <th>Total Paid</th>
                                 <th>Total Left</th>
                             </thead>
                             <tbody>
@@ -30,6 +31,9 @@
                                         </td>
                                         <td>
                                             <t t-esc="doc.total_invoiced" />
+                                        </td>
+                                        <td>
+                                            <t t-esc="get_paid_amount(doc)" />
                                         </td>
                                         <td>
                                             <t t-esc="get_total_left(doc)" />
