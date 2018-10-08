@@ -68,13 +68,16 @@
         'demo/faculty_demo.xml',
     ],
     'test': [
-        'test/res_users_test.yml',
-        'test/faculty_emp_user_creation.yml',
+        # 'test/res_users_test.yml',
+        # 'test/faculty_emp_user_creation.yml',
     ],
-    'css': ['static/src/css/base.css'],
+    'css': [
+        # 'static/src/css/base.css'
+    ],
     'qweb': [
-        'static/src/xml/base.xml',
-        'static/src/xml/dashboard_ext_openeducat.xml'],
+        # 'static/src/xml/base.xml',
+        # 'static/src/xml/dashboard_ext_openeducat.xml'
+    ],
     'js': [],
     'images': [
         'static/description/openeducat_core_banner.jpg',
