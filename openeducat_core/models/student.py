@@ -48,6 +48,7 @@ class OpStudentCourse(models.Model):
 
 class OpStudent(models.Model):
     _name = 'op.student'
+    _description = "Student"
     _inherits = {'res.partner': 'partner_id'}
 
     middle_name = fields.Char('Middle Name', size=128)

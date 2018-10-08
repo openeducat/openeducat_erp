@@ -25,6 +25,7 @@ from odoo import models, fields
 class OpSubject(models.Model):
     _name = 'op.subject'
     _rec_name = 'name'
+    _description = "Subject"
 
     name = fields.Char('Name', size=128, required=True)
     code = fields.Char('Code', size=256, required=True)
