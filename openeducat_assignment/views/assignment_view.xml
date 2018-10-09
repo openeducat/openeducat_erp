@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_assignment_tree" model="ir.ui.view">
+            <field name="name">op.assignment.tree</field>
+            <field name="model">op.assignment</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Assignment">
+                    <field name="name" />
+                    <field name="course_id" />
+                    <field name="batch_id" />
+                    <field name="subject_id" />
+                    <field name="faculty_id" />
+                    <field name="reviewer" />
+                    <field name="marks" />
+                    <field name="assignment_type_id" />
+                    <field name="state" />
+                    <field name="issued_date" />
+                    <field name="submission_date" />
+                    <field name="allocation_ids" />
+                    <field name="assignment_sub_line" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_assignment_form" model="ir.ui.view">
+            <field name="name">op.assignment.form</field>
+            <field name="model">op.assignment</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Assignment">
+                    <header groups="base.group_user">
+                        <button name="act_publish" states="draft" type="object"
+                            string="Publish" class="oe_highlight" groups="openeducat_core.group_op_faculty" />
+                        <button name="act_finish" class="oe_highlight" states="publish" type="object" string="Finish"
+                            groups="openeducat_core.group_op_faculty" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,publish,finish" />
+                    </header>
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name" placeholder="Assignment Name"
+                                    attrs="{'readonly':[('state','!=','draft')]}" style="width: 100%%" />
+                            </h1>
+                        </div>
+                        <group colspan="4" col="4">
+                            <field name="course_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="subject_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="faculty_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="assignment_type_id" attrs="{'readonly':[('state','!=','draft')]}" />
+                            <field name="reviewer" attrs="{'readonly':[('state','!=','draft')]}" />
+                        </group>
+                        <notebook colspan="4">
+                            <page name="basic_information" string="Basic Information">
+                                <group colspan="4" col="4">
+                                    <field name="issued_date" attrs="{'readonly':[('state','!=','draft')]}" />
+                                    <field name="submission_date" attrs="{'readonly':[('state','!=','draft')]}" />
+                                    <field name="marks" attrs="{'readonly':[('state','!=','draft')]}" />
+                                </group>
+                                <field name="description" attrs="{'readonly':[('state','!=','draft')]}"
+                                    colspan="4" />
+                            </page>
+                            <page name="allocation_infomation" string="Allocation Infomation">
+                                <field name="allocation_ids" domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]" colspan="4" nolabel="1">
+                                    <tree string="Allocation">
+                                        <field name="title" />
+                                        <field name="name" />
+                                        <field name="middle_name" />
+                                        <field name="last_name" />
+                                        <field name="course_detail_ids" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="submissions" string="Submissions">
+                                <field name="assignment_sub_line" colspan="4" nolabel="1">
+                                    <tree string="Submissions" create="0">
+                                        <field name="student_id" />
+                                        <field name="state" />
+                                        <field name="submission_date" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_assignment_search" model="ir.ui.view">
+            <field name="name">op.assignment.search</field>
+            <field name="model">op.assignment</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Assignment">
+                    <field name="name" />
+                    <field name="course_id" />
+                    <field name="batch_id" />
+                    <field name="subject_id" />
+                    <field name="faculty_id" />
+                    <field name="marks" />
+                    <field name="description" />
+                    <field name="assignment_type_id" />
+                    <field name="state" />
+                    <field name="issued_date" />
+                    <field name="submission_date" />
+                    <field name="allocation_ids" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Name" domain="[]" name="group_by_assignment_name"
+                                context="{'group_by':'name'}" />
+                        <filter string="Course" domain="[]" name="group_by_assignment_course"
+                                context="{'group_by':'course_id'}" />
+                        <filter string="Batch" domain="[]" name="group_by_assignment_batch"
+                            context="{'group_by':'batch_id'}" />
+                        <filter string="Subject" domain="[]" name="group_by_assignment_subject"
+                                context="{'group_by':'subject_id'}" />
+                        <filter string="Faculty" domain="[]" name="group_by_assignment_faculty"
+                                context="{'group_by':'faculty_id'}" />
+                        <filter string="Marks" domain="[]" name="group_by_assignment_marks"
+                                context="{'group_by':'marks'}" />
+                        <filter string="Assignment Type" domain="[]" name="group_by_assignment_type"
+                                context="{'group_by':'assignment_type_id'}" />
+                        <filter string="State" domain="[]" name="group_by_assignment_state"
+                                context="{'group_by':'state'}" />
+                        <filter string="Issued Date" domain="[]" name="group_by_assignment_issued_date"
+                            context="{'group_by':'issued_date'}" />
+                        <filter string="Submission Date" domain="[]" name="group_by_assignment_submission"
+                            context="{'group_by':'submission_date'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_assignment_view">
+            <field name="name">Assignments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.assignment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_assignment_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_assignment_view_form">
+            <field name="act_window_id" ref="act_open_op_assignment_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_assignment_form" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_assignment_view_tree">
+            <field name="act_window_id" ref="act_open_op_assignment_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_assignment_tree" />
+        </record>
+    </data>
+</odoo>

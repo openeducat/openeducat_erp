@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="email_template_assignment_submission" model="mail.template">
+        <field name="name">Assignment Submission</field>
+        <field name="email_from">${user.email}</field>
+        <field name="subject">Submit Your Assignment</field>
+        <field name="email_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="partner_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_name">Assignment Submission</field>
+        <field name="lang">${object.student_id.user_id.partner_id.lang}</field>
+        <field name="body_html"><![CDATA[
+        <p>Dear <strong>${object.student_id.name}</strong>
+        <p>Your Assignment Submission <strong>(${object.assignment_id.name})</strong> date is <strong>${object.submission_date}</strong>. Please submit it as soon as possible.</p>
+        <p>Thank you.</p>
+        ]]></field>
+    </record>
+
+    <record id="assignment_sub_line_action" model="ir.actions.server">
+        <field name="name">Server Actions Assignment Submission</field>
+        <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+        <field name="state">email</field>
+        <field name="template_id" ref="email_template_assignment_submission"/>
+    </record>
+
+    <record id="test_rule_assignment_sub_line" model="base.automation">
+        <field name="name">Assignment Submission Line</field>
+        <field name="trigger">on_time</field>
+        <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+        <field name="filter_domain">[('state', '!=', 'accept')]</field>
+        <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]"/>
+        <field name="trg_date_range">-1</field>
+        <field name="trg_date_range_type">day</field>
+        <!--<field name="server_action_ids" eval="[(4, ref('assignment_sub_line_action'))]"/>-->
+    </record>
+
+    <record id="email_template_assignment_submission_after" model="mail.template">
+        <field name="name">Assignment Submission Passed</field>
+        <field name="email_from">${user.email}</field>
+        <field name="subject">Assignment Submission Date Passed</field>
+        <field name="email_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="partner_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_name">Submission Date Passed</field>
+        <field name="lang">${object.student_id.user_id.partner_id.lang}</field>
+        <field name="body_html"><![CDATA[
+        <p>Dear <strong>${object.student_id.name}</strong>
+        <p>Your Assignment Submission <strong>(${object.assignment_id.name})</strong> date <strong>(${object.submission_date})</strong> has been passed. Please submit it as soon as possible.</p>
+        <p>Thank you.</p>
+        ]]></field>
+    </record>
+
+    <record id="assignment_sub_line_action_after" model="ir.actions.server">
+        <field name="name">Server Actions Assignment Submission After 1 Days</field>
+        <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+        <field name="state">email</field>
+        <field name="template_id" ref="email_template_assignment_submission_after"/>
+    </record>
+
+    <record id="test_rule_assignment_sub_line_after" model="base.automation">
+        <field name="name">Assignment Submission Line after 1 Days</field>
+        <field name="trigger">on_time</field>
+        <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+        <field name="filter_domain">[('state', '!=', 'accept')]</field>
+        <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]"/>
+        <field name="trg_date_range">1</field>
+        <field name="trg_date_range_type">day</field>
+        <!--<field name="server_action_ids" eval="[(4, ref('assignment_sub_line_action_after'))]"/>-->
+    </record>
+</odoo>

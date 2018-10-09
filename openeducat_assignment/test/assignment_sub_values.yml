@@ -1,0 +1,124 @@
+-
+  Faculty can also create assignment there for I checked it with that user who is faculty.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+  In order to create assignment first I create assignment type
+-
+  !record {model: op.assignment.type, id: assignment_type_ea_test}:
+    name: 'External Assignment'
+    code: 'exa'
+-
+  Backoffice Admin can create batch, course, student, faculty and partner  there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+   In order to use it in assignment I create Course
+-
+  !record {model: op.course, id: course_test}:
+    name: 'Bachelor of Accountancy Test'
+    code: 'tboa'
+    evaluation_type: 'GPA'
+    section: 'Bachelors Course'
+-
+   In order to use it in assignment I create Batch
+-
+  !record {model: op.batch, id: batch_test}:
+    name: 'BOA-S1'
+    code: 'boas1t'
+    course_id: course_test
+    start_date: !eval str(int(time.strftime('%Y')) - 1) +'-06-02'
+    end_date: !eval str(int(time.strftime('%Y')) + 2) +'-06-02'
+-
+   In order to use it in assignment I create Partner
+-
+  !record {model: res.partner, id: partner_dylan_test}:
+    name: 'Dylan'
+-
+   In order to use it in assignment I create Faculty first
+-
+  !record {model: op.faculty, id: faculty_dylan_test}:
+    name: 'Dylan'
+    title: base.res_partner_title_mister
+    middle_name: 'Q'
+    last_name: 'Hidalgo'
+    gender: 'male'
+    birth_date: '1983-02-01'
+    blood_group: 'O+'
+    email: 'dylanqhidalgo@demo.com'
+    city: 'New Jersey'
+    country_id: base.us
+    nationality: base.us
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_dylan_test
+    user_id: res_users_faculty_user_test
+-
+  In order to use it in assignment I create Subject
+-
+  !record {model: op.subject, id: subject_fa_test}:
+    name: 'Financial Accounting'
+    code: 'BOA1-001t'
+    type: 'theory'
+-
+  I create 1st Partner for student
+-
+  !record {model: res.partner, id: partner_sumita_test}:
+    name: 'Sumita'
+-
+  I create student for Allocation
+-
+  !record {model: op.student, id: student_sumita_test}:
+    name: 'Sumita'
+    title: base.res_partner_title_miss
+    middle_name: 'S'
+    last_name: 'Dani'
+    gender: 'f'
+    birth_date: '1992-05-06'
+    blood_group: 'A-'
+    email: 'sumitasdani@demo.com'
+    city: 'Banglore'
+    country_id: base.in
+    nationality: base.in
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_sumita_test
+    user_id: res_users_student_user_test
+    course_detail_ids: 
+     - course_id: course_test
+       batch_id: batch_test
+       roll_number: 123456
+-
+  I create 2nd Partner for student
+-
+  !record {model: res.partner, id: partner_sangita_test}:
+    name: 'Sangita'
+-
+  I create student for Allocation
+-
+  !record {model: op.student, id: student_sangita_test}:
+    name: 'Sangita'
+    title: base.res_partner_title_miss
+    middle_name: 'S'
+    last_name: 'Dani'
+    gender: 'f'
+    birth_date: '1992-05-06'
+    blood_group: 'A-'
+    email: 'sangitadani@demo.com'
+    city: 'Banglore'
+    country_id: base.in
+    nationality: base.in
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_sangita_test
+    user_id: res_users_student_user_sangita_test
+    course_detail_ids: 
+     - course_id: course_test
+       batch_id: batch_test
+       roll_number: 123457
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="op_assignment_1" model="op.assignment">
+            <field name="name">BOA Sem-1-Asg-001</field>
+            <field name="state">publish</field>
+            <field name="marks">100</field>
+            <field name="assignment_type_id" ref="op_assignment_type_1" />
+            <field name="course_id" ref="openeducat_core.op_course_2" />
+            <field name="batch_id" ref="openeducat_core.op_batch_1" />
+            <field name="faculty_id" ref="openeducat_core.op_faculty_1" />
+            <field name="subject_id" ref="openeducat_core.op_subject_1" />
+            <field name="issued_date"
+                eval="(DateTime.today() - relativedelta(days=10)).strftime('%Y-%m-%d')" />
+            <field name="submission_date" eval="(datetime.now())" />
+            <field name="allocation_ids"
+                eval="[(6,0, [ref('openeducat_core.op_student_1'), ref('openeducat_core.op_student_2'), ref('openeducat_core.op_student_3'), ref('openeducat_core.op_student_4')])]" />
+            <field name="description">Explain the following terms:- 1. AGI, 2. Tax credits, 3. Tax deductions, 4. Standard deduction, 5. Itemized deductions
+            </field>
+        </record>
+
+        <record id="op_assignment_2" model="op.assignment">
+            <field name="name">LRTP-001-Asg-001</field>
+            <field name="state">draft</field>
+            <field name="marks">50</field>
+            <field name="assignment_type_id" ref="op_assignment_type_1" />
+            <field name="course_id" ref="openeducat_core.op_course_4" />
+            <field name="batch_id" ref="openeducat_core.op_batch_3" />
+            <field name="faculty_id" ref="openeducat_core.op_faculty_2" />
+            <field name="subject_id" ref="openeducat_core.op_subject_9" />
+            <field name="issued_date" eval="datetime.now()" />
+            <field name="submission_date"
+                eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d')" />
+            <field name="allocation_ids"
+                eval="[(6,0, [ref('openeducat_core.op_student_9'), ref('openeducat_core.op_student_10'), ref('openeducat_core.op_student_11'), ref('openeducat_core.op_student_12')])]" />
+            <field name="description">Answer the following questions :- 1.Describe the importance of the factors that effects on land. 2. Explain "Dr.Roger's Technique to Find Positive Effects on Land-Type A".</field>
+        </record>
+
+        <record id="op_assignment_3" model="op.assignment">
+            <field name="name">LRTP-001-Asg-002</field>
+            <field name="state">draft</field>
+            <field name="marks">50</field>
+            <field name="assignment_type_id" ref="op_assignment_type_1" />
+            <field name="course_id" ref="openeducat_core.op_course_4" />
+            <field name="batch_id" ref="openeducat_core.op_batch_3" />
+            <field name="faculty_id" ref="openeducat_core.op_faculty_6" />
+            <field name="subject_id" ref="openeducat_core.op_subject_10" />
+            <field name="issued_date" eval="datetime.now()" />
+            <field name="submission_date"
+                eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d')" />
+            <field name="allocation_ids"
+                eval="[(6,0, [ref('openeducat_core.op_student_9'), ref('openeducat_core.op_student_10'), ref('openeducat_core.op_student_11'), ref('openeducat_core.op_student_12')])]" />
+            <field name="description">Please answer the following questions briefly: - 1. What are the different types of land. Explain in detail using figure. 2. What are 3 main techniques to recognize the land type?
+            </field>
+        </record>
+
+    </data>
+</odoo>

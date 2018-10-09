@@ -1,0 +1,219 @@
+-
+  Faculty can also create assignment there for I checked it with that user who is faculty.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+  In order to check assignment workflow first I create assignment
+-
+  !record {model: op.assignment, id: assignment1_test}:
+    name: 'BOA Sem-1-Asg-001'
+    state: 'draft'
+    marks: 100
+    assignment_type_id: assignment_type_ea_test
+    course_id: course_test
+    batch_id: batch_test
+    faculty_id: faculty_dylan_test
+    subject_id: subject_fa_test
+    issued_date: !eval str(time.strftime('%Y'))+'-' + str(time.strftime('%m'))+'-'+ str(int(time.strftime('%d')) - 10)
+    submission_date: !eval datetime.now()
+    description: 'Explain the following terms:- 1. AGI, 2. Tax credits, 3. Tax deductions, 4. Standard deduction, 5. Itemized deductions'
+    allocation_ids: 
+     - student_sumita_test
+     - student_sangita_test
+-
+  I check that Now Assignment is "Draft"
+-
+  !assert {model: op.assignment, id: assignment1_test}:
+    - state == 'draft'
+-
+  I clicked on PUBLISH button in Assignment
+-
+  !python {model: op.assignment, id: assignment1_test}: |
+    self.act_publish()
+-
+  I check that Now Assignment is "Published"
+-
+  !assert {model: op.assignment, id: assignment1_test}:
+    - state == 'publish'
+-
+  Student can also create assignment submission which assignments are published there for I checked it with that user who is student and has allocated assignment.
+-
+  !context
+    uid: res_users_student_user_test
+-
+  In order to check assignment workflow I create assignment submission
+-
+  !record {model: op.assignment.sub.line, id: assignment_submission1_test}:
+    description: 'The answers to the questions are described
+                here.'
+    state: 'draft'
+    assignment_id: assignment1_test
+    student_id: student_sumita_test
+-
+  I check that Now Assignment submission is "Draft"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission1_test}:
+    - state == 'draft'
+-
+  I clicked on SUBMIT button in Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission1_test}: |
+    self.act_submit()
+-
+  I check that Now Assignment Submission is "Submitted"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission1_test}:
+    - state == 'submit'
+-
+  Faculty can Accept assignment submission which assignments are submitted there for I checked it with that user who is faculty of that assignment.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+  I clicked on ACCEPT button in Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission1_test}: |
+    self.act_accept()
+-
+  I check that Now Assignment Submission is "Accepted"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission1_test}:
+    - state == 'accept'
+-
+  For moving workflow with change require and reject also I checked it with that user who is  another student and has allocated assignment.
+-
+  !context
+    uid: res_users_student_user_sangita_test
+-
+  In order to check assignment workflow I create 2nd  assignment submission
+-
+  !record {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    description: 'The answers to the questions are described
+                here.'
+    state: 'draft'
+    assignment_id: assignment1_test
+    student_id: student_sangita_test
+-
+  I check that Now 2nd  Assignment submission is "Draft"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'draft'
+-
+  I clicked on SUBMIT button in 2nd  Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.act_submit()
+-
+  I check that Now 2nd Assignment Submission is "Submitted"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'submit'
+-
+  Faculty can suggest Change require on assignment submission which assignments are submitted there for I checked it with that user who is faculty of that assignment.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+  I clicked on Change Require button in 2nd Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.act_change_req()
+-
+  I check that Now 2nd Assignment Submission is "Change Req."
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'change'
+-
+  For moving workflow with change require and reject also I checked it with that user who is  another student and has allocated assignment.
+-
+  !context
+    uid: res_users_student_user_sangita_test
+-
+  I change description and clicked on change and resubmit button in 2nd Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.description = 'The answers to the questions are described here. please check again'
+    self.act_draft()
+-
+  I check that Now 2nd Assignment Submission is "Change Req."
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'draft'
+-
+  I clicked on SUBMIT button in 2nd  Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.act_submit()
+-
+  I check that Now 2nd Assignment Submission is "Submitted"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'submit'
+-
+  Faculty can Reject assignment submission which assignments are submitted there for I checked it with that user who is faculty of that assignment.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+  I clicked on Change Require button in 2nd Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.act_reject()
+-
+  I check that Now 2nd Assignment Submission is "Rejected"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'reject'
+-
+  For moving workflow with change require and reject also I checked it with that user who is  another student and has allocated assignment.
+-
+  !context
+    uid: res_users_student_user_sangita_test
+-
+  I change description and clicked on change and resubmit button in 2nd Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.description = 'The answers to the questions are described here. please check again and again'
+    self.act_draft()
+-
+  I check that Now 2nd Assignment Submission is "Change Req."
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'draft'
+-
+  I clicked on SUBMIT button in 2nd  Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.act_submit()
+-
+  I check that Now 2nd Assignment Submission is "Submitted"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'submit'
+-
+  Faculty can Accept assignment submission which assignments are submitted there for I checked it with that user who is faculty of that assignment.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+  I clicked on Change Require button in 2nd Assignment Submission
+-
+  !python {model: op.assignment.sub.line, id: assignment_submission2_test}: |
+    self.act_accept()
+-
+  I check that Now 2nd Assignment Submission is "Accepted"
+-
+  !assert {model: op.assignment.sub.line, id: assignment_submission2_test}:
+    - state == 'accept'
+-
+  I clicked on FINISH button in Assignment
+-
+  !python {model: op.assignment, id: assignment1_test}: |
+    self.act_finish()
+-
+  I check that Now Assignment is "Finished"
+-
+  !assert {model: op.assignment, id: assignment1_test}:
+    - state == 'finish'
+
