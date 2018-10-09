@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="student_migrate_form">
+            <field name="name">student.migrate.form</field>
+            <field name="model">student.migrate</field>
+            <field name="arch" type="xml">
+                <form string="Student Migrate" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="date" />
+                        </group>
+                        <group col="2">
+                            <group>
+                                <field name="course_from_id" />
+                                <field name="optional_sub"/>
+                            </group>
+                            <group>
+                                <field name="course_to_id"/>
+                                <field name="batch_id"
+                                    required="1"
+                                    domain="[('course_id','=', course_to_id)]"/>
+                            </group>
+                        </group>
+                        <group col="4" colspan="4" string="Student(s)">
+                            <field name="student_ids" colspan="4" nolabel="1"
+                                domain="[('course_detail_ids.course_id', '=', course_from_id )]">
+                                <tree>
+                                    <field name="title" />
+                                    <field name="name" />
+                                    <field name="middle_name" />
+                                    <field name="last_name" />
+                                    <!-- <field name="course_id" />
+                                    <field name="batch_id" /> -->
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button name="student_migrate_forward" type="object"
+                            string="Forward" class="oe_highlight" />
+                            <button string="Cancel" special="cancel" />
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_student_migrate_view">
+            <field name="name">Student Migration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">student.migrate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_student_migrate_view_form">
+            <field name="act_window_id" ref="act_open_student_migrate_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="student_migrate_form" />
+        </record>
+    </data>
+</odoo>
