@@ -55,6 +55,6 @@ class OpFeesTerms(models.Model):
             if line.value:
                 total += line.value
         if total != 100.0:
-            raise exceptions.AccessError(_("Fees terms must be divided \
-            as such sum up in 100%"))
+            raise exceptions.AccessError(
+                _("Fees terms must be divided as such sum up in 100%"))
         return res
