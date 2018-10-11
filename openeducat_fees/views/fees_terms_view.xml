@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_fees_terms_tree" model="ir.ui.view">
+            <field name="name">op.fees.terms.tree</field>
+            <field name="model">op.fees.terms</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Fees Reminder Terms">
+                    <field name="name" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fees_terms_form" model="ir.ui.view">
+            <field name="name">op.fees.terms.form</field>
+            <field name="model">op.fees.terms</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Fees Reminder Terms">
+                    <sheet>
+                        <group col="2">
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="active" />
+                            </group>
+                        </group>
+                        <field name="note" placeholder="Description..." />
+                        <separator string="Terms" colspan="4" />
+                        <field name="line_ids">
+                            <tree>
+                                <field name="due_days" required="1" />
+                                <field name="value" required="1" />
+                            </tree>
+                            <form string="Fees Term Line">
+                                <group colspan="4">
+                                    <field name="due_days" required="1" />
+                                    <field name="value" required="1" />
+                                </group>
+                            </form>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_fees_terms_search" model="ir.ui.view">
+            <field name="name">op.fees.terms.search</field>
+            <field name="model">op.fees.terms</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Fees Reminder Terms">
+                    <field name="name" select="True" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_fees_terms_view">
+            <field name="name">Fees Terms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.fees.terms</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_fees_terms_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_fees_terms_view_form">
+            <field name="act_window_id" ref="act_open_fees_terms_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_fees_terms_form" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_fees_terms_view_tree">
+            <field name="act_window_id" ref="act_open_fees_terms_view" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_fees_terms_tree" />
+        </record>
+
+        <menuitem id="menu_fees_terms" parent="openeducat_core.menu_op_school_config"
+            sequence="10" groups="openeducat_core.group_op_back_office" action="act_open_fees_terms_view" />
+    </data>
+</odoo>
