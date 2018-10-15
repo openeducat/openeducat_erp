@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_op_admission_root" name="Admissions"
+                  sequence="30"
+                  web_icon="openeducat_admission,static/description/icon.png"/>
+
+        <menuitem id="menu_op_admission_submenu" name="Admissions"
+                  sequence="10"
+                  parent="menu_op_admission_root"/>
+
+        <menuitem id="menu_admission_register" name="Admission Registers"
+                  sequence="10"
+                  groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin"
+                  parent="menu_op_admission_submenu"
+                  action="act_open_op_admission_register_view"/>
+
+        <menuitem id="menu_admission" name="Applications"
+                  groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin"
+                  sequence="20"
+                  parent="menu_op_admission_submenu"
+                  action="act_open_op_admission_view"/>
+
+        <menuitem id="menu_admission_report_root" name="Reports"
+                  sequence="50"
+                  groups="openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin"
+                  parent="menu_op_admission_root"/>
+
+        <menuitem id="menu_admission_analysis" name="Admission Report"
+                  sequence="30"
+                  parent="menu_admission_report_root"
+                  action="admission_analysis_act"/>
+
+        <menuitem id="menu_admission_analysis_report" name="Admission Analysis Report"
+                  sequence="40"
+                  parent="menu_admission_report_root"
+                  action="act_open_op_admission_view_pivot"/>
+    </data>
+</odoo>

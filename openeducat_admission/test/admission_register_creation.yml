@@ -1,0 +1,260 @@
+-
+  Backoffice Admin can also create and move workflow of Admission Register there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+  In order to test Admission Register Workflow I create first Admission Register
+-
+  !record {model: op.admission.register, id: admission_register_test}:
+    name: 'Bachelor of Accountancy'
+    state: 'draft'
+    min_count: 10
+    max_count: 50
+    course_id: course_test
+    product_id: product_admission_fee
+    start_date: !eval str(int(time.strftime('%Y')) - 1) +'-04-01'
+    end_date: !eval str(int(time.strftime('%Y')) - 1) +'-04-30'
+-
+  I check that Initially Admission Register is "Draft"
+-
+  !assert {model: op.admission.register, id: admission_register_test}:
+    - state == 'draft'
+-
+  I clicked on Cancel Button in Admission Register 
+-
+  !python {model: op.admission.register, id: admission_register_test}: |
+    self.cancel_register()
+-
+  I check that Now Admission Register is "Cancelled"
+-
+  !assert {model: op.admission.register, id: admission_register_test}:
+    - state == 'cancel'
+-
+  I clicked on Set to Draft Admission Register Button
+-
+  !python {model: op.admission.register, id: admission_register_test}: |
+    self.set_to_draft()
+-
+  I check that Now Admission Register is "Draft"
+-
+  !assert {model: op.admission.register, id: admission_register_test}:
+    - state == 'draft'
+-
+  I clicked on Confirm Admission Register Button
+-
+  !python {model: op.admission.register, id: admission_register_test}: |
+    self.confirm_register()
+-
+  I check that Now Admission Register is "Confirmed"
+-
+  !assert {model: op.admission.register, id: admission_register_test}:
+    - state == 'confirm'
+-
+  I clicked on Start Application Button in Admission Register
+-
+  !python {model: op.admission.register, id: admission_register_test}: |
+    self.start_application()
+-
+  I check that Now Admission Register is "Application Gathering"
+-
+  !assert {model: op.admission.register, id: admission_register_test}:
+    - state == 'application'
+-
+  Backoffice can also create and move workflow of Admission there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_user_test
+-
+  In order to test Admission Register Workflow I create Admission 1st
+-
+  !record {model: op.admission, id: admission1_test}:
+    name: 'Sumita'
+    middle_name: 'S'
+    last_name: 'Dani'
+    gender: 'f'
+    email: 'sumitsdani@openeducat.org'
+    fees: 100000.0
+    state: 'draft'
+    birth_date: 1992-05-06
+    country_id: base.in
+    student_id: student_sumita_test
+    course_id: course_test
+    batch_id: batch_test
+    application_number: 'AD046'
+    fees_term_id: fees_term_boa_test
+    register_id: admission_register_test
+    application_date: !eval str(int(time.strftime('%Y')) - 1) +'-04-11'
+    admission_date: !eval str(int(time.strftime('%Y')) - 1) +'-05-03'
+-
+  I check that Now Admission is "Draft"
+-
+  !assert {model: op.admission, id: admission1_test}:
+    - state == 'draft'
+-
+  I clicked on SUBMIT button in Registration
+-
+  !python {model: op.admission, id: admission1_test}: |
+    self.submit_form()
+-
+  I check that Now Admission is "submitted"
+-
+  !assert {model: op.admission, id: admission1_test}:
+    - state == 'submit'
+-
+  I clicked on CONFIRM button in Registration
+-
+  !python {model: op.admission, id: admission1_test}: |
+    self.confirm_in_progress()
+-
+  I check that Now Admission is "Confirmed"
+-
+  !assert {model: op.admission, id: admission1_test}:
+    - state == 'confirm'
+-
+  I clicked on ADMISSION CONFIRM button in Registration
+-
+  !python {model: op.admission, id: admission1_test}: |
+    self.admission_confirm()
+-
+  I check that Now Admission is "Admission Confirm"
+-
+  !assert {model: op.admission, id: admission1_test}:
+    - state == 'admission'
+-
+  I clicked on Enroll Confirm button in Registration
+-
+  !python {model: op.admission, id: admission1_test}: |
+    self.enroll_student()
+-
+  I check that Now Admission is "Done"
+-
+  !assert {model: op.admission, id: admission1_test}:
+    - state == 'done'
+-
+  I click on OPEN STUDENT PROFILE
+-
+  !python {model: op.admission, id: admission1_test}: |
+    self.open_student()
+-
+  Backoffice Admin can move workflow of Admission Register there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+  I clicked on Start Admission Button in Admission Register
+-
+  !python {model: op.admission.register, id: admission_register_test}: |
+    self.start_admission()
+-
+  I check that Now Admission Register is "Application Gathering"
+-
+  !assert {model: op.admission.register, id: admission_register_test}:
+    - state == 'admission'
+-
+  Backoffice can also create and move workflow of Admission there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_user_test
+-
+  In order to test Admission Register Workflow with cancellation I create Admission 2nd
+-
+  !record {model: op.admission, id: admission2_test}:
+    name: 'Sneha'
+    middle_name: 'S'
+    last_name: 'Patel'
+    gender: 'f'
+    email: 'snehaspatel@openeducat.org'
+    fees: 100000.0
+    state: 'draft'
+    birth_date: 1992-07-05
+    country_id: base.in
+    student_id: student_sneha_test
+    course_id: course_test
+    batch_id: batch_test
+    application_number: 'AD047'
+    fees_term_id: fees_term_boa_test
+    register_id: admission_register_test
+    application_date: !eval str(int(time.strftime('%Y')) - 1) +'-04-11'
+    admission_date: !eval str(int(time.strftime('%Y')) - 1) +'-05-03'
+-
+  I check that Now Admission2 is "Draft"
+-
+  !assert {model: op.admission, id: admission2_test}:
+    - state == 'draft'
+-
+  I clicked on CANCEL button in Registration2
+-
+  !python {model: op.admission, id: admission2_test}: |
+    self.confirm_cancel()
+-
+  I check that Now Admission is "Cancelled"
+-
+  !assert {model: op.admission, id: admission2_test}:
+    - state == 'cancel'
+-
+  I clicked on SET TO DRAFT button in Registration2
+-
+  !python {model: op.admission, id: admission2_test}: |
+    self.confirm_to_draft()
+-
+  I check that Now Admission2 is "Draft"
+-
+  !assert {model: op.admission, id: admission2_test}:
+    - state == 'draft'
+-
+  I clicked on SUBMIT button in Registration2
+-
+  !python {model: op.admission, id: admission2_test}: |
+    self.submit_form()
+-
+  I check that Now Admission2 is "submitted"
+-
+  !assert {model: op.admission, id: admission2_test}:
+    - state == 'submit'
+-
+  I clicked on CONFIRM button in Registration2
+-
+  !python {model: op.admission, id: admission2_test}: |
+    self.confirm_in_progress()
+-
+  I check that Now Admission2 is "Confirmed"
+-
+  !assert {model: op.admission, id: admission2_test}:
+    - state == 'confirm'
+-
+  I clicked on ADMISSION CONFIRM button in Registration2
+-
+  !python {model: op.admission, id: admission2_test}: |
+    self.admission_confirm()
+-
+  I check that Now Admission2 is "Admission Confirm"
+-
+  !assert {model: op.admission, id: admission2_test}:
+    - state == 'admission'
+-
+  I clicked on Enroll Confirm button in Registration2
+-
+  !python {model: op.admission, id: admission2_test}: |
+    self.enroll_student()
+-
+  I check that Now Admission2 is "Done"
+-
+  !assert {model: op.admission, id: admission2_test}:
+    - state == 'done'
+-
+  Backoffice Admin can move workflow of Admission Register there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+  I clicked on Done Button in Admission Register when All Admission are done
+-
+  !python {model: op.admission.register, id: admission_register_test}: |
+    self.close_register()
+-
+  I check that Now Admission Register is "Done"
+-
+  !assert {model: op.admission.register, id: admission_register_test}:
+    - state == 'done'
+

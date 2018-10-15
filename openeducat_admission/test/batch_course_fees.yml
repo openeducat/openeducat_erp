@@ -1,0 +1,101 @@
+-
+  create Fees Term for BOA
+-
+  !record {model: op.fees.terms, id: fees_term_boa_test}:
+    name: 'BOA Fees Term'
+    note: 'BOA Fees Terms and Condition'
+    active: True
+    line_ids:
+      - due_days: 15
+        value: 30.0
+      - due_days: 30
+        value: 30.0
+      - due_days: 60
+        value: 40.0
+-
+  create service product category
+-
+  !record {model: product.category, id: product_categ_service}:
+    name: 'Services'
+-
+  create Admission Fee product
+-
+  !record {model: product.product, id: product_admission_fee}:
+    name: 'Admission Fees for BOA'
+    type: 'service'
+    default_code: 'Admission Fees for BOA'
+    categ_id: product_categ_service
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+    lst_price: 100000
+-
+  Backoffice Admin can also create and move workflow ahead there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+  I create Course for admission Register
+-
+  !record {model: op.course, id: course_test}:
+    name: 'Bachelor of Accountancy Test'
+    code: 'tboa'
+    evaluation_type: 'GPA'
+    section: 'Bachelors Course'
+-
+  I create Batch for admission
+-
+  !record {model: op.batch, id: batch_test}:
+    name: 'BOA-S1'
+    code: 'boas1t'
+    course_id: course_test
+    start_date: !eval str(int(time.strftime('%Y')) - 1) +'-06-02'
+    end_date: !eval str(int(time.strftime('%Y')) + 2) +'-06-02'
+-
+  I create 1st Partner for student
+-
+  !record {model: res.partner, id: partner_sumita_test}:
+    name: 'Sumita'
+-
+  I create 2nd Partner for student
+-
+  !record {model: res.partner, id: partner_sneha_test}:
+    name: 'Sneha'
+-
+  I create student for admission
+-
+  !record {model: op.student, id: student_sumita_test}:
+    name: 'Sumita'
+    title: base.res_partner_title_miss
+    middle_name: 'S'
+    last_name: 'Dani'
+    gender: 'f'
+    birth_date: '1992-05-06'
+    blood_group: 'A-'
+    email: 'sumitasdani@demo.com'
+    city: 'Banglore'
+    country_id: base.in
+    nationality: base.in
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_sumita_test
+-
+  I create student for admission
+-
+  !record {model: op.student, id: student_sneha_test}:
+    name: 'Sneha'
+    title: base.res_partner_title_miss
+    middle_name: 'S'
+    last_name: 'Patel'
+    gender: 'f'
+    birth_date: '1992-07-05'
+    blood_group: 'A-'
+    email: 'snehapatel@demo.com'
+    city: 'Banglore'
+    country_id: base.in
+    nationality: base.in
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_sneha_test
+
