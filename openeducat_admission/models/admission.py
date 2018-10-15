@@ -121,27 +121,24 @@ class OpAdmission(models.Model):
     @api.onchange('student_id', 'is_student')
     def onchange_student(self):
         if self.is_student and self.student_id:
-            student = self.student_id
-            self.title = student.title and student.title.id or False
-            self.name = student.name
-            self.middle_name = student.middle_name
-            self.last_name = student.last_name
-            self.birth_date = student.birth_date
-            self.gender = student.gender
-            self.image = student.image or False
-            self.street = student.street or False
-            self.street2 = student.street2 or False
-            self.phone = student.phone or False
-            self.mobile = student.mobile or False
-            self.email = student.email or False
-            self.zip = student.zip or False
-            self.city = student.city or False
-            self.country_id = student.country_id and \
-                              student.country_id.id or False
-            self.state_id = student.state_id and \
-                            student.state_id.id or False
-            self.partner_id = student.partner_id and \
-                              student.partner_id.id or False
+            sd = self.student_id
+            self.title = sd.title and sd.title.id or False
+            self.name = sd.name
+            self.middle_name = sd.middle_name
+            self.last_name = sd.last_name
+            self.birth_date = sd.birth_date
+            self.gender = sd.gender
+            self.image = sd.image or False
+            self.street = sd.street or False
+            self.street2 = sd.street2 or False
+            self.phone = sd.phone or False
+            self.mobile = sd.mobile or False
+            self.email = sd.email or False
+            self.zip = sd.zip or False
+            self.city = sd.city or False
+            self.country_id = sd.country_id and sd.country_id.id or False
+            self.state_id = sd.state_id and sd.state_id.id or False
+            self.partner_id = sd.partner_id and sd.partner_id.id or False
         else:
             self.title = ''
             self.name = ''
