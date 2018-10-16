@@ -24,9 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpAssignment(models.Model):
-    _name = 'op.assignment'
-    _inherit = 'mail.thread'
-    _description = 'Assignment'
+    _name = "op.assignment"
+    _inherit = "mail.thread"
+    _description = "Assignment"
 
     name = fields.Char('Name', size=64, required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)

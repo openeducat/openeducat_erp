@@ -24,10 +24,10 @@ from odoo.exceptions import ValidationError, Warning
 
 
 class OpAssignmentSubLine(models.Model):
-    _name = 'op.assignment.sub.line'
-    _inherit = 'mail.thread'
-    _rec_name = 'assignment_id'
-    _description = 'Assignment Submission'
+    _name = "op.assignment.sub.line"
+    _inherit = "mail.thread"
+    _rec_name = "assignment_id"
+    _description = "Assignment Submission"
 
     @api.multi
     def get_user_group(self):
