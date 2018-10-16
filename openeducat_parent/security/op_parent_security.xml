@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_op_parent" model="res.groups">
+            <field name="name">Parent</field>
+            <field name="category_id" ref="openeducat_core.module_category_openeducat_others"/>
+            <field name="implied_ids" eval="[(4, ref('openeducat_core.group_op_student'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record model="ir.rule" id="parent_login_rule">
+            <field name="name">Parent Login rule</field>
+            <field name="model_id" ref="model_op_parent" />
+            <field name="groups" eval="[(4, ref('openeducat_parent.group_op_parent'))]" />
+            <field name="domain_force"> ['|', ('user_id','=',user.id), ('user_id','in',user.child_ids.ids)]</field>
+        </record>
+        <record model="ir.rule" id="student_parent_login_rule">
+            <field name="name">Student Parent Login rule</field>
+            <field name="model_id" ref="model_op_student" />
+            <field name="groups" eval="[(4, ref('openeducat_parent.group_op_parent'))]" />
+            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id','in',user.child_ids.ids)]</field>
+        </record>
+    </data>
+</odoo>

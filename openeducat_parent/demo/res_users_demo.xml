@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="user_parent" model="res.users">
+            <field name="login">parent@openeducat.org</field>
+            <field name="password">parent</field>
+            <field name="partner_id" ref="openeducat_parent.res_partner_33"/>
+            <field name="company_id" ref="base.main_company" />
+            <field name="groups_id" eval="[(4,ref('openeducat_parent.group_op_parent'))]"/>
+        </record>
+
+    </data>
+</odoo>
