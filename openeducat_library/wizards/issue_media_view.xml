@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="issue_media_form">
+            <field name="name">issue.media.form</field>
+            <field name="model">issue.media</field>
+            <field name="arch" type="xml">
+                <form string="media Issue">
+                    <sheet>
+                        <group col="4">
+                            <field name="media_id"/>
+                            <field name="media_unit_id" domain="[('media_id','=',media_id)]"/>
+                            <field name="library_card_id"/>
+                            <field name="type"/>
+                        </group>
+                        <group col="4">
+                            <field name="student_id"
+                                   attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"/>
+                            <field name="faculty_id"
+                                   attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                        </group>
+                        <group col="4">
+                            <field name="issued_date"/>
+                            <field name="return_date"/>
+                        </group>
+                    </sheet>
+                    <footer groups="base.group_user">
+                        <button name="do_issue" type="object" string="Proceed" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="issue_media_act">
+            <field name="name">Issue media</field>
+            <field name="res_model">issue.media</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="issue_media_form"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

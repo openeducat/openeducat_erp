@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_student_tree_library_inherit" model="ir.ui.view">
+            <field name="name">op.student.tree.library.inherit</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_tree" />
+            <field name="priority" eval="9" />
+            <field name="arch" type="xml">
+                <field name="emergency_contact" position="before">
+                    <field name="library_card_id" />
+                </field>
+            </field>
+        </record>
+        <record id="view_op_student_form_library_inherit" model="ir.ui.view">
+            <field name="name">op.student.form.library.inherit</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
+            <field name="priority" eval="9" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="library" string="Library">
+                        <group>
+                            <field name="library_card_id" />
+                        </group>
+                        <group string="Media Movements">
+                            <field name="media_movement_lines" nolabel="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="view_op_student_library_form" model="ir.ui.view">
+            <field name="name">op.student.form</field>
+            <field name="model">op.student</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Student">
+                    <sheet>
+                        <field name="image" widget="image"
+                            class="oe_left oe_avatar" />
+                        <div class="oe_title">
+                            <h3>
+                                <field name="title" placeholder="Title" />
+                            </h3>
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px;">
+                                            <field name="name"
+                                                required="1"
+                                                placeholder="First Name" />
+                                        </td>
+                                        <td style="padding-right:10px;">
+                                            <field name="middle_name"
+                                                placeholder="Middle Name" />
+                                        </td>
+                                        <td style="padding-right:10px;">
+                                            <field name="last_name"
+                                                placeholder="Last Name" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <notebook colspan="4">
+                            <page name="personal_information"
+                                string="Personal Information">
+                                <group col="4" colspan="4"
+                                    name="personal_detail">
+                                    <field name="gender" />
+                                    <field name="birth_date" />
+                                    <field name="nationality" />
+                                    <field name="visa_info" />
+                                    <field name="lang" />
+                                    <field name="blood_group" />
+                                    <field name="category_id" />
+                                    <field name="emergency_contact"
+                                        context="{'show_address': 1}"
+                                        options='{"always_reload": True}' />
+                                    <field name="user_id" string="User" />
+                                </group>
+                                <group string="Address Detail"
+                                    name="address">
+                                    <label for="type" />
+                                    <div name="div_type">
+                                        <field class="oe_inline"
+                                            name="type" />
+                                    </div>
+                                    <label for="street" string="Address" />
+                                    <div name="div_address">
+                                        <field name="street"
+                                            placeholder="Street..." />
+                                        <field name="street2"
+                                            placeholder="Street2" />
+                                        <div class="address_format">
+                                            <field name="city"
+                                                placeholder="City"
+                                                style="width: 40%%" />
+                                            <field name="state_id"
+                                                class="oe_no_button"
+                                                placeholder="State"
+                                                style="width: 37%%"
+                                                options='{"no_open": True}' />
+                                            <field name="zip"
+                                                placeholder="ZIP"
+                                                style="width: 20%%" />
+                                        </div>
+                                        <field name="country_id"
+                                            placeholder="Country" class="oe_no_button"
+                                            options='{"no_open": True}' />
+                                    </div>
+                                </group>
+                            </page>
+                            <page name="educational" string="Educational">
+                                <group col="4" colspan="4">
+                                    <field name="gr_no" />
+                                </group>
+                                <group>
+                                    <separator string="Admission Details"
+                                        colspan="4" />
+                                    <field name="course_detail_ids"
+                                        nolabel="1">
+                                        <tree string="Course Details"
+                                            editable="bottom">
+                                            <field name="course_id" />
+                                            <field name="batch_id"
+                                                domain="[('course_id', '=', course_id)]" />
+                                            <field name="roll_number" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

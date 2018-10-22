@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_faculty_form_library_inherit" model="ir.ui.view">
+            <field name="name">op.faculty.form.library.inherit</field>
+            <field name="model">op.faculty</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_faculty_form" />
+            <field name="priority" eval="9" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page name="library" string="Library">
+                        <group>
+                            <field name="library_card_id" />
+                        </group>
+                        <group string="Media Movements">
+                            <field name="media_movement_lines" nolabel="1" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

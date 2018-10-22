@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="email_template_media_movement" model="mail.template">
+        <field name="name">Media Movement</field>
+        <field name="email_from">${user.email}</field>
+        <field name="subject">Library Card Renew</field>
+        <field name="email_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="partner_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="model_id" ref="openeducat_library.model_op_media_movement"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_name">Renew</field>
+        <field name="lang">${object.student_id.user_id.partner_id.lang}</field>
+        <field name="body_html"><![CDATA[
+            <p>Dear <strong> ${object.student_id.name} </strong>
+            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> will 
+                % if object.get_diff_day() == 0:
+                    be expiring <strong>today.</strong>
+                % else:
+                    expire in <strong> ${object.get_diff_day()}</strong> day(s).
+                % endif
+                Please return it as soon as possible.</p>
+            <p>Thank you.</p>
+            ]]></field>
+    </record>
+
+    <record id="library_card_media_movement_action" model="ir.actions.server">
+        <field name="name">Server Actions Media Movement</field>
+        <field name="model_id" ref="openeducat_library.model_op_media_movement"/>
+        <field name="state">email</field>
+        <field name="template_id" ref="email_template_media_movement"/>
+    </record>
+
+    <record id="test_rule_media_movement_line_1" model="base.automation">
+        <field name="name">Media Movement Line Before 1 Days</field>
+        <field name="trigger">on_time</field>
+        <field name="model_id" ref="openeducat_library.model_op_media_movement"/>
+        <field name="trg_date_id" search="[('model','=','op.media.movement'),('name','=','return_date')]"/>
+        <field name="trg_date_range">-1</field>
+        <field name="trg_date_range_type">day</field>
+    </record>
+
+    <record id="email_template_media_movement_after" model="mail.template">
+        <field name="name">Media Movement After Due Date Passed</field>
+        <field name="email_from">${user.email}</field>
+        <field name="subject">Library Card Expired</field>
+        <field name="email_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="partner_to">${object.student_id.user_id.partner_id.id}</field>
+        <field name="model_id" ref="openeducat_library.model_op_media_movement"/>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_name">Library Card Expired</field>
+        <field name="lang">${object.student_id.user_id.partner_id.lang}</field>
+        <field name="body_html"><![CDATA[
+            <p>Dear <strong> ${object.student_id.name} </strong>
+            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> has been expired. Please return it as soon as possible.</p>
+            <p>Thank you.</p>
+            ]]></field>
+    </record>
+
+    <record id="library_card_media_movement_action_after" model="ir.actions.server">
+        <field name="name">Server Actions Media Movement After 1 Days</field>
+        <field name="model_id" ref="openeducat_library.model_op_media_movement"/>
+        <field name="state">email</field>
+        <field name="template_id" ref="email_template_media_movement_after"/>
+    </record>
+
+    <record id="test_rule_media_movement_line_after" model="base.automation">
+        <field name="name">Media Movement Line After 1 Days</field>
+        <field name="trigger">on_time</field>
+        <field name="model_id" ref="openeducat_library.model_op_media_movement"/>
+        <field name="trg_date_id" search="[('model','=','op.media.movement'),('name','=','return_date')]"/>
+        <field name="trg_date_range">1</field>
+        <field name="trg_date_range_type">day</field>
+    </record>
+</odoo>

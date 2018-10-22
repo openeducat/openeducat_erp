@@ -1,0 +1,56 @@
+-
+  Student can create media queue request there for I checked it with that user who is Student.
+-
+  !context
+    uid: res_users_student_user_test
+-
+  in order to move media queue request workflow I create media queue request
+-
+  !record {model: op.media.queue, id: media_queue_test}:
+    media_id: media_test
+    state: 'request'
+    date_from: 2015-04-13
+    date_to: 2015-04-22
+    user_id: res_users_student_user_test
+-
+  I check that Now media queue request is "Request"
+-
+  !assert {model: op.media.queue, id: media_queue_test}:
+    - state == 'request'
+-
+  Librarian can create media queue request there for I checked it with that user who is Librarian.
+-
+  !context
+    uid: res_users_librarian_user_test    
+-
+  I clicked on Reject button in media queue request
+-
+  !python {model: op.media.queue, id: media_queue_test}: |
+    self.do_reject()
+-
+  I check that Now media queue request is "Rejected"
+-
+  !assert {model: op.media.queue, id: media_queue_test}:
+    - state == 'reject'
+-
+  I clicked on Request Again button in media queue request
+-
+  !python {model: op.media.queue, id: media_queue_test}: |
+    self.do_request_again()
+-
+  I check that Now media queue request is "Request"
+-
+  !assert {model: op.media.queue, id: media_queue_test}:
+    - state == 'request'
+-
+  I clicked on Accept button in media queue request
+-
+  !python {model: op.media.queue, id: media_queue_test}: |
+    self.do_accept()
+-
+  I check that Now media queue request is "Accepted"
+-
+  !assert {model: op.media.queue, id: media_queue_test}:
+    - state == 'accept'
+
+

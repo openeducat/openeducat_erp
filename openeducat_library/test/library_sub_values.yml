@@ -1,0 +1,130 @@
+-
+  Backoffice Admin can create student, faculty and partner  there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+   In order to use it in Faculty I create Partner
+-
+  !record {model: res.partner, id: partner_dylan_test}:
+    name: 'Dylan'
+-
+   In order to use it in Media Movements I create Faculty first
+-
+  !record {model: op.faculty, id: faculty_dylan_test}:
+    name: 'Dylan'
+    title: base.res_partner_title_mister
+    middle_name: 'Q'
+    last_name: 'Hidalgo'
+    gender: 'male'
+    birth_date: '1983-02-01'
+    blood_group: 'O+'
+    email: 'dylanqhidalgo@demo.com'
+    city: 'New Jersey'
+    country_id: base.us
+    nationality: base.us
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_dylan_test
+    user_id: res_users_faculty_user_test
+-
+  I create 1st Partner for student
+-
+  !record {model: res.partner, id: partner_sumita_test}:
+    name: 'Sumita'
+-
+  I create student for Allocation
+-
+  !record {model: op.student, id: student_sumita_test}:
+    name: 'Sumita'
+    title: base.res_partner_title_miss
+    middle_name: 'S'
+    last_name: 'Dani'
+    gender: 'f'
+    birth_date: '1992-05-06'
+    blood_group: 'A-'
+    email: 'sumitasdani@demo.com'
+    city: 'Banglore'
+    country_id: base.in
+    nationality: base.in
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_sumita_test
+    user_id: res_users_student_user_test
+
+-
+  Librarian can create media, media units, media types and library card there for I checked it with that user who is Librarian.
+-
+  !context
+    uid: res_users_librarian_user_test
+-
+  I create library card type for Library card
+-
+  !record {model: op.library.card.type, id: library_card_type_test}:
+    name: 'Bachelor Degree Card'
+    allow_media: 3
+    duration: 10
+    penalty_amt_per_day: 1
+-
+  I create library card for media movements
+-
+  !record {model: op.library.card, id: library_card_test}:
+    library_card_type_id: library_card_type_test
+    type: 'student'
+    partner_id: partner_sumita_test
+    student_id: student_sumita_test
+    issue_date: !eval datetime.now()
+-
+  I create media type for media movements
+-
+  !record {model: op.media.type, id: media_type_test}:
+    name: 'Course Books'
+    code: 'CB'
+-
+  I create media for media movements
+-
+  !record {model: op.media, id: media_test}:
+    name: 'Basic Accounting'
+    edition: '4th Edition'
+    isbn: 634483832990
+    internal_code: 343323325
+    media_type_id: media_type_test
+-
+  I create 1st media units for media movements
+-
+  !record {model: op.media.unit, id: media_unit1_test}:
+    name: 'Basic Accounting-U001'
+    state: 'available'
+    media_id: media_test
+-
+  I create 2nd media units for media movements
+-
+  !record {model: op.media.unit, id: media_unit2_test}:
+    name: 'Basic Accounting-U002'
+    state: 'available'
+    media_id: media_test
+-
+  Backoffice Admin can create course, student, faculty and partner  there for I checked it with that user who is backoffice admin.
+-
+  !context
+    uid: res_users_backoffice_admin_user_test
+-
+   In order to use it in media movements I create Course
+-
+  !record {model: op.course, id: course_test}:
+    name: 'Bachelor of Accountancy Test'
+    code: 'tboa'
+    evaluation_type: 'GPA'
+    section: 'Bachelors Course'
+-
+  In order to use it in media movements I create Subject
+-
+  !record {model: op.subject, id: subject_fa_test}:
+    name: 'Financial Accounting'
+    code: 'BOA1-001T'
+    type: 'theory'
+
+
+

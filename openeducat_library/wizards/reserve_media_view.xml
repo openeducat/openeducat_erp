@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="reserve_media_form">
+            <field name="name">reserve.media.form</field>
+            <field name="model">reserve.media</field>
+            <field name="arch" type="xml">
+                <form string="Media Reservation">
+                    <group>
+                        <field name="partner_id"/>
+                    </group>
+                    <footer groups="base.group_user">
+                        <button name="set_partner" type="object" string="Proceed" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="reserve_media_act">
+            <field name="name">Media Reservation</field>
+            <field name="res_model">reserve.media</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="reserve_media_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
