@@ -1,0 +1,86 @@
+-
+   In order to use it in timetable I create Course
+-
+  !record {model: op.course, id: course_test}:
+    name: 'Bachelor of Accountancy Test'
+    code: 'tboa'
+    evaluation_type: 'GPA'
+    section: 'Bachelors Course'
+-
+  In order to use it in timetable I create Subject
+-
+  !record {model: op.subject, id: subject_fa_test}:
+    name: 'Financial Accounting'
+    code: 'BOA1-001T'
+    type: 'theory'
+-
+   In order to use it in timetable I create Batch
+-
+  !record {model: op.batch, id: batch_test}:
+    name: 'BOA-S1'
+    code: 'boas1t'
+    course_id: course_test
+    start_date: !eval str(int(time.strftime('%Y')) - 1) +'-06-02'
+    end_date: !eval str(int(time.strftime('%Y')) + 2) +'-06-02'
+-
+  In order to use it in timetable I create room
+-
+  !record {model: op.classroom, id: room1_test}:
+    name: 'R003'
+    code: 'R003T'
+    capacity: 30
+    course_id: course_test
+-
+  In order to use it in timetable I create time
+-
+  !record {model: op.timing, id: time1_test}:
+    name: '11AM-12PM'
+    sequence: 2
+    hour: '11'
+    minute: '00'
+    am_pm: 'am'
+    duration: 1
+-
+   In order to use it in Faculty I create Partner
+-
+  !record {model: res.partner, id: partner_dylan_test}:
+    name: 'Dylan'
+-
+   Create an user as 'Faculty'
+-
+  !record {model: res.users, id: res_users_faculty_user_test, view: False}:
+    company_id: base.main_company
+    name: Faculty Test
+    login: faculty
+    email: facultytest@openeducat.org
+-
+  I added groups to Faculty User.
+-
+  !record {model: res.users, id: res_users_faculty_user_test}:
+    groups_id:
+      - openeducat_core.group_op_faculty
+-
+   In order to use it in Timetable I create Faculty first
+-
+  !record {model: op.faculty, id: faculty_dylan_test}:
+    name: 'Dylan'
+    title: base.res_partner_title_mister
+    middle_name: 'Q'
+    last_name: 'Hidalgo'
+    gender: 'male'
+    birth_date: '1983-02-01'
+    blood_group: 'O+'
+    email: 'dylanqhidalgo@demo.com'
+    city: 'New Jersey'
+    country_id: base.us
+    nationality: base.us
+    type: 'contact'
+    customer: True
+    active: True
+    partner_id: partner_dylan_test
+    user_id: res_users_faculty_user_test
+
+
+
+
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_op_timetable_root"
+                  name="TimeTables"
+                  sequence="90"
+                  web_icon="openeducat_timetable,static/description/icon.png"/>
+
+        <menuitem id="menu_op_timetable"
+                  string="Timetable"
+                  parent="menu_op_timetable_root"
+                  groups="openeducat_core.group_op_student"
+                  sequence="10" action="act_open_op_session_view"/>
+
+        <!-- Configuration Menu -->
+        <menuitem id="menu_op_timetable_config"
+                  name="Configuration"
+                  parent="menu_op_timetable_root"
+                  sequence="40"/>
+
+        <menuitem id="menu_op_period"
+                  string="Timing"
+                  parent="menu_op_timetable_config"
+                  groups="openeducat_core.group_op_faculty"
+                  sequence="10"
+                  action="act_open_op_timing_view"/>
+
+        <menuitem id="menu_generate_time_table"
+                  string="Generate Timetable"
+                  parent="menu_op_timetable_config"
+                  groups="openeducat_core.group_op_back_office"
+                  sequence="20"
+                  action="act_open_generate_time_table_view"/>
+
+        <menuitem id="menu_generate_time_table_report"
+                  string="Generate Timetable Report"
+                  parent="menu_op_timetable_config"
+                  groups="openeducat_core.group_op_student"
+                  sequence="30"
+                  action="act_open_time_table_report_view"/>
+
+        <menuitem id="menu_session_analysis_pivot"
+                  name="Session Analysis"
+                  parent="menu_op_timetable_root"
+                  sequence="50"
+                  action="act_open_op_session_view_pivot"/>
+    </data>
+</odoo>

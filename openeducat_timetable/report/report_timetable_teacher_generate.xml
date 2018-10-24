@@ -1,0 +1,165 @@
+<odoo>
+    <data>
+        <template id="report_timetable_teacher_generate">
+            <style>
+                .font{
+                font-size:18px;
+                font-family:"Helvetica"
+                }
+                @page{
+                size: A4;
+                }
+            </style>
+
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="font">
+                            <div class="page">
+                                <div class="row text-center">
+                                    <h2>
+                                        <b>
+                                            <span t-field='res_company.name' />
+                                        </b>
+                                    </h2>
+                                </div>
+                                <div class="row text-center">
+                                    <h2>
+                                        <strong> Faculty TimeTables</strong>
+                                    </h2>
+                                </div>
+                                <br></br>
+                                <div class="text-left">
+                                    <b>Faculty Name :</b>
+                                    <span t-esc="get_full_name(data)" />
+                                </div>
+                                <br></br>
+                                <div class="row text-center">
+                                    <b>From Date: </b>
+                                    <span t-esc="data['start_date']" />
+                                    <b>To Date:</b>
+                                    <span t-esc="data['end_date']" />
+                                </div>
+                                <br></br>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th class="text-left">PERIOD </th>
+                                        <span t-foreach="get_heading()" t-as="n">
+                                            <th class="text-center"><span t-raw="n" /></th>
+                                        </span>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="get_object(data)" t-as="a">
+                                            <td class="text-left">
+                                                <span t-esc="'%s' %  a['name'] if  a['name']  else ''" />
+                                            </td>
+                                            <td class="text-left">
+                                                <b>
+                                                    <span t-esc="a['line'].get('0',{'course':''})['course']" />
+                                                </b>
+                                                <br></br>
+                                                <span t-esc="a['line'].get('0',{'batch':''})['batch']" />
+                                                <br></br>
+                                                <b>
+                                                    <span t-esc="a['line'].get('0',{'subject':''})['subject']" />
+                                                </b>
+                                                <br></br>
+                                                <span
+                                                    t-esc="a['line'].get('0',{'start_datetime':''})['start_datetime']" />
+                                            </td>
+                                            <td class="text-left">
+                                                <b>
+                                                    <span t-esc="a['line'].get('1',{'course':''})['course']" />
+                                                </b>
+                                                <br></br>
+                                                <span t-esc="a['line'].get('1',{'batch':''})['batch']" />
+                                                <br></br>
+                                                <b>
+                                                    <span t-esc="a['line'].get('1',{'subject':''})['subject']" />
+                                                </b>
+                                                <br></br>
+                                                <span
+                                                    t-esc="a['line'].get('1',{'start_datetime':''})['start_datetime']" />
+                                            </td>
+                                            <td class="text-left">
+                                                <b>
+                                                    <span t-esc="a['line'].get('2',{'course':''})['course']" />
+                                                </b>
+                                                <br></br>
+                                                <span t-esc="a['line'].get('2',{'batch':''})['batch']" />
+                                                <br></br>
+                                                <b>
+                                                    <span
+                                                        t-esc="a['line'].get('2',{'subject':''})['subject']" />
+                                                </b>
+                                                <br></br>
+                                                <span
+                                                    t-esc="a['line'].get('2',{'start_datetime':''})['start_datetime']" />
+                                            </td>
+                                            <td class="text-left">
+                                                <b>
+                                                    <span t-esc="a['line'].get('3',{'course':''})['course']" />
+                                                </b>
+                                                <br></br>
+                                                <span t-esc="a['line'].get('3',{'batch':''})['batch']" />
+                                                <br></br>
+                                                <b>
+                                                    <span t-esc="a['line'].get('3',{'subject':''})['subject']" />
+                                                </b>
+                                                <br></br>
+                                                <span
+                                                    t-esc="a['line'].get('3',{'start_datetime':''})['start_datetime']" />
+                                            </td>
+                                            <td class="text-left">
+                                                <b>
+                                                    <span t-esc="a['line'].get('4',{'course':''})['course']" />
+                                                </b>
+                                                <br></br>
+                                                <span t-esc="a['line'].get('4',{'batch':''})['batch']" />
+                                                <br></br>
+                                                <b>
+                                                    <span t-esc="a['line'].get('4',{'subject':''})['subject']" />
+                                                </b>
+                                                <br></br>
+                                                <span
+                                                    t-esc="a['line'].get('4',{'start_datetime':''})['start_datetime']" />
+                                            </td>
+                                            <td class="text-left">
+                                                <b>
+                                                    <span t-esc="a['line'].get('5',{'course':''})['course']" />
+                                                </b>
+                                                <br></br>
+                                                <span t-esc="a['line'].get('5',{'batch':''})['batch']" />
+                                                <br></br>
+                                                <b>
+                                                    <span t-esc="a['line'].get('5',{'subject':''})['subject']" />
+                                                </b>
+                                                <br></br>
+                                                <span
+                                                    t-esc="a['line'].get('5',{'start_datetime':''})['start_datetime']" />
+                                            </td>
+                                            <td class="text-left">
+                                                <b>
+                                                    <span t-esc="a['line'].get('6',{'course':''})['course']" />
+                                                </b>
+                                                <br></br>
+                                                <span t-esc="a['line'].get('6',{'batch':''})['batch']" />
+                                                <br></br>
+                                                <b>
+                                                    <span t-esc="a['line'].get('6',{'subject':''})['subject']" />
+                                                </b>
+                                                <br></br>
+                                                <span
+                                                    t-esc="a['line'].get('6',{'start_datetime':''})['start_datetime']" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
