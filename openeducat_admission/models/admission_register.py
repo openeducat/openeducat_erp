@@ -19,16 +19,15 @@
 #
 ##############################################################################
 
-from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
 class OpAdmissionRegister(models.Model):
-    _name = 'op.admission.register'
-    _inherit = 'mail.thread'
-    _description = 'Admission Register'
+    _name = "op.admission.register"
+    _inherit = "mail.thread"
+    _description = "Admission Register"
 
     name = fields.Char(
         'Name', required=True, readonly=True,
@@ -38,7 +37,7 @@ class OpAdmissionRegister(models.Model):
         default=fields.Date.today(), states={'draft': [('readonly', False)]})
     end_date = fields.Date(
         'End Date', required=True, readonly=True,
-        default=(datetime.today() + relativedelta(days=30)),
+        default=(fields.Date.today() + relativedelta(days=30)),
         states={'draft': [('readonly', False)]})
     course_id = fields.Many2one(
         'op.course', 'Course', required=True, readonly=True,
@@ -68,15 +67,16 @@ class OpAdmissionRegister(models.Model):
             start_date = fields.Date.from_string(record.start_date)
             end_date = fields.Date.from_string(record.end_date)
             if start_date > end_date:
-                raise ValidationError(_("End Date cannot be set before \
-                Start Date."))
+                raise ValidationError(
+                    _("End Date cannot be set before Start Date."))
 
     @api.multi
     @api.constrains('min_count', 'max_count')
     def check_no_of_admission(self):
         for record in self:
             if (record.min_count < 0) or (record.max_count < 0):
-                raise ValidationError(_("No of Admission should be positive!"))
+                raise ValidationError(
+                    _("No of Admission should be positive!"))
             if record.min_count > record.max_count:
                 raise ValidationError(_(
                     "Min Admission can't be greater than Max Admission"))

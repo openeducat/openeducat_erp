@@ -23,7 +23,8 @@ from odoo import models, fields
 
 
 class OpMedia(models.Model):
-    _name = 'op.media'
+    _name = "op.media"
+    _description = "Media Details"
 
     name = fields.Char('Title', size=128, required=True)
     isbn = fields.Char('ISBN Code', size=64)

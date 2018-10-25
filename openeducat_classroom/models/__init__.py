@@ -20,5 +20,5 @@
 ##############################################################################
 
 from . import asset
-from . import classroom
 from . import facility_line
+from . import classroom

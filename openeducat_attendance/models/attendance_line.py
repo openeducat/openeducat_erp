@@ -23,9 +23,11 @@ from odoo import models, fields
 
 
 class OpAttendanceLine(models.Model):
-    _name = 'op.attendance.line'
-    _inherit = ['mail.thread']
-    _rec_name = 'attendance_id'
+    _name = "op.attendance.line"
+    _inherit = ["mail.thread"]
+    _rec_name = "attendance_id"
+    _description = "Attendance Lines"
+    _order = "attendance_date desc"
 
     attendance_id = fields.Many2one(
         'op.attendance.sheet', 'Attendance Sheet', required=True,

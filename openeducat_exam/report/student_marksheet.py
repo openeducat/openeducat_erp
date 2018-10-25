@@ -26,7 +26,8 @@ from odoo import models, api
 
 
 class ReportMarksheetReport(models.AbstractModel):
-    _name = 'report.openeducat_exam.report_marksheet_report'
+    _name = "report.openeducat_exam.report_marksheet_report"
+    _description = "Exam Marksheet Report"
 
     def get_objects(self, objects):
         obj = []
@@ -49,7 +50,7 @@ class ReportMarksheetReport(models.AbstractModel):
         return sum(total)
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         docs = self.env['op.marksheet.register'].browse(docids)
         docargs = {
             'doc_model': 'op.marksheet.register',

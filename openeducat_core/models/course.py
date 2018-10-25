@@ -24,6 +24,7 @@ from odoo import models, fields
 
 class OpCourse(models.Model):
     _name = 'op.course'
+    _description = "OpenEduCat Course"
 
     name = fields.Char('Name', required=True)
     code = fields.Char('Code', size=16, required=True)

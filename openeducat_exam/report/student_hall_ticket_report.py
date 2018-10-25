@@ -25,7 +25,8 @@ from odoo import models, fields, api
 
 
 class ReportTicket(models.AbstractModel):
-    _name = 'report.openeducat_exam.report_ticket'
+    _name = "report.openeducat_exam.report_ticket"
+    _description = "Exam Ticket Report"
 
     def get_date(self, exam_line):
         timestamp = fields.Datetime.context_timestamp
@@ -74,7 +75,7 @@ class ReportTicket(models.AbstractModel):
         return final_lst
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

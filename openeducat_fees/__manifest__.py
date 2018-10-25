@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Fees',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -29,17 +29,17 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account_invoicing'],
+    'depends': ['openeducat_core', 'account'],
     'data': [
+        'security/fees_security.xml',
+        'security/ir.model.access.csv',
         'report/report_menu.xml',
         'report/fees_analysis_report_view.xml',
         'wizard/fees_detail_report_wizard_view.xml',
         'views/fees_terms_view.xml',
         'views/student_view.xml',
         'views/course_view.xml',
-        'security/fees_security.xml',
         'fees_menu.xml',
-        'security/ir.model.access.csv'
     ],
     'images': [
         'static/description/openeducat_fees_banner.jpg',
@@ -48,6 +48,9 @@
         'demo/fees_terms_line_demo.xml',
         'demo/fees_terms_demo.xml',
         'demo/course_demo.xml',
+        'demo/product_category_demo.xml',
+        'demo/product_demo.xml',
+        'demo/student_fees_details_demo.xml',
     ],
     'installable': True,
     'auto_install': False,

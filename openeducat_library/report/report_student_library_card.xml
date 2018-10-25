@@ -10,8 +10,7 @@
                             <br></br>
                             <br></br>
                             <br></br>
-                            <div class="center-block"
-                                style="height: 257px; width: 420px; border: 1px solid black;">
+                            <div class="center-block" style="height: 257px; width: 420px; border: 1px solid black;">
                                 <table>
                                     <tbody>
                                         <tr>
@@ -21,33 +20,15 @@
                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
                                             </td>
                                             <td style="vertical-align: top;">
-                                                <div
-                                                    style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
-                                                    <b>
-                                                        <span
-                                                            t-raw="'%s' %  res_company.partner_id.name if  res_company.partner_id.name  else ''" />
-                                                    </b>
-                                                    <br></br>
-                                                    <span
-                                                        t-raw="'%s' %  res_company.partner_id.street if  res_company.partner_id.street  else ''" />
-                                                    <br></br>
-                                                    <span
-                                                        t-raw="'%s' %  res_company.partner_id.street2 if  res_company.partner_id.street2  else ''" />
-                                                    <br></br>
-                                                    <span
-                                                        t-raw="'%s' %  res_company.partner_id.city if  res_company.partner_id.city  else ''" />
-                                                    <span
-                                                        t-raw="'%s' %  res_company.partner_id.state_id.name if  res_company.partner_id.state_id.name  else ''" />
-                                                    <span
-                                                        t-raw="'%s' %  res_company.partner_id.zip if  res_company.partner_id.zip  else ''" />
-                                                    <br></br>
-                                                    Phone :
-                                                    <span
-                                                        t-raw="'%s' % res_company.partner_id.phone if  res_company.partner_id.phone  else ''" />
-                                                    <br></br>
-                                                    E-mail :
-                                                    <span
-                                                        t-raw="'%s' % res_company.partner_id.email if  res_company.partner_id.email  else ''" />
+                                                <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
+                                                    <b><span t-raw="'%s' %  res_company.partner_id.name if  res_company.partner_id.name  else ''" /></b><br></br>
+                                                    <span t-raw="'%s' %  res_company.partner_id.street if  res_company.partner_id.street  else ''" /><br></br>
+                                                    <span t-raw="'%s' %  res_company.partner_id.street2 if  res_company.partner_id.street2  else ''" /><br></br>
+                                                    <span t-raw="'%s' %  res_company.partner_id.city if  res_company.partner_id.city  else ''" />
+                                                    <span t-raw="'%s' %  res_company.partner_id.state_id.name if  res_company.partner_id.state_id.name  else ''" />
+                                                    <span t-raw="'%s' %  res_company.partner_id.zip if  res_company.partner_id.zip  else ''" /><br></br>
+                                                    Phone : <span t-raw="'%s' % res_company.partner_id.phone if  res_company.partner_id.phone  else ''" /><br></br>
+                                                    E-mail : <span t-raw="'%s' % res_company.partner_id.email if  res_company.partner_id.email  else ''" />
                                                 </div>
                                             </td>
                                         </tr>
@@ -58,36 +39,23 @@
                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
                                             </td>
                                             <td style="vertical-align: top;">
-                                                <div
-                                                    style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
+                                                <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
                                                     <b>
-                                                        <span
-                                                            t-field='o.name' />
-                                                        <span
-                                                            t-field='o.middle_name' />
-                                                        <span
-                                                            t-field='o.last_name' />
-                                                    </b>
-                                                    <br></br>
+                                                        <span t-field='o.name' />
+                                                        <span t-field='o.middle_name' />
+                                                        <span t-field='o.last_name' />
+                                                    </b><br></br>
                                                     Library Card No :
-                                                    <span
-                                                        t-if="o.library_card_id">
-                                                        <span
-                                                            t-field='o.library_card_id.number' />
-                                                    </span>
-                                                    <br></br>
+                                                    <span t-if="o.library_card_id">
+                                                        <span t-field='o.library_card_id.number' />
+                                                    </span><br></br>
                                                     Library Card Type :
-                                                    <span
-                                                        t-if="o.library_card_id">
-                                                        <span
-                                                            t-field='o.library_card_id.library_card_type_id.name' />
-                                                    </span>
-                                                    <br></br>
+                                                    <span t-if="o.library_card_id">
+                                                        <span t-field='o.library_card_id.library_card_type_id.name' />
+                                                    </span><br></br>
                                                     Issue Date :
-                                                    <span
-                                                        t-if="o.library_card_id">
-                                                        <span
-                                                            t-field='o.library_card_id.issue_date' />
+                                                    <span t-if="o.library_card_id">
+                                                        <span t-field='o.library_card_id.issue_date' />
                                                     </span>
                                                 </div>
                                             </td>

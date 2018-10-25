@@ -20,16 +20,15 @@
 ###############################################################################
 
 import calendar
+import pytz
 import time
 from datetime import datetime
-
-import pytz
-
 from odoo import models, api, _
 
 
 class ReportTimeTableTeacherGenerate(models.AbstractModel):
-    _name = 'report.openeducat_timetable.report_timetable_teacher_generate'
+    _name = "report.openeducat_timetable.report_timetable_teacher_generate"
+    _description = "Timetable Teacher Report"
 
     @api.multi
     def _convert_to_local_timezone(self, time):
@@ -89,8 +88,8 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
             timetable_data = {
                 'period': timetable_obj.timing_id.name,
                 'period_time': timetable_obj.timing_id.hour + ':' +
-                               timetable_obj.timing_id.minute +
-                               timetable_obj.timing_id.am_pm,
+                timetable_obj.timing_id.minute +
+                timetable_obj.timing_id.am_pm,
                 'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': self._convert_to_local_timezone(
                     timetable_obj.start_datetime).strftime(
@@ -109,7 +108,7 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
         return final_list
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

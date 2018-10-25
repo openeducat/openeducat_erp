@@ -23,9 +23,9 @@ from odoo import models, fields, api
 
 
 class ReserveMedia(models.TransientModel):
-
     """ Reserve Media """
-    _name = 'reserve.media'
+    _name = "reserve.media"
+    _description = "Media Reserve"
 
     partner_id = fields.Many2one('res.partner', required=True)
 

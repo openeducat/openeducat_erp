@@ -24,10 +24,10 @@ from odoo.exceptions import ValidationError, Warning
 
 
 class OpMediaQueue(models.Model):
-    _name = 'op.media.queue'
-    _inherit = 'mail.thread'
-    _rec_name = 'user_id'
-    _description = 'Media Queue Request'
+    _name = "op.media.queue"
+    _inherit = "mail.thread"
+    _rec_name = "user_id"
+    _description = "Media Queue Request"
 
     name = fields.Char("Sequence No", readonly=True, copy=False, default='/')
     partner_id = fields.Many2one('res.partner', 'Student/Faculty')
@@ -50,7 +50,8 @@ class OpMediaQueue(models.Model):
     @api.constrains('date_from', 'date_to')
     def _check_date(self):
         if self.date_from > self.date_to:
-            raise ValidationError(_('To Date cannot be set before From Date.'))
+            raise ValidationError(
+                _('To Date cannot be set before From Date.'))
 
     @api.model
     def create(self, vals):

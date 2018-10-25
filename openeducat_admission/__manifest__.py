@@ -21,7 +21,7 @@
 
 {
     'name': "OpenEduCat Admission",
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     'sequence': 3,
@@ -29,24 +29,20 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_fees', 'openeducat_core'],
+    'depends': ['openeducat_core', 'openeducat_fees'],
     'data': [
+        'security/ir.model.access.csv',
         'views/admission_register_view.xml',
         'views/admission_view.xml',
         'views/admission_sequence.xml',
-        'views/student_view.xml',
-        'report/report_menu.xml',
         'report/report_admission_analysis.xml',
+        'report/report_menu.xml',
         'wizard/admission_analysis_wizard_view.xml',
         'admission_menu.xml',
-        'security/ir.model.access.csv',
     ],
     'demo': [
-        'demo/product_category_demo.xml',
-        'demo/product_demo.xml',
         'demo/admission_register_demo.xml',
         'demo/admission_demo.xml',
-        'demo/student_fees_details_demo.xml',
     ],
     'test': [
         'test/res_users_creation.yml',

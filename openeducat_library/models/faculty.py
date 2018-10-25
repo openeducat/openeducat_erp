@@ -23,7 +23,7 @@ from odoo import models, fields
 
 
 class OpFaculty(models.Model):
-    _inherit = 'op.faculty'
+    _inherit = "op.faculty"
 
     library_card_id = fields.Many2one('op.library.card', 'Library Card')
     media_movement_lines = fields.One2many(

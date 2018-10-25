@@ -33,10 +33,9 @@ week_days = [(calendar.day_name[0], _(calendar.day_name[0])),
 
 
 class OpSession(models.Model):
-    _name = 'op.session'
-    _inherit = ['mail.thread']
-    _description = 'Sessions'
-    _rec_name = 'name'
+    _name = "op.session"
+    _inherit = ["mail.thread"]
+    _description = "Sessions"
 
     name = fields.Char(compute='_compute_name', string='Name', store=True)
     timing_id = fields.Many2one(
@@ -80,7 +79,8 @@ class OpSession(models.Model):
             if session.faculty_id and session.subject_id \
                     and session.start_datetime:
                 session.name = session.faculty_id.name + ':' + \
-                    session.subject_id.name + ':' + str(session.timing_id.name)
+                               session.subject_id.name + ':' + \
+                               str(session.timing_id.name)
 
     # For record rule on student and faculty dashboard
     @api.multi
@@ -179,7 +179,7 @@ class OpSession(models.Model):
     @api.multi
     def get_subject(self):
         return 'lacture of ' + self.faculty_id.name + \
-            ' for ' + self.subject_id.name + ' is ' + self.state
+               ' for ' + self.subject_id.name + ' is ' + self.state
 
     @api.multi
     @api.model

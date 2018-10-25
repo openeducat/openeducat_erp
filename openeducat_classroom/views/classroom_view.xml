@@ -14,6 +14,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_classroom_form" model="ir.ui.view">
             <field name="name">op.classroom.form</field>
             <field name="model">op.classroom</field>
@@ -25,7 +26,7 @@
                             <field name="name" />
                             <field name="code" />
                             <field name="course_id" />
-                            <field name="batch_id" domain="[('course_id', '=', course_id)]" />
+                            <field name="batch_id" domain="[('course_id','=',course_id)]" />
                             <field name="capacity" />
                         </group>
                         <notebook>  
@@ -42,11 +43,11 @@
                                 </field>
                             </page>
                         </notebook>
-                        
                     </sheet>
                 </form>
             </field>
         </record>
+
         <record id="view_op_classroom_search" model="ir.ui.view">
             <field name="name">op.classroom.search</field>
             <field name="model">op.classroom</field>
@@ -59,13 +60,17 @@
                     <field name="facilities" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Name" domain="[]" context="{'group_by':'name'}" />
-                        <filter string="Code" domain="[]" context="{'group_by':'code'}" />
-                        <filter string="Capacity" domain="[]" context="{'group_by':'capacity'}" />
+                        <filter string="Name" name="group_by_classroom_name"
+                                domain="[]" context="{'group_by':'name'}" />
+                        <filter string="Code" name="group_by_classroom_code"
+                                domain="[]" context="{'group_by':'code'}" />
+                        <filter string="Capacity" name="group_by_classroom_capacity"
+                                domain="[]" context="{'group_by':'capacity'}" />
                     </group>
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_classroom_view">
             <field name="name">Class Rooms</field>
             <field name="type">ir.actions.act_window</field>
@@ -76,12 +81,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_classroom_view_form">
             <field name="act_window_id" ref="act_open_op_classroom_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_classroom_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_classroom_view_tree">
             <field name="act_window_id" ref="act_open_op_classroom_view" />
             <field name="sequence" eval="10" />

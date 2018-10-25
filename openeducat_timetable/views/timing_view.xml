@@ -16,6 +16,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_timing_form" model="ir.ui.view">
             <field name="name">op.timing.form</field>
             <field name="model">op.timing</field>
@@ -34,6 +35,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_timing_search" model="ir.ui.view">
             <field name="name">op.timing.search</field>
             <field name="model">op.timing</field>
@@ -48,6 +50,7 @@
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_timing_view">
             <field name="name">Timings</field>
             <field name="type">ir.actions.act_window</field>
@@ -58,12 +61,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_timing_view_form">
             <field name="act_window_id" ref="act_open_op_timing_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_timing_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_timing_view_tree">
             <field name="act_window_id" ref="act_open_op_timing_view" />
             <field name="sequence" eval="10" />

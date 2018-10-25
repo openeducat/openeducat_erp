@@ -24,7 +24,8 @@ from odoo.exceptions import Warning
 
 
 class OpParent(models.Model):
-    _name = 'op.parent'
+    _name = "op.parent"
+    _description = "Parent"
 
     name = fields.Many2one('res.partner', 'Name', required=True)
     user_id = fields.Many2one('res.users', related='name.user_id',
@@ -43,14 +44,14 @@ class OpParent(models.Model):
 
     @api.multi
     def write(self, vals):
-        for record in self:
+        for rec in self:
             res = super(OpParent, self).write(vals)
-            if vals.get('student_ids', False) and record.name.user_id:
-                student_ids = record.student_ids.browse(record.student_ids.ids)
-                user_ids = [student_id.user_id.id for student_id in student_ids
-                            if student_id.user_id]
-                record.user_id.child_ids = [(6, 0, user_ids)]
-            record.clear_caches()
+            if vals.get('student_ids', False) and rec.name.user_id:
+                student_ids = rec.student_ids.browse(rec.student_ids.ids)
+                usr_ids = [student_id.user_id.id for student_id in student_ids
+                           if student_id.user_id]
+                rec.user_id.child_ids = [(6, 0, usr_ids)]
+            rec.clear_caches()
             return res
 
     @api.multi
@@ -67,9 +68,9 @@ class OpParent(models.Model):
                 raise Warning(_('Update parent email id first.'))
             if not record.name.user_id:
                 groups_id = self.env.ref(
-                    'openeducat_parent.parent_template_user') and self.env.ref(
-                    'openeducat_parent.parent_template_user'
-                ).groups_id or False
+                    'openeducat_parent.parent_template_user') and self.env.\
+                    ref('openeducat_parent.parent_template_user').\
+                    groups_id or False
                 user_id = self.env['res.users'].create(
                     {'name': record.name.name, 'partner_id': record.name.id,
                      'login': record.name.email, 'groups_id': groups_id})
@@ -80,8 +81,7 @@ class OpParent(models.Model):
 
 
 class OpStudent(models.Model):
-
-    _inherit = 'op.student'
+    _inherit = "op.student"
 
     parent_ids = fields.Many2many('op.parent', string='Parent')
 
@@ -102,11 +102,11 @@ class OpStudent(models.Model):
         if vals.get('parent_ids', False):
             user_ids = []
             if self.parent_ids:
-                for parent_id in self.parent_ids:
-                    if parent_id.user_id:
-                        user_ids = [x.user_id.id for x in parent_id.student_ids
+                for parent in self.parent_ids:
+                    if parent.user_id:
+                        user_ids = [x.user_id.id for x in parent.student_ids
                                     if x.user_id]
-                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
+                        parent.user_id.child_ids = [(6, 0, user_ids)]
             else:
                 user_ids = self.env['res.users'].search([
                     ('child_ids', 'in', self.user_id.id)])
@@ -134,7 +134,7 @@ class OpStudent(models.Model):
 
 
 class OpSubjectRegistration(models.Model):
-    _inherit = 'op.subject.registration'
+    _inherit = "op.subject.registration"
 
     @api.model
     def create(self, vals):

@@ -23,8 +23,10 @@ from odoo import models, fields, api
 
 
 class OpAttendanceSheet(models.Model):
-    _name = 'op.attendance.sheet'
-    _inherit = ['mail.thread']
+    _name = "op.attendance.sheet"
+    _inherit = ["mail.thread"]
+    _description = "Attendance Sheet"
+    _order = "attendance_date desc"
 
     @api.multi
     @api.depends('attendance_line.present')

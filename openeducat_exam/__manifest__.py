@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Exam',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -29,8 +29,10 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'openeducat_classroom'],
+    'depends': ['openeducat_classroom'],
     'data': [
+        'security/op_exam_security.xml',
+        'security/ir.model.access.csv',
         'views/res_partner_view.xml',
         'views/exam_attendees_view.xml',
         'views/exam_room_view.xml',
@@ -46,11 +48,9 @@
         'views/result_template_view.xml',
         'report/report_ticket.xml',
         'report/student_marksheet.xml',
-        #         'report/report_exam_student_label.xml',
+        'report/report_exam_student_label.xml',
         'report/report_menu.xml',
         'wizard/student_hall_tickets_wizard_view.xml',
-        'security/ir.model.access.csv',
-        'security/op_exam_security.xml',
         'exam_menu.xml',
     ],
     'demo': [
@@ -61,9 +61,9 @@
         'demo/exam_attendees_demo.xml',
         'demo/grade_configuration_demo.xml',
         'demo/result_template_demo.xml',
-        #         'demo/marksheet_register_demo.xml',
-        #         'demo/marksheet_line_demo.xml',
-        #         'demo/result_line_demo.xml',
+        # 'demo/marksheet_register_demo.xml',
+        # 'demo/marksheet_line_demo.xml',
+        # 'demo/result_line_demo.xml',
     ],
     'images': [
         'static/description/openeducat_exam_banner.jpg',

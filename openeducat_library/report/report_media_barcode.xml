@@ -6,18 +6,12 @@
                     <t t-call="web.external_layout">
                         <div class="page">
                             <div class="row text-center">
-                                <h2>
-                                    <strong>Media(s) Barcode</strong>
-                                </h2>
+                                <h2><strong>Media(s) Barcode</strong></h2>
                             </div>
                             <br></br>
                             <br></br>
                             <t t-foreach="docs" t-as="media">
-                                <h3>
-                                    <strong>
-                                        Media :- <t t-esc="media.name" />
-                                    </strong>
-                                </h3>
+                                <h3><strong>Media :- <t t-esc="media.name" /></strong></h3>
                                 <br></br>
                                 <table width="100%" class="table table-bordered">
                                     <thead>
@@ -27,9 +21,7 @@
                                     <tbody>
                                         <tr class="text-center" t-foreach="media.unit_ids" t-as="unit">
                                             <td style="vertical-align: middle;">
-                                                <h4>
-                                                    <t t-esc="unit.name" />
-                                                </h4>
+                                                <h4><t t-esc="unit.name" /></h4>
                                             </td>
                                             <td style="padding:15px 0px 15px 0px;">
                                                 <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', unit.barcode, 350, 60)"/>

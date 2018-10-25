@@ -23,9 +23,9 @@ from odoo import models, fields, api
 
 
 class StudentHallTicket(models.TransientModel):
-
     """ Student Hall Ticket Wizard """
-    _name = 'student.hall.ticket'
+    _name = "student.hall.ticket"
+    _description = "Student Hall Ticket"
 
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session', required=True)

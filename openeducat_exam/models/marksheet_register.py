@@ -19,14 +19,14 @@
 #
 ###############################################################################
 
-from odoo.exceptions import ValidationError
-
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class OpMarksheetRegister(models.Model):
-    _name = 'op.marksheet.register'
-    _inherit = ['mail.thread']
+    _name = "op.marksheet.register"
+    _inherit = ["mail.thread"]
+    _description = "Marksheet Register"
 
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session',

@@ -23,7 +23,8 @@ from odoo import models, api
 
 
 class ReportFeesAnalysis(models.AbstractModel):
-    _name = 'report.openeducat_fees.report_fees_analysis'
+    _name = "report.openeducat_fees.report_fees_analysis"
+    _description = "Fees Analysis Report"
 
     def get_total_amount(self, student_id):
         total_amount = 0.0
@@ -38,12 +39,12 @@ class ReportFeesAnalysis(models.AbstractModel):
 
     def get_paid_amount(self, student_id):
         total_paid = 0.0
-        for fees in student_id.fees_detail_ids:
-            total_paid += fees.invoice_id.amount_total - fees.invoice_id.residual
+        for f in student_id.fees_detail_ids:
+            total_paid += f.invoice_id.amount_total - f.invoice_id.residual
         return total_paid
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         student_ids = []
         if data['fees_filter'] == 'student':
             student_ids = self.env['op.student'].browse([data['student']])

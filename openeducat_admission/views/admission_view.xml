@@ -21,6 +21,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_admission_form" model="ir.ui.view">
             <field name="name">op.admission.form</field>
             <field name="model">op.admission</field>
@@ -50,7 +51,7 @@
                     <sheet>
                         <div class="oe_title">
                             <field name="is_student"/>
-                            <label string="Already Student"/>
+                            <label for="student_id" string="Already Student"/>
                             <field name="student_id" placeholder="Student" options="{'no_create_edit': True}"  attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
                         </div>
                         <field name="image" widget="image" class="oe_left oe_avatar" />
@@ -75,7 +76,8 @@
                                     <field name="application_date" />
                                     <field name="admission_date" />
                                     <field name="course_id" />
-                                    <field name="batch_id" attrs="{'required': [('state','not in', ['draft', 'submit'])]}" context="{'course_id': course_id,'get_parent_batch':1}" />
+                                    <field name="batch_id" attrs="{'required': [('state','=', 'submit')]}"
+                                           context="{'course_id': course_id,'get_parent_batch':1}" />
                                     <field name="fees" attrs="{'required': [('state','not in', ['draft', 'submit'])]}"/>
                                     <field name="due_date" />
                                     <field name="fees_term_id" required="1"
@@ -125,6 +127,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_admission_search" model="ir.ui.view">
             <field name="name">op.admission.search</field>
             <field name="model">op.admission</field>
@@ -143,15 +146,18 @@
                     <newline />
                     <filter name="enrolled_student" string="Enrolled" domain="[('state','=','done')]" />
                     <group expand="0" string="Group By...">
-                        <filter string="Last Name" domain="[]"
-                            context="{'group_by':'last_name'}" />
-                        <filter string="Admission Date" domain="[]"
-                            context="{'group_by':'admission_date'}" />
-                        <filter string="Application Date" domain="[]"
-                            context="{'group_by':'application_date'}" />
-                        <filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
-                        <filter string="Batch" domain="[]" context="{'group_by':'batch_id'}" />
-                        <filter string="Status" domain="[]" context="{'group_by':'state'}" />
+                        <filter string="Last Name" name="group_by_adm_last_name"
+                                domain="[]" context="{'group_by':'last_name'}" />
+                        <filter string="Admission Date" name="group_by_adm_admission_date"
+                                domain="[]" context="{'group_by':'admission_date'}" />
+                        <filter string="Application Date" name="group_by_adm_application_date"
+                                domain="[]" context="{'group_by':'application_date'}" />
+                        <filter string="Course" name="group_by_adm_course_id"
+                                domain="[]" context="{'group_by':'course_id'}" />
+                        <filter string="Batch" name="group_by_adm_batch_id"
+                                domain="[]" context="{'group_by':'batch_id'}" />
+                        <filter string="Status" name="group_by_adm_state"
+                                domain="[]" context="{'group_by':'state'}" />
                     </group>
                 </search>
             </field>
@@ -199,18 +205,21 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_admission_view_form">
             <field name="act_window_id" ref="act_open_op_admission_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_admission_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_admission_view_tree">
             <field name="act_window_id" ref="act_open_op_admission_view" />
             <field name="sequence" eval="10" />
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_op_admission_tree" />
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_admission_view_pivot">
             <field name="name">Admission Analysis</field>
             <field name="res_model">op.admission</field>

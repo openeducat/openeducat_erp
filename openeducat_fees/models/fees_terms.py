@@ -22,8 +22,9 @@ from odoo import models, api, fields, exceptions, _
 
 
 class OpFeesTermsLine(models.Model):
-    _name = 'op.fees.terms.line'
-    _rec_name = 'due_days'
+    _name = "op.fees.terms.line"
+    _rec_name = "due_days"
+    _description = "Fees Details Line"
 
     due_days = fields.Integer('Due Days')
     value = fields.Float('Value (%)')
@@ -31,13 +32,14 @@ class OpFeesTermsLine(models.Model):
 
 
 class OpFeesTerms(models.Model):
-    _name = 'op.fees.terms'
+    _name = "op.fees.terms"
+    _description = "Fees Terms For Course"
 
     name = fields.Char('Fees Terms', required=True)
     active = fields.Boolean('Active', default=True)
     note = fields.Text('Description')
     company_id = fields.Many2one('res.company', 'Company', required=True,
-                                 default=lambda self: self.env.user.company_id)
+                                 default=lambda s: s.env.user.company_id)
     no_days = fields.Integer('No of Days')
     day_type = fields.Selection([('before', 'Before'), ('after', 'After')],
                                 'Type')
@@ -53,6 +55,6 @@ class OpFeesTerms(models.Model):
             if line.value:
                 total += line.value
         if total != 100.0:
-            raise exceptions.AccessError(_("Fees terms must be divided \
-            as such sum up in 100%"))
+            raise exceptions.AccessError(
+                _("Fees terms must be divided as such sum up in 100%"))
         return res

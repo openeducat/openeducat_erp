@@ -26,9 +26,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpExam(models.Model):
-    _name = 'op.exam'
-    _inherit = 'mail.thread'
-    _description = 'Exam'
+    _name = "op.exam"
+    _inherit = "mail.thread"
+    _description = "Exam"
 
     session_id = fields.Many2one('op.exam.session', 'Exam Session')
     course_id = fields.Many2one(

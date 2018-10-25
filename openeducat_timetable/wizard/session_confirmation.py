@@ -23,8 +23,8 @@ from odoo import models, api
 
 
 class SessionConfirmation(models.TransientModel):
-    _name = 'session.confirmation'
-    _description = 'Wizard for Multiple Session Confirmation'
+    _name = "session.confirmation"
+    _description = "Wizard for Multiple Session Confirmation"
 
     @api.multi
     def state_confirmation(self):

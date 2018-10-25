@@ -23,6 +23,6 @@ from odoo import models, fields
 
 
 class OpFaculty(models.Model):
-    _inherit = 'op.faculty'
+    _inherit = "op.faculty"
 
     session_ids = fields.One2many('op.session', 'faculty_id', 'Sessions')

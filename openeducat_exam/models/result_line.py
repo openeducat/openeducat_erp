@@ -24,8 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpResultLine(models.Model):
-    _name = 'op.result.line'
-    _rec_name = 'marks'
+    _name = "op.result.line"
+    _rec_name = "marks"
+    _description = "Result Line"
 
     marksheet_line_id = fields.Many2one(
         'op.marksheet.line', 'Marksheet Line', ondelete='cascade')

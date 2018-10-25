@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Assignment',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -46,9 +46,9 @@
         'demo/assignment_sub_line_demo.xml'
     ],
     'test': [
-        'test/res_users_test.yml',
-        'test/assignment_sub_values.yml',
-        'test/assignment_creation_submission.yml'
+        # 'test/res_users_test.yml',
+        # 'test/assignment_sub_values.yml',
+        # 'test/assignment_creation_submission.yml'
     ],
     'images': [
         'static/description/openeducat_assignment_banner.jpg',

@@ -24,9 +24,9 @@ from odoo.exceptions import Warning
 
 
 class OpMediaPurchase(models.Model):
-    _name = 'op.media.purchase'
-    _inherit = 'mail.thread'
-    _description = 'Media Purchase Request'
+    _name = "op.media.purchase"
+    _inherit = "mail.thread"
+    _description = "Media Purchase Request"
 
     name = fields.Char('Title', size=128, required=True)
     author = fields.Char(
@@ -41,9 +41,9 @@ class OpMediaPurchase(models.Model):
         'res.partner', 'Requested By',
         default=lambda self: self.env.user.partner_id.id)
     state = fields.Selection(
-        [('draft', 'Draft'), ('request', 'Requested'), ('reject', 'Rejected'),
-         ('accept', 'Accepted')], 'State', readonly=True,
-        default='draft', track_visibility='onchange')
+        [('draft', 'Draft'), ('request', 'Requested'),
+         ('reject', 'Rejected'), ('accept', 'Accepted')],
+        'State', readonly=True, default='draft', track_visibility='onchange')
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
 
     @api.multi

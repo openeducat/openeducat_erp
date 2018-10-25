@@ -29,7 +29,8 @@ from odoo import models, api, _
 
 
 class ReportTimetableStudentGenerate(models.AbstractModel):
-    _name = 'report.openeducat_timetable.report_timetable_student_generate'
+    _name = "report.openeducat_timetable.report_timetable_student_generate"
+    _description = "Timetable Student Report"
 
     @api.multi
     def _convert_to_local_timezone(self, time):
@@ -95,7 +96,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         return final_list
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

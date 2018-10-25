@@ -25,6 +25,7 @@ from odoo.exceptions import ValidationError
 
 class OpFaculty(models.Model):
     _name = 'op.faculty'
+    _description = "OpenEduCat Faculty"
     _inherits = {'res.partner': 'partner_id'}
 
     partner_id = fields.Many2one(
@@ -49,7 +50,7 @@ class OpFaculty(models.Model):
         'Latest Connection', related='partner_id.user_id.login_date',
         readonly=1)
     faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)')
-    emp_id = fields.Many2one('hr.employee', 'Employee')
+    emp_id = fields.Many2one('hr.employee', 'HR Employee')
 
     @api.multi
     @api.constrains('birth_date')

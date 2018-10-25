@@ -29,10 +29,10 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'openeducat_timetable'],
+    'depends': ['openeducat_timetable'],
     'data': [
-        'security/ir.model.access.csv',
         'security/op_attendance_security.xml',
+        'security/ir.model.access.csv',
         'wizards/attendance_import_view.xml',
         'wizards/student_attendance_wizard_view.xml',
         'views/attendance_register_view.xml',

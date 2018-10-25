@@ -23,8 +23,9 @@ from odoo import models, fields, api
 
 
 class OpAttendanceRegister(models.Model):
-    _name = 'op.attendance.register'
-    _inherit = ['mail.thread']
+    _name = "op.attendance.register"
+    _inherit = ["mail.thread"]
+    _description = "Attendance Register"
 
     name = fields.Char(
         'Name', size=16, required=True, track_visibility='onchange')

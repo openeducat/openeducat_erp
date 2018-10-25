@@ -25,11 +25,12 @@ from odoo import models, fields, api
 class FeesDetailReportWizard(models.TransientModel):
 
     """ Admission Analysis Wizard """
-    _name = 'fees.detail.report.wizard'
+    _name = "fees.detail.report.wizard"
+    _description = "Wizard For Fees Details Report"
 
     fees_filter = fields.Selection(
-        [('student', 'Student'), ('course', 'Course')], 'Fees Filter',
-        required=True)
+        [('student', 'Student'), ('course', 'Course')],
+        'Fees Filter', required=True)
     student_id = fields.Many2one('op.student', 'Student')
     course_id = fields.Many2one('op.course', 'Course')
 

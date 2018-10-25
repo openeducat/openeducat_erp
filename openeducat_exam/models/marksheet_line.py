@@ -24,8 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpMarksheetLine(models.Model):
-    _name = 'op.marksheet.line'
-    _rec_name = 'student_id'
+    _name = "op.marksheet.line"
+    _rec_name = "student_id"
+    _description = "Marksheet Line"
 
     marksheet_reg_id = fields.Many2one(
         'op.marksheet.register', 'Marksheet Register')
@@ -59,7 +60,7 @@ class OpMarksheetLine(models.Model):
             total_exam_marks = sum(
                 [int(x.exam_id.total_marks) for x in record.result_line])
             record.percentage = record.total_marks and (
-                100 * record.total_marks) / total_exam_marks or 0.0
+                    100 * record.total_marks) / total_exam_marks or 0.0
 
     @api.multi
     @api.depends('percentage')

@@ -29,13 +29,14 @@
                     <footer>
                         <span groups="base.group_user">
                             <button string="Generate Time Table Report" type="object"
-                                name="gen_time_table_report" class="oe_highlight"/>
+                                    name="gen_time_table_report" class="oe_highlight"/>
                             <button special="cancel" string="Close" type="object" />
                         </span>
                     </footer>
                 </form>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_time_table_report_view">
             <field name="name">Generate Sessions Report</field>
             <field name="type">ir.actions.act_window</field>
@@ -46,6 +47,7 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_time_table_report_view_form">
             <field name="act_window_id" ref="act_open_time_table_report_view" />
             <field name="sequence" eval="20" />

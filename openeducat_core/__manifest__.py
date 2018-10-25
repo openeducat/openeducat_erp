@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
@@ -71,10 +71,13 @@
         'test/res_users_test.yml',
         'test/faculty_emp_user_creation.yml',
     ],
-    'css': ['static/src/css/base.css'],
+    'css': [
+        # 'static/src/css/base.css'
+    ],
     'qweb': [
-        'static/src/xml/base.xml',
-        'static/src/xml/dashboard_ext_openeducat.xml'],
+        # 'static/src/xml/base.xml',
+        # 'static/src/xml/dashboard_ext_openeducat.xml'
+    ],
     'js': [],
     'images': [
         'static/description/openeducat_core_banner.jpg',

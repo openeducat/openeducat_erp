@@ -18,6 +18,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_admission_register_form" model="ir.ui.view">
             <field name="name">op.admission.register.form</field>
             <field name="model">op.admission.register</field>
@@ -60,6 +61,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_admission_register_search" model="ir.ui.view">
             <field name="name">op.admission.register.search</field>
             <field name="model">op.admission.register</field>
@@ -71,13 +73,17 @@
                     <field name="product_id" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
-                        <filter string="product" domain="[]" context="{'group_by':'product_id'}" />
-                        <filter string="Status" domain="[]" context="{'group_by':'state'}" />
+                        <filter string="Course" name="group_by_adm_reg_course_id"
+                                domain="[]" context="{'group_by':'course_id'}" />
+                        <filter string="product" name="group_by_adm_reg_product_id"
+                                domain="[]" context="{'group_by':'product_id'}" />
+                        <filter string="Status" name="group_by_adm_reg_state"
+                                domain="[]" context="{'group_by':'state'}" />
                     </group>
                 </search>
             </field>
         </record>
+
         <record id="view_op_admission_register_pivot" model="ir.ui.view">
             <field name="name">op.admission.register.pivot</field>
             <field name="model">op.admission.register</field>
@@ -106,12 +112,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_admission_register_view_form">
             <field name="act_window_id" ref="act_open_op_admission_register_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_admission_register_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_admission_register_view_tree">
             <field name="act_window_id" ref="act_open_op_admission_register_view" />
             <field name="sequence" eval="10" />

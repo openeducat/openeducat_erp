@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Library',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -29,12 +29,11 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account',
-                'openeducat_activity', 'base_automation'],
+    'depends': ['account', 'openeducat_activity', 'base_automation'],
     'data': [
-        'data/custom_paperformat.xml',
         'security/library_security.xml',
         'security/ir.model.access.csv',
+        'data/custom_paperformat.xml',
         'report/report_media_barcode.xml',
         'report/report_library_card_barcode.xml',
         'report/report_student_library_card.xml',
@@ -57,9 +56,9 @@
         'media_queue_sequence.xml',
         'menus/library_menu.xml',
         'data/action_rule_data.xml',
+        'data/product_demo.xml',
     ],
     'demo': [
-        'demo/product_demo.xml',
         'demo/media_type_demo.xml',
         'demo/res_users_demo.xml',
         'demo/tag_demo.xml',

@@ -18,10 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-
 {
     'name': 'OpenEduCat Timetable',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -31,6 +30,8 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_classroom'],
     'data': [
+        'security/op_timetable_security.xml',
+        'security/ir.model.access.csv',
         'views/timetable_view.xml',
         'views/timing_view.xml',
         'views/faculty_view.xml',
@@ -39,8 +40,6 @@
         'report/report_menu.xml',
         'wizard/generate_timetable_view.xml',
         'wizard/time_table_report.xml',
-        'security/ir.model.access.csv',
-        'security/op_timetable_security.xml',
         'timetable_menu.xml',
         'wizard/session_confirmation.xml',
         'views/timetable_templates.xml',

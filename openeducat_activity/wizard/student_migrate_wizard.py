@@ -26,7 +26,8 @@ from odoo.exceptions import ValidationError
 class StudentMigrate(models.TransientModel):
 
     """ Student Migration Wizard """
-    _name = 'student.migrate'
+    _name = "student.migrate"
+    _description = "Student Migrate"
 
     date = fields.Date('Date', required=True, default=fields.Date.today())
     course_from_id = fields.Many2one('op.course', 'From Course', required=True)

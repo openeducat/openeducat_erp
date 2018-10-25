@@ -25,6 +25,7 @@ from odoo import models, api
 
 class ReportExamStudentLable(models.AbstractModel):
     _name = 'report.openeducat_exam.report_exam_student_lable'
+    _description = "Exam Attendees"
 
     def format_list(self, temp_list):
         cnt = 1
@@ -79,7 +80,7 @@ class ReportExamStudentLable(models.AbstractModel):
         return main_list
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         docs = self.env['op.exam.res.allocation'].browse(docids)
         docargs = {
             'doc_model': 'op.exam.res.allocation',

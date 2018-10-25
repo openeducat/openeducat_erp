@@ -24,8 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpFacilityLine(models.Model):
-    _name = 'op.facility.line'
-    _rec_name = 'facility_id'
+    _name = "op.facility.line"
+    _rec_name = "facility_id"
+    _description = "Manage Facility Line"
 
     facility_id = fields.Many2one('op.facility', 'Facility', required=True)
     quantity = fields.Float('Quantity', required=True)

@@ -26,6 +26,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_parent_form" model="ir.ui.view">
             <field name="name">op.parent.form</field>
             <field name="model">op.parent</field>
@@ -50,6 +51,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_parent_search" model="ir.ui.view">
             <field name="name">op.parent.search</field>
             <field name="model">op.parent</field>
@@ -60,12 +62,13 @@
                     <field name="student_ids" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Name" domain="[]"
-                            context="{'group_by':'name'}" />
+                        <filter string="Name" name="group_by_parent_name"
+                                domain="[]" context="{'group_by':'name'}" />
                     </group>
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_parent_view">
             <field name="name">Parents</field>
             <field name="type">ir.actions.act_window</field>
@@ -76,12 +79,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_parent_view_form">
             <field name="act_window_id" ref="act_open_op_parent_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_parent_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_parent_view_tree">
             <field name="act_window_id" ref="act_open_op_parent_view" />
             <field name="sequence" eval="10" />

@@ -21,13 +21,14 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+
 from ..models import media_unit
 
 
 class ReturnMedia(models.TransientModel):
-
     """ Retrun Media Wizard """
-    _name = 'return.media'
+    _name = "return.media"
+    _description = "Media Author"
 
     media_id = fields.Many2one('op.media', 'Media', readonly=True)
     media_unit_id = fields.Many2one(
