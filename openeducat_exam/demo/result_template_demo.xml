@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="op_result_template_1" model="op.result.template">
+            <field name="name">BOA Template</field>
+            <field name="result_date" eval='(DateTime.today())'/>
+            <field name="exam_session_id" ref="op_exam_session_1"/>
+        </record>
+
+        <record id="op_result_template_2" model="op.result.template">
+            <field name="name">LRTP Template</field>
+            <field name="result_date" eval='(DateTime.today())'/>
+            <field name="exam_session_id" ref="op_exam_session_2"/>
+            <field name="grade_ids"
+                   eval="[(6,0,[ref('op_grade_configuration_1'),ref('op_grade_configuration_2'),ref('op_grade_configuration_3'),ref('op_grade_configuration_4'),ref('op_grade_configuration_5'),ref('op_grade_configuration_6'),ref('op_grade_configuration_7')])]"/>
+        </record>
+    </data>
+</odoo>

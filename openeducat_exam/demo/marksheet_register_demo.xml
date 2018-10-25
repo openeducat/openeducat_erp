@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="op_marksheet_register_1" model="op.marksheet.register">
+            <field name="name">Mark Sheet for BOA-Exam</field>
+            <field name="exam_session_id" ref="op_exam_session_1"/>
+            <field name="generated_date" eval='(DateTime.today())'/>
+            <field name="generated_by" ref="openeducat_core.op_user_boa"/>
+            <field name="state">draft</field>
+            <field name="total_pass">0</field>
+            <field name="total_failed">0</field>
+        </record>
+
+        <record id="op_marksheet_register_2" model="op.marksheet.register">
+            <field name="name">Mark Sheet for LRTP-Exam</field>
+            <field name="exam_session_id" ref="op_exam_session_2"/>
+            <field name="generated_date" eval='(DateTime.today())'/>
+            <field name="generated_by" ref="openeducat_core.op_user_boa"/>
+            <field name="state">draft</field>
+            <field name="total_pass">0</field>
+            <field name="total_failed">0</field>
+        </record>
+    </data>
+</odoo>

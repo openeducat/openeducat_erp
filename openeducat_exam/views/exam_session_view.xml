@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_exam_session_tree" model="ir.ui.view">
+            <field name="name">op.exam.session.tree</field>
+            <field name="model">op.exam.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Exam Session">
+                    <field name="name"/>
+                    <field name="exam_code"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="exam_type"/>
+                    <field name="evaluation_type"/>
+                    <field name="venue"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_exam_session_form" model="ir.ui.view">
+            <field name="name">op.exam.session.form</field>
+            <field name="model">op.exam.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Exam Session">
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="name" select="1"/>
+                            <field name="exam_code"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="course_id"/>
+                            <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"/>
+                            <field name="exam_type"/>
+                            <field name="evaluation_type"/>
+                            <field name="venue" domain="[('is_venue','=',True)]" required="1"/>
+                        </group>
+                        <group string="Exam(s)">
+                            <field name="exam_ids" colspan="4" readonly="1" nolabel="1">
+                                <tree string="Exam">
+                                    <field name="name"/>
+                                    <field name="subject_id"/>
+                                    <field name="exam_code"/>
+                                    <field name="start_time"/>
+                                    <field name="end_time"/>
+                                    <field name="state"/>
+                                    <field name="total_marks"/>
+                                    <field name="min_marks"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_exam_session_search" model="ir.ui.view">
+            <field name="name">op.exam.session.search</field>
+            <field name="model">op.exam.session</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Exam Session">
+                    <field name="name" select="True"/>
+                    <field name="exam_code" select="True"/>
+                    <field name="start_date" select="True"/>
+                    <field name="end_date" select="True"/>
+                    <field name="course_id" select="True"/>
+                    <field name="batch_id" select="True"/>
+                    <field name="venue"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_exam_session_view">
+            <field name="name">Exam Sessions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.exam.session</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_exam_session_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_session_view_form">
+            <field name="act_window_id" ref="act_open_op_exam_session_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_exam_session_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_exam_session_view_tree">
+            <field name="act_window_id" ref="act_open_op_exam_session_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_exam_session_tree"/>
+        </record>
+    </data>
+</odoo>
