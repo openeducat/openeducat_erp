@@ -31,7 +31,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_admission', 'openeducat_assignment',
                 'openeducat_attendance', 'openeducat_library',
-                'openeducat_parent', 'openeducat_exam'],
+                'openeducat_parent', 'openeducat_exam', 'web_openeducat'],
     'images': [
         'static/description/openeducat_erp_banner.jpg',
     ],
