@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+        <template id="student_attendance_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br></br>
+                        <div class="text-center">
+                            <h3><strong>Student Attendance Detail</strong></h3>
+                        </div>
+                        <div class="text-center">
+                            <b>From Date: </b>
+                            <span t-esc="from_date" />
+                            <b>To Date:</b>
+                            <span t-esc="to_date" />
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <div class="text-left">
+                            <b>Student Name :</b>
+                            <span t-esc="get_student_name" />
+                        </div>
+                        <table width="100%" class="table">
+                            <thead>
+                                <th class="text-center">Date</th>
+                                <th class="text-center">Remark</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="get_data" t-as="obj">
+                                    <tr t-foreach="obj['line']" t-as="l">
+                                        <td class="text-center">
+                                            <t t-esc="l['absent_date']" />
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="l['remark']" />
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr t-foreach="get_data" t-as="obj">
+                                    <td class="text-center">
+                                        <b>Total Absence</b>
+                                    </td>
+                                    <td class="text-center">
+                                        <b>
+                                            <t t-esc="obj['total']" />
+                                        </b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

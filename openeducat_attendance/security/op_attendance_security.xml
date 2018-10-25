@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.rule" id="student_activity_log_rule">
+            <field name="name">Student Attendance</field>
+            <field name="model_id" ref="model_op_attendance_line" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_student'))]" />
+            <field name="domain_force"> ['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in',user.child_ids.ids)]</field>
+        </record>
+
+        <record id="rule_faculty_attendance_line" model="ir.rule">
+            <field name="name">Faculty Attendance</field>
+            <field name="model_id" ref="model_op_attendance_line" />
+            <field name="groups" eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+            <field name="domain_force"> [(1, '=', 1)]</field>
+        </record>
+    </data>
+</odoo>

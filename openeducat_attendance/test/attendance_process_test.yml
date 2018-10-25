@@ -1,0 +1,31 @@
+-
+  Backoffice can create Attendance Register there for I checked it with that user who is backoffice.
+-
+  !context
+    uid: res_users_backoffice_user_test
+-
+   Create an Attendance Register 
+-
+  !record {model: op.attendance.register, id: attendance_register_test}:
+    code: 'BOA-S1A1T'
+    name: 'BOA-S1A1'
+    course_id: course_test
+    batch_id: batch_test
+-
+  Faculty can also create Attedance sheet and Attendance line there for I checked it with that user who is faculty.
+-
+  !context
+    uid: res_users_faculty_user_test
+-
+   Create an Attendance sheet 
+-
+  !record {model: op.attendance.sheet, id: attendance_sheet_test}:
+    name: 'AR1-AS1'
+    register_id: attendance_register_test
+    attendance_date: !eval datetime.today()
+    attendance_line: 
+      - present: True
+        student_id: student_sumita_test
+      - present: False
+        student_id: student_sangita_test
+

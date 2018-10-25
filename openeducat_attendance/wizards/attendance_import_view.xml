@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="op_all_student_form">
+            <field name="name">op.all.student.form</field>
+            <field name="model">op.all.student</field>
+            <field name="arch" type="xml">
+                <form string="Add Student(s)">
+                    <sheet>
+                        <group col="4">
+                            <field name="course_id"/>
+                            <field name="batch_id"/>
+                        </group>
+                        <group colspan="4" string="Add Absent Student(s)">
+                            <field name="student_ids" string="Add Absent Student(s)"
+                                   nolabel="1"
+                                   domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"/>
+                        </group>
+                    </sheet>
+                    <footer groups="base.group_user">
+                        <button name="confirm_student" string="Confirm Student Selection"
+                                type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_attendance_import_view">
+            <field name="name">Attendance Sheet Import</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.all.student</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_attendance_import_view_form">
+            <field name="act_window_id" ref="act_open_op_attendance_import_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="op_all_student_form"/>
+        </record>
+    </data>
+</odoo>

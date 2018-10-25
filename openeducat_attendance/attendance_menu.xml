@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_op_attendance_root"
+                  name=" Attendances"
+                  sequence="50"
+                  web_icon="openeducat_attendance,static/description/icon.png"/>
+
+        <menuitem id="menu_op_attendance_register_sub"
+                  name="Attendance Registers"
+                  parent="menu_op_attendance_root"
+                  sequence="10"
+                  action="act_open_op_attendance_register_view"
+                  groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
+
+        <menuitem id="menu_op_attendance_sheet_sub"
+                  name="Attendance Sheets"
+                  parent="menu_op_attendance_root"
+                  sequence="20"
+                  action="act_open_op_attendance_sheet_view"
+                  groups="openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
+
+        <menuitem id="menu_op_attendance_line_sub"
+                  name="Attendance lines"
+                  parent="menu_op_attendance_root"
+                  sequence="30"
+                  action="act_open_op_attendance_line_view"
+                  groups="openeducat_core.group_op_student,openeducat_core.group_op_back_office,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
+
+        <menuitem id="menu_op_attendance_line_sub_pivot"
+                  name="Attendance Analysis Report"
+                  parent="menu_op_attendance_root"
+                  sequence="40"
+                  action="act_open_op_attendance_view_pivot"/>
+    </data>
+</odoo>
