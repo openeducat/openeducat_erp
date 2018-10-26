@@ -186,6 +186,7 @@ class OpSession(models.Model):
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
-        if self.state not in ('draft', 'done'):
-            self.notify_user()
+        for record in self:
+            if record.state not in ('draft', 'done'):
+                record.notify_user()
         return data
