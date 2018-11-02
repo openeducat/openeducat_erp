@@ -71,7 +71,9 @@ class OpLibraryCard(models.Model):
         x = self.env['ir.sequence'].next_by_code(
             'op.library.card') or '/'
         vals['number'] = x
-        return super(OpLibraryCard, self).create(vals)
+        res = super(OpLibraryCard, self).create(vals)
+        res.student_id.library_card_id = res
+        return res
 
     @api.onchange('type')
     def onchange_type(self):
