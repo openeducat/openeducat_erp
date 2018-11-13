@@ -143,7 +143,7 @@ class OpSession(models.Model):
         subtype_id = self.env['mail.message.subtype'].sudo().search([
             ('name', '=', 'Discussions')])
         if partner_ids and subtype_id:
-            for partner in partner_ids:
+            for partner in list(set(partner_ids)):
                 if partner in partner_val:
                     continue
                 val = self.env['mail.followers'].sudo().create({
