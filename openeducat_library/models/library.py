@@ -72,7 +72,10 @@ class OpLibraryCard(models.Model):
             'op.library.card') or '/'
         vals['number'] = x
         res = super(OpLibraryCard, self).create(vals)
-        res.student_id.library_card_id = res
+        if res.type == 'student':
+            res.student_id.library_card_id = res
+        else:
+            res.faculty_id.library_card_id = res
         return res
 
     @api.onchange('type')
