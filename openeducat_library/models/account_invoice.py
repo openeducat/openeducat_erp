@@ -29,9 +29,9 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_invoice_paid(self):
         paid_invoice = super(AccountInvoice, self).action_invoice_paid()
-        if paid_invoice and self:
+        if self:
             movement = self.env['op.media.movement'].search(
                 [('invoice_id', '=', self.id)])
-            if movement:
+            if movement and movement.invoice_id.state == 'paid':
                 movement.state = 'return_done'
-        return paid_invoice
+        return paid_invoice 
