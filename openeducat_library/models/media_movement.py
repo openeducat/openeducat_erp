@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from datetime import timedelta, date, datetime
+from datetime import timedelta, datetime
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
@@ -50,7 +50,8 @@ class OpMediaMovement(models.Model):
         'op.library.card', 'Library Card', required=True,
         track_visibility='onchange')
     issued_date = fields.Date(
-        'Issued Date', required=True, default=fields.Date.today())
+        'Issued Date', track_visibility='onchange',
+        required=True, default=fields.Date.today())
     return_date = fields.Date('Due Date', required=True)
     actual_return_date = fields.Date('Actual Return Date')
     penalty = fields.Float('Penalty')
@@ -98,10 +99,15 @@ class OpMediaMovement(models.Model):
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
         self.type = self.library_card_id.type
-        self.student_id = self.library_card_id.student_id.id
-        self.faculty_id = self.library_card_id.faculty_id.id
-        self.return_date = date.today() + timedelta(
+        self.student_id = self.library_card_id.student_id.id or False
+        self.faculty_id = self.library_card_id.faculty_id.id or False
+        self.return_date = self.issued_date + timedelta(
             days=self.library_card_id.library_card_type_id.duration)
+
+    @api.onchange('issued_date')
+    def onchange_issued_date(self):
+        self.return_date = self.issued_date + timedelta(
+            days=self.library_card_id.library_card_type_id.duration or 1)
 
     @api.multi
     def issue_media(self):

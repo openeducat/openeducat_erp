@@ -4,67 +4,73 @@
         <record id="view_op_media_movement_tree" model="ir.ui.view">
             <field name="name">op.media.movement.tree</field>
             <field name="model">op.media.movement</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="media Movement">
-                    <field name="media_id" />
-                    <field name="media_unit_id" />
-                    <field name="type" />
-                    <field name="student_id" />
-                    <field name="library_card_id" />
-                    <field name="issued_date" />
-                    <field name="return_date" />
-                    <field name="actual_return_date" />
-                    <field name="penalty" />
-                    <field name="invoice_id" />
-                    <field name="state" />
+                    <field name="media_id"/>
+                    <field name="media_unit_id"/>
+                    <field name="type"/>
+                    <field name="student_id"/>
+                    <field name="library_card_id"/>
+                    <field name="issued_date"/>
+                    <field name="return_date"/>
+                    <field name="actual_return_date"/>
+                    <field name="penalty"/>
+                    <field name="invoice_id"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
         <record id="view_op_media_movement_form" model="ir.ui.view">
             <field name="name">op.media.movement.form</field>
             <field name="model">op.media.movement</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="media Movement">
                     <header groups="base.group_user">
                         <button name="issue_media" string="Issue media" type="object" class="oe_highlight"
-                            attrs="{'invisible':[('state','not in',('available','reserve'))]}"
-                            groups="openeducat_library.group_op_library" />
+                                attrs="{'invisible':[('state','not in',('available','reserve'))]}"
+                                groups="openeducat_library.group_op_library"/>
                         <button name="%(return_media_act)d" string="Return Media"
-                            type="action" context="{'default_media_id': media_id, 'default_media_unit_id': media_unit_id}"
-                            attrs="{'invisible':[('state','!=','issue')]}"
-                            class="oe_highlight" groups="openeducat_library.group_op_library" />
-                        <field name="state" widget="statusbar" statusbar_visible="available,issue" />
+                                type="action"
+                                context="{'default_media_id': media_id, 'default_media_unit_id': media_unit_id}"
+                                attrs="{'invisible':[('state','!=','issue')]}"
+                                class="oe_highlight" groups="openeducat_library.group_op_library"/>
+                        <field name="state" widget="statusbar" statusbar_visible="available,issue"/>
                     </header>
                     <sheet>
                         <group col="4">
                             <field name="media_id"/>
-                            <field name="media_unit_id" domain="['&amp;',('media_id','=',media_id),('state','=','available')]"
-                                context="{'default_media_id': media_id}"/>
+                            <field name="media_unit_id"
+                                   domain="['&amp;',('media_id','=',media_id),('state','=','available')]"
+                                   context="{'default_media_id': media_id}"/>
                             <field name="media_type_id"/>
                             <field name="invoice_id"/>
                         </group>
                         <group col="4" string="Student/Faculty Detail">
-                            <field name="library_card_id" />
-                            <field name="type" />
-                            <field name="student_id" attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}" context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
-                            <field name="faculty_id" attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                            <field name="library_card_id"/>
+                            <field name="type" readonly="1" force_save="1"/>
+                            <field name="student_id" readonly="1" force_save="1"
+                                   attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"
+                                   context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
+                            <field name="faculty_id" readonly="1" force_save="1"
+                                   attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
                         </group>
                         <group col="4">
-                            <field name="issued_date" />
-                            <field name="return_date" />
-                            <field name="actual_return_date" />
+                            <field name="issued_date"/>
+                            <field name="return_date"/>
+                            <field name="actual_return_date"/>
                             <label for="penalty" string="Penalty"/>
                             <div>
                                 <field name="penalty" widget="monetary"/>
-                                <button name="create_penalty_invoice" string="Create Invoice" type="object" class="oe_highlight"
-                                    attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}" />
+                                <button name="create_penalty_invoice" string="Create Invoice"
+                                        type="object" class="oe_highlight"
+                                        attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}"/>
                             </div>
                         </group>
                         <group col="4" string="Reservation Detail" invisible="1">
-                            <field name="partner_id" />
-                            <field name="reserver_name" />
+                            <field name="partner_id"/>
+                            <field name="reserver_name"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -77,31 +83,33 @@
         <record id="view_op_media_movement_search" model="ir.ui.view">
             <field name="name">op.media.movement.search</field>
             <field name="model">op.media.movement</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="media Movement">
-                    <field name="media_id" />
-                    <field name="student_id" />
-                    <field name="library_card_id" />
-                    <field name="issued_date" />
-                    <field name="return_date" />
-                    <field name="actual_return_date" />
-                    <field name="state" />
-                    <field name="penalty" />
-                    <newline />
+                    <field name="media_id"/>
+                    <field name="student_id"/>
+                    <field name="library_card_id"/>
+                    <field name="issued_date"/>
+                    <field name="return_date"/>
+                    <field name="actual_return_date"/>
+                    <field name="state"/>
+                    <field name="penalty"/>
+                    <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="media" name="group_by_lbr_media_mvmn_media"
-                                domain="[]" context="{'group_by':'media_id'}" />
+                                domain="[]" context="{'group_by':'media_id'}"/>
                         <filter string="Student" name="group_by_lbr_media_mvmn_student"
-                                domain="[]" context="{'group_by':'student_id'}" />
+                                domain="[]" context="{'group_by':'student_id'}"/>
                         <filter string="Library Card" name="group_by_lbr_media_mvmn_library_card"
-                                domain="[]" context="{'group_by':'library_card_id'}" />
+                                domain="[]" context="{'group_by':'library_card_id'}"/>
                         <filter string="Issued Date" name="group_by_lbr_media_mvmn_issue_date"
-                                domain="[]" context="{'group_by':'issued_date'}" />
+                                domain="[]" context="{'group_by':'issued_date'}"/>
                         <filter string="Return Date" name="group_by_lbr_media_mvmn_return_date"
-                                domain="[]" context="{'group_by':'return_date'}" />
+                                domain="[]" context="{'group_by':'return_date'}"/>
                         <filter string="Actual Return Date" name="group_by_lbr_media_mvmn_issue_date"
-                                domain="[]" context="{'group_by':'actual_return_date'}" />
+                                domain="[]" context="{'group_by':'actual_return_date'}"/>
+                        <filter string="Status" name="group_by_lbr_media_mvmn_state"
+                                domain="[]" context="{'group_by':'state'}"/>
                     </group>
                 </search>
             </field>
@@ -112,21 +120,21 @@
             <field name="res_model">op.media.movement</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_op_media_movement_search" />
+            <field name="search_view_id" ref="view_op_media_movement_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
         <record model="ir.actions.act_window.view" id="act_open_op_media_movement_view_form">
-            <field name="act_window_id" ref="act_open_op_media_movement_view" />
-            <field name="sequence" eval="20" />
+            <field name="act_window_id" ref="act_open_op_media_movement_view"/>
+            <field name="sequence" eval="20"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_media_movement_form" />
+            <field name="view_id" ref="view_op_media_movement_form"/>
         </record>
         <record model="ir.actions.act_window.view" id="act_open_op_media_movement_view_tree">
-            <field name="act_window_id" ref="act_open_op_media_movement_view" />
-            <field name="sequence" eval="10" />
+            <field name="act_window_id" ref="act_open_op_media_movement_view"/>
+            <field name="sequence" eval="10"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_media_movement_tree" />
+            <field name="view_id" ref="view_op_media_movement_tree"/>
         </record>
     </data>
 </odoo>
