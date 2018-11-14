@@ -178,7 +178,7 @@ class OpSession(models.Model):
 
     @api.multi
     def get_subject(self):
-        return 'lacture of ' + self.faculty_id.name + \
+        return 'lecture of ' + self.faculty_id.name + \
                ' for ' + self.subject_id.name + ' is ' + self.state
 
     @api.multi
@@ -186,6 +186,7 @@ class OpSession(models.Model):
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
-        if self.state not in ('draft', 'done'):
-            self.notify_user()
+        for session in self:
+            if session.state not in ('draft', 'done'):
+                session.notify_user()
         return data
