@@ -34,4 +34,4 @@ class AccountInvoice(models.Model):
                 [('invoice_id', '=', self.id)])
             if movement and movement.invoice_id.state == 'paid':
                 movement.state = 'return_done'
-        return paid_invoice 
+        return paid_invoice
