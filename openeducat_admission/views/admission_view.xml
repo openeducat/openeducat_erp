@@ -4,20 +4,20 @@
         <record id="view_op_admission_tree" model="ir.ui.view">
             <field name="name">op.admission.tree</field>
             <field name="model">op.admission</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Registration">
-                    <field name="title" />
-                    <field name="name" />
-                    <field name="middle_name" />
-                    <field name="last_name" />
-                    <field name="application_number" />
-                    <field name="admission_date" />
-                    <field name="application_date" />
-                    <field name="birth_date" />
-                    <field name="course_id" />
-                    <field name="batch_id" />
-                    <field name="state" />
+                    <field name="title"/>
+                    <field name="name"/>
+                    <field name="middle_name"/>
+                    <field name="last_name"/>
+                    <field name="application_number"/>
+                    <field name="admission_date"/>
+                    <field name="application_date"/>
+                    <field name="birth_date"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -25,96 +25,107 @@
         <record id="view_op_admission_form" model="ir.ui.view">
             <field name="name">op.admission.form</field>
             <field name="model">op.admission</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Registration">
                     <header groups="base.group_user">
                         <button string="Submit" states="draft" class="oe_highlight"
-                            type="object" name="submit_form"/>
+                                type="object" name="submit_form"/>
                         <button name="confirm_in_progress" states="submit" string="Confirm"
-                            type="object" class="oe_highlight"/>
-                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object" name="admission_confirm"/>
+                                type="object" class="oe_highlight"/>
+                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object"
+                                name="admission_confirm"/>
                         <button name="enroll_student" states="admission" string="Enroll"
-                            type="object" class="oe_highlight"/>
+                                type="object" class="oe_highlight"/>
                         <button name="confirm_rejected" states="payment_process,fees_paid,,pending" string="Reject"
-                            type="object" />
+                                type="object"/>
                         <button name="confirm_pending" states="fees_paid" string="Pending"
-                            type="object" />
+                                type="object"/>
                         <button name="confirm_cancel" states="draft,confirm" string="Cancel"
-                            type="object" />
+                                type="object"/>
                         <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft"
-                            type="object" />
+                                type="object"/>
                         <button name="open_student" states="done" string="Open Student Profile"
-                            type="object" />
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done" />
+                                type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
                             <field name="is_student"/>
                             <label for="student_id" string="Already Student"/>
-                            <field name="student_id" placeholder="Student" options="{'no_create_edit': True}"  attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
+                            <field name="student_id" placeholder="Student" options="{'no_create_edit': True}"
+                                   attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
                         </div>
-                        <field name="image" widget="image" class="oe_left oe_avatar" />
+                        <field name="image" widget="image" class="oe_left oe_avatar"/>
                         <div class="oe_title">
                             <h1>
-                                <field name="title" placeholder="Title" style="width: 30%%" />
+                                <field name="title" placeholder="Title" style="width: 30%%"/>
                             </h1>
-                            <h1><table>
-                                <tr>
-                                <td><field name="name" placeholder="First Name" style="padding-right:10px" /></td>
-                                <td><field name="middle_name" placeholder="Middle Name" style="padding-right:10px" /></td>
-                                <td><field name="last_name" placeholder="Last Name" style="padding-right:10px" /></td>
-                                </tr>
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <field name="name" placeholder="First Name" style="padding-right:10px"/>
+                                        </td>
+                                        <td>
+                                            <field name="middle_name" placeholder="Middle Name"
+                                                   style="padding-right:10px"/>
+                                        </td>
+                                        <td>
+                                            <field name="last_name" placeholder="Last Name" style="padding-right:10px"/>
+                                        </td>
+                                    </tr>
                                 </table>
                             </h1>
                         </div>
                         <notebook colspan="4">
                             <page name="admission_detail" string="Admission Detail">
                                 <group col="4" colspan="4">
-                                    <field name="register_id" domain="[('state', 'in', ['application','admission'])]" widget="selection" />
-                                    <field name="application_number" />
-                                    <field name="application_date" />
-                                    <field name="admission_date" />
-                                    <field name="course_id" />
-                                    <field name="batch_id" attrs="{'required': [('state','=', 'submit')]}"
-                                           context="{'course_id': course_id,'get_parent_batch':1}" />
+                                    <field name="register_id" domain="[('state', 'in', ['application','admission'])]"
+                                           widget="selection"/>
+                                    <field name="application_number"/>
+                                    <field name="application_date"/>
+                                    <field name="admission_date"/>
+                                    <field name="course_id"/>
+                                    <field name="batch_id"
+                                           context="{'course_id': course_id,'get_parent_batch':1}"/>
                                     <field name="fees" attrs="{'required': [('state','not in', ['draft', 'submit'])]}"/>
-                                    <field name="due_date" />
+                                    <field name="due_date"/>
                                     <field name="fees_term_id" required="1"
-                                        attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
+                                           attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
                                     <field name="partner_id" attrs="{'invisible': [('is_student','!=', False)]}"/>
                                 </group>
                             </page>
                             <page name="educational_detail" string="Educational Detail">
                                 <group col="4" colspan="4">
-                                    <field name="prev_institute_id" />
-                                    <field name="prev_course_id" />
-                                    <field name="prev_result" />
+                                    <field name="prev_institute_id"/>
+                                    <field name="prev_course_id"/>
+                                    <field name="prev_result"/>
                                 </group>
                             </page>
                             <page name="personal_detail" string="Personal Detail">
                                 <group col="4" colspan="4">
-                                    <field name="gender" />
-                                    <field name="birth_date" />
-                                    <field name="email" placeholder="Email" />
+                                    <field name="gender"/>
+                                    <field name="birth_date"/>
+                                    <field name="email" placeholder="Email"/>
                                 </group>
-                                <label for="street" string="Address" />
+                                <label for="street" string="Address"/>
                                 <div>
-                                    <field name="street" placeholder="Street..." />
-                                    <field name="street2" />
+                                    <field name="street" placeholder="Street..."/>
+                                    <field name="street2"/>
                                     <div class="address_format">
-                                        <field name="city" placeholder="City" style="width: 40%%" />
+                                        <field name="city" placeholder="City" style="width: 40%%"/>
                                         <field name="state_id" options='{"no_open": True}'
-                                            placeholder="State" style="width: 24%%" />
-                                        <field name="zip" placeholder="ZIP" style="width: 34%%" />
+                                               placeholder="State" style="width: 24%%"/>
+                                        <field name="zip" placeholder="ZIP" style="width: 34%%"/>
                                     </div>
-                                    <field name="country_id" placeholder="Country" options='{"no_open": True}' />
-                                    <field name="phone" placeholder="Phone" />
-                                    <field name="mobile" placeholder="Mobile" />
+                                    <field name="country_id" placeholder="Country" options='{"no_open": True}'/>
+                                    <field name="phone" placeholder="Phone"/>
+                                    <field name="mobile" placeholder="Mobile"/>
                                 </div>
                                 <group col="4" colspan="4">
-                                    <field name="family_business" />
-                                    <field name="family_income" />
+                                    <field name="family_business"/>
+                                    <field name="family_income"/>
                                     <field name="nbr" invisible="1"/>
                                 </group>
                             </page>
@@ -131,33 +142,33 @@
         <record id="view_op_admission_search" model="ir.ui.view">
             <field name="name">op.admission.search</field>
             <field name="model">op.admission</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Registration">
-                    <field name="name" />
-                    <field name="middle_name" />
-                    <field name="last_name" />
-                    <field name="application_number" />
-                    <field name="admission_date" />
-                    <field name="application_date" />
-                    <field name="birth_date" />
-                    <field name="course_id" />
-                    <field name="batch_id" />
-                    <newline />
-                    <filter name="enrolled_student" string="Enrolled" domain="[('state','=','done')]" />
+                    <field name="name"/>
+                    <field name="middle_name"/>
+                    <field name="last_name"/>
+                    <field name="application_number"/>
+                    <field name="admission_date"/>
+                    <field name="application_date"/>
+                    <field name="birth_date"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <newline/>
+                    <filter name="enrolled_student" string="Enrolled" domain="[('state','=','done')]"/>
                     <group expand="0" string="Group By...">
                         <filter string="Last Name" name="group_by_adm_last_name"
-                                domain="[]" context="{'group_by':'last_name'}" />
+                                domain="[]" context="{'group_by':'last_name'}"/>
                         <filter string="Admission Date" name="group_by_adm_admission_date"
-                                domain="[]" context="{'group_by':'admission_date'}" />
+                                domain="[]" context="{'group_by':'admission_date'}"/>
                         <filter string="Application Date" name="group_by_adm_application_date"
-                                domain="[]" context="{'group_by':'application_date'}" />
+                                domain="[]" context="{'group_by':'application_date'}"/>
                         <filter string="Course" name="group_by_adm_course_id"
-                                domain="[]" context="{'group_by':'course_id'}" />
+                                domain="[]" context="{'group_by':'course_id'}"/>
                         <filter string="Batch" name="group_by_adm_batch_id"
-                                domain="[]" context="{'group_by':'batch_id'}" />
+                                domain="[]" context="{'group_by':'batch_id'}"/>
                         <filter string="Status" name="group_by_adm_state"
-                                domain="[]" context="{'group_by':'state'}" />
+                                domain="[]" context="{'group_by':'state'}"/>
                     </group>
                 </search>
             </field>
@@ -168,8 +179,8 @@
             <field name="model">op.admission</field>
             <field name="arch" type="xml">
                 <graph string="Course By Admission" type="pie">
-                    <field name="course_id" />
-                    <field name="nbr" operator="+" />
+                    <field name="course_id"/>
+                    <field name="nbr" operator="+"/>
                 </graph>
             </field>
         </record>
@@ -179,18 +190,18 @@
             <field name="model">op.admission</field>
             <field name="arch" type="xml">
                 <pivot string="Course By Admission">
-                    <field name="title" />
-                    <field name="name" />
-                    <field name="middle_name" />
-                    <field name="last_name" />
-                    <field name="application_number" />
+                    <field name="title"/>
+                    <field name="name"/>
+                    <field name="middle_name"/>
+                    <field name="last_name"/>
+                    <field name="application_number"/>
                     <field name="register_id"/>
-                    <field name="admission_date" />
-                    <field name="application_date" />
-                    <field name="birth_date" />
-                    <field name="course_id" />
-                    <field name="batch_id" />
-                    <field name="state" />
+                    <field name="admission_date"/>
+                    <field name="application_date"/>
+                    <field name="birth_date"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="state"/>
                 </pivot>
             </field>
         </record>
@@ -201,23 +212,23 @@
             <field name="res_model">op.admission</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="search_view_id" ref="view_op_admission_search" />
+            <field name="search_view_id" ref="view_op_admission_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_admission_view_form">
-            <field name="act_window_id" ref="act_open_op_admission_view" />
-            <field name="sequence" eval="20" />
+            <field name="act_window_id" ref="act_open_op_admission_view"/>
+            <field name="sequence" eval="20"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_admission_form" />
+            <field name="view_id" ref="view_op_admission_form"/>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_admission_view_tree">
-            <field name="act_window_id" ref="act_open_op_admission_view" />
-            <field name="sequence" eval="10" />
+            <field name="act_window_id" ref="act_open_op_admission_view"/>
+            <field name="sequence" eval="10"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_admission_tree" />
+            <field name="view_id" ref="view_op_admission_tree"/>
         </record>
 
         <record model="ir.actions.act_window" id="act_open_op_admission_view_pivot">

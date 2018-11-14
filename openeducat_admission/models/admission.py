@@ -71,9 +71,11 @@ class OpAdmission(models.Model):
     street2 = fields.Char(
         'Street2', size=256, states={'done': [('readonly', True)]})
     phone = fields.Char(
-        'Phone', size=16, states={'done': [('readonly', True)]})
+        'Phone', size=16, states={'done': [('readonly', True)],
+                                  'submit': [('required', True)]})
     mobile = fields.Char(
-        'Mobile', size=16, states={'done': [('readonly', True)]})
+        'Mobile', size=16,
+        states={'done': [('readonly', True)], 'submit': [('required', True)]})
     email = fields.Char(
         'Email', size=256, required=True,
         states={'done': [('readonly', True)]})
@@ -201,16 +203,35 @@ class OpAdmission(models.Model):
     @api.multi
     def confirm_in_progress(self):
         for record in self:
-            if not record.partner_id:
-                partner_id = self.env['res.partner'].create({
-                    'name': record.name})
-                record.partner_id = partner_id.id
             record.state = 'confirm'
 
     @api.multi
     def get_student_vals(self):
         for student in self:
-            return {
+            student_user = self.env['res.users'].create({
+                'name': student.name,
+                'login': student.email,
+                'image': self.image or False,
+                'company_id': self.env.ref('base.main_company').id,
+                'groups_id': [
+                    (6, 0,
+                     [self.env.ref('openeducat_core.group_op_student').id])]
+            })
+            details = {
+                'phone': student.phone,
+                'mobile': student.mobile,
+                'email': student.email,
+                'street': student.street,
+                'street2': student.street2,
+                'city': student.city,
+                'country_id':
+                    student.country_id and student.country_id.id or False,
+                'state_id': student.state_id and student.state_id.id or False,
+                'image': student.image,
+                'zip': student.zip,
+            }
+            student_user.partner_id.write(details)
+            details.update({
                 'title': student.title and student.title.id or False,
                 'name': student.name,
                 'middle_name': student.middle_name,
@@ -222,16 +243,6 @@ class OpAdmission(models.Model):
                 'batch_id':
                     student.batch_id and student.batch_id.id or False,
                 'image': student.image or False,
-                'street': student.street or False,
-                'street2': student.street2 or False,
-                'phone': student.phone or False,
-                'email': student.email or False,
-                'mobile': student.mobile or False,
-                'zip': student.zip or False,
-                'city': student.city or False,
-                'country_id':
-                    student.country_id and student.country_id.id or False,
-                'state_id': student.state_id and student.state_id.id or False,
                 'course_detail_ids': [[0, False, {
                     'date': fields.Date.today(),
                     'course_id':
@@ -239,7 +250,9 @@ class OpAdmission(models.Model):
                     'batch_id':
                         student.batch_id and student.batch_id.id or False,
                 }]],
-            }
+                'user_id': student_user.id,
+            })
+            return details
 
     @api.multi
     def enroll_student(self):
@@ -254,7 +267,8 @@ class OpAdmission(models.Model):
                     raise ValidationError(_(msg))
             if not record.student_id:
                 vals = record.get_student_vals()
-                vals.update({'partner_id': record.partner_id.id})
+                record.partner_id = self.env['res.users'].browse(
+                    vals.get('user_id')).partner_id.id
                 student_id = self.env['op.student'].create(vals).id
             else:
                 student_id = record.student_id.id
@@ -362,8 +376,8 @@ class OpAdmission(models.Model):
                    app, settings menu.') % (product.name,))
 
         if self.fees <= 0.00:
-            raise UserError(_('The value of the deposit amount must be \
-                             positive.'))
+            raise UserError(
+                _('The value of the deposit amount must be positive.'))
         else:
             amount = self.fees
             name = product.name
