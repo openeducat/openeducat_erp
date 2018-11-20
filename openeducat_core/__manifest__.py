@@ -31,14 +31,14 @@
     'website': 'http://www.openeducat.org',
     'depends': ['board', 'document', 'hr', 'web', 'website'],
     'data': [
+        'security/op_security.xml',
+        'security/ir.model.access.csv',
         'report/report_menu.xml',
         'report/report_student_bonafide.xml',
         'report/report_student_idcard.xml',
         'wizard/faculty_create_employee_wizard_view.xml',
         'wizard/faculty_create_user_wizard_view.xml',
         'wizard/students_create_user_wizard_view.xml',
-        'security/op_security.xml',
-        'security/ir.model.access.csv',
         'views/student_view.xml',
         'views/hr_view.xml',
         'views/category_view.xml',
@@ -72,11 +72,11 @@
         'test/faculty_emp_user_creation.yml',
     ],
     'css': [
-        # 'static/src/css/base.css'
+        'static/src/scss/base.scss'
     ],
     'qweb': [
-        # 'static/src/xml/base.xml',
-        # 'static/src/xml/dashboard_ext_openeducat.xml'
+        'static/src/xml/base.xml',
+        'static/src/xml/dashboard_ext_openeducat.xml'
     ],
     'js': [],
     'images': [
