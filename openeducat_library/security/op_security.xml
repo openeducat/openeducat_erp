@@ -19,15 +19,11 @@
                    eval="[(4, ref('openeducat_core.group_op_student'))]"/>
         </record>
 
-
         <!-- Rule for Media Movement to see own Record. -->
         <record model="ir.rule" id="group_student_media_Movement_rule">
             <field name="name">Media Movement For Group Student</field>
-            <field name="model_id"
-                   ref="model_op_media_movement"/>
-            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids),
-                ('state','in',['issue'])]
-            </field>
+            <field name="model_id" ref="model_op_media_movement"/>
+            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids), ('state','in',['issue'])]</field>
             <field name="groups"
                    eval="[(4, ref('openeducat_core.group_op_student'))]"/>
         </record>
@@ -35,10 +31,8 @@
         <!-- Rule for Media Movement to see ALL Record with Library Group. -->
         <record model="ir.rule" id="group_library_media_Movement_rule">
             <field name="name">Media Movement For Group Library</field>
-            <field name="model_id"
-                   ref="model_op_media_movement"/>
-            <field name="domain_force">[(1,'=',1)]
-            </field>
+            <field name="model_id" ref="model_op_media_movement"/>
+            <field name="domain_force">[(1,'=',1)]</field>
             <field name="groups"
                    eval="[(4, ref('openeducat_library.group_op_library'))]"/>
         </record>

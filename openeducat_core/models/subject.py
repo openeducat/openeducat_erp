@@ -23,8 +23,7 @@ from odoo import models, fields
 
 
 class OpSubject(models.Model):
-    _name = 'op.subject'
-    _rec_name = 'name'
+    _name = "op.subject"
     _description = "Subject"
 
     name = fields.Char('Name', size=128, required=True)

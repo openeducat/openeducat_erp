@@ -8,9 +8,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Exam Room Distribution">
-                    <h1>
-                        <field name="name" readonly="1"/>
-                    </h1>
+                    <h1><field name="name" readonly="1"/></h1>
                     <group col="2">
                         <group>
                             <field name="exam_id" invisible="1"/>
@@ -27,13 +25,10 @@
                     </group>
                     <separator string="Exam Rooms" colspan="4"/>
                     <field name="room_ids"/>
-                    <separator string="Exam Attendees"
-                               colspan="4"/>
-                    <field name="student_ids"
-                           domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"/>
+                    <separator string="Exam Attendees" colspan="4"/>
+                    <field name="student_ids" domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"/>
                     <footer>
-                        <button string="Schedule Exam" class="oe_highlight"
-                                type="object" name="schedule_exam"/>
+                        <button string="Schedule Exam" class="oe_highlight" type="object" name="schedule_exam"/>
                     </footer>
                 </form>
             </field>

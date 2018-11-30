@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Attendance',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -31,7 +31,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_timetable'],
     'data': [
-        'security/op_attendance_security.xml',
+        'security/op_security.xml',
         'security/ir.model.access.csv',
         'wizards/attendance_import_view.xml',
         'wizards/student_attendance_wizard_view.xml',
@@ -40,7 +40,7 @@
         'views/attendance_line_view.xml',
         'report/student_attendance_report.xml',
         'report/report_menu.xml',
-        'attendance_menu.xml'
+        'menus/op_menu.xml'
     ],
     'test': [
         'test/res_users_test.yml',

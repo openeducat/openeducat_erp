@@ -61,7 +61,6 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         return main_list
 
     def get_heading(self):
-
         dayofWeek = [_(calendar.day_name[0]),
                      _(calendar.day_name[1]),
                      _(calendar.day_name[2]),
@@ -72,7 +71,6 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         return dayofWeek
 
     def get_object(self, data):
-
         data_list = []
         for timetable_obj in self.env['op.session'].browse(
                 data['time_table_ids']):

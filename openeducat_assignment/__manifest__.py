@@ -32,13 +32,13 @@
     'depends': ['openeducat_core', 'base_automation'],
     'data': [
         'security/ir.model.access.csv',
-        'security/op_assignment_security.xml',
+        'security/op_security.xml',
         'views/assignment_view.xml',
         'views/assignment_type_view.xml',
         'views/assignment_sub_line_view.xml',
         'views/student_view.xml',
-        'assignment_menu.xml',
         'data/action_rule_data.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/assignment_type_demo.xml',
@@ -46,9 +46,9 @@
         'demo/assignment_sub_line_demo.xml'
     ],
     'test': [
-        # 'test/res_users_test.yml',
-        # 'test/assignment_sub_values.yml',
-        # 'test/assignment_creation_submission.yml'
+        'test/res_users_test.yml',
+        'test/assignment_sub_values.yml',
+        'test/assignment_creation_submission.yml'
     ],
     'images': [
         'static/description/openeducat_assignment_banner.jpg',

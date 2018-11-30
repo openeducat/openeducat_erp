@@ -23,7 +23,7 @@ from odoo import models, fields
 
 
 class OpCourse(models.Model):
-    _name = 'op.course'
+    _name = "op.course"
     _description = "OpenEduCat Course"
 
     name = fields.Char('Name', required=True)
@@ -31,7 +31,8 @@ class OpCourse(models.Model):
     parent_id = fields.Many2one('op.course', 'Parent Course')
     section = fields.Char('Section', size=32, required=True)
     evaluation_type = fields.Selection(
-        [('normal', 'Normal'), ('GPA', 'GPA'), ('CWA', 'CWA'), ('CCE', 'CCE')],
+        [('normal', 'Normal'), ('GPA', 'GPA'),
+         ('CWA', 'CWA'), ('CCE', 'CCE')],
         'Evaluation Type', default="normal", required=True)
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
     max_unit_load = fields.Float("Maximum Unit Load")

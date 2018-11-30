@@ -21,8 +21,7 @@
             <field name="arch" type="xml">
                 <form string="Result Template">
                     <header groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_back_office">
-                        <button string="Generate Result" type="object" states="draft"
-                                name="generate_result" class="oe_highlight"/>
+                        <button string="Generate Result" type="object" states="draft" name="generate_result" class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,result_generated"/>
                     </header>
                     <sheet>
@@ -32,10 +31,8 @@
                             <field name="exam_session_id"/>
                             <field name="evaluation_type" invisible="1"/>
                         </group>
-                        <separator string="Grades" colspan="4"
-                                   attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
-                        <field name="grade_ids" colspan="4" nolabel="1"
-                               attrs="{'invisible':[('evaluation_type','!=','grade')],'required':[('evaluation_type','=','grade')]}"/>
+                        <separator string="Grades" colspan="4" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
+                        <field name="grade_ids" colspan="4" nolabel="1" attrs="{'invisible':[('evaluation_type','!=','grade')],'required':[('evaluation_type','=','grade')]}"/>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>

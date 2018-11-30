@@ -24,7 +24,7 @@ from odoo import models, api
 
 
 class ReportMediaBarcode(models.AbstractModel):
-    _name = 'report.openeducat_library.report_media_barcode'
+    _name = "report.openeducat_library.report_media_barcode"
     _description = "Media Barcode Report"
 
     @api.model

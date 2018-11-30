@@ -31,7 +31,7 @@ class OpenEduCatAppController(http.Controller):
     def compute_app_dashboard_data(self, **post):
         user_id = post.get('user_id', False)
         total_assignments = 0
-        total_submissions = 0
+        total_subs = 0
         today_lectures = 0
         assigned_books = 0
 
@@ -46,7 +46,7 @@ class OpenEduCatAppController(http.Controller):
                         .sudo().search_count(
                         [('allocation_ids', 'in', student.id),
                          ('state', '=', 'publish')])
-                    total_submissions = request.env['op.assignment.sub.line'] \
+                    total_subs = request.env['op.assignment.sub.line'] \
                         .sudo().search_count(
                         [('student_id', '=', student.id),
                          ('state', '=', 'submit')])
@@ -72,7 +72,7 @@ class OpenEduCatAppController(http.Controller):
                          ('state', '=', 'issue')])
 
         return {'total_assignments': total_assignments,
-                'total_submissions': total_submissions,
+                'total_submissions': total_subs,
                 'today_lectures': today_lectures,
                 'assigned_books': assigned_books}
 
@@ -81,7 +81,7 @@ class OpenEduCatAppController(http.Controller):
     def compute_faculty_dashboard_data(self, **post):
         user_id = post.get('user_id', False)
         total_assignments = 0
-        total_submissions = 0
+        total_subs = 0
         today_lectures = 0
 
         if user_id:
@@ -95,7 +95,7 @@ class OpenEduCatAppController(http.Controller):
                         .sudo().search_count(
                         [('faculty_id', '=', faculty.id),
                          ('state', 'in', ['draft', 'publish'])])
-                    total_submissions = request.env['op.assignment.sub.line'] \
+                    total_subs = request.env['op.assignment.sub.line'] \
                         .sudo().search_count(
                         [('assignment_id.faculty_id', '=', faculty.id),
                          ('state', '=', 'submit')])
@@ -112,5 +112,5 @@ class OpenEduCatAppController(http.Controller):
                           datetime.today().strftime('%Y-%m-%d 23:59:59'))])
 
         return {'total_assignments': total_assignments,
-                'total_submissions': total_submissions,
+                'total_submissions': total_subs,
                 'today_lectures': today_lectures, }

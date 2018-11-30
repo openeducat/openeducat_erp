@@ -24,7 +24,6 @@ from odoo.exceptions import ValidationError
 
 
 class StudentMigrate(models.TransientModel):
-
     """ Student Migration Wizard """
     _name = "student.migrate"
     _description = "Student Migrate"
@@ -42,8 +41,8 @@ class StudentMigrate(models.TransientModel):
     def _check_admission_register(self):
         for record in self:
             if record.course_from_id == record.course_to_id:
-                raise ValidationError(_("From Course must not be same \
-                as To Course!"))
+                raise ValidationError(
+                    _("From Course must not be same as To Course!"))
 
             if record.course_from_id.parent_id:
                 if record.course_from_id.parent_id != \
@@ -52,8 +51,8 @@ class StudentMigrate(models.TransientModel):
                         "Can't migrate, As selected courses don't \
                         share same parent course!"))
             else:
-                raise ValidationError(_(
-                    "Can't migrate, Proceed for new admission"))
+                raise ValidationError(
+                    _("Can't migrate, Proceed for new admission"))
 
     @api.onchange('course_from_id')
     def onchange_course_id(self):
@@ -81,7 +80,9 @@ class StudentMigrate(models.TransientModel):
                 student_course = self.env['op.student.course'].search(
                     [('student_id', '=', student.id),
                      ('course_id', '=', record.course_from_id.id)])
-                student_course.write({'course_id': record.course_to_id.id})
+                student_course.write({
+                    'course_id': record.course_to_id.id,
+                    'batch_id': record.batch_id.id})
                 reg_id = self.env['op.subject.registration'].create({
                     'student_id': student.id,
                     'batch_id': record.batch_id.id,
