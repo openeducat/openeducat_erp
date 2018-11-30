@@ -30,7 +30,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_classroom'],
     'data': [
-        'security/op_timetable_security.xml',
+        'security/op_security.xml',
         'security/ir.model.access.csv',
         'views/timetable_view.xml',
         'views/timing_view.xml',
@@ -40,9 +40,9 @@
         'report/report_menu.xml',
         'wizard/generate_timetable_view.xml',
         'wizard/time_table_report.xml',
-        'timetable_menu.xml',
         'wizard/session_confirmation.xml',
         'views/timetable_templates.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/timing_demo.xml',

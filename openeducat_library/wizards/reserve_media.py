@@ -35,4 +35,5 @@ class ReserveMedia(models.TransientModel):
             self.env['op.media.movement'].browse(
                 self.env.context.get('active_ids', False)).write(
                 {'partner_id': media.partner_id.id,
-                 'reserver_name': media.partner_id.name, 'state': 'reserve'})
+                 'reserver_name': media.partner_id.name,
+                 'state': 'reserve'})

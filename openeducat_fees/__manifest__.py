@@ -31,7 +31,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core', 'account'],
     'data': [
-        'security/fees_security.xml',
+        'security/op_security.xml',
         'security/ir.model.access.csv',
         'report/report_menu.xml',
         'report/fees_analysis_report_view.xml',
@@ -39,7 +39,7 @@
         'views/fees_terms_view.xml',
         'views/student_view.xml',
         'views/course_view.xml',
-        'fees_menu.xml',
+        'menus/op_menu.xml',
     ],
     'images': [
         'static/description/openeducat_fees_banner.jpg',

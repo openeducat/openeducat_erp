@@ -23,7 +23,6 @@ from odoo import models, fields, api
 
 
 class FeesDetailReportWizard(models.TransientModel):
-
     """ Admission Analysis Wizard """
     _name = "fees.detail.report.wizard"
     _description = "Wizard For Fees Details Report"

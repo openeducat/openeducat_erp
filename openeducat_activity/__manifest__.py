@@ -31,13 +31,13 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
-        'security/op_activity_security.xml',
+        'security/op_security.xml',
         'security/ir.model.access.csv',
         'wizard/student_migrate_wizard_view.xml',
         'views/activity_view.xml',
         'views/activity_type_view.xml',
         'views/student_view.xml',
-        'activity_menu.xml'
+        'menus/op_menu.xml'
     ],
     'demo': [
         'demo/activity_type_demo.xml',

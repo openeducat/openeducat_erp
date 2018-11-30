@@ -24,7 +24,6 @@ from odoo import models, fields
 
 class OpFacility(models.Model):
     _name = "op.facility"
-    _rec_name = "name"
     _description = "Manage Facility"
 
     name = fields.Char('Name', size=16, required=True)

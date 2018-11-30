@@ -31,7 +31,7 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_classroom'],
     'data': [
-        'security/op_exam_security.xml',
+        'security/op_security.xml',
         'security/ir.model.access.csv',
         'views/res_partner_view.xml',
         'views/exam_attendees_view.xml',
@@ -51,7 +51,7 @@
         'report/report_exam_student_label.xml',
         'report/report_menu.xml',
         'wizard/student_hall_tickets_wizard_view.xml',
-        'exam_menu.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/exam_room_demo.xml',

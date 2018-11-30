@@ -12,6 +12,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_category_form" model="ir.ui.view">
             <field name="name">op.category.form</field>
             <field name="model">op.category</field>
@@ -27,6 +28,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_category_search" model="ir.ui.view">
             <field name="name">op.category.search</field>
             <field name="model">op.category</field>
@@ -43,6 +45,7 @@
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_category_view">
             <field name="name">Categories</field>
             <field name="type">ir.actions.act_window</field>
@@ -53,12 +56,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_category_view_form">
             <field name="act_window_id" ref="act_open_op_category_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_category_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_category_view_tree">
             <field name="act_window_id" ref="act_open_op_category_view" />
             <field name="sequence" eval="10" />

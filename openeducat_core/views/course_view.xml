@@ -16,6 +16,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_course_form" model="ir.ui.view">
             <field name="name">op.course.form</field>
             <field name="model">op.course</field>
@@ -39,6 +40,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_course_search" model="ir.ui.view">
             <field name="name">op.course.search</field>
             <field name="model">op.course</field>
@@ -61,6 +63,7 @@
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_course_view">
             <field name="name">Courses</field>
             <field name="type">ir.actions.act_window</field>
@@ -71,12 +74,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_course_view_form">
             <field name="act_window_id" ref="act_open_op_course_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_course_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_course_view_tree">
             <field name="act_window_id" ref="act_open_op_course_view" />
             <field name="sequence" eval="10" />

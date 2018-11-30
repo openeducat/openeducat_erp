@@ -44,11 +44,9 @@ class OpStudentFeesDetails(models.Model):
     @api.multi
     def get_invoice(self):
         """ Create invoice for fee payment process of student """
-
         inv_obj = self.env['account.invoice']
         partner_id = self.student_id.partner_id
         student = self.student_id
-
         account_id = False
         product = self.product_id
         if product.property_account_income_id:
@@ -60,7 +58,6 @@ class OpStudentFeesDetails(models.Model):
                 _('There is no income account defined for this product: "%s".'
                   'You may have to install a chart of account from Accounting'
                   ' app, settings menu.') % product.name)
-
         if self.amount <= 0.00:
             raise UserError(
                 _('The value of the deposit amount must be positive.'))
