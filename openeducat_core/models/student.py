@@ -73,6 +73,12 @@ class OpStudent(models.Model):
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details')
 
+    _sql_constraints = [
+        ('unique_gr_no',
+         'unique(gr_no)',
+         'Gr Number Must be unique!')
+    ]
+
     @api.multi
     @api.constrains('birth_date')
     def _check_birthdate(self):
