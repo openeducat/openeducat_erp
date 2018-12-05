@@ -38,7 +38,7 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
         if time:
             timezone = pytz.timezone(self._context['tz'])
             utc_in_time = pytz.utc.localize(
-                datetime.strptime(time, "%Y-%m-%d %H:%M:%S"))
+                datetime.strptime(str(time), "%Y-%m-%d %H:%M:%S"))
             local_time = utc_in_time.astimezone(timezone)
             return local_time
 

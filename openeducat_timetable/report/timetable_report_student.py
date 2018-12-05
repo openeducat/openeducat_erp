@@ -40,7 +40,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         if time:
             timezone = pytz.timezone(self._context['tz'])
             utc_in_time = pytz.utc.localize(
-                datetime.strptime(time, "%Y-%m-%d %H:%M:%S"))
+                datetime.strptime(str(time), "%Y-%m-%d %H:%M:%S"))
             local_time = utc_in_time.astimezone(timezone)
             return local_time
 
@@ -76,7 +76,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
                 data['time_table_ids']):
 
             oldDate = datetime.strptime(
-                timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
+                str(timetable_obj.start_datetime), "%Y-%m-%d %H:%M:%S")
             day = datetime.weekday(oldDate)
 
             timetable_data = {
