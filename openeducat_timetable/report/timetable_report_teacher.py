@@ -85,8 +85,8 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
             timetable_data = {
                 'period': timetable_obj.timing_id.name,
                 'period_time': timetable_obj.timing_id.hour + ':' +
-                               timetable_obj.timing_id.minute +
-                               timetable_obj.timing_id.am_pm,
+                timetable_obj.timing_id.minute +
+                timetable_obj.timing_id.am_pm,
                 'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': self._convert_to_local_timezone(
                     timetable_obj.start_datetime).strftime(
