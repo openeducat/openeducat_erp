@@ -23,7 +23,7 @@ import calendar
 import pytz
 import time
 from datetime import datetime
-from odoo import models, api, _
+from odoo import models, api, _, tools, fields
 
 
 class ReportTimeTableTeacherGenerate(models.AbstractModel):
@@ -36,9 +36,8 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
             Converts time as per local timezone.
         '''
         if time:
-            timezone = pytz.timezone(self._context['tz'])
-            utc_in_time = pytz.utc.localize(
-                datetime.strptime(time, "%Y-%m-%d %H:%M:%S"))
+            timezone = pytz.timezone(self._context['tz'] or 'UTC')
+            utc_in_time = pytz.UTC.localize(fields.Datetime.from_string(time))
             local_time = utc_in_time.astimezone(timezone)
             return local_time
 
@@ -80,10 +79,9 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
         data_list = []
         for timetable_obj in self.env['op.session'].browse(
                 data['teacher_time_table_ids']):
-            oldDate = datetime.strptime(
-                timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
+            oldDate = pytz.UTC.localize(
+                fields.Datetime.from_string(timetable_obj.start_datetime))
             day = datetime.weekday(oldDate)
-
             timetable_data = {
                 'period': timetable_obj.timing_id.name,
                 'period_time': timetable_obj.timing_id.hour + ':' +
@@ -92,10 +90,10 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
                 'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': self._convert_to_local_timezone(
                     timetable_obj.start_datetime).strftime(
-                    "%Y-%m-%d %H:%M:%S"),
+                    tools.DEFAULT_SERVER_DATETIME_FORMAT),
                 'end_datetime': self._convert_to_local_timezone(
                     timetable_obj.end_datetime).strftime(
-                    "%Y-%m-%d %H:%M:%S"),
+                    tools.DEFAULT_SERVER_DATETIME_FORMAT),
                 'day': str(day),
                 'subject': timetable_obj.subject_id.name,
                 'course': timetable_obj.course_id.name,
