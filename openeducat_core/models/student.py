@@ -24,8 +24,8 @@ from odoo.exceptions import ValidationError
 
 
 class OpStudentCourse(models.Model):
-    _name = 'op.student.course'
-    _description = 'Student Course Details'
+    _name = "op.student.course"
+    _description = "Student Course Details"
 
     student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -74,10 +74,16 @@ class OpStudent(models.Model):
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details')
 
+    _sql_constraints = [(
+        'unique_gr_no',
+        'unique(gr_no)',
+        'GR Number must be unique per student!'
+    )]
+
     @api.multi
     @api.constrains('birth_date')
     def _check_birthdate(self):
         for record in self:
             if record.birth_date > fields.Date.today():
-                raise ValidationError(_(
-                    "Birth Date can't be greater than current date!"))
+                raise ValidationError(
+                    _("Birth Date can't be greater than current date!"))
