@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api, _
 
 
 class OpSubject(models.Model):
@@ -41,3 +41,10 @@ class OpSubject(models.Model):
         ('unique_subject_code',
          'unique(code)', 'Code should be unique per subject!'),
     ]
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Subjects'),
+            'template': '/openeducat_core/static/xls/op_subject.xls'
+        }]

@@ -190,3 +190,10 @@ class OpSession(models.Model):
             if session.state not in ('draft', 'done'):
                 session.notify_user()
         return data
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Sessions'),
+            'template': '/openeducat_timetable/static/xls/op_session.xls'
+        }]
