@@ -73,3 +73,10 @@ class OpFaculty(models.Model):
             emp_id = self.env['hr.employee'].create(vals)
             record.write({'emp_id': emp_id.id})
             record.partner_id.write({'supplier': True, 'employee': True})
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Faculties'),
+            'template': '/openeducat_core/static/xls/op_faculty.xls'
+        }]

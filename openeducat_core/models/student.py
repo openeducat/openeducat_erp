@@ -85,5 +85,12 @@ class OpStudent(models.Model):
     def _check_birthdate(self):
         for record in self:
             if record.birth_date > fields.Date.today():
-                raise ValidationError(
-                    _("Birth Date can't be greater than current date!"))
+                raise ValidationError(_(
+                    "Birth Date can't be greater than current date!"))
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Students'),
+            'template': '/openeducat_core/static/xls/op_student.xls'
+        }]

@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api, _
 
 
 class OpCourse(models.Model):
@@ -41,3 +41,10 @@ class OpCourse(models.Model):
     _sql_constraints = [
         ('unique_course_code',
          'unique(code)', 'Code should be unique per course!')]
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Courses'),
+            'template': '/openeducat_core/static/xls/op_course.xls'
+        }]
