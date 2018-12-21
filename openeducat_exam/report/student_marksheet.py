@@ -21,7 +21,7 @@
 
 import time
 from datetime import datetime
-from odoo import models, api
+from odoo import models, api, fields
 
 
 class ReportMarksheetReport(models.AbstractModel):
@@ -41,7 +41,7 @@ class ReportMarksheetReport(models.AbstractModel):
         return lines
 
     def get_date(self, date):
-        date1 = datetime.strptime(date, "%Y-%m-%d")
+        date1 = fields.Date.to_date(date)
         return str(date1.month) + ' / ' + str(date1.year)
 
     def get_total(self, marksheet_line):

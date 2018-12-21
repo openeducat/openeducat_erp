@@ -43,7 +43,7 @@ class ReportTicket(models.AbstractModel):
         for exam_line in exam_session['exam_ids']:
             res1 = {
                 'subject': exam_line.subject_id.name,
-                'date': exam_line.start_time[:10],
+                'date': fields.Datetime.to_string(exam_line.start_time)[:10],
                 'time': self.get_date(exam_line),
                 'sup_sign': ''
             }
