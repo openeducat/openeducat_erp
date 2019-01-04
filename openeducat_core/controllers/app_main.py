@@ -34,13 +34,13 @@ class OpenEduCatAppController(http.Controller):
         total_subs = 0
         today_lectures = 0
         assigned_books = 0
-
         if user_id:
+            ir_model = request.env['ir.model'].sudo()
             student = request.env['op.student'].sudo().search(
                 [('user_id', '=', user_id)], limit=1)
             if student:
-                assignment = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.assignment')])
+                assignment = ir_model.search([
+                    ('model', '=', 'op.assignment')])
                 if assignment:
                     total_assignments = request.env['op.assignment'] \
                         .sudo().search_count(
@@ -50,10 +50,8 @@ class OpenEduCatAppController(http.Controller):
                         .sudo().search_count(
                         [('student_id', '=', student.id),
                          ('state', '=', 'submit')])
-
                 batch_ids = [x.batch_id.id for x in student.course_detail_ids]
-                session = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.session')])
+                session = ir_model.search([('model', '=', 'op.session')])
                 if session and batch_ids:
                     today_lectures = request.env['op.session'] \
                         .sudo().search_count(
@@ -62,15 +60,13 @@ class OpenEduCatAppController(http.Controller):
                           datetime.today().strftime('%Y-%m-%d 00:00:00')),
                          ('start_datetime', '<=',
                           datetime.today().strftime('%Y-%m-%d 23:59:59'))])
-
-                library = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.media.movement')])
+                library = ir_model.search([
+                    ('model', '=', 'op.media.movement')])
                 if library:
                     assigned_books = request.env['op.media.movement'] \
-                        .sudo().search_count(
-                        [('student_id', '=', student.id),
-                         ('state', '=', 'issue')])
-
+                        .sudo().search_count([
+                            ('student_id', '=', student.id),
+                            ('state', '=', 'issue')])
         return {'total_assignments': total_assignments,
                 'total_submissions': total_subs,
                 'today_lectures': today_lectures,
@@ -83,12 +79,12 @@ class OpenEduCatAppController(http.Controller):
         total_assignments = 0
         total_subs = 0
         today_lectures = 0
-
         if user_id:
             faculty = request.env['op.faculty'].sudo().search(
                 [('user_id', '=', user_id)], limit=1)
             if faculty:
-                assignment = request.env['ir.model'].sudo().search(
+                ir_model = request.env['ir.model'].sudo()
+                assignment = ir_model.search(
                     [('model', '=', 'op.assignment')])
                 if assignment:
                     total_assignments = request.env['op.assignment'] \
@@ -99,8 +95,7 @@ class OpenEduCatAppController(http.Controller):
                         .sudo().search_count(
                         [('assignment_id.faculty_id', '=', faculty.id),
                          ('state', '=', 'submit')])
-
-                session = request.env['ir.model'].sudo().search(
+                session = ir_model.search(
                     [('model', '=', 'op.session')])
                 if session:
                     today_lectures = request.env['op.session'] \
@@ -110,7 +105,6 @@ class OpenEduCatAppController(http.Controller):
                           datetime.today().strftime('%Y-%m-%d 00:00:00')),
                          ('start_datetime', '<=',
                           datetime.today().strftime('%Y-%m-%d 23:59:59'))])
-
         return {'total_assignments': total_assignments,
                 'total_submissions': total_subs,
                 'today_lectures': today_lectures, }
