@@ -39,7 +39,8 @@ class ReportFeesAnalysis(models.AbstractModel):
     def get_paid_amount(self, student_id):
         total_paid = 0.0
         for fees in student_id.fees_detail_ids:
-            total_paid += fees.invoice_id.amount_total - fees.invoice_id.residual
+            if fees.invoice_id:
+                total_paid += fees.invoice_id.amount_total - fees.invoice_id.residual
         return total_paid
 
     @api.model
