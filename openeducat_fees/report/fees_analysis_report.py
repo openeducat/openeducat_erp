@@ -38,10 +38,11 @@ class ReportFeesAnalysis(models.AbstractModel):
         return total_amount - total_paid
 
     def get_paid_amount(self, student_id):
-        total_paid = 0.0
+        paid_amnt = 0.0
         for f in student_id.fees_detail_ids:
-            total_paid += f.invoice_id.amount_total - f.invoice_id.residual
-        return total_paid
+            if f.invoice_id and f.invoice_id.state != 'draft':
+                paid_amnt += f.invoice_id.amount_total - f.invoice_id.residual
+        return paid_amnt
 
     @api.model
     def _get_report_values(self, docids, data=None):
