@@ -24,10 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpResultTemplate(models.Model):
-    _name = 'op.result.template'
-    _inherit = ['mail.thread']
-    _description = 'Result Template'
-    _rec_name = 'name'
+    _name = "op.result.template"
+    _inherit = ["mail.thread"]
+    _description = "Result Template"
 
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session',
@@ -64,7 +63,7 @@ class OpResultTemplate(models.Model):
                 for sub_grade in record.grade_ids:
                     if grade != sub_grade:
                         if (sub_grade.min_per <= grade.min_per and
-                                sub_grade.max_per >= grade.min_per) or \
+                            sub_grade.max_per >= grade.min_per) or \
                                 (sub_grade.min_per <= grade.max_per and
                                  sub_grade.max_per >= grade.max_per):
                             count += 1

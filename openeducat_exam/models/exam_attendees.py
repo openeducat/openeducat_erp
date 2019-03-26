@@ -24,8 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpExamAttendees(models.Model):
-    _name = 'op.exam.attendees'
-    _rec_name = 'student_id'
+    _name = "op.exam.attendees"
+    _rec_name = "student_id"
+    _description = "Exam Attendees"
 
     student_id = fields.Many2one('op.student', 'Student', required=True)
     status = fields.Selection(

@@ -23,7 +23,7 @@ from odoo import models, fields
 
 
 class OpStudent(models.Model):
-    _inherit = 'op.student'
+    _inherit = "op.student"
 
-    activity_log = fields.One2many(
-        'op.activity', 'student_id', 'Activity Log')
+    activity_log = fields.One2many('op.activity', 'student_id',
+                                   string='Activity Log')

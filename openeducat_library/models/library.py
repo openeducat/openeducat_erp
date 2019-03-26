@@ -24,8 +24,8 @@ from odoo.exceptions import ValidationError
 
 
 class OpLibraryCardType(models.Model):
-    _name = 'op.library.card.type'
-    _description = 'Library Card Type'
+    _name = "op.library.card.type"
+    _description = "Library Card Type"
 
     name = fields.Char('Name', size=256, required=True)
     allow_media = fields.Integer('No of medias Allowed', size=10,
@@ -33,7 +33,8 @@ class OpLibraryCardType(models.Model):
     duration = fields.Integer(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
-    penalty_amt_per_day = fields.Float('Penalty Amount per Day', required=True)
+    penalty_amt_per_day = fields.Float('Penalty Amount per Day',
+                                       required=True)
 
     @api.constrains('allow_media', 'duration', 'penalty_amt_per_day')
     def check_details(self):
@@ -43,9 +44,9 @@ class OpLibraryCardType(models.Model):
 
 
 class OpLibraryCard(models.Model):
-    _name = 'op.library.card'
-    _rec_name = 'number'
-    _description = 'Library Card'
+    _name = "op.library.card"
+    _rec_name = "number"
+    _description = "Library Card"
 
     partner_id = fields.Many2one(
         'res.partner', 'Student/Faculty', required=True)
@@ -60,17 +61,22 @@ class OpLibraryCard(models.Model):
     student_id = fields.Many2one('op.student', 'Student')
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
 
-    _sql_constraints = [
-        ('unique_library_card_number',
-         'unique(number)', 'Library card Number should be unique per card!'),
-    ]
+    _sql_constraints = [(
+        'unique_library_card_number',
+        'unique(number)',
+        'Library card Number should be unique per card!')]
 
     @api.model
     def create(self, vals):
         x = self.env['ir.sequence'].next_by_code(
             'op.library.card') or '/'
         vals['number'] = x
-        return super(OpLibraryCard, self).create(vals)
+        res = super(OpLibraryCard, self).create(vals)
+        if res.type == 'student':
+            res.student_id.library_card_id = res
+        else:
+            res.faculty_id.library_card_id = res
+        return res
 
     @api.onchange('type')
     def onchange_type(self):

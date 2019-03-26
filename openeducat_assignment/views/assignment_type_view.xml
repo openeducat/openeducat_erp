@@ -12,6 +12,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_assignment_type_form" model="ir.ui.view">
             <field name="name">op.assignment.type.form</field>
             <field name="model">op.assignment.type</field>
@@ -27,6 +28,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_assignment_type_search" model="ir.ui.view">
             <field name="name">op.assignment.type.search</field>
             <field name="model">op.assignment.type</field>
@@ -37,12 +39,15 @@
                     <field name="code" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Name" domain="[]" context="{'group_by':'name'}" />
-                        <filter string="Code" domain="[]" context="{'group_by':'code'}" />
+                        <filter string="Name" domain="[]" name="group_by_assignment_type_name"
+                                context="{'group_by':'name'}" />
+                        <filter string="Code" domain="[]" name="group_by_assignment_type_code"
+                                context="{'group_by':'code'}" />
                     </group>
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_assignment_type_view">
             <field name="name">Assignment Types</field>
             <field name="type">ir.actions.act_window</field>
@@ -53,12 +58,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_assignment_type_view_form">
             <field name="act_window_id" ref="act_open_op_assignment_type_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_assignment_type_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_assignment_type_view_tree">
             <field name="act_window_id" ref="act_open_op_assignment_type_view" />
             <field name="sequence" eval="10" />

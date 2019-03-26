@@ -24,7 +24,8 @@ from odoo.exceptions import ValidationError
 
 
 class OpBatch(models.Model):
-    _name = 'op.batch'
+    _name = "op.batch"
+    _description = "OpenEduCat Batch"
 
     code = fields.Char('Code', size=16, required=True)
     name = fields.Char('Name', size=32, required=True)
@@ -44,8 +45,8 @@ class OpBatch(models.Model):
             start_date = fields.Date.from_string(record.start_date)
             end_date = fields.Date.from_string(record.end_date)
             if start_date > end_date:
-                raise ValidationError(_("End Date cannot be set before \
-                Start Date."))
+                raise ValidationError(
+                    _("End Date cannot be set before Start Date."))
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):

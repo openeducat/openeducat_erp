@@ -19,14 +19,13 @@
 #
 ###############################################################################
 
-from datetime import datetime
 import time
-
-from odoo import models, api
+from odoo import models, api, fields
 
 
 class ReportMarksheetReport(models.AbstractModel):
-    _name = 'report.openeducat_exam.report_marksheet_report'
+    _name = "report.openeducat_exam.report_marksheet_report"
+    _description = "Exam Marksheet Report"
 
     def get_objects(self, objects):
         obj = []
@@ -41,7 +40,7 @@ class ReportMarksheetReport(models.AbstractModel):
         return lines
 
     def get_date(self, date):
-        date1 = datetime.strptime(date, "%Y-%m-%d")
+        date1 = fields.Date.to_date(date)
         return str(date1.month) + ' / ' + str(date1.year)
 
     def get_total(self, marksheet_line):
@@ -49,7 +48,7 @@ class ReportMarksheetReport(models.AbstractModel):
         return sum(total)
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         docs = self.env['op.marksheet.register'].browse(docids)
         docargs = {
             'doc_model': 'op.marksheet.register',

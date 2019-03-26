@@ -23,9 +23,9 @@ from odoo import models, fields
 
 
 class OpTiming(models.Model):
-    _name = 'op.timing'
-    _description = 'Period'
-    _order = 'sequence'
+    _name = "op.timing"
+    _description = "Period"
+    _order = "sequence"
 
     name = fields.Char('Name', size=16, required=True)
     hour = fields.Selection(

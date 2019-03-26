@@ -29,8 +29,8 @@ from odoo import models, fields, api, _
 
 
 class SessionReport(models.TransientModel):
-    _name = 'time.table.report'
-    _description = 'Generate Time Table Report'
+    _name = "time.table.report"
+    _description = "Generate Time Table Report"
 
     state = fields.Selection(
         [('faculty', 'Faculty'), ('student', 'Student')],

@@ -24,9 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpAssignment(models.Model):
-    _name = 'op.assignment'
-    _inherit = 'mail.thread'
-    _description = 'Assignment'
+    _name = "op.assignment"
+    _inherit = "mail.thread"
+    _description = "Assignment"
 
     name = fields.Char('Name', size=64, required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -71,8 +71,7 @@ class OpAssignment(models.Model):
         if self.course_id:
             subject_ids = self.env['op.course'].search([
                 ('id', '=', self.course_id.id)]).subject_ids
-            return {
-                'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
+            return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
 
     @api.multi
     def act_publish(self):

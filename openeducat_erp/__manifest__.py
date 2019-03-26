@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat ERP',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -29,14 +29,14 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_activity', 'openeducat_admission',
-                'openeducat_assignment', 'openeducat_attendance',
-                'openeducat_exam', 'openeducat_library',
-                'openeducat_parent', 'openeducat_support',
-                'openeducat_timetable', 'web_openeducat'],
-    'data': [
-    ],
-    'demo': [
+    'depends': [
+        'openeducat_admission',
+        'openeducat_assignment',
+        'openeducat_attendance',
+        'openeducat_library',
+        'openeducat_parent',
+        'openeducat_exam',
+        'web_openeducat',
     ],
     'images': [
         'static/description/openeducat_erp_banner.jpg',

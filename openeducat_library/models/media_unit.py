@@ -23,9 +23,9 @@ from odoo import models, fields, api
 
 
 class OpMediaUnit(models.Model):
-    _name = 'op.media.unit'
-    _inherit = 'mail.thread'
-    _description = 'Media Unit'
+    _name = "op.media.unit"
+    _inherit = "mail.thread"
+    _description = "Media Unit"
 
     name = fields.Char('Name', required=True)
     media_id = fields.Many2one(

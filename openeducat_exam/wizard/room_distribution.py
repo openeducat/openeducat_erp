@@ -23,9 +23,9 @@ from odoo import models, api, fields, exceptions, _
 
 
 class OpRoomDistribution(models.TransientModel):
-
     """ Exam Room Distribution """
-    _name = 'op.room.distribution'
+    _name = "op.room.distribution"
+    _description = "Room Distribution"
 
     @api.multi
     @api.depends('student_ids')
@@ -46,7 +46,7 @@ class OpRoomDistribution(models.TransientModel):
                     room_capacity += (room.capacity or 0)
             record.room_capacity = room_capacity
 
-    exam_id = fields.Many2one('op.exam', 'Exam')
+    exam_id = fields.Many2one('op.exam', 'Exam(s)')
     subject_id = fields.Many2one('op.subject', 'Subject')
     name = fields.Char("Exam")
     start_time = fields.Datetime("Start Time")

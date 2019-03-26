@@ -16,6 +16,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_op_course_form" model="ir.ui.view">
             <field name="name">op.course.form</field>
             <field name="model">op.course</field>
@@ -39,6 +40,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_course_search" model="ir.ui.view">
             <field name="name">op.course.search</field>
             <field name="model">op.course</field>
@@ -47,19 +49,21 @@
                 <search string="Course">
                     <field name="name" />
                     <field name="code" />
-<!--                    <field name="section" /> -->
                     <field name="evaluation_type" />
                     <field name="parent_id" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Evaluation Type" domain="[]"
-                            context="{'group_by':'evaluation_type'}" />
-                        <filter string="Parent Course" domain="[]"
-                            context="{'group_by':'parent_id'}" />
+                        <filter name="group_by_evaluation_type"
+                                string="Evaluation Type" domain="[]"
+                                context="{'group_by':'evaluation_type'}" />
+                        <filter name="group_by_partner_course"
+                                string="Parent Course" domain="[]"
+                                context="{'group_by':'parent_id'}" />
                     </group>
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_course_view">
             <field name="name">Courses</field>
             <field name="type">ir.actions.act_window</field>
@@ -70,12 +74,14 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_course_view_form">
             <field name="act_window_id" ref="act_open_op_course_view" />
             <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_op_course_form" />
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_course_view_tree">
             <field name="act_window_id" ref="act_open_op_course_view" />
             <field name="sequence" eval="10" />

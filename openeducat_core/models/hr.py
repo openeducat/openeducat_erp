@@ -23,7 +23,7 @@ from odoo import models, api
 
 
 class HrEmployee(models.Model):
-    _inherit = 'hr.employee'
+    _inherit = "hr.employee"
 
     @api.onchange('user_id')
     def onchange_user(self):

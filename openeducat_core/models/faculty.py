@@ -24,8 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpFaculty(models.Model):
-    _name = 'op.faculty'
-    _inherits = {'res.partner': 'partner_id'}
+    _name = "op.faculty"
+    _description = "OpenEduCat Faculty"
+    _inherits = {"res.partner": "partner_id"}
 
     partner_id = fields.Many2one(
         'res.partner', 'Partner', required=True, ondelete="cascade")
@@ -49,7 +50,7 @@ class OpFaculty(models.Model):
         'Latest Connection', related='partner_id.user_id.login_date',
         readonly=1)
     faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)')
-    emp_id = fields.Many2one('hr.employee', 'Employee')
+    emp_id = fields.Many2one('hr.employee', 'HR Employee')
 
     @api.multi
     @api.constrains('birth_date')
@@ -72,3 +73,10 @@ class OpFaculty(models.Model):
             emp_id = self.env['hr.employee'].create(vals)
             record.write({'emp_id': emp_id.id})
             record.partner_id.write({'supplier': True, 'employee': True})
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Faculties'),
+            'template': '/openeducat_core/static/xls/op_faculty.xls'
+        }]

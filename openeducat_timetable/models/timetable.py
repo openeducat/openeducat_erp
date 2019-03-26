@@ -33,10 +33,9 @@ week_days = [(calendar.day_name[0], _(calendar.day_name[0])),
 
 
 class OpSession(models.Model):
-    _name = 'op.session'
-    _inherit = ['mail.thread']
-    _description = 'Sessions'
-    _rec_name = 'name'
+    _name = "op.session"
+    _inherit = ["mail.thread"]
+    _description = "Sessions"
 
     name = fields.Char(compute='_compute_name', string='Name', store=True)
     timing_id = fields.Many2one(
@@ -80,7 +79,8 @@ class OpSession(models.Model):
             if session.faculty_id and session.subject_id \
                     and session.start_datetime:
                 session.name = session.faculty_id.name + ':' + \
-                    session.subject_id.name + ':' + str(session.timing_id.name)
+                               session.subject_id.name + ':' + \
+                               str(session.timing_id.name)
 
     # For record rule on student and faculty dashboard
     @api.multi
@@ -143,7 +143,7 @@ class OpSession(models.Model):
         subtype_id = self.env['mail.message.subtype'].sudo().search([
             ('name', '=', 'Discussions')])
         if partner_ids and subtype_id:
-            for partner in partner_ids:
+            for partner in list(set(partner_ids)):
                 if partner in partner_val:
                     continue
                 val = self.env['mail.followers'].sudo().create({
@@ -178,14 +178,22 @@ class OpSession(models.Model):
 
     @api.multi
     def get_subject(self):
-        return 'lacture of ' + self.faculty_id.name + \
-            ' for ' + self.subject_id.name + ' is ' + self.state
+        return 'lecture of ' + self.faculty_id.name + \
+               ' for ' + self.subject_id.name + ' is ' + self.state
 
     @api.multi
     @api.model
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
-        if self.state not in ('draft', 'done'):
-            self.notify_user()
+        for session in self:
+            if session.state not in ('draft', 'done'):
+                session.notify_user()
         return data
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Sessions'),
+            'template': '/openeducat_timetable/static/xls/op_session.xls'
+        }]

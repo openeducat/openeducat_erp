@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Facility',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -31,10 +31,10 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
+        'security/ir.model.access.csv',
         'views/facility_view.xml',
         'views/facility_line_view.xml',
-        'security/ir.model.access.csv',
-        'facility_menu.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/facility_demo.xml'

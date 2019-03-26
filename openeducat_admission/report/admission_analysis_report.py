@@ -25,7 +25,8 @@ from odoo import models, api
 
 
 class ReportAdmissionAnalysis(models.AbstractModel):
-    _name = 'report.openeducat_admission.report_admission_analysis'
+    _name = "report.openeducat_admission.report_admission_analysis"
+    _description = "Admission Analysis Report"
 
     def get_total_student(self, data):
         student_search = self.env['op.admission'].search_count(
@@ -57,7 +58,7 @@ class ReportAdmissionAnalysis(models.AbstractModel):
         return lst
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

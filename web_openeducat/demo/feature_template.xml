@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data noupdate="1">
+        <template id="frontend_layout_inherit" inherit_id="portal.frontend_layout">
+            <xpath expr="//nav[hasclass('navbar','navbar-expand-md','navbar-light','bg-light')]" position="attributes">
+                <attribute name="class">navbar navbar-expand-md navbar-light bg-light yamm</attribute>
+            </xpath>
+        </template>
 
         <template id="feature_openeducat" inherit_id="website.layout">
-            <xpath expr="//div[@id='wrapwrap']/header/div[hasclass('navbar-static-top')]" position="attributes">
-                <attribute name="class">navbar navbar-default yamm
-                    navbar-static-top
-                </attribute>
-            </xpath>
+            <!--<xpath expr="//header//ul[@id='top_menu']" position="attributes">-->
+            <!--&lt;!&ndash;<xpath expr="//div[@id='wrapwrap']/header/div[hasclass('navbar-static-top')]" position="attributes">&ndash;&gt;-->
+                <!--<attribute name="class">nav navbar-nav ml-auto text-right yamm-->
+                <!--</attribute>-->
+                <!--<attribute name="id">top_menu</attribute>-->
+            <!--</xpath>-->
             <xpath expr="//ul[@id='top_menu']/li" position="before">
 
                 <li class="dropdown yamm-fw">
@@ -18,9 +24,10 @@
                     <ul class="dropdown-menu" role="menu">
                         <div class="yamm-content">
                             <div class="row features">
-                                <div class="col-md-12 mt16">
-                                    <div class="col-md-12 ">
-                                        <div class="col-md-3 ">
+                                <div class="col-lg-12 mt16">
+                                    <div class="col-lg-12 ">
+                                        <div class="row">
+                                        <div class="col-lg-3 ">
                                             <ul class="list-unstyled mb32">
                                                 <li class="btm-li-border">
                                                     <h5>
@@ -69,7 +76,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-lg-3">
                                             <ul class="list-unstyled mb32">
                                                 <li class="btm-li-border">
                                                     <h5>
@@ -120,7 +127,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3 ">
+                                        <div class="col-lg-3 ">
                                             <ul class="list-unstyled mb32">
                                                 <li class="btm-li-border">
                                                     <h5>
@@ -171,7 +178,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3 ">
+                                        <div class="col-lg-3 ">
                                             <ul class="list-unstyled mb32">
                                                 <li class="btm-li-border">
                                                     <h5>
@@ -224,7 +231,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-lg-3">
                                             <ul class="list-unstyled mb32">
                                                 <li class="btm-li-border">
                                                     <h5>
@@ -275,7 +282,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-lg-3">
                                             <ul class="list-unstyled mb32">
                                                 <li class="btm-li-border">
                                                     <h5>
@@ -325,7 +332,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-lg-3">
                                             <ul class="list-unstyled mb32">
                                                 <div class="text-invisible">
                                                     <h5>
@@ -380,7 +387,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-lg-3">
                                             <ul class="list-unstyled mb32">
                                                 <li class="btm-li-border">
                                                     <h5>
@@ -441,6 +448,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>

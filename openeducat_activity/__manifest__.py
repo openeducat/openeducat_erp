@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Activity',
-    'version': '11.0.1.0.0',
+    'version': '12.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -31,13 +31,13 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
+        'security/op_security.xml',
         'security/ir.model.access.csv',
-        'security/op_activity_security.xml',
         'wizard/student_migrate_wizard_view.xml',
         'views/activity_view.xml',
         'views/activity_type_view.xml',
         'views/student_view.xml',
-        'activity_menu.xml'
+        'menus/op_menu.xml'
     ],
     'demo': [
         'demo/activity_type_demo.xml',

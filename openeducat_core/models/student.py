@@ -24,8 +24,8 @@ from odoo.exceptions import ValidationError
 
 
 class OpStudentCourse(models.Model):
-    _name = 'op.student.course'
-    _description = 'Student Course Details'
+    _name = "op.student.course"
+    _description = "Student Course Details"
 
     student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -47,8 +47,9 @@ class OpStudentCourse(models.Model):
 
 
 class OpStudent(models.Model):
-    _name = 'op.student'
-    _inherits = {'res.partner': 'partner_id'}
+    _name = "op.student"
+    _description = "Student"
+    _inherits = {"res.partner": "partner_id"}
 
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128)
@@ -73,6 +74,12 @@ class OpStudent(models.Model):
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details')
 
+    _sql_constraints = [(
+        'unique_gr_no',
+        'unique(gr_no)',
+        'GR Number must be unique per student!'
+    )]
+
     @api.multi
     @api.constrains('birth_date')
     def _check_birthdate(self):
@@ -80,3 +87,10 @@ class OpStudent(models.Model):
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Students'),
+            'template': '/openeducat_core/static/xls/op_student.xls'
+        }]

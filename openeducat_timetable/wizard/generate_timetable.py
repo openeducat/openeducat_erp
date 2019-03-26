@@ -29,34 +29,34 @@ from odoo.exceptions import ValidationError
 
 
 class GenerateSession(models.TransientModel):
-    _name = 'generate.time.table'
-    _description = 'Generate Sessions'
-    _rec_name = 'course_id'
+    _name = "generate.time.table"
+    _description = "Generate Sessions"
+    _rec_name = "course_id"
 
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
     time_table_lines = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines')
     time_table_lines_1 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines1',
         domain=[('day', '=', '0')])
     time_table_lines_2 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines2',
         domain=[('day', '=', '1')])
     time_table_lines_3 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines3',
         domain=[('day', '=', '2')])
     time_table_lines_4 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines4',
         domain=[('day', '=', '3')])
     time_table_lines_5 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines5',
         domain=[('day', '=', '4')])
     time_table_lines_6 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines6',
         domain=[('day', '=', '5')])
     time_table_lines_7 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines7',
         domain=[('day', '=', '6')])
     start_date = fields.Date(
         'Start Date', required=True, default=time.strftime('%Y-%m-01'))
@@ -79,9 +79,8 @@ class GenerateSession(models.TransientModel):
     @api.multi
     def act_gen_time_table(self):
         for session in self:
-            start_date = datetime.datetime.strptime(
-                session.start_date, '%Y-%m-%d')
-            end_date = datetime.datetime.strptime(session.end_date, '%Y-%m-%d')
+            start_date = session.start_date
+            end_date = session.end_date
 
             for n in range((end_date - start_date).days + 1):
                 curr_date = start_date + datetime.timedelta(n)

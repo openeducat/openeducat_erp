@@ -24,8 +24,8 @@ from odoo.exceptions import ValidationError
 
 
 class OpSubjectRegistration(models.Model):
-    _name = 'op.subject.registration'
-    _inherit = ['mail.thread']
+    _name = "op.subject.registration"
+    _inherit = ["mail.thread"]
 
     name = fields.Char('Name', readonly=True, default='New')
     student_id = fields.Many2one('op.student', 'Student', required=True,

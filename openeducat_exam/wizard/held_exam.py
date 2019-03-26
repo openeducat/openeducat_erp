@@ -23,7 +23,8 @@ from odoo import models, api, fields
 
 
 class OpHeldExam(models.TransientModel):
-    _name = 'op.held.exam'
+    _name = "op.held.exam"
+    _description = "Held Exam"
 
     course_id = fields.Many2one('op.course', 'Course')
     batch_id = fields.Many2one('op.batch', 'Batch')

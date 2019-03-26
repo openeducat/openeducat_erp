@@ -4,32 +4,33 @@
         <record id="view_op_marksheet_line_tree" model="ir.ui.view">
             <field name="name">op.marksheet.line.tree</field>
             <field name="model">op.marksheet.line</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Marksheet Line">
-                    <field name="student_id" />
-                    <field name="total_marks" />
-                    <field name="percentage" />
+                    <field name="student_id"/>
+                    <field name="total_marks"/>
+                    <field name="percentage"/>
                     <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
-                    <field name="status" />
-                    <field name="evaluation_type" invisible="1" />
+                    <field name="status"/>
+                    <field name="evaluation_type" invisible="1"/>
                 </tree>
             </field>
         </record>
+
         <record id="view_op_marksheet_line_form" model="ir.ui.view">
             <field name="name">op.marksheet.line.form</field>
             <field name="model">op.marksheet.line</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Marksheet Line">
                     <sheet>
                         <group colspan="4" col="4">
-                            <field name="student_id" />
-                            <field name="status" />
-                            <field name="total_marks" />
-                            <field name="percentage" />
+                            <field name="student_id"/>
+                            <field name="status"/>
+                            <field name="total_marks"/>
+                            <field name="percentage"/>
                             <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
-                            <field name="evaluation_type" invisible="1" />
+                            <field name="evaluation_type" invisible="1"/>
                         </group>
                         <group string="Results">
                             <field name="result_line" nolabel="1"/>
@@ -38,46 +39,51 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_marksheet_line_search" model="ir.ui.view">
             <field name="name">op.marksheet.line.search</field>
             <field name="model">op.marksheet.line</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Marksheet Line">
-                    <field name="marksheet_reg_id" />
-                    <field name="student_id" />
-                    <field name="total_marks" />
-                    <field name="percentage" />
-                    <newline />
+                    <field name="marksheet_reg_id"/>
+                    <field name="student_id"/>
+                    <field name="total_marks"/>
+                    <field name="percentage"/>
+                    <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Marksheet Register" domain="[]"
-                            context="{'group_by':'marksheet_reg_id'}" />
-                        <filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
+                        <filter string="Marksheet Register" name="group_by_marksheet_line_register"
+                                domain="[]" context="{'group_by':'marksheet_reg_id'}"/>
+                        <filter string="Student" name="group_by_marksheet_line_student"
+                                domain="[]" context="{'group_by':'student_id'}"/>
                     </group>
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_marksheet_line_view">
             <field name="name">Marksheet Lines</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.marksheet.line</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_op_marksheet_line_search" />
+            <field name="search_view_id" ref="view_op_marksheet_line_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_marksheet_line_view_form">
-            <field name="act_window_id" ref="act_open_op_marksheet_line_view" />
-            <field name="sequence" eval="20" />
+            <field name="act_window_id" ref="act_open_op_marksheet_line_view"/>
+            <field name="sequence" eval="20"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_marksheet_line_form" />
+            <field name="view_id" ref="view_op_marksheet_line_form"/>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_marksheet_line_view_tree">
-            <field name="act_window_id" ref="act_open_op_marksheet_line_view" />
-            <field name="sequence" eval="10" />
+            <field name="act_window_id" ref="act_open_op_marksheet_line_view"/>
+            <field name="sequence" eval="10"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_marksheet_line_tree" />
+            <field name="view_id" ref="view_op_marksheet_line_tree"/>
         </record>
     </data>
 </odoo>
