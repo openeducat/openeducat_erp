@@ -27,8 +27,14 @@ class OpActivity(models.Model):
     _rec_name = 'student_id'
     _inherit = 'mail.thread'
 
+    def _default_faculty(self):
+        return self.env['op.faculty'].search([
+            ('user_id', '=', self._uid)
+        ], limit=1) or False
+
     student_id = fields.Many2one('op.student', 'Student', required=True)
-    faculty_id = fields.Many2one('op.faculty', 'Faculty')
+    faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True,
+                                 default=lambda self: self._default_faculty())
     type_id = fields.Many2one('op.activity.type', 'Activity Type')
     description = fields.Text('Description')
     date = fields.Date('Date', default=fields.Date.today())
