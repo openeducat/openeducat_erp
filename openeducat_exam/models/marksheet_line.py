@@ -43,7 +43,7 @@ class OpMarksheetLine(models.Model):
 
     @api.constrains('total_marks', 'percentage')
     def _check_marks(self):
-        if (self.total_marks < 0.0) or (self.total_per < 0.0):
+        if (self.total_marks < 0.0) or (self.percentage < 0.0):
             raise ValidationError(_("Enter proper marks or percentage!"))
 
     @api.multi
