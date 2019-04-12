@@ -178,7 +178,7 @@ class OpSession(models.Model):
 
     @api.multi
     def get_subject(self):
-        return 'lacture of ' + self.faculty_id.name + \
+        return 'Lecture of ' + self.faculty_id.name + \
             ' for ' + self.subject_id.name + ' is ' + self.state
 
     @api.multi

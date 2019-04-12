@@ -5,7 +5,8 @@
             <t t-call="web.external_layout">
                 <div class="font">
                     <div class="page">
-                        <br/><br/>
+                        <br/>
+                        <br/>
                         <div class="text-center">
                             <h3>
                                 <strong>Fees Detail</strong>
@@ -22,21 +23,24 @@
                             </thead>
                             <tbody>
                                 <t t-foreach="docs" t-as="doc">
+                                    <t t-set="amount" t-value="get_invoice_amount(doc)"/>
+                                    <t t-set="total_amount" t-value="amount[0]"/>
+                                    <t t-set="total_paid" t-value="amount[1]"/>
                                     <tr>
                                         <td>
-                                            <t t-raw="doc.name" />
+                                            <t t-raw="doc.name"/>
                                         </td>
                                         <td>
-                                            <t t-esc="get_total_amount(doc)" />
+                                            <t t-esc="total_amount"/>
                                         </td>
                                         <td>
-                                            <t t-esc="doc.total_invoiced" />
+                                            <t t-esc="doc.total_invoiced"/>
                                         </td>
                                         <td>
-                                            <t t-esc="get_paid_amount(doc)" />
+                                            <t t-esc="total_paid"/>
                                         </td>
                                         <td>
-                                            <t t-esc="get_total_left(doc)" />
+                                            <t t-esc="total_amount - total_paid"/>
                                         </td>
                                     </tr>
                                 </t>
