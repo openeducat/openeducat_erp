@@ -257,10 +257,10 @@ class OpAdmission(models.Model):
     @api.multi
     def enroll_student(self):
         for record in self:
-            total_admission = self.env['op.admission'].search_count(
-                [('register_id', '=', record.register_id.id),
-                 ('state', '=', 'done')])
             if record.register_id.max_count:
+                total_admission = self.env['op.admission'].search_count(
+                    [('register_id', '=', record.register_id.id),
+                     ('state', '=', 'done')])
                 if not total_admission < record.register_id.max_count:
                     msg = 'Max Admission In Admission Register :- (%s)' % (
                         record.register_id.max_count)
