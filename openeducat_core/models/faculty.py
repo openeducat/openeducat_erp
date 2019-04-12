@@ -26,19 +26,28 @@ from odoo.exceptions import ValidationError
 class OpFaculty(models.Model):
     _name = "op.faculty"
     _description = "OpenEduCat Faculty"
+    _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
 
-    partner_id = fields.Many2one(
-        'res.partner', 'Partner', required=True, ondelete="cascade")
+    partner_id = fields.Many2one('res.partner', 'Partner',
+                                 required=True, ondelete="cascade")
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128, required=True)
     birth_date = fields.Date('Birth Date', required=True)
-    blood_group = fields.Selection(
-        [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-         ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
-        'Blood Group')
-    gender = fields.Selection(
-        [('male', 'Male'), ('female', 'Female')], 'Gender', required=True)
+    blood_group = fields.Selection([
+        ('A+', 'A+ve'),
+        ('B+', 'B+ve'),
+        ('O+', 'O+ve'),
+        ('AB+', 'AB+ve'),
+        ('A-', 'A-ve'),
+        ('B-', 'B-ve'),
+        ('O-', 'O-ve'),
+        ('AB-', 'AB-ve')
+    ], string='Blood Group')
+    gender = fields.Selection([
+        ('male', 'Male'),
+        ('female', 'Female')
+    ], 'Gender', required=True)
     nationality = fields.Many2one('res.country', 'Nationality')
     emergency_contact = fields.Many2one(
         'res.partner', 'Emergency Contact')
@@ -46,10 +55,10 @@ class OpFaculty(models.Model):
     id_number = fields.Char('ID Card Number', size=64)
     login = fields.Char(
         'Login', related='partner_id.user_id.login', readonly=1)
-    last_login = fields.Datetime(
-        'Latest Connection', related='partner_id.user_id.login_date',
-        readonly=1)
-    faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)')
+    last_login = fields.Datetime('Latest Connection', readonly=1,
+                                 related='partner_id.user_id.login_date')
+    faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)',
+                                           track_visibility='onchange')
     emp_id = fields.Many2one('hr.employee', 'HR Employee')
 
     @api.multi
@@ -65,7 +74,7 @@ class OpFaculty(models.Model):
         for record in self:
             vals = {
                 'name': record.name + ' ' + (record.middle_name or '') +
-                ' ' + record.last_name,
+                        ' ' + record.last_name,
                 'country_id': record.nationality.id,
                 'gender': record.gender,
                 'address_home_id': record.partner_id.id

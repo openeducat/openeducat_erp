@@ -83,12 +83,6 @@
             <field name="arch" type="xml">
                 <form string="Student">
                     <sheet>
-                        <div class="oe_title">
-                            <field name="already_partner"/>
-                            <label for="partner_id" string="Already Partner"/>
-                            <field name="partner_id" placeholder="Partner" options="{'no_create_edit': True}"
-                                   attrs="{'required':[('already_partner','=',True)],'invisible': [('already_partner','=', False)]}"/>
-                        </div>
                         <field name="image" widget="image" class="oe_left oe_avatar"/>
                         <div class="oe_title">
                             <h3>
@@ -124,6 +118,10 @@
                                     <field name="emergency_contact" context="{'show_address': 1}" options='{"always_reload": True}'/>
                                     <field name="user_id" string="User" readonly="1"/>
                                     <field name="email" required="1"/>
+                                    <field name="already_partner"/>
+                                    <field name="partner_id" placeholder="Partner"
+                                           options="{'no_create_edit': True}"
+                                           attrs="{'required':[('already_partner','=',True)],'invisible': [('already_partner','=', False)]}"/>
                                 </group>
                                 <group string="Address Detail" name="address">
                                     <label for="type"/>
@@ -146,8 +144,10 @@
                                 </group>
                             </page>
                             <page name="educational" string="Educational">
-                                <group col="4" colspan="4">
-                                    <field name="gr_no"/>
+                                <group>
+                                    <group colspan="3">
+                                        <field name="gr_no"/>
+                                    </group>
                                 </group>
                                 <group>
                                     <separator string="Admission Details"
@@ -175,6 +175,10 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
