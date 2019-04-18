@@ -49,7 +49,7 @@ class OpAdmissionRegister(models.Model):
         'Maximum No. of Admission', readonly=True,
         states={'draft': [('readonly', False)]}, default=30)
     product_id = fields.Many2one(
-        'product.product', 'Product', required=True,
+        'product.product', 'Course Fees', required=True,
         domain=[('type', '=', 'service')], readonly=True,
         states={'draft': [('readonly', False)]}, track_visibility='onchange')
     admission_ids = fields.One2many(
