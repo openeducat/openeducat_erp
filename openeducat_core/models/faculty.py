@@ -74,7 +74,7 @@ class OpFaculty(models.Model):
         for record in self:
             vals = {
                 'name': record.name + ' ' + (record.middle_name or '') +
-                        ' ' + record.last_name,
+                ' ' + record.last_name,
                 'country_id': record.nationality.id,
                 'gender': record.gender,
                 'address_home_id': record.partner_id.id
