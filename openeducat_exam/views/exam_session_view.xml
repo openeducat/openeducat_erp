@@ -16,6 +16,7 @@
                     <field name="exam_type"/>
                     <field name="evaluation_type"/>
                     <field name="venue"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -26,6 +27,20 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Exam Session">
+                    <header groups="base.group_user">
+                        <button name="act_draft" states="held,schedule,cancel" type="object"
+                                string="Draft" class="oe_highlight"/>
+                        <button name="act_schedule" states="draft" type="object"
+                                string="Schedule" class="oe_highlight"/>
+                        <button name="act_held" states="schedule" type="object"
+                                string="Held" class="oe_highlight"/>
+                        <button name="act_done" states="schedule,held" type="object"
+                                string="Done" class="oe_highlight"/>
+                        <button name="act_cancel" states="schedule,held" type="object"
+                                string="Cancel"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,held,scheduled,done"/>
+                    </header>
                     <sheet>
                         <group col="4" colspan="4">
                             <field name="name" select="1"/>

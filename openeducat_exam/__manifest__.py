@@ -61,9 +61,9 @@
         'demo/exam_attendees_demo.xml',
         'demo/grade_configuration_demo.xml',
         'demo/result_template_demo.xml',
-        # 'demo/marksheet_register_demo.xml',
-        # 'demo/marksheet_line_demo.xml',
-        # 'demo/result_line_demo.xml',
+        'demo/marksheet_register_demo.xml',
+        'demo/marksheet_line_demo.xml',
+        'demo/result_line_demo.xml',
     ],
     'images': [
         'static/description/openeducat_exam_banner.jpg',

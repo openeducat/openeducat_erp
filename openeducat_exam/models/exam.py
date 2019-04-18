@@ -30,7 +30,9 @@ class OpExam(models.Model):
     _inherit = "mail.thread"
     _description = "Exam"
 
-    session_id = fields.Many2one('op.exam.session', 'Exam Session')
+    session_id = fields.Many2one('op.exam.session', 'Exam Session',
+                                 domain=[('state', 'not in',
+                                          ['cancel', 'done'])])
     course_id = fields.Many2one(
         'op.course', related='session_id.course_id', store=True,
         readonly=True)

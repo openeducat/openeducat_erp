@@ -12,10 +12,13 @@
                 size: A4;
                 }
             </style>
-
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
                     <div class="page">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="oe_structure"/>
                         <t t-foreach="get_data" t-as="o">
                             <div class="header" style="margin-left:10%">
                                 <div class="row">
@@ -29,7 +32,9 @@
                             <div class="font">
                                 <div class="page">
                                     <div class="row text-center">
-                                        <h3><b>Hall Ticket</b></h3>
+                                        <h3>
+                                            <b>Hall Ticket</b>
+                                        </h3>
                                         (
                                         <span t-raw="'%s' % o['exam'] if o['exam'] else ''"/>
                                         <span t-raw="'%s' % o['exam_code'] if o['exam_code'] else ''"/>
@@ -100,6 +105,7 @@
                                 </div>
                             </div>
                         </t>
+                        <div class="oe_structure"/>
                     </div>
                 </t>
             </t>
