@@ -112,8 +112,10 @@ class OpStudentFeesDetails(models.Model):
 class OpStudent(models.Model):
     _inherit = "op.student"
 
-    fees_detail_ids = fields.One2many('op.student.fees.details', 'student_id',
-                                      'Fees Collection Details')
+    fees_detail_ids = fields.One2many('op.student.fees.details',
+                                      'student_id',
+                                      string='Fees Collection Details',
+                                      track_visibility='onchange')
 
     @api.multi
     def action_view_invoice(self):

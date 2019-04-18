@@ -34,6 +34,7 @@ class OpFeesTermsLine(models.Model):
 
 class OpFeesTerms(models.Model):
     _name = "op.fees.terms"
+    _inherit = "mail.thread"
     _description = "Fees Terms For Course"
 
     name = fields.Char('Fees Terms', required=True)
