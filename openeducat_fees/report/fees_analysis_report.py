@@ -23,7 +23,8 @@ from odoo import models, api
 
 
 class ReportFeesAnalysis(models.AbstractModel):
-    _name = 'report.openeducat_fees.report_fees_analysis'
+    _name = "report.openeducat_fees.report_fees_analysis"
+    _description = "Fees Report"
 
     def get_invoice_amount(self, student_id):
         total_amount = 0.0
