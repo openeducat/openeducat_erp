@@ -49,30 +49,39 @@ class OpStudentCourse(models.Model):
 class OpStudent(models.Model):
     _name = "op.student"
     _description = "Student"
+    _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
 
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128)
     birth_date = fields.Date('Birth Date')
-    blood_group = fields.Selection(
-        [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-         ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
-        'Blood Group')
-    gender = fields.Selection(
-        [('m', 'Male'), ('f', 'Female'),
-         ('o', 'Other')], 'Gender')
+    blood_group = fields.Selection([
+        ('A+', 'A+ve'),
+        ('B+', 'B+ve'),
+        ('O+', 'O+ve'),
+        ('AB+', 'AB+ve'),
+        ('A-', 'A-ve'),
+        ('B-', 'B-ve'),
+        ('O-', 'O-ve'),
+        ('AB-', 'AB-ve')
+    ], string='Blood Group')
+    gender = fields.Selection([
+        ('m', 'Male'),
+        ('f', 'Female'),
+        ('o', 'Other')
+    ], 'Gender', required=True)
     nationality = fields.Many2one('res.country', 'Nationality')
-    emergency_contact = fields.Many2one(
-        'res.partner', 'Emergency Contact')
+    emergency_contact = fields.Many2one('res.partner', 'Emergency Contact')
     visa_info = fields.Char('Visa Info', size=64)
     id_number = fields.Char('ID Card Number', size=64)
     already_partner = fields.Boolean('Already Partner')
-    partner_id = fields.Many2one(
-        'res.partner', 'Partner', required=True, ondelete="cascade")
+    partner_id = fields.Many2one('res.partner', 'Partner',
+                                 required=True, ondelete="cascade")
     gr_no = fields.Char("GR Number", size=20)
     category_id = fields.Many2one('op.category', 'Category')
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
-                                        'Course Details')
+                                        'Course Details',
+                                        track_visibility='onchange')
 
     _sql_constraints = [(
         'unique_gr_no',

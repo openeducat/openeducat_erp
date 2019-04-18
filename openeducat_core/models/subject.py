@@ -24,6 +24,7 @@ from odoo import models, fields, api, _
 
 class OpSubject(models.Model):
     _name = "op.subject"
+    _inherit = "mail.thread"
     _description = "Subject"
 
     name = fields.Char('Name', size=128, required=True)
