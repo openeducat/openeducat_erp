@@ -24,6 +24,7 @@ from odoo import models, fields
 
 class OpActivity(models.Model):
     _name = "op.activity"
+    _description = "Student Activity"
     _rec_name = "student_id"
     _inherit = ["mail.thread", "mail.activity.mixin"]
 
