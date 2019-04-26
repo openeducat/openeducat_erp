@@ -93,4 +93,3 @@ class OpExamSession(models.Model):
     @api.multi
     def act_cancel(self):
         self.state = 'cancel'
-
