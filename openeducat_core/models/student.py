@@ -69,7 +69,7 @@ class OpStudent(models.Model):
         ('m', 'Male'),
         ('f', 'Female'),
         ('o', 'Other')
-    ], 'Gender', required=True)
+    ], 'Gender', required=True, default='m')
     nationality = fields.Many2one('res.country', 'Nationality')
     emergency_contact = fields.Many2one('res.partner', 'Emergency Contact')
     visa_info = fields.Char('Visa Info', size=64)
