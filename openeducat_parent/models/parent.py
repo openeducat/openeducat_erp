@@ -31,6 +31,17 @@ class OpParent(models.Model):
     user_id = fields.Many2one('res.users', related='name.user_id',
                               string='User', store=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
+    mobile = fields.Char(string='Mobile', related='name.mobile')
+
+    _sql_constraints = [(
+        'unique_parent',
+        'unique(name)',
+        'Can not create parent multiple times.!'
+    )]
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        self.user_id = self.name.user_id and self.name.user_id.id or False
 
     @api.model
     def create(self, vals):
@@ -80,7 +91,6 @@ class OpParent(models.Model):
                     'child_ids': [(6, 0, user_ids)]
                 })
                 record.name.user_id = user_id
-
 
 class OpStudent(models.Model):
     _inherit = "op.student"
