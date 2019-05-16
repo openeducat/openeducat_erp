@@ -21,6 +21,7 @@
             <field name="arch" type="xml">
                 <tree string="Parent">
                     <field name="name"/>
+                    <field name="mobile" required="1"/>
                     <field name="student_ids" widget="many2many_tags"/>
                 </tree>
             </field>
@@ -43,6 +44,7 @@
                         <group col="4">
                             <field name="name" placeholder="Parent Name"/>
                             <field name="user_id" readonly="1"/>
+                            <field name="mobile" required="1"/>
                         </group>
                         <separator colspan="4" string="Student(s)"/>
                         <field name="student_ids"/>
