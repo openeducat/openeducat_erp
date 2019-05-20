@@ -92,6 +92,7 @@ class OpParent(models.Model):
                 })
                 record.name.user_id = user_id
 
+
 class OpStudent(models.Model):
     _inherit = "op.student"
 

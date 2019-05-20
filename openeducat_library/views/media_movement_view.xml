@@ -7,11 +7,13 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="media Movement">
+                    <field name="library_card_id"/>
+                    <field name="partner_id"/>
                     <field name="media_id"/>
                     <field name="media_unit_id"/>
-                    <field name="type"/>
-                    <field name="student_id"/>
-                    <field name="library_card_id"/>
+                    <field name="type" invisible="1"/>
+                    <field name="student_id" invisible="1"/>
+                    <field name="faculty_id" invisible="1"/>
                     <field name="issued_date"/>
                     <field name="return_date"/>
                     <field name="actual_return_date"/>
@@ -102,6 +104,8 @@
                                 domain="[]" context="{'group_by':'media_id'}"/>
                         <filter string="Student" name="group_by_lbr_media_mvmn_student"
                                 domain="[]" context="{'group_by':'student_id'}"/>
+                        <filter string="Faculty" name="group_by_lbr_media_mvmn_faculty"
+                                domain="[]" context="{'group_by':'faculty_id'}"/>
                         <filter string="Library Card" name="group_by_lbr_media_mvmn_library_card"
                                 domain="[]" context="{'group_by':'library_card_id'}"/>
                         <filter string="Issued Date" name="group_by_lbr_media_mvmn_issue_date"

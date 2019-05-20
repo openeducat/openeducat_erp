@@ -66,7 +66,7 @@ class OpMediaMovement(models.Model):
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
     user_id = fields.Many2one(
-        'res.users', related='student_id.user_id', string='Users')
+        'res.users', string='Users')
     invoice_id = fields.Many2one('account.invoice', 'Invoice', readonly=True)
 
     @api.multi
@@ -99,10 +99,16 @@ class OpMediaMovement(models.Model):
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
         self.type = self.library_card_id.type
-        self.student_id = self.library_card_id.student_id.id or False
-        self.faculty_id = self.library_card_id.faculty_id.id or False
         self.return_date = self.issued_date + timedelta(
             days=self.library_card_id.library_card_type_id.duration)
+        if self.type == 'student':
+            self.student_id = self.library_card_id.student_id.id or False
+            self.partner_id = self.student_id.partner_id.id or False
+            self.user_id = self.student_id.user_id.id or False
+        else:
+            self.faculty_id = self.library_card_id.faculty_id.id or False
+            self.partner_id = self.faculty_id.partner_id.id or False
+            self.user_id = self.faculty_id.user_id.id or False
 
     @api.onchange('issued_date')
     def onchange_issued_date(self):
