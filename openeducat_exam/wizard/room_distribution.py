@@ -47,7 +47,8 @@ class OpRoomDistribution(models.TransientModel):
             record.room_capacity = room_capacity
 
     exam_id = fields.Many2one('op.exam', 'Exam(s)')
-    subject_id = fields.Many2one('op.subject', 'Subject')
+    subject_id = fields.Many2one('op.subject', 'Subject',
+                                 related="exam_id.subject_id")
     name = fields.Char("Exam")
     start_time = fields.Datetime("Start Time")
     end_time = fields.Datetime("End Time")
@@ -94,19 +95,18 @@ class OpRoomDistribution(models.TransientModel):
 
     @api.multi
     def schedule_exam(self):
+        attendance = self.env['op.exam.attendees']
         for exam in self:
             if exam.total_student > exam.room_capacity:
                 raise exceptions.AccessError(
                     _("Room capacity must be greater than total number \
                       of student"))
-            student_ids = []
-            for student in exam.student_ids:
-                student_ids.append(student.id)
+            student_ids = exam.student_ids.ids
             for room in exam.room_ids:
                 for i in range(room.capacity):
                     if not student_ids:
                         continue
-                    self.env['op.exam.attendees'].create({
+                    attendance.create({
                         'exam_id': exam.exam_id.id,
                         'student_id': student_ids[0],
                         'status': 'present',
