@@ -63,3 +63,9 @@ class OpResultLine(models.Model):
             record.status = 'pass'
             if record.marks < record.exam_id.min_marks:
                 record.status = 'fail'
+
+    @api.multi
+    def unlink(self):
+        for res in self:
+            super(OpResultLine, res).unlink()
+        return self
