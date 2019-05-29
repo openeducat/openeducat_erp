@@ -40,7 +40,7 @@ class OpMediaMovement(models.Model):
     media_id = fields.Many2one('op.media', 'Media', required=True)
     media_unit_id = fields.Many2one(
         'op.media.unit', 'Media Unit', required=True,
-        track_visibility='onchange')
+        track_visibility='onchange', domain=[('state', '=', 'available')])
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Student/Faculty', required=True)
