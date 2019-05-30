@@ -74,7 +74,6 @@ class OpStudent(models.Model):
     emergency_contact = fields.Many2one('res.partner', 'Emergency Contact')
     visa_info = fields.Char('Visa Info', size=64)
     id_number = fields.Char('ID Card Number', size=64)
-    already_partner = fields.Boolean('Already Partner')
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
     gr_no = fields.Char("GR Number", size=20)
