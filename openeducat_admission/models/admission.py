@@ -260,6 +260,7 @@ class OpAdmission(models.Model):
                         student.batch_id and student.batch_id.id or False,
                 }]],
                 'user_id': student_user.id,
+                'partner_id': student_user.partner_id.id,
             })
             return details
 
@@ -276,8 +277,7 @@ class OpAdmission(models.Model):
                     raise ValidationError(_(msg))
             if not record.student_id:
                 vals = record.get_student_vals()
-                record.partner_id = self.env['res.users'].browse(
-                    vals.get('user_id')).partner_id.id
+                record.partner_id = vals.get('partner_id')
                 student_id = self.env['op.student'].create(vals).id
             else:
                 student_id = record.student_id.id
@@ -306,7 +306,7 @@ class OpAdmission(models.Model):
                         'state': 'draft',
                     }
                     val.append([0, False, dict_val])
-                self.env['op.student'].browse(student_id).write({
+                record.student_id.write({
                     'fees_detail_ids': val
                 })
             record.write({
@@ -314,6 +314,7 @@ class OpAdmission(models.Model):
                 'state': 'done',
                 'admission_date': fields.Date.today(),
                 'student_id': student_id,
+                'is_student': True,
             })
             reg_id = self.env['op.subject.registration'].create({
                 'student_id': student_id,
