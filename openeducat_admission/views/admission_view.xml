@@ -7,16 +7,15 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Registration">
+                    <field name="application_number"/>
                     <field name="title"/>
                     <field name="name"/>
                     <field name="middle_name"/>
                     <field name="last_name"/>
-                    <field name="application_number"/>
                     <field name="admission_date"/>
                     <field name="application_date"/>
-                    <field name="birth_date"/>
                     <field name="course_id"/>
-                    <field name="batch_id"/>
+                    <field name="batch_id" invisible="1"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -154,8 +153,6 @@
                     <newline/>
                     <filter name="enrolled_student" string="Enrolled" domain="[('state','=','done')]"/>
                     <group expand="0" string="Group By...">
-                        <filter string="Last Name" name="group_by_adm_last_name"
-                                domain="[]" context="{'group_by':'last_name'}"/>
                         <filter string="Admission Date" name="group_by_adm_admission_date"
                                 domain="[]" context="{'group_by':'admission_date'}"/>
                         <filter string="Application Date" name="group_by_adm_application_date"
@@ -166,6 +163,9 @@
                                 domain="[]" context="{'group_by':'batch_id'}"/>
                         <filter string="Status" name="group_by_adm_state"
                                 domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Register" name="group_by_adm_register"
+                                domain="[('register_id.state', 'not in', ['cancel', 'done'])]"
+                                context="{'group_by':'register_id'}"/>
                     </group>
                 </search>
             </field>

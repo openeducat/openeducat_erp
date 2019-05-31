@@ -30,8 +30,8 @@ class OpAdmission(models.Model):
     _name = "op.admission"
     _inherit = "mail.thread"
     _rec_name = "application_number"
-    _order = "application_number desc"
     _description = "Admission"
+    _order = 'id DESC'
 
     name = fields.Char(
         'First Name', size=128, required=True,

@@ -28,6 +28,7 @@ class OpAdmissionRegister(models.Model):
     _name = "op.admission.register"
     _inherit = "mail.thread"
     _description = "Admission Register"
+    _order = 'id DESC'
 
     name = fields.Char(
         'Name', required=True, readonly=True,
