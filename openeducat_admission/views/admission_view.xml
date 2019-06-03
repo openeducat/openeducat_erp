@@ -28,24 +28,15 @@
             <field name="arch" type="xml">
                 <form string="Registration">
                     <header groups="base.group_user">
-                        <button string="Submit" states="draft" class="oe_highlight"
-                                type="object" name="submit_form"/>
-                        <button name="confirm_in_progress" states="submit" string="Confirm"
-                                type="object" class="oe_highlight"/>
-                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object"
-                                name="admission_confirm"/>
-                        <button name="enroll_student" states="admission" string="Enroll"
-                                type="object" class="oe_highlight"/>
-                        <button name="confirm_rejected" states="payment_process,fees_paid,,pending" string="Reject"
-                                type="object"/>
-                        <button name="confirm_pending" states="fees_paid" string="Pending"
-                                type="object"/>
-                        <button name="confirm_cancel" states="draft,confirm" string="Cancel"
-                                type="object"/>
-                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft"
-                                type="object"/>
-                        <button name="open_student" states="done" string="Open Student Profile"
-                                type="object"/>
+                        <button string="Submit" states="draft" class="oe_highlight" type="object" name="submit_form"/>
+                        <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object" class="oe_highlight"/>
+                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object" name="admission_confirm"/>
+                        <button name="enroll_student" states="admission" string="Enroll" type="object" class="oe_highlight"/>
+                        <button name="confirm_rejected" states="confirm,confirm_pending" string="Reject" type="object"/>
+                        <button name="confirm_pending" states="submit" string="Pending" type="object"/>
+                        <button name="confirm_cancel" string="Cancel" type="object"/>
+                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft" type="object"/>
+                        <button name="open_student" states="done" string="Open Student Profile" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                     </header>
                     <sheet>
