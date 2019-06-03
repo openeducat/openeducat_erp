@@ -34,11 +34,14 @@ class OpStudentFeesDetails(models.Model):
     product_id = fields.Many2one('product.product', 'Product')
     student_id = fields.Many2one('op.student', 'Student')
     state = fields.Selection([
-        ('draft', 'Draft'), ('invoice', 'Invoice Created')], 'Status')
+        ('draft', 'Draft'),
+        ('invoice', 'Invoice Created'),
+        ('cancel', 'Cancel')
+    ], string='Status', copy=False)
     invoice_state = fields.Selection([
         ('draft', 'Draft'), ('proforma', 'Pro-forma'),
         ('proforma2', 'Pro-forma'), ('open', 'Open'),
-        ('paid', 'Paid'), ('cancel', 'Cancelled')], 'State',
+        ('paid', 'Paid'), ('cancel', 'Cancelled')], 'Invoice',
         related="invoice_id.state", readonly=True)
 
     @api.multi
