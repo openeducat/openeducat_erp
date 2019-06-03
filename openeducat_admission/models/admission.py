@@ -20,8 +20,8 @@
 ##############################################################################
 
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
+from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
 
@@ -151,10 +151,6 @@ class OpAdmission(models.Model):
             self.state_id = sd.state_id and sd.state_id.id or False
             self.partner_id = sd.partner_id and sd.partner_id.id or False
         else:
-            self.title = ''
-            self.name = ''
-            self.middle_name = ''
-            self.last_name = ''
             self.birth_date = ''
             self.gender = ''
             self.image = False
@@ -278,7 +274,8 @@ class OpAdmission(models.Model):
             if not record.student_id:
                 vals = record.get_student_vals()
                 record.partner_id = vals.get('partner_id')
-                student_id = self.env['op.student'].create(vals).id
+                record.student_id = student_id = self.env[
+                    'op.student'].create(vals).id
             else:
                 student_id = record.student_id.id
                 record.student_id.write({
@@ -341,6 +338,8 @@ class OpAdmission(models.Model):
     @api.multi
     def confirm_cancel(self):
         self.state = 'cancel'
+        if self.is_student and self.student_id.fees_detail_ids:
+            self.student_id.fees_detail_ids.state = 'cancel'
 
     @api.multi
     def payment_process(self):
@@ -372,7 +371,6 @@ class OpAdmission(models.Model):
 
         inv_obj = self.env['account.invoice']
         partner_id = self.env['res.partner'].create({'name': self.name})
-
         account_id = False
         product = self.register_id.product_id
         if product.id:
@@ -384,14 +382,11 @@ class OpAdmission(models.Model):
                 _('There is no income account defined for this product: "%s". \
                    You may have to install a chart of account from Accounting \
                    app, settings menu.') % (product.name,))
-
         if self.fees <= 0.00:
             raise UserError(
                 _('The value of the deposit amount must be positive.'))
-        else:
-            amount = self.fees
-            name = product.name
-
+        amount = self.fees
+        name = product.name
         invoice = inv_obj.create({
             'name': self.name,
             'origin': self.application_number,
@@ -411,7 +406,6 @@ class OpAdmission(models.Model):
             })],
         })
         invoice.compute_taxes()
-
         form_view = self.env.ref('account.invoice_form')
         tree_view = self.env.ref('account.invoice_tree')
         value = {
