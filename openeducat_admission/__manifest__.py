@@ -29,12 +29,15 @@
     'complexity': "easy",
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'openeducat_fees'],
+    'depends': [
+        'openeducat_core',
+        'openeducat_fees'
+    ],
     'data': [
         'security/ir.model.access.csv',
+        'data/admission_sequence.xml',
         'views/admission_register_view.xml',
         'views/admission_view.xml',
-        'views/admission_sequence.xml',
         'report/report_admission_analysis.xml',
         'report/report_menu.xml',
         'wizard/admission_analysis_wizard_view.xml',
