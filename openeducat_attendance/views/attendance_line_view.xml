@@ -53,7 +53,12 @@
                     <field name="attendance_id"/>
                     <field name="student_id"/>
                     <field name="present"/>
-                    <newline/>
+                    <filter string="Present" name="group_by_attendance_present"
+                            domain="[('present', '=', True)]"/>
+                    <filter string="Absent" name="group_by_attendance_absent"
+                            domain="[('present', '=', False)]"/>
+                    <filter string="Today" name="group_by_attendance_today"
+                            domain="[('attendance_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
                     <group expand="0" string="Group By...">
                         <filter string="Attendance" name="group_by_attendance"
                                 domain="[]" context="{'group_by':'attendance_id'}"/>
@@ -65,6 +70,8 @@
                                 domain="[]" context="{'group_by':'student_id'}"/>
                         <filter string="Present ?" name="group_by_attendance_present"
                                 domain="[]" context="{'group_by':'present'}"/>
+                        <filter string="Date" name="group_by_attendance_date"
+                                domain="[]" context="{'group_by':'attendance_date'}"/>
                     </group>
                 </search>
             </field>

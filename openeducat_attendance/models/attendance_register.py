@@ -26,6 +26,7 @@ class OpAttendanceRegister(models.Model):
     _name = "op.attendance.register"
     _inherit = ["mail.thread"]
     _description = "Attendance Register"
+    _order = "id DESC"
 
     name = fields.Char(
         'Name', size=16, required=True, track_visibility='onchange')
