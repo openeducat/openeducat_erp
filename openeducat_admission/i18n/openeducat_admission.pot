@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 06:37+0000\n"
-"PO-Revision-Date: 2015-09-29 06:37+0000\n"
+"POT-Creation-Date: 2019-06-05 06:12+0000\n"
+"PO-Revision-Date: 2019-06-05 06:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,40 +16,117 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.model.fields,help:openeducat_admission.field_op_student_fees_details_invoice_state
+msgid " * The 'Draft' status is used when a user is encoding a new and unconfirmed Invoice.\n"
+" * The 'Open' status is used when user creates invoice, an invoice number is generated. It stays in the open status till the user pays the invoice.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
+msgid "<b>Course : </b>"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
+msgid "<b>From Date: </b>"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
+msgid "<b>To Date:</b>"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
+msgid "<strong>Admission Analysis</strong>"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
+msgid "<strong>Total Number of Students :</strong>"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.menu,name:openeducat_admission.menu_op_admission_submenu
+msgid "ADMISSIONS"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Address"
 msgstr ""
 
 #. module: openeducat_admission
 #: model:ir.model,name:openeducat_admission.model_op_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: view:op.admission:openeducat_admission.view_op_admission_tree
 msgid "Admission"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:admission.analysis:openeducat_admission.admission_analysis_form
-#: model:ir.actions.report.xml,name:openeducat_admission.action_report_report_admission_analysis
+#: model:ir.actions.act_window,name:openeducat_admission.act_open_op_admission_view_pivot
+#: model:ir.actions.report,name:openeducat_admission.action_report_report_admission_analysis
 #: model:ir.ui.menu,name:openeducat_admission.menu_admission_analysis
-#: view:website:openeducat_admission.report_admission_analysis
+#: model:ir.ui.view,arch_db:openeducat_admission.admission_analysis_form
 msgid "Admission Analysis"
 msgstr ""
 
 #. module: openeducat_admission
 #: model:ir.actions.act_window,name:openeducat_admission.admission_analysis_act
+#: model:ir.ui.menu,name:openeducat_admission.menu_admission_analysis_report
 msgid "Admission Analysis Report"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: field:op.admission,admission_date:0
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+#: selection:op.admission,state:0
+msgid "Admission Confirm"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_admission_date
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
 msgid "Admission Date"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Admission Detail"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:product.category,name:openeducat_admission.op_prod_cat1
+msgid "Admission Fees"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:product.product,name:openeducat_admission.op_product_1
+#: model:product.template,name:openeducat_admission.op_product_1_product_template
+msgid "Admission Fees for BOA"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:product.product,name:openeducat_admission.op_product_2
+#: model:product.template,name:openeducat_admission.op_product_2_product_template
+msgid "Admission Fees for G8-AR"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:product.product,name:openeducat_admission.op_product_6
+#: model:product.template,name:openeducat_admission.op_product_6_product_template
+msgid "Admission Fees for Grade-8"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:product.product,name:openeducat_admission.op_product_3
+#: model:product.template,name:openeducat_admission.op_product_3_product_template
+msgid "Admission Fees for LTRP"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:product.product,name:openeducat_admission.op_product_4
+#: model:product.template,name:openeducat_admission.op_product_4_product_template
+msgid "Admission Fees for PPHD"
 msgstr ""
 
 #. module: openeducat_admission
@@ -59,10 +136,11 @@ msgstr ""
 
 #. module: openeducat_admission
 #: model:ir.model,name:openeducat_admission.model_op_admission_register
-#: field:op.admission,register_id:0
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_search
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_tree
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_id
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_pivot
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_search
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_tree
 msgid "Admission Register"
 msgstr ""
 
@@ -73,17 +151,26 @@ msgid "Admission Registers"
 msgstr ""
 
 #. module: openeducat_admission
-#: model:ir.actions.act_window,name:openeducat_admission.act_open_op_admission_view
-#: model:ir.ui.menu,name:openeducat_admission.menu_admission
-#: model:ir.ui.menu,name:openeducat_admission.menu_admission_main
-#: field:op.admission.register,admission_ids:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_admission_ids
+#: model:ir.ui.menu,name:openeducat_admission.menu_op_admission_root
 msgid "Admissions"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: field:op.admission,application_date:0
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+msgid "Already Student"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_application_date
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
 msgid "Application Date"
+msgstr ""
+
+#. module: openeducat_admission
+#: code:addons/openeducat_admission/models/admission.py:190
+#, python-format
+msgid "Application Date should be between Start Date &                     End Date of Admission Register."
 msgstr ""
 
 #. module: openeducat_admission
@@ -92,35 +179,47 @@ msgid "Application Gathering"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:website:openeducat_admission.report_admission_analysis
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
 msgid "Application No."
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,application_number:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_application_number
 msgid "Application Number"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
+#: sql_constraint:op.admission:0
+msgid "Application Number must be unique per Application!"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.menu,name:openeducat_admission.menu_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
 msgid "Applications"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: field:op.admission,batch_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_batch_id
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
 msgid "Batch"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,birth_date:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_birth_date
 msgid "Birth Date"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:admission.analysis:openeducat_admission.admission_analysis_form
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
+#: code:addons/openeducat_admission/models/admission.py:199
+#, python-format
+msgid "Birth Date can't be greater than current date!"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.admission_analysis_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
 msgid "Cancel"
 msgstr ""
 
@@ -131,14 +230,14 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,city:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_city
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "City"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
 msgid "Confirm"
 msgstr ""
 
@@ -149,58 +248,59 @@ msgid "Confirmed"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,country_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_country_id
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Country"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:admission.analysis,course_id:0
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: field:op.admission,course_id:0
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_search
-#: field:op.admission.register,course_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_course_id
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_course_id
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_course_id
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_search
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
 msgid "Course"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:website:openeducat_admission.report_admission_analysis
-msgid "Course :"
-msgstr ""
-
-#. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_graph
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_graph
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_pivot
 msgid "Course By Admission"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_student_inherit_admission_form
 msgid "Create Invoice"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:admission.analysis,create_uid:0
-#: field:op.admission,create_uid:0
-#: field:op.admission.register,create_uid:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_create_uid
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_create_uid
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_create_uid
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:admission.analysis,create_date:0
-#: field:op.admission,create_date:0
-#: field:op.admission.register,create_date:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_create_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_create_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_create_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_create_date
 msgid "Created on"
 msgstr ""
 
 #. module: openeducat_admission
-#: help:op.admission,message_last_post:0
-#: help:op.admission.register,message_last_post:0
-msgid "Date of the last message posted on the record."
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_display_name
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_display_name
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_display_name
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_display_name
+#: model:ir.model.fields,field_description:openeducat_admission.field_report_openeducat_admission_report_admission_analysis_display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
 #: selection:op.admission,state:0
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
 #: selection:op.admission.register,state:0
 msgid "Done"
 msgstr ""
@@ -208,54 +308,99 @@ msgstr ""
 #. module: openeducat_admission
 #: selection:op.admission,state:0
 #: selection:op.admission.register,state:0
+#: selection:op.student.fees.details,state:0
 msgid "Draft"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,due_date:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_due_date
 msgid "Due Date"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Educational Detail"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,email:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_email
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Email"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:admission.analysis,end_date:0
-#: field:op.admission.register,end_date:0
+#: sql_constraint:op.admission:0
+msgid "Email must be unique per Application!"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_end_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_end_date
 msgid "End Date"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: code:addons/openeducat_admission/models/admission_register.py:71
+#, python-format
+msgid "End Date cannot be set before                 Start Date."
+msgstr ""
+
+#. module: openeducat_admission
+#: code:addons/openeducat_admission/wizard/admission_analysis_wizard.py:42
+#, python-format
+msgid "End Date cannot be set before             Start Date."
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Enroll"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,family_business:0
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
+msgid "Enrolled"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_family_business
 msgid "Family Business"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,family_income:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_family_income
 msgid "Family Income"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,fees:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_fees
 msgid "Fees"
 msgstr ""
 
 #. module: openeducat_admission
-#: selection:op.admission,state:0
-msgid "Fees Paid"
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_amount
+msgid "Fees Amount"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_detail_ids
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_student_inherit_admission_form
+msgid "Fees Collection Details"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_fees_line_id
+msgid "Fees Line"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_fees_term_id
+msgid "Fees Term"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:product.product,name:openeducat_admission.op_product_5
+#: model:product.template,name:openeducat_admission.op_product_5_product_template
+msgid "Fees for IELTS"
 msgstr ""
 
 #. module: openeducat_admission
@@ -264,89 +409,81 @@ msgid "Female"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,name:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_name
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "First Name"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,message_follower_ids:0
-#: field:op.admission.register,message_follower_ids:0
-msgid "Followers"
-msgstr ""
-
-#. module: openeducat_admission
-#: view:website:openeducat_admission.report_admission_analysis
-msgid "From"
-msgstr ""
-
-#. module: openeducat_admission
-#: field:op.admission,gender:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_gender
 msgid "Gender"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_search
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_search
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
 msgid "Group By..."
 msgstr ""
 
 #. module: openeducat_admission
-#: help:op.admission,message_summary:0
-#: help:op.admission.register,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr ""
-
-#. module: openeducat_admission
-#: field:admission.analysis,id:0
-#: field:op.admission,id:0
-#: field:op.admission.register,id:0
-#: field:report.openeducat_admission.report_admission_analysis,id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_id
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_id
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_id_4917
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_id
+#: model:ir.model.fields,field_description:openeducat_admission.field_report_openeducat_admission_report_admission_analysis_id
 msgid "ID"
 msgstr ""
 
 #. module: openeducat_admission
-#: help:op.admission,message_unread:0
-#: help:op.admission.register,message_unread:0
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_invoice_id
+msgid "Invoice"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,message_is_follower:0
-#: field:op.admission.register,message_is_follower:0
-msgid "Is a Follower"
+#: selection:op.student.fees.details,state:0
+msgid "Invoice Created"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,message_last_post:0
-#: field:op.admission.register,message_last_post:0
-msgid "Last Message Date"
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_is_student
+msgid "Is Already Student"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: field:op.admission,last_name:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis___last_update
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission___last_update
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register___last_update
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details___last_update
+#: model:ir.model.fields,field_description:openeducat_admission.field_report_openeducat_admission_report_admission_analysis___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_last_name
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
 msgid "Last Name"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:admission.analysis,write_uid:0
-#: field:op.admission,write_uid:0
-#: field:op.admission.register,write_uid:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_write_uid
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_write_uid
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_write_uid
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:admission.analysis,write_date:0
-#: field:op.admission,write_date:0
-#: field:op.admission.register,write_date:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_write_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_write_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_write_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:website:openeducat_admission.report_admission_analysis
-msgid "Mail:"
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
+msgid "Mail :"
 msgstr ""
 
 #. module: openeducat_admission
@@ -355,51 +492,51 @@ msgid "Male"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission.register,max_count:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_max_count
 msgid "Maximum No. of Admission"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,message_ids:0
-#: field:op.admission.register,message_ids:0
-msgid "Messages"
-msgstr ""
-
-#. module: openeducat_admission
-#: help:op.admission,message_ids:0
-#: help:op.admission.register,message_ids:0
-msgid "Messages and communication history"
-msgstr ""
-
-#. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,middle_name:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_middle_name
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Middle Name"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission.register,min_count:0
+#: code:addons/openeducat_admission/models/admission_register.py:81
+#, python-format
+msgid "Min Admission can't be greater than Max Admission"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_min_count
 msgid "Minimum No. of Admission"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,mobile:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_mobile
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Mobile"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission.register,name:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_name
 msgid "Name"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,nbr:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_nbr
 msgid "No of Admission"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: code:addons/openeducat_admission/models/admission_register.py:79
+#, python-format
+msgid "No of Admission should be positive!"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Open Student Profile"
 msgstr ""
 
@@ -409,74 +546,74 @@ msgid "Other"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,partner_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_partner_id
 msgid "Partner"
 msgstr ""
 
 #. module: openeducat_admission
-#: selection:op.admission,state:0
-msgid "Payment Process"
-msgstr ""
-
-#. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 #: selection:op.admission,state:0
 msgid "Pending"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Personal Detail"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,phone:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_phone
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Phone"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:website:openeducat_admission.report_admission_analysis
-msgid "Phone:"
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
+msgid "Phone :"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,photo:0
-msgid "Photo"
+#: code:addons/openeducat_admission/models/admission.py:214
+#, python-format
+msgid "Please assign batch."
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,prev_course_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_prev_course_id
 msgid "Previous Course"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,prev_institute_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_prev_institute_id
 msgid "Previous Institute"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,prev_result:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_prev_result
 msgid "Previous Result"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:admission.analysis:openeducat_admission.admission_analysis_form
+#: model:ir.ui.view,arch_db:openeducat_admission.admission_analysis_form
 msgid "Print"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-msgid "Processed"
-msgstr ""
-
-#. module: openeducat_admission
-#: field:op.admission.register,product_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_product_id
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_product_id
 msgid "Product"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.actions.act_window,name:openeducat_admission.act_open_op_admission_view
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_tree
+msgid "Registration"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Reject"
 msgstr ""
 
@@ -486,117 +623,151 @@ msgid "Rejected"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
 msgid "Set to Draft"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
 msgid "Start Admission"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_form
 msgid "Start Application"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:admission.analysis,start_date:0
-#: field:op.admission.register,start_date:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_admission_analysis_start_date
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_start_date
 msgid "Start Date"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,state:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_state
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_invoice_state
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "State"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,state_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_state_id
 msgid "States"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_search
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_search
-#: field:op.admission.register,state:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register_state
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_state
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_search
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
 msgid "Status"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,street:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_street
 msgid "Street"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Street..."
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,street2:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_street2
 msgid "Street2"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,student_id:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_student_id
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_student_id
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Student"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:website:openeducat_admission.report_admission_analysis
+#: model:ir.model,name:openeducat_admission.model_op_student_fees_details
+msgid "Student Fees Details"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.report_admission_analysis
 msgid "Student Name"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,message_summary:0
-#: field:op.admission.register,message_summary:0
-msgid "Summary"
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+msgid "Submit"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
-#: field:op.admission,title:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_fees_details_date
+msgid "Submit Date"
+msgstr ""
+
+#. module: openeducat_admission
+#: selection:op.admission,state:0
+msgid "Submitted"
+msgstr ""
+
+#. module: openeducat_admission
+#: code:addons/openeducat_admission/models/admission.py:377
+#: code:addons/openeducat_admission/models/student.py:64
+#, python-format
+msgid "The value of the deposit amount must be                              positive."
+msgstr ""
+
+#. module: openeducat_admission
+#: code:addons/openeducat_admission/models/admission.py:372
+#: code:addons/openeducat_admission/models/student.py:59
+#, python-format
+msgid "There is no income account defined for this product: \"%s\".                    You may have to install a chart of account from Accounting                    app, settings menu."
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_title
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Title"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:website:openeducat_admission.report_admission_analysis
-msgid "Total Number Of Students :"
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_student_inherit_admission_form
+msgid "View Invoice"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,message_unread:0
-#: field:op.admission.register,message_unread:0
-msgid "Unread Messages"
-msgstr ""
-
-#. module: openeducat_admission
-#: field:op.admission,website_message_ids:0
-#: field:op.admission.register,website_message_ids:0
-msgid "Website Messages"
-msgstr ""
-
-#. module: openeducat_admission
-#: help:op.admission,website_message_ids:0
-#: help:op.admission.register,website_message_ids:0
-msgid "Website communication history"
-msgstr ""
-
-#. module: openeducat_admission
-#: view:op.admission:openeducat_admission.view_op_admission_form
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "ZIP"
 msgstr ""
 
 #. module: openeducat_admission
-#: field:op.admission,zip:0
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_zip
 msgid "Zip"
 msgstr ""
 
 #. module: openeducat_admission
-#: view:op.admission.register:openeducat_admission.view_op_admission_register_search
+#: model:ir.model,name:openeducat_admission.model_admission_analysis
+msgid "admission.analysis"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_image
+msgid "image"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model,name:openeducat_admission.model_op_student
+msgid "op.student"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_search
 msgid "product"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model,name:openeducat_admission.model_report_openeducat_admission_report_admission_analysis
+msgid "report.openeducat_admission.report_admission_analysis"
 msgstr ""
 
