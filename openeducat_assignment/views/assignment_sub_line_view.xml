@@ -45,7 +45,7 @@
                             <field name="submission_date"/>
                             <field name="user_boolean" invisible="1"/>
                             <field name="marks"
-                                   attrs="{'readonly':[('state','=','accept')], 'invisible': [('user_boolean', '=', False), ('state','!=','accept')]}"/>
+                                   attrs="{'readonly':[('state','=','accept')], 'invisible':[('user_boolean','=',False),('state','!=','accept')]}"/>
                         </group>
                         <group string="Description">
                             <field name="description" nolabel="1"/>
@@ -88,20 +88,15 @@
                     <field name="state"/>
                     <field name="submission_date"/>
                     <field name="note"/>
-                    <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Assignment" domain="[]" name="group_by_assignment_id"
                                 context="{'group_by':'assignment_id'}"/>
                         <filter string="Student" domain="[]" name="group_by_assignment_student_id"
                                 context="{'group_by':'student_id'}"/>
-                        <filter string="Description" domain="[]" name="group_by_assignment_description"
-                                context="{'group_by':'description'}"/>
                         <filter string="State" domain="[]" name="group_by_assignment_state"
                                 context="{'group_by':'state'}"/>
                         <filter string="Submission Date" domain="[]" name="group_by_assignment_submission"
                                 context="{'group_by':'submission_date'}"/>
-                        <filter string="Note" domain="[]" name="group_by_assignment_note"
-                                context="{'group_by':'note'}"/>
                         <filter string="Marks" domain="[]" name="group_by_assignment_marks"
                                 context="{'group_by':'marks'}"/>
                     </group>
@@ -116,8 +111,6 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_assignment_sub_line_search"/>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_assignment_sub_line_view_form">
