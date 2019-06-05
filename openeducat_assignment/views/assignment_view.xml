@@ -13,13 +13,13 @@
                     <field name="subject_id"/>
                     <field name="faculty_id"/>
                     <field name="reviewer"/>
-                    <field name="marks"/>
-                    <field name="assignment_type_id"/>
-                    <field name="state"/>
+                    <field name="assignment_type_id" string="Type"/>
                     <field name="issued_date"/>
                     <field name="submission_date"/>
-                    <field name="allocation_ids"/>
-                    <field name="assignment_sub_line"/>
+                    <field name="allocation_ids" invisible="1"/>
+                    <field name="assignment_sub_line" invisible="1"/>
+                    <field name="marks"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -34,18 +34,23 @@
                         <button name="act_publish" states="draft"
                                 type="object" string="Publish"
                                 class="oe_highlight" groups="openeducat_core.group_op_faculty"/>
+                        <button name="act_set_to_draft" states="publish"
+                                type="object" string="Set to Draft"
+                                class="oe_highlight" groups="openeducat_core.group_op_faculty"/>
                         <button name="act_finish" class="oe_highlight"
                                 states="publish" type="object" string="Finish"
                                 groups="openeducat_core.group_op_faculty"/>
-                        <field name="state" widget="statusbar"
-                               statusbar_visible="draft,publish,finish"/>
+                        <button name="act_cancel" states="publish"
+                                type="object" string="Cancel"
+                                groups="openeducat_core.group_op_faculty"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,publish,finish"/>
                     </header>
                     <sheet>
                         <div>
                             <h1>
                                 <field name="name" placeholder="Assignment Name"
                                        attrs="{'readonly':[('state','!=','draft')]}"
-                                       style="width: 100%%"/>
+                                       style="width: 100%"/>
                             </h1>
                         </div>
                         <group colspan="4" col="4">
@@ -76,7 +81,6 @@
                                         <field name="name"/>
                                         <field name="middle_name"/>
                                         <field name="last_name"/>
-                                        <field name="course_detail_ids"/>
                                     </tree>
                                 </field>
                             </page>
@@ -118,7 +122,6 @@
                     <field name="issued_date"/>
                     <field name="submission_date"/>
                     <field name="allocation_ids"/>
-                    <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Name" domain="[]" name="group_by_assignment_name"
                                 context="{'group_by':'name'}"/>
@@ -152,8 +155,6 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_assignment_search"/>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_assignment_view_form">

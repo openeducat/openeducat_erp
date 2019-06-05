@@ -28,6 +28,7 @@ class OpAssignmentSubLine(models.Model):
     _inherit = "mail.thread"
     _rec_name = "assignment_id"
     _description = "Assignment Submission"
+    _order = "submission_date DESC"
 
     @api.multi
     def get_user_group(self):
@@ -49,9 +50,9 @@ class OpAssignmentSubLine(models.Model):
         default=lambda self: self.env['op.student'].search(
             [('user_id', '=', self.env.uid)]), required=True)
     description = fields.Text('Description', track_visibility='onchange')
-    state = fields.Selection(
-        [('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
-         ('change', 'Change Req.'), ('accept', 'Accepted')], 'State',
+    state = fields.Selection([
+        ('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
+        ('change', 'Change Req.'), ('accept', 'Accepted')], basestring='State',
         default='draft', track_visibility='onchange')
     submission_date = fields.Datetime(
         'Submission Date', readonly=True,
