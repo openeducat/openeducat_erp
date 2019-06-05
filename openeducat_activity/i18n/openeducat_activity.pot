@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-28 11:50+0000\n"
-"PO-Revision-Date: 2015-09-28 11:50+0000\n"
+"POT-Creation-Date: 2019-06-05 06:12+0000\n"
+"PO-Revision-Date: 2019-06-05 06:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: openeducat_activity
-#: view:op.activity:openeducat_activity.view_op_activity_form
-#: view:op.activity:openeducat_activity.view_op_activity_search
-#: view:op.activity:openeducat_activity.view_op_activity_tree
-#: view:op.student:openeducat_activity.view_op_student_form_timetable_inherit
-#: field:op.student,activity_log:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student_activity_log
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_activity_form
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_activity_search
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_activity_tree
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_student_form_timetable_inherit
 msgid "Activity Log"
 msgstr ""
 
@@ -31,10 +31,10 @@ msgid "Activity Logs"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,type_id:0
-#: view:op.activity.type:openeducat_activity.view_op_activity_type_form
-#: view:op.activity.type:openeducat_activity.view_op_activity_type_search
-#: view:op.activity.type:openeducat_activity.view_op_activity_type_tree
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_id
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_form
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_search
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_tree
 msgid "Activity Type"
 msgstr ""
 
@@ -45,95 +45,163 @@ msgid "Activity Types"
 msgstr ""
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:50
+#, python-format
+msgid "Can't migrate, As selected courses don't                         share same parent course!"
+msgstr ""
+
+#. module: openeducat_activity
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:54
+#, python-format
+msgid "Can't migrate, Proceed for new admission"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Cancel"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,create_uid:0
-#: field:op.activity.type,create_uid:0
-#: field:student.migrate,create_uid:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_create_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_create_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,create_date:0
-#: field:op.activity.type,create_date:0
-#: field:student.migrate,create_date:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_create_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_create_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_create_date
 msgid "Created on"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,date:0
-#: field:student.migrate,date:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_date
 msgid "Date"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,faculty_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_description
+#: model:ir.ui.view,arch_db:openeducat_activity.view_op_activity_form
+msgid "Description"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_display_name
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_display_name
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_faculty_id
 msgid "Faculty"
 msgstr ""
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
+#: model:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Forward"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:student.migrate,course_from_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_course_from_id
 msgid "From Course"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,id:0
-#: field:op.activity.type,id:0
-#: field:student.migrate,id:0
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:44
+#, python-format
+msgid "From Course must not be same                 as To Course!"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_id
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_id_4686
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_id
 msgid "ID"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,write_uid:0
-#: field:op.activity.type,write_uid:0
-#: field:student.migrate,write_uid:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity___last_update
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type___last_update
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_write_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_write_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,write_date:0
-#: field:op.activity.type,write_date:0
-#: field:student.migrate,write_date:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_write_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_write_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity.type,name:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type_name
 msgid "Name"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,student_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_optional_sub
+msgid "Optional Subjects"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_student_id
 msgid "Student"
 msgstr ""
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
+#: model:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student Migrate"
 msgstr ""
 
 #. module: openeducat_activity
-#: model:ir.ui.menu,name:openeducat_activity.menu_student_migrate
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_student_migrate_view
+#: model:ir.ui.menu,name:openeducat_activity.menu_student_migrate
 msgid "Student Migration"
 msgstr ""
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
-#: field:student.migrate,student_ids:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_student_ids
+#: model:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student(s)"
 msgstr ""
 
 #. module: openeducat_activity
-#: field:student.migrate,course_to_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_batch_id
+msgid "To Batch"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate_course_to_id
 msgid "To Course"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model,name:openeducat_activity.model_op_activity
+msgid "op.activity"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model,name:openeducat_activity.model_op_activity_type
+msgid "op.activity.type"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model,name:openeducat_activity.model_op_student
+msgid "op.student"
+msgstr ""
+
+#. module: openeducat_activity
+#: model:ir.model,name:openeducat_activity.model_student_migrate
+msgid "student.migrate"
 msgstr ""
 
