@@ -28,4 +28,4 @@ class OpPublisher(models.Model):
 
     name = fields.Char('Name', size=20, required=True)
     address_id = fields.Many2one('res.partner', 'Address')
-    media_ids = fields.Many2many('op.media', string='media(s)')
+    media_ids = fields.Many2many('op.media', string='Media(s)')

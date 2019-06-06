@@ -11,15 +11,15 @@
                     <field name="partner_id"/>
                     <field name="media_id"/>
                     <field name="media_unit_id"/>
-                    <field name="type" invisible="1"/>
-                    <field name="student_id" invisible="1"/>
-                    <field name="faculty_id" invisible="1"/>
                     <field name="issued_date"/>
                     <field name="return_date"/>
                     <field name="actual_return_date"/>
                     <field name="penalty"/>
-                    <field name="invoice_id"/>
                     <field name="state"/>
+                    <field name="invoice_id" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="student_id" invisible="1"/>
+                    <field name="faculty_id" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -98,7 +98,10 @@
                     <field name="actual_return_date"/>
                     <field name="state"/>
                     <field name="penalty"/>
-                    <newline/>
+                    <filter string="Issued Today" name="group_by_lbr_media_mvmn_issue"
+                            domain="[('issued_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Returned Today" name="group_by_lbr_media_mvmn_return"
+                            domain="[('return_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
                     <group expand="0" string="Group By...">
                         <filter string="media" name="group_by_lbr_media_mvmn_media"
                                 domain="[]" context="{'group_by':'media_id'}"/>
@@ -128,8 +131,6 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_media_movement_search"/>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_media_movement_view_form">

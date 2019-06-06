@@ -8,14 +8,14 @@
             <field name="arch" type="xml">
                 <tree string="Media">
                     <field name="name"/>
-                    <field name="isbn"/>
                     <field name="media_type_id"/>
-                    <field name="tags"/>
-                    <field name="author_ids"/>
-                    <field name="edition"/>
-                    <field name="publisher_ids"/>
-                    <field name="course_ids"/>
+                    <field name="isbn"/>
                     <field name="internal_code"/>
+                    <field name="edition"/>
+                    <field name="tags" invisible="1"/>
+                    <field name="author_ids" invisible="1"/>
+                    <field name="publisher_ids" invisible="1"/>
+                    <field name="course_ids" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -106,6 +106,8 @@
                     <group expand="0" string="Group By...">
                         <filter string="Edition" name="group_by_lbr_media_edition"
                                 domain="[]" context="{'group_by':'edition'}"/>
+                        <filter string="Type" name="group_by_lbr_media_type"
+                                domain="[]" context="{'group_by':'media_type_id'}"/>
                     </group>
                 </search>
             </field>
