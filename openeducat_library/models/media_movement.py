@@ -36,6 +36,7 @@ class OpMediaMovement(models.Model):
     _inherit = "mail.thread"
     _description = "Media Movement"
     _rec_name = "media_id"
+    _order = "return_date DESC"
 
     media_id = fields.Many2one('op.media', 'Media', required=True)
     media_unit_id = fields.Many2one(

@@ -65,11 +65,10 @@
                     <field name="date_from"/>
                     <field name="date_to"/>
                     <field name="state"/>
-                    <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Media" name="group_by_lbr_media_queue_media"
                                 domain="[]" context="{'group_by':'media_id'}"/>
-                        <filter string="Partner" name="group_by_lbr_media_queue_user"
+                        <filter string="User" name="group_by_lbr_media_queue_user"
                                 domain="[]" context="{'group_by':'user_id'}"/>
                         <filter string="Status" name="group_by_lbr_media_queue_state"
                                 domain="[]" context="{'group_by':'state'}"/>
@@ -85,8 +84,6 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_media_queue_search"/>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_media_queue_view_form">

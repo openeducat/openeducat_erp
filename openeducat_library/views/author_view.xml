@@ -8,7 +8,8 @@
             <field name="arch" type="xml">
                 <tree string="Author">
                     <field name="name"/>
-                    <field name="address"/>
+                    <field name="media_ids" widget="many2many_tags"/>
+                    <field name="address" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -43,7 +44,6 @@
                     <field name="name"/>
                     <field name="address"/>
                     <field name="media_ids"/>
-                    <newline/>
                 </search>
             </field>
         </record>
