@@ -60,7 +60,7 @@ class OpSession(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('done', 'Done'), ('cancel', 'Canceled')],
-        'Status', default='draft')
+        string='Status', default='draft')
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
@@ -143,10 +143,11 @@ class OpSession(models.Model):
         subtype_id = self.env['mail.message.subtype'].sudo().search([
             ('name', '=', 'Discussions')])
         if partner_ids and subtype_id:
+            mail_followers = self.env['mail.followers'].sudo()
             for partner in list(set(partner_ids)):
                 if partner in partner_val:
                     continue
-                val = self.env['mail.followers'].sudo().create({
+                mail_followers.create({
                     'res_model': res._name,
                     'res_id': res.id,
                     'partner_id': partner,
@@ -178,7 +179,7 @@ class OpSession(models.Model):
 
     @api.multi
     def get_subject(self):
-        return 'lecture of ' + self.faculty_id.name + \
+        return 'Lecture of ' + self.faculty_id.name + \
                ' for ' + self.subject_id.name + ' is ' + self.state
 
     @api.multi
