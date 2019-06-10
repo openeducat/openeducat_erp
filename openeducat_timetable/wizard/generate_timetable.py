@@ -78,10 +78,10 @@ class GenerateSession(models.TransientModel):
 
     @api.multi
     def act_gen_time_table(self):
+        session_obj = self.env['op.session']
         for session in self:
             start_date = session.start_date
             end_date = session.end_date
-
             for n in range((end_date - start_date).days + 1):
                 curr_date = start_date + datetime.timedelta(n)
                 for line in session.time_table_lines:
@@ -102,7 +102,7 @@ class GenerateSession(models.TransientModel):
                             utc_dt, "%Y-%m-%d %H:%M:%S")
                         curr_end_date = curr_start_date + datetime.timedelta(
                             hours=line.timing_id.duration)
-                        self.env['op.session'].create({
+                        session_obj.create({
                             'faculty_id': line.faculty_id.id,
                             'subject_id': line.subject_id.id,
                             'course_id': session.course_id.id,
