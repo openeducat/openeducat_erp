@@ -102,3 +102,17 @@ class OpStudent(models.Model):
             'label': _('Import Template for Students'),
             'template': '/openeducat_core/static/xls/op_student.xls'
         }]
+
+    @api.multi
+    def create_student_user(self):
+        user_group = self.env.ref("openeducat_core.group_op_student") or False
+        users_res = self.env['res.users']
+        for record in self:
+            if not record.user_id:
+                user_id = users_res.create({
+                    'name': record.name,
+                    'partner_id': record.partner_id.id,
+                    'login': record.email,
+                    'groups_id': user_group,
+                })
+                record.user_id = user_id
