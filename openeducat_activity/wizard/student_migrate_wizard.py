@@ -60,13 +60,8 @@ class StudentMigrate(models.TransientModel):
 
     @api.multi
     def student_migrate_forward(self):
+        act_type = self.env.ref('openeducat_activity.op_activity_type_3')
         for record in self:
-            activity_type = self.env["op.activity.type"]
-            act_type = activity_type.search(
-                [('name', '=', 'Migration')], limit=1)
-            if not act_type:
-                act_type = activity_type.create({'name': 'Migration'})
-
             for student in record.student_ids:
                 activity_vals = {
                     'student_id': student.id,
@@ -80,7 +75,8 @@ class StudentMigrate(models.TransientModel):
                 student_course = self.env['op.student.course'].search(
                     [('student_id', '=', student.id),
                      ('course_id', '=', record.course_from_id.id)])
-                student_course.write({'course_id': record.course_to_id.id})
+                student_course.write({'course_id': record.course_to_id.id,
+                                      'batch_id': record.batch_id.id})
                 reg_id = self.env['op.subject.registration'].create({
                     'student_id': student.id,
                     'batch_id': record.batch_id.id,
