@@ -33,6 +33,7 @@
     'data': [
         'security/ir.model.access.csv',
         'security/op_activity_security.xml',
+        'data/activity_type_data.xml',
         'wizard/student_migrate_wizard_view.xml',
         'views/activity_view.xml',
         'views/activity_type_view.xml',
@@ -40,7 +41,6 @@
         'activity_menu.xml'
     ],
     'demo': [
-        'demo/activity_type_demo.xml',
         'demo/activity_demo.xml',
     ],
     'images': [
