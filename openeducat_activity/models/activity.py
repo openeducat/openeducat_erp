@@ -34,7 +34,7 @@ class OpActivity(models.Model):
         ], limit=1) or False
 
     student_id = fields.Many2one('op.student', 'Student', required=True)
-    faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True,
+    faculty_id = fields.Many2one('op.faculty', string='Faculty',
                                  default=lambda self: self._default_faculty())
     type_id = fields.Many2one('op.activity.type', 'Activity Type')
     description = fields.Text('Description')
