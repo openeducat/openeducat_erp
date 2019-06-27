@@ -18,7 +18,7 @@ class ResConfigSettings(models.TransientModel):
     module_openeducat_facility = fields.Boolean(string="Facility")
     module_openeducat_parent = fields.Boolean(string="Parent")
     module_openeducat_assignment = fields.Boolean(string="Assignment")
-    module_openeducat_classroom = fields.Boolean(string="classroom")
+    module_openeducat_classroom = fields.Boolean(string="Classroom")
     module_openeducat_fees = fields.Boolean(string="Fees")
     module_openeducat_admission = fields.Boolean(string="Admission")
     module_openeducat_timetable = fields.Boolean(string="Timetable")
