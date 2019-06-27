@@ -88,6 +88,12 @@
                     <newline/>
                     <filter string="Today" name="filter_session_today"
                             domain="[('start_datetime', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start_datetime', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]"/>
+                    <filter string="Week" name="filter_session_week"
+                            domain="[('start_datetime', '&gt;=', (context_today()+relativedelta(weeks=-2,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                                    ('start_datetime', '&lt;', (context_today()+relativedelta(weekday=6)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Month" name="filter_session_month"
+                            domain="[('start_datetime', '&lt;=', (datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
+                                    ('start_datetime', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
                     <group expand="0" string="Group By...">
                         <filter string="Faculty" name="group_by_session_faculty_id"
                                 domain="[]" context="{'group_by':'faculty_id'}"/>
