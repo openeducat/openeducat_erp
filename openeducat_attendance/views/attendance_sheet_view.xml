@@ -68,6 +68,14 @@
                     <field name="total_present"/>
                     <field name="total_absent"/>
                     <newline/>
+                    <filter string="Today" name="filter_attendance_today"
+                            domain="[('attendance_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string=" Week" name="filter_attendance_week"
+                            domain="[('attendance_date', '&gt;=', (context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                    ('attendance_date', '&lt;=', (context_today()-relativedelta(weekday=6)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Month" name="filter_attendance_month"
+                            domain="[('attendance_date', '&lt;=', (context_today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
+                                    ('attendance_date', '&gt;=', (context_today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
                     <group expand="0" string="Group By...">
                         <filter string="Register" name="group_by_attendance_sheet_register_id"
                                 domain="[]" context="{'group_by':'register_id'}"/>

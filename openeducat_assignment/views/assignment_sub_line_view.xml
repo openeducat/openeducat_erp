@@ -88,6 +88,15 @@
                     <field name="state"/>
                     <field name="submission_date"/>
                     <field name="note"/>
+                    <filter string="Today" name="filter_submission_today"
+                            domain="[('submission_date', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('submission_date', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]"/>
+                    <filter string="Week" name="filter_submission_week"
+                            domain="[('submission_date', '&gt;=',(context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d 00:00:00')),
+                                    ('submission_date', '&lt;', (context_today()+relativedelta(weekday=6)).strftime('%Y-%m-%d 23:59:59'))]"/>
+                    <filter string="Month" name="filter_submission_month"
+                            domain="[('submission_date', '&lt;=', (datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
+                                    ('submission_date', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+
                     <group expand="0" string="Group By...">
                         <filter string="Assignment" domain="[]" name="group_by_assignment_id"
                                 context="{'group_by':'assignment_id'}"/>
