@@ -65,7 +65,6 @@ class OpAttendanceSheet(models.Model):
         'Total Absent', compute='_compute_total_absent',
         track_visibility="onchange")
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
-
     _sql_constraints = [
         ('unique_register_sheet',
          'unique(register_id,session_id,attendance_date)',
