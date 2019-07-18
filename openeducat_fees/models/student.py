@@ -33,6 +33,7 @@ class OpStudentFeesDetails(models.Model):
     date = fields.Date('Submit Date')
     product_id = fields.Many2one('product.product', 'Product')
     student_id = fields.Many2one('op.student', 'Student')
+    fees_factor = fields.Float("Fees Factor")
     state = fields.Selection([
         ('draft', 'Draft'),
         ('invoice', 'Invoice Created'),
@@ -52,6 +53,7 @@ class OpStudentFeesDetails(models.Model):
         student = self.student_id
         account_id = False
         product = self.product_id
+
         if product.property_account_income_id:
             account_id = product.property_account_income_id.id
         if not account_id:
@@ -75,17 +77,33 @@ class OpStudentFeesDetails(models.Model):
             'reference': False,
             'account_id': partner_id.property_account_receivable_id.id,
             'partner_id': partner_id.id,
-            'invoice_line_ids': [(0, 0, {
-                'name': name,
-                'origin': student.gr_no,
-                'account_id': account_id,
-                'price_unit': amount,
-                'quantity': 1.0,
-                'discount': 0.0,
-                'uom_id': product.uom_id.id,
-                'product_id': product.id,
-            })],
+
         })
+        element_id = self.env['op.fees.element'].search([
+            ('fees_terms_line_id', '=', self.fees_line_id.id)])
+        for records in element_id:
+
+            if records:
+                line_values = {'name': records.product_id.name,
+                               'account_id': account_id,
+                               'price_unit': records.value * self.amount / 100,
+                               'quantity': 1.0,
+                               'discount': 0.0,
+                               'uom_id': records.product_id.uom_id.id,
+                               'product_id': records.product_id.id, }
+                invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
+
+        if not element_id:
+            line_values = {'name': name,
+                           'origin': student.gr_no,
+                           'account_id': account_id,
+                           'price_unit': amount,
+                           'quantity': 1.0,
+                           'discount': 0.0,
+                           'uom_id': product.uom_id.id,
+                           'product_id': product.id}
+            invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
+
         invoice.compute_taxes()
         self.state = 'invoice'
         self.invoice_id = invoice.id
