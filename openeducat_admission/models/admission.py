@@ -298,6 +298,7 @@ class OpAdmission(models.Model):
                     dict_val = {
                         'fees_line_id': line.id,
                         'amount': amount,
+                        'fees_factor': per_amount,
                         'date': date,
                         'product_id': product_id,
                         'state': 'draft',
