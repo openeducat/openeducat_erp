@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_core" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.core</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="OpenEducat-CE"
+                     string="OpenEducat"
+                     data-key="openeducat_core"
+                     groups="openeducat_core.group_op_back_office_admin"
+                     id="openeducat_core_setting">
+                    <h2 id="openeducat_core_apps">OpenEduCat Apps</h2>
+                    <div class="row mt16 o_settings_container"
+                         title="Specify different activities which is held in an institute.">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_activity"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_activity"/>
+                                <div class="text-muted">
+                                    Specify different activities which is held in an institute.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_activity' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_activity_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_activity_enterprise"/>
+                                            <div class="text-muted">
+                                                Activity Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Specify different facilities of an institute.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_facility"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_facility"/>
+                                <div class="text-muted">
+                                    Specify different facilities of an institute.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_facility' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_facility_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_facility_enterprise"/>
+                                            <div class="text-muted">
+                                                Facility Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It allows you to store the details of the Parents.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_parent"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_parent"/>
+                                <div class="text-muted">
+                                    It allows you to store the details of the Parents.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_parent' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_parent_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_parent_enterprise"/>
+                                            <div class="text-muted">
+                                                Parent Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It provides the facility to configure the assignment type.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_assignment"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_assignment"/>
+                                <div class="text-muted">
+                                    It provides the facility to configure the assignment type.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_assignment' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_assignment_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_assignment_enterprise"/>
+                                            <div class="text-muted">
+                                                Assignment Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" title="It is used to configure the class room.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_classroom"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_classroom"/>
+                                <div class="text-muted">
+                                    It is used to configure the class room.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_classroom' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_classroom_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_classroom_enterprise"/>
+                                            <div class="text-muted">
+                                                Classroom Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Configuration of fees helps you to provide the start up data of fees according to the courses of an institute.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_fees"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_fees"/>
+                                <div class="text-muted">
+                                    Configuration of fees helps you to provide the start up data of fees according to
+                                    the courses of an institute.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_fees' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_fees_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_fees_enterprise"/>
+                                            <div class="text-muted">
+                                                Fees Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It is used for admission procedure for the applicant.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_admission"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_admission"/>
+                                <div class="text-muted">
+                                    It is used for admission procedure for the applicant.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_admission' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_admission_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_admission_enterprise"/>
+                                            <div class="text-muted">
+                                                Admission Enterprise
+                                            </div>
+                                        </div>
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_online_admission"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_online_admission"/>
+                                            <div class="text-muted">
+                                                Online Admission Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It is fully integrated application which provides a facility to manage the timing details.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_timetable"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_timetable"/>
+                                <div class="text-muted">
+                                    It is fully integrated application which provides a facility to manage the timing
+                                    details.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_timetable' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_timetable_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_timetable_enterprise"/>
+                                            <div class="text-muted">
+                                                Timetable Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It provides the facility to configure exam related details like Exam types and Exam Rooms.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_exam"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_exam"/>
+                                <div class="text-muted">
+                                    It provides the facility to configure exam related details like Exam types and Exam
+                                    Rooms.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_exam' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_exam_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_exam_enterprise"/>
+                                            <div class="text-muted">
+                                                Exam Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It provides the facility to configure library management">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_library"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_library"/>
+                                <div class="text-muted">
+                                    It provides the facility to configure library management
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_library' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_library_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_library_enterprise"/>
+                                            <div class="text-muted">
+                                                Library Enterprise
+                                            </div>
+                                        </div>
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_library_barcode"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_library_barcode"/>
+                                            <div class="text-muted">
+                                                Library Barcode Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It provides the Attendance maintanance facility for an institute.To maintain attendance ,attendance register is created for particular batch and course">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_attendance"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_attendance"/>
+                                <div class="text-muted">
+                                    It provides the Attendance maintenance facility for an institute.To maintain
+                                    attendance ,attendance register is created for particular batch and course
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_attendance' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_attendance_enterprise"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_attendance_enterprise"/>
+                                            <div class="text-muted">
+                                                Attendance Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Specify different types of quiz which is held in an institute for students.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_quiz"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_quiz"/>
+                                <div class="text-muted">
+                                    Specify different types of quiz which is held in an institute for students.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It specifies health of the student.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_health_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_health_enterprise"/>
+                                <div class="text-muted">
+                                    It specifies health of the student.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It specifies achievement of student.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_achievement_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_achievement_enterprise"/>
+                                <div class="text-muted">
+                                    It specifies achievement of student.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It specify that the student is alumni or not.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_alumni_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_alumni_enterprise"/>
+                                <div class="text-muted">
+                                    It specify that the student is alumni or not.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_bigbluebutton"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_bigbluebutton"/>
+                                <div class="text-muted">
+                                    Bigbluebutton Enterprise
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Campus helps you to provide the start up data of campus facility in an institute for students.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_campus_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_campus_enterprise"/>
+                                <div class="text-muted">
+                                    Campus helps you to provide the start up data of campus facility in an institute for
+                                    students.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="OpenEduCat learning management system helps you to create your online course. Create your sections and course material in it.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_lms"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_lms"/>
+                                <div class="text-muted">
+                                    OpenEduCat learning management system helps you to create your online course. Create
+                                    your sections and course material in it.
+                                </div>
+                                <div class="content-group"
+                                     attrs="{'invisible': [('module_openeducat_lms' ,'=', False)]}">
+                                    <div class="mt16">
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_lms_blog"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_lms_blog"/>
+                                            <div class="text-muted">
+                                                Lms Blog Enterprise
+                                            </div>
+                                        </div>
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_lms_forum"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_lms_forum"/>
+                                            <div class="text-muted">
+                                                Lms Forum Enterprise
+                                            </div>
+                                        </div>
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_lms_gamification"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_lms_gamification"/>
+                                            <div class="text-muted">
+                                                Lms Gamification Enterprise
+                                            </div>
+                                        </div>
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_lms_sale"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_lms_sale"/>
+                                            <div class="text-muted">
+                                                Lms Sale Enterprise
+                                            </div>
+                                        </div>
+                                        <div class="o_setting_left_pane">
+                                            <field name="module_openeducat_lms_survey"/>
+                                        </div>
+                                        <div class="o_setting_right_pane">
+                                            <label for="module_openeducat_lms_survey"/>
+                                            <div class="text-muted">
+                                                Lms Survey Enterprise
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It is about parent teacher meeting related to student performance.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_meeting_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_meeting_enterprise"/>
+                                <div class="text-muted">
+                                    It is about parent teacher meeting related to student performance.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="It provides the placement facility for student.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_placement_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_placement_enterprise"/>
+                                <div class="text-muted">
+                                    It provides the placement facility for student.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Configure different scholarship types.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_scholarship_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_scholarship_enterprise"/>
+                                <div class="text-muted">
+                                    Configure different scholarship types.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box"
+                             title="Configuration of routes in transportation helps you to provide the start up data of each route.">
+                            <div class="o_setting_left_pane">
+                                <field name="module_openeducat_transportation_enterprise"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_openeducat_transportation_enterprise"/>
+                                <div class="text-muted">
+                                    Configuration of routes in transportation helps you to provide the start up data of
+                                    each route.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="openeducat_config_settings_core_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form_core"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'openeducat_core'}</field>
+    </record>
+</odoo>

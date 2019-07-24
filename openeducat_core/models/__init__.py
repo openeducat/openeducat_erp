@@ -25,6 +25,7 @@ from . import course
 from . import faculty
 from . import hr
 from . import res_company
+from . import res_config_setting
 from . import student
 from . import subject
 from . import subject_registration
