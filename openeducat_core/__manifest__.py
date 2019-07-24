@@ -51,6 +51,7 @@
         'views/subject_view.xml',
         'views/faculty_view.xml',
         'views/res_company_view.xml',
+        'views/res_config_setting_view.xml',
         'views/openeducat_template.xml',
         'views/website_assets.xml',
         'views/subject_registration_view.xml',
