@@ -65,6 +65,26 @@ class OpAttendanceSheet(models.Model):
         'Total Absent', compute='_compute_total_absent',
         track_visibility="onchange")
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
+    state = fields.Selection(
+        [('draft', 'Draft'), ('start', 'Attendance Start'),
+         ('done', 'Attendance Taken'), ('cancel', 'Cancelled')],
+        'Status', default='draft', track_visibility='onchange')
+
+    @api.multi
+    def attendance_draft(self):
+        self.state = 'draft'
+
+    @api.multi
+    def attendance_start(self):
+        self.state = 'start'
+
+    @api.multi
+    def attendance_done(self):
+        self.state = 'done'
+
+    @api.multi
+    def attendance_cancel(self):
+        self.state = 'cancel'
 
     _sql_constraints = [
         ('unique_register_sheet',
