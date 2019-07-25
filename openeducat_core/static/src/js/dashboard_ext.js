@@ -5,7 +5,7 @@ odoo.define('openeducat_core.dashboard_ext', function(require) {
     Dashboard.Dashboard.include({
         init: function(parent, data) {
             this._super.apply(this, arguments);
-            this.all_dashboards = ['apps', 'invitations', 'planner', 'share', 'orgInfo'];
+            this.all_dashboards = ['apps', 'invitations', 'company', 'share', 'orgInfo'];
         },
         load_orgInfo: function(data) {
             return new DashboardOrgInfo(this, data.orgInfo).replace(this.$('.o_dashboard_org_info'));
