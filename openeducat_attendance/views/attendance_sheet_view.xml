@@ -24,6 +24,19 @@
                 <form string="Attendance Sheet">
                     <header>
                         <button type="action" name="%(act_open_op_attendance_import_view)d" string="Attendance Sheet Import" class="oe_highlight" />
+                        <button type="object" name="attendance_start"
+                            states="draft" string="Attendance Start"
+                            class="oe_highlight"/>
+                        <button type="object" name="attendance_done"
+                                states="start" string="Attendance Taken"
+                                class="oe_highlight"/>
+                        <button type="object" name="attendance_draft"
+                                states="cancel" string="Draft"
+                                class="oe_highlight"/>
+                        <button type="object" name="attendance_cancel"
+                                states="draft,start" string="Cancel"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,start,done"/>
                     </header>
                     <sheet>
                         <group col="4" colspan="4">
