@@ -44,7 +44,6 @@
     'demo': [
         'data/homepage_demo.xml',
         'data/footer_template.xml',
-
     ],
     'images': [
         'static/description/web_openeducat_banner.jpg',
