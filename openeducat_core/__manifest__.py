@@ -60,7 +60,6 @@
         'demo/base_demo.xml',
         'demo/res_partner_demo.xml',
         'demo/res_users_demo.xml',
-        'demo/website_demo.xml',
         'demo/subject_demo.xml',
         'demo/course_demo.xml',
         'demo/batch_demo.xml',
