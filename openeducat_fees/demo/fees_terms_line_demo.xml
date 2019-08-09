@@ -4,6 +4,8 @@
         <record id="op_fees_term_line_1" model="op.fees.terms.line">
             <field name="due_days">15</field>
             <field name="value">30.0</field>
+            <field name="fees_element_line"
+                   eval="[(4, ref('openeducat_fees.op_fees_element_line_5')),(4, ref('openeducat_fees.op_fees_element_line_6'))]"/>
         </record>
 
         <record id="op_fees_term_line_2" model="op.fees.terms.line">
@@ -19,6 +21,8 @@
         <record id="op_fees_term_line_4" model="op.fees.terms.line">
             <field name="due_days">30</field>
             <field name="value">50.0</field>
+            <field name="fees_element_line"
+                   eval="[(4, ref('openeducat_fees.op_fees_element_line_3')),(4, ref('openeducat_fees.op_fees_element_line_4'))]"/>
         </record>
 
         <record id="op_fees_term_line_5" model="op.fees.terms.line">
@@ -29,6 +33,9 @@
         <record id="op_fees_term_line_6" model="op.fees.terms.line">
             <field name="due_days">30</field>
             <field name="value">100.0</field>
+            <field name="fees_element_line"
+                   eval="[(4, ref('openeducat_fees.op_fees_element_line_1')),(4, ref('openeducat_fees.op_fees_element_line_2'))]"/>
+
         </record>
     </data>
 </odoo>
