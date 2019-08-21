@@ -51,6 +51,7 @@
         'views/website_assets.xml',
         'views/subject_registration_view.xml',
         'views/res_config_setting_view.xml',
+        'data/ir_cron_data.xml',
         'menu/openeducat_core_menu.xml',
         'menu/faculty_menu.xml',
         'menu/student_menu.xml',
