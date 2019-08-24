@@ -13,18 +13,12 @@
             <field name="sequence">20</field>
         </record>
 
-        <record id="group_op_student" model="res.groups">
-            <field name="name">Student</field>
-            <field name="category_id" ref="module_category_openeducat"/>
-            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
-            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
-        </record>
 
         <record id="group_op_faculty" model="res.groups">
             <field name="name">Faculty</field>
             <field name="category_id" ref="module_category_openeducat"/>
             <field name="users" eval="[(4, ref('base.user_admin'))]"/>
-            <field name="implied_ids" eval="[(4, ref('openeducat_core.group_op_student')), (4, ref('base.group_user'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         </record>
 
         <record id="group_op_back_office" model="res.groups">
@@ -45,7 +39,7 @@
             <field name="name">Student Login rule</field>
             <field name="model_id" ref="model_op_student" />
             <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_student'))]" />
+                eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]" />
             <field name="domain_force"> [('user_id','=',user.id)]</field>
         </record>
 
@@ -77,7 +71,7 @@
             <field name="name">Student Subject Registration Rule</field>
             <field name="model_id" ref="model_op_subject_registration" />
             <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_student'))]" />
+                eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]" />
             <field name="domain_force">['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in', user.child_ids.ids)]</field>
         </record>
 

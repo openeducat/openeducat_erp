@@ -16,7 +16,7 @@
             <field name="model_id" ref="model_op_media_queue"/>
             <field name="domain_force">['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids)]</field>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_student'))]"/>
+                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
         </record>
 
         <!-- Rule for Media Movement to see own Record. -->
@@ -25,7 +25,7 @@
             <field name="model_id" ref="model_op_media_movement"/>
             <field name="domain_force">['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids), ('state','in',['issue'])]</field>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_student'))]"/>
+                   eval="[(4, ref('openeducat_core.group_op_faculty')),(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
         </record>
 
         <!-- Rule for Media Movement to see ALL Record with Library Group. -->
@@ -42,7 +42,7 @@
             <field name="model_id" ref="model_op_media_queue"/>
             <field name="domain_force">[(1,'=',1)]</field>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office'))]"/>
+                   eval="[(4, ref('openeducat_core.group_op_faculty')),(4, ref('openeducat_core.group_op_back_office'))]"/>
         </record>
 
         <record id="openeducat_core.group_op_back_office" model="res.groups">

@@ -220,7 +220,7 @@ class OpAdmission(models.Model):
                 'company_id': self.env.ref('base.main_company').id,
                 'groups_id': [
                     (6, 0,
-                     [self.env.ref('openeducat_core.group_op_student').id])]
+                     [self.env.ref('openeducat_core.group_op_back_office_admin').id])]
             })
             details = {
                 'phone': student.phone,
