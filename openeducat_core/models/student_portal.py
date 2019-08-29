@@ -19,5 +19,11 @@
 #
 ###############################################################################
 
-from . import app_main
+from odoo import models, fields
 
+
+class StudentPortal(models.Model):
+    _inherit = 'res.partner'
+
+    is_parent = fields.Boolean("is parent")
+    is_student = fields.Boolean("is student")

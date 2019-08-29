@@ -24,10 +24,11 @@ import logging
 from ast import literal_eval
 
 import requests
-from odoo import models, api, release
 from odoo.exceptions import UserError
 from odoo.tools import misc, ustr
 from odoo.tools.translate import _
+
+from odoo import models, api, release
 
 API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
 
@@ -46,22 +47,35 @@ class PublisherWarrantyContract(models.Model):
         db_create_date = IrParamSudo.get_param('database.create_date')
         limit_date = datetime.datetime.now()
         limit_date = limit_date - datetime.timedelta(15)
-        limit_date_str = limit_date.strftime(misc.DEFAULT_SERVER_DATETIME_FORMAT)
+        limit_date_str = limit_date.strftime(
+            misc.DEFAULT_SERVER_DATETIME_FORMAT)
         nbr_users = Users.search_count([('active', '=', True)])
-        nbr_active_users = Users.search_count([("login_date", ">=", limit_date_str), ('active', '=', True)])
+        nbr_active_users = Users.search_count([
+            ("login_date", ">=", limit_date_str),
+            ('active', '=', True)])
         nbr_share_users = 0
         nbr_active_share_users = 0
         if "share" in Users._fields:
-            nbr_share_users = Users.search_count([("share", "=", True), ('active', '=', True)])
+            nbr_share_users = Users.search_count(
+                [("share", "=", True),
+                 ('active', '=', True)])
             nbr_active_share_users = Users.search_count(
-                [("share", "=", True), ("login_date", ">=", limit_date_str), ('active', '=', True)])
+                [("share", "=", True),
+                 ("login_date", ">=", limit_date_str),
+                 ('active', '=', True)])
         user = self.env.user
-        domain = [('application', '=', True), ('state', 'in', ['installed', 'to upgrade', 'to remove'])]
-        apps = self.env['ir.module.module'].sudo().search_read(domain, ['name'])
-        openeducat_instance_key = IrParamSudo.get_param('database.openeducat_instance_key')
-        openeducat_instance_hash_key = IrParamSudo.get_param('database.openeducat_instance_hash_key')
-        openeducat_hash_validate_date = IrParamSudo.get_param('database.hash_validated_date')
-        openeducat_expiration_date = IrParamSudo.get_param('database.openeducat_expire_date')
+        domain = [('application', '=', True),
+                  ('state', 'in', ['installed', 'to upgrade', 'to remove'])]
+        apps = self.env['ir.module.module'].sudo().search_read(domain,
+                                                               ['name'])
+        openeducat_instance_key = IrParamSudo.get_param(
+            'database.openeducat_instance_key')
+        openeducat_instance_hash_key = IrParamSudo.get_param(
+            'database.openeducat_instance_hash_key')
+        openeducat_hash_validate_date = IrParamSudo.get_param(
+            'database.hash_validated_date')
+        openeducat_expiration_date = IrParamSudo.get_param(
+            'database.openeducat_expire_date')
 
         web_base_url = IrParamSudo.get_param('web.base.url')
         msg = {
@@ -77,7 +91,8 @@ class PublisherWarrantyContract(models.Model):
             "web_base_url": web_base_url,
             "apps": [app['name'] for app in apps],
             "openeducat_hash_validate_date": openeducat_hash_validate_date,
-            "enterprise_code": str(openeducat_instance_key)+","+str(openeducat_instance_hash_key),
+            "enterprise_code": str(openeducat_instance_key
+                                   ) + "," + str(openeducat_instance_hash_key),
             "openeducat_expire_date": openeducat_expiration_date,
         }
         if user.partner_id.company_id:
@@ -101,8 +116,10 @@ class PublisherWarrantyContract(models.Model):
             except Exception:
                 if cron_mode:  # we don't want to see any stack trace in cron
                     return False
-                _logger.debug("Exception while sending a get logs messages", exc_info=1)
-                raise UserError(_("Error during communication with the  warranty server."))
+                _logger.debug(
+                    "Exception while sending a get logs messages", exc_info=1)
+                raise UserError(_(
+                    "Error during communication with the  warranty server."))
         except Exception:
             if cron_mode:
                 return False  # we don't want to see any stack trace in cron
