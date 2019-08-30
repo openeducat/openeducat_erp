@@ -5,10 +5,12 @@
             <field name="name">Sumita</field>
             <field name="password">student</field>
             <field name="login">student@openeducat.org</field>
+            <field name="is_student">True</field>
+            <field name="tz">Asia/Calcutta</field>
             <field name="partner_id" ref="openeducat_core.op_res_partner_1"/>
             <field name="company_id" ref="base.main_company"/>
             <field name="groups_id"
-                   eval="[(4,ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(6, 0, [ref('base.group_portal')])]"/>
         </record>
 
         <record id="op_user_faculty" model="res.users">
