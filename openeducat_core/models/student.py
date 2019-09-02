@@ -105,7 +105,7 @@ class OpStudent(models.Model):
 
     @api.multi
     def create_student_user(self):
-        user_group = self.env.ref("openeducat_core.group_op_back_office_admin") or False
+        user_group = self.env.ref("base.group_portal") or False
         users_res = self.env['res.users']
         for record in self:
             if not record.user_id:
@@ -114,5 +114,7 @@ class OpStudent(models.Model):
                     'partner_id': record.partner_id.id,
                     'login': record.email,
                     'groups_id': user_group,
+                    'is_student': True,
+                    'tz': self._context.get('tz')
                 })
                 record.user_id = user_id
