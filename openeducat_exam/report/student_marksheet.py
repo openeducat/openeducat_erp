@@ -35,7 +35,7 @@ class ReportMarksheetReport(models.AbstractModel):
 
     def get_lines(self, obj):
         lines = []
-        for line in obj.marksheet_line:
+        for line in obj.result_line:
             lines.extend(line)
         return lines
 
@@ -43,15 +43,15 @@ class ReportMarksheetReport(models.AbstractModel):
         date1 = fields.Date.to_date(date)
         return str(date1.month) + ' / ' + str(date1.year)
 
-    def get_total(self, marksheet_line):
-        total = [x.exam_id.total_marks for x in marksheet_line.result_line]
+    def get_total(self, result_line):
+        total = [x.exam_id.total_marks for x in result_line]
         return sum(total)
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        docs = self.env['op.marksheet.register'].browse(docids)
+        docs = self.env['op.marksheet.line'].browse(docids)
         docargs = {
-            'doc_model': 'op.marksheet.register',
+            'doc_model': 'op.marksheet.line',
             'docs': docs,
             'time': time,
             'get_objects': self.get_objects,

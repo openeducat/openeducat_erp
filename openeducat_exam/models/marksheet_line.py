@@ -41,6 +41,9 @@ class OpMarksheetLine(models.Model):
                                  store=True)
     percentage = fields.Float("Percentage", compute='_compute_percentage',
                               store=True)
+    generated_date = fields.Date(
+        'Generated Date', required=True,
+        default=fields.Date.today(), track_visibility='onchange')
     grade = fields.Char('Grade', readonly=True, compute='_compute_grade')
     status = fields.Selection([
         ('pass', 'Pass'),
