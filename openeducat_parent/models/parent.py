@@ -129,9 +129,10 @@ class OpStudent(models.Model):
                     user_id.child_ids = [(6, 0, child_ids)]
         if vals.get('user_id', False):
             for parent_id in self.parent_ids:
-                child_ids = parent_id.user_id.child_ids.ids
-                child_ids.append(vals['user_id'])
-                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
+                if parent_id.user_id:
+                    child_ids = parent_id.user_id.child_ids.ids
+                    child_ids.append(vals['user_id'])
+                    parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         self.clear_caches()
         return res
 
