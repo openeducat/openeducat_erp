@@ -37,6 +37,7 @@ class OpSubject(models.Model):
     subject_type = fields.Selection(
         [('compulsory', 'Compulsory'), ('elective', 'Elective')],
         'Subject Type', default="compulsory", required=True)
+    parent_id = fields.Many2one('op.subject', 'Parent Subject')
 
     _sql_constraints = [
         ('unique_subject_code',
