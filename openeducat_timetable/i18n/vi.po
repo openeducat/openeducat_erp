@@ -1,218 +1,430 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* openeducat_timetable
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: openeducaterptranslation\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-30 10:35+0000\n"
-"PO-Revision-Date: 2018-03-21 01:12-0400\n"
-"Last-Translator: akkicode <aakash@techreceptives.com>\n"
-"Language-Team: Vietnamese\n"
+"POT-Creation-Date: 2019-09-27 05:41+0000\n"
+"PO-Revision-Date: 2019-09-27 05:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: crowdin.com\n"
-"X-Crowdin-Project: openeducaterptranslation\n"
-"X-Crowdin-Language: vi\n"
-"X-Crowdin-File: /master/openeducat_timetable/i18n/openeducat_timetable.pot\n"
-"Language: vi_VN\n"
+"Plural-Forms: \n"
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: model:mail.template,body_html:openeducat_timetable.session_details_changes
+msgid "\n"
+"                <ul class=\"o_mail_thread_message_tracking\">\n"
+"                    <li>\n"
+"                        Faculty:\n"
+"                            <span> ${object.faculty_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Subject:\n"
+"                            <span> ${object.subject_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Course:\n"
+"                            <span> ${object.course_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Batch:\n"
+"                            <span> ${object.batch_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Classroom:\n"
+"                            <span> ${object.classroom_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Start Time:\n"
+"                            <span> ${format_tz(object.start_datetime, tz=user.tz, format='%B %d, %Y %I:%M %p')} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        End Time:\n"
+"                            <span> ${format_tz(object.end_datetime, tz=user.tz, format='%B %d, %Y %I:%M %p')} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Status:\n"
+"                            % if object.state == 'confirm':\n"
+"                                <span> Confirmed </span>\n"
+"                            % elif object.state == 'cancel'\n"
+"                                <span> Canceled </span>\n"
+"                            % endif\n"
+"                    </li>\n"
+"                </ul>\n"
+"            "
+msgstr "\n"
+"                <Ul class = \"o_mail_thread_message_tracking\">\n"
+"                    <Li>\n"
+"                        Khoa:\n"
+"                            <Span> $ {object.faculty_id.name} </ span>\n"
+"                    </ Li>\n"
+"                    <Li>\n"
+"                        Môn học:\n"
+"                            <Span> $ {object.subject_id.name} </ span>\n"
+"                    </ Li>\n"
+"                    <Li>\n"
+"                        Khóa học:\n"
+"                            <Span> $ {object.course_id.name} </ span>\n"
+"                    </ Li>\n"
+"                    <Li>\n"
+"                        batch:\n"
+"                            <Span> $ {object.batch_id.name} </ span>\n"
+"                    </ Li>\n"
+"                    <Li>\n"
+"                        Lớp học:\n"
+"                            <Span> $ {object.classroom_id.name} </ span>\n"
+"                    </ Li>\n"
+"                    <Li>\n"
+"                        Thời gian bắt đầu:\n"
+"                            <Span> $ {format_tz (object.start_datetime, tz = user.tz, format = '% B% d,% Y% I:% M% p')} </ span>\n"
+"                    </ Li>\n"
+"                    <Li>\n"
+"                        Thời gian kết thúc:\n"
+"                            <Span> $ {format_tz (object.end_datetime, tz = user.tz, format = '% B% d,% Y% I:% M% p')} </ span>\n"
+"                    </ Li>\n"
+"                    <Li>\n"
+"                        Trạng thái:\n"
+"                            % Nếu == object.state 'xác nhận':\n"
+"                                <Span> Xác nhận </ span>\n"
+"                            % Elif object.state == 'hủy'\n"
+"                                <Span> hủy </ span>\n"
+"                            % endif\n"
+"                    </ Li>\n"
+"                </ Ul>\n"
+"            "
+
+#. module: openeducat_timetable
+#: model:mail.template,subject:openeducat_timetable.session_details_changes
+msgid "${object.get_subject()}"
+msgstr "$ {Object.get_subject ()}"
+
+#. module: openeducat_timetable
+#: selection:op.timing,minute:0
 msgid "00"
-msgstr "00"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,hour:0
+#: selection:op.timing,hour:0
 msgid "10"
-msgstr "10"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,hour:0
+#: selection:op.timing,hour:0
 msgid "11"
-msgstr "11"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,hour:0
+#: selection:op.timing,hour:0
 msgid "12"
-msgstr "12"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: selection:op.timing,minute:0
 msgid "15"
-msgstr "15"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: selection:op.timing,minute:0
 msgid "30"
-msgstr "30"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: selection:op.timing,minute:0
 msgid "45"
-msgstr "45"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,am_pm:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Batch:</b>"
+msgstr "<B> Batch: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>Class:</b>"
+msgstr "<B> Lớp: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Course:</b>"
+msgstr "<B> Khóa học: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>End:</b>"
+msgstr "<B> Kết thúc: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>Faculty Name:</b>"
+msgstr "<B> Khoa Tên: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Faculty:</b>"
+msgstr "<B> Khoa: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>From Date:</b>"
+msgstr "<B> Từ ngày: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Start:</b>"
+msgstr "<B> Bắt đầu: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Subject:</b>"
+msgstr "<B> Chủ đề: </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>To Date:</b>"
+msgstr "<B> Đến ngày </ b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<strong>Faculty TimeTables</strong>"
+msgstr "<Strong> Khoa lịch </ strong>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<strong>TimeTables</strong>"
+msgstr "<Strong> lịch </ strong>"
+
+#. module: openeducat_timetable
+#: selection:op.timing,am_pm:0
 msgid "AM"
-msgstr "AM"
+msgstr "LÀ"
 
 #. module: openeducat_timetable
-#: field:op.period,am_pm:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
 msgid "AM/PM"
-msgstr "AM/PM"
+msgstr "AM / PM"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,batch_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,batch_id:0
-#: field:time.table.report,batch_id:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction
+msgid "Action Needed"
+msgstr "Hành động cần thiết"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Are you sure you want to confirm selected sessions ?"
+msgstr "Bạn có chắc chắn muốn xác nhận phiên được chọn?"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_attachment_count
+msgid "Attachment Count"
+msgstr "Đếm tập tin đính kèm"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__batch_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__batch_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__batch_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Batch"
-msgstr "Hàng loạt"
+msgstr "hàng loạt"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-#: view:website:openeducat_timetable.report_timetable_student_generate
-msgid "Batch:"
-msgstr "Hàng loạt:"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Cancel"
+msgstr "Hủy"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_op_faculty_period_today
-msgid "Book"
-msgstr "Cuốn sách"
+#: selection:op.session,state:0
+msgid "Canceled"
+msgstr "bị hủy bỏ"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-msgid "Class:"
-msgstr "Lớp:"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__classroom_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__classroom_id
+msgid "Classroom"
+msgstr "Lớp học"
 
 #. module: openeducat_timetable
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: view:time.table.report:openeducat_timetable.view_time_table_report_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
 msgid "Close"
 msgstr "Đóng"
 
 #. module: openeducat_timetable
-#: field:op.timetable,color:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__color
 msgid "Color Index"
-msgstr "Chỉ mục màu"
+msgstr "Chỉ số màu"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,course_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,course_id:0
-#: field:time.table.report,course_id:0
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_config
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.action_session_confirmation_view
+msgid "Confirmation"
+msgstr "sự xác nhận"
+
+#. module: openeducat_timetable
+#: selection:op.session,state:0
+msgid "Confirmed"
+msgstr "Đã xác nhận"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__course_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__course_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__course_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Course"
 msgstr "Khóa học"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Course:"
-msgstr "Khóa học:"
-
-#. module: openeducat_timetable
-#: field:gen.time.table.line,create_uid:0
-#: field:generate.time.table,create_uid:0
-#: field:op.period,create_uid:0
-#: field:op.timetable,create_uid:0
-#: field:time.table.report,create_uid:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_uid
 msgid "Created by"
-msgstr "Tạo bởi"
+msgstr "Được tạo bởi"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,create_date:0
-#: field:generate.time.table,create_date:0
-#: field:op.period,create_date:0
-#: field:op.timetable,create_date:0
-#: field:time.table.report,create_date:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_date
 msgid "Created on"
-msgstr "Tạo ngày"
+msgstr "Được tạo ra"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,day:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__day
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__type
 msgid "Day"
-msgstr "Ngày"
+msgstr "ngày"
 
 #. module: openeducat_timetable
-#: field:op.timetable,type:0
-msgid "Days"
-msgstr "Ngày"
-
-#. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
 msgid "Delete"
 msgstr "Xóa bỏ"
 
 #. module: openeducat_timetable
-#: field:op.period,duration:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_student_generate__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_teacher_generate__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+#: selection:op.session,state:0
+msgid "Done"
+msgstr "Thực hiện"
+
+#. module: openeducat_timetable
+#: selection:op.session,state:0
+msgid "Draft"
+msgstr "Bản nháp"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__duration
 msgid "Duration"
-msgstr "Thời gian thực hiện"
+msgstr "thời gian"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Edit..."
-msgstr "Chỉnh sửa..."
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "Edit"
+msgstr "Biên tập"
 
 #. module: openeducat_timetable
-#: field:op.timetable,end_datetime:0
-msgid "End"
-msgstr "Kết thúc"
-
-#. module: openeducat_timetable
-#: field:generate.time.table,end_date:0
-#: field:time.table.report,end_date:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__end_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__end_date
 msgid "End Date"
-msgstr "Ngày kết thúc"
+msgstr "Ngày cuối"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "FRI"
-msgstr "THỨ SÁU"
+#: code:addons/openeducat_timetable/wizard/time_table_report.py:58
+#, python-format
+msgid "End Date cannot be set before                 Start Date."
+msgstr "Ngày Kết Thúc không thể được đặt trước Ngày bắt đầu."
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,faculty_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,faculty_id:0
-#: field:time.table.report,faculty_id:0
+#: code:addons/openeducat_timetable/wizard/generate_timetable.py:70
+#, python-format
+msgid "End Date cannot be set before             Start Date."
+msgstr "Ngày Kết Thúc không thể được đặt trước Ngày bắt đầu."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__end_datetime
+msgid "End Time"
+msgstr "Thời gian kết thúc"
+
+#. module: openeducat_timetable
+#: code:addons/openeducat_timetable/models/timetable.py:122
+#, python-format
+msgid "End Time cannot be set before Start Time."
+msgstr "End Time không thể được thiết lập trước khi bắt đầu thời gian."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__faculty_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__faculty_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__faculty_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
 #: selection:time.table.report,state:0
 msgid "Faculty"
 msgstr "Giảng viên"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "Faculty Name :"
-msgstr "Tên giảng viên:"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_follower_ids
+msgid "Followers"
+msgstr "Người theo dõi"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "Faculty Time Table"
-msgstr "Khoa thời bảng"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Người theo dõi (Channels)"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Faculty:"
-msgstr "Giảng viên:"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Partners)"
 
 #. module: openeducat_timetable
 #: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Friday"
 msgstr "Thứ sáu"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "From Date:"
-msgstr "Từ ngày:"
-
-#. module: openeducat_timetable
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
 #: model:ir.actions.act_window,name:openeducat_timetable.act_open_generate_time_table_view
 #: model:ir.model,name:openeducat_timetable.model_generate_time_table
 #: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table
-msgid "Generate Time Table"
-msgstr "Tạo thời bảng"
+msgid "Generate Sessions"
+msgstr "tạo phiên"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_time_table_report_view
+#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table_report
+msgid "Generate Sessions Report"
+msgstr "Tạo phiên Báo cáo"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_gen_time_table_line
@@ -220,149 +432,278 @@ msgid "Generate Time Table Lines"
 msgstr "Tạo ra thời gian bảng dòng"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_open_time_table_report_view
 #: model:ir.model,name:openeducat_timetable.model_time_table_report
-#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table_report
-#: view:time.table.report:openeducat_timetable.view_time_table_report_form
 msgid "Generate Time Table Report"
 msgstr "Tạo ra thời gian bàn báo cáo"
 
 #. module: openeducat_timetable
-#: model:ir.actions.report.xml,name:openeducat_timetable.report_student_timetable_generate
-#: model:ir.actions.report.xml,name:openeducat_timetable.report_teacher_timetable_generate
-msgid "Generate TimeTable"
-msgstr "Tạo thời bảng"
-
-#. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Group By..."
 msgstr "Nhóm theo..."
 
 #. module: openeducat_timetable
-#: field:op.period,hour:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__hour
 msgid "Hours"
-msgstr "Giờ"
+msgstr "giờ"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,id:0
-#: field:generate.time.table,id:0
-#: field:op.period,id:0
-#: field:op.timetable,id:0
-#: field:report.openeducat_timetable.report_timetable_student_generate,id:0
-#: field:report.openeducat_timetable.report_timetable_teacher_generate,id:0
-#: field:time.table.report,id:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_student_generate__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_teacher_generate__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,write_uid:0
-#: field:generate.time.table,write_uid:0
-#: field:op.period,write_uid:0
-#: field:op.timetable,write_uid:0
-#: field:time.table.report,write_uid:0
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Nếu kiểm tra tin nhắn mới đòi hỏi sự chú ý của bạn."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Nếu được chọn, các thông điệp mới đòi hỏi sự chú ý của bạn."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Nếu được chọn, một số thông báo có một lỗi giao hàng."
+
+#. module: openeducat_timetable
+#: code:addons/openeducat_timetable/models/timetable.py:198
+#, python-format
+msgid "Import Template for Sessions"
+msgstr "Mẫu nhập khẩu đối với phiên"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_is_follower
+msgid "Is Follower"
+msgstr "Trở thành người theo dõi"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_student_generate____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_teacher_generate____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report____last_update
+msgid "Last Modified on"
+msgstr "Sửa đổi lần cuối trên"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_uid
 msgid "Last Updated by"
-msgstr "Cập Nhật lần cuối bởi"
+msgstr "Cập nhật lần cuối bởi"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,write_date:0
-#: field:generate.time.table,write_date:0
-#: field:op.period,write_date:0
-#: field:op.timetable,write_date:0
-#: field:time.table.report,write_date:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_date
 msgid "Last Updated on"
-msgstr "Lần cập nhật cuối"
+msgstr "Cập nhật lần cuối vào"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "MON"
-msgstr "MON"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Đính kèm chính"
 
 #. module: openeducat_timetable
-#: field:op.period,minute:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_error
+msgid "Message Delivery error"
+msgstr "thông báo lỗi giao hàng"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_ids
+msgid "Messages"
+msgstr "Tin nhắn"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__minute
 msgid "Minute"
 msgstr "Phút"
 
 #. module: openeducat_timetable
 #: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Monday"
 msgstr "Thứ hai"
 
 #. module: openeducat_timetable
-#: field:op.period,name:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Month"
+msgstr "tháng"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__name
 msgid "Name"
 msgstr "Tên"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "No"
+msgstr "Không"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số Actions"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_error_counter
+msgid "Number of error"
+msgstr "Số lỗi"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Số lượng tin nhắn mà đòi hỏi phải có một hành động"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số lượng tin nhắn với lỗi giao hàng"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Số tin nhắn chưa đọc"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_op_faculty
+msgid "OpenEduCat Faculty"
+msgstr "OpenEduCat Khoa"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
 msgid "PERIOD"
-msgstr "THỜI GIAN"
+msgstr "GIAI ĐOẠN = STAGE"
 
 #. module: openeducat_timetable
-#: selection:op.period,am_pm:0
+#: selection:op.timing,am_pm:0
 msgid "PM"
-msgstr "AM"
+msgstr "BUỔI CHIỀU"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,period_id:0
-#: model:ir.actions.act_window,name:openeducat_timetable.act_op_student_period_today
-#: model:ir.model,name:openeducat_timetable.model_op_period
-#: view:op.period:openeducat_timetable.view_op_period_form
-#: view:op.period:openeducat_timetable.view_op_period_search
-#: view:op.period:openeducat_timetable.view_op_period_tree
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,period_id:0
+#: model:ir.model,name:openeducat_timetable.model_op_timing
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_tree
 msgid "Period"
-msgstr "Thời gian"
+msgstr "Giai đoạn = Stage"
 
 #. module: openeducat_timetable
-#: view:board.board:openeducat_timetable.timetable_faculty_dashboard_form_view
-#: view:board.board:openeducat_timetable.timetable_student_dashboard_form_view
-msgid "Period for Today"
-msgstr "Thời gian cho ngày hôm nay"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
+msgid "Print"
+msgstr "In"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_period_view
-#: model:ir.ui.menu,name:openeducat_timetable.menu_op_period
-msgid "Periods"
-msgstr "Thời gian"
-
-#. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "SAT"
-msgstr "THỨ BẢY"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Proceed"
+msgstr "tiến hành"
 
 #. module: openeducat_timetable
 #: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Saturday"
 msgstr "Thứ bảy"
 
 #. module: openeducat_timetable
-#: field:time.table.report,state:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__state
 msgid "Select"
-msgstr "Chọn"
+msgstr "Lựa chọn"
 
 #. module: openeducat_timetable
-#: field:op.period,sequence:0
+#: code:addons/openeducat_timetable/wizard/time_table_report.py:61
+#, python-format
+msgid "Select date range for a week!"
+msgstr "Chọn phạm vi ngày cho một tuần!"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__sequence
 msgid "Sequence"
-msgstr "Trình tự"
+msgstr "Sự nối tiếp"
 
 #. module: openeducat_timetable
-#: field:op.timetable,start_datetime:0
-msgid "Start"
-msgstr "Bắt đầu"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Session"
+msgstr "buổi họp"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,start_date:0
-#: field:time.table.report,start_date:0
+#: model:ir.ui.menu,name:openeducat_timetable.menu_session_analysis_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_pivot
+msgid "Session Analysis"
+msgstr "Phân tích phiên"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_session_view_pivot
+msgid "Session Analysis Pivot"
+msgstr "Phân tích phiên Pivot"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Session Confirmation"
+msgstr "Chứng nhận phiên"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_tree
+msgid "Session Line"
+msgstr "phiên Dòng"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_session_view
+#: model:ir.model,name:openeducat_timetable.model_op_session
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__session_ids
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_faculty_form_session_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_calendar
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_tree
+msgid "Sessions"
+msgstr "phiên"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Set to Draft"
+msgstr "Set để Dự thảo"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__start_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__start_date
 msgid "Start Date"
-msgstr "Ngày bắt đầu"
+msgstr "ngày bắt đầu"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__start_datetime
+msgid "Start Time"
+msgstr "Thời gian bắt đầu"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "State"
+msgstr "Giai đoạn"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__state
+msgid "Status"
+msgstr "Trạng thái"
 
 #. module: openeducat_timetable
 #: selection:time.table.report,state:0
@@ -370,113 +711,175 @@ msgid "Student"
 msgstr "Sinh viên"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,subject_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,subject_id:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__subject_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__subject_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Subject"
-msgstr "Chủ đề"
-
-#. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Subject:"
-msgstr "Tiêu đề:"
-
-#. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "THUR"
-msgstr "THUR"
-
-#. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "TUES"
-msgstr "THỨ BA"
-
-#. module: openeducat_timetable
-#: view:gen.time.table.line:openeducat_timetable.view_gen_time_table_line_form
-msgid "Table Line"
-msgstr "Bảng dòng"
+msgstr "Môn học"
 
 #. module: openeducat_timetable
 #: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Sunday"
+msgstr "chủ nhật"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_form
+msgid "Table Line"
+msgstr "bảng Dòng"
+
+#. module: openeducat_timetable
+#: selection:gen.time.table.line,day:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Thursday"
 msgstr "Thứ năm"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,gen_time_table:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: model:ir.model,name:openeducat_timetable.model_op_timetable
-#: view:op.faculty:openeducat_timetable.view_op_faculty_form_timetable_inherit
-#: field:op.faculty,timetable_ids:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_calendar
-#: view:op.timetable:openeducat_timetable.view_op_timetable_calendar_dash
-#: view:op.timetable:openeducat_timetable.view_op_timetable_faculty_calendar_dash
-#: view:op.timetable:openeducat_timetable.view_op_timetable_form
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: view:op.timetable:openeducat_timetable.view_op_timetable_tree
-#: view:website:openeducat_timetable.report_timetable_student_generate
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__gen_time_table
 msgid "Time Table"
-msgstr "Thời bảng"
+msgstr "Thời gian biểu"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,time_table_lines:0
-#: field:generate.time.table,time_table_lines_1:0
-#: field:generate.time.table,time_table_lines_2:0
-#: field:generate.time.table,time_table_lines_3:0
-#: field:generate.time.table,time_table_lines_4:0
-#: field:generate.time.table,time_table_lines_5:0
-#: field:generate.time.table,time_table_lines_6:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines
 msgid "Time Table Lines"
-msgstr "Thời gian bàn dòng"
+msgstr "Thời gian Bảng dòng"
 
 #. module: openeducat_timetable
-#: view:time.table.report:openeducat_timetable.view_time_table_report_form
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_1
+msgid "Time Table Lines1"
+msgstr "Thời gian Bảng Lines1"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_2
+msgid "Time Table Lines2"
+msgstr "Thời gian Bảng Lines2"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_3
+msgid "Time Table Lines3"
+msgstr "Thời gian Bảng Lines3"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_4
+msgid "Time Table Lines4"
+msgstr "Thời gian Bảng Lines4"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_5
+msgid "Time Table Lines5"
+msgstr "Thời gian Bảng Lines5"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_6
+msgid "Time Table Lines6"
+msgstr "Thời gian Bảng Lines6"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_7
+msgid "Time Table Lines7"
+msgstr "Thời gian Bảng Lines7"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
 msgid "Time Table Report"
-msgstr "Báo cáo thời gian bàn"
+msgstr "Báo cáo thời gian Bảng"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_timetable_view
-#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable
-#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_main
-msgid "Time Tables"
-msgstr "Thời gian bàn"
+#: model:ir.actions.report,name:openeducat_timetable.report_teacher_timetable_generate
+msgid "TimeTable for Faculties"
+msgstr "Thời gian biểu cho khoa"
 
 #. module: openeducat_timetable
-#: view:gen.time.table.line:openeducat_timetable.view_gen_time_table_line_tree
-msgid "TimeTable Line"
-msgstr "Dòng thời gian biểu"
+#: model:ir.actions.report,name:openeducat_timetable.report_student_timetable_generate
+msgid "TimeTable for Students"
+msgstr "Thời gian biểu dành cho sinh viên"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "To Date:"
-msgstr "Đến ngày:"
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_root
+msgid "TimeTables"
+msgstr "thời gian biểu"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
+#: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_student_generate
+msgid "Timetable Student Report"
+msgstr "Báo cáo sinh viên thời gian biểu"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_teacher_generate
+msgid "Timetable Teacher Report"
+msgstr "Thời gian biểu Báo cáo giáo viên"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__timing_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__timing_id
+msgid "Timing"
+msgstr "thời gian"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_timing_view
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_period
+msgid "Timings"
+msgstr "Thời gian"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Today"
 msgstr "Hôm nay"
 
 #. module: openeducat_timetable
 #: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Tuesday"
 msgstr "Thứ ba"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "WED"
-msgstr "THỨ TƯ"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_unread
+msgid "Unread Messages"
+msgstr "Tin nhắn chưa đọc"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Tin nhắn chưa đọc Counter"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__user_ids
+msgid "Users"
+msgstr "người dùng"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__website_message_ids
+msgid "Website Messages"
+msgstr "Tin nhắn của trang web"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__website_message_ids
+msgid "Website communication history"
+msgstr "lịch sử truyền thông website"
 
 #. module: openeducat_timetable
 #: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Wednesday"
 msgstr "Thứ tư"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Week"
+msgstr "Tuần"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_session_confirmation
+msgid "Wizard for Multiple Session Confirmation"
+msgstr "Hướng dẫn cho Nhiều phiên Chứng nhận"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Yes"
+msgstr "Đúng"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "or"
+msgstr "hoặc là"
 

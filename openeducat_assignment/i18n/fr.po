@@ -1,25 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* openeducat_assignment
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: openeducaterptranslation\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 10:04+0000\n"
-"PO-Revision-Date: 2018-03-21 03:23-0400\n"
-"Last-Translator: akkicode <aakash@techreceptives.com>\n"
-"Language-Team: French, Canada\n"
+"POT-Creation-Date: 2019-09-25 08:51+0000\n"
+"PO-Revision-Date: 2019-09-25 08:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: crowdin.com\n"
-"X-Crowdin-Project: openeducaterptranslation\n"
-"X-Crowdin-Language: fr-CA\n"
-"X-Crowdin-File: /master/openeducat_assignment/i18n/openeducat_assignment.pot\n"
-"Language: fr_CA\n"
+"Plural-Forms: \n"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
+#: model:mail.template,body_html:openeducat_assignment.email_template_assignment_submission_after
+msgid "<p>Dear <strong>${object.student_id.name}</strong>\n"
+"<p>Your Assignment Submission <strong>(${object.assignment_id.name})</strong> date <strong>(${object.submission_date})</strong> has been passed. Please submit it as soon as possible.</p>\n"
+"<p>Thank you.</p>\n"
+"            "
+msgstr "<P> Cher <strong> $ {} object.student_id.name </ strong>\n"
+"<P> Votre mission Soumission <strong> ($ {} object.assignment_id.name) </ strong> date <strong> ($ {} object.submission_date) </ strong> a été adoptée. S'il vous plaît soumettre le plus rapidement possible. </ P>\n"
+"<P> Merci. </ P>\n"
+"            "
+
+#. module: openeducat_assignment
+#: model:mail.template,body_html:openeducat_assignment.email_template_assignment_submission
+msgid "<p>Dear <strong>${object.student_id.name}</strong>\n"
+"<p>Your Assignment Submission <strong>(${object.assignment_id.name})</strong> date is <strong>${object.submission_date}</strong>. Please submit it as soon as possible.</p>\n"
+"<p>Thank you.</p>\n"
+"            "
+msgstr "<P> Cher <strong> $ {} object.student_id.name </ strong>\n"
+"<P> Votre mission Soumission <strong> ($ {} object.assignment_id.name) date </ strong> <strong> $ {} object.submission_date </ strong>. S'il vous plaît soumettre le plus rapidement possible. </ P>\n"
+"<P> Merci. </ P>\n"
+"            "
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Accept"
-msgstr "Accepter"
+msgstr "Acceptez"
 
 #. module: openeducat_assignment
 #: selection:op.assignment.sub.line,state:0
@@ -27,53 +48,72 @@ msgid "Accepted"
 msgstr "Accepté"
 
 #. module: openeducat_assignment
-#: field:op.assignment,allocation_ids:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_needaction
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_needaction
+msgid "Action Needed"
+msgstr "Action nécessaire"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__allocation_ids
 msgid "Allocated To"
-msgstr "Attribué à"
+msgstr "Alloué à"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Allocation"
-msgstr "Allocation"
+msgstr ""
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Allocation Infomation"
-msgstr "Allocation information"
+msgstr "allocation Infomation"
 
 #. module: openeducat_assignment
-#: model:ir.actions.act_window,name:openeducat_assignment.act_op_student_assignment
 #: model:ir.model,name:openeducat_assignment.model_op_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: view:op.assignment:openeducat_assignment.view_op_assignment_tree
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
-#: field:op.assignment.sub.line,assignment_id:0
-#: view:op.student:openeducat_assignment.view_op_student_form_assignment_inherit
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__assignment_id
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_student_form_assignment_inherit
 msgid "Assignment"
 msgstr "Affectation de"
 
 #. module: openeducat_assignment
-#: view:board.board:openeducat_assignment.assignment_faculty_dashboard_form_view
-msgid "Assignment Approved"
-msgstr "Tâche d’approuvée"
-
-#. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Assignment Name"
-msgstr "Nom de l’affectation"
+msgstr "Nom d'affectation"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_tree
 msgid "Assignment Sub Line"
-msgstr "Ligne Sub affectation"
+msgstr "Cession Sous ligne"
 
 #. module: openeducat_assignment
 #: model:ir.model,name:openeducat_assignment.model_op_assignment_sub_line
+#: model:mail.template,report_name:openeducat_assignment.email_template_assignment_submission
 msgid "Assignment Submission"
 msgstr "Présentation de l’affectation"
+
+#. module: openeducat_assignment
+#: model:mail.template,subject:openeducat_assignment.email_template_assignment_submission_after
+msgid "Assignment Submission Date Passed"
+msgstr "Présentation de la cession Date Passed"
+
+#. module: openeducat_assignment
+#: model:base.automation,name:openeducat_assignment.test_rule_assignment_sub_line
+#: model:ir.actions.server,name:openeducat_assignment.test_rule_assignment_sub_line_ir_actions_server
+msgid "Assignment Submission Line"
+msgstr "Attribution de ligne de soumission"
+
+#. module: openeducat_assignment
+#: model:base.automation,name:openeducat_assignment.test_rule_assignment_sub_line_after
+#: model:ir.actions.server,name:openeducat_assignment.test_rule_assignment_sub_line_after_ir_actions_server
+msgid "Assignment Submission Line after 1 Days"
+msgstr "Ligne de soumission d'affectation après 1 jours"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_sub_line_view
@@ -82,43 +122,61 @@ msgid "Assignment Submissions"
 msgstr "Présentations de l’affectation"
 
 #. module: openeducat_assignment
-#: view:board.board:openeducat_assignment.assignment_student_dashboard_form_view
-msgid "Assignment To Submit"
-msgstr "Affectation de soumettre"
-
-#. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,assignment_type_id:0
+#: model:ir.model,name:openeducat_assignment.model_op_assignment_type
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__assignment_type_id
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Assignment Type"
-msgstr "Type d’affectation"
+msgstr "Type d'affectation"
 
 #. module: openeducat_assignment
-#: field:op.student,allocation_ids:0
+#: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_type_view
+#: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_type_sub
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_tree
+msgid "Assignment Types"
+msgstr "Types d'affectation"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_student__allocation_ids
 msgid "Assignment(s)"
 msgstr "Affectation (s)"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_view
-#: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_faculty
-#: view:op.student:openeducat_assignment.view_op_student_form_assignment_inherit
+#: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_main
+#: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_root
+#: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_sub
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_student_form_assignment_inherit
 msgid "Assignments"
 msgstr "Affectations"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_attachment_count
+msgid "Attachment Count"
+msgstr "Pièce jointe comte"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Basic Information"
 msgstr "Informations de base"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,batch_id:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__batch_id
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Batch"
 msgstr "Lot"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
+#: selection:op.assignment,state:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Change And Resubmit"
-msgstr "Changement et nouvelle soumission"
+msgstr "Changement et Resoumettre"
 
 #. module: openeducat_assignment
 #: selection:op.assignment.sub.line,state:0
@@ -126,48 +184,64 @@ msgid "Change Req."
 msgstr "Changement requis."
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Change Require"
-msgstr "Besoin de changement"
+msgstr "changement Exigent"
 
 #. module: openeducat_assignment
-#: field:op.assignment.type,code:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__user_boolean
+msgid "Check user"
+msgstr "Vérifier l'utilisateur"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__code
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
 msgid "Code"
-msgstr "Code"
+msgstr ""
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,course_id:0
+#: sql_constraint:op.assignment.type:0
+msgid "Code should be unique per assignment type!"
+msgstr "Code doit être unique par type d'affectation!"
+
+#. module: openeducat_assignment
+#: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__course_id
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Course"
 msgstr "Cours"
 
 #. module: openeducat_assignment
-#: field:op.assignment,create_uid:0
-#: field:op.assignment.sub.line,create_uid:0
-#: field:op.assignment.type,create_uid:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__create_uid
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__create_uid
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: openeducat_assignment
-#: field:op.assignment,create_date:0
-#: field:op.assignment.sub.line,create_date:0
-#: field:op.assignment.type,create_date:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__create_date
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__create_date
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__create_date
 msgid "Created on"
-msgstr "Créée le"
+msgstr "Créé sur"
 
 #. module: openeducat_assignment
-#: help:op.assignment,message_last_post:0
-#: help:op.assignment.sub.line,message_last_post:0
-msgid "Date of the last message posted on the record."
-msgstr "Date du dernier message posté sur le dossier."
-
-#. module: openeducat_assignment
-#: field:op.assignment,description:0
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
-#: field:op.assignment.sub.line,description:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__description
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__description
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Description"
-msgstr "Description"
+msgstr "La description"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__display_name
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__display_name
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__display_name
+msgid "Display Name"
+msgstr "Afficher un nom"
 
 #. module: openeducat_assignment
 #: selection:op.assignment,state:0
@@ -176,20 +250,20 @@ msgid "Draft"
 msgstr "Projet"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,faculty_id:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__faculty_id
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Faculty"
-msgstr "Corps professoral"
+msgstr "la faculté"
 
 #. module: openeducat_assignment
-#: model:ir.actions.act_window,name:openeducat_assignment.act_op_faculty_assignment
-msgid "Faculty Assignment"
-msgstr "Affectation de la faculté"
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__faculty_user_id
+msgid "Faculty User"
+msgstr "Faculté utilisateur"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Finish"
-msgstr "Finition"
+msgstr "terminer"
 
 #. module: openeducat_assignment
 #: selection:op.assignment,state:0
@@ -197,103 +271,182 @@ msgid "Finished"
 msgstr "Fini"
 
 #. module: openeducat_assignment
-#: field:op.assignment,message_follower_ids:0
-#: field:op.assignment.sub.line,message_follower_ids:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_follower_ids
 msgid "Followers"
-msgstr "Disciples"
+msgstr "Suiveurs"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_channel_ids
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (canaux)"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
 msgid "Group By..."
-msgstr "Group By..."
+msgstr "Par groupe..."
 
 #. module: openeducat_assignment
-#: help:op.assignment,message_summary:0
-#: help:op.assignment.sub.line,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "Contient le résumé de bavardage (nombre de messages,...). Ce résumé est directement au format html pour être insérés dans les vues de kanban."
-
-#. module: openeducat_assignment
-#: field:op.assignment,id:0
-#: field:op.assignment.sub.line,id:0
-#: field:op.assignment.type,id:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__id
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__id
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: openeducat_assignment
-#: help:op.assignment,message_unread:0
-#: help:op.assignment.sub.line,message_unread:0
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_unread
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Si les nouveaux messages requièrent votre attention."
+msgstr "Si coché les nouveaux messages requièrent votre attention."
 
 #. module: openeducat_assignment
-#: field:op.assignment,message_is_follower:0
-#: field:op.assignment.sub.line,message_is_follower:0
-msgid "Is a Follower"
-msgstr "Est un adepte"
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_needaction
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si elle est cochée, les nouveaux messages requièrent votre attention."
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,issued_date:0
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_has_error
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si elle est cochée, certains messages ont une erreur de livraison."
+
+#. module: openeducat_assignment
+#: code:addons/openeducat_assignment/models/assignment_sub_line.py:108
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not             create Assignment Submissions!"
+msgstr "Action non valide!\n"
+" Parent ne peut pas créer les soumissions d'affectation!"
+
+#. module: openeducat_assignment
+#: code:addons/openeducat_assignment/models/assignment_sub_line.py:115
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not edit             Assignment Submissions!"
+msgstr "Action non valide!\n"
+" Parent ne peut pas modifier les soumissions d'affectation!"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_is_follower
+msgid "Is Follower"
+msgstr "est-Suiveur"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__issued_date
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Issued Date"
-msgstr "Date d’émission"
+msgstr "Date de publication"
 
 #. module: openeducat_assignment
-#: field:op.assignment,message_last_post:0
-#: field:op.assignment.sub.line,message_last_post:0
-msgid "Last Message Date"
-msgstr "Date du dernier Message"
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment____last_update
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line____last_update
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type____last_update
+msgid "Last Modified on"
+msgstr "Dernière mise à jour le"
 
 #. module: openeducat_assignment
-#: field:op.assignment,write_uid:0
-#: field:op.assignment.sub.line,write_uid:0
-#: field:op.assignment.type,write_uid:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__write_uid
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__write_uid
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: openeducat_assignment
-#: field:op.assignment,write_date:0
-#: field:op.assignment.sub.line,write_date:0
-#: field:op.assignment.type,write_date:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__write_date
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__write_date
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour sur"
+msgstr "Dernière mise à jour le"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,marks:0
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Pièce jointe principale"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__marks
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__marks
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "Marks"
-msgstr "Marques de"
+msgstr "Des notes"
 
 #. module: openeducat_assignment
-#: field:op.assignment,message_ids:0
-#: field:op.assignment.sub.line,message_ids:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_has_error
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_has_error
+msgid "Message Delivery error"
+msgstr "Message d'erreur de livraison"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_ids
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_ids
 msgid "Messages"
-msgstr "Messages"
+msgstr "messages"
 
 #. module: openeducat_assignment
-#: help:op.assignment,message_ids:0
-#: help:op.assignment.sub.line,message_ids:0
-msgid "Messages and communication history"
-msgstr "Messages et l’historique des communications"
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
+msgid "Month"
+msgstr "Mois"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,name:0
-#: field:op.assignment.type,name:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__name
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_type__name
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
 msgid "Name"
 msgstr "Nom"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
-#: field:op.assignment.sub.line,note:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__note
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Note"
 msgstr "Remarque"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_has_error_counter
+msgid "Number of error"
+msgstr "Nombre d'erreur"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages qui nécessite une action"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de livraison"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_unread_counter
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non lus"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Publish"
 msgstr "Publier"
 
@@ -303,7 +456,7 @@ msgid "Published"
 msgstr "Publié"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Reject"
 msgstr "Rejeter"
 
@@ -313,53 +466,85 @@ msgid "Rejected"
 msgstr "A rejeté"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Resubmit"
-msgstr "Nouvelle soumission"
+msgstr "resoumettre"
 
 #. module: openeducat_assignment
-#: field:op.assignment,reviewer:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__reviewer
 msgid "Reviewer"
-msgstr "Relecteur"
+msgstr "Critique"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,state:0
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
-#: field:op.assignment.sub.line,state:0
+#: model:ir.actions.server,name:openeducat_assignment.assignment_sub_line_action
+msgid "Server Actions Assignment Submission"
+msgstr "Actions du serveur Affectation de soumission"
+
+#. module: openeducat_assignment
+#: model:ir.actions.server,name:openeducat_assignment.assignment_sub_line_action_after
+msgid "Server Actions Assignment Submission After 1 Days"
+msgstr "Actions Server Affectation Présentation Après 1 Jours"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
+msgid "Set to Draft"
+msgstr "Ensemble au projet de"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__state
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__state
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "State"
-msgstr "État"
+msgstr "Etat"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
-#: field:op.assignment.sub.line,student_id:0
+#: model:ir.model,name:openeducat_assignment.model_op_student
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__student_id
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "Student"
-msgstr "Student"
+msgstr "Étudiant"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,subject_id:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__subject_id
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Subject"
-msgstr "Objet "
+msgstr "Matière"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_search
-#: field:op.assignment,submission_date:0
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_search
-#: field:op.assignment.sub.line,submission_date:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__submission_date
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__submission_date
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "Submission Date"
 msgstr "Date de soumission"
 
 #. module: openeducat_assignment
-#: view:op.assignment:openeducat_assignment.view_op_assignment_form
-#: field:op.assignment,assignment_sub_line:0
-msgid "Submissions"
-msgstr "Soumissions"
+#: model:mail.template,report_name:openeducat_assignment.email_template_assignment_submission_after
+msgid "Submission Date Passed"
+msgstr "Date de dépôt Passed"
 
 #. module: openeducat_assignment
-#: view:op.assignment.sub.line:openeducat_assignment.view_op_assignment_sub_line_form
+#: code:addons/openeducat_assignment/models/assignment.py:64
+#, python-format
+msgid "Submission Date cannot be set before Issue Date."
+msgstr "Date de soumission ne peut pas être avant la date d'émission."
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__assignment_sub_line
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
+msgid "Submissions"
+msgstr "Les soumissions"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Submit"
-msgstr "Envoyer"
+msgstr "Soumettre"
+
+#. module: openeducat_assignment
+#: model:mail.template,subject:openeducat_assignment.email_template_assignment_submission
+msgid "Submit Your Assignment"
+msgstr "Soumettre votre affectation"
 
 #. module: openeducat_assignment
 #: selection:op.assignment.sub.line,state:0
@@ -367,26 +552,65 @@ msgid "Submitted"
 msgstr "Soumis"
 
 #. module: openeducat_assignment
-#: field:op.assignment,message_summary:0
-#: field:op.assignment.sub.line,message_summary:0
-msgid "Summary"
-msgstr "Résumé"
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
+msgid "Tag"
+msgstr "Étiquette"
 
 #. module: openeducat_assignment
-#: field:op.assignment,message_unread:0
-#: field:op.assignment.sub.line,message_unread:0
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__faculty_user_id
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__user_id
+msgid "The internal user in charge of this contact."
+msgstr "L'utilisateur interne en charge de ce contact."
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_tree
+msgid "Type"
+msgstr ""
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_unread
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_unread
 msgid "Unread Messages"
-msgstr "Messages non lus"
+msgstr "Les messages non lus"
 
 #. module: openeducat_assignment
-#: field:op.assignment,website_message_ids:0
-#: field:op.assignment.sub.line,website_message_ids:0
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_unread_counter
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Les messages non lus compteur"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__website_message_ids
 msgid "Website Messages"
-msgstr "Site Web Messages"
+msgstr "Messages du site"
 
 #. module: openeducat_assignment
-#: help:op.assignment,website_message_ids:0
-#: help:op.assignment.sub.line,website_message_ids:0
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__website_message_ids
+#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__website_message_ids
 msgid "Website communication history"
-msgstr "Histoire de communication site Web"
+msgstr "Site historique des communications"
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
+msgid "Week"
+msgstr "La semaine"
+
+#. module: openeducat_assignment
+#: code:addons/openeducat_assignment/models/assignment_sub_line.py:101
+#, python-format
+msgid "You can't delete none draft submissions!"
+msgstr "Vous ne pouvez pas supprimer aucun projet de conclusions!"
 

@@ -1,0 +1,1387 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* openeducat_library
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-27 05:28+0000\n"
+"PO-Revision-Date: 2019-09-27 05:28+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
+msgid "\n"
+"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
+"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> has been expired. Please return it as soon as possible.</p>\n"
+"            <p>Thank you.</p>\n"
+"            "
+msgstr "\n"
+"            <P> Sayang <strong> $ {object.student_id.name} </ strong>\n"
+"            <P> $ Anda {object.media_type_id.name}, <strong> $ {object.media_id.name} </ strong> telah berakhir. Silakan kembali secepat mungkin. </ P>\n"
+"            <P> Terima kasih. </ P>\n"
+"            "
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement
+msgid "\n"
+"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
+"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> will \n"
+"                % if object.get_diff_day() == 0:\n"
+"                    be expiring <strong>today.</strong>\n"
+"                % else:\n"
+"                    expire in <strong> ${object.get_diff_day()}</strong> day(s).\n"
+"                % endif\n"
+"                Please return it as soon as possible.</p>\n"
+"            <p>Thank you.</p>\n"
+"            "
+msgstr "\n"
+"            <P> Sayang <strong> $ {object.student_id.name} </ strong>\n"
+"            <P> $ Anda {object.media_type_id.name}, <strong> $ {object.media_id.name} </ strong> akan\n"
+"                % Jika object.get_diff_day () == 0:\n"
+"                    menjadi berakhir <strong> hari ini. </ strong>\n"
+"                % lain:\n"
+"                    berakhir pada <strong> $ {object.get_diff_day ()} </ strong> hari (s).\n"
+"                % berakhir jika\n"
+"                Silakan kembali secepat mungkin. </ P>\n"
+"            <P> Terima kasih. </ P>\n"
+"            "
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        E-mail :"
+msgstr "<br/>\n"
+"                                                        Surel :"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        Issued Date :"
+msgstr "<br/>\n"
+"                                                        Tanggal diterbitkan:"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        Phone :"
+msgstr "<br/>\n"
+"                                                        telepon:"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        Type :"
+msgstr "<br/>\n"
+"                                                        Tipe :"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "<strong>Library Card(s) Barcode</strong>"
+msgstr "<Strong> Kartu Perpustakaan (s) Barcode </ strong>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Accept"
+msgstr "Menerima"
+
+#. module: openeducat_library
+#: selection:op.media.purchase,state:0
+#: selection:op.media.queue,state:0
+msgid "Accepted"
+msgstr "diterima"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction
+msgid "Action Needed"
+msgstr "aksi Dibutuhkan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__actual_return_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__actual_return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Actual Return Date"
+msgstr "Sebenarnya tanggal kembali"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_movement.py:92
+#, python-format
+msgid "Actual Return Date cannot be set before Issued Date"
+msgstr "Sebenarnya tanggal kembali tidak dapat diatur sebelum Ditempatkan Tanggal"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__address
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__address_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Address"
+msgstr "Alamat"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Address Detail"
+msgstr "alamat Detil"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Admission Details"
+msgstr "Detail Pendaftaran"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_view
+#: model:ir.ui.menu,name:openeducat_library.menu_library_medias
+msgid "All Media"
+msgstr "semua Media"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_attachment_count
+msgid "Attachment Count"
+msgstr "lampiran Hitungan"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_tree
+msgid "Author"
+msgstr "Penulis"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__author_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__author
+msgid "Author(s)"
+msgstr "Author (s)"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_author_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_author_sub
+msgid "Authors"
+msgstr "penulis"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
+#: selection:op.media.unit,state:0
+msgid "Available"
+msgstr "Tersedia"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__barcode
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Barcode"
+msgstr "barcode"
+
+#. module: openeducat_library
+#: sql_constraint:op.media.unit:0
+msgid "Barcode must be unique per Media unit!"
+msgstr "Barcode harus unik per unit Media!"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/wizards/return_media.py:49
+#, python-format
+msgid "Can't return media."
+msgstr "tidak dapat kembali Media."
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Cancel"
+msgstr "Batalkan"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Barcode"
+msgstr "Barcode Card"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Holder"
+msgstr "Pemegang kartu"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "Card No :"
+msgstr "Kartu No:"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__library_card_type_id
+msgid "Card Type"
+msgstr "Tipe kartu"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "City"
+msgstr "Kota"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__code
+msgid "Code"
+msgstr "Kode"
+
+#. module: openeducat_library
+#: sql_constraint:op.media.type:0
+msgid "Code should be unique per media type!"
+msgstr "Kode harus unik per jenis media!"
+
+#. module: openeducat_library
+#: model:ir.ui.menu,name:openeducat_library.menu_op_school_library_config
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Country"
+msgstr "Negara"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__course_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__course_ids
+msgid "Course"
+msgstr "kuliah"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Course Details"
+msgstr "Rincian saja"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Courses"
+msgstr "Kursus"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Create Invoice"
+msgstr "Buat Faktur"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__description
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Description"
+msgstr "Deskripsi"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__display_name
+msgid "Display Name"
+msgstr "Nama tampilan"
+
+#. module: openeducat_library
+#: selection:op.media.purchase,state:0
+msgid "Draft"
+msgstr "Draf"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__return_date
+msgid "Due Date"
+msgstr "Batas waktu"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__duration
+msgid "Duration"
+msgstr "Durasi"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
+msgid "Duration in terms of Number of Lead Days"
+msgstr "Durasi dalam hal jumlah hari Timbal"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__edition
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+msgid "Edition"
+msgstr "Edisi"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Education Details"
+msgstr "Rincian Pendidikan"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Educational"
+msgstr "pendidikan"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/library.py:43
+#, python-format
+msgid "Enter proper value"
+msgstr "Masukkan nilai yang tepat"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__faculty_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: selection:issue.media,type:0
+#: selection:op.library.card,type:0
+#: selection:op.media.movement,type:0
+msgid "Faculty"
+msgstr "Fakultas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "First Name"
+msgstr "Nama depan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_follower_ids
+msgid "Followers"
+msgstr "pengikut"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_channel_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_channel_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_channel_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Pengikut (Saluran)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pengikut (Mitra)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_from
+msgid "From Date"
+msgstr "Dari tanggal"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+msgid "Group By..."
+msgstr "Kelompokkan Menurut..."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__id
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode__id
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode__id
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
+msgid "ID"
+msgstr ""
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
+msgid "ISBN Code"
+msgstr "Kode ISBN"
+
+#. module: openeducat_library
+#: sql_constraint:op.media:0
+msgid "ISBN code must be unique per media!"
+msgstr "kode ISBN harus unik per Media!"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_unread
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_unread
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_unread
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Jika dicentang pesan baru membutuhkan perhatian Anda."
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Jika dicentang, pesan baru membutuhkan perhatian Anda."
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jika dicentang, beberapa pesan memiliki kesalahan pengiriman."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__internal_code
+msgid "Internal Code"
+msgstr "Kode internal"
+
+#. module: openeducat_library
+#: sql_constraint:op.media:0
+msgid "Internal Code must be unique per media!"
+msgstr "Kode internal harus unik per Media!"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_purchase.py:64
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not create             Media Purchase Requests!"
+msgstr "Aksi tidak valid!\n"
+" Orang tua tidak dapat membuat Media Pembelian Permintaan!"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_queue.py:59
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not create             Media Queue Requests!"
+msgstr "Aksi tidak valid!\n"
+" Orang tua tidak dapat membuat Media Antrian Permintaan!"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_purchase.py:71
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not edit             Media Purchase Requests!"
+msgstr "Aksi tidak valid!\n"
+" Orang tua tidak dapat mengedit Media Pembelian Permintaan!"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_queue.py:69
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not edit             Media Queue Requests!"
+msgstr "Aksi tidak valid!\n"
+" Orang tua tidak dapat mengedit Media Antrian Permintaan!"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_account_invoice
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
+msgid "Invoice"
+msgstr "Faktur"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_is_follower
+msgid "Is Follower"
+msgstr "Apakah Follower"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__issue_date
+msgid "Issue Date"
+msgstr "Tanggal pembuatan"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+msgid "Issue Media"
+msgstr "Media masalah"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_issue_media
+msgid "Issue Media Wizard"
+msgstr "Isu Media Wisaya"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.issue_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Issue media"
+msgstr "Media masalah"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
+#: selection:op.media.unit,state:0
+msgid "Issued"
+msgstr "Dikabarkan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__issued_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__issued_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Issued Date"
+msgstr "dikeluarkan Tanggal"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Issued Today"
+msgstr "diterbitkan Hari ini"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media____last_update
+msgid "Last Modified on"
+msgstr "Terakhir Diubah pada"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Last Name"
+msgstr "Nama keluarga"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_date
+msgid "Last Updated on"
+msgstr "Terakhir diperbarui saat"
+
+#. module: openeducat_library
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_root
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
+#: model:res.groups,name:openeducat_library.group_op_library
+msgid "Library"
+msgstr "Perpustakaan"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_library_card
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__library_card_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Library Card"
+msgstr "Kartu perpustakaan"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card_barcode
+msgid "Library Card Barcode"
+msgstr "Barcode Card perpustakaan"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_library_card_barcode
+msgid "Library Card Barcode Report"
+msgstr "Perpustakaan Barcode Report Card"
+
+#. module: openeducat_library
+#: model:mail.template,report_name:openeducat_library.email_template_media_movement_after
+#: model:mail.template,subject:openeducat_library.email_template_media_movement_after
+msgid "Library Card Expired"
+msgstr "Kartu perpustakaan Berakhir"
+
+#. module: openeducat_library
+#: model:mail.template,subject:openeducat_library.email_template_media_movement
+msgid "Library Card Renew"
+msgstr "Kartu perpustakaan Renew"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_library_card_type
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_tree
+msgid "Library Card Type"
+msgstr "Kartu perpustakaan Type"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_type_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_card_type_sub
+msgid "Library Card Types"
+msgstr "Jenis Kartu Perpustakaan"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_card_sub
+msgid "Library Cards"
+msgstr "Kartu perpustakaan"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card
+msgid "Library ID Card"
+msgstr "ID Card perpustakaan"
+
+#. module: openeducat_library
+#: sql_constraint:op.library.card:0
+msgid "Library card Number should be unique per card!"
+msgstr "Nomor kartu perpustakaan harus unik per kartu!"
+
+#. module: openeducat_library
+#: model:product.product,name:openeducat_library.op_product_7
+#: model:product.template,name:openeducat_library.op_product_7_product_template
+msgid "Library penalty fee"
+msgstr "biaya penalti perpustakaan"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
+msgid "Lost"
+msgstr "Kalah"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Lampiran utama"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/wizards/issue_media.py:103
+#, python-format
+msgid "Maximum Number of media allowed for %s is : %s"
+msgstr "Jumlah maksimum media diperbolehkan untuk% s adalah:% s"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_id
+#: model:ir.ui.menu,name:openeducat_library.menu_op_sub_media_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
+msgid "Media"
+msgstr ""
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media :"
+msgstr "Media:"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_author
+#: model:ir.model,name:openeducat_library.model_return_media
+msgid "Media Author"
+msgstr "Media Penulis"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
+msgid "Media Barcode"
+msgstr ""
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_media_barcode
+msgid "Media Barcode Report"
+msgstr "Media Barcode Laporan"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media
+msgid "Media Details"
+msgstr "Detail Media"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_movement
+msgid "Media Movement"
+msgstr "Gerakan Media"
+
+#. module: openeducat_library
+#: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
+#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_after_ir_actions_server
+msgid "Media Movement Line After 1 Days"
+msgstr "Media Gerakan Jalur Setelah 1 Hari"
+
+#. module: openeducat_library
+#: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
+#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_1_ir_actions_server
+msgid "Media Movement Line Before 1 Days"
+msgstr "Media Gerakan Jalur Sebelum 1 Hari"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
+msgid "Media Movements"
+msgstr "Gerakan Media"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Name"
+msgstr "Media Nama"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_purchase
+msgid "Media Purchase Request"
+msgstr "Media Pembelian Permintaan"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_purchase_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_request_library_sub
+msgid "Media Purchase Requests"
+msgstr "Permintaan Media Pembelian"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__queue_ids
+msgid "Media Queue"
+msgstr "Media Antrian"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_queue
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
+msgid "Media Queue Request"
+msgstr "Media Antrian Permintaan"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_queue_request_library_sub
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Queue Requests"
+msgstr "Permintaan Media Antrian"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+msgid "Media Reservation"
+msgstr ""
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_reserve_media
+msgid "Media Reserve"
+msgstr "Media Cadangan"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Media Return"
+msgstr "Media Kembali"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_tag
+msgid "Media Tags"
+msgstr "Tags Media"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_type_view
+#: model:ir.model,name:openeducat_library.model_op_media_type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_type_id
+#: model:ir.ui.menu,name:openeducat_library.menu_op_tag_sub
+msgid "Media Type"
+msgstr "Tipe media"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_unit
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media Unit"
+msgstr "Media Satuan"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/wizards/return_media.py:52
+#, python-format
+msgid "Media Unit can not be returned                 because it's state is : %s"
+msgstr "Media Satuan tidak dapat dikembalikan karena negara itu adalah:% s"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_unit_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_tree
+msgid "Media Units"
+msgstr "Unit Media"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__media_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+msgid "Media(s)"
+msgstr "Media (s)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error
+msgid "Message Delivery error"
+msgstr "pesan kesalahan Pengiriman"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_ids
+msgid "Messages"
+msgstr "pesan"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Middle Name"
+msgstr "Nama tengah"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__movement_line
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Movements"
+msgstr "gerak-gerik"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+msgid "Name"
+msgstr "Nama"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
+msgid "No of medias Allowed"
+msgstr "Tidak ada dari media Diizinkan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
+msgid "Number"
+msgstr "Jumlah"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Jumlah Tindakan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of error"
+msgstr "Jumlah kesalahan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Jumlah pesan yang memerlukan tindakan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Jumlah pesan dengan kesalahan pengiriman"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_unread_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_unread_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_unread_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Jumlah pesan yang belum dibaca"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_faculty
+msgid "OpenEduCat Faculty"
+msgstr "OpenEduCat Fakultas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__partner_id
+msgid "Partner"
+msgstr "Pasangan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__penalty
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Penalty"
+msgstr "Penalti"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__penalty_amt_per_day
+msgid "Penalty Amount per Day"
+msgstr "Penalti Jumlah per Hari"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__partner_id
+msgid "Person"
+msgstr "Orang"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__reserver_name
+msgid "Person Name"
+msgstr "Nama orang"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Personal Information"
+msgstr "Informasi pribadi"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Proceed"
+msgstr "Memproses"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_publisher
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_tree
+msgid "Publisher"
+msgstr "Penerbit"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__publisher_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__publisher
+msgid "Publisher(s)"
+msgstr "Publisher (s)"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_publisher_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_publisher_sub
+msgid "Publishers"
+msgstr "Penerbit"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_tree
+msgid "Purchase Request"
+msgstr "Permintaan pembelian"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Reject"
+msgstr "Menolak"
+
+#. module: openeducat_library
+#: selection:op.media.purchase,state:0
+#: selection:op.media.queue,state:0
+msgid "Rejected"
+msgstr "Ditolak"
+
+#. module: openeducat_library
+#: model:mail.template,report_name:openeducat_library.email_template_media_movement
+msgid "Renew"
+msgstr "Memperbarui"
+
+#. module: openeducat_library
+#: selection:op.media.queue,state:0
+msgid "Request"
+msgstr "Permintaan"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+msgid "Request Again"
+msgstr "meminta lagi"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Request media"
+msgstr "Media permintaan"
+
+#. module: openeducat_library
+#: selection:op.media.purchase,state:0
+msgid "Requested"
+msgstr "diminta"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__requested_id
+msgid "Requested By"
+msgstr "Diminta oleh"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Reservation Detail"
+msgstr "reservasi Detil"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
+msgid "Reserved"
+msgstr "Pendiam"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Return Date"
+msgstr "Tanggal pengembalian"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_movement.py:85
+#: code:addons/openeducat_library/wizards/issue_media.py:52
+#, python-format
+msgid "Return Date cannot be set before Issued Date."
+msgstr "Kembali Tanggal tidak dapat ditetapkan sebelum Ditempatkan Tanggal."
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.return_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Return Media"
+msgstr "Kembali Media"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
+msgid "Returned"
+msgstr "kembali"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
+msgid "Returned Done"
+msgstr "kembali Selesai"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Returned Today"
+msgstr "kembali Hari ini"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__name
+msgid "Sequence No"
+msgstr "urutan ada"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
+msgid "Server Actions Media Movement"
+msgstr "Server Tindakan Media Gerakan"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
+msgid "Server Actions Media Movement After 1 Days"
+msgstr "Server Tindakan Media Gerakan Setelah 1 Hari"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "State"
+msgstr "Negara"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+msgid "Status"
+msgstr ""
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street..."
+msgstr "Jalan..."
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street2"
+msgstr "Jalan nomor 2"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_student
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__student_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+#: selection:issue.media,type:0
+#: selection:op.library.card,type:0
+#: selection:op.media.movement,type:0
+msgid "Student"
+msgstr "Siswa"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__partner_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__partner_id
+msgid "Student/Faculty"
+msgstr "Mahasiswa / Fakultas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Student/Faculty Detail"
+msgstr "Mahasiswa / Fakultas Detil"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__subject_ids
+msgid "Subject"
+msgstr "Subyek"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__subject_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Subjects"
+msgstr "subyek"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_tree
+msgid "Tag"
+msgstr "Menandai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__tags
+msgid "Tag(s)"
+msgstr "Tag (s)"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_tag_view
+msgid "Tags"
+msgstr ""
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_movement.py:169
+#, python-format
+msgid "There is no income account defined for this                     product: \"%s\". You may have to install a chart of                     account from Accounting app, settings                     menu."
+msgstr "Tidak ada akun pendapatan yang ditetapkan untuk produk ini: \"% s\". Anda mungkin harus menginstal bagan akun dari Akuntansi aplikasi, pengaturan menu."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Title"
+msgstr "Judul"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
+msgid "To Date"
+msgstr "Saat ini"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_queue.py:54
+#, python-format
+msgid "To Date cannot be set before From Date."
+msgstr "Untuk Tanggal tidak dapat ditetapkan sebelum Dari Tanggal."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__type
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+msgid "Type"
+msgstr "Tipe"
+
+#. module: openeducat_library
+#: model:product.product,uom_name:openeducat_library.op_product_7
+#: model:product.template,uom_name:openeducat_library.op_product_7_product_template
+msgid "Unit(s)"
+msgstr "Unit"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__unit_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Units"
+msgstr "unit"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_unread
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_unread
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_unread
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_unread
+msgid "Unread Messages"
+msgstr "Pesan belum dibaca"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_unread_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_unread_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_unread_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Pesan belum dibaca Kontra"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__user_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "User"
+msgstr "pemakai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__user_id
+msgid "Users"
+msgstr "pengguna"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__website_message_ids
+msgid "Website Messages"
+msgstr "Website Pesan"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__website_message_ids
+msgid "Website communication history"
+msgstr "riwayat komunikasi situs"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "ZIP"
+msgstr "zip"
+
+#. module: openeducat_library
+#: model:product.product,weight_uom_name:openeducat_library.op_product_7
+#: model:product.template,weight_uom_name:openeducat_library.op_product_7_product_template
+msgid "kg"
+msgstr ""
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "media"
+msgstr ""
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+msgid "media Issue"
+msgstr "Media Issue"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
+msgid "media Movement"
+msgstr "Gerakan Media"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+msgid "media Queue Request"
+msgstr "Media Antrian Permintaan"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/wizards/issue_media.py:97
+#, python-format
+msgid "media Unit can not be issued                     because it's state is : %s"
+msgstr "Media Satuan tidak bisa dikeluarkan karena negara itu adalah:% s"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+msgid "media Units"
+msgstr "Unit Media"
+

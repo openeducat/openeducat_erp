@@ -1,28 +1,607 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* openeducat_fees
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: openeducaterptranslation\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 13:32+0000\n"
-"PO-Revision-Date: 2018-03-21 01:12-0400\n"
-"Last-Translator: akkicode <aakash@techreceptives.com>\n"
-"Language-Team: Vietnamese\n"
+"POT-Creation-Date: 2019-09-27 05:40+0000\n"
+"PO-Revision-Date: 2019-09-27 05:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: crowdin.com\n"
-"X-Crowdin-Project: openeducaterptranslation\n"
-"X-Crowdin-Language: vi\n"
-"X-Crowdin-File: /master/openeducat_fees/i18n/openeducat_fees.pot\n"
-"Language: vi_VN\n"
+"Plural-Forms: \n"
 
 #. module: openeducat_fees
-#: view:op.student:openeducat_fees.view_op_student_form_fees_inherit
-msgid "Invoiced"
-msgstr "Lập hoá đơn"
+#: model:ir.model.fields,help:openeducat_fees.field_op_student_fees_details__invoice_state
+msgid " * The 'Draft' status is used when a user is encoding a new and unconfirmed Invoice.\n"
+" * The 'Open' status is used when user creates invoice, an invoice number is generated. It stays in the open status till the user pays the invoice.\n"
+" * The 'In Payment' status is used when payments have been registered for the entirety of the invoice in a journal configured to post entries at bank reconciliation only, and some of them haven't been reconciled with a bank statement line yet.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+msgstr " * Tình trạng 'Mớn nước' được sử dụng khi người dùng được mã hóa một hóa đơn mới và chưa được xác nhận.\n"
+" * Tình trạng 'Open' được sử dụng khi người dùng tạo ra hóa đơn, một số hóa đơn được tạo ra. Nó sẽ nằm trong tình trạng mở cho đến khi người dùng trả tiền hóa đơn.\n"
+" * Các 'Trong thanh toán' trạng thái được sử dụng khi thanh toán đã được đăng ký cho toàn bộ các hóa đơn trên một tạp chí cấu hình để gửi các mục chỉ hòa giải ngân hàng, và một số trong số họ đã không được hòa giải với một dòng báo cáo ngân hàng được nêu ra.\n"
+" * Tình trạng 'Paid' được thiết lập tự động khi hóa đơn được thanh toán. các bút toán liên quan của nó có thể hoặc không thể được hòa giải.\n"
+" * Tình trạng 'hủy' được sử dụng khi người dùng hủy hóa đơn."
 
 #. module: openeducat_fees
-#: field:op.course,payment_term:0
-msgid "Payment Term"
-msgstr "Thời hạn thanh toán"
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
+msgid "<br/>Invoiced"
+msgstr "<br/> lập Hoá đơn"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "<strong>Fees Detail</strong>"
+msgstr "<Strong> Phí chi tiết </ strong>"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction
+msgid "Action Needed"
+msgstr "Hành động cần thiết"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__active
+msgid "Active"
+msgstr "Hoạt động"
+
+#. module: openeducat_fees
+#: model:product.category,name:openeducat_fees.op_prod_cat1
+msgid "Admission Fees"
+msgstr "Phí vào cửa"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_1
+#: model:product.template,name:openeducat_fees.op_product_1_product_template
+msgid "Admission Fees for BOA"
+msgstr "Lệ phí nhập học cho BOA"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_2
+#: model:product.template,name:openeducat_fees.op_product_2_product_template
+msgid "Admission Fees for G8-AR"
+msgstr "Lệ phí nhập học cho G8-AR"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_6
+#: model:product.template,name:openeducat_fees.op_product_6_product_template
+msgid "Admission Fees for Grade-8"
+msgstr "Lệ phí nhập học cho lớp-8"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_3
+#: model:product.template,name:openeducat_fees.op_product_3_product_template
+msgid "Admission Fees for LTRP"
+msgstr "Lệ phí nhập học cho LTRP"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_4
+#: model:product.template,name:openeducat_fees.op_product_4_product_template
+msgid "Admission Fees for PPHD"
+msgstr "Lệ phí nhập học cho PPHD"
+
+#. module: openeducat_fees
+#: selection:op.fees.terms,day_type:0
+msgid "After"
+msgstr "Sau"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_attachment_count
+msgid "Attachment Count"
+msgstr "Đếm tập tin đính kèm"
+
+#. module: openeducat_fees
+#: selection:op.fees.terms,day_type:0
+msgid "Before"
+msgstr "Trước"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
+#: selection:op.student.fees.details,state:0
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: openeducat_fees
+#: selection:fees.detail.report.wizard,fees_filter:0
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__course_id
+msgid "Course"
+msgstr "Khóa học"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
+msgid "Create Invoice"
+msgstr "Tạo hóa đơn"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__create_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__create_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_uid
+msgid "Created by"
+msgstr "Được tạo bởi"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__create_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__create_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__create_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__create_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__create_date
+msgid "Created on"
+msgstr "Được tạo ra"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__note
+msgid "Description"
+msgstr "Sự miêu tả"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
+msgid "Description..."
+msgstr "Sự miêu tả..."
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__display_name
+#: model:ir.model.fields,field_description:openeducat_fees.field_report_openeducat_fees_report_fees_analysis__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: openeducat_fees
+#: selection:op.student.fees.details,state:0
+msgid "Draft"
+msgstr "Bản nháp"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_days
+msgid "Due Days"
+msgstr "Những ngày đến hạn"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_id
+msgid "Fees"
+msgstr "phí"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__amount
+msgid "Fees Amount"
+msgstr "phí Số tiền"
+
+#. module: openeducat_fees
+#: model:ir.ui.menu,name:openeducat_fees.menu_op_fees_analysis_report_main
+msgid "Fees Analysis"
+msgstr "phí Phân tích"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_detail_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
+msgid "Fees Collection Details"
+msgstr "Phí Collection Thông tin chi tiết"
+
+#. module: openeducat_fees
+#: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
+msgid "Fees Detail Analysis"
+msgstr "Phân tích chi phí chi tiết"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
+msgid "Fees Details"
+msgstr "phí Chi tiết"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_fees_terms_line
+msgid "Fees Details Line"
+msgstr "Phí Chi tiết dòng"
+
+#. module: openeducat_fees
+#: model:ir.actions.act_window,name:openeducat_fees.fees_detail_report_wizard_act
+msgid "Fees Details Report"
+msgstr "Lệ phí chi tiết Báo cáo"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_fees_element
+msgid "Fees Element for course"
+msgstr "Phí tử cho khóa học"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_element_line
+msgid "Fees Elements"
+msgstr "phí Elements"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_factor
+msgid "Fees Factor"
+msgstr "phí Yếu tố"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__fees_filter
+msgid "Fees Filter"
+msgstr "phí Lọc"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_line_id
+msgid "Fees Line"
+msgstr "phí đường"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_tree
+msgid "Fees Reminder Terms"
+msgstr "Phí Điều khoản Reminder"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_report_openeducat_fees_report_fees_analysis
+msgid "Fees Report"
+msgstr "phí báo cáo"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_course__fees_term_id
+msgid "Fees Term"
+msgstr "phí hạn"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
+msgid "Fees Term Line"
+msgstr "Phí hạn dòng"
+
+#. module: openeducat_fees
+#: model:ir.actions.act_window,name:openeducat_fees.act_open_fees_terms_view
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__fees_terms_line_id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
+#: model:ir.ui.menu,name:openeducat_fees.menu_fees_terms
+msgid "Fees Terms"
+msgstr "phí Điều khoản"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_fees_terms
+msgid "Fees Terms For Course"
+msgstr "Phí Điều khoản Đối với khóa học"
+
+#. module: openeducat_fees
+#: code:addons/openeducat_fees/models/fees_terms.py:56
+#, python-format
+msgid "Fees Terms must be Required!"
+msgstr "Phí khoản phải bắt buộc!"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_5
+#: model:product.template,name:openeducat_fees.op_product_5_product_template
+msgid "Fees for IELTS"
+msgstr "Lệ phí thi IELTS"
+
+#. module: openeducat_fees
+#: code:addons/openeducat_fees/models/fees_terms.py:63
+#, python-format
+msgid "Fees terms must be divided as such sum up in 100%"
+msgstr "Về lệ phí phải được phân chia như tiền như vậy lên 100%"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_follower_ids
+msgid "Followers"
+msgstr "Người theo dõi"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Người theo dõi (Channels)"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Partners)"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__id
+#: model:ir.model.fields,field_description:openeducat_fees.field_report_openeducat_fees_report_fees_analysis__id
+msgid "ID"
+msgstr ""
+
+#. module: openeducat_fees
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Nếu kiểm tra tin nhắn mới đòi hỏi sự chú ý của bạn."
+
+#. module: openeducat_fees
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Nếu được chọn, các thông điệp mới đòi hỏi sự chú ý của bạn."
+
+#. module: openeducat_fees
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Nếu được chọn, một số thông báo có một lỗi giao hàng."
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
+msgid "Information"
+msgstr "Thông tin"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_state
+msgid "Invoice"
+msgstr "Hóa đơn"
+
+#. module: openeducat_fees
+#: selection:op.student.fees.details,state:0
+msgid "Invoice Created"
+msgstr ""
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_is_follower
+msgid "Is Follower"
+msgstr "Trở thành người theo dõi"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard____last_update
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element____last_update
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms____last_update
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line____last_update
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details____last_update
+#: model:ir.model.fields,field_description:openeducat_fees.field_report_openeducat_fees_report_fees_analysis____last_update
+msgid "Last Modified on"
+msgstr "Sửa đổi lần cuối trên"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__write_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_uid
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__write_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__write_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_date
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_date
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối vào"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_7
+#: model:product.template,name:openeducat_fees.op_product_7_product_template
+msgid "Library Fees"
+msgstr "Phí thư viện"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Đính kèm chính"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_error
+msgid "Message Delivery error"
+msgstr "thông báo lỗi giao hàng"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_ids
+msgid "Messages"
+msgstr "Tin nhắn"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__no_days
+msgid "No of Days"
+msgstr "Số ngày"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số Actions"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_error_counter
+msgid "Number of error"
+msgstr "Số lỗi"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Số lượng tin nhắn mà đòi hỏi phải có một hành động"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số lượng tin nhắn với lỗi giao hàng"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Số tin nhắn chưa đọc"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_course
+msgid "OpenEduCat Course"
+msgstr "OpenEduCat Khóa học"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
+msgid "Print"
+msgstr "In"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__product_id
+msgid "Product"
+msgstr "sản phẩm"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__product_id
+msgid "Product(s)"
+msgstr "Các sản phẩm)"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__sequence
+msgid "Sequence"
+msgstr "Sự nối tiếp"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__state
+msgid "Status"
+msgstr "Trạng thái"
+
+#. module: openeducat_fees
+#: selection:fees.detail.report.wizard,fees_filter:0
+#: model:ir.model,name:openeducat_fees.model_op_student
+#: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__student_id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__student_id
+msgid "Student"
+msgstr "Sinh viên"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_student_fees_details
+msgid "Student Fees Details"
+msgstr "Phí Student Chi tiết"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "Student Name"
+msgstr "Tên học sinh"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__date
+msgid "Submit Date"
+msgstr "Gửi ngày"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__line_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
+msgid "Terms"
+msgstr "Điều kiện"
+
+#. module: openeducat_fees
+#: code:addons/openeducat_fees/models/student.py:68
+#, python-format
+msgid "The value of the deposit amount must be positive."
+msgstr "Giá trị của số tiền ký quỹ phải là số dương."
+
+#. module: openeducat_fees
+#: code:addons/openeducat_fees/models/student.py:63
+#, python-format
+msgid "There is no income account defined for this product: \"%s\".You may have to install a chart of account from Accounting app, settings menu."
+msgstr "Không có tài khoản thu nhập được xác định cho sản phẩm này: \"% s\" .Bạn có thể phải cài đặt một biểu đồ của tài khoản từ ứng dụng Kế toán, trình đơn cài đặt."
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "Total Amount"
+msgstr "Tổng cộng"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "Total Invoiced"
+msgstr "Tổng số được lập Hoá đơn"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "Total Left"
+msgstr "Tổng số trái"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
+msgid "Total Paid"
+msgstr "Tổng số chi trả"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_8
+#: model:product.template,name:openeducat_fees.op_product_8_product_template
+msgid "Tution Fees"
+msgstr "Học phí"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__day_type
+msgid "Type"
+msgstr "Thể loại"
+
+#. module: openeducat_fees
+#: model:product.product,uom_name:openeducat_fees.op_product_1
+#: model:product.product,uom_name:openeducat_fees.op_product_2
+#: model:product.product,uom_name:openeducat_fees.op_product_3
+#: model:product.product,uom_name:openeducat_fees.op_product_4
+#: model:product.product,uom_name:openeducat_fees.op_product_5
+#: model:product.product,uom_name:openeducat_fees.op_product_6
+#: model:product.product,uom_name:openeducat_fees.op_product_7
+#: model:product.product,uom_name:openeducat_fees.op_product_8
+#: model:product.template,uom_name:openeducat_fees.op_product_1_product_template
+#: model:product.template,uom_name:openeducat_fees.op_product_2_product_template
+#: model:product.template,uom_name:openeducat_fees.op_product_3_product_template
+#: model:product.template,uom_name:openeducat_fees.op_product_4_product_template
+#: model:product.template,uom_name:openeducat_fees.op_product_5_product_template
+#: model:product.template,uom_name:openeducat_fees.op_product_6_product_template
+#: model:product.template,uom_name:openeducat_fees.op_product_7_product_template
+#: model:product.template,uom_name:openeducat_fees.op_product_8_product_template
+msgid "Unit(s)"
+msgstr "Đơn vị"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_unread
+msgid "Unread Messages"
+msgstr "Tin nhắn chưa đọc"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Tin nhắn chưa đọc Counter"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__value
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__value
+msgid "Value (%)"
+msgstr "Giá trị (%)"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
+msgid "View Invoice"
+msgstr "Xem hóa đơn"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__website_message_ids
+msgid "Website Messages"
+msgstr "Tin nhắn của trang web"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__website_message_ids
+msgid "Website communication history"
+msgstr "lịch sử truyền thông website"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
+msgid "Wizard For Fees Details Report"
+msgstr "Wizard cho Lệ phí chi tiết Báo cáo"
+
+#. module: openeducat_fees
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_1
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_2
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_3
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_4
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_5
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_6
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_7
+#: model:product.product,weight_uom_name:openeducat_fees.op_product_8
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_1_product_template
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_2_product_template
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_3_product_template
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_4_product_template
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_5_product_template
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_6_product_template
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_7_product_template
+#: model:product.template,weight_uom_name:openeducat_fees.op_product_8_product_template
+msgid "kg"
+msgstr ""
 

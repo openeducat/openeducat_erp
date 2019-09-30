@@ -87,6 +87,8 @@ class OpParent(models.Model):
                     'name': record.name.name,
                     'partner_id': record.name.id,
                     'login': record.name.email,
+                    'is_parent': True,
+                    'tz': self._context.get('tz'),
                     'groups_id': groups_id,
                     'child_ids': [(6, 0, user_ids)]
                 })
