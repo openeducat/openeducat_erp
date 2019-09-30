@@ -1,27 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* openeducat_activity
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: openeducaterptranslation\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-28 11:50+0000\n"
-"PO-Revision-Date: 2018-03-20 06:14-0400\n"
-"Last-Translator: akkicode <aakash@techreceptives.com>\n"
-"Language-Team: Vietnamese\n"
+"POT-Creation-Date: 2019-09-27 05:39+0000\n"
+"PO-Revision-Date: 2019-09-27 05:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: crowdin.com\n"
-"X-Crowdin-Project: openeducaterptranslation\n"
-"X-Crowdin-Language: vi\n"
-"X-Crowdin-File: /master/openeducat_activity/i18n/openeducat_activity.pot\n"
-"Language: vi_VN\n"
+"Plural-Forms: \n"
 
 #. module: openeducat_activity
-#: view:op.activity:openeducat_activity.view_op_activity_form
-#: view:op.activity:openeducat_activity.view_op_activity_search
-#: view:op.activity:openeducat_activity.view_op_activity_tree
-#: view:op.student:openeducat_activity.view_op_student_form_timetable_inherit
-#: field:op.student,activity_log:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction
+msgid "Action Needed"
+msgstr "Hành động cần thiết"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_ids
+msgid "Activities"
+msgstr "Hoạt động"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student__activity_log
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_form
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_search
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_student_form_timetable_inherit
 msgid "Activity Log"
 msgstr "Hoạt động đăng nhập"
 
@@ -32,109 +41,316 @@ msgid "Activity Logs"
 msgstr "Bản ghi hoạt động"
 
 #. module: openeducat_activity
-#: field:op.activity,type_id:0
-#: view:op.activity.type:openeducat_activity.view_op_activity_type_form
-#: view:op.activity.type:openeducat_activity.view_op_activity_type_search
-#: view:op.activity.type:openeducat_activity.view_op_activity_type_tree
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_state
+msgid "Activity State"
+msgstr "Nhà nước hoạt động"
+
+#. module: openeducat_activity
+#: model:ir.model,name:openeducat_activity.model_op_activity_type
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__type_id
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_tree
 msgid "Activity Type"
-msgstr "Loại hình hoạt động"
+msgstr "Loại hoạt động"
 
 #. module: openeducat_activity
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_op_activity_type_view
 #: model:ir.ui.menu,name:openeducat_activity.menu_op_activity_type_sub
 msgid "Activity Types"
-msgstr "Các loại hoạt động"
+msgstr "Kiểu hoạt động"
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_attachment_count
+msgid "Attachment Count"
+msgstr "Đếm tập tin đính kèm"
+
+#. module: openeducat_activity
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:50
+#, python-format
+msgid "Can't migrate, As selected courses don't                         share same parent course!"
+msgstr "không thể di chuyển, Như các khóa học đã chọn không chia sẻ quá trình cùng mẹ!"
+
+#. module: openeducat_activity
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:55
+#, python-format
+msgid "Can't migrate, Proceed for new admission"
+msgstr "không thể di chuyển, Tiến hành xin nhập học mới"
+
+#. module: openeducat_activity
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Cancel"
-msgstr "Hủy bỏ"
+msgstr "Hủy"
 
 #. module: openeducat_activity
-#: field:op.activity,create_uid:0
-#: field:op.activity.type,create_uid:0
-#: field:student.migrate,create_uid:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__create_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_uid
 msgid "Created by"
-msgstr "Tạo bởi"
+msgstr "Được tạo bởi"
 
 #. module: openeducat_activity
-#: field:op.activity,create_date:0
-#: field:op.activity.type,create_date:0
-#: field:student.migrate,create_date:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__create_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_date
 msgid "Created on"
-msgstr "Tạo ngày"
+msgstr "Được tạo ra"
 
 #. module: openeducat_activity
-#: field:op.activity,date:0
-#: field:student.migrate,date:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__date
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__date
 msgid "Date"
 msgstr "Ngày"
 
 #. module: openeducat_activity
-#: field:op.activity,faculty_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__description
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_form
+msgid "Description"
+msgstr "Sự miêu tả"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__display_name
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__display_name
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__faculty_id
 msgid "Faculty"
-msgstr "Giảng viên"
+msgstr "Khoa"
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_follower_ids
+msgid "Followers"
+msgstr "Người theo dõi"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Người theo dõi (Channels)"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Partners)"
+
+#. module: openeducat_activity
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Forward"
-msgstr "Chuyển tiếp"
+msgstr "Ở đằng trước"
 
 #. module: openeducat_activity
-#: field:student.migrate,course_from_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_from_id
 msgid "From Course"
-msgstr "Từ khóa"
+msgstr "từ Khóa học"
 
 #. module: openeducat_activity
-#: field:op.activity,id:0
-#: field:op.activity.type,id:0
-#: field:student.migrate,id:0
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:45
+#, python-format
+msgid "From Course must not be same as To Course!"
+msgstr "Từ khóa không phải là giống như Để khóa học!"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__id
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__id
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: openeducat_activity
-#: field:op.activity,write_uid:0
-#: field:op.activity.type,write_uid:0
-#: field:student.migrate,write_uid:0
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Nếu kiểm tra tin nhắn mới đòi hỏi sự chú ý của bạn."
+
+#. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Nếu được chọn, các thông điệp mới đòi hỏi sự chú ý của bạn."
+
+#. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Nếu được chọn, một số thông báo có một lỗi giao hàng."
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_is_follower
+msgid "Is Follower"
+msgstr "là người theo dõi"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity____last_update
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type____last_update
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate____last_update
+msgid "Last Modified on"
+msgstr "Sửa đổi lần cuối trên"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_uid
 msgid "Last Updated by"
-msgstr "Cập Nhật lần cuối bởi"
+msgstr "Cập nhật lần cuối bởi"
 
 #. module: openeducat_activity
-#: field:op.activity,write_date:0
-#: field:op.activity.type,write_date:0
-#: field:student.migrate,write_date:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_date
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_date
 msgid "Last Updated on"
-msgstr "Lần cập nhật cuối"
+msgstr "Cập nhật lần cuối vào"
 
 #. module: openeducat_activity
-#: field:op.activity.type,name:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Đính kèm chính"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_error
+msgid "Message Delivery error"
+msgstr "thông báo lỗi giao hàng"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_ids
+msgid "Messages"
+msgstr "Tin nhắn"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__name
 msgid "Name"
 msgstr "Tên"
 
 #. module: openeducat_activity
-#: field:op.activity,student_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Hạn Hoạt động tiếp theo"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_summary
+msgid "Next Activity Summary"
+msgstr "Tóm tắt Hoạt động tiếp theo"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tiếp Loại Hoạt động"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số Actions"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_error_counter
+msgid "Number of error"
+msgstr "Số lỗi"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Số lượng tin nhắn mà đòi hỏi phải có một hành động"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số lượng tin nhắn với lỗi giao hàng"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Số tin nhắn chưa đọc"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__optional_sub
+msgid "Optional Subjects"
+msgstr "Đối tượng không bắt buộc"
+
+#. module: openeducat_activity
+#: selection:op.activity,activity_state:0
+msgid "Overdue"
+msgstr "Quá hạn"
+
+#. module: openeducat_activity
+#: selection:op.activity,activity_state:0
+msgid "Planned"
+msgstr "lên kế hoạch"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_user_id
+msgid "Responsible User"
+msgstr "tài khoản có trách nhiệm"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Tình trạng dựa trên hoạt động\n"
+"Quá hạn: ngày Do đã được thông qua\n"
+"Hôm nay: ngày Hoạt động hiện nay\n"
+"Quy hoạch: các hoạt động trong tương lai."
+
+#. module: openeducat_activity
+#: model:ir.model,name:openeducat_activity.model_op_student
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__student_id
 msgid "Student"
 msgstr "Sinh viên"
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
-msgid "Student Migrate"
-msgstr "Học sinh di chuyển"
+#: model:ir.model,name:openeducat_activity.model_op_activity
+msgid "Student Activity"
+msgstr "Hoạt động sinh viên"
 
 #. module: openeducat_activity
-#: model:ir.ui.menu,name:openeducat_activity.menu_student_migrate
+#: model:ir.model,name:openeducat_activity.model_student_migrate
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
+msgid "Student Migrate"
+msgstr "sinh viên Di chuyển"
+
+#. module: openeducat_activity
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_student_migrate_view
+#: model:ir.ui.menu,name:openeducat_activity.menu_student_migrate
 msgid "Student Migration"
 msgstr "Học sinh di chuyển"
 
 #. module: openeducat_activity
-#: view:student.migrate:openeducat_activity.student_migrate_form
-#: field:student.migrate,student_ids:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student(s)"
-msgstr "Student(s)"
+msgstr "Sinh viên)"
 
 #. module: openeducat_activity
-#: field:student.migrate,course_to_id:0
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__batch_id
+msgid "To Batch"
+msgstr "để hàng loạt"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_to_id
 msgid "To Course"
 msgstr "Khóa học"
+
+#. module: openeducat_activity
+#: selection:op.activity,activity_state:0
+msgid "Today"
+msgstr "Hôm nay"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_unread
+msgid "Unread Messages"
+msgstr "Tin nhắn chưa đọc"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Tin nhắn chưa đọc Counter"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__website_message_ids
+msgid "Website Messages"
+msgstr "Tin nhắn của trang web"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__website_message_ids
+msgid "Website communication history"
+msgstr "lịch sử truyền thông website"
 
