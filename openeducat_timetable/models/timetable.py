@@ -65,14 +65,12 @@ class OpSession(models.Model):
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
 
-    @api.multi
     @api.depends('start_datetime')
     def _compute_day(self):
         for record in self:
             record.type = fields.Datetime.from_string(
                 record.start_datetime).strftime("%A")
 
-    @api.multi
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
     def _compute_name(self):
         for session in self:
@@ -83,7 +81,6 @@ class OpSession(models.Model):
                                str(session.timing_id.name)
 
     # For record rule on student and faculty dashboard
-    @api.multi
     @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
     def _compute_batch_users(self):
         student_obj = self.env['op.student']
@@ -100,19 +97,15 @@ class OpSession(models.Model):
                 user_list.extend(user_ids.ids)
             session.user_ids = user_list
 
-    @api.multi
     def lecture_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def lecture_confirm(self):
         self.state = 'confirm'
 
-    @api.multi
     def lecture_done(self):
         self.state = 'done'
 
-    @api.multi
     def lecture_cancel(self):
         self.state = 'cancel'
 
@@ -159,7 +152,6 @@ class OpSession(models.Model):
     def onchange_course(self):
         self.batch_id = False
 
-    @api.multi
     def notify_user(self):
         for session in self:
             template = self.env.ref(
@@ -167,7 +159,6 @@ class OpSession(models.Model):
                 raise_if_not_found=False)
             template.send_mail(session.id)
 
-    @api.multi
     def get_emails(self, follower_ids):
         email_ids = ''
         for user in follower_ids:
@@ -177,12 +168,10 @@ class OpSession(models.Model):
                 email_ids = str(user.sudo().partner_id.email)
         return email_ids
 
-    @api.multi
     def get_subject(self):
         return 'Lecture of ' + self.faculty_id.name + \
                ' for ' + self.subject_id.name + ' is ' + self.state
 
-    @api.multi
     @api.model
     def write(self, vals):
         data = super(OpSession,

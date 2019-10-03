@@ -74,22 +74,17 @@ class OpExamSession(models.Model):
     def onchange_course(self):
         self.batch_id = False
 
-    @api.multi
     def act_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def act_schedule(self):
         self.state = 'schedule'
 
-    @api.multi
     def act_held(self):
         self.state = 'held'
 
-    @api.multi
     def act_done(self):
         self.state = 'done'
 
-    @api.multi
     def act_cancel(self):
         self.state = 'cancel'

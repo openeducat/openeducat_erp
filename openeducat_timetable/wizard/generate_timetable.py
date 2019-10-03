@@ -76,7 +76,6 @@ class GenerateSession(models.TransientModel):
             if self.batch_id.course_id != self.course_id:
                 self.batch_id = False
 
-    @api.multi
     def act_gen_time_table(self):
         session_obj = self.env['op.session']
         for session in self:

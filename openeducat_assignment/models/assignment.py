@@ -54,7 +54,6 @@ class OpAssignment(models.Model):
                                           'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
 
-    @api.multi
     @api.constrains('issued_date', 'submission_date')
     def check_dates(self):
         for record in self:
@@ -72,20 +71,16 @@ class OpAssignment(models.Model):
                 ('id', '=', self.course_id.id)]).subject_ids
             return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
 
-    @api.multi
     def act_publish(self):
         result = self.state = 'publish'
         return result and result or False
 
-    @api.multi
     def act_finish(self):
         result = self.state = 'finish'
         return result and result or False
 
-    @api.multi
     def act_cancel(self):
         self.state = 'cancel'
 
-    @api.multi
     def act_set_to_draft(self):
         self.state = 'draft'

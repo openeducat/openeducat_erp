@@ -44,7 +44,6 @@ class OpResultLine(models.Model):
         if (self.marks < 0.0):
             raise ValidationError(_("Enter proper Marks or Percentage!"))
 
-    @api.multi
     @api.depends('marks')
     def _compute_grade(self):
         for record in self:
@@ -56,7 +55,6 @@ class OpResultLine(models.Model):
                             grade.max_per >= record.marks:
                         record.grade = grade.result
 
-    @api.multi
     @api.depends('marks')
     def _compute_status(self):
         for record in self:
@@ -64,7 +62,6 @@ class OpResultLine(models.Model):
             if record.marks < record.exam_id.min_marks:
                 record.status = 'fail'
 
-    @api.multi
     def unlink(self):
         for res in self:
             super(OpResultLine, res).unlink()

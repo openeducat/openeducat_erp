@@ -28,7 +28,7 @@ class OpFaculty(models.Model):
     _description = "OpenEduCat Faculty"
     _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
-
+    image = fields.Image("Image")
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
     middle_name = fields.Char('Middle Name', size=128)
@@ -61,7 +61,6 @@ class OpFaculty(models.Model):
                                            track_visibility='onchange')
     emp_id = fields.Many2one('hr.employee', 'HR Employee')
 
-    @api.multi
     @api.constrains('birth_date')
     def _check_birthdate(self):
         for record in self:
@@ -69,7 +68,6 @@ class OpFaculty(models.Model):
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
 
-    @api.multi
     def create_employee(self):
         for record in self:
             vals = {
@@ -81,7 +79,7 @@ class OpFaculty(models.Model):
             }
             emp_id = self.env['hr.employee'].create(vals)
             record.write({'emp_id': emp_id.id})
-            record.partner_id.write({'supplier': True, 'employee': True})
+            record.partner_id.write({'partner_share': True, 'employee': True})
 
     @api.model
     def get_import_templates(self):

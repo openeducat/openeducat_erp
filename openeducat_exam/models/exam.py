@@ -86,18 +86,14 @@ class OpExam(models.Model):
             raise ValidationError(
                 _('Exam Time should in between Exam Session Dates.'))
 
-    @api.multi
     def act_result_updated(self):
         self.state = 'result_updated'
 
-    @api.multi
     def act_done(self):
         self.state = 'done'
 
-    @api.multi
     def act_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def act_cancel(self):
         self.state = 'cancel'

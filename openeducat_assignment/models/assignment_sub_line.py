@@ -30,7 +30,6 @@ class OpAssignmentSubLine(models.Model):
     _description = "Assignment Submission"
     _order = "submission_date DESC"
 
-    @api.multi
     def get_user_group(self):
         for user in self:
             if self.env.user.has_group(
@@ -67,32 +66,26 @@ class OpAssignmentSubLine(models.Model):
     user_boolean = fields.Boolean(string='Check user',
                                   compute='get_user_group')
 
-    @api.multi
     def act_draft(self):
         result = self.state = 'draft'
         return result and result or False
 
-    @api.multi
     def act_submit(self):
         result = self.state = 'submit'
         return result and result or False
 
-    @api.multi
     def act_accept(self):
         result = self.state = 'accept'
         return result and result or False
 
-    @api.multi
     def act_change_req(self):
         result = self.state = 'change'
         return result and result or False
 
-    @api.multi
     def act_reject(self):
         result = self.state = 'reject'
         return result and result or False
 
-    @api.multi
     def unlink(self):
         for record in self:
             if not record.state == 'draft' and not self.env.user.has_group(
@@ -109,7 +102,6 @@ class OpAssignmentSubLine(models.Model):
             create Assignment Submissions!'))
         return super(OpAssignmentSubLine, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         if self.env.user.child_ids:
             raise Warning(_('Invalid Action!\n Parent can not edit \

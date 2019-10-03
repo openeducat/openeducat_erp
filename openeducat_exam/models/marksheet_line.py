@@ -52,17 +52,16 @@ class OpMarksheetLine(models.Model):
 
     @api.constrains('total_marks', 'percentage')
     def _check_marks(self):
-        if (self.total_marks < 0.0) or (self.percentage < 0.0):
-            raise ValidationError(_("Enter proper marks or percentage!"))
+        for record in self:
+            if (record.total_marks < 0.0) or (record.percentage < 0.0):
+                raise ValidationError(_("Enter proper marks or percentage!"))
 
-    @api.multi
     @api.depends('result_line.marks')
     def _compute_total_marks(self):
         for record in self:
             record.total_marks = sum([
                 int(x.marks) for x in record.result_line])
 
-    @api.multi
     @api.depends('total_marks')
     def _compute_percentage(self):
         for record in self:
@@ -71,7 +70,6 @@ class OpMarksheetLine(models.Model):
             record.percentage = record.total_marks and (
                     100 * record.total_marks) / total_exam_marks or 0.0
 
-    @api.multi
     @api.depends('percentage')
     def _compute_grade(self):
         for record in self:
@@ -82,7 +80,7 @@ class OpMarksheetLine(models.Model):
                             grade.max_per >= record.percentage:
                         record.grade = grade.result
 
-    @api.multi
+    @api.model
     @api.depends('result_line.status')
     def _compute_status(self):
         for record in self:

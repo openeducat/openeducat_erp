@@ -38,7 +38,6 @@ class OpAllStudentWizard(models.TransientModel):
         readonly=True)
     student_ids = fields.Many2many('op.student', string='Add Student(s)')
 
-    @api.multi
     def confirm_student(self):
         for record in self:
             for sheet in self.env.context.get('active_ids', []):

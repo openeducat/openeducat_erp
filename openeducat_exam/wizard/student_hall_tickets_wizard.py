@@ -31,7 +31,6 @@ class StudentHallTicket(models.TransientModel):
         'op.exam.session', 'Exam Session', required=True,
         domain=[('state', 'not in', ['draft', 'cancel', 'done'])])
 
-    @api.multi
     def print_report(self):
         data = self.read(['exam_session_id'])[0]
         return self.env.ref(

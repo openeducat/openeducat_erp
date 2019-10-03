@@ -37,7 +37,7 @@ class ReportFeesAnalysis(models.AbstractModel):
             paid_amount += inv.amount_total - inv.residual
         return [total_amount, paid_amount]
 
-    @api.model
+    # @api.model
     def _get_report_values(self, docids, data=None):
         student_ids = []
         if data['fees_filter'] == 'student':

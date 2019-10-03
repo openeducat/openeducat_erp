@@ -30,7 +30,6 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
     _name = "report.openeducat_timetable.report_timetable_teacher_generate"
     _description = "Timetable Teacher Report"
 
-    @api.multi
     def _convert_to_local_timezone(self, time):
         '''
             Converts time as per local timezone.

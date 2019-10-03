@@ -108,7 +108,6 @@ class PublisherWarrantyContract(models.Model):
         r.raise_for_status()
         return literal_eval(r.text)
 
-    @api.multi
     def update_notification(self, cron_mode=True):
         try:
             try:
