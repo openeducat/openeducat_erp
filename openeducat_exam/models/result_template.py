@@ -46,7 +46,6 @@ class OpResultTemplate(models.Model):
         ('result_generated', 'Result Generated')
     ], string='State', default='draft', track_visibility='onchange')
 
-    @api.multi
     @api.constrains('exam_session_id')
     def _check_exam_session(self):
         for record in self:
@@ -55,7 +54,6 @@ class OpResultTemplate(models.Model):
                     raise ValidationError(
                         _('All subject exam should be done.'))
 
-    @api.multi
     @api.constrains('grade_ids')
     def _check_min_max_per(self):
         for record in self:
@@ -72,7 +70,6 @@ class OpResultTemplate(models.Model):
                 raise ValidationError(
                     _('Percentage range conflict with other record.'))
 
-    @api.multi
     def generate_result(self):
         for record in self:
             marksheet_reg_id = self.env['op.marksheet.register'].create({

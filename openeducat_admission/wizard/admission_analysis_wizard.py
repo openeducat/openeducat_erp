@@ -34,7 +34,6 @@ class AdmissionAnalysis(models.TransientModel):
         'Start Date', default=time.strftime('%Y-%m-01'), required=True)
     end_date = fields.Date('End Date', required=True)
 
-    @api.multi
     def print_report(self):
         start_date = fields.Date.from_string(self.start_date)
         end_date = fields.Date.from_string(self.end_date)

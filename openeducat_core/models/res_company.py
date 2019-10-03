@@ -38,7 +38,6 @@ class ResUsers(models.Model):
         'res.users', 'res_user_first_rel1',
         'user_id', 'res_user_second_rel1', string='Childs')
 
-    @api.multi
     def create_user(self, records, user_group=None):
         for rec in records:
             if not rec.user_id:

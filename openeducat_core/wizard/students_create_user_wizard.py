@@ -34,7 +34,6 @@ class WizardOpStudent(models.TransientModel):
     student_ids = fields.Many2many(
         'op.student', default=_get_students, string='Students')
 
-    @api.multi
     def create_user(self):
         active_ids = self.env.context.get('active_ids', []) or []
         records = self.env['op.student'].browse(active_ids)

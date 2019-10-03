@@ -27,7 +27,6 @@ class OpRoomDistribution(models.TransientModel):
     _name = "op.room.distribution"
     _description = "Room Distribution"
 
-    @api.multi
     @api.depends('student_ids')
     def _compute_get_total_student(self):
         for record in self:
@@ -36,7 +35,6 @@ class OpRoomDistribution(models.TransientModel):
                 total_student = len(record.student_ids)
             record.total_student = total_student
 
-    @api.multi
     @api.depends('room_ids', 'room_ids.capacity')
     def _compute_get_room_capacity(self):
         for record in self:
@@ -93,7 +91,6 @@ class OpRoomDistribution(models.TransientModel):
         })
         return res
 
-    @api.multi
     def schedule_exam(self):
         attendance = self.env['op.exam.attendees']
         for exam in self:

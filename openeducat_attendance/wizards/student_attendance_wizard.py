@@ -32,7 +32,6 @@ class StudentAttendance(models.TransientModel):
     to_date = fields.Date(
         'To Date', required=True, default=lambda self: fields.Date.today())
 
-    @api.multi
     @api.constrains('from_date', 'to_date')
     def check_dates(self):
         for record in self:
@@ -42,7 +41,6 @@ class StudentAttendance(models.TransientModel):
                 raise ValidationError(
                     _("To Date cannot be set before From Date."))
 
-    @api.multi
     def print_report(self):
         data = self.read(['from_date', 'to_date'])[0]
         data.update({'student_id': self.env.context.get('active_id', False)})

@@ -33,7 +33,6 @@ class FeesDetailReportWizard(models.TransientModel):
     student_id = fields.Many2one('op.student', 'Student')
     course_id = fields.Many2one('op.course', 'Course')
 
-    @api.multi
     def print_report(self):
         data = {}
         if self.fees_filter == 'student':

@@ -36,7 +36,6 @@ class StudentMigrate(models.TransientModel):
     student_ids = fields.Many2many(
         'op.student', string='Student(s)', required=True)
 
-    @api.multi
     @api.constrains('course_from_id', 'course_to_id')
     def _check_admission_register(self):
         for record in self:
@@ -58,7 +57,6 @@ class StudentMigrate(models.TransientModel):
     def onchange_course_id(self):
         self.student_ids = False
 
-    @api.multi
     def student_migrate_forward(self):
         act_type = self.env.ref('openeducat_activity.op_activity_type_3')
         for record in self:

@@ -86,7 +86,7 @@ class OpAdmission(models.Model):
     country_id = fields.Many2one(
         'res.country', 'Country', states={'done': [('readonly', True)]})
     fees = fields.Float('Fees', states={'done': [('readonly', True)]})
-    image = fields.Binary('image', states={'done': [('readonly', True)]})
+    image = fields.Image('image', states={'done': [('readonly', True)]})
     state = fields.Selection(
         [('draft', 'Draft'), ('submit', 'Submitted'),
          ('confirm', 'Confirmed'), ('admission', 'Admission Confirm'),
@@ -139,7 +139,7 @@ class OpAdmission(models.Model):
             self.last_name = sd.last_name
             self.birth_date = sd.birth_date
             self.gender = sd.gender
-            self.image = sd.image or False
+            self.image_1920 = sd.image or False
             self.street = sd.street or False
             self.street2 = sd.street2 or False
             self.phone = sd.phone or False
@@ -153,7 +153,7 @@ class OpAdmission(models.Model):
         else:
             self.birth_date = ''
             self.gender = ''
-            self.image = False
+            self.image_1920 = False
             self.street = ''
             self.street2 = ''
             self.phone = ''
@@ -177,7 +177,6 @@ class OpAdmission(models.Model):
             term_id = self.course_id.fees_term_id.id
         self.fees_term_id = term_id
 
-    @api.multi
     @api.constrains('register_id', 'application_date')
     def _check_admission_register(self):
         for rec in self:
@@ -189,7 +188,6 @@ class OpAdmission(models.Model):
                     "Application Date should be between Start Date & \
                     End Date of Admission Register."))
 
-    @api.multi
     @api.constrains('birth_date')
     def _check_birthdate(self):
         for record in self:
@@ -197,26 +195,22 @@ class OpAdmission(models.Model):
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
 
-    @api.multi
     def submit_form(self):
         self.state = 'submit'
 
-    @api.multi
     def admission_confirm(self):
         self.state = 'admission'
 
-    @api.multi
     def confirm_in_progress(self):
         for record in self:
             record.state = 'confirm'
 
-    @api.multi
     def get_student_vals(self):
         for student in self:
             student_user = self.env['res.users'].create({
                 'name': student.name,
                 'login': student.email,
-                'image': self.image or False,
+                'image_1920': self.image or False,
                 'company_id': self.env.ref('base.main_company').id,
                 'groups_id': [
                     (6, 0,
@@ -232,7 +226,7 @@ class OpAdmission(models.Model):
                 'country_id':
                     student.country_id and student.country_id.id or False,
                 'state_id': student.state_id and student.state_id.id or False,
-                'image': student.image,
+                'image_1920': student.image,
                 'zip': student.zip,
             }
             student_user.partner_id.write(details)
@@ -247,7 +241,7 @@ class OpAdmission(models.Model):
                     student.course_id and student.course_id.id or False,
                 'batch_id':
                     student.batch_id and student.batch_id.id or False,
-                'image': student.image or False,
+                'image_1920': student.image or False,
                 'course_detail_ids': [[0, False, {
                     'date': fields.Date.today(),
                     'course_id':
@@ -260,7 +254,6 @@ class OpAdmission(models.Model):
             })
             return details
 
-    @api.multi
     def enroll_student(self):
         for record in self:
             if record.register_id.max_count:
@@ -324,29 +317,23 @@ class OpAdmission(models.Model):
             })
             reg_id.get_subjects()
 
-    @api.multi
     def confirm_rejected(self):
         self.state = 'reject'
 
-    @api.multi
     def confirm_pending(self):
         self.state = 'pending'
 
-    @api.multi
     def confirm_to_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def confirm_cancel(self):
         self.state = 'cancel'
         if self.is_student and self.student_id.fees_detail_ids:
             self.student_id.fees_detail_ids.state = 'cancel'
 
-    @api.multi
     def payment_process(self):
         self.state = 'fees_paid'
 
-    @api.multi
     def open_student(self):
         form_view = self.env.ref('openeducat_core.view_op_student_form')
         tree_view = self.env.ref('openeducat_core.view_op_student_tree')
@@ -366,7 +353,6 @@ class OpAdmission(models.Model):
         self.state = 'done'
         return value
 
-    @api.multi
     def create_invoice(self):
         """ Create invoice for fee payment process of student """
 

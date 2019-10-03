@@ -51,7 +51,7 @@ class OpStudent(models.Model):
     _description = "Student"
     _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
-
+    image = fields.Image("Image")
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128)
     birth_date = fields.Date('Birth Date')
@@ -88,7 +88,6 @@ class OpStudent(models.Model):
         'GR Number must be unique per student!'
     )]
 
-    @api.multi
     @api.constrains('birth_date')
     def _check_birthdate(self):
         for record in self:
@@ -103,7 +102,6 @@ class OpStudent(models.Model):
             'template': '/openeducat_core/static/xls/op_student.xls'
         }]
 
-    @api.multi
     def create_student_user(self):
         user_group = self.env.ref("base.group_portal") or False
         users_res = self.env['res.users']

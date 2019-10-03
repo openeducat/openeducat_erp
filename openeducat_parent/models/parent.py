@@ -53,7 +53,6 @@ class OpParent(models.Model):
             res.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
-    @api.multi
     def write(self, vals):
         for rec in self:
             res = super(OpParent, self).write(vals)
@@ -65,14 +64,12 @@ class OpParent(models.Model):
             rec.clear_caches()
             return res
 
-    @api.multi
     def unlink(self):
         for record in self:
             if record.name.user_id:
                 record.user_id.child_ids = [(6, 0, [])]
             return super(OpParent, self).unlink()
 
-    @api.multi
     def create_parent_user(self):
         template = self.env.ref('openeducat_parent.parent_template_user')
         users_res = self.env['res.users']
@@ -111,7 +108,6 @@ class OpStudent(models.Model):
                     parent_id.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
-    @api.multi
     def write(self, vals):
         res = super(OpStudent, self).write(vals)
         if vals.get('parent_ids', False):
@@ -131,14 +127,12 @@ class OpStudent(models.Model):
                     user_id.child_ids = [(6, 0, child_ids)]
         if vals.get('user_id', False):
             for parent_id in self.parent_ids:
-                if parent_id.user_id:
-                    child_ids = parent_id.user_id.child_ids.ids
-                    child_ids.append(vals['user_id'])
-                    parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
+                child_ids = parent_id.user_id.child_ids.ids
+                child_ids.append(vals['user_id'])
+                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         self.clear_caches()
         return res
 
-    @api.multi
     def unlink(self):
         for record in self:
             if record.parent_ids:
@@ -159,7 +153,6 @@ class OpSubjectRegistration(models.Model):
             create Subject Registration!'))
         return super(OpSubjectRegistration, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         if self.env.user.child_ids:
             raise Warning(_('Invalid Action!\n Parent can not edit \

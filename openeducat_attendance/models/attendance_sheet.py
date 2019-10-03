@@ -28,14 +28,12 @@ class OpAttendanceSheet(models.Model):
     _description = "Attendance Sheet"
     _order = "attendance_date desc"
 
-    @api.multi
     @api.depends('attendance_line.present')
     def _compute_total_present(self):
         for record in self:
             record.total_present = self.env['op.attendance.line'].search_count(
                 [('present', '=', True), ('attendance_id', '=', record.id)])
 
-    @api.multi
     @api.depends('attendance_line.present')
     def _compute_total_absent(self):
         for record in self:
@@ -71,19 +69,15 @@ class OpAttendanceSheet(models.Model):
          ('done', 'Attendance Taken'), ('cancel', 'Cancelled')],
         'Status', default='draft', track_visibility='onchange')
 
-    @api.multi
     def attendance_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def attendance_start(self):
         self.state = 'start'
 
-    @api.multi
     def attendance_done(self):
         self.state = 'done'
 
-    @api.multi
     def attendance_cancel(self):
         self.state = 'cancel'
 

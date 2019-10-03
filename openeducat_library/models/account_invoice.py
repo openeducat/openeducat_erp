@@ -24,9 +24,8 @@ from odoo import models, api
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = "account.move"
 
-    @api.multi
     def action_invoice_paid(self):
         paid_invoice = super(AccountInvoice, self).action_invoice_paid()
         if self:

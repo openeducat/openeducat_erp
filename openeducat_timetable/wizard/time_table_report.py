@@ -48,7 +48,6 @@ class SessionReport(models.TransientModel):
         default=(datetime.today() + relativedelta(days=6 - datetime.date(
             datetime.today()).weekday())).strftime('%Y-%m-%d'))
 
-    @api.multi
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
         for session in self:
@@ -66,7 +65,6 @@ class SessionReport(models.TransientModel):
             if self.batch_id.course_id != self.course_id:
                 self.batch_id = False
 
-    @api.multi
     def gen_time_table_report(self):
         template = self.env.ref(
                 'openeducat_timetable.report_teacher_timetable_generate')

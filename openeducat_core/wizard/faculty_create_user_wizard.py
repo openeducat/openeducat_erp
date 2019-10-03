@@ -34,7 +34,6 @@ class WizardOpFaculty(models.TransientModel):
     faculty_ids = fields.Many2many(
         'op.faculty', default=_get_faculties, string='Faculties')
 
-    @api.multi
     def create_faculty_user(self):
         user_group = self.env.ref('openeducat_core.group_op_faculty')
         active_ids = self.env.context.get('active_ids', []) or []

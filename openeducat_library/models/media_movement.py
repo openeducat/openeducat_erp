@@ -68,9 +68,8 @@ class OpMediaMovement(models.Model):
                                     store=True, string='Media Type')
     user_id = fields.Many2one(
         'res.users', string='Users')
-    invoice_id = fields.Many2one('account.invoice', 'Invoice', readonly=True)
+    invoice_id = fields.Many2one('account.move', 'Invoice', readonly=True)
 
-    @api.multi
     def get_diff_day(self):
         for media_mov_id in self:
             today_date = datetime.strptime(fields.Date.today(), '%Y-%m-%d')
@@ -116,7 +115,6 @@ class OpMediaMovement(models.Model):
         self.return_date = self.issued_date + timedelta(
             days=self.library_card_id.library_card_type_id.duration or 1)
 
-    @api.multi
     def issue_media(self):
         ''' function to issue media '''
         for record in self:
@@ -125,7 +123,6 @@ class OpMediaMovement(models.Model):
                 record.media_unit_id.state = 'issue'
                 record.state = 'issue'
 
-    @api.multi
     def return_media(self, return_date):
         for record in self:
             if not return_date:
@@ -138,7 +135,6 @@ class OpMediaMovement(models.Model):
                 record.state = 'return_done'
             record.media_unit_id.state = 'available'
 
-    @api.multi
     def calculate_penalty(self):
         for record in self:
             penalty_amt = 0
@@ -154,7 +150,6 @@ class OpMediaMovement(models.Model):
                 penalty_amt = penalty_days * x.penalty_amt_per_day
             record.write({'penalty': penalty_amt})
 
-    @api.multi
     def create_penalty_invoice(self):
         for rec in self:
             account_id = False
@@ -162,8 +157,7 @@ class OpMediaMovement(models.Model):
             if product.id:
                 account_id = product.property_account_income_id.id
             if not account_id:
-                account_id = \
-                    product.categ_id.property_account_income_categ_id.id
+                account_id = product.categ_id.property_account_income_categ_id.id
             if not account_id:
                 raise UserError(
                     _('There is no income account defined for this \
@@ -171,24 +165,22 @@ class OpMediaMovement(models.Model):
                     account from Accounting app, settings \
                     menu.') % (product.name,))
 
-            invoice = self.env['account.invoice'].create({
+            invoice = self.env['account.move'].create({
                 'partner_id': rec.student_id.partner_id.id,
                 'type': 'out_invoice',
                 'reference': False,
-                'date_invoice': fields.Date.today(),
-                'account_id':
-                    rec.student_id.partner_id.
-                        property_account_receivable_id.id,
-                'invoice_line_ids': [(0, 0, {
-                    'name': product.name,
-                    'account_id': account_id,
-                    'price_unit': rec.penalty,
-                    'quantity': 1.0,
-                    'discount': 0.0,
-                    'uom_id': product.uom_id.id,
-                    'product_id': product.id,
-                })],
+                'invoice_date': fields.Date.today(),
+                'account_id': rec.student_id.partner_id.property_account_receivable_id.id,
             })
-            invoice.compute_taxes()
-            invoice.action_invoice_open()
+            line_values = {'name': product.name,
+                           'account_id': account_id,
+                           'price_unit': rec.penalty,
+                           'quantity': 1.0,
+                           'discount': 0.0,
+                           'product_uom_id': product.uom_id.id,
+                           'product_id': product.id, }
+            invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
+
+            invoice._compute_invoice_taxes_by_group()
+            #invoice.action_invoice_open()
             self.invoice_id = invoice.id

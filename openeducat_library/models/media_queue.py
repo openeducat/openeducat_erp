@@ -63,21 +63,17 @@ class OpMediaQueue(models.Model):
                 'op.media.queue') or '/'
         return super(OpMediaQueue, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         if self.env.user.child_ids:
             raise Warning(_('Invalid Action!\n Parent can not edit \
             Media Queue Requests!'))
         return super(OpMediaQueue, self).write(vals)
 
-    @api.multi
     def do_reject(self):
         self.state = 'reject'
 
-    @api.multi
     def do_accept(self):
         self.state = 'accept'
 
-    @api.multi
     def do_request_again(self):
         self.state = 'request'

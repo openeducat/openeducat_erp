@@ -26,7 +26,6 @@ class SessionConfirmation(models.TransientModel):
     _name = "session.confirmation"
     _description = "Wizard for Multiple Session Confirmation"
 
-    @api.multi
     def state_confirmation(self):
         active_ids = self.env.context['active_ids']
         lines = self.env['op.session'].search([('id', 'in', active_ids),
