@@ -28,7 +28,6 @@ class OpFaculty(models.Model):
     _description = "OpenEduCat Faculty"
     _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
-    image = fields.Image("Image")
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
     middle_name = fields.Char('Middle Name', size=128)
@@ -72,7 +71,7 @@ class OpFaculty(models.Model):
         for record in self:
             vals = {
                 'name': record.name + ' ' + (record.middle_name or '') +
-                ' ' + record.last_name,
+                        ' ' + record.last_name,
                 'country_id': record.nationality.id,
                 'gender': record.gender,
                 'address_home_id': record.partner_id.id

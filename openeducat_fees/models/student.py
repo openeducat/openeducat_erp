@@ -40,9 +40,9 @@ class OpStudentFeesDetails(models.Model):
         ('cancel', 'Cancel')
     ], string='Status', copy=False)
     invoice_state = fields.Selection([
-        ('draft', 'Draft'),
-        ('posted', 'Posted'),
-        ('cancel', 'Cancelled')], 'Invoice',
+        ('draft', 'Draft'), ('proforma', 'Pro-forma'),
+        ('proforma2', 'Pro-forma'), ('open', 'Open'),
+        ('paid', 'Paid'), ('cancel', 'Cancelled')], 'Invoice',
         related="invoice_id.state", readonly=True)
 
     def get_invoice(self):
@@ -83,7 +83,7 @@ class OpStudentFeesDetails(models.Model):
         for records in element_id:
 
             if records:
-                line_values = {'partner_id': records.product_id.name,
+                line_values = {'name': records.product_id.name,
                                'account_id': account_id,
                                'price_unit': records.value * self.amount / 100,
                                'quantity': 1.0,
@@ -93,9 +93,8 @@ class OpStudentFeesDetails(models.Model):
                 invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
 
         if not element_id:
-            print ("shakir chutiyaaaaaaaaaaaaaaaaaaaaaa\n\n\n\n\n\n\n\n\n")
             line_values = {'partner_id': name,
-                           #'invoice_origin': student.gr_no or False,
+                           # 'origin': student.gr_no,
                            'account_id': account_id,
                            'price_unit': amount,
                            'quantity': 1.0,
