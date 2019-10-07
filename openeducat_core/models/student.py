@@ -51,7 +51,6 @@ class OpStudent(models.Model):
     _description = "Student"
     _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
-    image = fields.Image("Image")
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128)
     birth_date = fields.Date('Birth Date')
