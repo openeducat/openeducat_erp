@@ -47,6 +47,8 @@ class OpResultLine(models.Model):
     @api.depends('marks')
     def _compute_grade(self):
         for record in self:
+            if record.evaluation_type == 'normal':
+                record.grade = None
             if record.evaluation_type == 'grade':
                 grades = record.marksheet_line_id.marksheet_reg_id.\
                     result_template_id.grade_ids
