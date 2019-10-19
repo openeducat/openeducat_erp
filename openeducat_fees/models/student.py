@@ -28,7 +28,7 @@ class OpStudentFeesDetails(models.Model):
     _description = "Student Fees Details"
 
     fees_line_id = fields.Many2one('op.fees.terms.line', 'Fees Line')
-    invoice_id = fields.Many2one('account.move', 'Invoice')
+    invoice_id = fields.Many2one('account.move', 'Invoice ID')
     amount = fields.Float('Fees Amount')
     date = fields.Date('Submit Date')
     product_id = fields.Many2one('product.product', 'Product')
