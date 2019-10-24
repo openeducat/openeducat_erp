@@ -71,10 +71,7 @@ class OpStudentFeesDetails(models.Model):
 
         invoice = inv_obj.create({
             'partner_id': student.name,
-            'origin': student.gr_no or False,
             'type': 'out_invoice',
-            'reference': False,
-            'account_id': partner_id.property_account_receivable_id.id,
             'partner_id': partner_id.id,
 
         })
