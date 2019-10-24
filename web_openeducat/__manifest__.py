@@ -24,14 +24,12 @@
     'description': 'Beautifies Website',
     'category': 'Website',
     "sequence": 3,
-    'version': '12.0',
+    'version': '13.0',
     'license': 'LGPL-3',
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'data': [
         'views/assets.xml',
-
-        # snippets
         'views/snippets/slider.xml',
         'views/snippets/about-us.xml',
         'views/snippets/ourcourse.xml',
