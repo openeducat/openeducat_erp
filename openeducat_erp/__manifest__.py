@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat ERP',
-    'version': '12.0',
+    'version': '13.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,

@@ -73,22 +73,20 @@ class OpMarksheetLine(models.Model):
     @api.depends('percentage')
     def _compute_grade(self):
         for record in self:
-            if record.evaluation_type == 'normal':
-                record.grade = None
             if record.evaluation_type == 'grade':
                 grades = record.marksheet_reg_id.result_template_id.grade_ids
                 for grade in grades:
                     if grade.min_per <= record.percentage and \
                             grade.max_per >= record.percentage:
                         record.grade = grade.result
+            else :
+                record.grade = None
 
     @api.depends('result_line.status')
     def _compute_status(self):
         for record in self:
-            for result in record.result_line:
-                if result.status == 'fail':
-                    record.status = 'fail'
-                elif result.status == 'pass':
-                    record.status = 'pass'
-                else:
-                    record.status = None
+            if record.status == 'fail':
+                for records in record.result_line:
+                    records.status = 'fail'
+            else:
+                record.status = 'pass'
