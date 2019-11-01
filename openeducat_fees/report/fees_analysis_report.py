@@ -29,7 +29,7 @@ class ReportFeesAnalysis(models.AbstractModel):
     def get_invoice_amount(self, student_id):
         total_amount = 0.0
         paid_amount = 0.0
-        for inv in self.env['account.invoice'].search([
+        for inv in self.env['account.move'].search([
             ('partner_id', '=', student_id.partner_id.id),
             ('state', 'in', ['open', 'paid']),
         ]):
