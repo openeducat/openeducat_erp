@@ -218,9 +218,10 @@ class OpAdmission(models.Model):
                 'login': student.email,
                 'image': self.image or False,
                 'company_id': self.env.ref('base.main_company').id,
+                'is_student': True,
                 'groups_id': [
                     (6, 0,
-                     [self.env.ref('openeducat_core.group_op_back_office_admin').id])]
+                     [self.env.ref('base.group_portal').id])]
             })
             details = {
                 'phone': student.phone,
