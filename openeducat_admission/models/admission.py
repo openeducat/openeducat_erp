@@ -238,13 +238,8 @@ class OpAdmission(models.Model):
                 'last_name': student.last_name,
                 'birth_date': student.birth_date,
                 'gender': student.gender,
-                'course_id':
-                    student.course_id and student.course_id.id or False,
-                'batch_id':
-                    student.batch_id and student.batch_id.id or False,
                 'image_1920': student.image or False,
                 'course_detail_ids': [[0, False, {
-                    'date': fields.Date.today(),
                     'course_id':
                         student.course_id and student.course_id.id or False,
                     'batch_id':
