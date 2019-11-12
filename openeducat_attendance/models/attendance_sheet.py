@@ -40,7 +40,7 @@ class OpAttendanceSheet(models.Model):
             record.total_absent = self.env['op.attendance.line'].search_count(
                 [('present', '=', False), ('attendance_id', '=', record.id)])
 
-    name = fields.Char('Name', required=True, size=32)
+    name = fields.Char('Name', readonly=True, size=32)
     register_id = fields.Many2one(
         'op.attendance.register', 'Register', required=True,
         track_visibility="onchange")
@@ -86,3 +86,11 @@ class OpAttendanceSheet(models.Model):
          'unique(register_id,session_id,attendance_date)',
          'Sheet must be unique per Register/Session.'),
     ]
+
+    @api.model
+    def create(self, vals):
+        sheet = self.env['ir.sequence'].next_by_code('op.attendance.sheet')
+        register = self.env['op.attendance.register']. \
+            browse(vals['register_id']).code
+        vals['name'] = register + sheet
+        return super(OpAttendanceSheet, self).create(vals)
