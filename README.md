@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/openeducat/openeducat_erp.svg?branch=12.0)](https://travis-ci.org/openeducat/openeducat_erp)
-[![Coverage Status](https://coveralls.io/repos/openeducat/openeducat_erp/badge.svg?branch=12.0&service=github)](https://coveralls.io/github/openeducat/openeducat_erp?branch=12.0)
-
 OpenEduCat for Odoo 13
 =====================
 
