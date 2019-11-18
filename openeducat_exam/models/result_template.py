@@ -77,7 +77,7 @@ class OpResultTemplate(models.Model):
                 'exam_session_id': record.exam_session_id.id,
                 'generated_date': fields.Date.today(),
                 'generated_by': self.env.uid,
-                'status': 'draft',
+                'state': 'draft',
                 'result_template_id': record.id
             })
             student_dict = {}

@@ -79,6 +79,8 @@ class OpMarksheetLine(models.Model):
                     if grade.min_per <= record.percentage and \
                             grade.max_per >= record.percentage:
                         record.grade = grade.result
+                    else :
+                        record.grade = None
             else :
                 record.grade = None
 
