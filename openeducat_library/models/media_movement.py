@@ -157,7 +157,8 @@ class OpMediaMovement(models.Model):
             if product.id:
                 account_id = product.property_account_income_id.id
             if not account_id:
-                account_id = product.categ_id.property_account_income_categ_id.id
+                account_id = \
+                    product.categ_id.property_account_income_categ_id.id
             if not account_id:
                 raise UserError(
                     _('There is no income account defined for this \
@@ -168,9 +169,7 @@ class OpMediaMovement(models.Model):
             invoice = self.env['account.move'].create({
                 'partner_id': rec.student_id.partner_id.id,
                 'type': 'out_invoice',
-                'reference': False,
                 'invoice_date': fields.Date.today(),
-                'account_id': rec.student_id.partner_id.property_account_receivable_id.id,
             })
             line_values = {'name': product.name,
                            'account_id': account_id,
