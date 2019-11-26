@@ -52,6 +52,7 @@ class OpStudent(models.Model):
     _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
 
+    first_name = fields.Char('First Name', size=128, required=True)
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128)
     birth_date = fields.Date('Birth Date')
@@ -87,6 +88,12 @@ class OpStudent(models.Model):
         'unique(gr_no)',
         'GR Number must be unique per student!'
     )]
+
+    @api.onchange('first_name', 'middle_name', 'last_name')
+    def _onchange_name(self):
+        self.name = str(self.first_name) +\
+                    " " + str(self.middle_name) +\
+                    " " + str(self.last_name)
 
     @api.multi
     @api.constrains('birth_date')

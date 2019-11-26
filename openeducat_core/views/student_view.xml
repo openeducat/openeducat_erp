@@ -22,7 +22,7 @@
                                 <div class="oe_kanban_details">
                                     <h4>
                                         <a type="open">
-                                            <field name="name"/>
+                                            <field name="first_name"/>
                                             <t t-if="record.middle_name.raw_value">
                                                 <field name="middle_name"/>
                                             </t>
@@ -65,7 +65,7 @@
             <field name="arch" type="xml">
                 <tree string="Student">
                     <field name="title"/>
-                    <field name="name"/>
+                    <field name="first_name"/>
                     <field name="middle_name"/>
                     <field name="last_name"/>
                     <field name="blood_group"/>
@@ -95,10 +95,11 @@
                                 <field name="title" placeholder="Title"/>
                             </h3>
                             <h1>
+                                <field name="name" placeholder="Name" invisible="1"/>
                                 <table>
                                     <tr>
                                         <td style="padding-right:10px;">
-                                            <field name="name" required="1" placeholder="First Name"/>
+                                            <field name="first_name" required="1" placeholder="First Name"/>
                                         </td>
                                         <td style="padding-right:10px;">
                                             <field name="middle_name" placeholder="Middle Name"/>
@@ -193,7 +194,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Student">
-                    <field name="name"/>
+                    <field name="first_name"/>
                     <field name="blood_group"/>
                     <newline/>
                     <group expand="0" string="Group By...">
