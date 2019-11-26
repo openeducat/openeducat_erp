@@ -86,7 +86,9 @@ class OpStudent(models.Model):
         'unique_gr_no',
         'unique(gr_no)',
         'GR Number must be unique per student!'
-    )]
+    ), ('unique_partner',
+        'unique(partner_id)',
+        'Partner was already linked!')]
 
     @api.multi
     @api.constrains('birth_date')
@@ -118,3 +120,49 @@ class OpStudent(models.Model):
                     'tz': self._context.get('tz')
                 })
                 record.user_id = user_id
+
+    complete_name = fields.Char('Complete Name', compute='_compute_complete_name', store=True)
+
+    @api.depends('name', 'middle_name', 'last_name')
+    def _compute_complete_name(self):
+        for stud in self:
+            complete_name = stud.name
+            if stud.middle_name:
+                complete_name = '%s %s' % (complete_name, stud.middle_name)
+            if stud.last_name:
+                complete_name = '%s %s' % (complete_name, stud.last_name)
+            stud.complete_name = complete_name
+
+    @api.model
+    def create(self, vals):
+        vals['is_student'] = True
+        vals['customer'] = True
+        if vals.get('name'):
+            vals['name'] = ' '.join(vals['name'].split())
+        if vals.get('middle_name'):
+            vals['middle_name'] = ' '.join(vals['middle_name'].split())
+        if vals.get('last_name'):
+            vals['last_name'] = ' '.join(vals['last_name'].split())
+
+        student = super(OpStudent, self).create(vals)
+
+        if vals.get('middle_name') or vals.get('last_name'):
+            student.partner_id._compute_display_name()
+
+        return student
+
+    @api.multi
+    def write(self, vals):
+        if vals.get('name'):
+            vals['name'] = ' '.join(vals['name'].split())
+        if vals.get('middle_name'):
+            vals['middle_name'] = ' '.join(vals['middle_name'].split())
+        if vals.get('last_name'):
+            vals['last_name'] = ' '.join(vals['last_name'].split())
+
+        student = super(OpStudent, self).write(vals)
+
+        if vals.get('middle_name') or vals.get('last_name'):
+            self.partner_id._compute_display_name()
+
+        return student
