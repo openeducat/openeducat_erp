@@ -132,9 +132,13 @@ class OpAdmission(models.Model):
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
-        self.name = str(self.first_name) +\
-                    " " + str(self.middle_name) +\
-                    " " + str(self.last_name)
+        if not self.middle_name:
+            self.name = str(self.first_name) + \
+                        " " + str(self.last_name)
+        else:
+            self.name = str(self.first_name) + \
+                        " " + str(self.middle_name) + \
+                        " " + str(self.last_name)
 
     @api.onchange('student_id', 'is_student')
     def onchange_student(self):

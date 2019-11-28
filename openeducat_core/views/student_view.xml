@@ -22,13 +22,7 @@
                                 <div class="oe_kanban_details">
                                     <h4>
                                         <a type="open">
-                                            <field name="first_name"/>
-                                            <t t-if="record.middle_name.raw_value">
-                                                <field name="middle_name"/>
-                                            </t>
-                                            <t t-if="record.last_name.raw_value">
-                                                <field name="last_name"/>
-                                            </t>
+                                            <field name="name"/>
                                         </a>
                                     </h4>
                                     <ul>
@@ -65,9 +59,7 @@
             <field name="arch" type="xml">
                 <tree string="Student">
                     <field name="title"/>
-                    <field name="first_name"/>
-                    <field name="middle_name"/>
-                    <field name="last_name"/>
+                    <field name="name"/>
                     <field name="blood_group"/>
                     <field name="emergency_contact"/>
                     <field name="nationality"/>
@@ -95,7 +87,7 @@
                                 <field name="title" placeholder="Title"/>
                             </h3>
                             <h1>
-                                <field name="name" placeholder="Name" invisible="1"/>
+                                <field name="name" placeholder="Name" required="1" invisible="1"/>
                                 <table>
                                     <tr>
                                         <td style="padding-right:10px;">
@@ -194,7 +186,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Student">
-                    <field name="first_name"/>
+                    <field name="name"/>
                     <field name="blood_group"/>
                     <newline/>
                     <group expand="0" string="Group By...">
