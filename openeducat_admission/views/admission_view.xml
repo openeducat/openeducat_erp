@@ -9,9 +9,7 @@
                 <tree string="Registration">
                     <field name="application_number"/>
                     <field name="title"/>
-                    <field name="first_name"/>
-                    <field name="middle_name"/>
-                    <field name="last_name"/>
+                    <field name="name"/>
                     <field name="admission_date"/>
                     <field name="application_date"/>
                     <field name="course_id"/>
@@ -50,7 +48,7 @@
                                 <field name="title" placeholder="Title" style="width: 30%%"/>
                             </h1>
                             <h1>
-                                <field name="name" placeholder="Name" style="padding-right:10px" invisible="1"/>
+                                <field name="name" placeholder="Name" required="1" style="padding-right:10px" invisible="1"/>
                                 <table>
                                     <tr>
                                         <td>
@@ -139,8 +137,6 @@
             <field name="arch" type="xml">
                 <search string="Registration">
                     <field name="name"/>
-                    <field name="middle_name"/>
-                    <field name="last_name"/>
                     <field name="application_number"/>
                     <field name="admission_date"/>
                     <field name="application_date"/>
