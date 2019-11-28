@@ -25,5 +25,5 @@ from odoo import models, fields
 class StudentPortal(models.Model):
     _inherit = 'res.partner'
 
-    is_parent = fields.Boolean("Is a parent")
-    is_student = fields.Boolean("Is a student")
+    is_parent = fields.Boolean("is parent")
+    is_student = fields.Boolean("is student")
