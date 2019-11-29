@@ -34,7 +34,7 @@ class OpAdmission(models.Model):
     _order = 'id DESC'
 
     name = fields.Char(
-        'Name', size=128, translate=True)
+        'Name', size=128, required=True, translate=True)
     first_name = fields.Char(
         'First Name', size=128, required=True, translate=True)
     middle_name = fields.Char(
