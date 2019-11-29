@@ -10,8 +10,6 @@
                     <field name="application_number"/>
                     <field name="title"/>
                     <field name="name"/>
-                    <field name="middle_name"/>
-                    <field name="last_name"/>
                     <field name="admission_date"/>
                     <field name="application_date"/>
                     <field name="course_id"/>
@@ -29,13 +27,17 @@
                 <form string="Registration">
                     <header groups="base.group_user">
                         <button string="Submit" states="draft" class="oe_highlight" type="object" name="submit_form"/>
-                        <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object" class="oe_highlight"/>
-                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object" name="admission_confirm"/>
-                        <button name="enroll_student" states="admission" string="Enroll" type="object" class="oe_highlight"/>
+                        <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object"
+                                class="oe_highlight"/>
+                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object"
+                                name="admission_confirm"/>
+                        <button name="enroll_student" states="admission" string="Enroll" type="object"
+                                class="oe_highlight"/>
                         <button name="confirm_rejected" states="confirm,confirm_pending" string="Reject" type="object"/>
                         <button name="confirm_pending" states="submit" string="Pending" type="object"/>
                         <button name="confirm_cancel" string="Cancel" type="object"/>
-                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft" type="object"/>
+                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft"
+                                type="object"/>
                         <button name="open_student" states="done" string="Open Student Profile" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                     </header>
@@ -46,17 +48,19 @@
                                 <field name="title" placeholder="Title" style="width: 30%%"/>
                             </h1>
                             <h1>
+                                <field name="name" placeholder="Name" required="1" style="padding-right:10px" invisible="1"/>
                                 <table>
                                     <tr>
                                         <td>
-                                            <field name="name" placeholder="First Name" style="padding-right:10px"/>
+                                            <field name="first_name" placeholder="First Name" required="1"
+                                                   style="padding-right:10px"/>
                                         </td>
                                         <td>
                                             <field name="middle_name" placeholder="Middle Name"
                                                    style="padding-right:10px"/>
                                         </td>
                                         <td>
-                                            <field name="last_name" placeholder="Last Name" style="padding-right:10px"/>
+                                            <field name="last_name" placeholder="Last Name" required="1" style="padding-right:10px"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -133,8 +137,6 @@
             <field name="arch" type="xml">
                 <search string="Registration">
                     <field name="name"/>
-                    <field name="middle_name"/>
-                    <field name="last_name"/>
                     <field name="application_number"/>
                     <field name="admission_date"/>
                     <field name="application_date"/>

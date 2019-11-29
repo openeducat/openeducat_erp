@@ -52,8 +52,10 @@ class OpStudent(models.Model):
     _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
 
-    middle_name = fields.Char('Middle Name', size=128)
-    last_name = fields.Char('Last Name', size=128)
+    first_name = fields.Char('First Name', size=128, required=True,
+                             translate=True)
+    middle_name = fields.Char('Middle Name', size=128, translate=True)
+    last_name = fields.Char('Last Name', size=128, translate=True)
     birth_date = fields.Date('Birth Date')
     blood_group = fields.Selection([
         ('A+', 'A+ve'),
@@ -87,6 +89,16 @@ class OpStudent(models.Model):
         'unique(gr_no)',
         'GR Number must be unique per student!'
     )]
+
+    @api.onchange('first_name', 'middle_name', 'last_name')
+    def _onchange_name(self):
+        if not self.middle_name:
+            self.name = str(self.first_name) + \
+                        " " + str(self.last_name)
+        else:
+            self.name = str(self.first_name) +\
+                    " " + str(self.middle_name) +\
+                    " " + str(self.last_name)
 
     @api.multi
     @api.constrains('birth_date')

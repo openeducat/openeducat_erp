@@ -34,13 +34,14 @@ class OpAdmission(models.Model):
     _order = 'id DESC'
 
     name = fields.Char(
-        'First Name', size=128, required=True,
-        states={'done': [('readonly', True)]})
+        'Name', size=128, required=True, translate=True)
+    first_name = fields.Char(
+        'First Name', size=128, required=True, translate=True)
     middle_name = fields.Char(
-        'Middle Name', size=128,
+        'Middle Name', size=128, translate=True,
         states={'done': [('readonly', True)]})
     last_name = fields.Char(
-        'Last Name', size=128, required=True,
+        'Last Name', size=128, required=True, translate=True,
         states={'done': [('readonly', True)]})
     title = fields.Many2one(
         'res.partner.title', 'Title', states={'done': [('readonly', True)]})
@@ -129,12 +130,22 @@ class OpAdmission(models.Model):
          'Email must be unique per Application!')
     ]
 
+    @api.onchange('first_name', 'middle_name', 'last_name')
+    def _onchange_name(self):
+        if not self.middle_name:
+            self.name = str(self.first_name) + \
+                        " " + str(self.last_name)
+        else:
+            self.name = str(self.first_name) + \
+                        " " + str(self.middle_name) + \
+                        " " + str(self.last_name)
+
     @api.onchange('student_id', 'is_student')
     def onchange_student(self):
         if self.is_student and self.student_id:
             sd = self.student_id
             self.title = sd.title and sd.title.id or False
-            self.name = sd.name
+            self.first_name = sd.first_name
             self.middle_name = sd.middle_name
             self.last_name = sd.last_name
             self.birth_date = sd.birth_date
@@ -239,7 +250,7 @@ class OpAdmission(models.Model):
             student_user.partner_id.write(details)
             details.update({
                 'title': student.title and student.title.id or False,
-                'name': student.name,
+                'first_name': student.first_name,
                 'middle_name': student.middle_name,
                 'last_name': student.last_name,
                 'birth_date': student.birth_date,
