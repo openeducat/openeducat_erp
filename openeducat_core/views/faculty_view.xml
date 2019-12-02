@@ -13,7 +13,8 @@
                             <div class="oe_kanban_global_click o_res_partner_kanban">
                                 <div class="o_kanban_image">
                                     <t t-if="record.image_1920.value">
-                                        <img t-att-src="kanban_image('op.faculty', 'image_1920', record.id.value)" alt="Faculty"/>
+                                        <img t-att-src="kanban_image('op.faculty', 'image_1920', record.id.value)"
+                                             alt="Faculty"/>
                                     </t>
                                     <t t-if="!record.image_1920.value">
                                         <img t-att-src='_s + "/base/static/img/avatar.png"' alt="Faculty"/>
@@ -22,32 +23,26 @@
                                 <div class="oe_kanban_details">
                                     <h4>
                                         <a type="open">
-                                            <field name="name" />
-                                            <t t-if="record.middle_name.raw_value">
-                                                <field name="middle_name" />
-                                            </t>
-                                            <t t-if="record.last_name.raw_value">
-                                                <field name="last_name" />
-                                            </t>
+                                            <field name="name"/>
                                         </a>
                                     </h4>
                                     <ul>
                                         <li t-if="record.contact_address.raw_value">
-                                            <field name="contact_address" />
+                                            <field name="contact_address"/>
                                         </li>
                                         <li t-if="record.phone.raw_value">
-                                            <field name="phone" />
+                                            <field name="phone"/>
                                         </li>
                                         <li t-if="record.mobile.raw_value">
-                                            <field name="mobile" />
+                                            <field name="mobile"/>
                                         </li>
                                         <li t-if="record.email.raw_value">
                                             <a t-attf-href="mailto:#{record.email.value}">
-                                                <field name="email" />
+                                                <field name="email"/>
                                             </a>
                                         </li>
                                         <li t-if="record.lang.raw_value">
-                                            <field name="lang" />
+                                            <field name="lang"/>
                                         </li>
                                     </ul>
                                 </div>
@@ -61,15 +56,13 @@
         <record id="view_op_faculty_tree" model="ir.ui.view">
             <field name="name">op.faculty.tree</field>
             <field name="model">op.faculty</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Faculty">
-                    <field name="title" />
-                    <field name="name" />
-                    <field name="middle_name" />
-                    <field name="last_name" />
-                    <field name="blood_group" />
-                    <field name="emergency_contact" />
+                    <field name="title"/>
+                    <field name="name"/>
+                    <field name="blood_group"/>
+                    <field name="emergency_contact"/>
                 </tree>
             </field>
         </record>
@@ -77,67 +70,76 @@
         <record id="view_op_faculty_form" model="ir.ui.view">
             <field name="name">op.faculty.form</field>
             <field name="model">op.faculty</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Faculty">
-                <header groups="openeducat_core.group_op_back_office_admin">
-                    <button name="%(faculty_create_employee_act)d" string="Create Employee" type="action" class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/>
-                </header>
+                    <header groups="openeducat_core.group_op_back_office_admin">
+                        <button name="%(faculty_create_employee_act)d" string="Create Employee" type="action"
+                                class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/>
+                    </header>
                     <sheet>
-                        <field name="image_1920" widget="image" class="oe_left oe_avatar" />
+                        <field name="image_1920" widget="image" class="oe_left oe_avatar"/>
                         <div class="oe_title">
                             <h1>
-                                <field name="title" placeholder="Title" style="width: 30%%" />
+                                <field name="title" placeholder="Title" style="width: 30%%"/>
                             </h1>
-                            <h1><table>
-                                <tr>
-                                <td style="padding-right:10px"><field name="name" required="1" placeholder="First Name" /></td>
-                                <td style="padding-right:10px"><field name="middle_name" placeholder="Middle Name" /></td>
-                                <td style="padding-right:10px"><field name="last_name" placeholder="Last Name" /></td>
-                                </tr>
+                            <h1>
+                                <field name="name" placeholder="Name" required="1" invisible="1"/>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px">
+                                            <field name="first_name" required="1" placeholder="First Name"/>
+                                        </td>
+                                        <td style="padding-right:10px">
+                                            <field name="middle_name" placeholder="Middle Name"/>
+                                        </td>
+                                        <td style="padding-right:10px">
+                                            <field name="last_name" placeholder="Last Name"/>
+                                        </td>
+                                    </tr>
                                 </table>
                             </h1>
                         </div>
                         <group col="6" colspan="4">
-                            <field name="gender" />
-                            <field name="phone" />
-                            <field name="mobile" />
-                            <field name="email" />
+                            <field name="gender"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
                         </group>
                         <notebook colspan="4">
                             <page name="personal_information" string="Personal Information">
                                 <group col="4">
-                                    <field name="birth_date" />
-                                    <field name="blood_group" />
-                                    <field name="nationality" />
-                                    <field name="visa_info" />
-                                    <field name="lang" />
+                                    <field name="birth_date"/>
+                                    <field name="blood_group"/>
+                                    <field name="nationality"/>
+                                    <field name="visa_info"/>
+                                    <field name="lang"/>
                                     <field name="emergency_contact" context="{'show_address': 1}"
-                                        options='{"always_reload": True}' />
-                                    <field name='emp_id' />
+                                           options='{"always_reload": True}'/>
+                                    <field name='emp_id'/>
                                 </group>
                                 <group string="Address Detail" name="address">
-                                    <label for="type" />
+                                    <label for="type"/>
                                     <div name="div_type">
-                                        <field class="oe_inline" name="type" />
+                                        <field class="oe_inline" name="type"/>
                                     </div>
-                                    <label for="street" string="Address" />
+                                    <label for="street" string="Address"/>
                                     <div name="div_address">
-                                        <field name="street" placeholder="Street..." />
-                                        <field name="street2" placeholder="Street2" />
+                                        <field name="street" placeholder="Street..."/>
+                                        <field name="street2" placeholder="Street2"/>
                                         <div class="address_format">
-                                            <field name="city" placeholder="City" style="width: 40%%" />
+                                            <field name="city" placeholder="City" style="width: 40%%"/>
                                             <field name="state_id" class="oe_no_button"
-                                                placeholder="State" style="width: 37%%" options='{"no_open": True}' />
-                                            <field name="zip" placeholder="ZIP" style="width: 20%%" />
+                                                   placeholder="State" style="width: 37%%" options='{"no_open": True}'/>
+                                            <field name="zip" placeholder="ZIP" style="width: 20%%"/>
                                         </div>
                                         <field name="country_id" placeholder="Country" class="oe_no_button"
-                                            options='{"no_open": True}' />
+                                               options='{"no_open": True}'/>
                                     </div>
                                 </group>
                             </page>
                             <page name="subjects" string="Subjects">
-                                <field name="faculty_subject_ids" colspan="4" nolabel="1" />
+                                <field name="faculty_subject_ids" colspan="4" nolabel="1"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -152,18 +154,18 @@
         <record id="view_op_faculty_search" model="ir.ui.view">
             <field name="name">op.faculty.search</field>
             <field name="model">op.faculty</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Faculty">
-                    <field name="name" />
-                    <field name="blood_group" />
-                    <newline />
+                    <field name="name"/>
+                    <field name="blood_group"/>
+                    <newline/>
                     <group expand="0" string="Group By...">
                         <filter name="blood_group" string="Blood Group" domain="[]"
-                            context="{'group_by':'blood_group'}" />
+                                context="{'group_by':'blood_group'}"/>
                         <filter name="nationality" string="Nationality" domain="[]"
-                            context="{'group_by':'nationality'}" />
-                        <filter name="language" string="Language" domain="[]" context="{'group_by':'lang'}" />
+                                context="{'group_by':'nationality'}"/>
+                        <filter name="language" string="Language" domain="[]" context="{'group_by':'lang'}"/>
                     </group>
                 </search>
             </field>
@@ -175,30 +177,30 @@
             <field name="res_model">op.faculty</field>
             <field name="binding_view_types">form</field>
             <field name="view_mode">kanban,tree,form</field>
-            <field name="search_view_id" ref="view_op_faculty_search" />
+            <field name="search_view_id" ref="view_op_faculty_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_faculty_view_form">
-            <field name="act_window_id" ref="act_open_op_faculty_view" />
-            <field name="sequence" eval="20" />
+            <field name="act_window_id" ref="act_open_op_faculty_view"/>
+            <field name="sequence" eval="20"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_faculty_form" />
+            <field name="view_id" ref="view_op_faculty_form"/>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_faculty_view_tree">
-            <field name="act_window_id" ref="act_open_op_faculty_view" />
-            <field name="sequence" eval="10" />
+            <field name="act_window_id" ref="act_open_op_faculty_view"/>
+            <field name="sequence" eval="10"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_faculty_tree" />
+            <field name="view_id" ref="view_op_faculty_tree"/>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_faculty_view_kanban">
-            <field name="act_window_id" ref="act_open_op_faculty_view" />
-            <field name="sequence" eval="5" />
+            <field name="act_window_id" ref="act_open_op_faculty_view"/>
+            <field name="sequence" eval="5"/>
             <field name="view_mode">kanban</field>
-            <field name="view_id" ref="kanban_view_faculty" />
+            <field name="view_id" ref="kanban_view_faculty"/>
         </record>
 
         <record model="ir.actions.act_window" id="act_open_op_faculty_view_2">

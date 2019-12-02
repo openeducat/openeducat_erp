@@ -30,6 +30,8 @@ class OpFaculty(models.Model):
     _inherits = {"res.partner": "partner_id"}
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
+    first_name = fields.Char('First Name', size=128, required=True,
+                             translate=True)
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128, required=True)
     birth_date = fields.Date('Birth Date', required=True)
@@ -67,11 +69,20 @@ class OpFaculty(models.Model):
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
 
+    @api.onchange('first_name', 'middle_name', 'last_name')
+    def _onchange_name(self):
+        if not self.middle_name:
+            self.name = str(self.first_name) + \
+                        " " + str(self.last_name)
+        else:
+            self.name = str(self.first_name) + \
+                        " " + str(self.middle_name) + \
+                        " " + str(self.last_name)
+
     def create_employee(self):
         for record in self:
             vals = {
-                'name': record.name + ' ' + (record.middle_name or '') +
-                        ' ' + record.last_name,
+                'name': record.name,
                 'country_id': record.nationality.id,
                 'gender': record.gender,
                 'address_home_id': record.partner_id.id
@@ -86,3 +97,4 @@ class OpFaculty(models.Model):
             'label': _('Import Template for Faculties'),
             'template': '/openeducat_core/static/xls/op_faculty.xls'
         }]
+
