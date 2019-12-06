@@ -30,8 +30,7 @@ class OpFaculty(models.Model):
     _inherits = {"res.partner": "partner_id"}
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
-    first_name = fields.Char('First Name', size=128, required=True,
-                             translate=True)
+    first_name = fields.Char('First Name', size=128, translate=True)
     middle_name = fields.Char('Middle Name', size=128)
     last_name = fields.Char('Last Name', size=128, required=True)
     birth_date = fields.Date('Birth Date', required=True)
