@@ -67,7 +67,7 @@ class SessionReport(models.TransientModel):
 
     def gen_time_table_report(self):
         template = self.env.ref(
-                'openeducat_timetable.report_teacher_timetable_generate')
+            'openeducat_timetable.report_teacher_timetable_generate')
         data = self.read(
             ['start_date', 'end_date', 'course_id', 'batch_id', 'state',
              'faculty_id'])[0]

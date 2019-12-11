@@ -146,7 +146,7 @@ class OpMediaMovement(models.Model):
             x = record.library_card_id.library_card_type_id
             if record.library_card_id and x:
                 penalty_days = actual_diff > standard_diff and actual_diff - \
-                               standard_diff or penalty_days
+                    standard_diff or penalty_days
                 penalty_amt = penalty_days * x.penalty_amt_per_day
             record.write({'penalty': penalty_amt})
 
@@ -181,5 +181,5 @@ class OpMediaMovement(models.Model):
             invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
 
             invoice._compute_invoice_taxes_by_group()
-            #invoice.action_invoice_open()
+#           invoice.action_invoice_open()
             self.invoice_id = invoice.id
