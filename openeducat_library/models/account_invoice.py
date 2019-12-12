@@ -20,7 +20,7 @@
 ###############################################################################
 
 
-from odoo import models, api
+from odoo import models
 
 
 class AccountInvoice(models.Model):

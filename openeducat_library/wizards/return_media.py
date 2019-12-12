@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 
 from ..models import media_unit
