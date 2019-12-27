@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -17,7 +17,22 @@
 #    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
-from . import models
-from . import tests
+from .test_facility_common import TestFacilityCommon
+
+
+class TestFacilityLine(TestFacilityCommon):
+
+    def setUp(self):
+        super(TestFacilityLine, self).setUp()
+
+    def test_case_facility_line(self):
+
+        types = self.op_facility_line.create({
+            'facility_id': self.env.ref
+            ('openeducat_facility.op_facility_1').id,
+            'quantity': '1.0',
+        })
+        for type in types:
+            type.check_quantity()
