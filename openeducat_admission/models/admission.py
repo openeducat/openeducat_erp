@@ -133,12 +133,12 @@ class OpAdmission(models.Model):
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
         if not self.middle_name:
-            self.name = str(self.first_name) + \
-                        " " + str(self.last_name)
+            self.name = str(self.first_name) + " " + str(
+                self.last_name
+            )
         else:
-            self.name = str(self.first_name) + \
-                        " " + str(self.middle_name) + \
-                        " " + str(self.last_name)
+            self.name = str(self.first_name) + " " + str(
+                self.middle_name) + " " + str(self.last_name)
 
     @api.onchange('student_id', 'is_student')
     def onchange_student(self):
@@ -150,7 +150,7 @@ class OpAdmission(models.Model):
             self.last_name = sd.last_name
             self.birth_date = sd.birth_date
             self.gender = sd.gender
-            self.image_1920 = sd.image or False
+            self.image_1920 = sd.image_1920 or False
             self.street = sd.street or False
             self.street2 = sd.street2 or False
             self.phone = sd.phone or False
@@ -363,7 +363,6 @@ class OpAdmission(models.Model):
     def create_invoice(self):
         """ Create invoice for fee payment process of student """
 
-        inv_obj = self.env['account.invoice']
         partner_id = self.env['res.partner'].create({'name': self.name})
         account_id = False
         product = self.register_id.product_id
@@ -381,7 +380,7 @@ class OpAdmission(models.Model):
                 _('The value of the deposit amount must be positive.'))
         amount = self.fees
         name = product.name
-        invoice = inv_obj.create({
+        invoice = self.env['account.invoice'].create({
             'name': self.name,
             'origin': self.application_number,
             'type': 'out_invoice',
