@@ -48,13 +48,13 @@ class OpResultLine(models.Model):
     def _compute_grade(self):
         for record in self:
             if record.evaluation_type == 'grade':
-                grades = record.marksheet_line_id.marksheet_reg_id.\
+                grades = record.marksheet_line_id.marksheet_reg_id. \
                     result_template_id.grade_ids
                 for grade in grades:
                     if grade.min_per <= record.marks and \
                             grade.max_per >= record.marks:
                         record.grade = grade.result
-            else :
+            else:
                 record.grade = None
 
     @api.depends('marks')
@@ -63,7 +63,7 @@ class OpResultLine(models.Model):
             record.status = 'pass'
             if record.marks < record.exam_id.min_marks:
                 record.status = 'fail'
-            else :
+            else:
                 record.status = 'pass'
 
     def unlink(self):
