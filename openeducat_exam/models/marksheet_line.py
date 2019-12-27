@@ -68,7 +68,7 @@ class OpMarksheetLine(models.Model):
             total_exam_marks = sum(
                 [int(x.exam_id.total_marks) for x in record.result_line])
             record.percentage = record.total_marks and (
-                100 * record.total_marks) / total_exam_marks or 0.0
+                    100 * record.total_marks) / total_exam_marks or 0.0
 
     @api.depends('percentage')
     def _compute_grade(self):
@@ -79,9 +79,9 @@ class OpMarksheetLine(models.Model):
                     if grade.min_per <= record.percentage and \
                             grade.max_per >= record.percentage:
                         record.grade = grade.result
-                    else :
+                    else:
                         record.grade = None
-            else :
+            else:
                 record.grade = None
 
     @api.depends('result_line.status')
