@@ -48,11 +48,6 @@
         'demo/assignment_demo.xml',
         'demo/assignment_sub_line_demo.xml'
     ],
-    'test': [
-        'test/res_users_test.yml',
-        'test/assignment_sub_values.yml',
-        'test/assignment_creation_submission.yml'
-    ],
     'images': [
         'static/description/openeducat_assignment_banner.jpg',
     ],
