@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, Warning
+from odoo.exceptions import ValidationError
 
 
 class OpAssignmentSubLine(models.Model):
@@ -30,7 +30,7 @@ class OpAssignmentSubLine(models.Model):
     _description = "Assignment Submission"
     _order = "submission_date DESC"
 
-    def get_user_group(self):
+    def _compute_get_user_group(self):
         for user in self:
             if self.env.user.has_group(
                     'openeducat_core.group_op_back_office_admin') or \
@@ -64,7 +64,7 @@ class OpAssignmentSubLine(models.Model):
         'res.users', related='assignment_id.faculty_id.user_id',
         string='Faculty User')
     user_boolean = fields.Boolean(string='Check user',
-                                  compute='get_user_group')
+                                  compute='_compute_get_user_group')
 
     def act_draft(self):
         result = self.state = 'draft'

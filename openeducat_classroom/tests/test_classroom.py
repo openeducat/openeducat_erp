@@ -38,8 +38,10 @@ class TestClassroom(TestClassroomCommon):
             info('      Code : %s' % record.code)
             info('      Course Name : %s' % record.course_id.name)
             info('      Capacity : %s' % record.capacity)
-            info('      facilities : %s' % record.facilities)
-            info('      asset_line : %s' % record.asset_line.product_id)
+            for rec in record.facilities:
+                info('      facilities : %s' % rec.facility_id.name)
+            for rec1 in record.asset_line:
+                info('      asset_line : %s' % rec1.product_id.name)
             record.onchange_course()
 
 
@@ -60,6 +62,7 @@ class TestAsset(TestClassroomCommon):
             'description': 'FIFO Ice Cream',
         })
         assets = self.op_asset.create({
+            'asset_id': self.env.ref('openeducat_classroom.op_classroom_1').id,
             'product_id': product.id,
             'code': 1,
             'product_uom_qty': 11

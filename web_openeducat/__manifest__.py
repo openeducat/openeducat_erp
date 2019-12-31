@@ -21,7 +21,6 @@
 
 {
     'name': 'Web OpenEduCat',
-    'description': 'Beautifies Website',
     'category': 'Website',
     "sequence": 3,
     'version': '13.0',

@@ -21,6 +21,7 @@
 
 from logging import info
 from .test_assignment_common import TestAssignmentCommon
+import time
 
 
 class TestAssignment(TestAssignmentCommon):
@@ -69,11 +70,12 @@ class TestAssignmentSubline(TestAssignmentCommon):
             'marks': 50,
             'assignment_type_id':
                 self.env.ref('openeducat_assignment.op_assignment_type_1').id,
+            'issued_date': time.strftime('%Y-%m-01'),
             'course_id': self.env.ref('openeducat_core.op_course_4').id,
             'batch_id': self.env.ref('openeducat_core.op_batch_3').id,
             'subject_id': self.env.ref('openeducat_core.op_subject_10').id,
             'faculty_id': self.env.ref('openeducat_core.op_faculty_2').id,
-            'submission_date': '2019-12-30',
+            'submission_date': time.strftime('%Y-%m-01'),
             'allocation_ids': self.env.ref("openeducat_core.op_student_9"),
             'description': 'Please answer the following questions briefly:'
                            ' - 1. What are the different types of land',
