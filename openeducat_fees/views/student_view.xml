@@ -8,22 +8,27 @@
             <field name="priority" eval="9"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='image_1920']" position="before">
-                    <button type="object"
-                            class="oe_right oe_stat_button"
-                            id="invoice_button"
-                            icon="fa-pencil-square-o"
-                            name="action_view_invoice"
-                            groups="openeducat_core.group_op_back_office">
-                        <div>
-                            <strong><field name="total_invoiced" widget="monetary"/></strong><br/>Invoiced
-                        </div>
-                    </button>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                                class="oe_stat_button"
+                                id="invoice_button"
+                                icon="fa-pencil-square-o"
+                                name="action_view_invoice"
+                                groups="openeducat_core.group_op_back_office">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="total_invoiced" widget="monetary"/>
+                                </span>
+                                <span class="o_stat_text">Invoiced</span>
+                            </div>
+                        </button>
+                    </div>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page string="Fees Collection Details">
                         <field name="fees_detail_ids" readonly="1">
                             <tree string="Fees Collection Details" editable="top">
-                                <field name="fees_line_id" invisible="1" />
+                                <field name="fees_line_id" invisible="1"/>
                                 <field name="date"/>
                                 <field name="amount"/>
                                 <field name="fees_factor" invisible="1"/>

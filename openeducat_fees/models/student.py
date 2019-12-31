@@ -140,8 +140,8 @@ class OpStudent(models.Model):
         display existing invoices of given student ids and show a invoice"
         '''
         result = self.env.ref('account.action_move_out_invoice_type')
-        id = result and result.id or False
-        result = self.env['ir.actions.act_window'].browse(id).read()[0]
+        fees = result and result.id or False
+        result = self.env['ir.actions.act_window'].browse(fees).read()[0]
         inv_ids = []
         for student in self:
             inv_ids += [invoice.id for invoice in student.invoice_ids]
