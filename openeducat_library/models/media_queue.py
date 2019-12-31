@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, Warning
+from odoo.exceptions import ValidationError
 
 
 class OpMediaQueue(models.Model):
