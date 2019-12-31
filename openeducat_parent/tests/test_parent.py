@@ -34,14 +34,14 @@ class TestParent(TestParentCommon):
             'user_id': self.env.ref('openeducat_parent.user_parent').id,
             'mobile': 8334845,
         }
-        self.op_parent.create(vals)
+        new_parent = self.op_parent.create(vals)
+        new_parent.create_parent_user()
         student = self.env.ref('openeducat_parent.user_parent').id
         val = {'mobile': 77777777}
         self.op_parent.search([('user_id', '=', student)]).write(val)
 
         for parent in parents:
             parent._onchange_name()
-            parent.create_parent_user()
 
         self.op_parent.search([('user_id', '=', student)]).unlink()
 
