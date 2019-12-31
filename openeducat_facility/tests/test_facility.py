@@ -34,5 +34,5 @@ class TestFacilityLine(TestFacilityCommon):
             ('openeducat_facility.op_facility_1').id,
             'quantity': '1.0',
         })
-        for type in types:
-            type.check_quantity()
+        for facility in types:
+            facility.check_quantity()
