@@ -21,7 +21,7 @@
 
 
 from odoo.tests import common, TransactionCase
-from odoo.addons.openeducat_core.controllers import app_main
+from ..controllers import app_main
 from odoo.addons.website.tools import MockRequest
 
 

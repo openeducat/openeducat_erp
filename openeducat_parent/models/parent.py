@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo.exceptions import Warning
+from odoo import exceptions
 
 
 class OpParent(models.Model):
@@ -75,7 +75,7 @@ class OpParent(models.Model):
         users_res = self.env['res.users']
         for record in self:
             if not record.name.email:
-                raise Warning(_('Update parent email id first.'))
+                raise exceptions.Warning(_('Update parent email id first.'))
             if not record.name.user_id:
                 groups_id = template and template.groups_id or False
                 user_ids = [
@@ -149,12 +149,12 @@ class OpSubjectRegistration(models.Model):
     @api.model
     def create(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not \
+            raise exceptions.Warning(_('Invalid Action!\n Parent can not \
             create Subject Registration!'))
         return super(OpSubjectRegistration, self).create(vals)
 
     def write(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not edit \
+            raise exceptions.Warning(_('Invalid Action!\n Parent can not edit \
             Subject Registration!'))
         return super(OpSubjectRegistration, self).write(vals)

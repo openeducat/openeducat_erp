@@ -93,7 +93,6 @@ class TestAdmission(TestAdmissionCommon):
             admission.confirm_pending()
             admission.confirm_cancel()
             admission.confirm_to_draft()
-
             admission.open_student()
 
 
