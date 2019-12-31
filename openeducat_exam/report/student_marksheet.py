@@ -29,8 +29,8 @@ class ReportMarksheetReport(models.AbstractModel):
 
     def get_objects(self, objects):
         obj = []
-        for object in objects:
-            obj.extend(object)
+        for data in objects:
+            obj.extend(data)
         return obj
 
     def get_lines(self, obj):

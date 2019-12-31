@@ -85,9 +85,9 @@ class TestExamType(TestExamCommon):
         super(TestExamType, self).setUp()
 
     def test_Exam_Type(self):
-        type = self.op_exam_type.search([])
+        exam_type = self.op_exam_type.search([])
 
-        for data in type:
+        for data in exam_type:
             logging.info('Exam Type: %s' % (data.name))
             logging.info('Exam code: %s' % (data.code))
 
