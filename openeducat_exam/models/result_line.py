@@ -38,6 +38,7 @@ class OpResultLine(models.Model):
     student_id = fields.Many2one('op.student', 'Student', required=True)
     status = fields.Selection([('pass', 'Pass'), ('fail', 'Fail')], 'Status',
                               compute='_compute_status', store=True)
+    department_id = fields.Many2one('op.department', 'Department')
 
     @api.constrains('marks', 'marks')
     def _check_marks(self):

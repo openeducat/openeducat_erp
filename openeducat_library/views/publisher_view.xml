@@ -10,6 +10,7 @@
                     <field name="name"/>
                     <field name="media_ids" widget="many2many_tags"/>
                     <field name="address_id" invisible="1"/>
+                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -25,6 +26,7 @@
                             <field name="name"/>
                             <field name="address_id" context="{'show_address': 1}"
                                    options='{"always_reload": True}'/>
+                            <field name="department_id"/>
                         </group>
                         <group col="4" string="Media(s)">
                             <field name="media_ids" colspan="4" nolabel="1"/>
@@ -43,6 +45,7 @@
                     <field name="name"/>
                     <field name="address_id"/>
                     <field name="media_ids"/>
+                    <field name="department_id"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Publisher" name="group_by_lbr_publisher_name"

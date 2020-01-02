@@ -17,6 +17,7 @@
                     <field name="evaluation_type"/>
                     <field name="venue"/>
                     <field name="state"/>
+                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -52,6 +53,7 @@
                             <field name="exam_type"/>
                             <field name="evaluation_type"/>
                             <field name="venue" domain="[('is_venue','=',True)]" required="1"/>
+                            <field name="department_id"/>
                         </group>
                         <group string="Exam(s)">
                             <field name="exam_ids" colspan="4" readonly="1" nolabel="1">
@@ -88,6 +90,7 @@
                     <field name="end_date" select="True"/>
                     <field name="course_id" select="True"/>
                     <field name="batch_id" select="True"/>
+                    <field name="department_id"/>
                     <field name="venue"/>
                 </search>
             </field>

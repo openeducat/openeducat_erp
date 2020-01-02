@@ -59,6 +59,7 @@ class OpExamSession(models.Model):
         ('cancel', 'Cancelled'),
         ('done', 'Done')
     ], 'State', default='draft', track_visibility='onchange')
+    department_id = fields.Many2one('op.department', 'Department')
 
     _sql_constraints = [
         ('unique_exam_session_code',

@@ -65,6 +65,7 @@ class OpAssignmentSubLine(models.Model):
         string='Faculty User')
     user_boolean = fields.Boolean(string='Check user',
                                   compute='_compute_get_user_group')
+    department_id = fields.Many2one('op.department', 'Department')
 
     def act_draft(self):
         result = self.state = 'draft'

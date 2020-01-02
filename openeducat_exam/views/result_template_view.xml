@@ -10,6 +10,7 @@
                     <field name="name"/>
                     <field name="exam_session_id"/>
                     <field name="result_date"/>
+                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -30,6 +31,7 @@
                             <field name="result_date"/>
                             <field name="exam_session_id"/>
                             <field name="evaluation_type" invisible="1"/>
+                            <field name="department_id"/>
                         </group>
                         <separator string="Grades" colspan="4" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
                         <field name="grade_ids" colspan="4" nolabel="1" attrs="{'invisible':[('evaluation_type','!=','grade')],'required':[('evaluation_type','=','grade')]}"/>
@@ -51,6 +53,7 @@
                     <field name="name" select="True"/>
                     <field name="exam_session_id"/>
                     <field name="result_date" select="True"/>
+                    <field name="department_id"/>
                 </search>
             </field>
         </record>

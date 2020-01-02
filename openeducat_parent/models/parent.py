@@ -32,6 +32,7 @@ class OpParent(models.Model):
                               string='User', store=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
     mobile = fields.Char(string='Mobile', related='name.mobile')
+    department_id = fields.Many2one('op.department', 'Department')
 
     _sql_constraints = [(
         'unique_parent',

@@ -12,6 +12,7 @@
                     <field name="allow_media"/>
                     <field name="duration"/>
                     <field name="penalty_amt_per_day"/>
+                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -28,6 +29,7 @@
                             <field name="allow_media"/>
                             <field name="duration"/>
                             <field name="penalty_amt_per_day"/>
+                            <field name="department_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -43,6 +45,7 @@
                     <field name="name"/>
                     <field name="duration"/>
                     <field name="penalty_amt_per_day"/>
+                    <field name="department_id"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                     </group>
@@ -86,6 +89,7 @@
                     <field name="issue_date"/>
                     <field name="partner_id"/>
                     <field name="library_card_type_id"/>
+                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -105,6 +109,7 @@
                             <field name="partner_id" readonly="1" force_save="1"/>
                             <field name="student_id" options="{'no_create': True , 'no_open': True}" attrs="{'invisible':[('type','!=','student')],'required':[('type','=','student')]}"/>
                             <field name="faculty_id" options="{'no_create': True , 'no_open': True}" attrs="{'invisible':[('type','!=','faculty')],'required':[('type','=','faculty')]}"/>
+                            <field name="department_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -121,6 +126,7 @@
                     <field name="issue_date"/>
                     <field name="partner_id"/>
                     <field name="library_card_type_id"/>
+                    <field name="department_id"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Type" name="group_by_type"

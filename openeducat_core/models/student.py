@@ -30,6 +30,7 @@ class OpStudentCourse(models.Model):
     student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
+    department_id = fields.Many2one('op.department', 'Department')
     roll_number = fields.Char('Roll Number')
     subject_ids = fields.Many2many('op.subject', string='Subjects')
 
@@ -82,6 +83,7 @@ class OpStudent(models.Model):
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
                                         track_visibility='onchange')
+    department_id = fields.Many2one('op.department', 'Department')
 
     _sql_constraints = [(
         'unique_gr_no',

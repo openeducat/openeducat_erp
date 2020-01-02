@@ -22,14 +22,10 @@
 from odoo import models, fields
 
 
-class OpAssignmentType(models.Model):
-    _name = "op.assignment.type"
-    _description = "Assignment Type"
+class ResCompany(models.Model):
+    _name = "op.department"
+    _description = "OpenEduCat Department"
 
-    name = fields.Char('Name', size=256, required=True)
-    code = fields.Char('Code', size=16, required=True)
-    department_id = fields.Many2one('op.department', 'Department')
-
-    _sql_constraints = [
-        ('unique_assignment_type_code',
-         'unique(code)', 'Code should be unique per assignment type!')]
+    name = fields.Char('Name')
+    code = fields.Char('Code')
+    parent_id = fields.Many2one('op.department', 'Parent Department')

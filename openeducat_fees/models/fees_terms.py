@@ -48,6 +48,7 @@ class OpFeesTerms(models.Model):
     day_type = fields.Selection([('before', 'Before'), ('after', 'After')],
                                 'Type')
     line_ids = fields.One2many('op.fees.terms.line', 'fees_id', 'Terms')
+    department_id = fields.Many2one('op.department', 'Department')
 
     @api.model
     def create(self, vals):

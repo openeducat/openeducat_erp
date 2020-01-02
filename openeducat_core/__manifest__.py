@@ -44,6 +44,7 @@
         'views/category_view.xml',
         'views/course_view.xml',
         'views/batch_view.xml',
+        'views/department_view.xml',
         'views/subject_view.xml',
         'views/faculty_view.xml',
         'views/res_company_view.xml',
@@ -68,6 +69,7 @@
         'demo/student_demo.xml',
         'demo/student_course_demo.xml',
         'demo/faculty_demo.xml',
+        'demo/department_demo.xml'
     ],
     'css': [
         'static/src/scss/base.scss'

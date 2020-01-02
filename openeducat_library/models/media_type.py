@@ -28,6 +28,7 @@ class OpMediaType(models.Model):
 
     name = fields.Char('Name', size=64, required=True)
     code = fields.Char('Code', size=64, required=True)
+    department_id = fields.Many2one('op.department', 'Department')
 
     _sql_constraints = [
         ('unique_media_type_code',

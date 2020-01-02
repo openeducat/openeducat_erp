@@ -14,6 +14,7 @@
                     <field name="start_datetime"/>
                     <field name="end_datetime"/>
                     <field name="state"/>
+                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -60,6 +61,7 @@
                             <field name="start_datetime"/>
                             <field name="end_datetime"/>
                             <field name="type"/>
+                            <field name="department_id"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -85,6 +87,7 @@
                     <field name="start_datetime" select="True"/>
                     <field name="end_datetime" select="True"/>
                     <field name="type" select="True"/>
+                    <field name="department_id" select="True"/>
                     <newline/>
                     <filter string="Today" name="filter_session_today"
                             domain="[('start_datetime', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start_datetime', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]"/>

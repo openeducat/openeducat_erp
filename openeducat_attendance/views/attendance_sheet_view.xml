@@ -13,6 +13,7 @@
                     <field name="attendance_date"/>
                     <field name="total_present"/>
                     <field name="total_absent"/>
+                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -41,13 +42,14 @@
                                statusbar_visible="draft,start,done"/>
                     </header>
                     <sheet>
-                        <group col="4" colspan="4">
+                        <group col="4">
                             <field name="register_id"/>
                             <field name="name"/>
                             <field name="session_id" domain="[('course_id','=',course_id),('batch_id','=',batch_id)]"/>
                             <field name="attendance_date"/>
                             <field name="course_id" invisible="1"/>
                             <field name="batch_id" invisible="1"/>
+                            <field name="department_id"/>
                         </group>
                         <group col="4" string="Students">
                             <field name="attendance_line" colspan="4" nolabel="1">
@@ -80,6 +82,7 @@
                     <field name="attendance_date"/>
                     <field name="total_present"/>
                     <field name="total_absent"/>
+                    <field name="department_id"/>
                     <newline/>
                     <filter string="Today" name="filter_attendance_today"
                             domain="[('attendance_date', '=', context_today().strftime('%Y-%m-%d'))]"/>

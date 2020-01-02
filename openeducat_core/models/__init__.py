@@ -19,6 +19,7 @@
 #
 ##############################################################################
 
+from . import department
 from . import batch
 from . import category
 from . import course

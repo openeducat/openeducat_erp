@@ -50,6 +50,7 @@ class OpAttendanceLine(models.Model):
         readonly=True, track_visibility="onchange")
     register_id = fields.Many2one(
         related='attendance_id.register_id', store=True)
+    department_id = fields.Many2one('op.department', 'Department')
 
     _sql_constraints = [
         ('unique_student',

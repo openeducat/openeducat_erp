@@ -35,6 +35,7 @@ class OpLibraryCardType(models.Model):
         required=True)
     penalty_amt_per_day = fields.Float('Penalty Amount per Day',
                                        required=True)
+    department_id = fields.Many2one('op.department', 'Department')
 
     @api.constrains('allow_media', 'duration', 'penalty_amt_per_day')
     def check_details(self):
@@ -62,6 +63,7 @@ class OpLibraryCard(models.Model):
                                  domain=[('library_card_id', '=', False)])
     faculty_id = fields.Many2one('op.faculty', 'Faculty',
                                  domain=[('library_card_id', '=', False)])
+    department_id = fields.Many2one('op.department', 'Department')
 
     _sql_constraints = [(
         'unique_library_card_number',

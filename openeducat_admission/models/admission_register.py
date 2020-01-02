@@ -60,6 +60,7 @@ class OpAdmissionRegister(models.Model):
          ('cancel', 'Cancelled'), ('application', 'Application Gathering'),
          ('admission', 'Admission Process'), ('done', 'Done')],
         'Status', default='draft', track_visibility='onchange')
+    department_id = fields.Many2one('op.department', 'Department')
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):

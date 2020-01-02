@@ -11,6 +11,7 @@
                     <field name="student_id"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
+                    <field name="department_id"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -46,6 +47,7 @@
                             <field name="student_id"/>
                             <field name="course_id" options="{'no_open': True, 'no_create': True}"/>
                             <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                            <field name="department_id"/>
                             <field name="min_unit_load"/>
                             <field name="max_unit_load"/>
                         </group>
@@ -77,6 +79,7 @@
                     <field name="student_id"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
+                    <field name="department_id"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_course"
