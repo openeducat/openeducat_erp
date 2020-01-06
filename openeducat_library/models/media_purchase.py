@@ -45,7 +45,9 @@ class OpMediaPurchase(models.Model):
          ('reject', 'Rejected'), ('accept', 'Accepted')],
         'State', readonly=True, default='draft', track_visibility='onchange')
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
-    department_id = fields.Many2one('op.department', 'Department')
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.company.department.id)
 
     def act_requested(self):
         self.state = 'request'

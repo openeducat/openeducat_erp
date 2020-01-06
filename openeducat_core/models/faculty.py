@@ -60,7 +60,10 @@ class OpFaculty(models.Model):
     faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)',
                                            track_visibility='onchange')
     emp_id = fields.Many2one('hr.employee', 'HR Employee')
-    department_ids = fields.Many2many('op.department', string='Department')
+    department_ids = fields.Many2many('op.department',
+                                      string='Department',
+                                      default=lambda self:
+                                      self.env.company.department.ids)
 
     @api.constrains('birth_date')
     def _check_birthdate(self):

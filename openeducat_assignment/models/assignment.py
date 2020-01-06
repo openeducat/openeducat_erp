@@ -53,7 +53,9 @@ class OpAssignment(models.Model):
     assignment_sub_line = fields.One2many('op.assignment.sub.line',
                                           'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
-    department_id = fields.Many2one('op.department', 'Department')
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.company.department.id)
 
     @api.constrains('issued_date', 'submission_date')
     def check_dates(self):

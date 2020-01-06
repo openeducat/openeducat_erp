@@ -35,7 +35,9 @@ class OpLibraryCardType(models.Model):
         required=True)
     penalty_amt_per_day = fields.Float('Penalty Amount per Day',
                                        required=True)
-    department_id = fields.Many2one('op.department', 'Department')
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.company.department.id)
 
     @api.constrains('allow_media', 'duration', 'penalty_amt_per_day')
     def check_details(self):

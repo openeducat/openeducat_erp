@@ -38,8 +38,9 @@ class OpCourse(models.Model):
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
     max_unit_load = fields.Float("Maximum Unit Load")
     min_unit_load = fields.Float("Minimum Unit Load")
-    department_id = fields.Many2one('op.department', 'Department')
-
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.company.department.id)
     _sql_constraints = [
         ('unique_course_code',
          'unique(code)', 'Code should be unique per course!')]

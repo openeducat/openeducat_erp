@@ -28,15 +28,24 @@ class ResCompany(models.Model):
     signature = fields.Binary('Signature')
     accreditation = fields.Text('Accreditation')
     approval_authority = fields.Text('Approval Authority')
+    department = fields.Many2one('op.department', string='Department')
 
 
 class ResUsers(models.Model):
     _inherit = "res.users"
 
+    student_line = fields.Many2one('op.student', 'Line')
     user_line = fields.One2many('op.student', 'user_id', 'User Line')
     child_ids = fields.Many2many(
         'res.users', 'res_user_first_rel1',
         'user_id', 'res_user_second_rel1', string='Childs')
+    department_ids = fields.Many2many('op.department',
+                                      string='Multi Department',
+                                      default=lambda self:
+                                      self.env.company.department.ids)
+    department = fields.Many2one('op.department', string='Department Name',
+                                 default=lambda self:
+                                 self.env.company.department.id)
 
     def create_user(self, records, user_group=None):
         for rec in records:

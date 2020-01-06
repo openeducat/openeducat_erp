@@ -35,7 +35,9 @@ class OpSubjectRegistration(models.Model):
                                 track_visibility='onchange')
     batch_id = fields.Many2one('op.batch', 'Batch', required=True,
                                track_visibility='onchange')
-    department_id = fields.Many2one('op.department', 'Department')
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.company.department.id)
     compulsory_subject_ids = fields.Many2many(
         'op.subject', 'subject_compulsory_rel',
         'register_id', 'subject_id', string="Compulsory Subjects",

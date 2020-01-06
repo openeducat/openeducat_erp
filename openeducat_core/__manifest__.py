@@ -39,12 +39,12 @@
         'wizard/faculty_create_employee_wizard_view.xml',
         'wizard/faculty_create_user_wizard_view.xml',
         'wizard/students_create_user_wizard_view.xml',
+        'views/department_view.xml',
         'views/student_view.xml',
         'views/hr_view.xml',
         'views/category_view.xml',
         'views/course_view.xml',
         'views/batch_view.xml',
-        'views/department_view.xml',
         'views/subject_view.xml',
         'views/faculty_view.xml',
         'views/res_company_view.xml',
@@ -60,6 +60,7 @@
     ],
     'demo': [
         'demo/homepage_template.xml',
+        'demo/department_demo.xml',
         'demo/base_demo.xml',
         'demo/res_partner_demo.xml',
         'demo/res_users_demo.xml',
@@ -69,7 +70,6 @@
         'demo/student_demo.xml',
         'demo/student_course_demo.xml',
         'demo/faculty_demo.xml',
-        'demo/department_demo.xml'
     ],
     'css': [
         'static/src/scss/base.scss'

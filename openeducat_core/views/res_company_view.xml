@@ -5,17 +5,19 @@
             <field name="name">res.company.form.openeducat.core</field>
             <field name="model">res.company</field>
             <field name="priority">99</field>
-            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='parent_id']" position="after">
-                    <field name="signature" widget="image" />
+                    <field name="signature" widget="image"/>
+                    <field name="department"/>
+
                 </xpath>
                 <notebook colspan="4" position="inside">
                     <page name="institute_detail" string="Institute Detail">
-                        <separator string="Accreditation" colspan="4" />
-                        <field name="accreditation" colspna="4"  nolabel="1" />
-                        <separator string="Approval Authority"  colspan="4" />
-                        <field name="approval_authority" colspna="4" nolabel="1" />
+                        <separator string="Accreditation" colspan="4"/>
+                        <field name="accreditation" colspna="4" nolabel="1"/>
+                        <separator string="Approval Authority" colspan="4"/>
+                        <field name="approval_authority" colspna="4" nolabel="1"/>
                     </page>
                 </notebook>
             </field>
@@ -29,6 +31,15 @@
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="child_ids" widget="many2many_tags" readonly="1"/>
                 </xpath>
+                <xpath expr="//page[@name='access_rights']//group" position="after">
+                    <group>
+                        <group string="Multi Departments" name="Department">
+                            <field name="department_ids" widget="many2many_tags"/>
+                            <field name="department"/>
+                        </group>
+                    </group>
+                </xpath>
+
             </field>
         </record>
     </data>

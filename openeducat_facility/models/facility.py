@@ -28,7 +28,9 @@ class OpFacility(models.Model):
 
     name = fields.Char('Name', size=16, required=True)
     code = fields.Char('Code', size=16, required=True)
-    department_id = fields.Many2one('op.department', 'Department')
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.company.department.id)
 
     _sql_constraints = [
         ('unique_facility_code',

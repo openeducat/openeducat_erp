@@ -39,7 +39,9 @@ class OpExamAttendees(models.Model):
     course_id = fields.Many2one('op.course', 'Course', readonly=True)
     batch_id = fields.Many2one('op.batch', 'Batch', readonly=True)
     room_id = fields.Many2one('op.exam.room', 'Room')
-    department_id = fields.Many2one('op.department', 'Department')
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.company.department.id)
 
     _sql_constraints = [
         ('unique_attendees',
