@@ -29,6 +29,3 @@ class OpGradeConfiguration(models.Model):
     min_per = fields.Integer('Minimum Percentage', required=True)
     max_per = fields.Integer('Maximum Percentage', required=True)
     result = fields.Char('Result to Display', required=True)
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)

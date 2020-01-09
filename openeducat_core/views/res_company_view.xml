@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record model="res.groups" id="group_multi_department">
+            <field name="name">Multi Departments</field>
+            <field name="category_id" ref="base.module_category_usability"/>
+        </record>
         <record id="view_company_form_openeducat_core" model="ir.ui.view">
             <field name="name">res.company.form.openeducat.core</field>
             <field name="model">res.company</field>
@@ -9,7 +13,6 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='parent_id']" position="after">
                     <field name="signature" widget="image"/>
-                    <field name="department"/>
 
                 </xpath>
                 <notebook colspan="4" position="inside">
@@ -31,11 +34,14 @@
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="child_ids" widget="many2many_tags" readonly="1"/>
                 </xpath>
+
                 <xpath expr="//page[@name='access_rights']//group" position="after">
                     <group>
-                        <group string="Multi Departments" name="Department">
+                        <group string="Multi Departments" name="Department"
+                               attrs="{'invisible': [('department_count', '&lt;=', 1)]}">
+                            <field name="dept_id"/>
                             <field name="department_ids" widget="many2many_tags"/>
-                            <field name="department"/>
+                            <field string="Departments count" name="department_count" invisible="1"/>
                         </group>
                     </group>
                 </xpath>

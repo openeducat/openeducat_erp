@@ -49,9 +49,6 @@ class OpMarksheetLine(models.Model):
         ('pass', 'Pass'),
         ('fail', 'Fail')
     ], 'Status', compute='_compute_status')
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
 
     @api.constrains('total_marks', 'percentage')
     def _check_marks(self):

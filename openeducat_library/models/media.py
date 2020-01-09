@@ -45,9 +45,6 @@ class OpMedia(models.Model):
     queue_ids = fields.One2many('op.media.queue', 'media_id', 'Media Queue')
     unit_ids = fields.One2many('op.media.unit', 'media_id', 'Units')
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
 
     _sql_constraints = [
         ('unique_name_isbn',

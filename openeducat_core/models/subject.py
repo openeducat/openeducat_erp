@@ -39,7 +39,7 @@ class OpSubject(models.Model):
         'Subject Type', default="compulsory", required=True)
     department_id = fields.Many2one('op.department', 'Department',
                                     default=lambda self:
-                                    self.env.company.department.id)
+                                    self.env.user.dept_id.id)
     _sql_constraints = [
         ('unique_subject_code',
          'unique(code)', 'Code should be unique per subject!'),

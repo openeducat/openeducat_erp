@@ -42,9 +42,6 @@ class OpMediaQueue(models.Model):
         [('request', 'Request'), ('accept', 'Accepted'),
          ('reject', 'Rejected')],
         'Status', copy=False, default='request', track_visibility='onchange')
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
 
     @api.onchange('user_id')
     def onchange_user(self):

@@ -63,7 +63,8 @@
                     <field name="name"/>
                     <field name="blood_group"/>
                     <field name="emergency_contact"/>
-                    <field name="department_ids" widget="many2many_tags"/>
+                    <field name="main_department_id"/>
+                    <field name="allowed_department_ids" widget="many2many_tags"/>
                 </tree>
             </field>
         </record>
@@ -118,7 +119,8 @@
                                     <field name="emergency_contact" context="{'show_address': 1}"
                                            options='{"always_reload": True}'/>
                                     <field name='emp_id'/>
-                                    <field name='department_ids' widget="many2many_tags"/>
+                                    <field name="main_department_id"/>
+                                    <field name="allowed_department_ids" widget="many2many_tags"/>
                                 </group>
                                 <group string="Address Detail" name="address">
                                     <label for="type"/>
@@ -161,7 +163,8 @@
                 <search string="Faculty">
                     <field name="name"/>
                     <field name="blood_group"/>
-                    <field name="department_ids"/>
+                    <field name="main_department_id"/>
+                    <field name="allowed_department_ids"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter name="blood_group" string="Blood Group" domain="[]"

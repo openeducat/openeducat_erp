@@ -64,9 +64,6 @@ class OpSession(models.Model):
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
 
     @api.depends('start_datetime')
     def _compute_day(self):

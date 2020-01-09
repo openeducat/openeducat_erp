@@ -39,9 +39,6 @@ class OpMediaUnit(models.Model):
         'State', default='available', track_visibility='onchange')
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
 
     _sql_constraints = [
         ('unique_name_barcode',

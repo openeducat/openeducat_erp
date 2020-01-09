@@ -20,7 +20,6 @@
                     <field name="assignment_sub_line" invisible="1"/>
                     <field name="marks"/>
                     <field name="state"/>
-                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -62,7 +61,6 @@
                             <field name="faculty_id" attrs="{'readonly':[('state','!=','draft')]}"/>
                             <field name="assignment_type_id" attrs="{'readonly':[('state','!=','draft')]}"/>
                             <field name="reviewer" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="department_id"/>
                         </group>
                         <notebook colspan="4">
                             <page name="basic_information" string="Basic Information">
@@ -124,7 +122,6 @@
                     <field name="issued_date"/>
                     <field name="submission_date"/>
                     <field name="allocation_ids"/>
-                    <field name="department_id"/>
                     <filter string="Today" name="filter_assignment_today"
                             domain="[('submission_date', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('submission_date', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]"/>
                     <filter string="Week" name="filter_assigenment_week"

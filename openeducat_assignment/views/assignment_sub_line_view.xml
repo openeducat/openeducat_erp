@@ -11,7 +11,6 @@
                     <field name="student_id"/>
                     <field name="submission_date"/>
                     <field name="state"/>
-                    <field name="department_id"/>
                 </tree>
             </field>
         </record>
@@ -45,7 +44,6 @@
                                    domain="[('allocation_ids','=',student_id),('state','=','publish')]"/>
                             <field name="submission_date"/>
                             <field name="user_boolean" invisible="1"/>
-                            <field name="department_id"/>
                             <field name="marks"
                                    attrs="{'readonly':[('state','=','accept')], 'invisible':[('user_boolean','=',False),('state','!=','accept')]}"/>
                         </group>

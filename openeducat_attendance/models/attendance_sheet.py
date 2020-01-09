@@ -68,9 +68,6 @@ class OpAttendanceSheet(models.Model):
         [('draft', 'Draft'), ('start', 'Attendance Start'),
          ('done', 'Attendance Taken'), ('cancel', 'Cancelled')],
         'Status', default='draft', track_visibility='onchange')
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
 
     def attendance_draft(self):
         self.state = 'draft'

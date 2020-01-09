@@ -35,9 +35,6 @@ class OpClassroom(models.Model):
                                  string='Facility Lines')
     asset_line = fields.One2many('op.asset', 'asset_id',
                                  string='Asset')
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
 
     _sql_constraints = [
         ('unique_classroom_code',

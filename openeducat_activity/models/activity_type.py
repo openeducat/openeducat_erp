@@ -27,6 +27,3 @@ class OpActivityType(models.Model):
     _description = "Activity Type"
 
     name = fields.Char('Name', size=128, required=True)
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.company.department.id)
