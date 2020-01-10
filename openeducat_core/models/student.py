@@ -124,6 +124,6 @@ class OpStudent(models.Model):
                     'login': record.email,
                     'groups_id': user_group,
                     'is_student': True,
-                    'tz': self._context.get('tz')
+                    'tz': self._context.get('tz'),
                 })
                 record.user_id = user_id

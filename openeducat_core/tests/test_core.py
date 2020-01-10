@@ -68,7 +68,7 @@ class TestCore(TestCoreCommon):
 
     def test_case_5_res_company(self):
         users = self.res_company.search([])
-        record = self.env.ref('openeducat_core.op_user_student'),
+        record = self.env.ref('openeducat_core.op_faculty_1'),
         users.create_user(record)
 
     def test_case_6_student(self):

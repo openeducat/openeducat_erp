@@ -13,6 +13,7 @@
                     <field name="evaluation_type"/>
                     <field name="parent_id"/>
                     <field name="subject_ids" widget="many2many_tags"/>
+                    <field name="department_id" groups="openeducat_core.group_multi_department"/>
                 </tree>
             </field>
         </record>
@@ -32,6 +33,7 @@
                             <field name="parent_id"/>
                             <field name="min_unit_load"/>
                             <field name="max_unit_load"/>
+                            <field name="department_id" groups="openeducat_core.group_multi_department"/>
                         </group>
                         <group string="Subjects" name="subject">
                             <field name="subject_ids" nolabel="1"/>
@@ -55,6 +57,7 @@
                     <field name="code"/>
                     <field name="evaluation_type"/>
                     <field name="parent_id"/>
+                    <field name="department_id"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_evaluation_type"
