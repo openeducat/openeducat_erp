@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models
+from odoo import models, api
 
 
 class ReportFeesAnalysis(models.AbstractModel):
@@ -29,15 +29,17 @@ class ReportFeesAnalysis(models.AbstractModel):
     def get_invoice_amount(self, student_id):
         total_amount = 0.0
         paid_amount = 0.0
-        for inv in self.env['account.move'].search([
+        account_move_id = self.env['account.move'].search([
             ('partner_id', '=', student_id.partner_id.id),
-            ('state', 'in', ['open', 'paid']),
-        ]):
-            total_amount += inv.amount_total
-            paid_amount += inv.amount_total - inv.residual
+            ('state', 'in', ['posted'])])
+        for inv in account_move_id:
+            if inv.invoice_payment_ref:
+                for inv_line_id in inv.invoice_line_ids:
+                    total_amount += inv_line_id.price_unit
+                paid_amount += total_amount - inv.amount_residual
         return [total_amount, paid_amount]
 
-    # @api.model
+    @api.model
     def _get_report_values(self, docids, data=None):
         student_ids = []
         if data['fees_filter'] == 'student':
