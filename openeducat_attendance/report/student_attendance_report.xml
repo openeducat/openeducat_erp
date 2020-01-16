@@ -5,27 +5,30 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
                         <div class="text-center">
                             <h3><strong>Student Attendance Detail</strong></h3>
                         </div>
+                        <br/>
                         <div class="text-center">
-                            <b>From Date: </b>
-                            <span t-esc="from_date" />
-                            <b>To Date:</b>
-                            <span t-esc="to_date" />
+                            <strong>From Date: <span t-esc="from_date" /></strong>
+                            to
+                            <strong>To Date: <span t-esc="to_date" /></strong>
                         </div>
-                        <br></br>
                         <br></br>
                         <div class="text-left">
                             <b>Student Name :</b>
                             <span t-esc="get_student_name" />
                         </div>
-                        <table width="100%" class="table">
-                            <thead>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead class="text-center" style="background-color:#eeeeee; font-size:14px; font-weight:600;">
                                 <th class="text-center">Date</th>
                                 <th class="text-center">Remark</th>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center" style="font-size:12px;">
                                 <t t-foreach="get_data" t-as="obj">
                                     <tr t-foreach="obj['line']" t-as="l">
                                         <td class="text-center">

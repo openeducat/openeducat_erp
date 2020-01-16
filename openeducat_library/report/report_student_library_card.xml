@@ -10,49 +10,64 @@
                             <br></br>
                             <br></br>
                             <br></br>
-                            <div style="height: 260px; width: 400px; border: 1px solid black;">
-                                <table>
+                            <div style="max-height: 229px; width: 400px; border: 1px solid black;">
+                                <table width="100%">
                                     <tbody>
-                                        <tr>
+                                        <tr style="float:left">
                                             <td>
                                                 <img class="image" alt="Library Card"
                                                      t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"
-                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 5px;"/>
+                                                     style="max-width:2.5cm; margin:10px;"/>
                                             </td>
-                                            <td style="vertical-align: top;">
-                                                <div style="margin-left: 10px; margin-right: 5px; margin-top: 10px; margin-bottom: 10px;">
-                                                    <b><span t-raw="'%s' % res_company.partner_id.name if res_company.partner_id.name else ''"/></b><br></br>
-                                                    <div style="font-size: 12px;">
-                                                        <span t-raw="'%s' % res_company.partner_id.street if res_company.partner_id.street else ''"/><br></br>
-                                                        <span t-raw="'%s' % res_company.partner_id.street2 if res_company.partner_id.street2 else ''"/><br></br>
-                                                        <span t-raw="'%s' % res_company.partner_id.city if res_company.partner_id.city else ''"/>
-                                                        <span t-raw="'%s' % res_company.partner_id.state_id.name if res_company.partner_id.state_id.name else ''"/>
-                                                        <span t-raw="'%s' % res_company.partner_id.zip if res_company.partner_id.zip else ''"/><br></br>
-                                                        Phone : <span t-raw="'%s' % res_company.partner_id.phone if res_company.partner_id.phone else ''"/><br></br>
-                                                        E-mail : <span t-raw="'%s' % res_company.partner_id.email if res_company.partner_id.email else ''"/>
-                                                    </div>
-                                                </div>
+                                            <td>
+                                                <p style="font-size:16px; font-weight: 600; margin: 10px 10px 0;">
+                                                    Library Card
+                                                </p>
+                                                <p style="color: #3087c3;font-weight: 600;font-size: 14px;margin: 0px 10px 10px;"
+                                                   t-raw="'%s' % res_company.partner_id.name if res_company.partner_id.name else ''"/>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr style="float: left;height: 2px;width: 100%;background-color: #2d4383;">
+                                        </tr>
+                                        <tr style="float:left; margin:10px 0;">
                                             <td>
                                                 <img class="image"
                                                      t-att-src="'data:image/png;base64,%s' % to_text(o.image_1920)"
-                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-bottom: 3px;"/>
+                                                     style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-bottom: 3px; border: 1px solid #ccc;"/>
                                             </td>
                                             <td style="vertical-align: top;">
-                                                <div style="margin-left: 10px; margin-right: 10px; margin-bottom: 3px;">
-                                                    <b>
-                                                        <span t-field='o.name'/>
-                                                    </b>
+                                                <div style="margin-left: 10px; margin-right: 10px; margin-bottom: 3px; font-size: 12px;">
+                                                    <span style="font-weight:600">
+                                                        Name :
+                                                    </span>
+                                                    <span t-field='o.name'/>
                                                     <br></br>
-                                                    <div style="font-size: 12px;">
-                                                        Card No : <span t-if="o.library_card_id"><span t-field='o.library_card_id.number'/></span><br></br>
-                                                        Type : <span t-if="o.library_card_id"><span t-field='o.library_card_id.library_card_type_id.name'/></span><br></br>
-                                                        Issued Date : <span t-if="o.library_card_id"><span t-field='o.library_card_id.issue_date'/></span>
-                                                    </div>
+                                                    <span style="font-weight:600">
+                                                        Card No :
+                                                    </span>
+                                                    <span t-if="o.library_card_id">
+                                                        <span t-field='o.library_card_id.number'/>
+                                                    </span>
+                                                    <br></br>
+                                                    <span style="font-weight:600">
+                                                        Type :
+                                                    </span>
+                                                    <span t-if="o.library_card_id">
+                                                        <span t-field='o.library_card_id.library_card_type_id.name'/>
+                                                    </span>
+                                                    <br></br>
+                                                    <span style="font-weight:600">
+                                                        Issued Date :
+                                                    </span>
+                                                    <span t-if="o.library_card_id">
+                                                        <span t-field='o.library_card_id.issue_date'/>
+                                                    </span>
+                                                    <div style="margin-top: 5px;" t-if="o.library_card_id.number">
+                                                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.library_card_id.number, 250, 40)"/></div>
                                                 </div>
                                             </td>
+                                        </tr>
+                                        <tr style="float: left;height: 15px;width: 100%;background-color: #2d4383;">
                                         </tr>
                                     </tbody>
                                 </table>
