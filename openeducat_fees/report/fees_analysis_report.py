@@ -29,6 +29,7 @@ class ReportFeesAnalysis(models.AbstractModel):
     def get_invoice_amount(self, student_id):
         total_amount = 0.0
         paid_amount = 0.0
+        inv_res = 0.0
         account_move_id = self.env['account.move'].search([
             ('partner_id', '=', student_id.partner_id.id),
             ('state', 'in', ['posted'])])
@@ -36,7 +37,8 @@ class ReportFeesAnalysis(models.AbstractModel):
             if inv.invoice_payment_ref:
                 for inv_line_id in inv.invoice_line_ids:
                     total_amount += inv_line_id.price_unit
-                paid_amount += total_amount - inv.amount_residual
+                inv_res += inv.amount_residual
+        paid_amount = total_amount - inv_res
         return [total_amount, paid_amount]
 
     @api.model
