@@ -42,6 +42,7 @@ class OpMediaQueue(models.Model):
         [('request', 'Request'), ('accept', 'Accepted'),
          ('reject', 'Rejected')],
         'Status', copy=False, default='request', track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     @api.onchange('user_id')
     def onchange_user(self):

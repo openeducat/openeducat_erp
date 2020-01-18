@@ -20,6 +20,9 @@
             <field name="arch" type="xml">
                 <form string="Facility">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group colspan="4" col="4">
                             <field name="name"/>
                             <field name="code"/>
@@ -37,6 +40,8 @@
                 <search string="Facility">
                     <field name="name"/>
                     <field name="code"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Name" domain="[]" name="group_by_facility_name"

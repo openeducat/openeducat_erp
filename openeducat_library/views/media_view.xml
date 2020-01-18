@@ -27,8 +27,13 @@
             <field name="arch" type="xml">
                 <form string="Media">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="2">
-                            <h1><field name="name" placeholder="Media Name" style="width: 100%%"/></h1>
+                            <h1>
+                                <field name="name" placeholder="Media Name" style="width: 100%%"/>
+                            </h1>
                         </group>
                         <newline/>
                         <group col="4">
@@ -55,7 +60,8 @@
                                     <field name="subject_ids" nolabel="1" widget="many2many_tags"/>
                                 </group>
                             </page>
-                            <page name="movements" string="Movements" groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin">
+                            <page name="movements" string="Movements"
+                                  groups="openeducat_core.group_op_back_office,openeducat_library.group_op_library,openeducat_core.group_op_back_office_admin">
                                 <field name="movement_line" colspan="4" nolabel="1"/>
                             </page>
                             <page name="media_queue_requests" string="Media Queue Requests">
@@ -108,6 +114,8 @@
                                 domain="[]" context="{'group_by':'edition'}"/>
                         <filter string="Type" name="group_by_lbr_media_type"
                                 domain="[]" context="{'group_by':'media_type_id'}"/>
+                        <filter string="Archived" name="inactive"
+                                domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

@@ -41,6 +41,8 @@ class OpCourse(models.Model):
     department_id = fields.Many2one('op.department', 'Department',
                                     default=lambda self:
                                     self.env.user.dept_id.id)
+    active = fields.Boolean(default=True)
+
     _sql_constraints = [
         ('unique_course_code',
          'unique(code)', 'Code should be unique per course!')]

@@ -97,14 +97,19 @@
             <field name="arch" type="xml">
                 <form string="Library Card">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="number"/>
                             <field name="issue_date"/>
                             <field name="library_card_type_id"/>
                             <field name="type"/>
                             <field name="partner_id" readonly="1" force_save="1"/>
-                            <field name="student_id" options="{'no_create': True , 'no_open': True}" attrs="{'invisible':[('type','!=','student')],'required':[('type','=','student')]}"/>
-                            <field name="faculty_id" options="{'no_create': True , 'no_open': True}" attrs="{'invisible':[('type','!=','faculty')],'required':[('type','=','faculty')]}"/>
+                            <field name="student_id" options="{'no_create': True , 'no_open': True}"
+                                   attrs="{'invisible':[('type','!=','student')],'required':[('type','=','student')]}"/>
+                            <field name="faculty_id" options="{'no_create': True , 'no_open': True}"
+                                   attrs="{'invisible':[('type','!=','faculty')],'required':[('type','=','faculty')]}"/>
                         </group>
                     </sheet>
                 </form>
@@ -125,6 +130,8 @@
                     <group expand="0" string="Group By...">
                         <filter string="Type" name="group_by_type"
                                 domain="[]" context="{'group_by': 'type'}"/>
+                        <filter string="Archived" name="inactive"
+                                domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

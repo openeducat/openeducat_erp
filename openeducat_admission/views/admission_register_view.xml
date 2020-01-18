@@ -26,15 +26,22 @@
             <field name="arch" type="xml">
                 <form string="Admission Register">
                     <header groups="base.group_user">
-                        <button name="confirm_register" states="draft" type="object" string="Confirm" class="oe_highlight"/>
-                        <button name="start_application" states="confirm" type="object" string="Start Application" class="oe_highlight"/>
-                        <button name="start_admission" states="application" type="object" string="Start Admission" class="oe_highlight"/>
-                        <button name="close_register" states="admission" type="object" string="Done" class="oe_highlight"/>
+                        <button name="confirm_register" states="draft" type="object" string="Confirm"
+                                class="oe_highlight"/>
+                        <button name="start_application" states="confirm" type="object" string="Start Application"
+                                class="oe_highlight"/>
+                        <button name="start_admission" states="application" type="object" string="Start Admission"
+                                class="oe_highlight"/>
+                        <button name="close_register" states="admission" type="object" string="Done"
+                                class="oe_highlight"/>
                         <button name="cancel_register" states="draft,confirm" string="Cancel" type="object"/>
                         <button name="set_to_draft" states="cancel" string="Set to Draft" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,application,admission"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="name"/>
                             <field name="course_id"/>
@@ -73,6 +80,7 @@
                                 domain="[]" context="{'group_by':'product_id'}"/>
                         <filter string="Status" name="group_by_adm_reg_state"
                                 domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>
