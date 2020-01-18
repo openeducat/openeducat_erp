@@ -67,6 +67,8 @@ class OpFaculty(models.Model):
                                               string='Allowed Department',
                                               default=lambda self:
                                               self.env.user.department_ids.ids)
+    active = fields.Boolean(default=True)
+
 
     @api.constrains('birth_date')
     def _check_birthdate(self):

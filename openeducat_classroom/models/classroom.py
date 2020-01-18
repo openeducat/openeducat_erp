@@ -35,6 +35,7 @@ class OpClassroom(models.Model):
                                  string='Facility Lines')
     asset_line = fields.One2many('op.asset', 'asset_id',
                                  string='Asset')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_classroom_code',

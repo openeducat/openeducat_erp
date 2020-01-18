@@ -24,6 +24,9 @@
             <field name="arch" type="xml">
                 <form string="Marksheet Line">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group colspan="4" col="4">
                             <field name="student_id"/>
                             <field name="status"/>
@@ -50,6 +53,8 @@
                     <field name="student_id"/>
                     <field name="total_marks"/>
                     <field name="percentage"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Marksheet Register" name="group_by_marksheet_line_register"

@@ -24,6 +24,9 @@
             <field name="arch" type="xml">
                 <form string="Subject">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="name"/>
                             <field name="code"/>
@@ -56,6 +59,7 @@
                         <filter name="group_by_subject_type"
                                 string="Type" domain="[]"
                                 context="{'group_by':'type'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

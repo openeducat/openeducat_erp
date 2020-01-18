@@ -63,6 +63,7 @@ class OpAttendanceSheet(models.Model):
         'Total Absent', compute='_compute_total_absent',
         track_visibility="onchange")
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
+    active = fields.Boolean(default=True)
 
     state = fields.Selection(
         [('draft', 'Draft'), ('start', 'Attendance Start'),

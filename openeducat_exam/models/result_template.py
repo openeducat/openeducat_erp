@@ -45,6 +45,7 @@ class OpResultTemplate(models.Model):
         ('draft', 'Draft'),
         ('result_generated', 'Result Generated')
     ], string='State', default='draft', track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     @api.constrains('exam_session_id')
     def _check_exam_session(self):

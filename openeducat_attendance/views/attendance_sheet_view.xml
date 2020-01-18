@@ -41,6 +41,9 @@
                                statusbar_visible="draft,start,done"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="register_id"/>
                             <field name="name"/>
@@ -89,6 +92,8 @@
                     <filter string="Month" name="filter_attendance_month"
                             domain="[('attendance_date', '&lt;=', (context_today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
                                     ('attendance_date', '&gt;=', (context_today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <group expand="0" string="Group By...">
                         <filter string="Register" name="group_by_attendance_sheet_register_id"
                                 domain="[]" context="{'group_by':'register_id'}"/>
