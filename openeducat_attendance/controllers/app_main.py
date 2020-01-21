@@ -20,19 +20,20 @@
 ###############################################################################
 
 from odoo import http, fields
-from odoo.http import request
+from odoo.http import request, Response
+import json
 
 
 class OpAttendanceController(http.Controller):
 
-    @http.route(['/openeducat-attendance/take-attendance'], type='json',
+    @http.route(['/openeducat-attendance/take-attendance'], type='http',
                 auth='none', methods=['POST'], csrf=False)
     def create_attendance_lines(self, **post):
-        sheet_id = post.get('attendance_sheet_id', False)
+        sheet_id = int(post.get('attendance_sheet_id', False))
         if sheet_id:
             attend_lines = request.env['op.attendance.line'].sudo()
             sheet = request.env['op.attendance.sheet'].sudo().browse(
-                [sheet_id])
+                sheet_id)
             all_student_search = request.env['op.student'].sudo().search(
                 [('course_detail_ids.course_id', '=',
                   sheet.register_id.course_id.id),
@@ -50,4 +51,6 @@ class OpAttendanceController(http.Controller):
                     'attendance_date': fields.Date.today(),
                     'present': True
                 })
-        return True
+        return  Response(json.dumps(True,
+                sort_keys=True, indent=4, ),
+                content_type='application/json;charset=utf-8', status=200)

@@ -51,3 +51,38 @@ class ResUsers(models.Model):
                 rec.user_id = user_id
                 if user_group:
                     user_group.users = user_group.users + user_id
+
+    def search_read_for_app(self, domain=None, fields=None, offset=0, limit=None, order=None):
+        if self.env.user.partner_id.is_student:
+            domain = ([('user_id', '=', self.env.user.id)])
+            user = self.sudo().search_read(domain=domain, fields=['name', 'email', 'image',
+                                                                  'mobile', 'country_id', 'city', 'street', 'state_id',
+                                                                  'zip'], offset=offset, limit=limit, order=order)
+            student = self.env['op.student'].sudo().search([('user_id', '=', self.env.user.id)])
+            res = {'user_data': user,
+                   'birth_date': student.birth_date,
+                   'blood_group': student.blood_group,
+                   'gender': student.gender,
+                   'student_id': student.id
+                   }
+            return res
+
+        elif self.env.user.partner_id.is_parent:
+            domain = ([('user_id', '=', self.env.user.id)])
+            res = self.sudo().search_read(domain=domain, fields=['name', 'email', 'image', 'mobile', 'country_id',
+                                                                 'city', 'street', 'state_id', 'zip'], offset=offset,
+                                          limit=limit, order=order)
+            return {'user_data': res}
+
+        else:
+            domain = ([('user_id', '=', self.env.user.id)])
+            user = self.sudo().search_read(domain=domain, fields=['name', 'email', 'image', 'mobile', 'country_id',
+                                                                  'city', 'street', 'state_id', 'zip'],
+                                           offset=offset, limit=limit, order=order)
+            faculty = self.env['op.faculty'].sudo().search([('user_id', '=', self.env.user.id)])
+            res = {'user_data': user,
+                   'faculty_id': faculty.id,
+                   'birth_date': faculty.birth_date,
+                   'blood_group': faculty.blood_group,
+                   'gender': faculty.gender}
+            return res

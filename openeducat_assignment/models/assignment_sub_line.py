@@ -48,7 +48,7 @@ class OpAssignmentSubLine(models.Model):
     student_id = fields.Many2one(
         'op.student', 'Student',
         default=lambda self: self.env['op.student'].search(
-            [('user_id', '=', self.env.uid)]), required=True)
+            [('user_id', '=', self.env.user.id)]), required=True)
     description = fields.Text('Description', track_visibility='onchange')
     state = fields.Selection([
         ('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
@@ -66,15 +66,20 @@ class OpAssignmentSubLine(models.Model):
         string='Faculty User')
     user_boolean = fields.Boolean(string='Check user',
                                   compute='get_user_group')
+    attachment_ids = fields.One2many('ir.attachment', 'res_id',
+                                     domain=[('res_model', '=',
+                                              'op.assignment.sub.line')],
+                                     string='Attachments',
+                                     readonly=True)
 
     @api.multi
     def act_draft(self):
-        result = self.state = 'draft'
+        result = self.sudo().state = 'draft'
         return result and result or False
 
     @api.multi
     def act_submit(self):
-        result = self.state = 'submit'
+        result = self.sudo().state = 'submit'
         return result and result or False
 
     @api.multi
@@ -115,3 +120,26 @@ class OpAssignmentSubLine(models.Model):
             raise Warning(_('Invalid Action!\n Parent can not edit \
             Assignment Submissions!'))
         return super(OpAssignmentSubLine, self).write(vals)
+
+    @api.multi
+    def write_assignment(self, vals):
+        student_id = self.env['op.student'].sudo().search([('partner_id', '=', self.env.user.partner_id.id)])
+        vals.update({'student_id': student_id.id})
+        new_data = self.sudo().write(vals)
+        return new_data
+
+    def search_read_for_app(self, domain=None, fields=None, offset=0, limit=None, order=None):
+
+        if self.env.user.partner_id.is_student:
+            domain = [('user_id', '=', self.env.user.id)]
+            res = self.sudo().search_read(domain=domain, fields=['student_id', 'assignment_id', 'submission_date',
+                                                                 'state', 'description', 'note', 'marks', ],
+                                          offset=offset, limit=limit, order=order)
+            return res
+
+        elif self.user_has_groups('openeducat_core.group_op_faculty'):
+            res = self.sudo().search_read(domain=[], fields=['student_id', 'assignment_id', 'submission_date',
+                                                             'state', 'description', 'note', 'marks',
+                                                             ], offset=offset, limit=limit,
+                                          order=order)
+            return res

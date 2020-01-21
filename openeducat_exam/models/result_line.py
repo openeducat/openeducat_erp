@@ -49,7 +49,7 @@ class OpResultLine(models.Model):
     def _compute_grade(self):
         for record in self:
             if record.evaluation_type == 'grade':
-                grades = record.marksheet_line_id.marksheet_reg_id.\
+                grades = record.marksheet_line_id.marksheet_reg_id. \
                     result_template_id.grade_ids
                 for grade in grades:
                     if grade.min_per <= record.marks and \
