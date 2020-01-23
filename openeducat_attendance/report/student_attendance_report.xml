@@ -20,9 +20,9 @@
                             </div>
                             <div style="width:50%; margin-left:15px;">
                                 <b>From Date:</b>
-                                <span t-esc="from_date"/>
+                                <span t-esc="from_date" t-options="{'widget':'date'}"/>
                                 <b>To Date:</b>
-                                <span t-esc="to_date"/>
+                                <span t-esc="to_date" t-options="{'widget':'date'}"/>
                             </div>
                         </div>
                         <br/>
@@ -36,7 +36,7 @@
                                 <t t-foreach="get_data" t-as="obj">
                                     <tr t-foreach="obj['line']" t-as="l">
                                         <td class="text-center">
-                                            <span t-esc="l['absent_date']"/>
+                                            <span t-esc="l['absent_date']" t-options="{'widget':'date'}"/>
                                         </td>
                                         <td class="text-center">
                                             <span t-esc="l['remark']"/>

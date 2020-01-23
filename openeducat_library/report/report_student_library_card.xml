@@ -59,7 +59,7 @@
                                                         Issued Date :
                                                     </span>
                                                     <span t-if="o.library_card_id">
-                                                        <span t-field='o.library_card_id.issue_date'/>
+                                                        <span t-field='o.library_card_id.issue_date' t-options="{'widget':'date'}"/>
                                                     </span>
                                                     <div style="margin-top: 5px;" t-if="o.library_card_id.number">
                                                             <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.library_card_id.number, 250, 40)"/></div>
