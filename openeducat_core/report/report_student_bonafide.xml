@@ -9,24 +9,44 @@
                             <br></br>
                             <br></br>
                             <br></br>
-                            <div class="row" style="padding-left:10px">
-                                Phone: &#09;<span t-esc="res_company.phone" /><br>
-                                <u>Mail: <span t-esc="res_company.email" /></u></br>
+                            <div class="text-center mt16">
+                                <h4>
+                                    <strong>Bonafide Certificate</strong>
+                                </h4>
                             </div>
-                            <div class="text-center mt16"><h4><strong>Bonafide Certificate</strong></h4></div>
                             <br></br>
                             <table>
-                                <tbody class="justify-content-center">
+                                <tbody class="justify-content-center" style="font-size: 14px;">
                                     <tr>
-                                        <td>This is to certify that <span t-raw="'%s' % o.title.name if o.title.name else ''" />
+                                        <td>This is to certify that
+                                            <span t-raw="'%s' % o.title.name if o.title.name else ''"/>
                                             <strong>
-                                                <u><span t-raw="'%s' % o.name if o.name else ''" /></u>
+                                                <u>
+                                                    <span t-raw="'%s' % o.name if o.name else ''"/>
+                                                </u>
                                             </strong>
-                                            <font color="white"></font> is / was a bonafide student of this school / college studying in
-                                            <strong><u><span t-raw="'%s' % o.course_detail_ids[0].course_id.name if o.course_detail_ids else ''" /></u></strong> Year
-                                            <strong> ( <u><span t-raw="'%s' % o.course_detail_ids[0].batch_id.name if o.course_detail_ids else ''" /></u> ).</strong>
-                                            His / Her birthday as recorded in the General Register of the school / collage is
-                                            <strong>( <u><span t-esc="o.birth_date" /></u> ).</strong>
+                                            <font color="white"></font>
+                                            is / was a bonafide student of this school / college studying in
+                                            <strong>
+                                                <u>
+                                                    <span t-raw="'%s' % o.course_detail_ids[0].course_id.name if o.course_detail_ids else ''"/>
+                                                </u>
+                                            </strong>
+                                            Year
+                                            <strong>(
+                                                <u>
+                                                    <span t-raw="'%s' % o.course_detail_ids[0].batch_id.name if o.course_detail_ids else ''"/>
+                                                </u>
+                                                ).
+                                            </strong>
+                                            His / Her birthday as recorded in the General Register of the school /
+                                            college is
+                                            <strong>(
+                                                <u>
+                                                    <span t-esc="o.birth_date"/>
+                                                </u>
+                                                ).
+                                            </strong>
                                             To the best of my knowledge, he / she bears a Good Moral character.
                                         </td>
                                     </tr>
@@ -40,7 +60,8 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <b>DATE: </b><span t-esc="time.strftime('%Y-%m-%d')" />
+                                            <b>DATE:</b>
+                                            <span t-esc="time.strftime('%Y-%m-%d')"/>
                                         </td>
                                         <td class="text-center">
                                             <b>PRINCIPAL</b>
