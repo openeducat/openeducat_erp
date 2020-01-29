@@ -66,11 +66,6 @@ class OpAssignmentSubLine(models.Model):
         string='Faculty User')
     user_boolean = fields.Boolean(string='Check user',
                                   compute='get_user_group')
-    attachment_ids = fields.One2many('ir.attachment', 'res_id',
-                                     domain=[('res_model', '=',
-                                              'op.assignment.sub.line')],
-                                     string='Attachments',
-                                     readonly=True)
 
     @api.multi
     def act_draft(self):
@@ -120,26 +115,3 @@ class OpAssignmentSubLine(models.Model):
             raise Warning(_('Invalid Action!\n Parent can not edit \
             Assignment Submissions!'))
         return super(OpAssignmentSubLine, self).write(vals)
-
-    @api.multi
-    def write_assignment(self, vals):
-        student_id = self.env['op.student'].sudo().search([('partner_id', '=', self.env.user.partner_id.id)])
-        vals.update({'student_id': student_id.id})
-        new_data = self.sudo().write(vals)
-        return new_data
-
-    def search_read_for_app(self, domain=None, fields=None, offset=0, limit=None, order=None):
-
-        if self.env.user.partner_id.is_student:
-            domain = [('user_id', '=', self.env.user.id)]
-            res = self.sudo().search_read(domain=domain, fields=['student_id', 'assignment_id', 'submission_date',
-                                                                 'state', 'description', 'note', 'marks', ],
-                                          offset=offset, limit=limit, order=order)
-            return res
-
-        elif self.user_has_groups('openeducat_core.group_op_faculty'):
-            res = self.sudo().search_read(domain=[], fields=['student_id', 'assignment_id', 'submission_date',
-                                                             'state', 'description', 'note', 'marks',
-                                                             ], offset=offset, limit=limit,
-                                          order=order)
-            return res

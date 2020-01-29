@@ -50,13 +50,6 @@ class OpMarksheetLine(models.Model):
         ('fail', 'Fail')
     ], 'Status', compute='_compute_status')
 
-    exam_name = fields.Many2one(
-        related='result_line.exam_id.session_id')
-    exam_type = fields.Many2one(
-        related='result_line.exam_id.session_id.exam_type')
-    grand_total = fields.Integer("Grand Total",
-                                compute='_compute_grand_total')
-
     @api.constrains('total_marks', 'percentage')
     def _check_marks(self):
         if (self.total_marks < 0.0) or (self.percentage < 0.0):
@@ -68,11 +61,6 @@ class OpMarksheetLine(models.Model):
         for record in self:
             record.total_marks = sum([
                 int(x.marks) for x in record.result_line])
-    @api.multi
-    def _compute_grand_total(self):
-        for record in self:
-            record.grand_total = sum([
-                int(x.exam_id.total_marks) for x in record.result_line])
 
     @api.multi
     @api.depends('total_marks')
@@ -102,26 +90,3 @@ class OpMarksheetLine(models.Model):
             for result in record.result_line:
                 if result.status == 'fail':
                     record.status = 'fail'
-
-    def search_read_for_result(self, domain=None, fields=None, offset=0, limit=None, order=None):
-
-        if self.env.user.partner_id.is_student:
-            user = self.env.user
-            student_id = self.env['op.student'].sudo().search([('user_id', '=', user.id)])
-            marksheet_id = self.sudo().search([('student_id', '=', student_id.id)])
-            res = []
-            for marksheet in marksheet_id:
-                my_dict = {
-                    'percentage': marksheet.percentage,
-                    'total_marks': marksheet.total_marks,
-                    'status': marksheet.status,
-                    'grade': marksheet.grade,
-                    'id': marksheet.id,
-                    'result_line': [j.id for j in marksheet.result_line],
-                    'student_id': marksheet.student_id.name,
-                    'exam_name': [(x.exam_id.session_id.name) for x in marksheet.result_line],
-                    'exam_type': [(x.exam_id.session_id.exam_type.name) for x in marksheet.result_line],
-                    'grand_total': sum(int(x.exam_id.total_marks) for x in marksheet.result_line)
-                }
-                res.append(my_dict)
-            return res

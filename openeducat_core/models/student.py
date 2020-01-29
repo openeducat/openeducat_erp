@@ -118,39 +118,3 @@ class OpStudent(models.Model):
                     'tz': self._context.get('tz')
                 })
                 record.user_id = user_id
-
-    def search_read_for_app(self, domain=None, fields=None, offset=0, limit=None, order=None):
-
-        if self.env.user.partner_id.is_student:
-            domain = [('user_id', '=', self.env.user.id)]
-            res = self.sudo().search_read(domain=domain, fields=fields, offset=offset, limit=limit, order=order)
-            return res
-
-        elif self.env.user.partner_id.is_parent:
-            parent = self.env['op.parent'].sudo().search([('user_id', '=', self.env.user.id)])
-            domain = [('parent_ids', '=', parent.id)]
-            res = self.sudo().search(domain)
-            student_details = []
-            for student in res:
-                student_dict = {
-                    'id': student.id,
-                    'name': student.name,
-                    'last_name': student.last_name,
-                    'image': student.image,
-                    'course': '',
-                    'user_id': student.user_id.id,
-                    'course_id': ''
-                }
-                student_details.append(student_dict)
-
-                course_list = []
-                course_id = []
-                course = ''
-                for rec in student.course_detail_ids:
-                    course_list.append(rec.course_id.name)
-                    course = course + rec.course_id.name + ', <br/>'
-                    course_id.append(rec.course_id.id)
-                course_detail = course[:-7]
-                student_dict['course'] = course_detail
-                student_dict['course_id'] = course_id
-            return student_details

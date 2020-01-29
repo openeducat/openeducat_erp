@@ -53,11 +53,6 @@ class OpAssignment(models.Model):
     assignment_sub_line = fields.One2many('op.assignment.sub.line',
                                           'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
-    attachment_ids = fields.One2many('ir.attachment', 'res_id',
-                                     domain=[('res_model', '=',
-                                              'op.assignment')],
-                                     string='Attachments',
-                                     readonly=True)
 
     @api.multi
     @api.constrains('issued_date', 'submission_date')
@@ -94,60 +89,3 @@ class OpAssignment(models.Model):
     @api.multi
     def act_set_to_draft(self):
         self.state = 'draft'
-
-    @api.multi
-    def unlink(self):
-        for record in self:
-            if not record.state == 'draft' and not self.env.user.has_group(
-                    'openeducat_core.group_op_faculty'):
-                raise ValidationError(
-                    _("You can't delete none draft submissions!"))
-        res = super(OpAssignment, self).unlink()
-        return res
-
-    @api.multi
-    def write(self, vals):
-        if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not edit \
-               Assignment Submissions!'))
-        return super(OpAssignment, self).write(vals)
-
-    @api.model
-    def create(self, vals):
-        res = super(OpAssignment, self).create(vals)
-        return res
-
-    def search_read_for_app(self, domain=None, fields=None, offset=0, limit=None, order=None, args=None):
-        if self.env.user.partner_id.is_student:
-            partner = self.env.user.partner_id
-            domain = ([('state', '=', 'publish'), ('allocation_ids.partner_id', '=', partner.id)])
-            res = self.sudo().search_read(domain=domain, fields=['name', 'batch_id', 'course_id',
-                                                                 'subject_id', 'assignment_type_id',
-                                                                 'faculty_id', 'issued_date', 'submission_date',
-                                                                 'marks', 'allocation_ids', 'state', 'description', ],
-                                          offset=offset, limit=limit, order=order)
-            return res
-
-        elif self.env.user.partner_id.is_parent:
-            user = self.env.user
-            parent_id = self.env['op.parent'].sudo().search([('user_id', '=', user.id)])
-
-            student_id = [student.id for student in parent_id.student_ids]
-            domain = [('allocation_ids', 'in', student_id)]
-            res = self.sudo().search_read(domain=domain, fields=['name', 'batch_id', 'course_id',
-                                                                 'subject_id', 'assignment_type_id',
-                                                                 'faculty_id', 'issued_date', 'submission_date',
-                                                                 'marks', 'allocation_ids', 'description', ],
-                                          offset=offset, limit=limit, order=order)
-            return res
-
-        elif self.user_has_groups('openeducat_core.group_op_faculty'):
-            user = self.env.user
-            faculty_id = self.env['op.faculty'].sudo().search([('user_id', '=', user.id)])
-            domain = [('faculty_id', '=', faculty_id.id)]
-            res = self.sudo().search_read(domain=domain, fields=['name', 'batch_id', 'course_id',
-                                                                 'subject_id', 'assignment_type_id',
-                                                                 'faculty_id', 'issued_date', 'submission_date',
-                                                                 'marks', 'allocation_ids', 'description', 'state'],
-                                          offset=offset, limit=limit, order=order)
-            return res
