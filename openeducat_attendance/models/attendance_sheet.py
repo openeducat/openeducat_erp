@@ -95,9 +95,10 @@ class OpAttendanceSheet(models.Model):
 
     @api.model
     def create(self, vals):
-        sheet = self.env['ir.sequence'].sudo().next_by_code('op.attendance.sheet')
+        print("__in side craete__", vals)
+        sheet = self.env['ir.sequence'].next_by_code('op.attendance.sheet')
         register = self.env['op.attendance.register']. \
-            browse(int(vals['register_id']))
-        vals['name'] = register.code + sheet
-        res = super(OpAttendanceSheet, self).create(vals)
-        return res
+            browse(vals['register_id']).code
+        vals['name'] = register + sheet
+        print("__vals:", vals)
+        return super(OpAttendanceSheet, self).create(vals)

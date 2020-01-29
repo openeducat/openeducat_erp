@@ -69,12 +69,12 @@ class OpAssignmentSubLine(models.Model):
 
     @api.multi
     def act_draft(self):
-        result = self.sudo().state = 'draft'
+        result = self.state = 'draft'
         return result and result or False
 
     @api.multi
     def act_submit(self):
-        result = self.sudo().state = 'submit'
+        result = self.state = 'submit'
         return result and result or False
 
     @api.multi
