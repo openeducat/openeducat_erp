@@ -7,24 +7,28 @@
                         <br></br>
                         <br></br>
                         <br></br>
-                        <br></br>
                         <div class="text-center">
-                            <h3><strong>Student Attendance Detail</strong></h3>
-                        </div>
-                        <br/>
-                        <div class="text-center">
-                            <strong>From Date: <span t-esc="from_date" /></strong>
-                            to
-                            <strong>To Date: <span t-esc="to_date" /></strong>
+                            <h3>
+                                <strong>Student Attendance Detail</strong>
+                            </h3>
                         </div>
                         <br></br>
-                        <div class="text-left">
-                            <b>Student Name :</b>
-                            <span t-esc="get_student_name" />
+                        <div class="row mt24">
+                            <div style="width:50%; margin-left:15px;">
+                                <b>Student Name:</b>
+                                <span t-esc="get_student_name"/>
+                            </div>
+                            <div style="width:50%; margin-left:15px;">
+                                <b>From Date:</b>
+                                <span t-esc="from_date" t-options="{'widget':'date'}"/>
+                                <b>To Date:</b>
+                                <span t-esc="to_date" t-options="{'widget':'date'}"/>
+                            </div>
                         </div>
                         <br/>
                         <table class="table table-bordered">
-                            <thead class="text-center" style="background-color:#eeeeee; font-size:14px; font-weight:600;">
+                            <thead class="text-center"
+                                   style="background-color:#eeeeee; font-size:14px; font-weight:600;">
                                 <th class="text-center">Date</th>
                                 <th class="text-center">Remark</th>
                             </thead>
@@ -32,10 +36,10 @@
                                 <t t-foreach="get_data" t-as="obj">
                                     <tr t-foreach="obj['line']" t-as="l">
                                         <td class="text-center">
-                                            <span t-esc="l['absent_date']" />
+                                            <span t-esc="l['absent_date']" t-options="{'widget':'date'}"/>
                                         </td>
                                         <td class="text-center">
-                                            <span t-esc="l['remark']" />
+                                            <span t-esc="l['remark']"/>
                                         </td>
                                     </tr>
                                 </t>
@@ -45,7 +49,7 @@
                                     </td>
                                     <td class="text-center">
                                         <b>
-                                            <span t-esc="obj['total']" />
+                                            <span t-esc="obj['total']"/>
                                         </b>
                                     </td>
                                 </tr>
