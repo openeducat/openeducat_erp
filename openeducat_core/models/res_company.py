@@ -20,7 +20,6 @@
 ###############################################################################
 
 from odoo import models, fields, api
-from _datetime import datetime
 
 
 class ResCompany(models.Model):

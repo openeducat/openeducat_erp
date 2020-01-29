@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import http
-from odoo.http import request, Response
+from odoo.http import request
 from odoo.addons.portal.controllers.web import \
     Home as home
 
