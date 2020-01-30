@@ -67,8 +67,9 @@ class OpMarksheetLine(models.Model):
         for record in self:
             total_exam_marks = sum(
                 [int(x.exam_id.total_marks) for x in record.result_line])
-            record.percentage = record.total_marks and (
-                    100 * record.total_marks) / total_exam_marks or 0.0
+            record.percentage = \
+                record.total_marks and \
+                (100 * record.total_marks) / total_exam_marks or 0.0
 
     @api.depends('percentage')
     def _compute_grade(self):
@@ -87,8 +88,7 @@ class OpMarksheetLine(models.Model):
     @api.depends('result_line.status')
     def _compute_status(self):
         for record in self:
-            if record.status == 'fail':
-                for records in record.result_line:
-                    records.status = 'fail'
-            else:
-                record.status = 'pass'
+            record.status = 'pass'
+            for result in record.result_line:
+                if result.status == 'fail':
+                    record.status = 'fail'
