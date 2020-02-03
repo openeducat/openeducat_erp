@@ -34,10 +34,14 @@
                                 string="Change And Resubmit" groups="openeducat_core.group_op_back_office_admin"
                                 class="oe_highlight"/>
                         <button name="act_draft" states="reject" type="object"
-                                string="Resubmit" groups="openeducat_core.group_op_back_office_admin" class="oe_highlight"/>
+                                string="Resubmit" groups="openeducat_core.group_op_back_office_admin"
+                                class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,submit,accept"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="student_id" domain="[('user_id','=',uid)]"/>
                             <field name="assignment_id"
@@ -96,6 +100,7 @@
                     <filter string="Month" name="filter_submission_month"
                             domain="[('submission_date', '&lt;=', (datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
                                     ('submission_date', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
 
                     <group expand="0" string="Group By...">
                         <filter string="Assignment" domain="[]" name="group_by_assignment_id"

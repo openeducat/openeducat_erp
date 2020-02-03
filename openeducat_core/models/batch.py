@@ -34,6 +34,7 @@ class OpBatch(models.Model):
         'Start Date', required=True, default=fields.Date.today())
     end_date = fields.Date('End Date', required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_batch_code',

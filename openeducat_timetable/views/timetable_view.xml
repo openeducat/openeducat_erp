@@ -44,6 +44,9 @@
                                statusbar_visible="draft,confirm"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group>
                             <h1>
                                 <field name="name"/>
@@ -94,6 +97,7 @@
                     <filter string="Month" name="filter_session_month"
                             domain="[('start_datetime', '&lt;=', (datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
                                     ('start_datetime', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     <group expand="0" string="Group By...">
                         <filter string="Faculty" name="group_by_session_faculty_id"
                                 domain="[]" context="{'group_by':'faculty_id'}"/>

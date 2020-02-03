@@ -24,6 +24,7 @@ from . import category
 from . import course
 from . import faculty
 from . import hr
+from . import department
 from . import res_company
 from . import student
 from . import subject

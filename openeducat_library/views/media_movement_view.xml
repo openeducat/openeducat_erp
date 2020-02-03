@@ -42,6 +42,9 @@
                         <field name="state" widget="statusbar" statusbar_visible="available,issue"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="media_id"/>
                             <field name="media_unit_id"
@@ -107,6 +110,8 @@
                             domain="[('issued_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
                     <filter string="Returned Today" name="group_by_lbr_media_mvmn_return"
                             domain="[('return_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <group expand="0" string="Group By...">
                         <filter string="media" name="group_by_lbr_media_mvmn_media"
                                 domain="[]" context="{'group_by':'media_id'}"/>

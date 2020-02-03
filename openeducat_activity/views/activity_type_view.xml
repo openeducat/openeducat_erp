@@ -19,6 +19,9 @@
             <field name="arch" type="xml">
                 <form string="Activity Type">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="name"/>
                         </group>
@@ -34,6 +37,8 @@
             <field name="arch" type="xml">
                 <search string="Activity Type">
                     <field name="name"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <newline/>
                 </search>
             </field>

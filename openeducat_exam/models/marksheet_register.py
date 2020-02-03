@@ -55,6 +55,7 @@ class OpMarksheetRegister(models.Model):
     result_template_id = fields.Many2one(
         'op.result.template', 'Result Template',
         required=True, track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     @api.constrains('total_pass', 'total_failed')
     def _check_marks(self):

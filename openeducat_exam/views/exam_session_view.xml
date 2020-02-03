@@ -42,6 +42,9 @@
                                statusbar_visible="draft,held,scheduled,done"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4" colspan="4">
                             <field name="name" select="1"/>
                             <field name="exam_code"/>
@@ -89,6 +92,8 @@
                     <field name="course_id" select="True"/>
                     <field name="batch_id" select="True"/>
                     <field name="venue"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                 </search>
             </field>
         </record>

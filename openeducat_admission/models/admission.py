@@ -120,6 +120,7 @@ class OpAdmission(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner')
     is_student = fields.Boolean('Is Already Student')
     fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_application_number',

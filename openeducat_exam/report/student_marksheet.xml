@@ -16,76 +16,49 @@
                 <t t-call="web.external_layout">
                     <div class="font">
                         <div class="page">
+                            <br/>
+                            <br/>
+                            <br/>
                             <t t-foreach="get_objects(docs)" t-as="objs">
                                 <t t-foreach="objs" t-as="obj">
-                                    <div class="row text-center">
-                                        <h2>
+                                    <div class="text-center">
+                                        <h3>
                                             <strong>MarkSheet
                                             </strong>
-                                        </h2>
+                                        </h3>
                                     </div>
-                                    <br></br>
                                     <br></br>
                                     <t
                                             t-if="obj.evaluation_type == 'normal'">
-
                                         <table width="100%">
-                                            <tbody>
+                                            <tbody style="font-size:14px;">
                                                 <tr>
-                                                    <td
-                                                            width="17%">
-                                                        <b>Student
-                                                            Name
-                                                        </b>
-                                                    </td>
                                                     <td>
-                                                        :
-                                                        <span
-                                                                t-raw="'%s' % obj.student_id.name if obj.student_id.name else ''"/>
+                                                        <b>Student Name:</b>
+                                                        <span t-raw="'%s' % obj.student_id.name if obj.student_id.name else ''"/>
                                                     </td>
-                                                    <td
-                                                            width="15%">
-                                                        <b>Course
-                                                        </b>
-                                                    </td>
-                                                    <td>
-                                                        :
-                                                        <span
-                                                                t-raw="'%s' %  obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
+                                                    <td class="text-right">
+                                                        <b>Course:</b>
+                                                        <span t-raw="'%s' %  obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td
-                                                            width="17%">
-                                                        <b>Exam
-                                                            Name
-                                                        </b>
-                                                    </td>
                                                     <td>
-                                                        :
-                                                        <span
-                                                                t-raw="'%s' %   obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
+                                                        <b>Exam Name:</b>
+                                                        <span t-raw="'%s' %   obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
                                                     </td>
-                                                    <td
-                                                            width="15%">
-                                                        <b>Exam
-                                                            Code
-                                                        </b>
-                                                    </td>
-                                                    <td>
-                                                        :
-                                                        <span
-                                                                t-raw="'%s' %   obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
+                                                    <td class="text-right">
+                                                        <b>Exam Code:</b>
+                                                        <span t-raw="'%s' %   obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <br></br>
                                         <br></br>
-
-                                        <table
-                                                class="table table-bordered">
-                                            <thead>
+                                        <table class="table table-bordered">
+                                            <thead class="text-center"
+                                                   style="background-color:#eeeeee; font-size:14px; font-weight:600;">
                                                 <th
                                                         class="text-center">Subject
                                                 </th>
@@ -106,19 +79,19 @@
                                                     Marks
                                                 </th>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="text-left" style="font-size:12px;">
                                                 <t t-foreach="get_lines(obj)" t-as="lines">
                                                     <t
                                                             t-foreach="lines"
                                                             t-as="result">
                                                         <tr>
                                                             <td
-                                                                    class="text-left">
+                                                                    class="text-center">
                                                                 <span
                                                                         t-raw="'%s' % result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
                                                             </td>
                                                             <td
-                                                                    class="text-left">
+                                                                    class="text-center">
                                                                 <span
                                                                         t-raw="'%s' % result.exam_id.session_id.exam_type.name if result.exam_id.session_id.exam_type.name else ''"/>
                                                             </td>
@@ -145,7 +118,8 @@
                                         <br></br>
                                         <table width="100%"
                                                class="table table-bordered">
-                                            <thead>
+                                            <thead class="text-center"
+                                                   style="background-color:#eeeeee; font-size:14px; font-weight:600;">
                                                 <th
                                                         class="text-center">Month/Year
                                                     of Passing
@@ -162,7 +136,7 @@
                                                         class="text-center">Result
                                                 </th>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="text-left" style="font-size:12px;">
                                                 <tr>
                                                     <td
                                                             class="text-center">

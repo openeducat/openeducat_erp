@@ -27,24 +27,33 @@
                 <form string="Registration">
                     <header groups="base.group_user">
                         <button string="Submit" states="draft" class="oe_highlight" type="object" name="submit_form"/>
-                        <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object" class="oe_highlight"/>
-                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object" name="admission_confirm"/>
-                        <button name="enroll_student" states="admission" string="Enroll" type="object" class="oe_highlight"/>
+                        <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object"
+                                class="oe_highlight"/>
+                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object"
+                                name="admission_confirm"/>
+                        <button name="enroll_student" states="admission" string="Enroll" type="object"
+                                class="oe_highlight"/>
                         <button name="confirm_rejected" states="confirm,confirm_pending" string="Reject" type="object"/>
                         <button name="confirm_pending" states="submit" string="Pending" type="object"/>
                         <button name="confirm_cancel" string="Cancel" type="object"/>
-                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft" type="object"/>
+                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft"
+                                type="object"/>
                         <button name="open_student" states="done" string="Open Student Profile" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+
                         <field name="image" widget="image" class="oe_left oe_avatar"/>
                         <div class="oe_title">
                             <h1>
                                 <field name="title" placeholder="Title" style="width: 30%%"/>
                             </h1>
                             <h1>
-                                <field name="name" placeholder="Name" required="1" style="padding-right:10px" invisible="1"/>
+                                <field name="name" placeholder="Name" required="1" style="padding-right:10px"
+                                       invisible="1"/>
                                 <table>
                                     <tr>
                                         <td>
@@ -56,7 +65,8 @@
                                                    style="padding-right:10px"/>
                                         </td>
                                         <td>
-                                            <field name="last_name" placeholder="Last Name" required="1" style="padding-right:10px"/>
+                                            <field name="last_name" placeholder="Last Name" required="1"
+                                                   style="padding-right:10px"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -155,6 +165,7 @@
                         <filter string="Register" name="group_by_adm_register"
                                 domain="[('register_id.state', 'not in', ['cancel', 'done'])]"
                                 context="{'group_by':'register_id'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

@@ -22,6 +22,9 @@
             <field name="arch" type="xml">
                 <form string="Attendance Register">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4" colspan="4">
                             <field name="name"/>
                             <field name="code"/>
@@ -48,6 +51,8 @@
                     <field name="code"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Name" name="group_by_attendance_register_name"

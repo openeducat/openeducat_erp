@@ -9,10 +9,10 @@
                 <tree string="Course">
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="section"/>
                     <field name="evaluation_type"/>
                     <field name="parent_id"/>
                     <field name="subject_ids" widget="many2many_tags"/>
+                    <field name="department_id" groups="openeducat_core.group_multi_department"/>
                 </tree>
             </field>
         </record>
@@ -24,14 +24,17 @@
             <field name="arch" type="xml">
                 <form string="Course">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group colspan="4" col="4" name="main">
                             <field name="name"/>
                             <field name="code"/>
-                            <field name="section"/>
                             <field name="evaluation_type"/>
                             <field name="parent_id"/>
                             <field name="min_unit_load"/>
                             <field name="max_unit_load"/>
+                            <field name="department_id" groups="openeducat_core.group_multi_department"/>
                         </group>
                         <group string="Subjects" name="subject">
                             <field name="subject_ids" nolabel="1"/>
@@ -55,6 +58,7 @@
                     <field name="code"/>
                     <field name="evaluation_type"/>
                     <field name="parent_id"/>
+                    <field name="department_id"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_evaluation_type"
@@ -63,6 +67,7 @@
                         <filter name="group_by_partner_course"
                                 string="Parent Course" domain="[]"
                                 context="{'group_by':'parent_id'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

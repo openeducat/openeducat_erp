@@ -12,6 +12,7 @@
                     <field name="type"/>
                     <field name="subject_type"/>
                     <field name="grade_weightage"/>
+                    <field name="department_id" groups="openeducat_core.group_multi_department"/>
                 </tree>
             </field>
         </record>
@@ -23,12 +24,16 @@
             <field name="arch" type="xml">
                 <form string="Subject">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="name"/>
                             <field name="code"/>
                             <field name="type"/>
                             <field name="subject_type"/>
                             <field name="grade_weightage"/>
+                            <field name="department_id" groups="openeducat_core.group_multi_department"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -48,11 +53,13 @@
                     <field name="name"/>
                     <field name="code"/>
                     <field name="type"/>
+                    <field name="department_id"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_subject_type"
                                 string="Type" domain="[]"
                                 context="{'group_by':'type'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

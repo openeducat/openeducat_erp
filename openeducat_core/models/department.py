@@ -19,17 +19,19 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
-class OpFacility(models.Model):
-    _name = "op.facility"
-    _description = "Manage Facility"
+class OpDepartment(models.Model):
+    _name = "op.department"
+    _description = "OpenEduCat Department"
 
-    name = fields.Char('Name', size=16, required=True)
-    code = fields.Char('Code', size=16, required=True)
-    active = fields.Boolean(default=True)
+    name = fields.Char('Name')
+    code = fields.Char('Code')
+    parent_id = fields.Many2one('op.department', 'Parent Department')
 
-    _sql_constraints = [
-        ('unique_facility_code',
-         'unique(code)', 'Code should be unique per facility!')]
+    @api.model
+    def create(self, vals):
+        department = super(OpDepartment, self).create(vals)
+        self.env.user.write({'department_ids': [(4, department.id)]})
+        return department

@@ -11,6 +11,9 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="groups_id"
                    eval="[(4,ref('base.group_portal'))]"/>
+            <field name="dept_id" ref="openeducat_core.op_department_3"/>
+            <field name="department_ids"
+                   eval="[(4,ref('openeducat_core.op_department_3'))]"/>
         </record>
 
         <record id="op_user_faculty" model="res.users">
@@ -20,6 +23,9 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="groups_id"
                    eval="[(4,ref('openeducat_core.group_op_faculty'))]"/>
+            <field name="dept_id" ref="openeducat_core.op_department_3"/>
+            <field name="department_ids"
+                   eval="[(4,ref('openeducat_core.op_department_3'))]"/>
         </record>
 
         <record id="op_user_bo" model="res.users">
@@ -29,6 +35,9 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="groups_id"
                    eval="[(4,ref('openeducat_core.group_op_back_office'))]"/>
+            <field name="dept_id" ref="openeducat_core.op_department_3"/>
+            <field name="department_ids"
+                   eval="[(4,ref('openeducat_core.op_department_3'))]"/>
         </record>
 
         <record id="op_user_boa" model="res.users">
@@ -38,6 +47,18 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="groups_id"
                    eval="[(4,ref('openeducat_core.group_op_back_office_admin'))]"/>
+            <field name="dept_id" ref="openeducat_core.op_department_3"/>
+            <field name="department_ids"
+                   eval="[(4,ref('openeducat_core.op_department_3'))]"/>
+        </record>
+
+        <record id="base.user_admin" model="res.users">
+            <field name="dept_id" ref="openeducat_core.op_department_3"/>
+            <field name="department_ids"
+                   eval="[(4,ref('openeducat_core.op_department_1')),
+                   (4,ref('openeducat_core.op_department_2')),
+                   (4,ref('openeducat_core.op_department_3')),
+                   (4,ref('openeducat_core.op_department_4'))]"/>
         </record>
 
         <record id="openeducat_core.op_res_partner_1" model="res.partner">

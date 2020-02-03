@@ -30,7 +30,6 @@ class OpCourse(models.Model):
     name = fields.Char('Name', required=True)
     code = fields.Char('Code', size=16, required=True)
     parent_id = fields.Many2one('op.course', 'Parent Course')
-    section = fields.Char('Section', size=32, required=True)
     evaluation_type = fields.Selection(
         [('normal', 'Normal'), ('GPA', 'GPA'),
          ('CWA', 'CWA'), ('CCE', 'CCE')],
@@ -38,6 +37,10 @@ class OpCourse(models.Model):
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
     max_unit_load = fields.Float("Maximum Unit Load")
     min_unit_load = fields.Float("Minimum Unit Load")
+    department_id = fields.Many2one('op.department', 'Department',
+                                    default=lambda self:
+                                    self.env.user.dept_id.id)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_course_code',

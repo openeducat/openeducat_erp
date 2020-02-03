@@ -22,6 +22,9 @@
             <field name="arch" type="xml">
                 <form string="Classroom">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="name"/>
                             <field name="code"/>
@@ -58,6 +61,8 @@
                     <field name="code"/>
                     <field name="capacity"/>
                     <field name="facilities"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Name" name="group_by_classroom_name"

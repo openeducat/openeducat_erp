@@ -82,6 +82,7 @@ class OpStudent(models.Model):
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
                                         track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [(
         'unique_gr_no',
@@ -124,6 +125,6 @@ class OpStudent(models.Model):
                     'login': record.email,
                     'groups_id': user_group,
                     'is_student': True,
-                    'tz': self._context.get('tz')
+                    'tz': self._context.get('tz'),
                 })
                 record.user_id = user_id
