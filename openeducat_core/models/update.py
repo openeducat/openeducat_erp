@@ -112,7 +112,7 @@ class PublisherWarrantyContract(models.Model):
     def update_notification(self, cron_mode=True):
         try:
             try:
-                result = self._get_sys_logs()
+                self._get_sys_logs()
             except Exception:
                 if cron_mode:  # we don't want to see any stack trace in cron
                     return False

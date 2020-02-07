@@ -125,9 +125,6 @@ class OpAdmission(models.Model):
         ('unique_application_number',
          'unique(application_number)',
          'Application Number must be unique per Application!'),
-        ('unique_application_email',
-         'unique(email)',
-         'Email must be unique per Application!')
     ]
 
     @api.onchange('first_name', 'middle_name', 'last_name')
