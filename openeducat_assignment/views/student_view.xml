@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="view_op_student_form_assignment_inherit" model="ir.ui.view">
-            <field name="name">op.student.form.assignment_inherit</field>
+        <record id="assignment_smart_button" model="ir.ui.view">
+            <field name="name">assignment.smart.buttons</field>
             <field name="model">op.student</field>
-            <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
-            <field name="priority" eval="9" />
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
             <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page name="assignments" string="Assignments">
-                        <field name="allocation_ids" colspan="4" nolabel="1">
-                            <tree string="Assignment">
-                                <field name="name" />
-                                <field name="course_id" />
-                                <field name="batch_id" />
-                                <field name="subject_id" />
-                                <field name="faculty_id" />
-                                <field name="reviewer" />
-                                <field name="marks" />
-                                <field name="assignment_type_id" />
-                                <field name="state" />
-                                <field name="issued_date" />
-                                <field name="submission_date" />
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
+                <xpath expr="//field[@name='image_1920']" position="before">
+                    <div class="btn-group-lg" style="opacity:0.8;">
+                    <button type="object"
+                            class="text-center oe_right"
+                            icon="fa-newspaper-o"
+                            name="get_assignment">
+                        <field name="assignment_count"/> Assignment
+                    </button></div>
+                </xpath>
             </field>
         </record>
     </data>

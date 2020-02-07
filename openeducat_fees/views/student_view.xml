@@ -5,22 +5,17 @@
             <field name="name">op.student.form.fees.inherit</field>
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
-            <field name="priority" eval="9"/>
+
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='image_1920']" position="before">
-                    <div class="oe_button_box" name="button_box">
+                    <div class="btn-group-lg" style="opacity:0.8;">
                         <button type="object"
-                                class="oe_stat_button"
+                                class="text-center oe_right"
                                 id="invoice_button"
                                 icon="fa-pencil-square-o"
                                 name="action_view_invoice"
                                 groups="openeducat_core.group_op_back_office">
-                            <div class="o_form_field o_stat_info">
-                                <span class="o_stat_value">
-                                    <field name="total_invoiced" widget="monetary"/>
-                                </span>
-                                <span class="o_stat_text">Invoiced</span>
-                            </div>
+                            <field name="total_invoiced" widget="monetary"/> Invoiced
                         </button>
                     </div>
                 </xpath>

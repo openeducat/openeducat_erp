@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="view_op_student_form_timetable_inherit" model="ir.ui.view">
-            <field name="name">op.student.form.timetable_inherit</field>
+        <record id="activity_smart_button" model="ir.ui.view">
+            <field name="name">activity.smart.buttons</field>
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
-            <field name="priority" eval="9"/>
             <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page name="activity_log_page" string="Activity Log">
-                        <field name="activity_log" colspan="4" nolabel="1" context="{'default_student_id': active_id}">
-                            <tree string="Activity Log">
-                                <field name="type_id"/>
-                                <field name="date"/>
-                                <field name="faculty_id"/>
-                                <field name="description"/>
-                                <field name="student_id" invisible="1"/>
-                            </tree>
-                        </field>
-                    </page>
-                </notebook>
+                <xpath expr="//field[@name='image_1920']" position="before">
+                    <div class="btn-group-lg" style="opacity:0.8;">
+                    <button type="object"
+                            class="text-center oe_right"
+                            icon="fa-book"
+                            name="get_activity">
+                        <field name="activity_count"/> Activity
+                    </button></div>
+                </xpath>
             </field>
         </record>
     </data>
