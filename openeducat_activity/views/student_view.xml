@@ -6,14 +6,13 @@
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='image_1920']" position="before">
-                    <div style="opacity:0.8;">
-                    <button type="object"
-                            class="btn-light text-center oe_right"
-                            icon="fa-book"
-                            name="get_activity">
-                        <field name="activity_count"/> Activity
-                    </button></div>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button" type="object"
+                                name="get_activity"
+                                style="border-right: 1px solid;"
+                                icon="fa-book">
+                            <field string="Activity" name="activity_count" widget="statinfo"/>
+                        </button>
                 </xpath>
             </field>
         </record>

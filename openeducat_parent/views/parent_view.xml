@@ -6,10 +6,13 @@
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page[@name='educational']" position="after">
-                    <page name="parents" string="Parents">
-                        <field name="parent_ids" colspan="4" nolabel="1"/>
-                    </page>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button" type="object"
+                            name="get_parent"
+                            style="border-right: 1px solid;"
+                            icon="fa-user-o">
+                        <span>Parents</span>
+                    </button>
                 </xpath>
             </field>
         </record>

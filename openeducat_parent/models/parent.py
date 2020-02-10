@@ -33,7 +33,7 @@ class OpParent(models.Model):
     student_ids = fields.Many2many('op.student', string='Student(s)')
     mobile = fields.Char(string='Mobile', related='name.mobile')
     active = fields.Boolean(default=True)
-    
+
     _sql_constraints = [(
         'unique_parent',
         'unique(name)',
@@ -142,6 +142,12 @@ class OpStudent(models.Model):
                     child_ids.remove(record.user_id.id)
                     parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         return super(OpStudent, self).unlink()
+
+    def get_parent(self):
+        action = self.env.ref('openeducat_parent.'
+                              'act_open_op_parent_view').read()[0]
+        action['domain'] = [('student_ids', 'in', self.ids)]
+        return action
 
 
 class OpSubjectRegistration(models.Model):

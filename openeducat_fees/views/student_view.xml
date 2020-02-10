@@ -7,17 +7,13 @@
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
 
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='image_1920']" position="before">
-                    <div style="opacity:0.8;">
-                        <button type="object"
-                                class="btn-light text-center oe_right"
-                                id="invoice_button"
-                                icon="fa-pencil-square-o"
-                                name="action_view_invoice"
-                                groups="openeducat_core.group_op_back_office">
-                            <field name="total_invoiced" widget="monetary"/> Invoiced
-                        </button>
-                    </div>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button" type="object"
+                            name="action_view_invoice"
+                            style="border-right: 1px solid;"
+                            icon="fa-pencil-square-o">
+                        <field string="Invoiced" name="total_invoiced" widget="statinfo"/>
+                    </button>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page string="Fees Collection Details">
