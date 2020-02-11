@@ -37,6 +37,9 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,request,accept"/>
                     </header>
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4">
                             <field name="name"/>
                             <field name="media_type_id"/>
@@ -69,6 +72,8 @@
                     <field name="course_ids"/>
                     <field name="subject_ids"/>
                     <field name="requested_id"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                 </search>
             </field>
         </record>

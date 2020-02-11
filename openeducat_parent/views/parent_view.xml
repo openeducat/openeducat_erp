@@ -6,10 +6,13 @@
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page[@name='educational']" position="after">
-                    <page name="parents" string="Parents">
-                        <field name="parent_ids" colspan="4" nolabel="1"/>
-                    </page>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button" type="object"
+                            name="get_parent"
+                            style="border-right: 1px solid;"
+                            icon="fa-user-o">
+                        <span>Parents</span>
+                    </button>
                 </xpath>
             </field>
         </record>
@@ -41,6 +44,13 @@
                                 attrs="{'invisible':[('user_id','!=',False)]}"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
                         <group col="4">
                             <field name="name" placeholder="Parent Name"/>
                             <field name="user_id" readonly="1"/>
@@ -65,6 +75,7 @@
                     <group expand="0" string="Group By...">
                         <filter string="Name" name="group_by_parent_name"
                                 domain="[]" context="{'group_by':'name'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

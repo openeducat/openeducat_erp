@@ -55,6 +55,7 @@ class OpExam(models.Model):
     name = fields.Char('Exam', size=256, required=True)
     total_marks = fields.Integer('Total Marks', required=True)
     min_marks = fields.Integer('Passing Marks', required=True)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_exam_code',

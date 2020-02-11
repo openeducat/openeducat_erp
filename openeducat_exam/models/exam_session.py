@@ -59,6 +59,7 @@ class OpExamSession(models.Model):
         ('cancel', 'Cancelled'),
         ('done', 'Done')
     ], 'State', default='draft', track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_exam_session_code',

@@ -120,6 +120,7 @@ class OpAdmission(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner')
     is_student = fields.Boolean('Is Already Student')
     fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_application_number',
@@ -130,12 +131,12 @@ class OpAdmission(models.Model):
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
         if not self.middle_name:
-            self.name = str(self.first_name) + \
-                        " " + str(self.last_name)
+            self.name = str(self.first_name) + " " + str(
+                self.last_name
+            )
         else:
-            self.name = str(self.first_name) + \
-                        " " + str(self.middle_name) + \
-                        " " + str(self.last_name)
+            self.name = str(self.first_name) + " " + str(
+                self.middle_name) + " " + str(self.last_name)
 
     @api.onchange('student_id', 'is_student')
     def onchange_student(self):
