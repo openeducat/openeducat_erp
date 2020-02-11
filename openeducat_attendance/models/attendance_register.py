@@ -38,6 +38,7 @@ class OpAttendanceRegister(models.Model):
         'op.batch', 'Batch', required=True, track_visibility='onchange')
     subject_id = fields.Many2one(
         'op.subject', 'Subject', track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_attendance_register_code',

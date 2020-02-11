@@ -63,6 +63,9 @@
                     <field name="name"/>
                     <field name="blood_group"/>
                     <field name="emergency_contact"/>
+                    <field name="main_department_id" groups="openeducat_core.group_multi_department"/>
+                    <field name="allowed_department_ids" widget="many2many_tags"
+                           groups="openeducat_core.group_multi_department"/>
                 </tree>
             </field>
         </record>
@@ -78,6 +81,13 @@
                                 class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
                         <field name="image" widget="image" class="oe_left oe_avatar"/>
                         <div class="oe_title">
                             <h1>
@@ -117,6 +127,9 @@
                                     <field name="emergency_contact" context="{'show_address': 1}"
                                            options='{"always_reload": True}'/>
                                     <field name='emp_id'/>
+                                    <field name="main_department_id" groups="openeducat_core.group_multi_department"/>
+                                    <field name="allowed_department_ids" widget="many2many_tags"
+                                           groups="openeducat_core.group_multi_department"/>
                                 </group>
                                 <group string="Address Detail" name="address">
                                     <label for="type"/>
@@ -159,6 +172,8 @@
                 <search string="Faculty">
                     <field name="name"/>
                     <field name="blood_group"/>
+                    <field name="main_department_id"/>
+                    <field name="allowed_department_ids"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter name="blood_group" string="Blood Group" domain="[]"
@@ -166,6 +181,7 @@
                         <filter name="nationality" string="Nationality" domain="[]"
                                 context="{'group_by':'nationality'}"/>
                         <filter name="language" string="Language" domain="[]" context="{'group_by':'lang'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

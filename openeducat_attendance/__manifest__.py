@@ -43,11 +43,6 @@
         'report/report_menu.xml',
         'menus/op_menu.xml'
     ],
-    'test': [
-        'test/res_users_test.yml',
-        'test/attendance_sub_value_test.yml',
-        'test/attendance_process_test.yml'
-    ],
     'demo': [
         'demo/attendance_register_demo.xml',
         'demo/attendance_sheet_demo.xml',

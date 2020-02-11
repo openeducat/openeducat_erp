@@ -53,6 +53,7 @@ class OpAssignment(models.Model):
     assignment_sub_line = fields.One2many('op.assignment.sub.line',
                                           'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
+    active = fields.Boolean(default=True)
 
     @api.multi
     @api.constrains('issued_date', 'submission_date')
