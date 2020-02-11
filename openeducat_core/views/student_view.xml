@@ -13,7 +13,8 @@
                             <div t-attf-class="oe_kanban_global_click o_res_partner_kanban">
                                 <div class="o_kanban_image">
                                     <t t-if="record.image.value">
-                                        <img t-att-src="kanban_image('op.student', 'image', record.id.value)" alt="Student"/>
+                                        <img t-att-src="kanban_image('op.student', 'image', record.id.value)"
+                                             alt="Student"/>
                                     </t>
                                     <t t-if="!record.image.value">
                                         <img t-att-src='_s + "/base/static/img/avatar.png"' alt="Student"/>
@@ -74,13 +75,20 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Student">
-                     <header>
+                    <header>
                         <button type="object" name="create_student_user"
                                 string="Create Student User"
                                 class="oe_highlight"
                                 attrs="{'invisible': [('user_id', '!=', False)]}"/>
-                     </header>
+                    </header>
                     <sheet>
+                        <div name="smart_button" class="oe_button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
                         <field name="image" widget="image" class="oe_left oe_avatar"/>
                         <div class="oe_title">
                             <h3>
@@ -114,7 +122,8 @@
                                     <field name="lang"/>
                                     <field name="blood_group"/>
                                     <field name="category_id"/>
-                                    <field name="emergency_contact" context="{'show_address': 1}" options='{"always_reload": True}'/>
+                                    <field name="emergency_contact" context="{'show_address': 1}"
+                                           options='{"always_reload": True}'/>
                                     <field name="mobile" required="1"/>
                                     <field name="user_id" string="User" readonly="1"/>
                                     <field name="email" required="1"/>
@@ -131,7 +140,8 @@
                                         <field name="street2" placeholder="Street2"/>
                                         <div class="address_format">
                                             <field name="city" placeholder="City" style="width: 40%%"/>
-                                            <field name="state_id" class="oe_no_button" placeholder="State" style="width: 37%%" options='{"no_open": True}'/>
+                                            <field name="state_id" class="oe_no_button" placeholder="State"
+                                                   style="width: 37%%" options='{"no_open": True}'/>
                                             <field name="zip" placeholder="ZIP" style="width: 20%%"/>
                                         </div>
                                         <field name="country_id"
@@ -196,6 +206,7 @@
                                 domain="[]" context="{'group_by':'nationality'}"/>
                         <filter name="language" string="Language"
                                 domain="[]" context="{'group_by':'lang'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>

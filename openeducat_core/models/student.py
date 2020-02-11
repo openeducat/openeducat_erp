@@ -52,8 +52,7 @@ class OpStudent(models.Model):
     _inherit = "mail.thread"
     _inherits = {"res.partner": "partner_id"}
 
-    first_name = fields.Char('First Name', size=128,
-                             translate=True)
+    first_name = fields.Char('First Name', size=128, translate=True)
     middle_name = fields.Char('Middle Name', size=128, translate=True)
     last_name = fields.Char('Last Name', size=128, translate=True)
     birth_date = fields.Date('Birth Date')
@@ -84,6 +83,7 @@ class OpStudent(models.Model):
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
                                         track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [(
         'unique_gr_no',

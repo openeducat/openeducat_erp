@@ -66,6 +66,7 @@ class OpAssignmentSubLine(models.Model):
         string='Faculty User')
     user_boolean = fields.Boolean(string='Check user',
                                   compute='get_user_group')
+    active = fields.Boolean(default=True)
 
     @api.multi
     def act_draft(self):

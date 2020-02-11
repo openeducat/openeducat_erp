@@ -43,9 +43,7 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
 
     def get_full_name(self, data):
         faculty_name = self.env['op.faculty'].browse(data['faculty_id'][0])
-        return ' '.join([faculty_name.name,
-                         faculty_name.middle_name or '',
-                         faculty_name.last_name])
+        return faculty_name.name
 
     def sort_tt(self, data_list):
         main_list = []

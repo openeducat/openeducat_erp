@@ -39,6 +39,8 @@
         'wizard/faculty_create_employee_wizard_view.xml',
         'wizard/faculty_create_user_wizard_view.xml',
         'wizard/students_create_user_wizard_view.xml',
+        'views/department_view.xml',
+        'views/res_company_view.xml',
         'views/student_view.xml',
         'views/hr_view.xml',
         'views/category_view.xml',
@@ -46,7 +48,6 @@
         'views/batch_view.xml',
         'views/subject_view.xml',
         'views/faculty_view.xml',
-        'views/res_company_view.xml',
         'views/openeducat_template.xml',
         'views/website_assets.xml',
         'views/subject_registration_view.xml',
@@ -59,6 +60,7 @@
     ],
     'demo': [
         'demo/homepage_template.xml',
+        'demo/department_demo.xml',
         'demo/base_demo.xml',
         'demo/res_partner_demo.xml',
         'demo/res_users_demo.xml',
@@ -68,10 +70,6 @@
         'demo/student_demo.xml',
         'demo/student_course_demo.xml',
         'demo/faculty_demo.xml',
-    ],
-    'test': [
-        'test/res_users_test.yml',
-        'test/faculty_emp_user_creation.yml',
     ],
     'css': [
         'static/src/scss/base.scss'

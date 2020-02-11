@@ -22,6 +22,13 @@
             <field name="arch" type="xml">
                 <form string="Classroom">
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
                         <group col="4">
                             <field name="name"/>
                             <field name="code"/>
@@ -58,6 +65,8 @@
                     <field name="code"/>
                     <field name="capacity"/>
                     <field name="facilities"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Name" name="group_by_classroom_name"

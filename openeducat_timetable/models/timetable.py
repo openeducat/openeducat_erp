@@ -64,6 +64,7 @@ class OpSession(models.Model):
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
+    active = fields.Boolean(default=True)
 
     @api.multi
     @api.depends('start_datetime')
