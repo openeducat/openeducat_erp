@@ -123,12 +123,3 @@ class TestCore(TestCoreCommon):
         student = self.studnet_wizard.create(vals)
         student._get_students()
         student.create_user()
-
-    # def test_case_8_employ_wizard(self):
-    #
-    #     vals = {'user_boolean': True,}
-    #     print(",,,vals", vals)
-    #     employe = self.employ_wizard.create(vals)
-    #     print("....employe", employe)
-    #     employe.create_employee()
-
