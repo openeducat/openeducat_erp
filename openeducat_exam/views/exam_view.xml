@@ -42,6 +42,13 @@
                                statusbar_visible="draft,held,scheduled,result_updated,done"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
                         <group col="4" colspan="4">
                             <field name="session_id" required="1"/>
                             <field name="name"/>
@@ -82,6 +89,8 @@
                     <field name="note"/>
                     <field name="total_marks"/>
                     <field name="min_marks"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Subject" name="group_by_exam_subject_id"

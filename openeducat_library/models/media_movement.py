@@ -69,7 +69,7 @@ class OpMediaMovement(models.Model):
     user_id = fields.Many2one(
         'res.users', string='Users')
     invoice_id = fields.Many2one('account.invoice', 'Invoice', readonly=True)
-
+    active = fields.Boolean(default=True)
     @api.multi
     def get_diff_day(self):
         for media_mov_id in self:
