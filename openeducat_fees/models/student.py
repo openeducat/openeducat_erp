@@ -90,7 +90,7 @@ class OpStudentFeesDetails(models.Model):
                 invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
 
         if not element_id:
-            line_values = {'partner_id': name,
+            line_values = {'name': name,
                            # 'origin': student.gr_no,
                            'account_id': account_id,
                            'price_unit': amount,
