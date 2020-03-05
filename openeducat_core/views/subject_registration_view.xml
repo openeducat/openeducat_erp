@@ -93,12 +93,38 @@
             </field>
         </record>
 
+        <record id="view_subject_registration_graph" model="ir.ui.view">
+            <field name="name">op.subject.registration.graph</field>
+            <field name="model">op.subject.registration</field>
+            <field name="arch" type="xml">
+                <graph string="Subject registration graph" type="pie">
+                    <field name="course_id" type="row"/>
+                    <field name="student_id" type="col"/>
+                    <field name="course_id" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_subject_registration_pivot" model="ir.ui.view">
+            <field name="name">op.subject.registration.pivot</field>
+            <field name="model">op.subject.registration</field>
+            <field name="arch" type="xml">
+                <pivot string="Subject Registration Analysis">
+                    <field name="course_id" type="row"/>
+                    <field name="batch_id"/>
+                    <field name="student_id"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                </pivot>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_subject_registration_view">
             <field name="name">Subject Registration</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.subject.registration</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
             <field name="search_view_id" ref="view_subject_registration_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
