@@ -78,12 +78,34 @@
             </field>
         </record>
 
+        <record id="view_op_media_purchase_pivot" model="ir.ui.view">
+            <field name="name">op.media.purchase.pivot</field>
+            <field name="model">op.media.purchase</field>
+            <field name="arch" type="xml">
+                <pivot string="Purchase Request">
+                    <field name="requested_id" type="row"/>
+                    <field name="name" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_op_purchase_graph" model="ir.ui.view">
+            <field name="name">op.media.purchase.graph</field>
+            <field name="model">op.media.purchase</field>
+            <field name="arch" type="xml">
+                <graph string="Purchase Request" type="bar">
+                    <field name="name"/>
+                    <field name="requested_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_purchase_view">
             <field name="name">Media Purchase Requests</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.media.purchase</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_purchase_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
