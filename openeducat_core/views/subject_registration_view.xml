@@ -41,7 +41,9 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,rejected"/>
                     </header>
                     <sheet>
-                        <h1><field name="name"/></h1>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
                         <group colspan="4" col="4">
                             <field name="student_id"/>
                             <field name="course_id" options="{'no_open': True, 'no_create': True}"/>
@@ -93,12 +95,38 @@
             </field>
         </record>
 
+        <record id="view_subject_registration_graph" model="ir.ui.view">
+            <field name="name">op.subject.registration.graph</field>
+            <field name="model">op.subject.registration</field>
+            <field name="arch" type="xml">
+                <graph string="Subject registration graph" type="pie">
+                    <field name="course_id" type="row"/>
+                    <field name="student_id" type="col"/>
+                    <field name="course_id" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_subject_registration_pivot" model="ir.ui.view">
+            <field name="name">op.subject.registration.pivot</field>
+            <field name="model">op.subject.registration</field>
+            <field name="arch" type="xml">
+                <pivot string="Subject Registration Analysis">
+                    <field name="course_id" type="row"/>
+                    <field name="batch_id"/>
+                    <field name="student_id"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                </pivot>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_subject_registration_view">
             <field name="name">Subject Registration</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.subject.registration</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,graph,pivot</field>
             <field name="search_view_id" ref="view_subject_registration_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
