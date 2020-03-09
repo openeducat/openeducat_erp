@@ -60,12 +60,35 @@
             </field>
         </record>
 
+        <record id="view_op_activity_pivot" model="ir.ui.view">
+            <field name="name">op.activity.pivot</field>
+            <field name="model">op.activity</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Activity Pivot">
+                    <field name="student_id" type="row"/>
+                    <field name="type_id" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_op_activity_graph">
+            <field name="name">op.acitviy.graph</field>
+            <field name="model">op.activity</field>
+            <field name="arch" type="xml">
+                <graph string="Activity Graph View" type="bar">
+                    <field name="student_id"/>
+                    <field name="type_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_activity_view">
             <field name="name">Activity Logs</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.activity</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_activity_search"/>
         </record>
 

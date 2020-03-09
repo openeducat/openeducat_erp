@@ -80,6 +80,17 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_op_assignment_sub_line_graph">
+            <field name="name">op.assignment.sub.linegraph</field>
+            <field name="model">op.assignment.sub.line</field>
+            <field name="arch" type="xml">
+                <graph string="Assignment Sub Line Graph View" type="pie">
+                    <field name="assignment_id"/>
+                    <field name="state"/>
+                </graph>
+            </field>
+        </record>
+
         <record id="view_op_assignment_sub_line_search" model="ir.ui.view">
             <field name="name">op.assignment.sub.line.search</field>
             <field name="model">op.assignment.sub.line</field>
@@ -123,7 +134,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment.sub.line</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_assignment_sub_line_search"/>
         </record>
 
@@ -140,5 +151,13 @@
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_op_assignment_sub_line_tree"/>
         </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_assignment_sub_line_view_pivot">
+            <field name="name">Assignment Submission Analysis Pivot</field>
+            <field name="res_model">op.assignment.sub.line</field>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_op_assignment_sub_line_pivot"/>
+        </record>
+
     </data>
 </odoo>
