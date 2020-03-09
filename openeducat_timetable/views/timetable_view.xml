@@ -236,7 +236,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.session</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">kanban,calendar</field>
+            <field name="view_mode">kanban,calendar,pivot</field>
             <field name="search_view_id" ref="view_op_session_search"/>
         </record>
 
@@ -259,13 +259,6 @@
             <field name="sequence" eval="5"/>
             <field name="view_mode">kanban</field>
             <field name="view_id" ref="view_session_kanban"/>
-        </record>
-
-        <record model="ir.actions.act_window" id="act_open_op_session_view_pivot">
-            <field name="name">Session Analysis Pivot</field>
-            <field name="res_model">op.session</field>
-            <field name="view_mode">pivot</field>
-            <field name="view_id" ref="view_op_session_pivot"/>
         </record>
     </data>
 </odoo>

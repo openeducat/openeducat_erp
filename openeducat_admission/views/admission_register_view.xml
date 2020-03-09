@@ -104,12 +104,22 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_op_admission_register_graph">
+            <field name="name">op.admission.register.graph</field>
+            <field name="model">op.admission.register</field>
+            <field name="arch" type="xml">
+                <graph string="Admission Register" type="pie">
+                    <field name="course_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_admission_register_view">
             <field name="name">Admission Registers</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.admission.register</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form,pivot</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_admission_register_search"/>
         </record>
 
