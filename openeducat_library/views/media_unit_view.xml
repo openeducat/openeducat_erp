@@ -81,12 +81,34 @@
             </field>
         </record>
 
+        <record id="view_op_media_unit_pivot" model="ir.ui.view">
+            <field name="name">op.media.unit.pivot</field>
+            <field name="model">op.media.unit</field>
+            <field name="arch" type="xml">
+                <pivot string="Media Units">
+                    <field name="media_id" type="col"/>
+                    <field name="name" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_op_media_unit_graph" model="ir.ui.view">
+            <field name="name">op.media.unit.graph</field>
+            <field name="model">op.media.unit</field>
+            <field name="arch" type="xml">
+                <graph string="Media Units" type="pie">
+                    <field name="name"/>
+                    <field name="media_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_media_unit_view">
             <field name="name">Media Units</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.media.unit</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
