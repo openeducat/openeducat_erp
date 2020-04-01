@@ -90,6 +90,18 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_op_admission_registration_graph">
+            <field name="name">op.admission.register.graph</field>
+            <field name="model">op.admission.register</field>
+            <field name="arch" type="xml">
+                <graph string="Course By Admission Register">
+                    <field name="course_id" type="row"/>
+                    <field name="start_date"  interval="month" />
+                    <field name="product_id" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
         <record id="view_op_admission_register_pivot" model="ir.ui.view">
             <field name="name">op.admission.register.pivot</field>
             <field name="model">op.admission.register</field>
@@ -113,7 +125,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.admission.register</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,pivot</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_admission_register_search"/>
         </record>
 
