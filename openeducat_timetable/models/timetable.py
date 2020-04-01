@@ -78,8 +78,8 @@ class OpSession(models.Model):
             if session.faculty_id and session.subject_id \
                     and session.start_datetime:
                 session.name = session.faculty_id.name + ':' + \
-                    session.subject_id.name + ':' + \
-                    str(session.timing_id.name)
+                               session.subject_id.name + ':' + \
+                               str(session.timing_id.name)
 
     # For record rule on student and faculty dashboard
     @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
