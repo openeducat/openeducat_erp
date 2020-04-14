@@ -39,22 +39,3 @@ class TestCoreCommon(common.SavepointCase):
         self.employ_wizard = self.env['wizard.op.faculty.employee']
         self.faculty_user_wizard = self.env['wizard.op.faculty']
         self.studnet_wizard = self.env['wizard.op.student']
-
-
-class CoreController(TransactionCase):
-
-    def setUp(self):
-        super().setUp()
-
-
-class TestCoreController(CoreController):
-
-    def setUp(self):
-        super(TestCoreController, self).setUp()
-
-    def test_case_1_app_controller(self):
-        self.core_app_controller = app_main.OpenEduCatAppController()
-
-        with MockRequest(self.env):
-            self.core_app = self.core_app_controller.compute_app_dashboard_data()
-            self.core_app = self.core_app_controller.compute_faculty_dashboard_data()

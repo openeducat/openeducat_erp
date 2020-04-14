@@ -35,8 +35,6 @@ class TestAttendanceRegister(TestAttendanceCommon):
             info('      Attendance Register : %s' % record.name)
             info('      Course : %s' % record.course_id.name)
             info('      Code : %s' % record.code)
-            record.onchange_course()
-
 
 class TestAttendanceSheet(TestAttendanceCommon):
 
