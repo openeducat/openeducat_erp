@@ -108,12 +108,35 @@
             </field>
         </record>
 
+        <record id="view_op_attendance_sheet_pivot" model="ir.ui.view">
+            <field name="name">op.attendance.sheet.pivot</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Attendance Sheet">
+                    <field name="name" type="row"/>
+                    <field name="register_id" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_op_attendance_sheet_graph">
+            <field name="name">op.attendance.sheet.graph</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="arch" type="xml">
+                <graph string="Attendance Sheet" type="pie">
+                    <field name="register_id"/>
+                </graph>
+            </field>
+        </record>
+
+
         <record model="ir.actions.act_window" id="act_open_op_attendance_sheet_view">
             <field name="name">Attendance Sheets</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.attendance.sheet</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_attendance_sheet_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>

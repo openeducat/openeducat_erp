@@ -104,12 +104,24 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="view_op_attendance_line_graph">
+            <field name="name">op.attendance.line.graph</field>
+            <field name="model">op.attendance.line</field>
+            <field name="arch" type="xml">
+                <graph string="Attendance Line" type="bar">
+                    <field name="student_id"/>
+                    <field name="remark"/>
+                </graph>
+            </field>
+        </record>
+
+
         <record model="ir.actions.act_window" id="act_open_op_attendance_line_view">
             <field name="name">Attendance Line</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.attendance.line</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_attendance_line_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>

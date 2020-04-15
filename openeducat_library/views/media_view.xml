@@ -125,12 +125,34 @@
             </field>
         </record>
 
+        <record id="view_op_media_pivot" model="ir.ui.view">
+            <field name="name">op.media.pivot</field>
+            <field name="model">op.media</field>
+            <field name="arch" type="xml">
+                <pivot string="Media">
+                    <field name="media_type_id" type="col"/>
+                    <field name="name" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_op_media_graph">
+            <field name="name">op.media.graph</field>
+            <field name="model">op.media</field>
+            <field name="arch" type="xml">
+                <graph string="Media" type="bar">
+                    <field name="name"/>
+                    <field name="media_type_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_media_view">
             <field name="name">All Media</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.media</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_media_search"/>
         </record>
 
