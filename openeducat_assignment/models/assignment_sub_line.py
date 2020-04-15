@@ -31,7 +31,7 @@ class OpAssignmentSubLine(models.Model):
     _order = "submission_date DESC"
 
     @api.multi
-    def get_user_group(self):
+    def _compute_get_user_group(self):
         for user in self:
             if self.env.user.has_group(
                     'openeducat_core.group_op_back_office_admin') or \
@@ -65,7 +65,7 @@ class OpAssignmentSubLine(models.Model):
         'res.users', related='assignment_id.faculty_id.user_id',
         string='Faculty User')
     user_boolean = fields.Boolean(string='Check user',
-                                  compute='get_user_group')
+                                  compute='_compute_get_user_group')
     active = fields.Boolean(default=True)
 
     @api.multi

@@ -75,6 +75,7 @@
         'demo/library_card_type_demo.xml',
         'demo/library_card_demo.xml',
         'demo/media_movement_demo.xml',
+        'demo/media_purchase_demo.xml'
     ],
     'images': [
         'static/description/openeducat_library_banner.jpg',

@@ -111,6 +111,29 @@
             </field>
         </record>
 
+        <record id="view_op_assignment_pivot" model="ir.ui.view">
+            <field name="name">op.assignment.pivot</field>
+            <field name="model">op.assignment</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Assignment Pivot View">
+                    <field name="course_id" type="col"/>
+                    <field name="state" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_op_assignment_graph">
+            <field name="name">op.assignment.graph</field>
+            <field name="model">op.assignment</field>
+            <field name="arch" type="xml">
+                <graph string="Assignment Graph View" type="bar">
+                    <field name="course_id"/>
+                    <field name="state"/>
+                </graph>
+            </field>
+        </record>
+
         <record id="view_op_assignment_search" model="ir.ui.view">
             <field name="name">op.assignment.search</field>
             <field name="model">op.assignment</field>
@@ -170,7 +193,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_assignment_search"/>
         </record>
 

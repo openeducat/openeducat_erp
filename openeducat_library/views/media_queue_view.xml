@@ -87,12 +87,34 @@
             </field>
         </record>
 
+        <record id="view_op_media_queue_pivot" model="ir.ui.view">
+            <field name="name">op.media.queue.pivot</field>
+            <field name="model">op.media.queue</field>
+            <field name="arch" type="xml">
+                <pivot string="Media Queue Request">
+                    <field name="media_id" type="col"/>
+                    <field name="user_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_op_media_graph" model="ir.ui.view">
+            <field name="name">op.media.queue.graph</field>
+            <field name="model">op.media.queue</field>
+            <field name="arch" type="xml">
+                <graph string="Media Queue Request" type="bar">
+                    <field name="user_id"/>
+                    <field name="media_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_media_queue_view">
             <field name="name">Media Queue Requests</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.media.queue</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_media_queue_search"/>
         </record>
 

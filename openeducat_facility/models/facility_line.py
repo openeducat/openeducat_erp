@@ -33,5 +33,6 @@ class OpFacilityLine(models.Model):
 
     @api.constrains('quantity')
     def check_quantity(self):
-        if self.quantity <= 0.0:
-            raise ValidationError(_("Enter proper Quantity in Facilities!"))
+        for record in self:
+            if record.quantity <= 0.0:
+                raise ValidationError(_("Enter proper Quantity in Facilities!"))
