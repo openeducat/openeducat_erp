@@ -152,6 +152,10 @@ class OpSession(models.Model):
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
+        if self.course_id:
+            subject_ids = self.env['op.course'].search([
+                ('id', '=', self.course_id.id)]).subject_ids
+            return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
 
     def notify_user(self):
         for session in self:
@@ -173,7 +177,6 @@ class OpSession(models.Model):
         return 'Lecture of ' + self.faculty_id.name + \
                ' for ' + self.subject_id.name + ' is ' + self.state
 
-    @api.model
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
