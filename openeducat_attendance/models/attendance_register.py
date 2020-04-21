@@ -44,6 +44,7 @@ class OpAttendanceRegister(models.Model):
         ('unique_attendance_register_code',
          'unique(code)', 'Code should be unique per attendance register!')]
 
-    @api.onchange('course_id')
+    @api.depends('course_id')
     def onchange_course(self):
-        self.batch_id = False
+        if not self.course_id:
+            self.batch_id = False
