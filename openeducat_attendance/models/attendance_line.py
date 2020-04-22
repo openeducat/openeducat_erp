@@ -23,9 +23,11 @@ from odoo import models, fields
 
 
 class OpAttendanceLine(models.Model):
-    _name = 'op.attendance.line'
-    _inherit = ['mail.thread']
-    _rec_name = 'attendance_id'
+    _name = "op.attendance.line"
+    _inherit = ["mail.thread"]
+    _rec_name = "attendance_id"
+    _description = "Attendance Lines"
+    _order = "attendance_date desc"
 
     attendance_id = fields.Many2one(
         'op.attendance.sheet', 'Attendance Sheet', required=True,
@@ -48,6 +50,7 @@ class OpAttendanceLine(models.Model):
         readonly=True, track_visibility="onchange")
     register_id = fields.Many2one(
         related='attendance_id.register_id', store=True)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_student',
