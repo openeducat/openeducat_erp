@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -17,7 +17,14 @@
 #    You should have received a copy of the GNU Lesser General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+###############################################################################
 
-from . import admission
-from . import admission_register
+from odoo.tests import common
+
+
+class TestAdmissionCommon(common.SavepointCase):
+    def setUp(self):
+        super(TestAdmissionCommon, self).setUp()
+        self.op_register = self.env['op.admission.register']
+        self.op_admission = self.env['op.admission']
+        self.wizard_admission = self.env['admission.analysis']

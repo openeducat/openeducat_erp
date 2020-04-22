@@ -26,9 +26,10 @@ from odoo.exceptions import ValidationError
 
 
 class OpAdmissionRegister(models.Model):
-    _name = 'op.admission.register'
-    _inherit = 'mail.thread'
-    _description = 'Admission Register'
+    _name = "op.admission.register"
+    _inherit = "mail.thread"
+    _description = "Admission Register"
+    _order = 'id DESC'
 
     name = fields.Char(
         'Name', required=True, readonly=True,
@@ -50,7 +51,7 @@ class OpAdmissionRegister(models.Model):
         'Maximum No. of Admission', readonly=True,
         states={'draft': [('readonly', False)]}, default=30)
     product_id = fields.Many2one(
-        'product.product', 'Product', required=True,
+        'product.product', 'Course Fees', required=True,
         domain=[('type', '=', 'service')], readonly=True,
         states={'draft': [('readonly', False)]}, track_visibility='onchange')
     admission_ids = fields.One2many(
@@ -60,6 +61,7 @@ class OpAdmissionRegister(models.Model):
          ('cancel', 'Cancelled'), ('application', 'Application Gathering'),
          ('admission', 'Admission Process'), ('done', 'Done')],
         'Status', default='draft', track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     @api.multi
     @api.constrains('start_date', 'end_date')
@@ -68,15 +70,16 @@ class OpAdmissionRegister(models.Model):
             start_date = fields.Date.from_string(record.start_date)
             end_date = fields.Date.from_string(record.end_date)
             if start_date > end_date:
-                raise ValidationError(_("End Date cannot be set before \
-                Start Date."))
+                raise ValidationError(
+                    _("End Date cannot be set before Start Date."))
 
     @api.multi
     @api.constrains('min_count', 'max_count')
     def check_no_of_admission(self):
         for record in self:
             if (record.min_count < 0) or (record.max_count < 0):
-                raise ValidationError(_("No of Admission should be positive!"))
+                raise ValidationError(
+                    _("No of Admission should be positive!"))
             if record.min_count > record.max_count:
                 raise ValidationError(_(
                     "Min Admission can't be greater than Max Admission"))
