@@ -24,10 +24,11 @@ from odoo.exceptions import ValidationError, Warning
 
 
 class OpAssignmentSubLine(models.Model):
-    _name = 'op.assignment.sub.line'
-    _inherit = 'mail.thread'
-    _rec_name = 'assignment_id'
-    _description = 'Assignment Submission'
+    _name = "op.assignment.sub.line"
+    _inherit = "mail.thread"
+    _rec_name = "assignment_id"
+    _description = "Assignment Submission"
+    _order = "submission_date DESC"
 
     @api.multi
     def get_user_group(self):
@@ -47,11 +48,11 @@ class OpAssignmentSubLine(models.Model):
     student_id = fields.Many2one(
         'op.student', 'Student',
         default=lambda self: self.env['op.student'].search(
-            [('user_id', '=', self.env.uid)]), required=True)
+            [('user_id', '=', self.env.user.id)]), required=True)
     description = fields.Text('Description', track_visibility='onchange')
-    state = fields.Selection(
-        [('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
-         ('change', 'Change Req.'), ('accept', 'Accepted')], 'State',
+    state = fields.Selection([
+        ('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
+        ('change', 'Change Req.'), ('accept', 'Accepted')], basestring='State',
         default='draft', track_visibility='onchange')
     submission_date = fields.Datetime(
         'Submission Date', readonly=True,
@@ -65,6 +66,7 @@ class OpAssignmentSubLine(models.Model):
         string='Faculty User')
     user_boolean = fields.Boolean(string='Check user',
                                   compute='get_user_group')
+    active = fields.Boolean(default=True)
 
     @api.multi
     def act_draft(self):

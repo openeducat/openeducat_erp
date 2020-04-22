@@ -25,7 +25,8 @@ from odoo import models, api
 
 
 class ReportAdmissionAnalysis(models.AbstractModel):
-    _name = 'report.openeducat_admission.report_admission_analysis'
+    _name = "report.openeducat_admission.report_admission_analysis"
+    _description = "Admission Analysis Report"
 
     def get_total_student(self, data):
         student_search = self.env['op.admission'].search_count(
@@ -49,8 +50,6 @@ class ReportAdmissionAnalysis(models.AbstractModel):
             self.total_student += 1
             res = {
                 'name': student.name,
-                'middle_name': student.middle_name,
-                'last_name': student.last_name,
                 'application_no': student.application_number,
             }
             lst.append(res)

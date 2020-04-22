@@ -23,7 +23,8 @@ from odoo import models, fields, api
 
 
 class OpAllStudentWizard(models.TransientModel):
-    _name = 'op.all.student'
+    _name = "op.all.student"
+    _description = "All Student Wizard"
 
     course_id = fields.Many2one(
         'op.course', 'Course',
@@ -48,8 +49,7 @@ class OpAllStudentWizard(models.TransientModel):
                     [('course_detail_ids.course_id', '=',
                       sheet_browse.register_id.course_id.id),
                      ('course_detail_ids.batch_id', '=',
-                      sheet_browse.register_id.batch_id.id)]
-                )
+                      sheet_browse.register_id.batch_id.id)])
                 all_student_search = list(
                     set(all_student_search) - set(absent_list))
                 for student_data in all_student_search:

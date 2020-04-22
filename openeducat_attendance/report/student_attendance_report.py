@@ -25,15 +25,13 @@ from odoo import models, api
 
 
 class StudentAttendanceReport(models.AbstractModel):
-
-    _name = 'report.openeducat_attendance.student_attendance_report'
+    _name = "report.openeducat_attendance.student_attendance_report"
+    _description = "Attendance Report"
 
     def get_student_name(self, data):
         student = self.env['op.student'].browse(data['student_id'])
         if student:
-            return ' '.join([student.name,
-                             student.middle_name and student.middle_name or '',
-                             student.last_name])
+            return student.name
 
     def get_data(self, data):
 
