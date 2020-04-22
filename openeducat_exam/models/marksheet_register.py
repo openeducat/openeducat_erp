@@ -46,15 +46,16 @@ class OpMarksheetRegister(models.Model):
         default="draft", required=True, track_visibility='onchange')
     total_pass = fields.Integer(
         'Total Pass', compute='_compute_total_pass',
-        track_visibility='onchange')
+        track_visibility='onchange', store=True)
     total_failed = fields.Integer(
         'Total Fail', compute='_compute_total_failed',
-        track_visibility='onchange')
+        track_visibility='onchange', store=True)
     name = fields.Char('Marksheet Register', size=256, required=True,
                        track_visibility='onchange')
     result_template_id = fields.Many2one(
         'op.result.template', 'Result Template',
         required=True, track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     @api.constrains('total_pass', 'total_failed')
     def _check_marks(self):

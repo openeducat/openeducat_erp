@@ -10,9 +10,13 @@
             <field name="type">student</field>
             <field name="state">issue</field>
             <field name="issued_date"
-                eval="(DateTime.today() - relativedelta(days=10)).strftime('%Y-%m-%d')" />
+                eval="(DateTime.today().date() - relativedelta(days=10))" />
             <field name="return_date" eval="DateTime.today()" />
         </record>
+
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_1')]"/>
+        </function>
 
         <record id="op_media_movement_2" model="op.media.movement">
             <field name="media_id" ref="op_media_1" />
@@ -26,6 +30,10 @@
             <field name="return_date" eval="DateTime.today()" />
         </record>
 
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_2')]"/>
+        </function>
+
         <record id="op_media_movement_3" model="op.media.movement">
             <field name="media_id" ref="op_media_2" />
             <field name="media_unit_id" ref="op_media_unit_4" />
@@ -38,6 +46,10 @@
             <field name="return_date" eval="DateTime.today()" />
         </record>
 
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_3')]"/>
+        </function>
+
         <record id="op_media_movement_4" model="op.media.movement">
             <field name="media_id" ref="op_media_2" />
             <field name="media_unit_id" ref="op_media_unit_5" />
@@ -49,6 +61,10 @@
                 eval="(DateTime.today() - relativedelta(days=10)).strftime('%Y-%m-%d')" />
             <field name="return_date" eval="DateTime.today()" />
         </record>
+
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_4')]"/>
+        </function>
 
         <record id="op_media_movement_5" model="op.media.movement">
             <field name="media_id" ref="op_media_3" />
@@ -63,6 +79,10 @@
                 eval="(DateTime.today() + relativedelta(days=1)).strftime('%Y-%m-%d')" />
         </record>
 
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_5')]"/>
+        </function>
+
         <record id="op_media_movement_6" model="op.media.movement">
             <field name="media_id" ref="op_media_3" />
             <field name="media_unit_id" ref="op_media_unit_8" />
@@ -75,6 +95,10 @@
             <field name="return_date"
                 eval="(DateTime.today() + relativedelta(days=2)).strftime('%Y-%m-%d')" />
         </record>
+
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_6')]"/>
+        </function>
 
         <record id="op_media_movement_7" model="op.media.movement">
             <field name="media_id" ref="op_media_4" />
@@ -89,6 +113,10 @@
                 eval="(DateTime.today() + relativedelta(days=3)).strftime('%Y-%m-%d')" />
         </record>
 
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_7')]"/>
+        </function>
+
         <record id="op_media_movement_8" model="op.media.movement">
             <field name="media_id" ref="op_media_4" />
             <field name="media_unit_id" ref="op_media_unit_13" />
@@ -102,5 +130,8 @@
                 eval="(DateTime.today() + relativedelta(days=3)).strftime('%Y-%m-%d')" />
         </record>
 
+        <function model="op.media.movement" name="onchange_library_card_id">
+            <value eval="[ref('op_media_movement_8')]"/>
+        </function>
     </data>
 </odoo>

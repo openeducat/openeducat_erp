@@ -16,15 +16,31 @@
                     <field name="exam_type" />
                     <field name="evaluation_type" />
                     <field name="venue"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
+
         <record id="view_op_exam_session_form" model="ir.ui.view">
             <field name="name">op.exam.session.form</field>
             <field name="model">op.exam.session</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Exam Session">
+                    <header groups="base.group_user">
+                        <button name="act_draft" states="held,schedule,cancel" type="object"
+                                string="Draft" class="oe_highlight"/>
+                        <button name="act_schedule" states="draft" type="object"
+                                string="Schedule" class="oe_highlight"/>
+                        <button name="act_held" states="schedule" type="object"
+                                string="Held" class="oe_highlight"/>
+                        <button name="act_done" states="schedule,held" type="object"
+                                string="Done" class="oe_highlight"/>
+                        <button name="act_cancel" states="schedule,held" type="object"
+                                string="Cancel"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,held,scheduled,done"/>
+                    </header>
                     <sheet>
                         <group col="4" colspan="4">
                             <field name="name" select="1" />
@@ -59,6 +75,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_exam_session_search" model="ir.ui.view">
             <field name="name">op.exam.session.search</field>
             <field name="model">op.exam.session</field>
@@ -72,6 +89,8 @@
                     <field name="course_id" select="True" />
                     <field name="batch_id" select="True" />
                     <field name="venue"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                 </search>
             </field>
         </record>
@@ -85,6 +104,7 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_exam_session_view_form">
             <field name="act_window_id" ref="act_open_op_exam_session_view" />
             <field name="sequence" eval="20" />

@@ -31,10 +31,10 @@
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
-        'security/op_parent_security.xml',
+        'security/op_security.xml',
         'data/parent_user_data.xml',
         'views/parent_view.xml',
-        'parent_menu.xml',
+        'menus/op_menu.xml',
         'security/ir.model.access.csv'
     ],
     'demo': [

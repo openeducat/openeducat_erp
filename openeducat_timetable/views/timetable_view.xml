@@ -89,18 +89,18 @@
                     <filter string="Today"
                         domain="[('start_datetime', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start_datetime', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]" />
                     <group expand="0" string="Group By...">
-                        <filter string="Faculty" domain="[]"
-                            context="{'group_by':'faculty_id'}" />
-                        <filter string="Course" domain="[]"
-                            context="{'group_by':'course_id'}" />
-                        <filter string="Batch" domain="[]"
-                            context="{'group_by':'batch_id'}" />
-                        <filter string="Period" domain="[]"
-                            context="{'group_by':'timing_id'}" />
-                        <filter string="Subject" domain="[]"
-                            context="{'group_by':'subject_id'}" />
-                        <filter string="State" domain="[]"
-                            context="{'group_by':'state'}" />
+                        <filter string="Faculty" name="group_by_session_faculty_id"
+                                domain="[]" context="{'group_by':'faculty_id'}"/>
+                        <filter string="Course" name="group_by_session_course_id"
+                                domain="[]" context="{'group_by':'course_id'}"/>
+                        <filter string="Batch" name="group_by_session_batch_id"
+                                domain="[]" context="{'group_by':'batch_id'}"/>
+                        <filter string="Period" name="group_by_session_timing_id"
+                                domain="[]" context="{'group_by':'timing_id'}"/>
+                        <filter string="Subject" name="group_by_session_subject_id"
+                                domain="[]" context="{'group_by':'subject_id'}"/>
+                        <filter string="State" name="group_by_session_state"
+                                domain="[]" context="{'group_by':'state'}"/>
                     </group>
                 </search>
             </field>
@@ -134,9 +134,8 @@
                             <div
                                 t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
                                 <div class="o_dropdown_kanban dropdown">
-                                    <a class="dropdown-toggle btn"
-                                        data-toggle="dropdown" href="#">
-                                        <span class="fa fa-bars fa-lg" />
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" role="button">
+                                        <span class="fa fa-bars fa-lg"/>
                                     </a>
                                     <ul class="dropdown-menu" role="menu"
                                         aria-labelledby="dLabel">
@@ -181,19 +180,17 @@
                                             <b>Batch:</b>
                                             <field name="batch_id" />
                                         </li>
-                                        <li
-                                            t-if="record.start_datetime.raw_value">
-                                            <b>Start Date:</b>
-                                            <field name="start_datetime" />
+                                        <li t-if="record.start_datetime.raw_value">
+                                            <b>Start:</b>
+                                            <field name="start_datetime"/>
                                         </li>
-                                        <li
-                                            t-if="record.end_datetime.raw_value">
-                                            <b>End Date:</b>
-                                            <field name="end_datetime" />
+                                        <li t-if="record.end_datetime.raw_value">
+                                            <b>End:</b>
+                                            <field name="end_datetime"/>
                                         </li>
                                     </div>
                                     <div class="oe_kanban_bottom_right">
-                                        <img
+                                        <img alt="Faculty"
                                             t-att-src="kanban_image('op.faculty', 'image', record.faculty_id.raw_value)"
                                             t-att-title="record.faculty_id.value"
                                             width="24" height="24"
@@ -213,16 +210,16 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <pivot string="Session Analysis">
-                    <field name="name" />
-                    <field name="faculty_id" />
-                    <field name="timing_id" />
-                    <field name="course_id" />
+                    <field name="name"/>
+                    <field name="faculty_id" type="col"/>
+                    <field name="timing_id"/>
+                    <field name="course_id"/>
                     <field name="batch_id"/>
-                    <field name="subject_id" />
-                    <field name="classroom_id" />
-                    <field name="start_datetime" />
-                    <field name="end_datetime" />
-                    <field name="type" />
+                    <field name="subject_id"/>
+                    <field name="classroom_id"/>
+                    <field name="start_datetime" type="row"/>
+                    <field name="end_datetime"/>
+                    <field name="type"/>
                 </pivot>
             </field>
         </record>
@@ -233,11 +230,12 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.session</field>
             <field name="view_type">form</field>
-            <field name="view_mode">kanban,calendar</field>
+            <field name="view_mode">kanban,calendar,pivot</field>
             <field name="search_view_id" ref="view_op_session_search" />
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_session_view_form">
             <field name="act_window_id" ref="act_open_op_session_view" />
             <field name="sequence" eval="20" />
@@ -256,12 +254,5 @@
             <field name="view_mode">kanban</field>
             <field name="view_id" ref="view_session_kanban" />
         </record>
-        <record model="ir.actions.act_window" id="act_open_op_session_view_pivot">
-            <field name="name">Session Analysis Pivot</field>
-            <field name="res_model">op.session</field>
-            <field name="view_mode">pivot</field>
-            <field name="view_id" ref="view_op_session_pivot"/>
-        </record>
-
     </data>
 </odoo>

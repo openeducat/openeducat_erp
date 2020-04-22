@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_op_library_root"
+                  name="Library"
+                  sequence="80"
+                  web_icon="openeducat_library,static/description/icon.png"
+                  groups="group_op_library,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
+
+        <menuitem id="menu_library_medias"
+                  name="All Media"
+                  parent="menu_op_library_root"
+                  sequence="20"
+                  groups="group_op_library,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
+
+        <menuitem id="menu_op_sub_media_library"
+                  name="Media"
+                  parent="menu_library_medias"
+                  sequence="10"
+                  groups="group_op_library,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"
+                  action="act_open_op_media_view"/>
+
+        <menuitem id="menu_op_media_unit_library"
+                  name="Media Units"
+                  parent="menu_library_medias"
+                  sequence="20"
+                  action="act_open_media_unit_view"
+                  groups="group_op_library,openeducat_core.group_op_back_office"/>
+
+        <menuitem id="menu_op_media_movement_library"
+                  name="Media Movements"
+                  parent="menu_library_medias"
+                  sequence="30"
+                  action="act_open_op_media_movement_view"
+                  groups="group_op_library,openeducat_core.group_op_back_office,openeducat_parent.group_op_parent"/>
+
+        <menuitem id="menu_op_media_queue_request_library_sub"
+                  name="Media Queue Requests"
+                  parent="menu_library_medias"
+                  groups="group_op_library,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"
+                  sequence="40"
+                  action="act_open_op_media_queue_view"/>
+
+        <menuitem id="menu_op_media_request_library_sub"
+                  name="Media Purchase Requests"
+                  parent="menu_library_medias"
+                  sequence="50"
+                  groups="group_op_library,openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"
+                  action="act_open_op_purchase_view"/>
+
+        <menuitem id="menu_op_school_library_config"
+                  name="Configuration"
+                  parent="menu_op_library_root"
+                  sequence="20"/>
+
+        <menuitem id="menu_op_library_card_sub"
+                  name="Library Cards"
+                  parent="menu_op_school_library_config"
+                  sequence="10"
+                  action="act_open_op_library_card_view"
+                  groups="group_op_library,openeducat_core.group_op_back_office"/>
+
+        <menuitem id="menu_op_publisher_sub"
+                  name="Publishers"
+                  parent="menu_op_school_library_config"
+                  sequence="20"
+                  action="act_open_op_publisher_view"
+                  groups="group_op_library,openeducat_core.group_op_faculty"/>
+
+        <menuitem id="menu_op_author_sub"
+                  name="Authors"
+                  parent="menu_op_school_library_config"
+                  sequence="30"
+                  action="act_open_op_author_view"
+                  groups="group_op_library,openeducat_core.group_op_faculty"/>
+
+        <menuitem id="menu_op_tag_sub"
+                  name="Tags"
+                  parent="menu_op_school_library_config"
+                  sequence="40"
+                  action="act_open_op_tag_view"
+                  groups="group_op_library,openeducat_core.group_op_back_office"/>
+
+        <menuitem id="menu_op_tag_sub"
+                  name="Media Type"
+                  parent="menu_op_school_library_config"
+                  sequence="50"
+                  action="act_open_op_media_type_view"
+                  groups="group_op_library,openeducat_core.group_op_back_office"/>
+
+        <menuitem id="menu_op_library_card_type_sub"
+                  name="Library Card Types"
+                  parent="menu_op_school_library_config"
+                  sequence="60"
+                  action="act_open_op_library_card_type_view"
+                  groups="group_op_library,openeducat_core.group_op_back_office"/>
+    </data>
+</odoo>

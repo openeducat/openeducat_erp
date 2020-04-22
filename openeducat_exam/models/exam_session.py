@@ -52,6 +52,14 @@ class OpExamSession(models.Model):
         required=True, track_visibility='onchange')
     venue = fields.Many2one(
         'res.partner', 'Venue', track_visibility='onchange')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('schedule', 'Scheduled'),
+        ('held', 'Held'),
+        ('cancel', 'Cancelled'),
+        ('done', 'Done')
+    ], 'State', default='draft', track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_exam_session_code',
@@ -60,9 +68,25 @@ class OpExamSession(models.Model):
     @api.constrains('start_date', 'end_date')
     def _check_date_time(self):
         if self.start_date > self.end_date:
-            raise ValidationError(_(
-                'End Date cannot be set before Start Date.'))
+            raise ValidationError(
+                _('End Date cannot be set before Start Date.'))
 
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
+
+    @api.multi
+    def act_draft(self):
+        self.state = 'draft'
+    @api.multi
+    def act_schedule(self):
+        self.state = 'schedule'
+    @api.multi
+    def act_held(self):
+        self.state = 'held'
+    @api.multi
+    def act_done(self):
+        self.state = 'done'
+    @api.multi
+    def act_cancel(self):
+        self.state = 'cancel'

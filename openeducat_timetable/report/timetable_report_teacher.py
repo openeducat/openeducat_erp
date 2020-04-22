@@ -25,7 +25,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import models, api, _
+from odoo import models, api, _, fields, tools
 
 
 class ReportTimeTableTeacherGenerate(models.AbstractModel):
@@ -45,9 +45,7 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
 
     def get_full_name(self, data):
         faculty_name = self.env['op.faculty'].browse(data['faculty_id'][0])
-        return ' '.join([faculty_name.name,
-                         faculty_name.middle_name or '',
-                         faculty_name.last_name])
+        return faculty_name.name
 
     def sort_tt(self, data_list):
         main_list = []
@@ -94,10 +92,10 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
                 'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': self._convert_to_local_timezone(
                     timetable_obj.start_datetime).strftime(
-                    "%Y-%m-%d %H:%M:%S"),
+                    tools.DEFAULT_SERVER_DATETIME_FORMAT),
                 'end_datetime': self._convert_to_local_timezone(
                     timetable_obj.end_datetime).strftime(
-                    "%Y-%m-%d %H:%M:%S"),
+                    tools.DEFAULT_SERVER_DATETIME_FORMAT),
                 'day': str(day),
                 'subject': timetable_obj.subject_id.name,
                 'course': timetable_obj.course_id.name,
