@@ -30,6 +30,18 @@ class OpParent(models.Model):
     user_id = fields.Many2one('res.users', related='name.user_id',
                               string='User', store=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
+    mobile = fields.Char(string='Mobile', related='name.mobile')
+    active = fields.Boolean(default=True)
+
+    _sql_constraints = [(
+        'unique_parent',
+        'unique(name)',
+        'Can not create parent multiple times.!'
+    )]
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        self.user_id = self.name.user_id and self.name.user_id.id or False
 
     @api.model
     def create(self, vals):
@@ -62,21 +74,25 @@ class OpParent(models.Model):
 
     @api.multi
     def create_parent_user(self):
+        template = self.env.ref('openeducat_parent.parent_template_user')
+        users_res = self.env['res.users']
         for record in self:
             if not record.name.email:
                 raise Warning(_('Update parent email id first.'))
             if not record.name.user_id:
-                groups_id = self.env.ref(
-                    'openeducat_parent.parent_template_user') and self.env.ref(
-                    'openeducat_parent.parent_template_user'
-                ).groups_id or False
-                user_id = self.env['res.users'].create(
-                    {'name': record.name.name, 'partner_id': record.name.id,
-                     'login': record.name.email, 'groups_id': groups_id})
-                record.name.user_id = user_id
+                groups_id = template and template.groups_id or False
                 user_ids = [
                     x.user_id.id for x in record.student_ids if x.user_id]
-                record.name.user_id.child_ids = [(6, 0, user_ids)]
+                user_id = users_res.create({
+                    'name': record.name.name,
+                    'partner_id': record.name.id,
+                    'login': record.name.email,
+                    'is_parent': True,
+                    'tz': self._context.get('tz'),
+                    'groups_id': groups_id,
+                    'child_ids': [(6, 0, user_ids)]
+                })
+                record.name.user_id = user_id
 
 
 class OpStudent(models.Model):
@@ -131,6 +147,12 @@ class OpStudent(models.Model):
                     child_ids.remove(record.user_id.id)
                     parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         return super(OpStudent, self).unlink()
+
+    def get_parent(self):
+        action = self.env.ref('openeducat_parent.'
+                              'act_open_op_parent_view').read()[0]
+        action['domain'] = [('student_ids', 'in', self.ids)]
+        return action
 
 
 class OpSubjectRegistration(models.Model):

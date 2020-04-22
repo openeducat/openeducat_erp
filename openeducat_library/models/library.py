@@ -61,6 +61,7 @@ class OpLibraryCard(models.Model):
                                  domain=[('library_card_id', '=', False)])
     faculty_id = fields.Many2one('op.faculty', 'Faculty',
                                  domain=[('library_card_id', '=', False)])
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_library_card_number',

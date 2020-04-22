@@ -61,10 +61,11 @@ class OpSession(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('done', 'Done'), ('cancel', 'Canceled')],
-        'Status', default='draft')
+        string='Status', default='draft')
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
+    active = fields.Boolean(default=True)
 
     @api.multi
     @api.depends('start_datetime')
@@ -143,10 +144,11 @@ class OpSession(models.Model):
         subtype_id = self.env['mail.message.subtype'].sudo().search([
             ('name', '=', 'Discussions')])
         if partner_ids and subtype_id:
-            for partner in partner_ids:
+            mail_followers = self.env['mail.followers'].sudo()
+            for partner in list(set(partner_ids)):
                 if partner in partner_val:
                     continue
-                val = self.env['mail.followers'].sudo().create({
+                mail_followers.create({
                     'res_model': res._name,
                     'res_id': res.id,
                     'partner_id': partner,
@@ -157,6 +159,10 @@ class OpSession(models.Model):
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
+        if self.course_id:
+            subject_ids = self.env['op.course'].search([
+                ('id', '=', self.course_id.id)]).subject_ids
+            return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
 
     @api.multi
     def notify_user(self):
@@ -186,6 +192,14 @@ class OpSession(models.Model):
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
-        if self.state not in ('draft', 'done'):
-            self.notify_user()
+        for session in self:
+            if session.state not in ('draft', 'done'):
+                session.notify_user()
         return data
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Sessions'),
+            'template': '/openeducat_timetable/static/xls/op_session.xls'
+        }]

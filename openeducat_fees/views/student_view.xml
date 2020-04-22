@@ -7,15 +7,36 @@
             <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
             <field name="priority" eval="9" />
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='image']" position="before">
-                    <button type="object"
-                        class="oe_right oe_stat_button"
-                        id="invoice_button"
-                        icon="fa-pencil-square-o"
-                        name="action_view_invoice"
-                        groups="openeducat_core.group_op_back_office">
-                        <div><strong><field name="total_invoiced" widget="monetary"/></strong><br/>Invoiced</div>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button" type="object"
+                            name="action_view_invoice"
+                            style="border-right: 1px solid;"
+                            icon="fa-pencil-square-o">
+                        <field string="Invoiced" name="total_invoiced" widget="statinfo"/>
                     </button>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Fees Collection Details">
+                        <field name="fees_detail_ids" readonly="1">
+                            <tree string="Fees Collection Details" editable="top">
+                                <field name="fees_line_id" invisible="1"/>
+                                <field name="date"/>
+                                <field name="amount"/>
+                                <field name="fees_factor" invisible="1"/>
+                                <field name="product_id" invisible="1"/>
+                                <field name="invoice_id" invisible="1"/>
+                                <field name="state"/>
+                                <field name="invoice_state"/>
+                                <button string="Create Invoice"
+                                        states="draft" type="object" name="get_invoice"
+                                        groups="openeducat_core.group_op_back_office"/>
+                                <button string="View Invoice"
+                                        groups="openeducat_core.group_op_back_office"
+                                        states="invoice" type="object"
+                                        name="action_get_invoice"/>
+                            </tree>
+                        </field>
+                    </page>
                 </xpath>
             </field>
         </record>

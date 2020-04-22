@@ -7,15 +7,15 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Media">
-                    <field name="name" />
-                    <field name="isbn" />
+                    <field name="name"/>
                     <field name="media_type_id"/>
-                    <field name="tags" />
-                    <field name="author_ids" />
-                    <field name="edition" />
-                    <field name="publisher_ids" />
-                    <field name="course_ids" />
-                    <field name="internal_code" />
+                    <field name="isbn"/>
+                    <field name="internal_code"/>
+                    <field name="edition"/>
+                    <field name="tags" invisible="1"/>
+                    <field name="author_ids" invisible="1"/>
+                    <field name="publisher_ids" invisible="1"/>
+                    <field name="course_ids" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -62,18 +62,22 @@
                             <page name="media_queue_requests" string="Media Queue Requests">
                                 <field name="queue_ids" colspan="4" nolabel="1">
                                     <tree string="Media Queue Request">
-                                        <field name="partner_id" />
-                                        <field name="date_from" />
-                                        <field name="date_to" />
-                                        <field name="state" />
+                                        <field name="user_id"/>
+                                        <field name="date_from"/>
+                                        <field name="date_to"/>
+                                        <field name="state"/>
                                         <button name="do_accept" string="Accept" type="object"
-                                            states="request" icon="gtk-go-forward" groups="openeducat_library.group_op_library" />
+                                                states="request" icon="fa-thumbs-up"
+                                                style="font-size: 15px;"
+                                                groups="openeducat_library.group_op_library"/>
                                         <button name="do_reject" string="Reject" type="object"
-                                            states="request,accept" icon="terp-dialog-close"
-                                            groups="openeducat_library.group_op_library" />
+                                                states="request,accept" icon="fa-thumbs-down"
+                                                style="font-size: 15px;"
+                                                groups="openeducat_library.group_op_library"/>
                                         <button name="do_request_again" string="Request Again"
-                                            states="reject" type="object" icon="STOCK_GO_BACK"
-                                            groups="openeducat_library.group_op_library" />
+                                                states="reject" type="object" icon="fa-undo"
+                                                style="font-size: 15px;"
+                                                groups="openeducat_library.group_op_library"/>
                                     </tree>
                                 </field>
                             </page>
@@ -100,17 +104,45 @@
                     <field name="internal_code" />
                     <newline />
                     <group expand="0" string="Group By...">
-                        <filter string="Edition" domain="[]" context="{'group_by':'edition'}" />
+                        <filter string="Edition" name="group_by_lbr_media_edition"
+                                domain="[]" context="{'group_by':'edition'}"/>
+                        <filter string="Type" name="group_by_lbr_media_type"
+                                domain="[]" context="{'group_by':'media_type_id'}"/>
+                        <filter string="Archived" name="inactive"
+                                domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>
         </record>
+
+        <record id="view_op_media_pivot" model="ir.ui.view">
+            <field name="name">op.media.pivot</field>
+            <field name="model">op.media</field>
+            <field name="arch" type="xml">
+                <pivot string="Media">
+                    <field name="media_type_id" type="col"/>
+                    <field name="name" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_op_media_graph">
+            <field name="name">op.media.graph</field>
+            <field name="model">op.media</field>
+            <field name="arch" type="xml">
+                <graph string="Media" type="bar">
+                    <field name="name"/>
+                    <field name="media_type_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_media_view">
             <field name="name">All Media</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.media</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_media_search" />
             <field name="domain">[]</field>
             <field name="context">{}</field>

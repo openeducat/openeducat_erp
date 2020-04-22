@@ -34,7 +34,7 @@
         'views/facility_view.xml',
         'views/facility_line_view.xml',
         'security/ir.model.access.csv',
-        'facility_menu.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/facility_demo.xml'

@@ -7,17 +7,19 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="media Movement">
-                    <field name="media_id" />
-                    <field name="media_unit_id" />
-                    <field name="type" />
-                    <field name="student_id" />
-                    <field name="library_card_id" />
-                    <field name="issued_date" />
-                    <field name="return_date" />
-                    <field name="actual_return_date" />
-                    <field name="penalty" />
-                    <field name="invoice_id" />
-                    <field name="state" />
+                    <field name="library_card_id"/>
+                    <field name="partner_id"/>
+                    <field name="media_id"/>
+                    <field name="media_unit_id"/>
+                    <field name="issued_date"/>
+                    <field name="return_date"/>
+                    <field name="actual_return_date"/>
+                    <field name="penalty" widget="monetary"/>
+                    <field name="state"/>
+                    <field name="invoice_id" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="student_id" invisible="1"/>
+                    <field name="faculty_id" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -46,21 +48,30 @@
                             <field name="invoice_id"/>
                         </group>
                         <group col="4" string="Student/Faculty Detail">
-                            <field name="library_card_id" />
-                            <field name="type" />
-                            <field name="student_id" attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}" context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
-                            <field name="faculty_id" attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                            <field name="library_card_id"/>
+                            <field name="type" readonly="1" force_save="1"/>
+                            <field name="student_id" readonly="1" force_save="1"
+                                   attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"
+                                   context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
+                            <field name="faculty_id" readonly="1" force_save="1"
+                                   attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
                         </group>
                         <group col="4">
                             <field name="issued_date" />
                             <field name="return_date" />
                             <field name="actual_return_date" />
                             <label for="penalty" string="Penalty"/>
-                            <div>
-                                <field name="penalty" widget="monetary"/>
-                                <button name="create_penalty_invoice" string="Create Invoice" type="object" class="oe_highlight"
-                                    attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}" />
+                            <div class="row">
+                                <div class="col-5 col-sm-5 col-md-6 col-lg-4">
+                                    <field name="penalty" widget="monetary"/>
+                                </div>
+                                <div class="col-7 col-sm-7 col-md-6 col-lg-8">
+                                    <button name="create_penalty_invoice" string="Create Invoice"
+                                            type="object" class="oe_highlight"
+                                            attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}"/>
+                                </div>
                             </div>
+                            <field name="invoice_id"/>
                         </group>
                         <group col="4" string="Reservation Detail" invisible="1">
                             <field name="partner_id" />

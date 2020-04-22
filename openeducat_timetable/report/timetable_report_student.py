@@ -25,7 +25,7 @@ from datetime import datetime
 
 import pytz
 
-from odoo import models, api, _
+from odoo import models, api, _, fields, tools
 
 
 class ReportTimetableStudentGenerate(models.AbstractModel):
@@ -85,7 +85,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
                 'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': self._convert_to_local_timezone(
                     timetable_obj.start_datetime).strftime(
-                    "%Y-%m-%d %H:%M:%S"),
+                    tools.DEFAULT_SERVER_DATETIME_FORMAT),
                 'day': str(day),
                 'subject': timetable_obj.subject_id.name,
             }

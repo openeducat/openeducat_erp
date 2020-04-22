@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from datetime import timedelta, date, datetime
+from datetime import timedelta, datetime
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
@@ -32,15 +32,16 @@ def days_between(to_date, from_date):
 
 
 class OpMediaMovement(models.Model):
-    _name = 'op.media.movement'
-    _inherit = 'mail.thread'
-    _description = 'Media Movement'
-    _rec_name = 'media_id'
+    _name = "op.media.movement"
+    _inherit = "mail.thread"
+    _description = "Media Movement"
+    _rec_name = "media_id"
+    _order = "return_date DESC"
 
     media_id = fields.Many2one('op.media', 'Media', required=True)
     media_unit_id = fields.Many2one(
         'op.media.unit', 'Media Unit', required=True,
-        track_visibility='onchange')
+        track_visibility='onchange', domain=[('state', '=', 'available')])
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')], 'Student/Faculty',
         required=True)
@@ -50,7 +51,8 @@ class OpMediaMovement(models.Model):
         'op.library.card', 'Library Card', required=True,
         track_visibility='onchange')
     issued_date = fields.Date(
-        'Issued Date', required=True, default=fields.Date.today())
+        'Issued Date', track_visibility='onchange',
+        required=True, default=fields.Date.today())
     return_date = fields.Date('Due Date', required=True)
     actual_return_date = fields.Date('Actual Return Date')
     penalty = fields.Float('Penalty')
@@ -65,8 +67,9 @@ class OpMediaMovement(models.Model):
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
     user_id = fields.Many2one(
-        'res.users', related='student_id.user_id', string='Users')
+        'res.users', string='Users')
     invoice_id = fields.Many2one('account.invoice', 'Invoice', readonly=True)
+    active = fields.Boolean(default=True)
 
     @api.multi
     def get_diff_day(self):
@@ -98,10 +101,21 @@ class OpMediaMovement(models.Model):
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
         self.type = self.library_card_id.type
-        self.student_id = self.library_card_id.student_id.id
-        self.faculty_id = self.library_card_id.faculty_id.id
-        self.return_date = date.today() + \
-            timedelta(days=self.library_card_id.library_card_type_id.duration)
+        self.return_date = self.issued_date + timedelta(
+            days=self.library_card_id.library_card_type_id.duration)
+        if self.type == 'student':
+            self.student_id = self.library_card_id.student_id.id or False
+            self.partner_id = self.student_id.partner_id.id or False
+            self.user_id = self.student_id.user_id.id or False
+        else:
+            self.faculty_id = self.library_card_id.faculty_id.id or False
+            self.partner_id = self.faculty_id.partner_id.id or False
+            self.user_id = self.faculty_id.user_id.id or False
+
+    @api.onchange('issued_date')
+    def onchange_issued_date(self):
+        self.return_date = self.issued_date + timedelta(
+            days=self.library_card_id.library_card_type_id.duration or 1)
 
     @api.multi
     def issue_media(self):
@@ -134,13 +148,11 @@ class OpMediaMovement(models.Model):
                 record.return_date, record.issued_date)
             actual_diff = days_between(
                 record.actual_return_date, record.issued_date)
-            if record.library_card_id and \
-                    record.library_card_id.library_card_type_id:
+            x = record.library_card_id.library_card_type_id
+            if record.library_card_id and x:
                 penalty_days = actual_diff > standard_diff and actual_diff - \
                     standard_diff or penalty_days
-                penalty_amt = penalty_days * \
-                    record.library_card_id.library_card_type_id.\
-                    penalty_amt_per_day
+                penalty_amt = penalty_days * x.penalty_amt_per_day
             record.write({'penalty': penalty_amt})
 
     @api.multi
@@ -161,16 +173,17 @@ class OpMediaMovement(models.Model):
                     menu.') % (product.name,))
 
             invoice = self.env['account.invoice'].create({
-                'partner_id': self.student_id.partner_id.id,
+                'partner_id': rec.student_id.partner_id.id,
                 'type': 'out_invoice',
                 'reference': False,
                 'date_invoice': fields.Date.today(),
                 'account_id':
-                self.student_id.partner_id.property_account_receivable_id.id,
+                    rec.student_id.partner_id.
+                        property_account_receivable_id.id,
                 'invoice_line_ids': [(0, 0, {
                     'name': product.name,
                     'account_id': account_id,
-                    'price_unit': self.penalty,
+                    'price_unit': rec.penalty,
                     'quantity': 1.0,
                     'discount': 0.0,
                     'uom_id': product.uom_id.id,

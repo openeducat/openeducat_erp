@@ -30,12 +30,19 @@
     'website': 'http://www.openeducat.org',
     'data': [
         'views/assets.xml',
-        'views/navbar_template.xml',
+        'views/snippets/slider.xml',
+        'views/snippets/about-us.xml',
+        'views/snippets/ourcourse.xml',
+        'views/snippets/achievement.xml',
+        'views/snippets/teacher.xml',
+        'views/snippets/event.xml',
+        'views/snippets/newsfeed.xml',
+        'views/snippets/footer.xml',
+        'views/image_library.xml'
     ],
     'demo': [
-        'demo/homepage.xml',
-        'demo/footer_template.xml',
-        'demo/feature_template.xml',
+        'data/homepage_demo.xml',
+        'data/footer_template.xml',
     ],
     'images': [
         'static/description/web_openeducat_banner.jpg',

@@ -27,14 +27,16 @@
             <field name="arch" type="xml">
                 <form string="Exam">
                     <header groups="base.group_user">
-                        <button name="%(act_open_op_room_distribution_view)d"
-                            states="draft" type="action" string="Schedule Exam" class="oe_highlight"/>
-                        <button name="%(act_open_op_held_exam_view)d" states="schedule" type="action" string="Held Exam" class="oe_highlight"/>
-                        <button name="act_done" states="result_updated" type="object" string="Done" class="oe_highlight"/>
+                        <button name="%(act_open_op_room_distribution_view)d" states="draft" type="action"
+                                string="Schedule Exam" class="oe_highlight"/>
+                        <button name="%(act_open_op_held_exam_view)d" states="schedule" type="action"
+                                string="Held Exam" class="oe_highlight"/>
+                        <button name="act_done" states="result_updated" type="object" string="Done"
+                                class="oe_highlight"/>
                         <button name="act_draft" states="cancel" type="object" string="Draft" class="oe_highlight"/>
-                        <button string="Result Updated" class="oe_highlight"
-                            states="held" type="object" name="act_result_updated"/>
-                        <button name="act_cancel" states="draft,held,schedule" type="object" string="Cancel" />
+                        <button string="Result Updated" class="oe_highlight" states="held" type="object"
+                                name="act_result_updated"/>
+                        <button name="act_cancel" states="draft,held,schedule" type="object" string="Cancel"/>
                         <field name="state" widget="statusbar"
                             statusbar_visible="draft,held,scheduled,result_updated,done" />
                     </header>
@@ -68,23 +70,28 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Exam">
-                    <field name="session_id" />
-                    <field name="name" />
-                    <field name="subject_id" />
-                    <field name="exam_code" />
-                    <field name="start_time" />
-                    <field name="end_time" />
-                    <field name="state" />
-                    <field name="note" />
-                    <field name="total_marks" />
-                    <field name="min_marks" />
-                    <newline />
+                    <field name="session_id"/>
+                    <field name="name"/>
+                    <field name="subject_id"/>
+                    <field name="exam_code"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                    <field name="state"/>
+                    <field name="note"/>
+                    <field name="total_marks"/>
+                    <field name="min_marks"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
+                    <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Subject" domain="[]" context="{'group_by':'subject_id'}" />
-                        <filter string="Exam Code" domain="[]"
-                            context="{'group_by':'exam_code'}" />
-                        <filter string="State" domain="[]" context="{'group_by':'state'}" />
-                        <filter string="Exam" domain="[]" context="{'group_by':'name'}" />
+                        <filter string="Subject" name="group_by_exam_subject_id"
+                                domain="[]" context="{'group_by':'subject_id'}"/>
+                        <filter string="Exam Code" name="group_by_exam_code"
+                                domain="[]" context="{'group_by':'exam_code'}"/>
+                        <filter string="State" name="group_by_exam_state"
+                                domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Exam" name="group_by_exam_name"
+                                domain="[]" context="{'group_by':'name'}"/>
                     </group>
                 </search>
             </field>

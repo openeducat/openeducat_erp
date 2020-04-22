@@ -28,7 +28,8 @@ class StudentHallTicket(models.TransientModel):
     _name = 'student.hall.ticket'
 
     exam_session_id = fields.Many2one(
-        'op.exam.session', 'Exam Session', required=True)
+        'op.exam.session', 'Exam Session', required=True,
+        domain=[('state', 'not in', ['draft', 'cancel', 'done'])])
 
     @api.multi
     def print_report(self):

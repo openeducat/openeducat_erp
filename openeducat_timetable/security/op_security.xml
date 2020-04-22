@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.rule" id="student_session_rule">
+            <field name="name">Student Session rule</field>
+            <field name="model_id" ref="model_op_session"/>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+            <field name="domain_force">['|', ('user_ids','in',user.id), ('user_ids','in',user.child_ids.ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="backoffice_session_rule">
+            <field name="name">Backoffice Session Rule</field>
+            <field name="model_id" ref="model_op_session"/>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_back_office'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <record model="ir.rule" id="faculty_session_rule">
+            <field name="name">faculty Session Rule</field>
+            <field name="model_id" ref="model_op_session"/>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+            <field name="domain_force">[('faculty_id.user_id','=',user.id)]</field>
+        </record>
+    </data>
+</odoo>
