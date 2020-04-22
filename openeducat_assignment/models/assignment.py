@@ -24,9 +24,10 @@ from odoo.exceptions import ValidationError
 
 
 class OpAssignment(models.Model):
-    _name = 'op.assignment'
-    _inherit = 'mail.thread'
-    _description = 'Assignment'
+    _name = "op.assignment"
+    _inherit = "mail.thread"
+    _description = "Assignment"
+    _order = "submission_date DESC"
 
     name = fields.Char('Name', size=64, required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -40,20 +41,19 @@ class OpAssignment(models.Model):
         'op.assignment.type', 'Assignment Type', required=True)
     marks = fields.Float('Marks', required=True, track_visibility='onchange')
     description = fields.Text('Description', required=True)
-    state = fields.Selection(
-        [('draft', 'Draft'), ('publish', 'Published'),
-         ('finish', 'Finished')], 'State', required=True, default='draft',
-        track_visibility='onchange')
-    issued_date = fields.Datetime(
-        'Issued Date', required=True,
-        default=lambda self: fields.Datetime.now())
-    submission_date = fields.Datetime(
-        'Submission Date', required=True,
-        track_visibility='onchange')
+    state = fields.Selection([
+        ('draft', 'Draft'), ('publish', 'Published'),
+        ('finish', 'Finished'), ('cancel', 'Cancel'),
+    ], 'State', required=True, default='draft', track_visibility='onchange')
+    issued_date = fields.Datetime(string='Issued Date', required=True,
+                                  default=lambda self: fields.Datetime.now())
+    submission_date = fields.Datetime('Submission Date', required=True,
+                                      track_visibility='onchange')
     allocation_ids = fields.Many2many('op.student', string='Allocated To')
-    assignment_sub_line = fields.One2many(
-        'op.assignment.sub.line', 'assignment_id', 'Submissions')
+    assignment_sub_line = fields.One2many('op.assignment.sub.line',
+                                          'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
+    active = fields.Boolean(default=True)
 
     @api.multi
     @api.constrains('issued_date', 'submission_date')
@@ -71,8 +71,7 @@ class OpAssignment(models.Model):
         if self.course_id:
             subject_ids = self.env['op.course'].search([
                 ('id', '=', self.course_id.id)]).subject_ids
-            return {
-                'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
+            return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
 
     @api.multi
     def act_publish(self):
@@ -83,3 +82,11 @@ class OpAssignment(models.Model):
     def act_finish(self):
         result = self.state = 'finish'
         return result and result or False
+
+    @api.multi
+    def act_cancel(self):
+        self.state = 'cancel'
+
+    @api.multi
+    def act_set_to_draft(self):
+        self.state = 'draft'

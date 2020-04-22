@@ -19,16 +19,12 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+
+from odoo.tests import common
 
 
-class OpAssignmentType(models.Model):
-    _name = "op.assignment.type"
-    _description = "Assignment Type"
-
-    name = fields.Char('Name', size=256, required=True)
-    code = fields.Char('Code', size=16, required=True)
-
-    _sql_constraints = [
-        ('unique_assignment_type_code',
-         'unique(code)', 'Code should be unique per assignment type!')]
+class TestAssignmentCommon(common.SavepointCase):
+    def setUp(self):
+        super(TestAssignmentCommon, self).setUp()
+        self.op_assignment = self.env['op.assignment']
+        self.op_assignment_subline = self.env['op.assignment.sub.line']

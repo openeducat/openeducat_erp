@@ -19,16 +19,4 @@
 #
 ###############################################################################
 
-from odoo import models, fields
-
-
-class OpAssignmentType(models.Model):
-    _name = "op.assignment.type"
-    _description = "Assignment Type"
-
-    name = fields.Char('Name', size=256, required=True)
-    code = fields.Char('Code', size=16, required=True)
-
-    _sql_constraints = [
-        ('unique_assignment_type_code',
-         'unique(code)', 'Code should be unique per assignment type!')]
+from . import test_assignment
