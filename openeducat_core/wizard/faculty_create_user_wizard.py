@@ -23,7 +23,7 @@ from odoo import models, fields, api
 
 
 class WizardOpFaculty(models.TransientModel):
-    _name = 'wizard.op.faculty'
+    _name = "wizard.op.faculty"
     _description = "Create User for selected Faculty(s)"
 
     def _get_faculties(self):

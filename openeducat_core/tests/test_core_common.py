@@ -19,21 +19,23 @@
 #
 ###############################################################################
 
-from odoo import models, api
+
+from odoo.tests import common, TransactionCase
+from ..controllers import app_main
+from odoo.addons.website.tools import MockRequest
 
 
-class HrEmployee(models.Model):
-    _inherit = "hr.employee"
-
-    @api.onchange('user_id')
-    def onchange_user(self):
-        if self.user_id:
-            self.user_id.partner_id.supplier = True
-            self.work_email = self.user_id.email
-            self.identification_id = False
-
-    @api.onchange('address_id')
-    def onchange_address_id(self):
-        if self.address_id:
-            self.work_phone = self.address_id.phone
-            self.mobile_phone = self.address_id.mobile
+class TestCoreCommon(common.SavepointCase):
+    def setUp(self):
+        super(TestCoreCommon, self).setUp()
+        self.op_batch = self.env['op.batch']
+        self.op_faculty = self.env['op.faculty']
+        self.op_course = self.env['op.course']
+        self.res_company = self.env['res.users']
+        self.op_student = self.env['op.student']
+        self.hr_emp = self.env['hr.employee']
+        self.subject_registration = self.env['op.subject.registration']
+        self.op_update = self.env['publisher_warranty.contract']
+        self.employ_wizard = self.env['wizard.op.faculty.employee']
+        self.faculty_user_wizard = self.env['wizard.op.faculty']
+        self.studnet_wizard = self.env['wizard.op.student']

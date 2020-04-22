@@ -37,3 +37,4 @@ class WizardOpFacultyEmployee(models.TransientModel):
             if record.user_boolean and not faculty.user_id:
                 user_group = self.env.ref('openeducat_core.group_op_faculty')
                 self.env['res.users'].create_user(faculty, user_group)
+                faculty.emp_id.user_id = faculty.user_id

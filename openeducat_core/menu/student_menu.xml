@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <menuitem id="menu_op_student_root" name="Students"
-            sequence="25"
-            web_icon="openeducat_core,static/description/icon_student.png" />
+        <menuitem id="menu_op_student_root"
+                  name="Students"
+                  sequence="25"
+                  web_icon="openeducat_core,static/description/icon_student.png"
+                  groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty"/>
+        <menuitem id="menu_op_student_main_student"
+                  name="Profile"
+                  parent="menu_op_student_root"
+                  sequence="20"
+                  action="act_open_op_student_view_2"
+                  groups="group_op_back_office_admin,openeducat_core.group_op_faculty"/>
 
-        <menuitem id="menu_op_student_main_student" name="Profile"
-            parent="menu_op_student_root" sequence="20"
-            action="act_open_op_student_view" groups="group_op_student" />
+        <menuitem id="menu_op_general_student"
+                  parent="menu_op_student_root"
+                  sequence="20"
+                  name="General"/>
 
-        <menuitem id="menu_op_general_student" parent="menu_op_student_root"
-            sequence="20" name="General" />
-
-        <menuitem id="subject_registration_student_menu" name="Subject Registration"
-            parent="openeducat_core.menu_op_general_student" sequence="30"
-            action="act_subject_registration_view" groups="openeducat_core.group_op_student" />
-
+        <menuitem id="subject_registration_student_menu"
+                  name="Subject Registration"
+                  parent="openeducat_core.menu_op_general_student"
+                  sequence="30"
+                  action="act_subject_registration_view"
+                  groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty"/>
     </data>
 </odoo>
