@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from datetime import timedelta, datetime
+from datetime import timedelta, date, datetime
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
@@ -101,7 +101,7 @@ class OpMediaMovement(models.Model):
     @api.onchange('library_card_id')
     def onchange_library_card_id(self):
         self.type = self.library_card_id.type
-        self.return_date = self.issued_date + timedelta(
+        self.return_date = date.today() + timedelta(
             days=self.library_card_id.library_card_type_id.duration)
         if self.type == 'student':
             self.student_id = self.library_card_id.student_id.id or False
@@ -114,7 +114,7 @@ class OpMediaMovement(models.Model):
 
     @api.onchange('issued_date')
     def onchange_issued_date(self):
-        self.return_date = self.issued_date + timedelta(
+        self.return_date = date.today() + timedelta(
             days=self.library_card_id.library_card_type_id.duration or 1)
 
     @api.multi
