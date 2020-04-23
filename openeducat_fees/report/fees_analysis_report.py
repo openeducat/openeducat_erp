@@ -37,7 +37,7 @@ class ReportFeesAnalysis(models.AbstractModel):
         return [total_amount, paid_amount]
 
     @api.model
-    def get_report_values(self, data=None):
+    def get_report_values(self, docids, data=None):
         student_ids = []
         if data['fees_filter'] == 'student':
             student_ids = self.env['op.student'].browse([data['student']])

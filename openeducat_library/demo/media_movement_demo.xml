@@ -10,7 +10,7 @@
             <field name="type">student</field>
             <field name="state">issue</field>
             <field name="issued_date"
-                eval="(DateTime.today().date() - relativedelta(days=10))" />
+                eval="(DateTime.today() - relativedelta(days=10)).strftime('%Y-%m-%d')" />
             <field name="return_date" eval="DateTime.today()" />
         </record>
 

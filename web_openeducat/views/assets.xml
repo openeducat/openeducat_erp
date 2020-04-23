@@ -1,47 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <odoo>
-        <template id="web_openeducat_assets_frontend" name="Theme OpenEducat Frontend Assets"
-            inherit_id="website.assets_frontend">
-            <xpath expr="." position="inside">
-                <link href="/web_openeducat/static/src/less/mid-header.less"
-                type="text/less" rel="stylesheet" /> 
-                <link href="/web_openeducat/static/src/less/navbar.less"
-                type="text/less" rel="stylesheet" /> 
-                <link href="/web_openeducat/static/src/less/navbar_mega.less"
-                type="text/less" rel="stylesheet" /> 
-                <link href="/web_openeducat/static/src/less/nav.less"
-                type="text/less" rel="stylesheet" /> 
-                <link href="/web_openeducat/static/src/less/about-school.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/center-achieve.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/popular-courses.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/custom.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/employee-detail.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/testimonial.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/blogs.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/email-section.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/footer.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/img_circle.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/admissions_three_img.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/parallax_img.less"
-                type="text/less" rel="stylesheet" />
-                <link href="/web_openeducat/static/src/less/teams.less"
-                type="text/less" rel="stylesheet" />
-                <script src="/web_openeducat/static/js/countUp.js"
-                    type="text/javascript" />
-                <script src="/web_openeducat/static/js/custom.js"
-                    type="text/javascript" />
-            </xpath>
-        </template>
+    <template id="web_openeducat_assets_frontend" name="Theme OpenEducat Frontend Assets"
+              inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <link href="/web_openeducat/static/src/css/homepage.css"
+                  type="text/scss" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    <template id="snippet_id" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_structure']" position="before">
+            <div class="o_panel_body">
+                <!--________________________ Snippets____________________ -->
+                        <t t-snippet="web_openeducat.slider"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+                        <t t-snippet="web_openeducat.about-us"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+                        <t t-snippet="web_openeducat.ourcourse"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+                        <t t-snippet="web_openeducat.achievement"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+                        <t t-snippet="web_openeducat.teacher"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+                        <t t-snippet="web_openeducat.event"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+                        <t t-snippet="web_openeducat.newsfeed"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+                        <t t-snippet="web_openeducat.footer"
+                           t-thumbnail="web_openeducat/static/src/img/snippets_icons/op_educat.png"/>
+            </div>
+        </xpath>
+    </template>
 </odoo>
