@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="attendance_session_form_view" model="ir.ui.view">
+        <field name="name">op.attendance.sheet.form.inherit</field>
+        <field name="model">op.session</field>
+        <field name="inherit_id" ref="openeducat_timetable.view_op_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='smart_button']" position="inside">
+               <button class="btn oe_stat_button" type="object"
+                                    name="get_attendance" string="Attendance Sheet"
+                                    style="border-right: 1px solid;"
+                                    icon="fa-book"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

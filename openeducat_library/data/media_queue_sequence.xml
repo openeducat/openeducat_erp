@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Generate a Sequence Number for media queue request -->
+        <record id="seq_media_queue_sequence" model="ir.sequence">
+            <field name="name">Media Queue Request</field>
+            <field name="code">op.media.queue</field>
+            <field name="prefix">BQR</field>
+            <field name="padding">4</field>
+        </record>
+
+        <!-- Sequences for op.media.unit -->
+        <record id="seq_op_media_unit_barcode" model="ir.sequence">
+            <field name="name">Media Unit Barcode</field>
+            <field name="code">op.media.unit</field>
+            <field name="prefix">MUB</field>
+            <field name="padding">10</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for op.library.card -->
+        <record id="seq_op_library_card_barcode" model="ir.sequence">
+            <field name="name">Library Card Barcode</field>
+            <field name="code">op.library.card</field>
+            <field name="prefix">LCB</field>
+            <field name="padding">10</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

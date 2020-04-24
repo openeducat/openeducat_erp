@@ -23,9 +23,10 @@ from odoo import models, fields, api
 
 
 class OpMediaUnit(models.Model):
-    _name = 'op.media.unit'
-    _inherit = 'mail.thread'
-    _description = 'Media Unit'
+    _name = "op.media.unit"
+    _inherit = "mail.thread"
+    _description = "Media Unit"
+    _order = "name"
 
     name = fields.Char('Name', required=True)
     media_id = fields.Many2one(
@@ -38,6 +39,7 @@ class OpMediaUnit(models.Model):
         'State', default='available', track_visibility='onchange')
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_name_barcode',

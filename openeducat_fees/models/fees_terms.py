@@ -27,17 +27,19 @@ class OpFeesTermsLine(models.Model):
 
     due_days = fields.Integer('Due Days')
     value = fields.Float('Value (%)')
+    fees_element_line = fields.One2many("op.fees.element",
+                                        "fees_terms_line_id", "Fees Elements")
     fees_id = fields.Many2one('op.fees.terms', 'Fees')
 
 
 class OpFeesTerms(models.Model):
-    _name = 'op.fees.terms'
+    _name = "op.fees.terms"
+    _inherit = "mail.thread"
+    _description = "Fees Terms For Course"
 
     name = fields.Char('Fees Terms', required=True)
     active = fields.Boolean('Active', default=True)
     note = fields.Text('Description')
-    company_id = fields.Many2one('res.company', 'Company', required=True,
-                                 default=lambda self: self.env.user.company_id)
     no_days = fields.Integer('No of Days')
     day_type = fields.Selection([('before', 'Before'), ('after', 'After')],
                                 'Type')

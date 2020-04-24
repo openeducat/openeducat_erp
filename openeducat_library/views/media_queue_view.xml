@@ -31,8 +31,8 @@
                             states="request,accept"
                             groups="openeducat_core.group_op_back_office_admin,openeducat_library.group_op_library" />
                         <button name="do_request_again" string="Request Again"
-                            states="reject" type="object"
-                            groups="openeducat_core.group_op_faculty,openeducat_core.group_op_student" />
+                                states="reject" type="object"
+                                groups="openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
                         <field name="state" widget="statusbar" statusbar_visible="request,reject,accept"
                             statusbar_colors='{"reject":"red"}' />
                     </header>
@@ -61,25 +61,53 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Media Queue Request">
-                    <field name="user_id" />
-                    <field name="date_from" />
-                    <field name="date_to" />
-                    <field name="state" />
-                    <newline />
+                    <field name="user_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="state"/>
+                    <field name="media_id"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <group expand="0" string="Group By...">
-                        <filter string="Media" domain="[]" context="{'group_by':'media_id'}"/>
-                        <filter string="Partner" domain="[]" context="{'group_by':'user_id'}" />
-                        <filter string="Status" domain="[]" context="{'group_by':'state'}" />
+                        <filter string="Media" name="group_by_lbr_media_queue_media"
+                                domain="[]" context="{'group_by':'media_id'}"/>
+                        <filter string="User" name="group_by_lbr_media_queue_user"
+                                domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter string="Status" name="group_by_lbr_media_queue_state"
+                                domain="[]" context="{'group_by':'state'}"/>
                     </group>
                 </search>
             </field>
         </record>
+
+        <record id="view_op_media_queue_pivot" model="ir.ui.view">
+            <field name="name">op.media.queue.pivot</field>
+            <field name="model">op.media.queue</field>
+            <field name="arch" type="xml">
+                <pivot string="Media Queue Request">
+                    <field name="media_id" type="col"/>
+                    <field name="user_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_op_media_graph" model="ir.ui.view">
+            <field name="name">op.media.queue.graph</field>
+            <field name="model">op.media.queue</field>
+            <field name="arch" type="xml">
+                <graph string="Media Queue Request" type="bar">
+                    <field name="user_id"/>
+                    <field name="media_id"/>
+                </graph>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_media_queue_view">
             <field name="name">Media Queue Requests</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.media.queue</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_media_queue_search" />
             <field name="domain">[]</field>
             <field name="context">{}</field>

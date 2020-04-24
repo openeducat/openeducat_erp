@@ -7,8 +7,9 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Author">
-                    <field name="name" />
-                    <field name="address" />
+                    <field name="name"/>
+                    <field name="media_ids" widget="many2many_tags"/>
+                    <field name="address" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -20,9 +21,10 @@
                 <form string="Author">
                     <sheet>
                         <group col="4">
-                            <field name="name" />
-                            <field name="address" context="{'show_address': 1}"
-                                options='{"always_reload": True}' />
+                            <field name="name"/>
+                            <field name="address"
+                                   context="{'show_address': 1}"
+                                   options='{"always_reload": True}'/>
                         </group>
                         <group string="Media(s)">
                             <field name="media_ids" colspan="4" nolabel="1" />
@@ -37,10 +39,9 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Author">
-                    <field name="name" />
-                    <field name="address" />
-                    <field name="media_ids" />
-                    <newline />
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="media_ids"/>
                 </search>
             </field>
         </record>

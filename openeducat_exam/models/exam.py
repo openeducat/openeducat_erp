@@ -30,7 +30,9 @@ class OpExam(models.Model):
     _inherit = 'mail.thread'
     _description = 'Exam'
 
-    session_id = fields.Many2one('op.exam.session', 'Exam Session')
+    session_id = fields.Many2one('op.exam.session', 'Exam Session',
+                                 domain=[('state', 'not in',
+                                          ['cancel', 'done'])])
     course_id = fields.Many2one(
         'op.course', related='session_id.course_id', store=True,
         readonly=True)
@@ -53,6 +55,7 @@ class OpExam(models.Model):
     name = fields.Char('Exam', size=256, required=True)
     total_marks = fields.Integer('Total Marks', required=True)
     min_marks = fields.Integer('Passing Marks', required=True)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_exam_code',

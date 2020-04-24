@@ -24,8 +24,8 @@ from odoo.exceptions import ValidationError
 
 
 class OpStudentCourse(models.Model):
-    _name = 'op.student.course'
-    _description = 'Student Course Details'
+    _name = "op.student.course"
+    _description = "Student Course Details"
 
     student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -47,37 +47,59 @@ class OpStudentCourse(models.Model):
 
 
 class OpStudent(models.Model):
-    _name = 'op.student'
-    _inherits = {'res.partner': 'partner_id'}
+    _name = "op.student"
+    _description = "Student"
+    _inherit = ["mail.thread"]
+    _inherits = {"res.partner": "partner_id"}
 
-    middle_name = fields.Char('Middle Name', size=128)
-    last_name = fields.Char('Last Name', size=128)
+    first_name = fields.Char('First Name', size=128, translate=True)
+    middle_name = fields.Char('Middle Name', size=128, translate=True)
+    last_name = fields.Char('Last Name', size=128, translate=True)
     birth_date = fields.Date('Birth Date')
-    blood_group = fields.Selection(
-        [('A+', 'A+ve'), ('B+', 'B+ve'), ('O+', 'O+ve'), ('AB+', 'AB+ve'),
-         ('A-', 'A-ve'), ('B-', 'B-ve'), ('O-', 'O-ve'), ('AB-', 'AB-ve')],
-        'Blood Group')
-    gender = fields.Selection(
-        [('m', 'Male'), ('f', 'Female'),
-         ('o', 'Other')], 'Gender')
+    blood_group = fields.Selection([
+        ('A+', 'A+ve'),
+        ('B+', 'B+ve'),
+        ('O+', 'O+ve'),
+        ('AB+', 'AB+ve'),
+        ('A-', 'A-ve'),
+        ('B-', 'B-ve'),
+        ('O-', 'O-ve'),
+        ('AB-', 'AB-ve')
+    ], string='Blood Group')
+    gender = fields.Selection([
+        ('m', 'Male'),
+        ('f', 'Female'),
+        ('o', 'Other')
+    ], 'Gender', required=True, default='m')
     nationality = fields.Many2one('res.country', 'Nationality')
-    emergency_contact = fields.Many2one(
-        'res.partner', 'Emergency Contact')
+    emergency_contact = fields.Many2one('res.partner', 'Emergency Contact')
     visa_info = fields.Char('Visa Info', size=64)
     id_number = fields.Char('ID Card Number', size=64)
-    already_partner = fields.Boolean('Already Partner')
-    partner_id = fields.Many2one(
-        'res.partner', 'Partner', required=True, ondelete="cascade")
+    partner_id = fields.Many2one('res.partner', 'Partner',
+                                 required=True, ondelete="cascade")
+    user_id = fields.Many2one('res.users', 'User', ondelete="cascade")
     gr_no = fields.Char("GR Number", size=20)
     category_id = fields.Many2one('op.category', 'Category')
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
-                                        'Course Details')
+                                        'Course Details',
+                                        track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
-    _sql_constraints = [
-        ('unique_gr_no',
-         'unique(gr_no)',
-         'Gr Number Must be unique!')
-    ]
+    _sql_constraints = [(
+        'unique_gr_no',
+        'unique(gr_no)',
+        'GR Number must be unique per student!'
+    )]
+
+    @api.onchange('first_name', 'middle_name', 'last_name')
+    def _onchange_name(self):
+        if not self.middle_name:
+            self.name = str(self.first_name) + " " + str(
+                self.last_name
+            )
+        else:
+            self.name = str(self.first_name) + " " + str(
+                self.middle_name) + " " + str(self.last_name)
 
     @api.multi
     @api.constrains('birth_date')
@@ -86,3 +108,26 @@ class OpStudent(models.Model):
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Students'),
+            'template': '/openeducat_core/static/xls/op_student.xls'
+        }]
+
+    @api.multi
+    def create_student_user(self):
+        user_group = self.env.ref("base.group_portal") or False
+        users_res = self.env['res.users']
+        for record in self:
+            if not record.user_id:
+                user_id = users_res.create({
+                    'name': record.name,
+                    'partner_id': record.partner_id.id,
+                    'login': record.email,
+                    'groups_id': user_group,
+                    'is_student': True,
+                    'tz': self._context.get('tz'),
+                })
+                record.user_id = user_id

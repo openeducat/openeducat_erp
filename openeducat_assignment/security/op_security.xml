@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.rule" id="student_assignment_rule">
+            <field name="name">Student Assignment rule</field>
+            <field name="model_id" ref="model_op_assignment" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]" />
+            <field name="domain_force"> ['|', ('allocation_ids.user_id','=',user.id), ('allocation_ids.user_id','in', user.child_ids.ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="student_assignment_sub_line_rule">
+            <field name="name">Student Assignment Submission Line Rule</field>
+            <field name="model_id" ref="model_op_assignment_sub_line" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]" />
+            <field name="domain_force">['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in', user.child_ids.ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="faculty_assignment_rule">
+            <field name="name">Faculty Assignment rule</field>
+            <field name="model_id" ref="model_op_assignment" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
+            <field name="domain_force"> [('faculty_id.user_id','=',user.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="faculty_assignment_sub_line_rule">
+            <field name="name">Faculty Assignment Submission Line Rule</field>
+            <field name="model_id" ref="model_op_assignment_sub_line" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
+            <field name="domain_force"> [('assignment_id.faculty_id.user_id','=',user.id)]</field>
+        </record>
+
+        <record model="ir.rule" id="backoffice_assignment_rule">
+            <field name="name">Backoffice Assignment rule</field>
+            <field name="model_id" ref="model_op_assignment" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_back_office'))]" />
+            <field name="domain_force"> [(1,'=',1)]</field>
+        </record>
+
+        <record model="ir.rule" id="backoffice_assignment_sub_line_rule">
+            <field name="name">Backoffice Assignment Submission Line Rule</field>
+            <field name="model_id" ref="model_op_assignment_sub_line" />
+            <field name="groups"
+                eval="[(4, ref('openeducat_core.group_op_back_office'))]" />
+            <field name="domain_force"> [(1,'=',1)]</field>
+        </record>
+    </data>
+</odoo>

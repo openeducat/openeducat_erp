@@ -65,8 +65,6 @@ class ReportTicket(models.AbstractModel):
                 'course': exam_session.course_id.name,
                 'student': student.name,
                 'image': student.image,
-                'student_middle': student.middle_name,
-                'student_last': student.last_name,
                 'roll_number': student_course.roll_number,
                 'line': self.get_subject(exam_session),
             }
@@ -74,7 +72,7 @@ class ReportTicket(models.AbstractModel):
         return final_lst
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

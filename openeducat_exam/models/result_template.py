@@ -42,9 +42,11 @@ class OpResultTemplate(models.Model):
         default=fields.Date.today(), track_visibility='onchange')
     grade_ids = fields.Many2many(
         'op.grade.configuration', string='Grade Configuration')
-    state = fields.Selection(
-        [('draft', 'Draft'), ('result_generated', 'Result Generated')],
-        'State', default='draft', track_visibility='onchange')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('result_generated', 'Result Generated')
+    ], string='State', default='draft', track_visibility='onchange')
+    active = fields.Boolean(default=True)
 
     @api.multi
     @api.constrains('exam_session_id')
@@ -80,7 +82,7 @@ class OpResultTemplate(models.Model):
                 'exam_session_id': record.exam_session_id.id,
                 'generated_date': fields.Date.today(),
                 'generated_by': self.env.uid,
-                'status': 'draft',
+                'state': 'draft',
                 'result_template_id': record.id
             })
             student_dict = {}

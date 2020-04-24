@@ -44,19 +44,23 @@
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Marksheet Line">
-                    <field name="marksheet_reg_id" />
-                    <field name="student_id" />
-                    <field name="total_marks" />
-                    <field name="percentage" />
-                    <newline />
+                    <field name="marksheet_reg_id"/>
+                    <field name="student_id"/>
+                    <field name="total_marks"/>
+                    <field name="percentage"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
+                    <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Marksheet Register" domain="[]"
-                            context="{'group_by':'marksheet_reg_id'}" />
-                        <filter string="Student" domain="[]" context="{'group_by':'student_id'}" />
+                        <filter string="Marksheet Register" name="group_by_marksheet_line_register"
+                                domain="[]" context="{'group_by':'marksheet_reg_id'}"/>
+                        <filter string="Student" name="group_by_marksheet_line_student"
+                                domain="[]" context="{'group_by':'student_id'}"/>
                     </group>
                 </search>
             </field>
         </record>
+
         <record model="ir.actions.act_window" id="act_open_op_marksheet_line_view">
             <field name="name">Marksheet Lines</field>
             <field name="type">ir.actions.act_window</field>
