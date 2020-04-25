@@ -18,22 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
+from odoo.tests import common
 
 
-from odoo.tests import common, TransactionCase
-
-
-class TestCoreCommon(common.SavepointCase):
+class TestAttendanceCommon(common.SavepointCase):
     def setUp(self):
-        super(TestCoreCommon, self).setUp()
-        self.op_batch = self.env['op.batch']
-        self.op_faculty = self.env['op.faculty']
-        self.op_course = self.env['op.course']
-        self.res_company = self.env['res.users']
-        self.op_student = self.env['op.student']
-        self.hr_emp = self.env['hr.employee']
-        self.subject_registration = self.env['op.subject.registration']
-        self.op_update = self.env['publisher_warranty.contract']
-        self.employ_wizard = self.env['wizard.op.faculty.employee']
-        self.faculty_user_wizard = self.env['wizard.op.faculty']
-        self.studnet_wizard = self.env['wizard.op.student']
+        super(TestAttendanceCommon, self).setUp()
+        self.op_attendance_register = self.env['op.attendance.register']
+        self.op_attendance_sheet = self.env['op.attendance.sheet']
+        self.op_attendance_line = self.env['op.attendance.line']
+        self.op_attendance_import = self.env['op.all.student']
+        self.op_attendance_wizard = self.env['student.attendance']

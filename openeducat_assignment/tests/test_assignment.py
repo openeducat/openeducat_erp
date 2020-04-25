@@ -50,7 +50,6 @@ class TestAssignment(TestAssignmentCommon):
             info('      Allocation Ids : %s' % record.allocation_ids.ids)
             info('      Assignments : %s' % record.assignment_sub_line)
             info('      Reviewer : %s' % record.reviewer.id)
-            record.onchange_course()
             record.act_publish()
             record.act_finish()
             record.act_cancel()

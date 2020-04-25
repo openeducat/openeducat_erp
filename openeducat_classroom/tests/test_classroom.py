@@ -57,8 +57,8 @@ class TestAsset(TestClassroomCommon):
             'categ_id': self.env.ref('product.product_category_1').id,
             'list_price': 100.0,
             'standard_price': 70.0,
-            'uom_id': self.env.ref('uom.product_uom_kgm').id,
-            'uom_po_id': self.env.ref('uom.product_uom_kgm').id,
+            'uom_id': self.env.ref('product.product_uom_kgm').id,
+            'uom_po_id': self.env.ref('product.product_uom_kgm').id,
             'description': 'FIFO Ice Cream',
         })
         assets = self.op_asset.create({

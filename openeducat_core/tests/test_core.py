@@ -105,19 +105,13 @@ class TestCore(TestCoreCommon):
             registration.action_submitted()
             registration.get_subjects()
 
-    def test_case_7_update(self):
+    def test_case_8_update(self):
         self.op_update._get_message()
         self.op_update.update_notification(cron_mode=True)
 
-    def test_case_8_employ_wizard(self):
-
-        vals = {'user_boolean': True}
-        employe = self.employ_wizard.create(vals)
-        employe.create_employee()
-
     def test_case_9_faculty_user_wizard(self):
 
-        faculty_id = self.env.ref('openeducat_core.op_faculty_1')
+        faculty_id = self.env.ref('openeducat_core.op_faculty_2')
         vals = {'faculty_ids': [(6, 0, [faculty_id.id])]}
         faculty = self.faculty_user_wizard.create(vals)
         faculty._get_faculties()
