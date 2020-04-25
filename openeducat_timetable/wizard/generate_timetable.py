@@ -23,6 +23,7 @@ import calendar
 import datetime
 import pytz
 import time
+import dateutil.parser as parser
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
@@ -38,25 +39,25 @@ class GenerateSession(models.TransientModel):
     time_table_lines = fields.One2many(
         'gen.time.table.line', 'gen_time_table', 'Time Table Lines')
     time_table_lines_1 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines1',
         domain=[('day', '=', '0')])
     time_table_lines_2 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines2',
         domain=[('day', '=', '1')])
     time_table_lines_3 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines3',
         domain=[('day', '=', '2')])
     time_table_lines_4 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines4',
         domain=[('day', '=', '3')])
     time_table_lines_5 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines5',
         domain=[('day', '=', '4')])
     time_table_lines_6 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines6',
         domain=[('day', '=', '5')])
     time_table_lines_7 = fields.One2many(
-        'gen.time.table.line', 'gen_time_table', 'Time Table Lines',
+        'gen.time.table.line', 'gen_time_table', 'Time Table Lines7',
         domain=[('day', '=', '6')])
     start_date = fields.Date(
         'Start Date', required=True, default=time.strftime('%Y-%m-01'))
@@ -81,9 +82,11 @@ class GenerateSession(models.TransientModel):
         session_obj = self.env['op.session']
         for session in self:
             start_date = session.start_date
+            startp_date = parser.parse(start_date).date()
             end_date = session.end_date
-            for n in range((end_date - start_date).days + 1):
-                curr_date = start_date + datetime.timedelta(n)
+            endp_date = parser.parse(end_date).date()
+            for n in range((endp_date - startp_date).days + 1):
+                curr_date = startp_date + datetime.timedelta(n)
                 for line in session.time_table_lines:
                     if int(line.day) == curr_date.weekday():
                         hour = line.timing_id.hour

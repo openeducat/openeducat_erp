@@ -18,22 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
+from odoo.tests import common
 
 
-from odoo import models, api
-
-
-class AccountInvoice(models.Model):
-
-    _inherit = "account.invoice"
-
-    @api.multi
-    def action_invoice_paid(self):
-        paid_invoice = super(AccountInvoice, self).action_invoice_paid()
-        if self:
-            for record in self:
-                movement = self.env['op.media.movement'].sudo().search(
-                    [('invoice_id', '=', record.id)])
-                if movement and movement.invoice_id.state == 'paid':
-                    movement.state = 'return_done'
-        return paid_invoice
+class TestFeesCommon(common.SavepointCase):
+    def setUp(self):
+        super(TestFeesCommon, self).setUp()
+        self.op_student_fees = self.env['op.student.fees.details']
+        self.op_student = self.env['op.student']
+        self.op_fees_wizard = self.env['fees.detail.report.wizard']

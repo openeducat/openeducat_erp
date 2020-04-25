@@ -19,21 +19,20 @@
 #
 ###############################################################################
 
+from .test_facility_common import TestFacilityCommon
 
-from odoo import models, api
 
+class TestFacilityLine(TestFacilityCommon):
 
-class AccountInvoice(models.Model):
+    def setUp(self):
+        super(TestFacilityLine, self).setUp()
 
-    _inherit = "account.invoice"
+    def test_case_facility_line(self):
 
-    @api.multi
-    def action_invoice_paid(self):
-        paid_invoice = super(AccountInvoice, self).action_invoice_paid()
-        if self:
-            for record in self:
-                movement = self.env['op.media.movement'].sudo().search(
-                    [('invoice_id', '=', record.id)])
-                if movement and movement.invoice_id.state == 'paid':
-                    movement.state = 'return_done'
-        return paid_invoice
+        types = self.op_facility_line.create({
+            'facility_id': self.env.ref
+            ('openeducat_facility.op_facility_1').id,
+            'quantity': '1.0',
+        })
+        for facility in types:
+            facility.check_quantity()

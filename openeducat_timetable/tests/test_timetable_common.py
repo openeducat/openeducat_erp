@@ -18,22 +18,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
+from odoo.tests import common
 
 
-from odoo import models, api
-
-
-class AccountInvoice(models.Model):
-
-    _inherit = "account.invoice"
-
-    @api.multi
-    def action_invoice_paid(self):
-        paid_invoice = super(AccountInvoice, self).action_invoice_paid()
-        if self:
-            for record in self:
-                movement = self.env['op.media.movement'].sudo().search(
-                    [('invoice_id', '=', record.id)])
-                if movement and movement.invoice_id.state == 'paid':
-                    movement.state = 'return_done'
-        return paid_invoice
+class TestTimetableCommon(common.SavepointCase):
+    def setUp(self):
+        super(TestTimetableCommon, self).setUp()
+        self.op_faculty = self.env['op.faculty']
+        self.op_session = self.env['op.session']
+        self.op_timing = self.env['op.timing']
+        self.generate_timetable = self.env['generate.time.table']
+        self.wizard_session = self.env['gen.time.table.line']
+        self.timetable_report = self.env['time.table.report']
