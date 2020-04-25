@@ -147,7 +147,7 @@ class OpAdmission(models.Model):
             self.last_name = sd.last_name
             self.birth_date = sd.birth_date
             self.gender = sd.gender
-            self.image = sd.image_1920 or False
+            self.image = sd.image or False
             self.street = sd.street or False
             self.street2 = sd.street2 or False
             self.phone = sd.phone or False
@@ -224,7 +224,7 @@ class OpAdmission(models.Model):
             student_user = self.env['res.users'].create({
                 'name': student.name,
                 'login': student.email,
-                'image_1920': self.image or False,
+                'image': self.image or False,
                 'is_student': True,
                 'company_id': self.env.ref('base.main_company').id,
                 'groups_id': [
@@ -241,7 +241,7 @@ class OpAdmission(models.Model):
                 'country_id':
                     student.country_id and student.country_id.id or False,
                 'state_id': student.state_id and student.state_id.id or False,
-                'image_1920': student.image,
+                'image': student.image,
                 'zip': student.zip,
             }
             student_user.partner_id.write(details)

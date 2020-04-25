@@ -30,7 +30,6 @@ class TestAdmission(TestAdmissionCommon):
 
     def test_case_1_admissions(self):
         admissions = self.op_admission.search([])
-        self.op_admission._onchange_name()
 
         vals = {
             'name': 'AHIR',
@@ -107,14 +106,14 @@ class TestAdmissionregister(TestAdmissionCommon):
         for registers in register:
             logging.info('Admission registar Name : %s :' % (registers.name))
 
-        register.confirm_register()
-        register.set_to_draft()
-        register.cancel_register()
-        register.start_application()
-        register.start_admission()
-        register.close_register()
-        register.check_dates()
-        register.check_no_of_admission()
+            registers.confirm_register()
+            registers.set_to_draft()
+            registers.cancel_register()
+            registers.start_application()
+            registers.start_admission()
+            registers.close_register()
+            registers.check_dates()
+            registers.check_no_of_admission()
 
 
 class TestAdmissionAnalysisWizard(TestAdmissionCommon):
