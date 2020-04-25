@@ -18,22 +18,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
+from odoo.tests import common
 
 
-from odoo import models, api
-
-
-class AccountInvoice(models.Model):
-
-    _inherit = "account.invoice"
-
-    @api.multi
-    def action_invoice_paid(self):
-        paid_invoice = super(AccountInvoice, self).action_invoice_paid()
-        if self:
-            for record in self:
-                movement = self.env['op.media.movement'].sudo().search(
-                    [('invoice_id', '=', record.id)])
-                if movement and movement.invoice_id.state == 'paid':
-                    movement.state = 'return_done'
-        return paid_invoice
+class TestLibraryCommon(common.SavepointCase):
+    def setUp(self):
+        super(TestLibraryCommon, self).setUp()
+        self.op_library_card_type = self.env['op.library.card.type']
+        self.op_library_card = self.env['op.library.card']
+        self.op_media = self.env['op.media']
+        self.op_media_unit = self.env['op.media.unit']
+        self.op_media_movement = self.env['op.media.movement']
+        self.op_media_purchase = self.env['op.media.purchase']
+        self.op_media_queue = self.env['op.media.queue']
+        self.wizard_issue = self.env['issue.media']
+        self.reserve_media = self.env['reserve.media']
+        self.return_media = self.env['return.media']
