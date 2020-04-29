@@ -39,6 +39,7 @@
         'views/snippets/newsfeed.xml',
         'views/snippets/footer.xml',
         'views/image_library.xml'
+
     ],
     'demo': [
         'data/homepage_demo.xml',
