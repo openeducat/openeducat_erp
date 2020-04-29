@@ -50,10 +50,13 @@ class OpResultLine(models.Model):
             if record.evaluation_type == 'grade':
                 grades = record.marksheet_line_id.marksheet_reg_id. \
                     result_template_id.grade_ids
-                for grade in grades:
-                    if grade.min_per <= record.marks and \
-                            grade.max_per >= record.marks:
-                        record.grade = grade.result
+                if grades:
+                    for grade in grades:
+                        if grade.min_per <= record.marks and \
+                                grade.max_per >= record.marks:
+                            record.grade = grade.result
+                else:
+                    record.grade = None
             else:
                 record.grade = None
 
