@@ -27,8 +27,6 @@ class OpSession(models.Model):
 
     attendance_sheet = fields.One2many('op.attendance.sheet',
                                        'session_id', string='Session')
-    attendance_register = fields.One2many('op.attendance.sheet',
-                                          'register_id', string='Register')
 
     def get_attendance(self, context=None):
 
