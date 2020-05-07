@@ -83,15 +83,16 @@
                     </header>
                     <sheet>
                         <div class="row">
-                        <div name="smart_button" class="oe_button_box col-md-12">
-                            <button name="toggle_active" type="object"
-                                    class="oe_stat_button" icon="fa-archive">
-                                <field name="active" widget="boolean_button"
-                                       options='{"terminology": "archive"}'/>
-                            </button>
-                        </div></div>
+                            <div name="smart_button" class="oe_button_box col-md-12">
+                                <button name="toggle_active" type="object"
+                                        class="oe_stat_button" icon="fa-archive">
+                                    <field name="active" widget="boolean_button"
+                                           options='{"terminology": "archive"}'/>
+                                </button>
+                            </div>
+                        </div>
                         <field name="image" widget="image" class="oe_left oe_avatar"/>
-                        <div class="oe_title">
+                        <div class="oe_title w-auto">
                             <h3>
                                 <field name="title" placeholder="Title"/>
                             </h3>
@@ -168,16 +169,6 @@
                                             <field name="roll_number"/>
                                             <field name="subject_ids" widget="many2many_tags"/>
                                         </tree>
-                                        <form>
-                                            <group cols="2" colspan="2">
-                                                <field name="course_id"/>
-                                                <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
-                                                <field name="roll_number"/>
-                                            </group>
-                                            <group col="4" string="Subjects">
-                                                <field name="subject_ids" colspan="4" nolabel="1"/>
-                                            </group>
-                                        </form>
                                     </field>
                                 </group>
                             </page>
