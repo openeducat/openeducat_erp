@@ -26,6 +26,7 @@ from odoo.exceptions import ValidationError
 class OpStudentCourse(models.Model):
     _name = "op.student.course"
     _description = "Student Course Details"
+    _rec_name = 'student_id'
 
     student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', required=True)
