@@ -26,6 +26,7 @@ from odoo.exceptions import ValidationError
 class OpStudentCourse(models.Model):
     _name = "op.student.course"
     _description = "Student Course Details"
+    _rec_name = 'student_id'
 
     student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
     course_id = fields.Many2one('op.course', 'Course', required=True)
@@ -97,9 +98,9 @@ class OpStudent(models.Model):
             self.name = str(self.first_name) + \
                         " " + str(self.last_name)
         else:
-            self.name = str(self.first_name) +\
-                    " " + str(self.middle_name) +\
-                    " " + str(self.last_name)
+            self.name = str(self.first_name) + \
+                        " " + str(self.middle_name) + \
+                        " " + str(self.last_name)
 
     @api.multi
     @api.constrains('birth_date')

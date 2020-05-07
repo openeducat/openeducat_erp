@@ -37,9 +37,10 @@ class OpCourse(models.Model):
     subject_ids = fields.Many2many('op.subject', string='Subject(s)')
     max_unit_load = fields.Float("Maximum Unit Load")
     min_unit_load = fields.Float("Minimum Unit Load")
-    department_id = fields.Many2one('op.department', 'Department',
-                                    default=lambda self:
-                                    self.env.user.dept_id.id)
+    department_id = fields.Many2one(
+        'op.department', 'Department',
+        default=lambda self:
+        self.env.user.dept_id and self.env.user.dept_id.id or False)
     active = fields.Boolean(default=True)
 
     _sql_constraints = [

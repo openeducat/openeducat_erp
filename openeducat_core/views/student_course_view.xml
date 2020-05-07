@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_student_course_tree" model="ir.ui.view">
+            <field name="name">op.student.course.tree</field>
+            <field name="model">op.student.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Student Course Detail">
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="roll_number"/>
+                    <field name="subject_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_student_course_form" model="ir.ui.view">
+            <field name="name">op.student.course.form</field>
+            <field name="model">op.student.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Student Course Detail">
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="student_id"/>
+                            <field name="course_id"/>
+                            <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                            <field name="roll_number"/>
+                        </group>
+                        <group col="4" string="Subjects">
+                            <field name="subject_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_student_course_view">
+            <field name="name">Student Course Detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.student.course</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
