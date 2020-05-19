@@ -48,7 +48,7 @@ class OpMarksheetLine(models.Model):
     status = fields.Selection([
         ('pass', 'Pass'),
         ('fail', 'Fail')
-    ], 'Status', compute='_compute_status')
+    ], 'Status', compute='_compute_status', store=True)
     active = fields.Boolean(default=True)
 
     @api.constrains('total_marks', 'percentage')
