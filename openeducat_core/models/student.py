@@ -46,6 +46,13 @@ class OpStudentCourse(models.Model):
          'Student must be unique per Batch!'),
     ]
 
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Student Course Details'),
+            'template': '/openeducat_core/static/xls/op_student_course.xls'
+        }]
+
 
 class OpStudent(models.Model):
     _name = "op.student"

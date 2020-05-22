@@ -69,12 +69,27 @@
             </field>
         </record>
 
+        <record id="view_op_batch_pivot" model="ir.ui.view">
+            <field name="name">op.batch.pivot</field>
+            <field name="model">op.batch</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Batch">
+                    <field name="name" type="row"/>
+                    <field name="course_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </pivot>
+            </field>
+        </record>
+
+
         <record model="ir.actions.act_window" id="act_open_op_batch_view">
             <field name="name">Batches</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.batch</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot</field>
             <field name="search_view_id" ref="view_op_batch_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
