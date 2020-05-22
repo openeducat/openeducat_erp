@@ -415,3 +415,10 @@ class OpAdmission(models.Model):
         self.partner_id = partner_id
         self.state = 'payment_process'
         return value
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Admission'),
+            'template': '/openeducat_admission/static/xls/op_admission.xls'
+        }]

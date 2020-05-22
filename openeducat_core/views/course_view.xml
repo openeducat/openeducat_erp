@@ -73,12 +73,26 @@
             </field>
         </record>
 
+        <record id="view_op_course_pivot" model="ir.ui.view">
+            <field name="name">op.course.pivot</field>
+            <field name="model">op.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Course">
+                    <field name="name" type="row"/>
+                    <field name="parent_id"/>
+                    <field name="max_unit_load"/>
+                    <field name="min_unit_load"/>
+                </pivot>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="act_open_op_course_view">
             <field name="name">Courses</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.course</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot</field>
             <field name="search_view_id" ref="view_op_course_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
