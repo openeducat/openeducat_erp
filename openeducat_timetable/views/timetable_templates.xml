@@ -33,12 +33,13 @@
                     </li>
                     <li>
                         Start Time:
-                            <span> ${format_datetime(object.start_datetime, tz=user.tz, dt_format='%B %d, %Y %I:%M %p')} </span>
+                            <span> ${format_datetime(object.start_datetime, tz=user.tz)} </span>
                     </li>
                     <li>
                         End Time:
-                            <span> ${format_datetime(object.end_datetime, tz=user.tz, dt_format='%B %d, %Y %I:%M %p')} </span>
+                            <span> ${format_datetime(object.end_datetime, tz=user.tz)} </span>
                     </li>
+
                     <li>
                         Status:
                             % if object.state == 'confirm':
