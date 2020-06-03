@@ -70,6 +70,7 @@ class OpMediaMovement(models.Model):
         'res.users', string='Users')
     invoice_id = fields.Many2one('account.invoice', 'Invoice', readonly=True)
     active = fields.Boolean(default=True)
+
     @api.multi
     def get_diff_day(self):
         for media_mov_id in self:
@@ -150,7 +151,7 @@ class OpMediaMovement(models.Model):
             x = record.library_card_id.library_card_type_id
             if record.library_card_id and x:
                 penalty_days = actual_diff > standard_diff and actual_diff - \
-                               standard_diff or penalty_days
+                    standard_diff or penalty_days
                 penalty_amt = penalty_days * x.penalty_amt_per_day
             record.write({'penalty': penalty_amt})
 

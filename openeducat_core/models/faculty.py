@@ -83,11 +83,11 @@ class OpFaculty(models.Model):
     def _onchange_name(self):
         if not self.middle_name:
             self.name = str(self.first_name) + \
-                        " " + str(self.last_name)
+                " " + str(self.last_name)
         else:
             self.name = str(self.first_name) + \
-                        " " + str(self.middle_name) + \
-                        " " + str(self.last_name)
+                " " + str(self.middle_name) + \
+                " " + str(self.last_name)
 
     @api.multi
     def create_employee(self):
