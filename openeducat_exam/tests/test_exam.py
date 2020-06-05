@@ -54,7 +54,7 @@ class TestExamAttendees(TestExamCommon):
     def test_attendees(self):
         attendees = self.op_exam_attendees.search([])
         for data in attendees:
-            attendees._sql_constraintss
+            attendees._sql_constraints
 
             for x in attendees:
                 x._check_marks()
