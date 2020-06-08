@@ -20,7 +20,7 @@
 ###############################################################################
 
 
-from odoo.tests import common, TransactionCase
+from odoo.tests import common
 
 
 class TestCoreCommon(common.SavepointCase):
