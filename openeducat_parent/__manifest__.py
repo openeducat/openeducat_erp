@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 ###############################################################################
 #
 #    Tech-Receptives Solutions Pvt. Ltd.
@@ -35,11 +35,13 @@
         'security/ir.model.access.csv',
         'data/parent_user_data.xml',
         'views/parent_view.xml',
+        'views/parent_relationship_view.xml',
         'menus/op_menu.xml',
     ],
     'demo': [
         'demo/res_partner_demo.xml',
         'demo/res_users_demo.xml',
+        'demo/parent_relationship_demo.xml',
         'demo/parent_demo.xml',
     ],
     'images': [
