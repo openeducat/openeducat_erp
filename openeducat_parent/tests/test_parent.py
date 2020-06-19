@@ -32,6 +32,7 @@ class TestParent(TestParentCommon):
         vals = {
             'name': self.env.ref('openeducat_core.op_res_partner_31').id,
             'user_id': self.env.ref('openeducat_parent.user_parent').id,
+            'relationship_id': self.env.ref('openeducat_parent.op_parent_relationship_1').id,
             'mobile': 8334845,
         }
         new_parent = self.op_parent.create(vals)
