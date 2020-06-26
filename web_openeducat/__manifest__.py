@@ -49,4 +49,5 @@
     'depends': [
         'website',
     ],
+     'application': True,
 }

@@ -1,5 +1,8 @@
+/*----------------Navbar-----------------------------*/
+.navbar-expand-md .navbar-nav{
+text-align: left !important;
+}
 /*-----------------Mid-Header-----------------------*/
-
 #header{
 .footer-social a {
     display: inline-block;
@@ -62,18 +65,55 @@
 font-size:18px;
 }
 .btn_style{
-    border-radius: 50px;
-    padding: 21px 40px 21px;
-    font-size: 16px;
+    padding: 12px 40px 12px;
     display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: inherit;
+    overflow: hidden;
 }
-.background_style{
-   min-height:97vh  !important;
+.btn_contact{
+    background-color: theme-color('primary');
+    border: 2px solid theme-color('primary');
+    color: theme-color('secondary') !important;
 }
+.btn_about{
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
+.btn_contact:hover,.btn_contact:focus{
+    background: theme-color('primary');
+    border: 2px solid theme-color('primary');
+    color: #ffffff !important;
+}
+.btn_about:hover,.btn_about:focus{
+    background: #ffffff none repeat scroll 0 0 !important;
+    border: 2px solid #ffffff !important;
+    color: theme-color('secondary') !important;
+}
+// .background_style{
+//    min-height:97vh  !important;
+// }
 .paragraph{
     top: -105px;
     z-index: 9;
     position: relative;
+}
+.paragraph_block_1{
+    background-color: #307AD5;
+}
+.paragraph_block_2{
+    background-color: #E959AD;
+}
+.paragraph_block_3{
+    background-color: #52C2DA;
+}
+.paragraph_block_4{
+    background-color: #67C55E;
 }
 .icon_style{
     width:34px;
@@ -99,7 +139,7 @@ h1 {
 }
 @media only screen and (max-width: 767px){
 .background_style{
-   min-height:75vh  !important;
+   min-height:82vh  !important;
 }
 
 }
@@ -116,20 +156,41 @@ h1 {
 .text_format{
     font-size:48px;
 }
-.default-btn {
-    display: inline-block;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 18px 35px 16px;
-    border-radius: 50px;
-
+.border-left{
+   border-left: 2px solid theme-color('primary') !important;
 }
+
+.default-btn {
+     padding: 12px 40px 12px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: inherit;
+    overflow: hidden;
+    background-color: transparent;
+    color: theme-color('secondary');
+    border: 2px solid theme-color('secondary');
+}
+.default-btn:hover,.default-btn:focus{
+    background-color: theme-color('secondary');
+    color: #ffffff !important;
+    border: 2px solid theme-color('secondary');
+}
+
 .video-btn {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 
+}
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+.video-btn {
+    top:30%;
+}
 }
 }
 
@@ -146,13 +207,23 @@ background-position:center;
 .text_format{
     font-size:48px;
 }
+.border-left{
+   border-left: 2px solid theme-color('primary') !important;
+}
 .default-btn {
+ padding: 12px 40px 12px;
     display: inline-block;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 18px 35px 16px;
-    border-radius: 50px;
-    margin-top:110px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: inherit;
+    overflow: hidden;
+    background-color: theme-color('secondary');
+    color: #ffffff;
+    border: 2px solid theme-color('secondary');
+//     margin-top:110px;
 }
 .heading {
     position: absolute;
@@ -196,19 +267,19 @@ transform:scale(1.2);
     display: inline-block;
     width: 25px;
     height: 25px;
-    background-color: #dddddd;
+    background-color: theme-color('secondary');
     line-height: 25px;
     font-size: 12px;
     text-align: center;
     border-radius: 100%;
 }
 .icon_btn{
-    border-radius: 0 50px 51px 0;
+    border-radius: 0 50px 50px 0;
     font-size: 14px;
-    padding:19px 40px;
-    background-color:greeen;
+    padding:10px 40px;
+    color: theme-color('secondary');
 }
-
+@media (min-width: 1024px) {
 .overlay{
     visibility:hidden;
     -webkit-transition: -webkit-transform 0.35s;
@@ -225,6 +296,7 @@ transform:scale(1.2);
 	    transform: translate3d(0,0,0);
     }
 }
+}
 .blog-content a{
  text-decoration:none;
  color:black;
@@ -240,7 +312,9 @@ transform:scale(1.2);
 .text_format{
     font-size:48px;
 }
-
+.border-left{
+   border-left: 2px solid theme-color('primary') !important;
+}
 .single-count:before {
     right: 7px;
     position: absolute;
@@ -254,7 +328,7 @@ transform:scale(1.2);
 	background-image:url("/web_openeducat/static/src/img/testi.png");
 }
 .default-overlay:before {
-    background-color: theme-color('primary');
+    background-color: theme-color('secondary');
     opacity: 0.95;
     position: absolute;
     left: 0;
@@ -297,6 +371,9 @@ and (max-device-width : 1024px)
 .text_format{
     font-size:48px;
 }
+.border-left{
+   border-left: 2px solid theme-color('primary') !important;
+}
 .single-teacher {
     position: relative;
 }
@@ -330,7 +407,7 @@ and (max-device-width : 1024px)
     margin: 0 0 6px;
 }
 .single-teacher .teacher-content-visible h4 {
-    color: theme-color('primary');
+    color: theme-color('secondary');
     font-size: 18px;
     font-weight: bold;
     margin: 0 0 6px;
@@ -478,7 +555,7 @@ ul {
     padding-left: 15px;
 }
 }
-@media only screen and (max-width: 991px) and (min-width: 768px){
+@media only screen and (max-width: 1024px) and (min-width: 768px){
 .custom-col-5 {
     padding-right: 15px;
     padding-left: 15px;
@@ -507,7 +584,9 @@ ul {
 .text_format{
     font-size:48px;
 }
-
+.border-left{
+   border-left: 2px solid theme-color('primary') !important;
+}
 .hovereffect {
 overflow:hidden;
 position:relative;
@@ -563,11 +642,10 @@ transform:scale(1.2);
 .text_format{
     font-size:48px;
 }
-.event-content a{
-    text-decoration:none;
-    color:#444;
+.border-left{
+   border-left: 2px solid theme-color('primary') !important;
 }
-.event-content a:hover{
+.event-content a{
     text-decoration:none;
     color:theme-color('secondary');
 }
@@ -612,7 +690,7 @@ transform:scale(1.2);
     height: 25px;
     border-radius: 100%;
     color: #fff;
-    background-color: theme-color('primary');
+    background-color: theme-color('secondary');
     font-size: 12px;
     text-align: center;
     line-height: 25px;
@@ -630,12 +708,18 @@ transform:scale(1.2);
     justify-content: space-between;
 }
 @media only screen and (max-width: 768px){
-
 .single-event .event-content .event-meta-wrap {
     display: block;
     }
 }
-
+@media only screen
+and (min-device-width: 1024px)
+and (max-device-width: 1366px)
+and (-webkit-min-device-pixel-ratio: 2){
+.single-event .event-content .event-meta-wrap {
+    display: block;
+    }
+}
 }
 
 /*------------------Contact----------------*/
@@ -654,7 +738,7 @@ transform:scale(1.2);
     opacity: .89;
 }
 .border-style{
- border-bottom:3px solid theme-color('secondary');
+ border-bottom:3px solid theme-color('primary');
  width:45px;
 }
 .footer-link a{
