@@ -95,11 +95,10 @@ class OpAdmission(models.Model):
          ('cancel', 'Cancelled'), ('done', 'Done')],
         'State', default='draft', track_visibility='onchange')
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
-    prev_institute_id = fields.Many2one(
-        'res.partner', 'Previous Institute',
-        states={'done': [('readonly', True)]})
-    prev_course_id = fields.Many2one(
-        'op.course', 'Previous Course', states={'done': [('readonly', True)]})
+    prev_institute_id = fields.Char('Previous Institute',
+                                    states={'done': [('readonly', True)]})
+    prev_course_id = fields.Char('Previous Course',
+                                 states={'done': [('readonly', True)]})
     prev_result = fields.Char(
         'Previous Result', size=256, states={'done': [('readonly', True)]})
     family_business = fields.Char(
