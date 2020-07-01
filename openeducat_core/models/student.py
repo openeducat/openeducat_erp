@@ -57,7 +57,7 @@ class OpStudentCourse(models.Model):
 class OpStudent(models.Model):
     _name = "op.student"
     _description = "Student"
-    _inherit = "mail.thread"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _inherits = {"res.partner": "partner_id"}
 
     first_name = fields.Char('First Name', size=128, translate=True)
