@@ -111,3 +111,5 @@ class ResConfigSettings(models.TransientModel):
         string="Lesson Enterprise")
     module_openeducat_skill_enterprise = fields.Boolean(
         string="Skill Enterprise")
+    module_openeducat_lms_website = fields.Boolean(
+        string="LMS Website")
