@@ -9,7 +9,9 @@
                 <tree string="Attendance Line">
                     <field name="attendance_id"/>
                     <field name="student_id"/>
+                    <field name="attendance_type_id"/>
                     <field name="present"/>
+                    <field name="excused"/>
                     <field name="remark"/>
                     <field name="attendance_date"/>
                     <field name="course_id"/>
@@ -32,7 +34,9 @@
                             <field name="attendance_id" widget="selection"/>
                             <field name="student_id"
                                    domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"/>
+                            <field name="attendance_type_id" options='{"no_open": True}'/>
                             <field name="present"/>
+                            <field name="excused"/>
                             <field name="remark"/>
                             <field name="course_id" widget="selection"/>
                             <field name="batch_id" widget="selection"/>
