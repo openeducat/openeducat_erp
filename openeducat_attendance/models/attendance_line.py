@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class OpAttendanceLine(models.Model):
@@ -36,6 +36,8 @@ class OpAttendanceLine(models.Model):
         'op.student', 'Student', required=True, track_visibility="onchange")
     present = fields.Boolean(
         'Present ?', default=True, track_visibility="onchange")
+    excused = fields.Boolean(
+        'Excused ?', track_visibility="onchange")
     course_id = fields.Many2one(
         'op.course', 'Course',
         related='attendance_id.register_id.course_id', store=True,
@@ -51,9 +53,18 @@ class OpAttendanceLine(models.Model):
     register_id = fields.Many2one(
         related='attendance_id.register_id', store=True)
     active = fields.Boolean(default=True)
+    attendance_type_id = fields.Many2one(
+        'op.attendance.type', 'Attendance Type',
+        required=False, track_visibility='onchange')
 
     _sql_constraints = [
         ('unique_student',
          'unique(student_id,attendance_id,attendance_date)',
          'Student must be unique per Attendance.'),
     ]
+
+    @api.onchange('attendance_type_id')
+    def onchange_attendance_type(self):
+        if self.attendance_type_id:
+            self.present = self.attendance_type_id.present
+            self.excused = self.attendance_type_id.excused

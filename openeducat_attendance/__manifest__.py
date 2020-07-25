@@ -39,6 +39,7 @@
         'views/attendance_register_view.xml',
         'views/attendance_sheet_view.xml',
         'views/attendance_line_view.xml',
+        'views/attendance_type_view.xml',
         'views/attendance_session_view.xml',
         'report/student_attendance_report.xml',
         'report/report_menu.xml',
