@@ -29,7 +29,7 @@ class OpStudentFeesDetails(models.Model):
 
     fees_line_id = fields.Many2one('op.fees.terms.line', 'Fees Line')
     invoice_id = fields.Many2one('account.invoice', 'Invoice ID')
-    amount = fields.Float('Fees Amount')
+    amount = fields.Float('Fees Amount', currency_field='currency_id')
     date = fields.Date('Submit Date')
     product_id = fields.Many2one('product.product', 'Product')
     student_id = fields.Many2one('op.student', 'Student')
@@ -44,6 +44,18 @@ class OpStudentFeesDetails(models.Model):
         ('proforma2', 'Pro-forma'), ('open', 'Open'),
         ('paid', 'Paid'), ('cancel', 'Cancelled')], 'Invoice',
         related="invoice_id.state", readonly=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
+
+    @api.depends('company_id')
+    def _compute_currency_id(self):
+        main_company = self.env['res.company']._get_main_company()
+        for template in self:
+            template.currency_id = template.company_id.sudo().currency_id.id or main_company.currency_id.id
+
+    currency_id = fields.Many2one('res.currency', string='Currency', compute='_compute_currency_id',
+                                  default=lambda self: self.env.user.company_id.currency_id.id)
 
     @api.multi
     def get_invoice(self):
