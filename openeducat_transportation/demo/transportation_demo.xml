@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="op_transprotation_1" model="op.transportation">
+            <field name="name">BOA 7 AM</field>
+            <field name="cost">50</field>
+            <field name="vehicle_id" ref="op_vehicle_1" />
+            <field name="start_time">7.0</field>
+            <field name="end_time">12.0</field>
+            <field name="from_stop_id" ref="op_stop_1" />
+            <field name="to_stop_id" ref="op_stop_7" />
+            <field name="stop_ids"
+                eval="[(4, ref('op_stop_1')), (4, ref('op_stop_2')), (4, ref('op_stop_3')), (4, ref('op_stop_4')), (4, ref('op_stop_5')), (4, ref('op_stop_6')), (4, ref('op_stop_7'))]" />
+            <field name="student_ids"
+                eval="[(4, ref('openeducat_core.op_student_1')), (4, ref('openeducat_core.op_student_2'))]" />
+        </record>
+
+        <record id="op_transprotation_2" model="op.transportation">
+            <field name="name">LTRP 7 AM</field>
+            <field name="cost">50</field>
+            <field name="vehicle_id" ref="op_vehicle_2" />
+            <field name="start_time">7.0</field>
+            <field name="end_time">12.0</field>
+            <field name="from_stop_id" ref="op_stop_1" />
+            <field name="to_stop_id" ref="op_stop_5" />
+            <field name="stop_ids"
+                eval="[(4, ref('op_stop_1')), (4, ref('op_stop_2')), (4, ref('op_stop_3')), (4, ref('op_stop_4')), (4, ref('op_stop_5'))]" />
+            <field name="student_ids"
+                eval="[(4, ref('openeducat_core.op_student_3')), (4, ref('openeducat_core.op_student_4'))]" />
+        </record>
+
+        <record id="op_transprotation_3" model="op.transportation">
+            <field name="name">Other 7 AM</field>
+            <field name="cost">50</field>
+            <field name="vehicle_id" ref="op_vehicle_3" />
+            <field name="start_time">7.0</field>
+            <field name="end_time">12.0</field>
+            <field name="from_stop_id" ref="op_stop_1" />
+            <field name="to_stop_id" ref="op_stop_6" />
+            <field name="stop_ids"
+                eval="[(4, ref('op_stop_1')), (4, ref('op_stop_2')), (4, ref('op_stop_3')), (4, ref('op_stop_4')), (4, ref('op_stop_5')), (4, ref('op_stop_6'))]" />
+            <field name="student_ids"
+                eval="[(4, ref('openeducat_core.op_student_5')), (4, ref('openeducat_core.op_student_6'))]" />
+        </record>
+
+    </data>
+</odoo>
