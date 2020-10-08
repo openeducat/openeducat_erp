@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <report id="action_report_student_attendance"
-                string="Generate Attendance"
-                model="op.student"
-                report_type="qweb-pdf"
-                file="openeducat_attendance.student_attendance_report"
-                name="openeducat_attendance.student_attendance_report"
-                menu="False"/>
+        <record id="action_report_student_attendance" model="ir.actions.report">
+            <field name="name">Generate Attendance</field>
+            <field name="model">op.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_attendance.student_attendance_report</field>
+            <field name="report_file">openeducat_attendance.student_attendance_report</field>
+        </record>
     </data>
 </odoo>

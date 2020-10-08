@@ -20,9 +20,13 @@
             </field>
         </record>
 
-        <act_window id="student_attendance_act" name="Student Attendance"
-                    res_model="student.attendance" binding_model="op.student"
-                    view_mode="form" target="new" binding_views="form"
-                    groups="openeducat_core.group_op_back_office_admin"/>
+        <record model="ir.actions.act_window" id="student_attendance_act">
+            <field name="name">Student Attendance</field>
+            <field name="res_model">session.confirmation</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="student_attendance_form"/>
+            <field name="target">new</field>
+        </record>
     </data>
 </odoo>
