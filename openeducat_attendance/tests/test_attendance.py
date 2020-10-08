@@ -36,6 +36,7 @@ class TestAttendanceRegister(TestAttendanceCommon):
             info('      Course : %s' % record.course_id.name)
             info('      Code : %s' % record.code)
 
+
 class TestAttendanceSheet(TestAttendanceCommon):
 
     def setUp(self):

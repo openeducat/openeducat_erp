@@ -43,7 +43,7 @@ class OpStudentFeesDetails(models.Model):
         ('draft', 'Draft'), ('proforma', 'Pro-forma'),
         ('proforma2', 'Pro-forma'), ('open', 'Open'),
         ('paid', 'Paid'), ('cancel', 'Cancelled')], 'Invoice',
-        related="invoice_id.state", readonly=True)
+         readonly=True)
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
@@ -52,19 +52,20 @@ class OpStudentFeesDetails(models.Model):
     def _compute_currency_id(self):
         main_company = self.env['res.company']._get_main_company()
         for template in self:
-            template.currency_id = template.company_id.sudo().currency_id.id or main_company.currency_id.id
+            template.currency_id = \
+                template.company_id.sudo().currency_id.id or main_company.currency_id.id
 
-    currency_id = fields.Many2one('res.currency', string='Currency', compute='_compute_currency_id',
-                                  default=lambda self: self.env.user.company_id.currency_id.id)
+    currency_id = fields.Many2one(
+        'res.currency', string='Currency', compute='_compute_currency_id',
+        default=lambda self: self.env.user.company_id.currency_id.id)
 
     def get_invoice(self):
         """ Create invoice for fee payment process of student """
         inv_obj = self.env['account.move']
         partner_id = self.student_id.partner_id
-        student = self.student_id
+        # student = self.student_id
         account_id = False
         product = self.product_id
-
         if product.property_account_income_id:
             account_id = product.property_account_income_id.id
         if not account_id:
@@ -80,17 +81,15 @@ class OpStudentFeesDetails(models.Model):
         else:
             amount = self.amount
             name = product.name
-
         invoice = inv_obj.create({
-            'partner_id': student.name,
-            'type': 'out_invoice',
+            # 'partner_id': student.name,
+            'move_type': 'out_invoice',
             'partner_id': partner_id.id,
 
         })
         element_id = self.env['op.fees.element'].search([
             ('fees_terms_line_id', '=', self.fees_line_id.id)])
         for records in element_id:
-
             if records:
                 line_values = {'name': records.product_id.name,
                                'account_id': account_id,

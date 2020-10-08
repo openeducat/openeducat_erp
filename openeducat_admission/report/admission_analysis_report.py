@@ -45,9 +45,11 @@ class ReportAdmissionAnalysis(models.AbstractModel):
              ('admission_date', '<=', data['end_date'])],
             order='admission_date desc')
         res = {}
-        self.total_student = 0
+        # self.total_student = 0
+        total_student = 0
         for student in student_search:
-            self.total_student += 1
+            # self.total_student += 1
+            total_student += 1
             res = {
                 'name': student.name,
                 'application_no': student.application_number,

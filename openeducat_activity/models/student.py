@@ -29,7 +29,6 @@ class OpStudent(models.Model):
                                    string='Activity Log')
     activity_count = fields.Integer(compute='compute_count')
 
-
     def get_activity(self):
         action = self.env.ref('openeducat_activity.'
                               'act_open_op_activity_view').read()[0]

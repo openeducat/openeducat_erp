@@ -18,12 +18,13 @@
             </field>
         </record>
 
-        <act_window id="action_faculty_user_create_view"
-                    name="Create Users"
-                    res_model="wizard.op.faculty"
-                    binding_model="op.faculty"
-                    view_mode="form"
-                    target="new"
-                    binding_views="list"/>
+        <record model="ir.actions.act_window" id="faculty_user_create_view_act">
+            <field name="name">Create Users</field>
+            <field name="res_model">wizard.op.faculty</field>
+            <field name="binding_view_types">list</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="op_faculty_user_create_view"/>
+            <field name="target">new</field>
+        </record>
     </data>
 </odoo>

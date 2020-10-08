@@ -18,12 +18,13 @@
             </field>
         </record>
 
-        <act_window id="action_session_confirmation_view"
-                    name="Confirmation"
-                    res_model="session.confirmation"
-                    binding_model="op.session"
-                    view_mode="form"
-                    target="new"
-                    binding_views="form"/>
+        <record model="ir.actions.act_window" id="session_confirmation_form_view_act">
+            <field name="name">Confirmation</field>
+            <field name="res_model">session.confirmation</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_session_confirmation_form"/>
+            <field name="target">new</field>
+        </record>
     </data>
 </odoo>
