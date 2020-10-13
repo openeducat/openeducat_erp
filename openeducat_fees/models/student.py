@@ -39,11 +39,9 @@ class OpStudentFeesDetails(models.Model):
         ('invoice', 'Invoice Created'),
         ('cancel', 'Cancel')
     ], string='Status', copy=False)
-    invoice_state = fields.Selection([
-        ('draft', 'Draft'), ('proforma', 'Pro-forma'),
-        ('proforma2', 'Pro-forma'), ('open', 'Open'),
-        ('paid', 'Paid'), ('cancel', 'Cancelled')], 'Invoice',
-         readonly=True)
+    invoice_state = fields.Selection(related="invoice_id.state",
+                                     string='Invoice Status',
+                                     readonly=True)
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
