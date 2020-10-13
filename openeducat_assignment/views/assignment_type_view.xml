@@ -2,20 +2,21 @@
 <odoo>
     <data>
         <record id="view_op_assignment_type_tree" model="ir.ui.view">
-            <field name="name">op.assignment.type.tree</field>
-            <field name="model">op.assignment.type</field>
+            <field name="name">grading.assignment.type.tree</field>
+            <field name="model">grading.assignment.type</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Assignment Types">
                     <field name="name" />
                     <field name="code" />
+                    <field name="assign_type" />
                 </tree>
             </field>
         </record>
 
         <record id="view_op_assignment_type_form" model="ir.ui.view">
-            <field name="name">op.assignment.type.form</field>
-            <field name="model">op.assignment.type</field>
+            <field name="name">grading.assignment.type.form</field>
+            <field name="model">grading.assignment.type</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Assignment Types">
@@ -23,6 +24,8 @@
                         <group col="4">
                             <field name="name" />
                             <field name="code" />
+                            <field name="assign_type" />
+                            <field name="calculation_method" />
                         </group>
                     </sheet>
                 </form>
@@ -30,8 +33,8 @@
         </record>
 
         <record id="view_op_assignment_type_search" model="ir.ui.view">
-            <field name="name">op.assignment.type.search</field>
-            <field name="model">op.assignment.type</field>
+            <field name="name">grading.assignment.type.search</field>
+            <field name="model">grading.assignment.type</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Tag">
@@ -51,7 +54,7 @@
         <record model="ir.actions.act_window" id="act_open_op_assignment_type_view">
             <field name="name">Assignment Types</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">op.assignment.type</field>
+            <field name="res_model">grading.assignment.type</field>
             <field name="binding_view_types">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_assignment_type_search" />
