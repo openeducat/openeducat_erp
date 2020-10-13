@@ -13,7 +13,7 @@
                     <field name="subject_id"/>
                     <field name="faculty_id"/>
                     <field name="reviewer"/>
-                    <field name="assignment_type_id" string="Type"/>
+                    <field name="assignment_type" string="Type"/>
                     <field name="issued_date"/>
                     <field name="submission_date"/>
                     <field name="allocation_ids" invisible="1"/>
@@ -62,7 +62,7 @@
                                    attrs="{'readonly':[('state','!=','draft')]}"/>
                             <field name="subject_id" attrs="{'readonly':[('state','!=','draft')]}"/>
                             <field name="faculty_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="assignment_type_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="assignment_type" attrs="{'readonly':[('state','!=','draft')]}"/>
                             <field name="reviewer" attrs="{'readonly':[('state','!=','draft')]}"/>
                         </group>
                         <notebook colspan="4">
@@ -143,7 +143,7 @@
                     <field name="faculty_id"/>
                     <field name="marks"/>
                     <field name="description"/>
-                    <field name="assignment_type_id"/>
+                    <field name="assignment_type"/>
                     <field name="state"/>
                     <field name="issued_date"/>
                     <field name="submission_date"/>
@@ -172,7 +172,7 @@
                         <filter string="Marks" domain="[]" name="group_by_assignment_marks"
                                 context="{'group_by':'marks'}"/>
                         <filter string="Assignment Type" domain="[]" name="group_by_assignment_type"
-                                context="{'group_by':'assignment_type_id'}"/>
+                                context="{'group_by':'assignment_type'}"/>
                         <filter string="State" domain="[]" name="group_by_assignment_state"
                                 context="{'group_by':'state'}"/>
                         <filter string="Issued Date" domain="[]" name="group_by_assignment_issued_date"
