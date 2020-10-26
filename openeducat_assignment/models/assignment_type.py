@@ -13,7 +13,7 @@ from odoo import models, fields
 
 class GradingAssigmentType(models.Model):
     _name = 'grading.assignment.type'
-    _description = "Assigment Type"
+    _description = "Assignment Type"
 
     name = fields.Char(string="Name", required=True)
     code = fields.Char(string="Code")
