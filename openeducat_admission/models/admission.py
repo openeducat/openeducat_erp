@@ -147,7 +147,7 @@ class OpAdmission(models.Model):
             self.last_name = sd.last_name
             self.birth_date = sd.birth_date
             self.gender = sd.gender
-            self.image_1920 = sd.image_1920 or False
+            self.image = sd.image_1920 or False
             self.street = sd.street or False
             self.street2 = sd.street2 or False
             self.phone = sd.phone or False
@@ -161,7 +161,7 @@ class OpAdmission(models.Model):
         else:
             self.birth_date = ''
             self.gender = ''
-            self.image_1920 = False
+            self.image = False
             self.street = ''
             self.street2 = ''
             self.phone = ''
