@@ -30,5 +30,5 @@ from . import student
 from . import subject
 from . import subject_registration
 from . import res_config_setting
-from . import update
+#from . import update
 from . import student_portal
