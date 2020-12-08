@@ -41,7 +41,7 @@ class TestAssignment(TestAssignmentCommon):
             info('      Batch : %s' % record.batch_id.id)
             info('      Subject : %s' % record.subject_id.id)
             info('      Faculty : %s' % record.faculty_id.id)
-            info('      Assignment Type : %s' % record.assignment_type_id.id)
+            info('      Assignment Type : %s' % record.assignment_type.id)
             info('      Marks : %s' % record.marks)
             info('      Description : %s' % record.description)
             info('      State : %s' % record.state)
@@ -68,8 +68,8 @@ class TestAssignmentSubline(TestAssignmentCommon):
             'name': "LRTP - 001 - Asg - 009",
             'state': "draft",
             'marks': 50,
-            'assignment_type_id':
-                self.env.ref('openeducat_assignment.op_assignment_type_1').id,
+            'assignment_type':
+                self.env.ref('openeducat_assignment.op_assignment_1').id,
             'issued_date': time.strftime('%Y-%m-01'),
             'course_id': self.env.ref('openeducat_core.op_course_4').id,
             'batch_id': self.env.ref('openeducat_core.op_batch_3').id,

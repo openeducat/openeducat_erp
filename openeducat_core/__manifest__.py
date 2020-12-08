@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '13.0',
+    'version': '14.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
@@ -53,7 +53,7 @@
         'views/res_config_setting_view.xml',
         'views/student_portal_view.xml',
         'views/student_course_view.xml',
-        'data/ir_cron_data.xml',
+        # 'data/ir_cron_data.xml',
         'menu/openeducat_core_menu.xml',
         'menu/faculty_menu.xml',
         'menu/student_menu.xml',
