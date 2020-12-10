@@ -34,13 +34,14 @@ API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
 
 _logger = logging.getLogger(__name__)
 
+from odoo.models import AbstractModel
 
-class PublisherWarrantyContract(models.Model):
-    _name = "publisher_warranty.contract"
-    _description = 'Publisher Warranty Contract'
+
+class PublisherWarrantyContract(AbstractModel):
+    _inherit = "publisher_warranty.contract"
 
     @api.model
-    def _get_message(self):
+    def _get_message_logs(self):
         Users = self.env['res.users']
         IrParamSudo = self.env['ir.config_parameter'].sudo()
         dbuuid = IrParamSudo.get_param('database.uuid')
@@ -68,15 +69,6 @@ class PublisherWarrantyContract(models.Model):
                   ('state', 'in', ['installed', 'to upgrade', 'to remove'])]
         apps = self.env['ir.module.module'].sudo().search_read(domain,
                                                                ['name'])
-        openeducat_instance_key = IrParamSudo.get_param(
-            'database.openeducat_instance_key')
-        openeducat_instance_hash_key = IrParamSudo.get_param(
-            'database.openeducat_instance_hash_key')
-        openeducat_hash_validate_date = IrParamSudo.get_param(
-            'database.hash_validated_date')
-        openeducat_expiration_date = IrParamSudo.get_param(
-            'database.openeducat_expire_date')
-
         web_base_url = IrParamSudo.get_param('web.base.url')
         msg = {
             "dbuuid": dbuuid,
@@ -90,10 +82,6 @@ class PublisherWarrantyContract(models.Model):
             "language": user.lang,
             "web_base_url": web_base_url,
             "apps": [app['name'] for app in apps],
-            "openeducat_hash_validate_date": openeducat_hash_validate_date,
-            "enterprise_code": str(openeducat_instance_key
-                                   ) + "," + str(openeducat_instance_hash_key),
-            "openeducat_expire_date": openeducat_expiration_date,
         }
         if user.partner_id.company_id:
             company_id = user.partner_id.company_id
@@ -101,17 +89,18 @@ class PublisherWarrantyContract(models.Model):
         return msg
 
     @api.model
-    def _get_sys_logs(self):
-        msg = self._get_message()
+    def _get_system_logs(self):
+        msg = self._get_message_logs()
         arguments = {'arg0': ustr(msg), "action": "update"}
         r = requests.post(API_ENDPOINT, data=arguments, timeout=30)
         r.raise_for_status()
         return literal_eval(r.text)
 
     def update_notification(self, cron_mode=True):
+        res = super(PublisherWarrantyContract, self).update_notification()
         try:
             try:
-                self._get_sys_logs()
+                self._get_system_logs()
             except Exception:
                 if cron_mode:  # we don't want to see any stack trace in cron
                     return False
@@ -124,4 +113,4 @@ class PublisherWarrantyContract(models.Model):
                 return False  # we don't want to see any stack trace in cron
             else:
                 raise
-        return True
+        return res
