@@ -23,30 +23,36 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
+class GradingAssigment(models.Model):
+    _name = 'grading.assignment'
+    _description = "Grading Assignment"
+
+    name = fields.Char('Name', required=True)
+    course_id = fields.Many2one('op.course', 'Course', required=True)
+    subject_id = fields.Many2one('op.subject', string='Subject')
+    issued_date = fields.Datetime('Issued Date', required=True)
+    assignment_type = fields.Many2one('grading.assignment.type',
+                                      string='Assignment Type', required=True)
+
+
 class OpAssignment(models.Model):
     _name = "op.assignment"
     _inherit = "mail.thread"
     _description = "Assignment"
     _order = "submission_date DESC"
+    _inherits = {"grading.assignment": "grading_assignment_id"}
 
-    name = fields.Char('Name', size=64, required=True)
-    course_id = fields.Many2one('op.course', 'Course', required=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    subject_id = fields.Many2one('op.subject', 'Subject', required=True)
     faculty_id = fields.Many2one(
         'op.faculty', 'Faculty', default=lambda self: self.env[
             'op.faculty'].search([('user_id', '=', self.env.uid)]),
         required=True)
-    assignment_type_id = fields.Many2one(
-        'op.assignment.type', 'Assignment Type', required=True)
     marks = fields.Float('Marks', required=True, track_visibility='onchange')
     description = fields.Text('Description', required=True)
     state = fields.Selection([
         ('draft', 'Draft'), ('publish', 'Published'),
         ('finish', 'Finished'), ('cancel', 'Cancel'),
     ], 'State', required=True, default='draft', track_visibility='onchange')
-    issued_date = fields.Datetime(string='Issued Date', required=True,
-                                  default=lambda self: fields.Datetime.now())
     submission_date = fields.Datetime('Submission Date', required=True,
                                       track_visibility='onchange')
     allocation_ids = fields.Many2many('op.student', string='Allocated To')
@@ -54,6 +60,8 @@ class OpAssignment(models.Model):
                                           'assignment_id', 'Submissions')
     reviewer = fields.Many2one('op.faculty', 'Reviewer')
     active = fields.Boolean(default=True)
+    grading_assignment_id = fields.Many2one('grading.assignment', 'Grading Assignment',
+                                            required=True, ondelete="cascade")
 
     @api.constrains('issued_date', 'submission_date')
     def check_dates(self):

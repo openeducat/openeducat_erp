@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Parent',
-    'version': '13.0',
+    'version': '14.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,

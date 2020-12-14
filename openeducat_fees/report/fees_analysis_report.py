@@ -34,7 +34,7 @@ class ReportFeesAnalysis(models.AbstractModel):
             ('partner_id', '=', student_id.partner_id.id),
             ('state', 'in', ['posted'])])
         for inv in account_move_id:
-            if inv.invoice_payment_ref:
+            if inv.payment_reference:
                 for inv_line_id in inv.invoice_line_ids:
                     total_amount += inv_line_id.price_unit
                 inv_res += inv.amount_residual
