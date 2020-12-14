@@ -56,7 +56,7 @@
             <field name="model_id" ref="model_op_faculty" />
             <field name="groups"
                 eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
-            <field name="domain_force"> [('user_id','=',user.id)]</field>
+            <field name="domain_force">['|',('user_id','=',user.id),('emp_id.user_id','=',user.id)]</field>
         </record>
 
         <record model="ir.rule" id="view_faculty_rule">
