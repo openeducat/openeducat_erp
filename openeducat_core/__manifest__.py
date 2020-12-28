@@ -53,7 +53,7 @@
         'views/res_config_setting_view.xml',
         'views/student_portal_view.xml',
         'views/student_course_view.xml',
-        'data/ir_cron_data.xml',
+        # 'data/ir_cron_data.xml',
         'menu/openeducat_core_menu.xml',
         'menu/faculty_menu.xml',
         'menu/student_menu.xml',
