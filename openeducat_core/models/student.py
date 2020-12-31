@@ -29,7 +29,7 @@ class OpStudentCourse(models.Model):
     _inherit = "mail.thread"
     _rec_name = 'student_id'
 
-    student_id = fields.Many2one('op.student', 'Students', ondelete="cascade", track_visibility='onchange')
+    student_id = fields.Many2one('op.student', 'Student', ondelete="cascade", track_visibility='onchange')
     course_id = fields.Many2one('op.course', 'Course', required=True, track_visibility='onchange')
     batch_id = fields.Many2one('op.batch', 'Batch', required=True, track_visibility='onchange')
     roll_number = fields.Char('Roll Number', track_visibility='onchange')
