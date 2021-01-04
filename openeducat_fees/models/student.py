@@ -47,6 +47,17 @@ class OpStudentFeesDetails(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
+    after_discount_amount = fields.Float(compute="_compute_discount_amount",
+                                         currency_field='currency_id',
+                                         string='After Discount Amount')
+    discount = fields.Float(string='Discount (%)',
+                            digits='Discount', default=0.0)
+
+    @api.depends('discount')
+    def _compute_discount_amount(self):
+        for discount in self:
+            discount_amount = discount.amount * discount.discount / 100.0
+            discount.after_discount_amount = discount.amount - discount_amount
 
     @api.depends('company_id')
     def _compute_currency_id(self):
@@ -96,7 +107,7 @@ class OpStudentFeesDetails(models.Model):
                                'account_id': account_id,
                                'price_unit': records.value * self.amount / 100,
                                'quantity': 1.0,
-                               'discount': 0.0,
+                               'discount': self.discount or False,
                                'product_uom_id': records.product_id.uom_id.id,
                                'product_id': records.product_id.id, }
                 invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
@@ -107,7 +118,7 @@ class OpStudentFeesDetails(models.Model):
                            'account_id': account_id,
                            'price_unit': amount,
                            'quantity': 1.0,
-                           'discount': 0.0,
+                           'discount': self.discount or False,
                            'product_uom_id': product.uom_id.id,
                            'product_id': product.id}
             invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
