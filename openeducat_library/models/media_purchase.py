@@ -30,20 +30,20 @@ class OpMediaPurchase(models.Model):
 
     name = fields.Char('Title', size=128, required=True)
     author = fields.Char(
-        'Author(s)', size=256, required=True, track_visibility='onchange')
+        'Author(s)', size=256, required=True, tracking=True)
     edition = fields.Char('Edition')
     publisher = fields.Char('Publisher(s)', size=256)
     course_ids = fields.Many2one(
-        'op.course', 'Course', required=True, track_visibility='onchange')
+        'op.course', 'Course', required=True, tracking=True)
     subject_ids = fields.Many2one(
-        'op.subject', 'Subject', required=True, track_visibility='onchange')
+        'op.subject', 'Subject', required=True, tracking=True)
     requested_id = fields.Many2one(
         'res.partner', 'Requested By',
         default=lambda self: self.env.user.partner_id.id)
     state = fields.Selection(
         [('draft', 'Draft'), ('request', 'Requested'),
          ('reject', 'Rejected'), ('accept', 'Accepted')],
-        'State', readonly=True, default='draft', track_visibility='onchange')
+        'State', readonly=True, default='draft', tracking=True)
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
     active = fields.Boolean(default=True)
 

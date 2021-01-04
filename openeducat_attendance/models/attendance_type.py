@@ -28,9 +28,9 @@ class OpAttendanceType(models.Model):
     _description = "Attendance Type"
 
     name = fields.Char(
-        'Name', size=20, required=True, track_visibility='onchange')
+        'Name', size=20, required=True, tracking=True)
     active = fields.Boolean(default=True)
     present = fields.Boolean(
-        'Present ?', track_visibility="onchange")
+        'Present ?', tracking=True)
     excused = fields.Boolean(
-        'Excused ?', track_visibility="onchange")
+        'Excused ?', tracking=True)

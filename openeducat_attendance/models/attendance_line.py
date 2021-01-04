@@ -31,13 +31,13 @@ class OpAttendanceLine(models.Model):
 
     attendance_id = fields.Many2one(
         'op.attendance.sheet', 'Attendance Sheet', required=True,
-        track_visibility="onchange", ondelete="cascade")
+        tracking=True, ondelete="cascade")
     student_id = fields.Many2one(
-        'op.student', 'Student', required=True, track_visibility="onchange")
+        'op.student', 'Student', required=True, tracking=True)
     present = fields.Boolean(
-        'Present ?', default=True, track_visibility="onchange")
+        'Present ?', default=True, tracking=True)
     excused = fields.Boolean(
-        'Excused ?', track_visibility="onchange")
+        'Excused ?', tracking=True)
     course_id = fields.Many2one(
         'op.course', 'Course',
         related='attendance_id.register_id.course_id', store=True,
@@ -46,16 +46,16 @@ class OpAttendanceLine(models.Model):
         'op.batch', 'Batch',
         related='attendance_id.register_id.batch_id', store=True,
         readonly=True)
-    remark = fields.Char('Remark', size=256, track_visibility="onchange")
+    remark = fields.Char('Remark', size=256, tracking=True)
     attendance_date = fields.Date(
         'Date', related='attendance_id.attendance_date', store=True,
-        readonly=True, track_visibility="onchange")
+        readonly=True, tracking=True)
     register_id = fields.Many2one(
         related='attendance_id.register_id', store=True)
     active = fields.Boolean(default=True)
     attendance_type_id = fields.Many2one(
         'op.attendance.type', 'Attendance Type',
-        required=False, track_visibility='onchange')
+        required=False, tracking=True)
 
     _sql_constraints = [
         ('unique_student',

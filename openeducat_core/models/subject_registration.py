@@ -30,11 +30,11 @@ class OpSubjectRegistration(models.Model):
 
     name = fields.Char('Name', readonly=True, default='New')
     student_id = fields.Many2one('op.student', 'Student', required=True,
-                                 track_visibility='onchange')
+                                 tracking=True)
     course_id = fields.Many2one('op.course', 'Course', required=True,
-                                track_visibility='onchange')
+                                tracking=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True,
-                               track_visibility='onchange')
+                               tracking=True)
     compulsory_subject_ids = fields.Many2many(
         'op.subject', 'subject_compulsory_rel',
         'register_id', 'subject_id', string="Compulsory Subjects",
@@ -45,11 +45,11 @@ class OpSubjectRegistration(models.Model):
         ('draft', 'Draft'), ('submitted', 'Submitted'),
         ('approved', 'Approved'), ('rejected', 'Rejected')],
         default='draft', string='state', copy=False,
-        track_visibility='onchange')
+        tracking=True)
     max_unit_load = fields.Float('Maximum Unit Load',
-                                 track_visibility='onchange')
+                                 tracking=True)
     min_unit_load = fields.Float('Minimum Unit Load',
-                                 track_visibility='onchange')
+                                 tracking=True)
 
     def action_reset_draft(self):
         self.state = 'draft'

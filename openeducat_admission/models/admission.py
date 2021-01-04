@@ -93,7 +93,7 @@ class OpAdmission(models.Model):
          ('confirm', 'Confirmed'), ('admission', 'Admission Confirm'),
          ('reject', 'Rejected'), ('pending', 'Pending'),
          ('cancel', 'Cancelled'), ('done', 'Done')],
-        'State', default='draft', track_visibility='onchange')
+        'State', default='draft', tracking=True)
     due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
     prev_institute_id = fields.Char('Previous Institute',
                                     states={'done': [('readonly', True)]})
@@ -120,6 +120,8 @@ class OpAdmission(models.Model):
     is_student = fields.Boolean('Is Already Student')
     fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
     active = fields.Boolean(default=True)
+    discount = fields.Float(string='Discount (%)',
+                            digits='Discount', default=0.0)
 
     _sql_constraints = [
         ('unique_application_number',

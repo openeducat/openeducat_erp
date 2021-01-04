@@ -48,15 +48,15 @@ class OpAssignmentSubLine(models.Model):
         'op.student', 'Student',
         default=lambda self: self.env['op.student'].search(
             [('user_id', '=', self.env.user.id)]), required=True)
-    description = fields.Text('Description', track_visibility='onchange')
+    description = fields.Text('Description', tracking=True)
     state = fields.Selection([
         ('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
-        ('change', 'Change Req.'), ('accept', 'Accepted')], basestring='State',
-        default='draft', track_visibility='onchange')
+        ('change', 'Change Req.'), ('accept', 'Accepted')], string='State',
+        default='draft', tracking=True)
     submission_date = fields.Datetime(
         'Submission Date', readonly=True,
         default=lambda self: fields.Datetime.now(), required=True)
-    marks = fields.Float('Marks', track_visibility='onchange')
+    marks = fields.Float('Marks', tracking=True)
     note = fields.Text('Note')
     user_id = fields.Many2one(
         'res.users', related='student_id.user_id', string='User')

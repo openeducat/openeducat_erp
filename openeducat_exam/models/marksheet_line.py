@@ -43,7 +43,7 @@ class OpMarksheetLine(models.Model):
                               store=True)
     generated_date = fields.Date(
         'Generated Date', required=True,
-        default=fields.Date.today(), track_visibility='onchange')
+        default=fields.Date.today(), tracking=True)
     grade = fields.Char('Grade', readonly=True, compute='_compute_grade')
     status = fields.Selection([
         ('pass', 'Pass'),

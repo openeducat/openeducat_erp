@@ -28,7 +28,7 @@ class OpLibraryCardType(models.Model):
     _description = "Library Card Type"
 
     name = fields.Char('Name', size=256, required=True)
-    allow_media = fields.Integer('No of medias Allowed', size=10,
+    allow_media = fields.Integer('No of medias Allowed', default=10,
                                  required=True)
     duration = fields.Integer(
         'Duration', help='Duration in terms of Number of Lead Days',

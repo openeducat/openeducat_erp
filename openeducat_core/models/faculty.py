@@ -58,7 +58,7 @@ class OpFaculty(models.Model):
     last_login = fields.Datetime('Latest Connection', readonly=1,
                                  related='partner_id.user_id.login_date')
     faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)',
-                                           track_visibility='onchange')
+                                           tracking=True)
     emp_id = fields.Many2one('hr.employee', 'HR Employee')
     main_department_id = fields.Many2one(
         'op.department', 'Main Department',

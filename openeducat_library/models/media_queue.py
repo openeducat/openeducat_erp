@@ -32,7 +32,7 @@ class OpMediaQueue(models.Model):
     name = fields.Char("Sequence No", readonly=True, copy=False, default='/')
     partner_id = fields.Many2one('res.partner', 'Student/Faculty')
     media_id = fields.Many2one(
-        'op.media', 'Media', required=True, track_visibility='onchange')
+        'op.media', 'Media', required=True, tracking=True)
     date_from = fields.Date(
         'From Date', required=True, default=fields.Date.today())
     date_to = fields.Date('To Date', required=True)
@@ -41,7 +41,7 @@ class OpMediaQueue(models.Model):
     state = fields.Selection(
         [('request', 'Request'), ('accept', 'Accepted'),
          ('reject', 'Rejected')],
-        'Status', copy=False, default='request', track_visibility='onchange')
+        'Status', copy=False, default='request', tracking=True)
     active = fields.Boolean(default=True)
 
     @api.onchange('user_id')
