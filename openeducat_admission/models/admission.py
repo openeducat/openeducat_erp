@@ -120,6 +120,8 @@ class OpAdmission(models.Model):
     is_student = fields.Boolean('Is Already Student')
     fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
     active = fields.Boolean(default=True)
+    discount = fields.Float(string='Discount (%)',
+                            digits='Discount', default=0.0)
 
     _sql_constraints = [
         ('unique_application_number',
@@ -294,6 +296,7 @@ class OpAdmission(models.Model):
                         days=no_days)).date()
                     dict_val = {
                         'fees_line_id': line.id,
+                        'discount': self.discount or record.fees_term_id.discount,
                         'amount': amount,
                         'fees_factor': per_amount,
                         'date': date,
