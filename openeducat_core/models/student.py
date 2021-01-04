@@ -26,12 +26,13 @@ from odoo.exceptions import ValidationError
 class OpStudentCourse(models.Model):
     _name = "op.student.course"
     _description = "Student Course Details"
+    _inherit = "mail.thread"
     _rec_name = 'student_id'
 
-    student_id = fields.Many2one('op.student', 'Student', ondelete="cascade")
-    course_id = fields.Many2one('op.course', 'Course', required=True)
-    batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    roll_number = fields.Char('Roll Number')
+    student_id = fields.Many2one('op.student', 'Student', ondelete="cascade", tracking=True)
+    course_id = fields.Many2one('op.course', 'Course', required=True, tracking=True)
+    batch_id = fields.Many2one('op.batch', 'Batch', required=True, tracking=True)
+    roll_number = fields.Char('Roll Number', tracking=True)
     subject_ids = fields.Many2many('op.subject', string='Subjects')
 
     _sql_constraints = [
@@ -90,7 +91,7 @@ class OpStudent(models.Model):
     category_id = fields.Many2one('op.category', 'Category')
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
-                                        track_visibility='onchange')
+                                        tracking=True)
     active = fields.Boolean(default=True)
 
     _sql_constraints = [(

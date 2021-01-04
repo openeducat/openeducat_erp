@@ -30,21 +30,21 @@ class OpResultTemplate(models.Model):
 
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session',
-        required=True, track_visibility='onchange')
+        required=True, tracking=True)
     evaluation_type = fields.Selection(
         related='exam_session_id.evaluation_type',
-        store=True, track_visibility='onchange')
+        store=True, tracking=True)
     name = fields.Char("Name", size=254,
-                       required=True, track_visibility='onchange')
+                       required=True, tracking=True)
     result_date = fields.Date(
         'Result Date', required=True,
-        default=fields.Date.today(), track_visibility='onchange')
+        default=fields.Date.today(), tracking=True)
     grade_ids = fields.Many2many(
         'op.grade.configuration', string='Grade Configuration')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('result_generated', 'Result Generated')
-    ], string='State', default='draft', track_visibility='onchange')
+    ], string='State', default='draft', tracking=True)
     active = fields.Boolean(default=True)
 
     @api.constrains('exam_session_id')

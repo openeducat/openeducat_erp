@@ -42,7 +42,7 @@ class OpAdmissionRegister(models.Model):
         states={'draft': [('readonly', False)]})
     course_id = fields.Many2one(
         'op.course', 'Course', required=True, readonly=True,
-        states={'draft': [('readonly', False)]}, track_visibility='onchange')
+        states={'draft': [('readonly', False)]}, tracking=True)
     min_count = fields.Integer(
         'Minimum No. of Admission', readonly=True,
         states={'draft': [('readonly', False)]})
@@ -52,14 +52,14 @@ class OpAdmissionRegister(models.Model):
     product_id = fields.Many2one(
         'product.product', 'Course Fees', required=True,
         domain=[('type', '=', 'service')], readonly=True,
-        states={'draft': [('readonly', False)]}, track_visibility='onchange')
+        states={'draft': [('readonly', False)]}, tracking=True)
     admission_ids = fields.One2many(
         'op.admission', 'register_id', 'Admissions')
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('cancel', 'Cancelled'), ('application', 'Application Gathering'),
          ('admission', 'Admission Process'), ('done', 'Done')],
-        'Status', default='draft', track_visibility='onchange')
+        'Status', default='draft', tracking=True)
     active = fields.Boolean(default=True)
 
     @api.constrains('start_date', 'end_date')

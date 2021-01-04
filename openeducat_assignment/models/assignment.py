@@ -47,14 +47,14 @@ class OpAssignment(models.Model):
         'op.faculty', 'Faculty', default=lambda self: self.env[
             'op.faculty'].search([('user_id', '=', self.env.uid)]),
         required=True)
-    marks = fields.Float('Marks', required=True, track_visibility='onchange')
+    marks = fields.Float('Marks', required=True, tracking=True)
     description = fields.Text('Description', required=True)
     state = fields.Selection([
         ('draft', 'Draft'), ('publish', 'Published'),
         ('finish', 'Finished'), ('cancel', 'Cancel'),
-    ], 'State', required=True, default='draft', track_visibility='onchange')
+    ], 'State', required=True, default='draft', tracking=True)
     submission_date = fields.Datetime('Submission Date', required=True,
-                                      track_visibility='onchange')
+                                      tracking=True)
     allocation_ids = fields.Many2many('op.student', string='Allocated To')
     assignment_sub_line = fields.One2many('op.assignment.sub.line',
                                           'assignment_id', 'Submissions')

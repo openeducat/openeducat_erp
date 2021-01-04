@@ -58,7 +58,7 @@ class OpRoomDistribution(models.TransientModel):
     room_capacity = fields.Integer(
         "Room Capacity", compute="_compute_get_room_capacity")
     room_ids = fields.Many2many("op.exam.room", string="Exam Rooms")
-    student_ids = fields.Many2many("op.student", String='Student')
+    student_ids = fields.Many2many("op.student", string='Student')
 
     @api.model
     def default_get(self, fields):

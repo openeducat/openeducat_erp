@@ -43,7 +43,7 @@ class OpAttendanceSheet(models.Model):
     name = fields.Char('Name', readonly=True, size=32)
     register_id = fields.Many2one(
         'op.attendance.register', 'Register', required=True,
-        track_visibility="onchange")
+        tracking=True)
     course_id = fields.Many2one(
         'op.course', related='register_id.course_id', store=True,
         readonly=True)
@@ -53,22 +53,22 @@ class OpAttendanceSheet(models.Model):
     session_id = fields.Many2one('op.session', 'Session')
     attendance_date = fields.Date(
         'Date', required=True, default=lambda self: fields.Date.today(),
-        track_visibility="onchange")
+        tracking=True)
     attendance_line = fields.One2many(
         'op.attendance.line', 'attendance_id', 'Attendance Line')
     total_present = fields.Integer(
         'Total Present', compute='_compute_total_present',
-        track_visibility="onchange")
+        tracking=True)
     total_absent = fields.Integer(
         'Total Absent', compute='_compute_total_absent',
-        track_visibility="onchange")
+        tracking=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     active = fields.Boolean(default=True)
 
     state = fields.Selection(
         [('draft', 'Draft'), ('start', 'Attendance Start'),
          ('done', 'Attendance Taken'), ('cancel', 'Cancelled')],
-        'Status', default='draft', track_visibility='onchange')
+        'Status', default='draft', tracking=True)
 
     def attendance_draft(self):
         self.state = 'draft'

@@ -29,15 +29,15 @@ class OpAttendanceRegister(models.Model):
     _order = "id DESC"
 
     name = fields.Char(
-        'Name', size=16, required=True, track_visibility='onchange')
+        'Name', size=16, required=True, tracking=True)
     code = fields.Char(
-        'Code', size=16, required=True, track_visibility='onchange')
+        'Code', size=16, required=True, tracking=True)
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True, track_visibility='onchange')
+        'op.course', 'Course', required=True, tracking=True)
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=True, track_visibility='onchange')
+        'op.batch', 'Batch', required=True, tracking=True)
     subject_id = fields.Many2one(
-        'op.subject', 'Subject', track_visibility='onchange')
+        'op.subject', 'Subject', tracking=True)
     active = fields.Boolean(default=True)
 
     _sql_constraints = [

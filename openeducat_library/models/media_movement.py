@@ -41,7 +41,7 @@ class OpMediaMovement(models.Model):
     media_id = fields.Many2one('op.media', 'Media', required=True)
     media_unit_id = fields.Many2one(
         'op.media.unit', 'Media Unit', required=True,
-        track_visibility='onchange', domain=[('state', '=', 'available')])
+        tracking=True, domain=[('state', '=', 'available')])
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Student/Faculty', required=True)
@@ -49,21 +49,21 @@ class OpMediaMovement(models.Model):
     faculty_id = fields.Many2one('op.faculty', 'Faculty')
     library_card_id = fields.Many2one(
         'op.library.card', 'Library Card', required=True,
-        track_visibility='onchange')
+        tracking=True)
     issued_date = fields.Date(
-        'Issued Date', track_visibility='onchange',
+        'Issued Date', tracking=True,
         required=True, default=fields.Date.today())
     return_date = fields.Date('Due Date', required=True)
     actual_return_date = fields.Date('Actual Return Date')
     penalty = fields.Float('Penalty')
     partner_id = fields.Many2one(
-        'res.partner', 'Person', track_visibility='onchange')
+        'res.partner', 'Person', tracking=True)
     reserver_name = fields.Char('Person Name', size=256)
     state = fields.Selection(
         [('available', 'Available'), ('reserve', 'Reserved'),
          ('issue', 'Issued'), ('lost', 'Lost'),
          ('return', 'Returned'), ('return_done', 'Returned Done')],
-        'Status', default='available', track_visibility='onchange')
+        'Status', default='available', tracking=True)
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
     user_id = fields.Many2one(

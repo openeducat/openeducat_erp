@@ -39,7 +39,7 @@ class OpSession(models.Model):
 
     name = fields.Char(compute='_compute_name', string='Name', store=True)
     timing_id = fields.Many2one(
-        'op.timing', 'Timing', required=True, track_visibility="onchange")
+        'op.timing', 'Timing', required=True, tracking=True)
     start_datetime = fields.Datetime(
         'Start Time', required=True,
         default=lambda self: fields.Datetime.now())
