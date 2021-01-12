@@ -382,7 +382,7 @@ class OpAdmission(models.Model):
         invoice = self.env['account.invoice'].create({
             'name': self.name,
             'origin': self.application_number,
-            'type': 'out_invoice',
+            'move_type': 'out_invoice',
             'reference': False,
             'account_id': partner_id.property_account_receivable_id.id,
             'partner_id': partner_id.id,

@@ -169,7 +169,7 @@ class OpMediaMovement(models.Model):
 
             invoice = self.env['account.move'].create({
                 'partner_id': rec.student_id.partner_id.id,
-                'type': 'out_invoice',
+                'move_type': 'out_invoice',
                 'invoice_date': fields.Date.today(),
             })
             line_values = {'name': product.name,
