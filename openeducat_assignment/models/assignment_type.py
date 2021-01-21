@@ -20,9 +20,3 @@ class GradingAssigmentType(models.Model):
     assign_type = fields.Selection([('sub', 'Subjective'),
                                     ('attendance', 'Attendance')],
                                    string='Type', default='sub')
-    calculation_method = fields.Selection([('actual', 'Actual'),
-                                           ('best_score', 'Best Score'),
-                                           ('lowest_score', 'Lowest Score'),
-                                           ('average', 'Average')],
-                                          string='Calculation Methhod',
-                                          default='actual', required=True)
