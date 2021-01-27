@@ -59,6 +59,8 @@ class ResConfigSettings(models.TransientModel):
         string="Job Enterprise")
     module_openeducat_assignment_enterprise = fields.Boolean(
         string="Assignment Enterprise")
+    module_openeducat_assignment_rubrics = fields.Boolean(
+        string="Assignment Rubrics")
     module_openeducat_attendance_enterprise = fields.Boolean(
         string="Attendance Enterprise")
     module_openeducat_student_attendance_enterprise = fields.Boolean(
