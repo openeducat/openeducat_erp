@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Assignment',
-    'version': '14.0',
+    'version': '14.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
