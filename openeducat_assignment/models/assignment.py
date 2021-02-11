@@ -33,6 +33,10 @@ class GradingAssigment(models.Model):
     issued_date = fields.Datetime('Issued Date', required=True)
     assignment_type = fields.Many2one('grading.assignment.type',
                                       string='Assignment Type', required=True)
+    faculty_id = fields.Many2one(
+        'op.faculty', 'Faculty', default=lambda self: self.env[
+            'op.faculty'].search([('user_id', '=', self.env.uid)]),
+        required=True)
 
 
 class OpAssignment(models.Model):
@@ -43,10 +47,6 @@ class OpAssignment(models.Model):
     _inherits = {"grading.assignment": "grading_assignment_id"}
 
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    faculty_id = fields.Many2one(
-        'op.faculty', 'Faculty', default=lambda self: self.env[
-            'op.faculty'].search([('user_id', '=', self.env.uid)]),
-        required=True)
     marks = fields.Float('Marks', required=True, tracking=True)
     description = fields.Text('Description', required=True)
     state = fields.Selection([
