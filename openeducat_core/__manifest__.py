@@ -53,6 +53,8 @@
         'views/res_config_setting_view.xml',
         'views/student_portal_view.xml',
         'views/student_course_view.xml',
+        'views/op_academic_year_view.xml',
+        'views/op_academic_term_view.xml',
         # 'data/ir_cron_data.xml',
         'menu/openeducat_core_menu.xml',
         'menu/faculty_menu.xml',
@@ -74,6 +76,8 @@
         'demo/student_course_demo.xml',
         'demo/faculty_demo.xml',
         'demo/res_condig_fav_icon.xml',
+        'demo/op_academic_year_demo.xml',
+        'demo/op_academic_term_demo.xml',
     ],
     'css': [
         'static/src/scss/base.scss'

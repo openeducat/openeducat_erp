@@ -34,6 +34,8 @@ class OpStudentCourse(models.Model):
     batch_id = fields.Many2one('op.batch', 'Batch', required=True, tracking=True)
     roll_number = fields.Char('Roll Number', tracking=True)
     subject_ids = fields.Many2many('op.subject', string='Subjects')
+    academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
+    academic_term_id = fields.Many2one('op.academic.term', 'Terms')
 
     _sql_constraints = [
         ('unique_name_roll_number_id',
