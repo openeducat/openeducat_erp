@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_academic_year_tree" model="ir.ui.view">
+            <field name="name">op.academic.year.tree</field>
+            <field name="model">op.academic.year</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Academic Year">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_academic_year_form" model="ir.ui.view">
+            <field name="name">op.academic.year.form</field>
+            <field name="model">op.academic.year</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Academic Year">
+                    <header>
+                        <field name="create_boolean" invisible="1"/>
+                        <button name="term_create" type="object" string="Create Terms" class="oe_highlight"
+                                attrs="{'invisible': ['|',('create_boolean', '!=', False), ('term_structure', '==', 'others')]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="term_structure"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                        </group>
+                        <group>
+                            <field name="academic_term_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_academic_year_search" model="ir.ui.view">
+            <field name="name">op.academic.year.search</field>
+            <field name="model">op.academic.year</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Academic Year">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_op_academic_year_view">
+            <field name="name">Academic Year</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.academic.year</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_academic_year_search"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_op_academic_year_view_form">
+            <field name="act_window_id" ref="act_op_academic_year_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_academic_year_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_op_academic_year_view_tree">
+            <field name="act_window_id" ref="act_op_academic_year_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_academic_year_tree"/>
+        </record>
+    </data>
+</odoo>
