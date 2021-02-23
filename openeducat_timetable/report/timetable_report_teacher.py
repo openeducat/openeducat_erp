@@ -23,7 +23,7 @@ import calendar
 import pytz
 import time
 from datetime import datetime
-from odoo import models, api, _, tools, fields
+from flectra import models, api, _, tools, fields
 
 
 class ReportTimeTableTeacherGenerate(models.AbstractModel):

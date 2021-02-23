@@ -19,9 +19,9 @@
 #
 ###############################################################################
 
-from odoo import http
-from odoo.http import request
-from odoo.addons.portal.controllers.web import \
+from flectra import http
+from flectra.http import request
+from flectra.addons.portal.controllers.web import \
     Home as home
 
 

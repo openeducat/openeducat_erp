@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import fields, models
+from flectra import fields, models
 
 
 class ResConfigSettings(models.TransientModel):

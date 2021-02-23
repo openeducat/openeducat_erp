@@ -20,7 +20,7 @@
 ###############################################################################
 
 import time
-from odoo import models, api, fields
+from flectra import models, api, fields
 
 
 class ReportMarksheetReport(models.AbstractModel):
