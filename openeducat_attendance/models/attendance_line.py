@@ -35,9 +35,11 @@ class OpAttendanceLine(models.Model):
     student_id = fields.Many2one(
         'op.student', 'Student', required=True, tracking=True)
     present = fields.Boolean(
-        'Present ?', default=True, tracking=True)
+        'Present', default=True, tracking=True)
     excused = fields.Boolean(
-        'Excused ?', tracking=True)
+        'Absent Excused', tracking=True)
+    absent = fields.Boolean('Absent Unexcused', tracking=True)
+    late = fields.Boolean('Late', tracking=True)
     course_id = fields.Many2one(
         'op.course', 'Course',
         related='attendance_id.register_id.course_id', store=True,
@@ -68,3 +70,33 @@ class OpAttendanceLine(models.Model):
         if self.attendance_type_id:
             self.present = self.attendance_type_id.present
             self.excused = self.attendance_type_id.excused
+            self.absent = self.attendance_type_id.absent
+            self.late = self.attendance_type_id.late
+
+    @api.onchange('present')
+    def onchange_present(self):
+        if self.present:
+            self.late = False
+            self.excused = False
+            self.absent = False
+
+    @api.onchange('absent')
+    def onchange_absent(self):
+        if self.absent:
+            self.present = False
+            self.late = False
+            self.excused = False
+
+    @api.onchange('excused')
+    def onchange_excused(self):
+        if self.excused:
+            self.present = False
+            self.late = False
+            self.absent = False
+
+    @api.onchange('late')
+    def onchange_late(self):
+        if self.late:
+            self.present = False
+            self.excused = False
+            self.absent = False

@@ -56,8 +56,6 @@ class TestAttendanceSheet(TestAttendanceCommon):
             record.attendance_start()
             record.attendance_done()
             record.attendance_cancel()
-            record._compute_total_present()
-            record._compute_total_absent()
 
 
 class TestAttendanceLine(TestAttendanceCommon):
@@ -73,20 +71,6 @@ class TestAttendanceLine(TestAttendanceCommon):
             info('      Student : %s' % record.student_id.name)
             info('      Register : %s' % record.register_id.name)
             info('      Present : %s' % record.present)
-
-
-class TestAttendanceImport(TestAttendanceCommon):
-
-    def setUp(self):
-        super(TestAttendanceImport, self).setUp()
-
-    def test_case_wizard_attendance_import(self):
-        wizard = self.op_attendance_import.create({
-            'course_id': self.env.ref('openeducat_core.op_course_2').id,
-            'batch_id': self.env.ref('openeducat_core.op_batch_1').id,
-            'student_ids': self.env.ref('openeducat_core.op_student_1'),
-        })
-        wizard.confirm_student()
 
 
 class TestAttendanceWizard(TestAttendanceCommon):
