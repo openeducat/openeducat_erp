@@ -21,7 +21,7 @@
 
 import time
 
-from odoo import models, api
+from flectra import models, api
 
 
 class StudentAttendanceReport(models.AbstractModel):

@@ -20,8 +20,8 @@
 ###############################################################################
 
 import time
-from odoo import models, fields, _
-from odoo.exceptions import ValidationError
+from flectra import models, fields, _
+from flectra.exceptions import ValidationError
 
 
 class AdmissionAnalysis(models.TransientModel):

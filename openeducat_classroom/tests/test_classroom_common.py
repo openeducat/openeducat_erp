@@ -20,7 +20,7 @@
 ###############################################################################
 
 
-from odoo.tests import common
+from flectra.tests import common
 
 
 class TestClassroomCommon(common.SavepointCase):

@@ -23,9 +23,9 @@ from datetime import datetime
 from datetime import timedelta
 
 from dateutil.relativedelta import relativedelta
-from odoo.exceptions import ValidationError
+from flectra.exceptions import ValidationError
 
-from odoo import models, fields, api, _
+from flectra import models, fields, api, _
 
 
 class SessionReport(models.TransientModel):

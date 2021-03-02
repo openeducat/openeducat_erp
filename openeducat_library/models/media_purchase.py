@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
-from odoo import exceptions
+from flectra import models, fields, api, _
+from flectra import exceptions
 
 
 class OpMediaPurchase(models.Model):
