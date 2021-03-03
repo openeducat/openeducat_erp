@@ -23,7 +23,7 @@
     'name': 'Web OpenEduCat',
     'category': 'Website',
     "sequence": 3,
-    'version': '14.0.1.0',
+    'version': '2.0',
     'license': 'LGPL-3',
     'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
