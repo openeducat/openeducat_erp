@@ -153,7 +153,7 @@ class OpAdmission(models.Model):
             self.street = sd.street or False
             self.street2 = sd.street2 or False
             self.phone = sd.phone or False
-            self.mobile = sd.mobile or False
+            self.mobile = sd.phone or False
             self.email = sd.email or False
             self.zip = sd.zip or False
             self.city = sd.city or False
@@ -228,8 +228,8 @@ class OpAdmission(models.Model):
                      [self.env.ref('base.group_portal').id])]
             })
             details = {
+                'mobile': student.phone,
                 'phone': student.phone,
-                'mobile': student.mobile,
                 'email': student.email,
                 'street': student.street,
                 'street2': student.street2,
