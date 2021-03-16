@@ -116,6 +116,38 @@ class OpSession(models.Model):
             raise ValidationError(_(
                 'End Time cannot be set before Start Time.'))
 
+    @api.constrains('faculty_id', 'timing_id', 'start_datetime', 'classroom_id',
+                    'batch_id', 'subject_id')
+    def check_timetable_fields(self):
+        sessions = self.env['op.session'].search([])
+        for session in sessions:
+            if self.id != session.id:
+                if self.faculty_id.id == session.faculty_id.id and \
+                        self.timing_id.id == session.timing_id.id and \
+                        self.start_datetime.date() == session.start_datetime.date():
+                    raise ValidationError(_(
+                        'You cannot create a session with same faculty on same date '
+                        'and time'))
+                if self.classroom_id.id == session.classroom_id.id and \
+                        self.timing_id.id == session.timing_id.id and \
+                        self.start_datetime.date() == session.start_datetime.date():
+                    raise ValidationError(_(
+                        'You cannot create a session with same classroom on same date'
+                        ' and time'))
+                if self.batch_id.id == session.batch_id.id and \
+                        self.timing_id.id == session.timing_id.id and \
+                        self.start_datetime.date() == session.start_datetime.date() \
+                        and self.subject_id.id == session.subject_id.id:
+                    raise ValidationError(_(
+                        'You cannot create a session for the same batch on same time '
+                        'and for same subject'))
+                if self.batch_id.id == session.batch_id.id and \
+                        self.timing_id.id == session.timing_id.id and \
+                        self.start_datetime.date() == session.start_datetime.date():
+                    raise ValidationError(_(
+                        'You cannot create a session for the same batch on same time '
+                        'even if it is different subject'))
+
     @api.model
     def create(self, values):
         res = super(OpSession, self).create(values)
