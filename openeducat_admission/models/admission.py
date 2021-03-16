@@ -227,7 +227,8 @@ class OpAdmission(models.Model):
                 'login': student.email,
                 'image_1920': self.image or False,
                 'is_student': True,
-                'company_id': self.env.ref('base.main_company').id,
+                'company_id': self.env.user.company_id and
+                              self.env.user.company_id.id or False,
                 'groups_id': [
                     (6, 0,
                      [self.env.ref('base.group_portal').id])]
