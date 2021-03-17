@@ -11,8 +11,6 @@
                     <field name="name"/>
                     <field name="session_id"/>
                     <field name="attendance_date"/>
-                    <field name="total_present"/>
-                    <field name="total_absent"/>
                 </tree>
             </field>
         </record>
@@ -24,8 +22,6 @@
             <field name="arch" type="xml">
                 <form string="Attendance Sheet">
                     <header>
-                        <button type="action" name="%(act_open_op_attendance_import_view)d"
-                                string="Attendance Sheet Import" class="oe_highlight"/>
                         <button type="object" name="attendance_start"
                                 states="draft" string="Attendance Start"
                                 class="oe_highlight"/>
@@ -44,6 +40,9 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div name="smart_button" class="oe_button_box">
+
+                        </div>
                         <group col="4">
                             <field name="register_id"/>
                             <field name="name"/>
@@ -58,11 +57,12 @@
                                     <field name="student_id"
                                            domain="[('course_detail_ids.course_id','=',parent.course_id),('course_detail_ids.batch_id','=',parent.batch_id)]"/>
                                     <field name="present"/>
+                                    <field name="late"/>
+                                    <field name="excused"/>
+                                    <field name="absent"/>
                                     <field name="remark"/>
                                 </tree>
                             </field>
-                            <field name="total_present"/>
-                            <field name="total_absent"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -81,8 +81,6 @@
                 <search string="Attendance Sheet">
                     <field name="register_id"/>
                     <field name="attendance_date"/>
-                    <field name="total_present"/>
-                    <field name="total_absent"/>
                     <newline/>
                     <filter string="Today" name="filter_attendance_today"
                             domain="[('attendance_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
