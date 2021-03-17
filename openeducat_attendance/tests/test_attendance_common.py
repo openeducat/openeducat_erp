@@ -27,5 +27,4 @@ class TestAttendanceCommon(common.SavepointCase):
         self.op_attendance_register = self.env['op.attendance.register']
         self.op_attendance_sheet = self.env['op.attendance.sheet']
         self.op_attendance_line = self.env['op.attendance.line']
-        self.op_attendance_import = self.env['op.all.student']
         self.op_attendance_wizard = self.env['student.attendance']
