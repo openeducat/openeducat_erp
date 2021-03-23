@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from flectra import models, fields
 
 
 class OpAttendanceType(models.Model):
@@ -36,4 +36,4 @@ class OpAttendanceType(models.Model):
         'Excused ?', tracking=True)
     absent = fields.Boolean('Absent', tracking=True)
     late = fields.Boolean('Late', tracking=True)
-    
+     

@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from odoo import models, fields, _
-from odoo.exceptions import UserError
+from flectra import models, fields, _
+from flectra.exceptions import UserError
 
 from ..models import media_unit
 

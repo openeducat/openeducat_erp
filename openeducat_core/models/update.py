@@ -24,17 +24,17 @@ import logging
 from ast import literal_eval
 
 import requests
-from odoo.exceptions import UserError
-from odoo.tools import misc, ustr
-from odoo.tools.translate import _
+from flectra.exceptions import UserError
+from flectra.tools import misc, ustr
+from flectra.tools.translate import _
 
-from odoo import models, api, release
+from flectra import models, api, release
 
 API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
 
 _logger = logging.getLogger(__name__)
 
-from odoo.models import AbstractModel
+from flectra.models import AbstractModel
 
 
 class PublisherWarrantyContract(AbstractModel):

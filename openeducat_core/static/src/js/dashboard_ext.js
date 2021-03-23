@@ -1,4 +1,4 @@
-odoo.define('openeducat_core.dashboard_ext', function(require) {
+flectra.define('openeducat_core.dashboard_ext', function(require) {
     "use strict";
     var Widget = require('web.Widget');
     var Dashboard = require('web_settings_dashboard');

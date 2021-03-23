@@ -20,9 +20,9 @@
 ###############################################################################
 
 
-from odoo.tests import common, TransactionCase
+from flectra.tests import common, TransactionCase
 from ..controllers import app_main
-from odoo.addons.website.tools import MockRequest
+from flectra.addons.website.tools import MockRequest
 
 
 class TestCoreCommon(common.SavepointCase):

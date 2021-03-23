@@ -19,8 +19,8 @@
 #
 ###############################################################################
 
-from odoo import http, fields
-from odoo.http import request
+from flectra import http, fields
+from flectra.http import request
 
 
 class OpAttendanceController(http.Controller):

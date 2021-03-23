@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from flectra import models, fields, api
 
 
 class OpAttendanceSheet(models.Model):

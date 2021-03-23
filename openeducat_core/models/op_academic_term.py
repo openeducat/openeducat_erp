@@ -8,7 +8,7 @@
 #
 ##############################################################################
 
-from odoo import models, fields
+from flectra import models, fields
 
 
 class OpAcademicTerm(models.Model):

@@ -20,8 +20,8 @@
 ###############################################################################
 
 import calendar
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from flectra import models, fields, api, _
+from flectra.exceptions import ValidationError
 
 week_days = [(calendar.day_name[0], _(calendar.day_name[0])),
              (calendar.day_name[1], _(calendar.day_name[1])),

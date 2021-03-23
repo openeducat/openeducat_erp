@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from odoo.tests import common
+from flectra.tests import common
 
 
 class TestFeesCommon(common.SavepointCase):
