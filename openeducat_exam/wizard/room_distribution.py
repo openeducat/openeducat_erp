@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, api, fields, exceptions, _
+from flectra import models, api, fields, exceptions, _
 
 
 class OpRoomDistribution(models.TransientModel):

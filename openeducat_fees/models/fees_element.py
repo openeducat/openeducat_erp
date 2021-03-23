@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from odoo import models, fields
+from flectra import models, fields
 
 
 class OpFeesElementLine(models.Model):

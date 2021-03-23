@@ -21,8 +21,8 @@
 
 from datetime import timedelta, datetime
 
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, UserError
+from flectra import models, fields, api, _
+from flectra.exceptions import ValidationError, UserError
 
 
 def days_between(to_date, from_date):

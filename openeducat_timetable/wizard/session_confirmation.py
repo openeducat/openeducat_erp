@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models
+from flectra import models
 
 
 class SessionConfirmation(models.TransientModel):

@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, api, fields
+from flectra import models, api, fields
 
 
 class OpHeldExam(models.TransientModel):

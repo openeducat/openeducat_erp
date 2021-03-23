@@ -20,8 +20,8 @@
 ##############################################################################
 
 from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from flectra import models, fields, api, _
+from flectra.exceptions import ValidationError
 
 
 class OpAdmissionRegister(models.Model):

@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from flectra import models, fields
 
 
 class OpGradeConfiguration(models.Model):

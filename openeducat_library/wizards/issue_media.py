@@ -21,8 +21,8 @@
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api, _
-from odoo.exceptions import UserError, ValidationError
+from flectra import models, fields, api, _
+from flectra.exceptions import UserError, ValidationError
 
 from ..models import media_unit
 

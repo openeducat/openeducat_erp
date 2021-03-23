@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from flectra import models, fields, api, _
 
 
 class OpSubject(models.Model):
