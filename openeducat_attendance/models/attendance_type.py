@@ -36,4 +36,3 @@ class OpAttendanceType(models.Model):
         'Excused ?', tracking=True)
     absent = fields.Boolean('Absent', tracking=True)
     late = fields.Boolean('Late', tracking=True)
-     

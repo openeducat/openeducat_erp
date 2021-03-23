@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Exam',
-    'version': '14.0.1.0',
+    'version': '2.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
