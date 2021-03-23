@@ -70,3 +70,33 @@ class OpAttendanceLine(models.Model):
         if self.attendance_type_id:
             self.present = self.attendance_type_id.present
             self.excused = self.attendance_type_id.excused
+            self.absent = self.attendance_type_id.absent
+            self.late = self.attendance_type_id.late
+
+    @api.onchange('present')
+    def onchange_present(self):
+        if self.present:
+            self.late = False
+            self.excused = False
+            self.absent = False
+
+    @api.onchange('absent')
+    def onchange_absent(self):
+        if self.absent:
+            self.present = False
+            self.late = False
+            self.excused = False
+
+    @api.onchange('excused')
+    def onchange_excused(self):
+        if self.excused:
+            self.present = False
+            self.late = False
+            self.absent = False
+
+    @api.onchange('late')
+    def onchange_late(self):
+        if self.late:
+            self.present = False
+            self.excused = False
+            self.absent = False
