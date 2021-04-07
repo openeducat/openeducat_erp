@@ -37,6 +37,7 @@ class GradingAssigment(models.Model):
         'op.faculty', 'Faculty', default=lambda self: self.env[
             'op.faculty'].search([('user_id', '=', self.env.uid)]),
         required=True)
+    point = fields.Float('Points')
 
 
 class OpAssignment(models.Model):
@@ -47,7 +48,7 @@ class OpAssignment(models.Model):
     _inherits = {"grading.assignment": "grading_assignment_id"}
 
     batch_id = fields.Many2one('op.batch', 'Batch', required=True)
-    marks = fields.Float('Marks', required=True, tracking=True)
+    marks = fields.Float('Marks', tracking=True)
     description = fields.Text('Description', required=True)
     state = fields.Selection([
         ('draft', 'Draft'), ('publish', 'Published'),
