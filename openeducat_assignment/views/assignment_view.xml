@@ -18,7 +18,6 @@
                     <field name="submission_date"/>
                     <field name="allocation_ids" invisible="1"/>
                     <field name="assignment_sub_line" invisible="1"/>
-                    <field name="marks"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -70,7 +69,11 @@
                                 <group colspan="4" col="4">
                                     <field name="issued_date" attrs="{'readonly':[('state','!=','draft')]}"/>
                                     <field name="submission_date" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                    <field name="marks" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                    <field name="marks" attrs="{'readonly':[('state','!=','draft')]}" required="1"/>
+                                </group>
+
+                                <group id="mark">
+                                    <field name="point" invisible="1"/>
                                 </group>
                                 <field name="description" attrs="{'readonly':[('state','!=','draft')]}"
                                        colspan="4"/>
