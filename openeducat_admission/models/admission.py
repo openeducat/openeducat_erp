@@ -122,6 +122,7 @@ class OpAdmission(models.Model):
     active = fields.Boolean(default=True)
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
+    fees_start_date = fields.Date('Fees Start Date')
 
     academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
     academic_term_id = fields.Many2one('op.academic.term', 'Terms')
@@ -312,10 +313,27 @@ class OpAdmission(models.Model):
                         'fees_line_id': line.id,
                         'amount': amount,
                         'fees_factor': per_amount,
-                        'date': date,
                         'product_id': product_id,
                         'state': 'draft',
                     }
+
+                    if line.due_date:
+                        date = line.due_date
+                        dict_val.update({
+                            'date': date
+                        })
+                    elif self.fees_start_date:
+                        date = self.fees_start_date + relativedelta(
+                            days=no_days)
+                        dict_val.update({
+                            'date': date,
+                        })
+                    else:
+                        date_now = (datetime.today() + relativedelta(
+                            days=no_days)).date()
+                        dict_val.update({
+                            'date': date_now,
+                        })
                     val.append([0, False, dict_val])
                 record.student_id.write({
                     'fees_detail_ids': val
