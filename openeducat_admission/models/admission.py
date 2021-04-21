@@ -125,6 +125,7 @@ class OpAdmission(models.Model):
 
     academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
     academic_term_id = fields.Many2one('op.academic.term', 'Terms')
+    fees_start_date = fields.Date('Fees Start Date')
 
     _sql_constraints = [
         ('unique_application_number',
@@ -306,16 +307,31 @@ class OpAdmission(models.Model):
                     no_days = line.due_days
                     per_amount = line.value
                     amount = (per_amount * record.fees) / 100
-                    date = (datetime.today() + relativedelta(
-                        days=no_days)).date()
                     dict_val = {
                         'fees_line_id': line.id,
                         'amount': amount,
                         'fees_factor': per_amount,
-                        'date': date,
                         'product_id': product_id,
                         'state': 'draft',
                     }
+
+                    if line.due_date:
+                        date = line.due_date
+                        dict_val.update({
+                            'date': date
+                        })
+                    elif self.fees_start_date:
+                        date = self.fees_start_date + relativedelta(
+                            days=no_days)
+                        dict_val.update({
+                            'date': date,
+                        })
+                    else:
+                        date_now = (datetime.today() + relativedelta(
+                            days=no_days)).date()
+                        dict_val.update({
+                            'date': date_now,
+                        })
                     val.append([0, False, dict_val])
                 record.student_id.write({
                     'fees_detail_ids': val
