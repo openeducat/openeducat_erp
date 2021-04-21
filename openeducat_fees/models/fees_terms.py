@@ -28,6 +28,7 @@ class OpFeesTermsLine(models.Model):
     _description = "Fees Details Line"
 
     due_days = fields.Integer('Due Days')
+    due_date = fields.Date('Due Date')
     value = fields.Float('Value (%)')
     fees_element_line = fields.One2many("op.fees.element",
                                         "fees_terms_line_id", "Fees Elements")
@@ -41,6 +42,11 @@ class OpFeesTerms(models.Model):
 
     name = fields.Char('Fees Terms', required=True)
     active = fields.Boolean('Active', default=True)
+    fees_terms = fields.Selection([('fixed_days', 'Fixed Fees of Days'),
+                                   ('fixed_date', 'Fixed Fees of Dates'),
+                                   ('session_based', 'Session Based Fees'),
+                                   ('faculty_based', 'Faculty Session Based Fees')],
+                                  string='Term Type', default='fixed_days', required=True)
     note = fields.Text('Description')
     company_id = fields.Many2one('res.company', 'Company', required=True,
                                  default=lambda s: s.env.user.company_id)

@@ -25,31 +25,35 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="2">
-                            <group>
-                                <field name="name"/>
-                                <field name="discount"/>
-                            </group>
-                            <group>
-                                <field name="active"/>
-                            </group>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="active"/>
+                            <field name="fees_terms"/>
+                            <field name="discount"/>
                         </group>
                         <field name="note" placeholder="Description..."/>
                         <separator string="Terms" colspan="4"/>
                         <field name="line_ids">
                             <tree>
-                                <field name="due_days" required="1"/>
+
+                                <field name="due_days"
+                                       attrs="{'column_invisible':[('parent.fees_terms','!=','fixed_days')],'required':[('parent.fees_terms','=','fixed_days')]}"/>
+                                <field name="due_date"
+                                       attrs="{'column_invisible':[('parent.fees_terms','!=','fixed_date')],'required':[('parent.fees_terms','=','fixed_date')]}"/>
                                 <field name="value" required="1"/>
                                 <field name="fees_element_line">
-                                     <tree string="Information" editable="top">
+                                    <tree string="Information" editable="top">
                                         <field name="product_id"/>
                                         <field name="value"/>
-                                     </tree>
+                                    </tree>
                                 </field>
                             </tree>
                             <form string="Fees Term Line">
                                 <group colspan="4">
-                                    <field name="due_days" required="1"/>
+                                    <field name="due_days"
+                                           attrs="{'invisible':[('parent.fees_terms','!=','fixed_days')],'required':[('parent.fees_terms','=','fixed_days')]}"/>
+                                    <field name="due_date"
+                                           attrs="{'invisible':[('parent.fees_terms','!=','fixed_date')],'required':[('parent.fees_terms','=','fixed_date')]}"/>
                                     <field name="value" required="1"/>
                                     <field name="fees_element_line">
                                         <tree string="Information" editable="top">

@@ -49,5 +49,23 @@
             <field name="fees_element_line"
                    eval="[(4, ref('openeducat_fees.op_fees_element_line_13')),(4, ref('openeducat_fees.op_fees_element_line_14'))]"/>
         </record>
+
+
+        <record id="op_fees_term_date_line_8" model="op.fees.terms.line">
+            <field name="due_date" eval='(DateTime.today() + relativedelta(days=15))'/>
+            <field name="value">30.0</field>
+            <field name="fees_element_line"
+                   eval="[(4, ref('openeducat_fees.op_fees_element_line_5')),(4, ref('openeducat_fees.op_fees_element_line_6'))]"/>
+        </record>
+
+        <record id="op_fees_term_date_line_9" model="op.fees.terms.line">
+            <field name="due_date" eval='(DateTime.today() + relativedelta(days=30))'/>
+            <field name="value">30.0</field>
+        </record>
+
+        <record id="op_fees_term_date_line_10" model="op.fees.terms.line">
+            <field name="due_date" eval='(DateTime.today() + relativedelta(days=60))'/>
+            <field name="value">40.0</field>
+        </record>
     </data>
 </flectra>
