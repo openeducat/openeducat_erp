@@ -284,6 +284,7 @@ class OpAdmission(models.Model):
                 record.partner_id = vals.get('partner_id')
                 record.student_id = student_id = self.env[
                     'op.student'].create(vals).id
+
             else:
                 student_id = record.student_id.id
                 record.student_id.write({
@@ -313,6 +314,8 @@ class OpAdmission(models.Model):
                         'fees_factor': per_amount,
                         'product_id': product_id,
                         'state': 'draft',
+                        'course_id': record.course_id and record.course_id.id or False,
+                        'batch_id': record.batch_id and record.batch_id.id or False,
                     }
 
                     if line.due_date:
