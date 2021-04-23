@@ -52,6 +52,9 @@ class OpStudentFeesDetails(models.Model):
                                          string='After Discount Amount')
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
+    
+    course_id = fields.Many2one('op.course', 'Course', required=False)
+    batch_id = fields.Many2one('op.batch', 'Batch', required=False)
 
     @api.depends('discount')
     def _compute_discount_amount(self):
