@@ -28,8 +28,8 @@
                         <group col="4">
                             <field name="name"/>
                             <field name="active"/>
-                            <field name="fees_terms"/>
                             <field name="discount"/>
+                            <field name="fees_terms" required="1"/>
                         </group>
                         <field name="note" placeholder="Description..."/>
                         <separator string="Terms" colspan="4"/>
@@ -41,10 +41,10 @@
                                        attrs="{'column_invisible':[('parent.fees_terms','!=','fixed_date')],'required':[('parent.fees_terms','=','fixed_date')]}"/>
                                 <field name="value" required="1"/>
                                 <field name="fees_element_line">
-                                     <tree string="Information" editable="top">
+                                    <tree string="Information" editable="top">
                                         <field name="product_id"/>
                                         <field name="value"/>
-                                     </tree>
+                                    </tree>
                                 </field>
                             </tree>
                             <form string="Fees Term Line">
