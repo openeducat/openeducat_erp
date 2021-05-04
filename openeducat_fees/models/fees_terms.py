@@ -43,10 +43,8 @@ class OpFeesTerms(models.Model):
     name = fields.Char('Fees Terms', required=True)
     active = fields.Boolean('Active', default=True)
     fees_terms = fields.Selection([('fixed_days', 'Fixed Fees of Days'),
-                                   ('fixed_date', 'Fixed Fees of Dates'),
-                                   ('session_based', 'Session Based Fees'),
-                                   ('faculty_based', 'Faculty Session Based Fees')],
-                                  string='Term Type', default='fixed_days', required=True)
+                                   ('fixed_date', 'Fixed Fees of Dates')],
+                                  string='Term Type', default='fixed_days')
     note = fields.Text('Description')
     company_id = fields.Many2one('res.company', 'Company', required=True,
                                  default=lambda s: s.env.user.company_id)
