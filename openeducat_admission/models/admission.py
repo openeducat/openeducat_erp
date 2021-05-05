@@ -286,7 +286,7 @@ class OpAdmission(models.Model):
                             record.batch_id and record.batch_id.id or False,
                     }]],
                 })
-            if record.fees_term_id:
+            if record.fees_term_id.fees_terms in ['fixed_days', 'fixed_date']:
                 val = []
                 product_id = record.register_id.product_id.id
                 for line in record.fees_term_id.line_ids:
