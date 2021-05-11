@@ -68,3 +68,10 @@ class OpFeesTerms(models.Model):
             raise exceptions.AccessError(
                 _("Fees terms must be divided as such sum up in 100%"))
         return res
+
+
+class OpStudentCourseInherit(models.Model):
+    _inherit = "op.student.course"
+
+    fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
+    fees_start_date = fields.Date('Fees Start Date')
