@@ -255,6 +255,8 @@ class OpAdmission(models.Model):
                         student.course_id and student.course_id.id or False,
                     'batch_id':
                         student.batch_id and student.batch_id.id or False,
+                    'fees_term_id': student.fees_term_id.id,
+                    'fees_start_date': student.fees_start_date,
                 }]],
                 'user_id': student_user.id,
                 'partner_id': student_user.partner_id.id,
@@ -284,6 +286,8 @@ class OpAdmission(models.Model):
                             record.course_id and record.course_id.id or False,
                         'batch_id':
                             record.batch_id and record.batch_id.id or False,
+                        'fees_term_id': record.fees_term_id.id,
+                        'fees_start_date': record.fees_start_date,
                     }]],
                 })
             if record.fees_term_id.fees_terms in ['fixed_days', 'fixed_date']:
