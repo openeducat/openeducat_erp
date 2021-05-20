@@ -20,6 +20,7 @@
 ###############################################################################
 
 from flectra import models, fields, api, _
+from flectra.exceptions import ValidationError
 
 
 class OpCourse(models.Model):
@@ -46,6 +47,12 @@ class OpCourse(models.Model):
     _sql_constraints = [
         ('unique_course_code',
          'unique(code)', 'Code should be unique per course!')]
+
+    @api.constrains('parent_id')
+    def _check_parent_id_recursion(self):
+        if not self._check_recursion():
+            raise ValidationError(_('You cannot create recursive Course.'))
+        return True
 
     @api.model
     def get_import_templates(self):
