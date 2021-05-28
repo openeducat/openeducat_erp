@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_timetable" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.timetable</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40"/>
+        <field name="inherit_id" ref="openeducat_core.res_config_settings_view_form_core"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='timetable_constraints']" position="inside">
+                <div class="content-group"
+                     attrs="{'invisible': [('module_openeducat_timetable' ,'=', False)]}">
+                    <div class="mt16">
+                        <div class="o_setting_left_pane">
+                            <field name="is_faculty_constraint"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="is_faculty_constraint"/>
+                            <div class="text-muted">
+                                If checked you will not allowed to create the session with same faculty on same date
+                                and time
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <div class="o_setting_left_pane">
+                            <field name="is_classroom_constraint"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="is_classroom_constraint"/>
+                            <div class="text-muted">
+                                If checked you will not allowed to create the session with same classroom on same date
+                                and time
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <div class="o_setting_left_pane">
+                            <field name="is_batch_and_subject_constraint"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="is_batch_and_subject_constraint"/>
+                            <div class="text-muted">
+                                If checked you will not allowed to create the session with the same batch and same
+                                subject on same date and time
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <div class="o_setting_left_pane">
+                            <field name="is_batch_constraint"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="is_batch_constraint"/>
+                            <div class="text-muted">
+                                If checked you will not allowed to create the session with the same batch even if it is
+                                for different subject
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
