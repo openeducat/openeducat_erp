@@ -343,6 +343,9 @@ class OpAdmission(models.Model):
                 'max_unit_load': record.course_id.max_unit_load or 0.0,
                 'state': 'draft',
             })
+            if not record.phone or not record.mobile:
+                raise UserError(
+                    _('Please fill in the mobile number'))
             reg_id.get_subjects()
 
     def confirm_rejected(self):
