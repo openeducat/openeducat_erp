@@ -62,6 +62,16 @@ class OpAdmissionRegister(models.Model):
         'Status', default='draft', track_visibility='onchange')
     active = fields.Boolean(default=True)
 
+    academic_years_id = \
+        fields.Many2one('op.academic.year',
+                        'Academic Year', readonly=True,
+                        states={'draft': [('readonly', False)]},
+                        tracking=True)
+    academic_term_id = fields.Many2one('op.academic.term',
+                                       'Terms', readonly=True,
+                                       states={'draft': [('readonly', False)]},
+                                       tracking=True)
+
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
         for record in self:
