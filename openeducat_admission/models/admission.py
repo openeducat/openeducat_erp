@@ -124,9 +124,6 @@ class OpAdmission(models.Model):
                             digits='Discount', default=0.0)
     fees_start_date = fields.Date('Fees Start Date')
 
-    academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
-    academic_term_id = fields.Many2one('op.academic.term', 'Terms')
-
     _sql_constraints = [
         ('unique_application_number',
          'unique(application_number)',
@@ -182,9 +179,6 @@ class OpAdmission(models.Model):
     def onchange_register(self):
         self.course_id = self.register_id.course_id
         self.fees = self.register_id.product_id.lst_price
-        self.academic_years_id = self.register_id.academic_years_id
-        self.academic_term_id = self.register_id.academic_term_id
-
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
@@ -261,8 +255,8 @@ class OpAdmission(models.Model):
                         student.course_id and student.course_id.id or False,
                     'batch_id':
                         student.batch_id and student.batch_id.id or False,
-                    'academic_years_id': student.academic_years_id.id or False,
-                    'academic_term_id': student.academic_term_id.id or False,
+                    'academic_years_id': student.register_id.academic_years_id.id or False,
+                    'academic_term_id': student.register_id.academic_term_id.id or False,
                     'fees_term_id': student.fees_term_id.id,
                     'fees_start_date': student.fees_start_date,
                 }]],
@@ -294,12 +288,6 @@ class OpAdmission(models.Model):
                             record.course_id and record.course_id.id or False,
                         'batch_id':
                             record.batch_id and record.batch_id.id or False,
-                        'academic_years_id':
-                            record.academic_years_id and
-                            record.academic_years_id.id or False,
-                        'academic_term_id':
-                            record.academic_term_id and
-                            record.academic_term_id.id or False,
                         'fees_term_id': record.fees_term_id.id,
                         'fees_start_date': record.fees_start_date,
                     }]],
@@ -319,6 +307,8 @@ class OpAdmission(models.Model):
                         'fees_factor': per_amount,
                         'product_id': product_id,
                         'state': 'draft',
+                        'course_id': record.course_id and record.course_id.id or False,
+                        'batch_id': record.batch_id and record.batch_id.id or False,
                     }
 
                     if line.due_date:
