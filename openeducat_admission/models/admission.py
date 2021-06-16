@@ -255,6 +255,8 @@ class OpAdmission(models.Model):
                         student.course_id and student.course_id.id or False,
                     'batch_id':
                         student.batch_id and student.batch_id.id or False,
+                    'academic_years_id': student.register_id.academic_years_id.id or False,
+                    'academic_term_id': student.register_id.academic_term_id.id or False,
                     'fees_term_id': student.fees_term_id.id,
                     'fees_start_date': student.fees_start_date,
                 }]],
