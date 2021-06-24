@@ -34,7 +34,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Openeducat'
-copyright = u'Tech-Receptives Solutions Pvt. Ltd.'
+copyright = u'OpenEduCat Inc'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -187,7 +187,7 @@ latex_elements = {
 latex_documents = [
     ('index', 'Openeducatdoc.tex',
      u'Openeducat Documentation',
-     u'Tech-Receptives Solutions Pvt. Ltd.', 'manual'),
+     u'OpenEduCat Inc', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -218,7 +218,7 @@ latex_documents = [
 man_pages = [
     ('index', 'Openeducatdoc',
      u'Openeducat Documentation',
-     [u'Tech-Receptives Solutions Pvt. Ltd.'], 1)
+     [u'OpenEduCat Inc'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -232,7 +232,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'Openeducatdoc', u'Openeducat Documentation',
-     u'Tech-Receptives Solutions Pvt. Ltd.', 'Openeducatdoc',
+     u'OpenEduCat Inc', 'Openeducatdoc',
      'One line description of project.', 'Miscellaneous'),
 ]
 
