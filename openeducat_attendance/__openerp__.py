@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -31,7 +31,7 @@
         This module provide feature of Attendance Management.
 
     """,
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [

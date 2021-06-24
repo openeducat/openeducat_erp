@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -30,7 +30,7 @@
     'description': """
         This module provide indian based feature of admission.
     """,
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_l10n_in', 'openeducat_admission'],
     'data': [
