@@ -4,7 +4,7 @@
 ##############################################################################
 #
 #    OpenEduCat Inc.
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.techreceptives.com>).
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 ##############################################################################
 
