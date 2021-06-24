@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    OpenEduCat Inc.
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
+#    Tech-Receptives Solutions Pvt. Ltd.
+#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -26,7 +26,7 @@
     "sequence": 3,
     'version': '10.0.3.0.0',
     'license': 'LGPL-3',
-    'author': 'OpenEduCat Inc',
+    'author': 'Tech Receptives',
     'website': 'http://www.openeducat.org',
     'data': [
         'views/assets.xml',
