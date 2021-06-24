@@ -3,8 +3,8 @@
 
 ##############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc.
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 ##############################################################################
 
