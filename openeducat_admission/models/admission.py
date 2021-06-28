@@ -123,6 +123,9 @@ class OpAdmission(models.Model):
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
     fees_start_date = fields.Date('Fees Start Date')
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
 
     _sql_constraints = [
         ('unique_application_number',
@@ -179,6 +182,7 @@ class OpAdmission(models.Model):
     def onchange_register(self):
         self.course_id = self.register_id.course_id
         self.fees = self.register_id.product_id.lst_price
+        self.company_id = self.register_id.company_id
 
     @api.onchange('course_id')
     def onchange_course(self):
@@ -223,7 +227,7 @@ class OpAdmission(models.Model):
                 'login': student.email,
                 'image_1920': self.image or False,
                 'is_student': True,
-                'company_id': self.env.ref('base.main_company').id,
+                'company_id': self.company_id.id,
                 'groups_id': [
                     (6, 0,
                      [self.env.ref('base.group_portal').id])]
@@ -261,6 +265,7 @@ class OpAdmission(models.Model):
                     'fees_start_date': student.fees_start_date,
                 }]],
                 'user_id': student_user.id,
+                'company_id': self.company_id.id,
                 'partner_id': student_user.partner_id.id,
             })
             return details
