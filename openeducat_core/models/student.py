@@ -95,7 +95,9 @@ class OpStudent(models.Model):
                                         'Course Details',
                                         track_visibility='onchange')
     active = fields.Boolean(default=True)
-
+    company_id = fields.Many2one('res.company', string='Company',
+                                default=lambda self: self.env.user.company_id)
+        
     _sql_constraints = [(
         'unique_gr_no',
         'unique(gr_no)',
