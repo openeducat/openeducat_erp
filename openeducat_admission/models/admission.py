@@ -123,6 +123,9 @@ class OpAdmission(models.Model):
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
     fees_start_date = fields.Date('Fees Start Date')
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
 
     _sql_constraints = [
         ('unique_application_number',
@@ -179,6 +182,8 @@ class OpAdmission(models.Model):
     def onchange_register(self):
         self.course_id = self.register_id.course_id
         self.fees = self.register_id.product_id.lst_price
+        self.company_id = self.register_id.company_id
+
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
@@ -204,6 +209,13 @@ class OpAdmission(models.Model):
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+            elif record:
+                today_date = fields.Date.today()
+                day = (today_date - record.birth_date).days
+                years = day // 365
+                if years < self.register_id.minimum_age_criteria:
+                    raise ValidationError(_(
+                        "Not Eligible for Admission minimum required age is : %s " % self.register_id.minimum_age_criteria))
 
     def submit_form(self):
         self.state = 'submit'
@@ -222,8 +234,7 @@ class OpAdmission(models.Model):
                 'login': student.email,
                 'image_1920': self.image or False,
                 'is_student': True,
-                'company_id': self.env.user.company_id and
-                              self.env.user.company_id.id or False,
+                'company_id': self.company_id.id,
                 'groups_id': [
                     (6, 0,
                      [self.env.ref('base.group_portal').id])]
@@ -261,6 +272,7 @@ class OpAdmission(models.Model):
                     'fees_start_date': student.fees_start_date,
                 }]],
                 'user_id': student_user.id,
+                'company_id': self.company_id.id,
                 'partner_id': student_user.partner_id.id,
             })
             return details
