@@ -210,6 +210,13 @@ class OpAdmission(models.Model):
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+            elif record:
+                today_date = fields.Date.today()
+                day = (today_date - record.birth_date).days
+                years = day // 365
+                if years < self.register_id.minimum_age_criteria:
+                    raise ValidationError(_(
+                        "Not Eligible for Admission minimum required age is : %s " % self.register_id.minimum_age_criteria))
 
     def submit_form(self):
         self.state = 'submit'
