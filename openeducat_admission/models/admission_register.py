@@ -71,6 +71,11 @@ class OpAdmissionRegister(models.Model):
                                        'Terms', readonly=True,
                                        states={'draft': [('readonly', False)]},
                                        tracking=True)
+    minimum_age_criteria = fields.Integer('Minimum Required Age(Years)',default=3)
+
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
