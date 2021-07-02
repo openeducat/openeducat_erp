@@ -15,6 +15,7 @@
                     <field name="course_id"/>
                     <field name="batch_id" invisible="1"/>
                     <field name="state"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
                 </tree>
             </field>
         </record>
@@ -91,6 +92,7 @@
                                            attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
                                     <field name="is_student"/>
                                     <field name="partner_id"/>
+                                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
                                     <field name="student_id" placeholder="Student" options="{'no_create_edit': True}"
                                            attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
                                     <field name="fees_start_date"/>
@@ -106,7 +108,7 @@
                             <page name="personal_detail" string="Personal Detail">
                                 <group col="4" colspan="4">
                                     <field name="gender"/>
-                                    <field name="birth_date"/>
+                                    <field name="birth_date" options="{'datepicker':{'maxDate': 'now'}}"/>
                                     <field name="email" placeholder="Email"/>
                                 </group>
                                 <label for="street" string="Address"/>

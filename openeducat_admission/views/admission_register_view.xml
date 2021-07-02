@@ -13,6 +13,7 @@
                     <field name="end_date"/>
                     <field name="min_count"/>
                     <field name="max_count"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
                     <field name="product_id" invisible="1"/>
                     <field name="state"/>
                 </tree>
@@ -50,6 +51,8 @@
                             <field name="product_id" context="{'default_type': 'service'}"/>
                             <field name="min_count"/>
                             <field name="max_count"/>
+                            <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                            <field name="minimum_age_criteria" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
                             <field name="academic_years_id"/>
                             <field name="academic_term_id"/>
                         </group>
