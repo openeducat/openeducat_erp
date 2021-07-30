@@ -318,11 +318,11 @@ class OpAdmission(models.Model):
                         'amount': amount,
                         'fees_factor': per_amount,
                         'product_id': product_id,
+                        'discount': record.discount or record.fees_term_id.discount,
                         'state': 'draft',
                         'course_id': record.course_id and record.course_id.id or False,
                         'batch_id': record.batch_id and record.batch_id.id or False,
                     }
-
                     if line.due_date:
                         date = line.due_date
                         dict_val.update({
