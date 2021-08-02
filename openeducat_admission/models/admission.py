@@ -316,7 +316,7 @@ class OpAdmission(models.Model):
                     dict_val = {
                         'fees_line_id': line.id,
                         'amount': amount,
-                        'discount': record.discount or record.fees_term_id.discount
+                        'discount': record.discount or record.fees_term_id.discount,
                         'fees_factor': per_amount,
                         'product_id': product_id,
                         'state': 'draft',
