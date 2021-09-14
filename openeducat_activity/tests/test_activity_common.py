@@ -19,10 +19,10 @@
 #
 ###############################################################################
 
-from odoo.tests import common
+from odoo.tests import common,TransactionCase
 
 
-class TestActivityCommon(common.SavepointCase):
+class TestActivityCommon(TransactionCase):
     def setUp(self):
         super(TestActivityCommon, self).setUp()
         self.op_activity_type = self.env['op.activity.type']

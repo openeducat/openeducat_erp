@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '14.0.1.0',
+    'version': '15.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
@@ -93,4 +93,9 @@
     'installable': True,
     'auto_install': False,
     'application': True,
+    'assets': {
+        'website.assets_frontend': [
+            '/openeducat_core/static/src/scss/main.scss',
+        ],  
+    },
 }

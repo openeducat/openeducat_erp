@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from odoo.tests import common
+from odoo.tests import common,TransactionCase
 
 
-class TestFeesCommon(common.SavepointCase):
+class TestFeesCommon(TransactionCase):
     def setUp(self):
         super(TestFeesCommon, self).setUp()
         self.op_student_fees = self.env['op.student.fees.details']

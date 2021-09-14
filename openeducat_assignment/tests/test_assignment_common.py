@@ -20,10 +20,10 @@
 ###############################################################################
 
 
-from odoo.tests import common
+from odoo.tests import common,TransactionCase
 
 
-class TestAssignmentCommon(common.SavepointCase):
+class TestAssignmentCommon(TransactionCase):
     def setUp(self):
         super(TestAssignmentCommon, self).setUp()
         self.op_assignment = self.env['op.assignment']

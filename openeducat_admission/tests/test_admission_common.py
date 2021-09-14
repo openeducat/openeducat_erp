@@ -19,10 +19,10 @@
 #
 ###############################################################################
 
-from odoo.tests import common
+from odoo.tests import common,TransactionCase
 
 
-class TestAdmissionCommon(common.SavepointCase):
+class TestAdmissionCommon(TransactionCase):
     def setUp(self):
         super(TestAdmissionCommon, self).setUp()
         self.op_register = self.env['op.admission.register']
