@@ -25,7 +25,7 @@ from ..controllers import app_main
 from odoo.addons.website.tools import MockRequest
 
 
-class TestCoreCommon(common.SavepointCase):
+class TestCoreCommon(TransactionCase):
     def setUp(self):
         super(TestCoreCommon, self).setUp()
         self.op_batch = self.env['op.batch']

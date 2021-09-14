@@ -19,23 +19,23 @@
                                 <tbody class="justify-content-center" style="font-size: 14px;">
                                     <tr>
                                         <td>This is to certify that
-                                            <span t-raw="'%s' % o.title.name if o.title.name else ''"/>
+                                            <span t-out="o.title.name if o.title.name else ''"/>
                                             <strong>
                                                 <u>
-                                                    <span t-raw="'%s' % o.name if o.name else ''"/>
+                                                    <span t-out="o.name if o.name else ''"/>
                                                 </u>
                                             </strong>
                                             <font color="white"></font>
                                             is / was a bonafide student of this school / college studying in
                                             <strong>
                                                 <u>
-                                                    <span t-raw="'%s' % o.course_detail_ids[0].course_id.name if o.course_detail_ids else ''"/>
+                                                    <span t-out="o.course_detail_ids[0].course_id.name if o.course_detail_ids else ''"/>
                                                 </u>
                                             </strong>
                                             Year
                                             <strong>(
                                                 <u>
-                                                    <span t-raw="'%s' % o.course_detail_ids[0].batch_id.name if o.course_detail_ids else ''"/>
+                                                    <span t-out="o.course_detail_ids[0].batch_id.name if o.course_detail_ids else ''"/>
                                                 </u>
                                                 ).
                                             </strong>

@@ -21,7 +21,7 @@
 from odoo.tests import common
 
 
-class TestLibraryCommon(common.SavepointCase):
+class TestLibraryCommon(common.TransactionCase):
     def setUp(self):
         super(TestLibraryCommon, self).setUp()
         self.op_library_card_type = self.env['op.library.card.type']

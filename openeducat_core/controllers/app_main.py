@@ -21,6 +21,7 @@
 
 from odoo import http
 from odoo.http import request
+import werkzeug.utils
 from odoo.addons.portal.controllers.web import \
     Home as home
 
@@ -40,7 +41,7 @@ class OpeneducatHome(home):
                     redirect = '/my/child'
                 else:
                     redirect = '/my/home'
-            return http.redirect_with_hash(redirect)
+            return werkzeug.utils.redirect(redirect)
         return response
 
     def _login_redirect(self, uid, redirect=None):

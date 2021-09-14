@@ -93,4 +93,9 @@
     'installable': True,
     'auto_install': False,
     'application': True,
+    'assets': {
+        'website.assets_frontend': [
+            '/openeducat_core/static/src/scss/main.scss',
+        ],  
+    },
 }

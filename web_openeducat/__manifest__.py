@@ -23,7 +23,7 @@
     'name': 'Web OpenEduCat',
     'category': 'Website',
     "sequence": 3,
-    'version': '14.0.1.0',
+    'version': '15.0.1.0',
     'license': 'LGPL-3',
     'author': 'OpenEduCat Incs',
     'website': 'http://www.openeducat.org',
@@ -53,4 +53,9 @@
         'website',
     ],
     'application': True,
+    'assets': {
+        'web.assets_frontend': [
+            '/web_openeducat/static/src/scss/homepage.scss',
+        ],
+    }
 }
