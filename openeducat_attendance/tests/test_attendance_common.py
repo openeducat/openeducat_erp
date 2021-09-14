@@ -21,7 +21,7 @@
 from odoo.tests import common
 
 
-class TestAttendanceCommon(common.SavepointCase):
+class TestAttendanceCommon(common.TransactionCase):
     def setUp(self):
         super(TestAttendanceCommon, self).setUp()
         self.op_attendance_register = self.env['op.attendance.register']

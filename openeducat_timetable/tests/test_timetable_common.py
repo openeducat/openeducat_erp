@@ -21,7 +21,7 @@
 from odoo.tests import common
 
 
-class TestTimetableCommon(common.SavepointCase):
+class TestTimetableCommon(common.TransactionCase):
     def setUp(self):
         super(TestTimetableCommon, self).setUp()
         self.op_faculty = self.env['op.faculty']
