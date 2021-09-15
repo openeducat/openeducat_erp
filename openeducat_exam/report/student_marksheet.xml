@@ -35,21 +35,21 @@
                                                 <tr>
                                                     <td>
                                                         <b>Student Name:</b>
-                                                        <span t-raw="'%s' % obj.student_id.name if obj.student_id.name else ''"/>
+                                                        <span t-out="obj.student_id.name if obj.student_id.name else ''"/>
                                                     </td>
                                                     <td class="text-right">
                                                         <b>Course:</b>
-                                                        <span t-raw="'%s' %  obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
+                                                        <span t-out="obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
                                                         <b>Exam Name:</b>
-                                                        <span t-raw="'%s' %   obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
+                                                        <span t-out="obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
                                                     </td>
                                                     <td class="text-right">
                                                         <b>Exam Code:</b>
-                                                        <span t-raw="'%s' %   obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
+                                                        <span t-out="obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -88,27 +88,27 @@
                                                             <td
                                                                     class="text-center">
                                                                 <span
-                                                                        t-raw="'%s' % result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
+                                                                        t-out="result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
                                                             </td>
                                                             <td
                                                                     class="text-center">
                                                                 <span
-                                                                        t-raw="'%s' % result.exam_id.session_id.exam_type.name if result.exam_id.session_id.exam_type.name else ''"/>
+                                                                        t-out="result.exam_id.session_id.exam_type.name if result.exam_id.session_id.exam_type.name else ''"/>
                                                             </td>
                                                             <td
                                                                     class="text-right">
                                                                 <span
-                                                                        t-raw="'%s' % result.exam_id.total_marks if result.exam_id.total_marks else ''"/>
+                                                                        t-out="result.exam_id.total_marks if result.exam_id.total_marks else ''"/>
                                                             </td>
                                                             <td
                                                                     class="text-right">
                                                                 <span
-                                                                        t-raw="'%s' %  result.exam_id.min_marks if  result.exam_id.min_marks else ''"/>
+                                                                        t-out="result.exam_id.min_marks if  result.exam_id.min_marks else ''"/>
                                                             </td>
                                                             <td
                                                                     class="text-right">
                                                                 <span
-                                                                        t-raw="'%s' % result.marks if result.marks else '--'"/>
+                                                                        t-out="result.marks if result.marks else '--'"/>
                                                             </td>
                                                         </tr>
                                                     </t>
@@ -141,27 +141,27 @@
                                                     <td
                                                             class="text-center">
                                                         <span
-                                                                t-raw="'%s' %  get_date(obj.generated_date) if  get_date(obj.generated_date) else ''"/>
+                                                                t-out="get_date(obj.generated_date) if  get_date(obj.generated_date) else ''"/>
                                                     </td>
                                                     <td
                                                             class="text-center">
                                                         <span
-                                                                t-raw="'%s' %  obj.total_marks if  obj.total_marks else ''"/>
+                                                                t-out="obj.total_marks if  obj.total_marks else ''"/>
                                                         /
                                                         <span
-                                                                t-raw="'%s' %  get_total(get_lines(obj)) if  get_total(get_lines(obj)) else ''"/>
+                                                                t-out="get_total(get_lines(obj)) if  get_total(get_lines(obj)) else ''"/>
                                                     </td>
 
                                                     <td
                                                             class="text-center">
                                                         <span
-                                                                t-raw="'%s' %  obj.percentage  if  obj.percentage  else ''"/>
+                                                                t-out="obj.percentage  if  obj.percentage  else ''"/>
                                                         %
                                                     </td>
                                                     <td
                                                             class="text-center">
                                                         <span
-                                                                t-raw="'%s' % obj.status if obj.status else ''"/>
+                                                                t-out="obj.status if obj.status else ''"/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -181,7 +181,7 @@
                                                     <td>
                                                         :
                                                         <span
-                                                                t-raw="'%s' % obj.student_id.name if obj.student_id.name else ''"/>
+                                                                t-out="obj.student_id.name if obj.student_id.name else ''"/>
                                                     </td>
                                                     <td
                                                             width="15%">
@@ -191,7 +191,7 @@
                                                     <td>
                                                         :
                                                         <span
-                                                                t-raw="'%s' %  obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
+                                                                t-out="obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -204,7 +204,7 @@
                                                     <td>
                                                         :
                                                         <span
-                                                                t-raw="'%s' %   obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
+                                                                t-out="obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
                                                     </td>
                                                     <td
                                                             width="15%">
@@ -215,7 +215,7 @@
                                                     <td>
                                                         :
                                                         <span
-                                                                t-raw="'%s' %   obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
+                                                                t-out="obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -247,22 +247,22 @@
                                                             <td
                                                                     class="text-left">
                                                                 <span
-                                                                        t-raw="'%s' % result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
+                                                                        t-out="result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
                                                             </td>
                                                             <td
                                                                     class="text-left">
                                                                 <span
-                                                                        t-raw="'%s' % result.exam_id.session_id.exam_type.name if result.exam_id.session_id.exam_type.name else ''"/>
+                                                                        t-out="result.exam_id.session_id.exam_type.name if result.exam_id.session_id.exam_type.name else ''"/>
                                                             </td>
                                                             <td
                                                                     class="text-center">
                                                                 <span
-                                                                        t-raw="'%s' % result.grade if result.grade else '--'"/>
+                                                                        t-out="result.grade if result.grade else '--'"/>
                                                             </td>
                                                             <td
                                                                     class="text-center">
                                                                 <span
-                                                                        t-raw="'%s' % 'P' if result.marks &gt; 0 else 'A'"/>
+                                                                        t-out="'P' if result.marks &gt; 0 else 'A'"/>
                                                             </td>
                                                         </tr>
                                                     </t>
@@ -294,20 +294,20 @@
                                                     <td
                                                             class="text-center">
                                                         <span
-                                                                t-raw="'%s' %  get_date(obj.generated_date) if  get_date(obj.generated_date) else ''"/>
+                                                                t-out="get_date(obj.generated_date) if  get_date(obj.generated_date) else ''"/>
                                                     </td>
                                                     <td class="text-center">
-                                                        <span t-raw="'%s' %  obj.grade if  obj.grade else ''"/>
+                                                        <span t-out="obj.grade if  obj.grade else ''"/>
                                                     </td>
                                                     <td class="text-center">
                                                         <span
-                                                                t-raw="'%s' %  obj.percentage  if  obj.percentage  else ''"/>
+                                                                t-out="obj.percentage  if  obj.percentage  else ''"/>
                                                         %
                                                     </td>
                                                     <td
                                                             class="text-center">
                                                         <span
-                                                                t-raw="'%s' % obj.status if obj.status else ''"/>
+                                                                t-out="obj.status if obj.status else ''"/>
                                                     </td>
                                                 </tr>
                                             </tbody>

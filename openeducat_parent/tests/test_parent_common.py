@@ -22,7 +22,7 @@
 from odoo.tests import common
 
 
-class TestParentCommon(common.SavepointCase):
+class TestParentCommon(common.TransactionCase):
     def setUp(self):
         super(TestParentCommon, self).setUp()
         self.op_parent = self.env['op.parent']
