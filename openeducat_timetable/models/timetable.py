@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -33,14 +33,13 @@ week_days = [(calendar.day_name[0], _(calendar.day_name[0])),
 
 
 class OpSession(models.Model):
-    _name = 'op.session'
-    _inherit = ['mail.thread']
-    _description = 'Sessions'
-    _rec_name = 'name'
+    _name = "op.session"
+    _inherit = ["mail.thread"]
+    _description = "Sessions"
 
     name = fields.Char(compute='_compute_name', string='Name', store=True)
     timing_id = fields.Many2one(
-        'op.timing', 'Timing', required=True, track_visibility="onchange")
+        'op.timing', 'Timing', required=True, tracking=True)
     start_datetime = fields.Datetime(
         'Start Time', required=True,
         default=lambda self: fields.Datetime.now())
@@ -61,29 +60,28 @@ class OpSession(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('confirm', 'Confirmed'),
          ('done', 'Done'), ('cancel', 'Canceled')],
-        'Status', default='draft')
+        string='Status', default='draft')
     user_ids = fields.Many2many(
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
+    active = fields.Boolean(default=True)
 
-    @api.multi
     @api.depends('start_datetime')
     def _compute_day(self):
         for record in self:
             record.type = fields.Datetime.from_string(
                 record.start_datetime).strftime("%A")
 
-    @api.multi
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
     def _compute_name(self):
         for session in self:
             if session.faculty_id and session.subject_id \
                     and session.start_datetime:
                 session.name = session.faculty_id.name + ':' + \
-                    session.subject_id.name + ':' + str(session.timing_id.name)
+                               session.subject_id.name + ':' + \
+                               str(session.timing_id.name)
 
     # For record rule on student and faculty dashboard
-    @api.multi
     @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
     def _compute_batch_users(self):
         student_obj = self.env['op.student']
@@ -100,19 +98,15 @@ class OpSession(models.Model):
                 user_list.extend(user_ids.ids)
             session.user_ids = user_list
 
-    @api.multi
     def lecture_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def lecture_confirm(self):
         self.state = 'confirm'
 
-    @api.multi
     def lecture_done(self):
         self.state = 'done'
 
-    @api.multi
     def lecture_cancel(self):
         self.state = 'cancel'
 
@@ -121,6 +115,51 @@ class OpSession(models.Model):
         if self.start_datetime > self.end_datetime:
             raise ValidationError(_(
                 'End Time cannot be set before Start Time.'))
+
+    @api.constrains('faculty_id', 'timing_id', 'start_datetime', 'classroom_id',
+                    'batch_id', 'subject_id')
+    def check_timetable_fields(self):
+        res_param = self.env['ir.config_parameter'].sudo()
+        faculty_constraint = res_param.search([('key', '=', 'timetable.is_faculty_constraint')])
+        classroom_constraint = res_param.search([('key', '=', 'timetable.is_classroom_constraint')])
+        batch_and_subject_constraint = res_param.search([('key', '=', 'timetable.is_batch_and_subject_constraint')])
+        batch_constraint = res_param.search([('key', '=', 'timetable.is_batch_constraint')])
+        is_faculty_constraint = faculty_constraint.value
+        is_classroom_constraint = classroom_constraint.value
+        is_batch_and_subject_constraint = batch_and_subject_constraint.value
+        is_batch_constraint = batch_constraint.value
+        sessions = self.env['op.session'].search([])
+        for session in sessions:
+            if self.id != session.id:
+                if is_faculty_constraint:
+                    if self.faculty_id.id == session.faculty_id.id and \
+                            self.timing_id.id == session.timing_id.id and \
+                            self.start_datetime.date() == session.start_datetime.date():
+                        raise ValidationError(_(
+                            'You cannot create a session with same faculty on same date '
+                            'and time'))
+                if is_classroom_constraint:
+                    if self.classroom_id.id == session.classroom_id.id and \
+                            self.timing_id.id == session.timing_id.id and \
+                            self.start_datetime.date() == session.start_datetime.date():
+                        raise ValidationError(_(
+                            'You cannot create a session with same classroom on same date'
+                            ' and time'))
+                if is_batch_and_subject_constraint:
+                    if self.batch_id.id == session.batch_id.id and \
+                            self.timing_id.id == session.timing_id.id and \
+                            self.start_datetime.date() == session.start_datetime.date() \
+                            and self.subject_id.id == session.subject_id.id:
+                        raise ValidationError(_(
+                            'You cannot create a session for the same batch on same time '
+                            'and for same subject'))
+                if is_batch_constraint:
+                    if self.batch_id.id == session.batch_id.id and \
+                            self.timing_id.id == session.timing_id.id and \
+                            self.start_datetime.date() == session.start_datetime.date():
+                        raise ValidationError(_(
+                            'You cannot create a session for the same batch on same time '
+                            'even if it is different subject'))
 
     @api.model
     def create(self, values):
@@ -143,10 +182,11 @@ class OpSession(models.Model):
         subtype_id = self.env['mail.message.subtype'].sudo().search([
             ('name', '=', 'Discussions')])
         if partner_ids and subtype_id:
-            for partner in partner_ids:
+            mail_followers = self.env['mail.followers'].sudo()
+            for partner in list(set(partner_ids)):
                 if partner in partner_val:
                     continue
-                val = self.env['mail.followers'].sudo().create({
+                mail_followers.create({
                     'res_model': res._name,
                     'res_id': res.id,
                     'partner_id': partner,
@@ -157,8 +197,11 @@ class OpSession(models.Model):
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
+        if self.course_id:
+            subject_ids = self.env['op.course'].search([
+                ('id', '=', self.course_id.id)]).subject_ids
+            return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
 
-    @api.multi
     def notify_user(self):
         for session in self:
             template = self.env.ref(
@@ -166,7 +209,6 @@ class OpSession(models.Model):
                 raise_if_not_found=False)
             template.send_mail(session.id)
 
-    @api.multi
     def get_emails(self, follower_ids):
         email_ids = ''
         for user in follower_ids:
@@ -176,16 +218,21 @@ class OpSession(models.Model):
                 email_ids = str(user.sudo().partner_id.email)
         return email_ids
 
-    @api.multi
     def get_subject(self):
-        return 'lacture of ' + self.faculty_id.name + \
-            ' for ' + self.subject_id.name + ' is ' + self.state
+        return 'Lecture of ' + self.faculty_id.name + \
+               ' for ' + self.subject_id.name + ' is ' + self.state
 
-    @api.multi
-    @api.model
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
-        if self.state not in ('draft', 'done'):
-            self.notify_user()
+        for session in self:
+            if session.state not in ('draft', 'done'):
+                session.notify_user()
         return data
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Sessions'),
+            'template': '/openeducat_timetable/static/xls/op_session.xls'
+        }]

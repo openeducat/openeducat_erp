@@ -5,23 +5,27 @@
             <field name="model">wizard.op.student</field>
             <field name="arch" type="xml">
                 <form string="Create Users">
-                    <p class="oe_grey">
-                        Create User for selected Student(s)
-                    </p>
-                    <separator string="Students" colspan="4" />
-                    <field name="student_ids" widget="many2many_tags" readonly="1" />
+                    <p class="oe_grey">Create User for selected Student(s)</p>
+                    <separator string="Students" colspan="4"/>
+                    <field name="student_ids" widget="many2many_tags" readonly="1"/>
                     <footer>
-                        <button string="Create Users" name="create_student_user" type="object"
-                            default_focus="1" class="oe_highlight" />
+                        <button string="Create Users" name="create_user" type="object" default_focus="1"
+                                class="oe_highlight"/>
                         or
-                        <button string="Cancel" class="oe_link" special="cancel" />
+                        <button string="Cancel" class="oe_link" special="cancel"/>
                     </footer>
                 </form>
             </field>
         </record>
 
-        <act_window id="action_student_user_create_view" multi="True"
-            name="Create Users" res_model="wizard.op.student" src_model="op.student"
-            view_mode="form" target="new" view_type="form" />
+        <record model="ir.actions.act_window" id="student_user_create_view_act">
+            <field name="name">Create Users</field>
+            <field name="res_model">wizard.op.student</field>
+            <field name="binding_view_types">list,form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_op_student"/>
+        </record>
+
     </data>
 </odoo>

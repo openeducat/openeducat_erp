@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,12 +19,13 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api, _
 
 
 class OpSubject(models.Model):
-    _name = 'op.subject'
-    _rec_name = 'name'
+    _name = "op.subject"
+    _inherit = "mail.thread"
+    _description = "Subject"
 
     name = fields.Char('Name', size=128, required=True)
     code = fields.Char('Code', size=256, required=True)
@@ -36,8 +37,20 @@ class OpSubject(models.Model):
     subject_type = fields.Selection(
         [('compulsory', 'Compulsory'), ('elective', 'Elective')],
         'Subject Type', default="compulsory", required=True)
+    department_id = fields.Many2one(
+        'op.department', 'Department',
+        default=lambda self:
+        self.env.user.dept_id and self.env.user.dept_id.id or False)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_subject_code',
          'unique(code)', 'Code should be unique per subject!'),
     ]
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Subjects'),
+            'template': '/openeducat_core/static/xls/op_subject.xls'
+        }]

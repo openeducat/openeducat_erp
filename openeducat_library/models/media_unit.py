@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -23,21 +23,23 @@ from odoo import models, fields, api
 
 
 class OpMediaUnit(models.Model):
-    _name = 'op.media.unit'
-    _inherit = 'mail.thread'
-    _description = 'Media Unit'
+    _name = "op.media.unit"
+    _inherit = "mail.thread"
+    _description = "Media Unit"
+    _order = "name"
 
     name = fields.Char('Name', required=True)
-    media_id = fields.Many2one(
-        'op.media', 'Media', required=True, track_visibility='onchange')
+    media_id = fields.Many2one('op.media', 'Media',
+                               required=True, tracking=True)
     barcode = fields.Char('Barcode', size=20)
     movement_lines = fields.One2many(
         'op.media.movement', 'media_unit_id', 'Movements')
     state = fields.Selection(
         [('available', 'Available'), ('issue', 'Issued')],
-        'State', default='available', track_visibility='onchange')
+        'State', default='available', tracking=True)
     media_type_id = fields.Many2one(related='media_id.media_type_id',
                                     store=True, string='Media Type')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_name_barcode',

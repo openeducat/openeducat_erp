@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_op_library" model="res.groups">
+            <field name="name">Library</field>
+            <field name="category_id"
+                   ref="openeducat_core.module_category_openeducat_others"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('base.group_user')),(4, ref('account.group_account_invoice'))]"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        </record>
+
+        <!-- Rule for Media Queue Request to see own Record. -->
+        <record model="ir.rule" id="group_student_media_request_rule">
+            <field name="name">See Own media Queue Request</field>
+            <field name="model_id" ref="model_op_media_queue"/>
+            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids)]</field>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+        </record>
+
+        <!-- Rule for Media Movement to see own Record. -->
+        <record model="ir.rule" id="group_student_media_Movement_rule">
+            <field name="name">Media Movement For Group Student</field>
+            <field name="model_id" ref="model_op_media_movement"/>
+            <field name="domain_force">['|', ('user_id','=',user.id), ('user_id', 'in', user.child_ids.ids), ('state','in',['issue'])]</field>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_faculty')),(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+        </record>
+
+        <!-- Rule for Media Movement to see ALL Record with Library Group. -->
+        <record model="ir.rule" id="group_library_media_Movement_rule">
+            <field name="name">Media Movement For Group Library</field>
+            <field name="model_id" ref="model_op_media_movement"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_library.group_op_library'))]"/>
+        </record>
+
+        <record model="ir.rule" id="view_media_request_rule">
+            <field name="name">View Media Queue</field>
+            <field name="model_id" ref="model_op_media_queue"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_faculty')),(4, ref('openeducat_core.group_op_back_office'))]"/>
+        </record>
+
+        <record id="openeducat_core.group_op_back_office" model="res.groups">
+            <field name="implied_ids"
+                   eval="[(4, ref('openeducat_core.group_op_faculty')),(4, ref('base.group_partner_manager')),(4, ref('account.group_account_invoice'))]"/>
+        </record>
+    </data>
+</odoo>

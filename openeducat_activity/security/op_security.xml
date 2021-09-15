@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.rule" id="student_activity_log_rule">
+            <field name="name">Student Activity Logs</field>
+            <field name="model_id" ref="model_op_activity"/>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+            <field name="domain_force">['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in',user.child_ids.ids)]
+            </field>
+        </record>
+
+        <record model="ir.rule" id="faculty_activity_log_rule">
+            <field name="name">Faculty Activity Logs</field>
+            <field name="model_id" ref="model_op_activity"/>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+            <field name="domain_force">['|', ('faculty_id.user_id','=',user.id), ('faculty_id.user_id','in',user.child_ids.ids)]
+            </field>
+        </record>
+
+        <record model="ir.rule" id="back_office_activity_log_rule">
+            <field name="name">Back Office Activity Logs</field>
+            <field name="model_id" ref="model_op_activity"/>
+            <field name="groups"
+                   eval="[(4, ref('openeducat_core.group_op_back_office'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+    </data>
+</odoo>

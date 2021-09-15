@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -26,11 +26,13 @@ from odoo.exceptions import ValidationError
 
 
 class OpExam(models.Model):
-    _name = 'op.exam'
-    _inherit = 'mail.thread'
-    _description = 'Exam'
+    _name = "op.exam"
+    _inherit = "mail.thread"
+    _description = "Exam"
 
-    session_id = fields.Many2one('op.exam.session', 'Exam Session')
+    session_id = fields.Many2one('op.exam.session', 'Exam Session',
+                                 domain=[('state', 'not in',
+                                          ['cancel', 'done'])])
     course_id = fields.Many2one(
         'op.course', related='session_id.course_id', store=True,
         readonly=True)
@@ -47,12 +49,13 @@ class OpExam(models.Model):
         [('draft', 'Draft'), ('schedule', 'Scheduled'), ('held', 'Held'),
          ('result_updated', 'Result Updated'),
          ('cancel', 'Cancelled'), ('done', 'Done')], 'State',
-        readonly=True, default='draft', track_visibility='onchange')
+        readonly=True, default='draft', tracking=True)
     note = fields.Text('Note')
     responsible_id = fields.Many2many('op.faculty', string='Responsible')
     name = fields.Char('Exam', size=256, required=True)
     total_marks = fields.Integer('Total Marks', required=True)
     min_marks = fields.Integer('Passing Marks', required=True)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_exam_code',
@@ -84,18 +87,14 @@ class OpExam(models.Model):
             raise ValidationError(
                 _('Exam Time should in between Exam Session Dates.'))
 
-    @api.multi
     def act_result_updated(self):
         self.state = 'result_updated'
 
-    @api.multi
     def act_done(self):
         self.state = 'done'
 
-    @api.multi
     def act_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def act_cancel(self):
         self.state = 'cancel'

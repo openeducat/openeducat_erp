@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,10 +24,11 @@ from odoo import models, api
 
 
 class ReportLibraryCardBarcode(models.AbstractModel):
-    _name = 'report.openeducat_library.report_library_card_barcode'
+    _name = "report.openeducat_library.report_library_card_barcode"
+    _description = "Library Card Barcode Report"
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         docs = self.env['op.library.card'].browse(docids)
         docargs = {
             'doc_model': 'op.library.card',

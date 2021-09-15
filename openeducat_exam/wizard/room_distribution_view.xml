@@ -1,40 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-
         <record id="view_op_room_distribution_form" model="ir.ui.view">
             <field name="name">op.room.distribution.form</field>
             <field name="model">op.room.distribution</field>
             <field name="type">form</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Exam Room Distribution">
-                    <h1>
-                        <field name="name" readonly="1" />
-                    </h1>
+                    <h1><field name="name" readonly="1"/></h1>
                     <group col="2">
                         <group>
-                            <field name="exam_id" invisible="1" />
-                            <field name="exam_session" readonly="1" />
-                            <field name="course_id" readonly="1" />
-                            <field name="batch_id" readonly="1" />
+                            <field name="exam_id" invisible="1"/>
+                            <field name="exam_session" readonly="1"/>
+                            <field name="course_id" readonly="1"/>
+                            <field name="batch_id" readonly="1"/>
                         </group>
                         <group>
-                            <field name="start_time" readonly="1" />
-                            <field name="end_time" readonly="1" />
-                            <field name="total_student" readonly="1" />
-                            <field name="room_capacity" readonly="1" />
+                            <field name="start_time" readonly="1"/>
+                            <field name="end_time" readonly="1"/>
+                            <field name="total_student" readonly="1"/>
+                            <field name="room_capacity" readonly="1"/>
                         </group>
                     </group>
-                    <separator string="Exam Rooms" colspan="4" />
-                    <field name="room_ids" />
-                    <separator string="Exam Attendees"
-                        colspan="4" />
-                    <field name="student_ids"
-                        domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]" />
+                    <separator string="Exam Rooms" colspan="4"/>
+                    <field name="room_ids" options='{"no_create": True}'/>
+                    <separator string="Exam Attendees" colspan="4"/>
+                    <field name="student_ids" domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"/>
                     <footer>
-                        <button string="Schedule Exam" class="oe_highlight"
-                            type="object" name="schedule_exam" />
+                        <button string="Schedule Exam" class="oe_highlight" type="object" name="schedule_exam"/>
                     </footer>
                 </form>
             </field>
@@ -44,17 +38,16 @@
             <field name="name">Exam Room Distribution</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.room.distribution</field>
-            <field name="view_type">form</field>
+            <field name="binding_view_types">form</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_room_distribution_view_form">
-            <field name="act_window_id" ref="act_open_op_room_distribution_view" />
-            <field name="sequence" eval="20" />
+            <field name="act_window_id" ref="act_open_op_room_distribution_view"/>
+            <field name="sequence" eval="20"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_room_distribution_form" />
+            <field name="view_id" ref="view_op_room_distribution_form"/>
         </record>
-
     </data>
 </odoo>

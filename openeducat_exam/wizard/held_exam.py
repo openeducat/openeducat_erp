@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -23,7 +23,8 @@ from odoo import models, api, fields
 
 
 class OpHeldExam(models.TransientModel):
-    _name = 'op.held.exam'
+    _name = "op.held.exam"
+    _description = "Held Exam"
 
     course_id = fields.Many2one('op.course', 'Course')
     batch_id = fields.Many2one('op.batch', 'Batch')
@@ -46,7 +47,6 @@ class OpHeldExam(models.TransientModel):
         })
         return res
 
-    @api.multi
     def held_exam(self):
         for record in self:
             if record.attendees_line:

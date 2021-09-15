@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,20 +21,27 @@
 
 {
     'name': 'OpenEduCat Library',
-    'version': '11.0.1.0.0',
+    'version': '14.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Library',
     'complexity': "easy",
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account',
-                'openeducat_activity', 'base_automation'],
+    'depends': [
+        'account',
+        'base_automation',
+        'openeducat_activity',
+        'openeducat_parent',
+    ],
     'data': [
-        'data/custom_paperformat.xml',
-        'security/library_security.xml',
+        'security/op_security.xml',
         'security/ir.model.access.csv',
+        'data/custom_paperformat.xml',
+        'data/media_queue_sequence.xml',
+        'data/action_rule_data.xml',
+        'data/product_demo.xml',
         'report/report_media_barcode.xml',
         'report/report_library_card_barcode.xml',
         'report/report_student_library_card.xml',
@@ -54,12 +61,9 @@
         'views/media_type_view.xml',
         'views/student_view.xml',
         'views/faculty_view.xml',
-        'media_queue_sequence.xml',
-        'menus/library_menu.xml',
-        'data/action_rule_data.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
-        'demo/product_demo.xml',
         'demo/media_type_demo.xml',
         'demo/res_users_demo.xml',
         'demo/tag_demo.xml',
@@ -71,13 +75,7 @@
         'demo/library_card_type_demo.xml',
         'demo/library_card_demo.xml',
         'demo/media_movement_demo.xml',
-    ],
-    'test': [
-        'test/res_users_test.yml',
-        'test/library_sub_values.yml',
-        'test/media_movements.yml',
-        'test/media_queue_request.yml',
-        'test/media_purchase_request.yml',
+        'demo/media_purchase_demo.xml'
     ],
     'images': [
         'static/description/openeducat_library_banner.jpg',

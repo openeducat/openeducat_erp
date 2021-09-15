@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class WizardOpStudent(models.TransientModel):
@@ -34,9 +34,7 @@ class WizardOpStudent(models.TransientModel):
     student_ids = fields.Many2many(
         'op.student', default=_get_students, string='Students')
 
-    @api.multi
-    def create_student_user(self):
-        user_group = self.env.ref('openeducat_core.group_op_student')
+    def create_user(self):
         active_ids = self.env.context.get('active_ids', []) or []
         records = self.env['op.student'].browse(active_ids)
-        self.env['res.users'].create_user(records, user_group)
+        records.create_student_user()

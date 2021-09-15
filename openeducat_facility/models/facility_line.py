@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,13 +24,15 @@ from odoo.exceptions import ValidationError
 
 
 class OpFacilityLine(models.Model):
-    _name = 'op.facility.line'
-    _rec_name = 'facility_id'
+    _name = "op.facility.line"
+    _rec_name = "facility_id"
+    _description = "Manage Facility Line"
 
     facility_id = fields.Many2one('op.facility', 'Facility', required=True)
     quantity = fields.Float('Quantity', required=True)
 
     @api.constrains('quantity')
     def check_quantity(self):
-        if self.quantity <= 0.0:
-            raise ValidationError(_("Enter proper Quantity in Facilities!"))
+        for record in self:
+            if record.quantity <= 0.0:
+                raise ValidationError(_("Enter proper Quantity in Facilities!"))

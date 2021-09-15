@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,19 +21,19 @@
 
 {
     'name': 'OpenEduCat Classroom',
-    'version': '11.0.1.0.0',
+    'version': '14.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Classroom',
     'complexity': "easy",
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core', 'openeducat_facility', 'product'],
     'data': [
+        'security/ir.model.access.csv',
         'views/classroom_view.xml',
-        'classroom_menu.xml',
-        'security/ir.model.access.csv'
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/classroom_demo.xml',

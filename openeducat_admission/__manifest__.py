@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,38 +21,33 @@
 
 {
     'name': "OpenEduCat Admission",
-    'version': '11.0.1.0.0',
+    'version': '15.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     'sequence': 3,
     'summary': "Manage Admissions""",
     'complexity': "easy",
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_fees', 'openeducat_core'],
+    'depends': [
+        'openeducat_core',
+        'openeducat_fees'
+    ],
     'data': [
+        'security/ir.model.access.csv',
+        'data/admission_sequence.xml',
         'views/admission_register_view.xml',
         'views/admission_view.xml',
-        'views/admission_sequence.xml',
-        'views/student_view.xml',
-        'report/report_menu.xml',
         'report/report_admission_analysis.xml',
+        'report/report_menu.xml',
         'wizard/admission_analysis_wizard_view.xml',
-        'admission_menu.xml',
-        'security/ir.model.access.csv',
+        'menus/op_menu.xml',
     ],
     'demo': [
-        'demo/product_category_demo.xml',
-        'demo/product_demo.xml',
         'demo/admission_register_demo.xml',
         'demo/admission_demo.xml',
-        'demo/student_fees_details_demo.xml',
     ],
-    'test': [
-        'test/res_users_creation.yml',
-        'test/batch_course_fees.yml',
-        'test/admission_register_creation.yml',
-    ],
+    'test': [],
     'images': [
         'static/description/openeducat_admission_banner.jpg',
     ],

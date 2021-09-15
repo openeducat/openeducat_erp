@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -23,6 +23,18 @@ from odoo import models, fields
 
 
 class OpStudent(models.Model):
-    _inherit = 'op.student'
+    _inherit = "op.student"
 
     allocation_ids = fields.Many2many('op.assignment', string='Assignment(s)')
+    assignment_count = fields.Integer(compute='compute_count_assignment')
+
+    def get_assignment(self):
+        action = self.env.ref('openeducat_assignment.'
+                              'act_open_op_assignment_view').read()[0]
+        action['domain'] = [('allocation_ids', 'in', self.ids)]
+        return action
+
+    def compute_count_assignment(self):
+        for record in self:
+            record.assignment_count = self.env['op.assignment'].search_count(
+                [('allocation_ids', '=', self.id)])

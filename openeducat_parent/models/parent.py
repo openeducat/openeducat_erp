@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -20,16 +20,31 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo.exceptions import Warning
+from odoo import exceptions
 
 
 class OpParent(models.Model):
-    _name = 'op.parent'
+    _name = "op.parent"
+    _description = "Parent"
 
     name = fields.Many2one('res.partner', 'Name', required=True)
     user_id = fields.Many2one('res.users', related='name.user_id',
                               string='User', store=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
+    mobile = fields.Char(string='Mobile', related='name.mobile')
+    active = fields.Boolean(default=True)
+    relationship_id = fields.Many2one('op.parent.relationship',
+                                      'Relation with Student', required=True)
+
+    _sql_constraints = [(
+        'unique_parent',
+        'unique(name)',
+        'Can not create parent multiple times.!'
+    )]
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        self.user_id = self.name.user_id and self.name.user_id.id or False
 
     @api.model
     def create(self, vals):
@@ -41,47 +56,47 @@ class OpParent(models.Model):
             res.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
-    @api.multi
     def write(self, vals):
-        for record in self:
+        for rec in self:
             res = super(OpParent, self).write(vals)
-            if vals.get('student_ids', False) and record.name.user_id:
-                student_ids = record.student_ids.browse(record.student_ids.ids)
-                user_ids = [student_id.user_id.id for student_id in student_ids
-                            if student_id.user_id]
-                record.user_id.child_ids = [(6, 0, user_ids)]
-            record.clear_caches()
+            if vals.get('student_ids', False) and rec.name.user_id:
+                student_ids = rec.student_ids.browse(rec.student_ids.ids)
+                usr_ids = [student_id.user_id.id for student_id in student_ids
+                           if student_id.user_id]
+                rec.user_id.child_ids = [(6, 0, usr_ids)]
+            rec.clear_caches()
             return res
 
-    @api.multi
     def unlink(self):
         for record in self:
             if record.name.user_id:
                 record.user_id.child_ids = [(6, 0, [])]
             return super(OpParent, self).unlink()
 
-    @api.multi
     def create_parent_user(self):
+        template = self.env.ref('openeducat_parent.parent_template_user')
+        users_res = self.env['res.users']
         for record in self:
             if not record.name.email:
-                raise Warning(_('Update parent email id first.'))
+                raise exceptions.Warning(_('Update parent email id first.'))
             if not record.name.user_id:
-                groups_id = self.env.ref(
-                    'openeducat_parent.parent_template_user') and self.env.ref(
-                    'openeducat_parent.parent_template_user'
-                ).groups_id or False
-                user_id = self.env['res.users'].create(
-                    {'name': record.name.name, 'partner_id': record.name.id,
-                     'login': record.name.email, 'groups_id': groups_id})
-                record.name.user_id = user_id
+                groups_id = template and template.groups_id or False
                 user_ids = [
                     x.user_id.id for x in record.student_ids if x.user_id]
-                record.name.user_id.child_ids = [(6, 0, user_ids)]
+                user_id = users_res.create({
+                    'name': record.name.name,
+                    'partner_id': record.name.id,
+                    'login': record.name.email,
+                    'is_parent': True,
+                    'tz': self._context.get('tz'),
+                    'groups_id': groups_id,
+                    'child_ids': [(6, 0, user_ids)]
+                })
+                record.name.user_id = user_id
 
 
 class OpStudent(models.Model):
-
-    _inherit = 'op.student'
+    _inherit = "op.student"
 
     parent_ids = fields.Many2many('op.parent', string='Parent')
 
@@ -96,17 +111,16 @@ class OpStudent(models.Model):
                     parent_id.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
-    @api.multi
     def write(self, vals):
         res = super(OpStudent, self).write(vals)
         if vals.get('parent_ids', False):
             user_ids = []
             if self.parent_ids:
-                for parent_id in self.parent_ids:
-                    if parent_id.user_id:
-                        user_ids = [x.user_id.id for x in parent_id.student_ids
+                for parent in self.parent_ids:
+                    if parent.user_id:
+                        user_ids = [x.user_id.id for x in parent.student_ids
                                     if x.user_id]
-                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
+                        parent.user_id.child_ids = [(6, 0, user_ids)]
             else:
                 user_ids = self.env['res.users'].search([
                     ('child_ids', 'in', self.user_id.id)])
@@ -122,7 +136,6 @@ class OpStudent(models.Model):
         self.clear_caches()
         return res
 
-    @api.multi
     def unlink(self):
         for record in self:
             if record.parent_ids:
@@ -132,20 +145,25 @@ class OpStudent(models.Model):
                     parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
         return super(OpStudent, self).unlink()
 
+    def get_parent(self):
+        action = self.env.ref('openeducat_parent.'
+                              'act_open_op_parent_view').read()[0]
+        action['domain'] = [('student_ids', 'in', self.ids)]
+        return action
+
 
 class OpSubjectRegistration(models.Model):
-    _inherit = 'op.subject.registration'
+    _inherit = "op.subject.registration"
 
     @api.model
     def create(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not \
+            raise exceptions.Warning(_('Invalid Action!\n Parent can not \
             create Subject Registration!'))
         return super(OpSubjectRegistration, self).create(vals)
 
-    @api.multi
     def write(self, vals):
         if self.env.user.child_ids:
-            raise Warning(_('Invalid Action!\n Parent can not edit \
+            raise exceptions.Warning(_('Invalid Action!\n Parent can not edit \
             Subject Registration!'))
         return super(OpSubjectRegistration, self).write(vals)

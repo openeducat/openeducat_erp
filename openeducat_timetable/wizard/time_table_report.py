@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -29,8 +29,8 @@ from odoo import models, fields, api, _
 
 
 class SessionReport(models.TransientModel):
-    _name = 'time.table.report'
-    _description = 'Generate Time Table Report'
+    _name = "time.table.report"
+    _description = "Generate Time Table Report"
 
     state = fields.Selection(
         [('faculty', 'Faculty'), ('student', 'Student')],
@@ -48,7 +48,6 @@ class SessionReport(models.TransientModel):
         default=(datetime.today() + relativedelta(days=6 - datetime.date(
             datetime.today()).weekday())).strftime('%Y-%m-%d'))
 
-    @api.multi
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
         for session in self:
@@ -66,10 +65,9 @@ class SessionReport(models.TransientModel):
             if self.batch_id.course_id != self.course_id:
                 self.batch_id = False
 
-    @api.multi
     def gen_time_table_report(self):
         template = self.env.ref(
-                'openeducat_timetable.report_teacher_timetable_generate')
+            'openeducat_timetable.report_teacher_timetable_generate')
         data = self.read(
             ['start_date', 'end_date', 'course_id', 'batch_id', 'state',
              'faculty_id'])[0]

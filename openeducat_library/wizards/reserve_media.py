@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,20 +19,20 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class ReserveMedia(models.TransientModel):
-
     """ Reserve Media """
-    _name = 'reserve.media'
+    _name = "reserve.media"
+    _description = "Media Reserve"
 
     partner_id = fields.Many2one('res.partner', required=True)
 
-    @api.multi
     def set_partner(self):
         for media in self:
             self.env['op.media.movement'].browse(
                 self.env.context.get('active_ids', False)).write(
                 {'partner_id': media.partner_id.id,
-                 'reserver_name': media.partner_id.name, 'state': 'reserve'})
+                 'reserver_name': media.partner_id.name,
+                 'state': 'reserve'})

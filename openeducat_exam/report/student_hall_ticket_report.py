@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -25,7 +25,8 @@ from odoo import models, fields, api
 
 
 class ReportTicket(models.AbstractModel):
-    _name = 'report.openeducat_exam.report_ticket'
+    _name = "report.openeducat_exam.report_ticket"
+    _description = "Exam Ticket Report"
 
     def get_date(self, exam_line):
         timestamp = fields.Datetime.context_timestamp
@@ -42,7 +43,7 @@ class ReportTicket(models.AbstractModel):
         for exam_line in exam_session['exam_ids']:
             res1 = {
                 'subject': exam_line.subject_id.name,
-                'date': exam_line.start_time[:10],
+                'date': fields.Datetime.to_string(exam_line.start_time)[:10],
                 'time': self.get_date(exam_line),
                 'sup_sign': ''
             }
@@ -64,9 +65,7 @@ class ReportTicket(models.AbstractModel):
                 'exam_code': exam_session.exam_code,
                 'course': exam_session.course_id.name,
                 'student': student.name,
-                'image': student.image,
-                'student_middle': student.middle_name,
-                'student_last': student.last_name,
+                'image': student.image_1920,
                 'roll_number': student_course.roll_number,
                 'line': self.get_subject(exam_session),
             }
@@ -74,7 +73,7 @@ class ReportTicket(models.AbstractModel):
         return final_lst
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

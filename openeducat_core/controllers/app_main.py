@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,98 +19,32 @@
 #
 ###############################################################################
 
-from datetime import datetime
 from odoo import http
 from odoo.http import request
+import werkzeug.utils
+from odoo.addons.portal.controllers.web import \
+    Home as home
 
 
-class OpenEduCatAppController(http.Controller):
+class OpeneducatHome(home):
 
-    @http.route(['/openeducat_core/get_app_dash_data'], type='json',
-                auth='none', methods=['POST'], csrf=False)
-    def compute_app_dashboard_data(self, **post):
-        user_id = post.get('user_id', False)
-        total_assignments = 0
-        total_submissions = 0
-        today_lectures = 0
-        assigned_books = 0
+    @http.route()
+    def web_login(self, redirect=None, *args, **kw):
+        response = super(OpeneducatHome, self).web_login(
+            redirect=redirect, *args, **kw)
+        if not redirect and request.params['login_success']:
+            if request.env['res.users'].browse(request.uid).has_group(
+                    'base.group_user'):
+                redirect = b'/web?' + request.httprequest.query_string
+            else:
+                if request.env.user.is_parent:
+                    redirect = '/my/child'
+                else:
+                    redirect = '/my/home'
+            return werkzeug.utils.redirect(redirect)
+        return response
 
-        if user_id:
-            student = request.env['op.student'].sudo().search(
-                [('user_id', '=', user_id)], limit=1)
-            if student:
-                assignment = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.assignment')])
-                if assignment:
-                    total_assignments = request.env['op.assignment'] \
-                        .sudo().search_count(
-                        [('allocation_ids', 'in', student.id),
-                         ('state', '=', 'publish')])
-                    total_submissions = request.env['op.assignment.sub.line'] \
-                        .sudo().search_count(
-                        [('student_id', '=', student.id),
-                         ('state', '=', 'submit')])
-
-                batch_ids = [x.batch_id.id for x in student.course_detail_ids]
-                session = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.session')])
-                if session and batch_ids:
-                    today_lectures = request.env['op.session'] \
-                        .sudo().search_count(
-                        [('batch_id', 'in', batch_ids),
-                         ('start_datetime', '>=',
-                          datetime.today().strftime('%Y-%m-%d 00:00:00')),
-                         ('start_datetime', '<=',
-                          datetime.today().strftime('%Y-%m-%d 23:59:59'))])
-
-                library = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.media.movement')])
-                if library:
-                    assigned_books = request.env['op.media.movement'] \
-                        .sudo().search_count(
-                        [('student_id', '=', student.id),
-                         ('state', '=', 'issue')])
-
-        return {'total_assignments': total_assignments,
-                'total_submissions': total_submissions,
-                'today_lectures': today_lectures,
-                'assigned_books': assigned_books}
-
-    @http.route(['/openeducat_core/get_faculty_dash_data'], type='json',
-                auth='none', methods=['POST'], csrf=False)
-    def compute_faculty_dashboard_data(self, **post):
-        user_id = post.get('user_id', False)
-        total_assignments = 0
-        total_submissions = 0
-        today_lectures = 0
-
-        if user_id:
-            faculty = request.env['op.faculty'].sudo().search(
-                [('user_id', '=', user_id)], limit=1)
-            if faculty:
-                assignment = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.assignment')])
-                if assignment:
-                    total_assignments = request.env['op.assignment'] \
-                        .sudo().search_count(
-                        [('faculty_id', '=', faculty.id),
-                         ('state', 'in', ['draft', 'publish'])])
-                    total_submissions = request.env['op.assignment.sub.line'] \
-                        .sudo().search_count(
-                        [('assignment_id.faculty_id', '=', faculty.id),
-                         ('state', '=', 'submit')])
-
-                session = request.env['ir.model'].sudo().search(
-                    [('model', '=', 'op.session')])
-                if session:
-                    today_lectures = request.env['op.session'] \
-                        .sudo().search_count(
-                        [('faculty_id', '=', faculty.id),
-                         ('start_datetime', '>=',
-                          datetime.today().strftime('%Y-%m-%d 00:00:00')),
-                         ('start_datetime', '<=',
-                          datetime.today().strftime('%Y-%m-%d 23:59:59'))])
-
-        return {'total_assignments': total_assignments,
-                'total_submissions': total_submissions,
-                'today_lectures': today_lectures, }
+    def _login_redirect(self, uid, redirect=None):
+        if request.env.user.is_parent:
+            return '/my/child'
+        return '/my/home'

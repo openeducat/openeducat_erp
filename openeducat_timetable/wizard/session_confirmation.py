@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,14 +19,13 @@
 #
 ###############################################################################
 
-from odoo import models, api
+from odoo import models
 
 
 class SessionConfirmation(models.TransientModel):
-    _name = 'session.confirmation'
-    _description = 'Wizard for Multiple Session Confirmation'
+    _name = "session.confirmation"
+    _description = "Wizard for Multiple Session Confirmation"
 
-    @api.multi
     def state_confirmation(self):
         active_ids = self.env.context['active_ids']
         lines = self.env['op.session'].search([('id', 'in', active_ids),

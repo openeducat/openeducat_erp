@@ -5,38 +5,43 @@
             <t t-call="web.external_layout">
                 <div class="font">
                     <div class="page">
-                        <br></br>
-                        <div class="text-center">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="text-center" style="font-size:16px;">
                             <h3>
                                 <strong>Fees Detail</strong>
                             </h3>
                         </div>
                         <br></br>
-                        <table class="table">
-                            <thead>
+                        <table class="table table-bordered">
+                            <thead class="text-center"  style="background-color:#eeeeee; font-size:14px; font-weight:600;">
                                 <th>Student Name</th>
                                 <th>Total Amount</th>
                                 <th>Total Invoiced</th>
                                 <th>Total Paid</th>
                                 <th>Total Left</th>
                             </thead>
-                            <tbody>
+                            <tbody style="font-size:12px;">
                                 <t t-foreach="docs" t-as="doc">
+                                    <t t-set="amount" t-value="get_invoice_amount(doc)"/>
+                                    <t t-set="total_amount" t-value="amount[0]"/>
+                                    <t t-set="total_paid" t-value="amount[1]"/>
                                     <tr>
-                                        <td>
-                                            <t t-raw="doc.name" />
+                                        <td class="text-center">
+                                            <span t-raw="doc.name"/>
                                         </td>
-                                        <td>
-                                            <t t-esc="get_total_amount(doc)" />
+                                        <td class="text-right">
+                                            <span t-esc="total_amount"/>
                                         </td>
-                                        <td>
-                                            <t t-esc="doc.total_invoiced" />
+                                        <td class="text-right">
+                                            <span t-esc="doc.total_invoiced"/>
                                         </td>
-                                        <td>
-                                            <t t-esc="get_paid_amount(doc)" />
+                                        <td class="text-right">
+                                            <span t-esc="total_paid"/>
                                         </td>
-                                        <td>
-                                            <t t-esc="get_total_left(doc)" />
+                                        <td class="text-right">
+                                            <span t-esc="total_amount - total_paid"/>
                                         </td>
                                     </tr>
                                 </t>

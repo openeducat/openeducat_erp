@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,29 +24,29 @@ from odoo.exceptions import ValidationError
 
 
 class OpResultTemplate(models.Model):
-    _name = 'op.result.template'
-    _inherit = ['mail.thread']
-    _description = 'Result Template'
-    _rec_name = 'name'
+    _name = "op.result.template"
+    _inherit = ["mail.thread"]
+    _description = "Result Template"
 
     exam_session_id = fields.Many2one(
         'op.exam.session', 'Exam Session',
-        required=True, track_visibility='onchange')
+        required=True, tracking=True)
     evaluation_type = fields.Selection(
         related='exam_session_id.evaluation_type',
-        store=True, track_visibility='onchange')
+        store=True, tracking=True)
     name = fields.Char("Name", size=254,
-                       required=True, track_visibility='onchange')
+                       required=True, tracking=True)
     result_date = fields.Date(
         'Result Date', required=True,
-        default=fields.Date.today(), track_visibility='onchange')
+        default=fields.Date.today(), tracking=True)
     grade_ids = fields.Many2many(
         'op.grade.configuration', string='Grade Configuration')
-    state = fields.Selection(
-        [('draft', 'Draft'), ('result_generated', 'Result Generated')],
-        'State', default='draft', track_visibility='onchange')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('result_generated', 'Result Generated')
+    ], string='State', default='draft', tracking=True)
+    active = fields.Boolean(default=True)
 
-    @api.multi
     @api.constrains('exam_session_id')
     def _check_exam_session(self):
         for record in self:
@@ -55,7 +55,6 @@ class OpResultTemplate(models.Model):
                     raise ValidationError(
                         _('All subject exam should be done.'))
 
-    @api.multi
     @api.constrains('grade_ids')
     def _check_min_max_per(self):
         for record in self:
@@ -64,7 +63,7 @@ class OpResultTemplate(models.Model):
                 for sub_grade in record.grade_ids:
                     if grade != sub_grade:
                         if (sub_grade.min_per <= grade.min_per and
-                                sub_grade.max_per >= grade.min_per) or \
+                            sub_grade.max_per >= grade.min_per) or \
                                 (sub_grade.min_per <= grade.max_per and
                                  sub_grade.max_per >= grade.max_per):
                             count += 1
@@ -72,7 +71,6 @@ class OpResultTemplate(models.Model):
                 raise ValidationError(
                     _('Percentage range conflict with other record.'))
 
-    @api.multi
     def generate_result(self):
         for record in self:
             marksheet_reg_id = self.env['op.marksheet.register'].create({
@@ -80,7 +78,7 @@ class OpResultTemplate(models.Model):
                 'exam_session_id': record.exam_session_id.id,
                 'generated_date': fields.Date.today(),
                 'generated_by': self.env.uid,
-                'status': 'draft',
+                'state': 'draft',
                 'result_template_id': record.id
             })
             student_dict = {}

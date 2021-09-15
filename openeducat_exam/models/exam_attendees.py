@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,8 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpExamAttendees(models.Model):
-    _name = 'op.exam.attendees'
-    _rec_name = 'student_id'
+    _name = "op.exam.attendees"
+    _rec_name = "student_id"
+    _description = "Exam Attendees"
 
     student_id = fields.Many2one('op.student', 'Student', required=True)
     status = fields.Selection(

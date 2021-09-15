@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,7 +21,6 @@
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -29,9 +28,9 @@ from ..models import media_unit
 
 
 class IssueMedia(models.TransientModel):
-
     """ Issue Media """
-    _name = 'issue.media'
+    _name = "issue.media"
+    _description = "Issue Media Wizard"
 
     media_id = fields.Many2one('op.media', 'Media', required=True)
     media_unit_id = fields.Many2one('op.media.unit', 'Media Unit',
@@ -58,9 +57,8 @@ class IssueMedia(models.TransientModel):
         self.type = self.library_card_id.type
         self.student_id = self.library_card_id.student_id.id
         self.faculty_id = self.library_card_id.faculty_id.id
-        self.return_date = datetime.today() + \
-            relativedelta(
-                days=self.library_card_id.library_card_type_id.duration)
+        self.return_date = datetime.today() + relativedelta(
+            days=self.library_card_id.library_card_type_id.duration)
 
     def check_max_issue(self, student_id, library_card_id):
         media_movement_search = self.env["op.media.movement"].search(
@@ -73,7 +71,6 @@ class IssueMedia(models.TransientModel):
         else:
             return False
 
-    @api.multi
     def do_issue(self):
         for media in self:
             value = {}
@@ -101,8 +98,8 @@ class IssueMedia(models.TransientModel):
                         media_unit.unit_states).get(
                         media.media_unit_id.state)))
             else:
-                raise UserError(_(
-                    'Maximum Number of media allowed for %s is : %s') %
+                raise UserError(
+                    _('Maximum Number of media allowed for %s is : %s') %
                     (media.student_id.name,
                      media.library_card_id.library_card_type_id.allow_media))
             return value

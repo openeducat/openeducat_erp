@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,40 +19,39 @@
 #
 ###############################################################################
 
-from datetime import datetime
 import time
-
-from odoo import models, api
+from odoo import models, api, fields
 
 
 class ReportMarksheetReport(models.AbstractModel):
-    _name = 'report.openeducat_exam.report_marksheet_report'
+    _name = "report.openeducat_exam.report_marksheet_report"
+    _description = "Exam Marksheet Report"
 
     def get_objects(self, objects):
         obj = []
-        for object in objects:
-            obj.extend(object)
+        for data in objects:
+            obj.extend(data)
         return obj
 
     def get_lines(self, obj):
         lines = []
-        for line in obj.marksheet_line:
+        for line in obj.result_line:
             lines.extend(line)
         return lines
 
     def get_date(self, date):
-        date1 = datetime.strptime(date, "%Y-%m-%d")
+        date1 = fields.Date.to_date(date)
         return str(date1.month) + ' / ' + str(date1.year)
 
-    def get_total(self, marksheet_line):
-        total = [x.exam_id.total_marks for x in marksheet_line.result_line]
+    def get_total(self, result_line):
+        total = [x.exam_id.total_marks for x in result_line]
         return sum(total)
 
     @api.model
-    def get_report_values(self, docids, data=None):
-        docs = self.env['op.marksheet.register'].browse(docids)
+    def _get_report_values(self, docids, data=None):
+        docs = self.env['op.marksheet.line'].browse(docids)
         docargs = {
-            'doc_model': 'op.marksheet.register',
+            'doc_model': 'op.marksheet.line',
             'docs': docs,
             'time': time,
             'get_objects': self.get_objects,

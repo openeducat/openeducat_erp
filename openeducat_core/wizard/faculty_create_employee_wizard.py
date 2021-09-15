@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class WizardOpFacultyEmployee(models.TransientModel):
@@ -28,7 +28,6 @@ class WizardOpFacultyEmployee(models.TransientModel):
 
     user_boolean = fields.Boolean("Want to create user too ?", default=True)
 
-    @api.multi
     def create_employee(self):
         for record in self:
             active_id = self.env.context.get('active_ids', []) or []
@@ -37,3 +36,4 @@ class WizardOpFacultyEmployee(models.TransientModel):
             if record.user_boolean and not faculty.user_id:
                 user_group = self.env.ref('openeducat_core.group_op_faculty')
                 self.env['res.users'].create_user(faculty, user_group)
+                faculty.emp_id.user_id = faculty.user_id

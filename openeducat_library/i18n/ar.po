@@ -1,594 +1,694 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* openeducat_library
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: openeducaterptranslation\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 07:46+0000\n"
-"PO-Revision-Date: 2018-03-20 02:46-0400\n"
-"Last-Translator: akkicode <aakash@techreceptives.com>\n"
-"Language-Team: Arabic\n"
+"POT-Creation-Date: 2019-09-25 06:32+0000\n"
+"PO-Revision-Date: 2019-09-25 06:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"X-Generator: crowdin.com\n"
-"X-Crowdin-Project: openeducaterptranslation\n"
-"X-Crowdin-Language: ar\n"
-"X-Crowdin-File: /master/openeducat_library/i18n/openeducat_library.pot\n"
-"Language: ar_SA\n"
+"Plural-Forms: \n"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-#: view:op.book.purchase:openeducat_library.view_op_purchase_form
-#: view:op.book.queue:openeducat_library.view_op_book_queue_form
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
+msgid "\n"
+"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
+"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> has been expired. Please return it as soon as possible.</p>\n"
+"            <p>Thank you.</p>\n"
+"            "
+msgstr "\n"
+"            <P> عزيزي على <strong> $ {object.student_id.name} </ قوي>\n"
+"            على <strong> $ {object.media_id.name} </ قوي> تم صلاحية <p> و$ ديك {object.media_type_id.name}. يرجى العودة في أقرب وقت ممكن. </ P>\n"
+"            <p> وشكرا لكم. </ P>\n"
+"            "
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement
+msgid "\n"
+"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
+"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> will \n"
+"                % if object.get_diff_day() == 0:\n"
+"                    be expiring <strong>today.</strong>\n"
+"                % else:\n"
+"                    expire in <strong> ${object.get_diff_day()}</strong> day(s).\n"
+"                % endif\n"
+"                Please return it as soon as possible.</p>\n"
+"            <p>Thank you.</p>\n"
+"            "
+msgstr "\n"
+"            <P> عزيزي على <strong> $ {object.student_id.name} </ قوي>\n"
+"            <p> و$ ديك {object.media_type_id.name} و <strong> $ {object.media_id.name} </ قوي> سوف\n"
+"                ٪ إذا object.get_diff_day () == 0:\n"
+"                    يكون تنتهي على <strong> اليوم. </ قوي>\n"
+"                ٪ آخر:\n"
+"                    تنتهي في <القوي> $ {object.get_diff_day ()} </ قوي> يوم (s).\n"
+"                ٪ إنهاء إذا\n"
+"                يرجى العودة في أقرب وقت ممكن. </ P>\n"
+"            <p> وشكرا لكم. </ P>\n"
+"            "
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        E-mail :"
+msgstr "<BR/>\n"
+"                                                        البريد الإلكتروني :"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        Issued Date :"
+msgstr "<BR/>\n"
+"                                                        تاريخ صدر:"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        Phone :"
+msgstr "<BR/>\n"
+"                                                        هاتف :"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<br/>\n"
+"                                                        Type :"
+msgstr "<BR/>\n"
+"                                                        اكتب :"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "<strong>Library Card(s) Barcode</strong>"
+msgstr "على <strong> بطاقة مكتبة (ق) الباركود </ قوي>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
 msgid "Accept"
 msgstr "قبول"
 
 #. module: openeducat_library
-#: selection:op.book.purchase,state:0
-#: selection:op.book.queue,state:0
+#: selection:op.media.purchase,state:0
+#: selection:op.media.queue,state:0
 msgid "Accepted"
-msgstr "قبول"
+msgstr "وافقت"
 
 #. module: openeducat_library
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: field:op.book.movement,actual_return_date:0
-#: field:return.book,actual_return_date:0
-#: field:return.date,actual_return_date:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction
+msgid "Action Needed"
+msgstr "الإجراءات اللازمة"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__actual_return_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__actual_return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Actual Return Date"
-msgstr "تاريخ الإرجاع الفعلي"
+msgstr "الفعلي إرجاع التسجيل"
 
 #. module: openeducat_library
-#: field:op.author,address:0
-#: field:op.publisher,address_id:0
+#: code:addons/openeducat_library/models/media_movement.py:92
+#, python-format
+msgid "Actual Return Date cannot be set before Issued Date"
+msgstr "الفعلي إرجاع التسجيل لا يمكن تعيين قبل تاريخ الصدور"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__address
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__address_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Address"
 msgstr "عنوان"
 
 #. module: openeducat_library
-#: view:op.author:openeducat_library.view_op_author_form
-#: view:op.author:openeducat_library.view_op_author_search
-#: view:op.author:openeducat_library.view_op_author_tree
-msgid "Author"
-msgstr "كاتب"
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Address Detail"
+msgstr "عنوان التفاصيل"
 
 #. module: openeducat_library
-#: field:op.book,author_ids:0
-#: field:op.book.purchase,author:0
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Admission Details"
+msgstr "تفاصيل القبول"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_view
+#: model:ir.ui.menu,name:openeducat_library.menu_library_medias
+msgid "All Media"
+msgstr "جميع وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_tree
+msgid "Author"
+msgstr "مؤلف"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__author_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__author
 msgid "Author(s)"
-msgstr "المؤلف"
+msgstr "المؤلفون)"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_author_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_author_sub
-#: model:ir.ui.menu,name:openeducat_library.menu_op_sub_author_library
 msgid "Authors"
 msgstr "المؤلف"
 
 #. module: openeducat_library
-#: selection:op.book.movement,state:0
-#: selection:op.book.unit,state:0
+#: selection:op.media.movement,state:0
+#: selection:op.media.unit,state:0
 msgid "Available"
-msgstr "المتاحة"
+msgstr "متاح"
 
 #. module: openeducat_library
-#: field:op.book.unit,barcode:0
-#: view:website:openeducat_library.report_book_barcode
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__barcode
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
 msgid "Barcode"
-msgstr "الرمز الشريطي"
+msgstr "الباركود"
 
 #. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.act_op_book_month
-#: model:ir.actions.act_window,name:openeducat_library.act_op_book_today
-#: field:issue.book,book_id:0
-#: view:op.book:openeducat_library.view_op_book_form
-#: view:op.book:openeducat_library.view_op_book_search
-#: view:op.book:openeducat_library.view_op_book_tree
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: field:op.book.movement,book_id:0
-#: view:op.book.queue:openeducat_library.view_op_book_queue_form
-#: view:op.book.queue:openeducat_library.view_op_book_queue_search
-#: field:op.book.queue,book_id:0
-#: view:op.book.unit:openeducat_library.view_book_unit_search
-#: field:op.book.unit,book_id:0
-#: field:return.book,book_id:0
-msgid "Book"
-msgstr "كتاب"
+#: sql_constraint:op.media.unit:0
+msgid "Barcode must be unique per Media unit!"
+msgstr "يجب أن يكون الباركود فريدة من نوعها لكل وحدة وسائل الإعلام!"
 
 #. module: openeducat_library
-#: model:ir.actions.report.xml,name:openeducat_library.action_report_book_barcode
-msgid "Book Barcode"
-msgstr "كتاب الرمز الشريطي"
-
-#. module: openeducat_library
-#: view:issue.book:openeducat_library.issue_book_form
-msgid "Book Issue"
-msgstr "قضية الكتاب"
-
-#. module: openeducat_library
-#: model:ir.model,name:openeducat_library.model_op_book_movement
-#: view:op.book.movement:openeducat_library.view_op_book_movement_form
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: view:op.book.movement:openeducat_library.view_op_book_movement_tree
-msgid "Book Movement"
-msgstr "حركة الكتاب"
-
-#. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.act_open_op_book_movement_view
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_movement_sub
-#: view:op.faculty:openeducat_library.view_op_faculty_form_library_inherit
-#: view:op.student:openeducat_library.view_op_student_form_library_inherit
-msgid "Book Movements"
-msgstr "كتاب الحركات"
-
-#. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-msgid "Book Name"
-msgstr "اسم الكتاب"
-
-#. module: openeducat_library
-#: model:ir.model,name:openeducat_library.model_op_book_purchase
-msgid "Book Purchase Request"
-msgstr "طلب شراء كتاب"
-
-#. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.act_open_op_purchase_view
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_request_library_sub
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_request_main_faculty
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_request_student_sub
-msgid "Book Purchase Requests"
-msgstr "طلبات شراء الكتاب"
-
-#. module: openeducat_library
-#: field:op.book,queue_ids:0
-msgid "Book Queue"
-msgstr "قائمة انتظار الكتاب"
-
-#. module: openeducat_library
-#: model:ir.model,name:openeducat_library.model_op_book_queue
-#: view:op.book:openeducat_library.view_op_book_form
-#: view:op.book.queue:openeducat_library.view_op_book_queue_form
-#: view:op.book.queue:openeducat_library.view_op_book_queue_search
-#: view:op.book.queue:openeducat_library.view_op_book_queue_tree
-msgid "Book Queue Request"
-msgstr "كتاب قائمة انتظار الطلب"
-
-#. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.act_open_op_book_queue_view
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_queue_faculty
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_queue_request_library_sub
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_queue_student
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_queue_sub
-#: view:op.book:openeducat_library.view_op_book_form
-msgid "Book Queue Requests"
-msgstr "كتاب قائمة انتظار الطلبات"
-
-#. module: openeducat_library
-#: code:addons/openeducat_library/models/book_movement.py:119
-#: model:ir.actions.act_window,name:openeducat_library.reserve_book_act
-#: view:reserve.book:openeducat_library.reserve_book_form
+#: code:addons/openeducat_library/wizards/return_media.py:49
 #, python-format
-msgid "Book Reservation"
-msgstr "كتاب التحفظ"
+msgid "Can't return media."
+msgstr "لا يمكن إرجاع سائل الإعلام."
 
 #. module: openeducat_library
-#: view:return.book:openeducat_library.return_book_form
-msgid "Book Return"
-msgstr "عودة الكتاب"
-
-#. module: openeducat_library
-#: model:ir.model,name:openeducat_library.model_op_book_unit
-#: field:issue.book,book_unit_id:0
-#: field:op.book.movement,book_unit_id:0
-#: field:return.book,book_unit_id:0
-#: view:website:openeducat_library.report_book_barcode
-msgid "Book Unit"
-msgstr "وحدة الكتاب"
-
-#. module: openeducat_library
-#: code:addons/openeducat_library/wizards/issue_book.py:84
-#, python-format
-msgid "Book Unit can not be issued because it's state is : %s"
-msgstr "الكتاب وحدة لا يمكن أن تصدر نظراً لأنها الدولة: %s"
-
-#. module: openeducat_library
-#: code:addons/openeducat_library/wizards/return_book.py:54
-#, python-format
-msgid "Book Unit can not be returned because it's state is : %s"
-msgstr "لن يتم إرجاع وحدة الكتاب نظراً لأنها الدولة: %s"
-
-#. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.act_open_book_unit_view
-#: view:op.book.unit:openeducat_library.view_book_unit_form
-#: view:op.book.unit:openeducat_library.view_book_unit_search
-#: view:op.book.unit:openeducat_library.view_book_unit_tree
-msgid "Book Units"
-msgstr "وحدات الكتاب"
-
-#. module: openeducat_library
-#: view:op.author:openeducat_library.view_op_author_form
-#: field:op.author,book_ids:0
-#: view:op.publisher:openeducat_library.view_op_publisher_form
-#: field:op.publisher,book_ids:0
-msgid "Book(s)"
-msgstr "الكتاب أو الكتب"
-
-#. module: openeducat_library
-#: view:website:openeducat_library.report_book_barcode
-msgid "Book(s) Barcode"
-msgstr "الكتاب أو الكتب الرمز الشريطي"
-
-#. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.act_open_op_book_view
-#: model:ir.ui.menu,name:openeducat_library.menu_library_books
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_student
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_sub
-#: model:ir.ui.menu,name:openeducat_library.menu_op_sub_book_library
-msgid "Books"
-msgstr "الكتب"
-
-#. module: openeducat_library
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_unit_library
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_unit_openeducat
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_unit_student
-msgid "Books Units"
-msgstr "وحدات الكتاب"
-
-#. module: openeducat_library
-#: view:issue.book:openeducat_library.issue_book_form
-#: view:reserve.book:openeducat_library.reserve_book_form
-#: view:return.book:openeducat_library.return_book_form
-#: view:return.date:openeducat_library.return_date_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
 msgid "Cancel"
-msgstr "إلغاء الأمر"
+msgstr "إلغاء"
 
 #. module: openeducat_library
-#: field:op.library.card,library_card_type_id:0
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Barcode"
+msgstr "الباركود بطاقة"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Holder"
+msgstr "حامل البطاقة"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "Card No :"
+msgstr "لا بطاقة :"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__library_card_type_id
 msgid "Card Type"
 msgstr "نوع البطاقة"
 
 #. module: openeducat_library
-#: model:ir.ui.menu,name:openeducat_library.menu_op_library_main_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "City"
+msgstr "مدينة"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__code
+msgid "Code"
+msgstr "الشفرة"
+
+#. module: openeducat_library
+#: sql_constraint:op.media.type:0
+msgid "Code should be unique per media type!"
+msgstr "يجب أن يكون رمز فريد لكل نوع وسائل الإعلام!"
+
+#. module: openeducat_library
+#: model:ir.ui.menu,name:openeducat_library.menu_op_school_library_config
 msgid "Configuration"
-msgstr "التكوين"
+msgstr "ترتيب"
 
 #. module: openeducat_library
-#: field:op.book,course_ids:0
-#: field:op.book.purchase,course_ids:0
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Country"
+msgstr "دولة"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__course_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__course_ids
 msgid "Course"
-msgstr "بالطبع"
+msgstr "دورة"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Course Details"
+msgstr "تفاصيل الدورة"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Courses"
-msgstr "الدورات التدريبية"
+msgstr "الدورات"
 
 #. module: openeducat_library
-#: field:issue.book,create_uid:0
-#: field:op.author,create_uid:0
-#: field:op.book,create_uid:0
-#: field:op.book.movement,create_uid:0
-#: field:op.book.purchase,create_uid:0
-#: field:op.book.queue,create_uid:0
-#: field:op.book.unit,create_uid:0
-#: field:op.library.card,create_uid:0
-#: field:op.library.card.type,create_uid:0
-#: field:op.publisher,create_uid:0
-#: field:op.tag,create_uid:0
-#: field:reserve.book,create_uid:0
-#: field:return.book,create_uid:0
-#: field:return.date,create_uid:0
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Create Invoice"
+msgstr "إنشاء فاتورة"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_uid
 msgid "Created by"
-msgstr "تم إنشاؤها بواسطة"
+msgstr "انشأ من قبل"
 
 #. module: openeducat_library
-#: field:issue.book,create_date:0
-#: field:op.author,create_date:0
-#: field:op.book,create_date:0
-#: field:op.book.movement,create_date:0
-#: field:op.book.purchase,create_date:0
-#: field:op.book.queue,create_date:0
-#: field:op.book.unit,create_date:0
-#: field:op.library.card,create_date:0
-#: field:op.library.card.type,create_date:0
-#: field:op.publisher,create_date:0
-#: field:op.tag,create_date:0
-#: field:reserve.book,create_date:0
-#: field:return.book,create_date:0
-#: field:return.date,create_date:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_date
 msgid "Created on"
-msgstr "تم النشر"
+msgstr "تم إنشاؤها على"
 
 #. module: openeducat_library
-#: help:op.book.movement,message_last_post:0
-#: help:op.book.purchase,message_last_post:0
-#: help:op.book.queue,message_last_post:0
-#: help:op.book.unit,message_last_post:0
-msgid "Date of the last message posted on the record."
-msgstr "تاريخ آخر رسالة نشرت في السجل."
-
-#. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-#: field:op.book,description:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__description
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Description"
-msgstr "الوصف"
+msgstr "وصف"
 
 #. module: openeducat_library
-#: selection:op.book.purchase,state:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: openeducat_library
+#: selection:op.media.purchase,state:0
 msgid "Draft"
 msgstr "مشروع"
 
 #. module: openeducat_library
-#: view:board.board:openeducat_library.board_libray_form
-msgid "Due Book of Month"
-msgstr "الكتاب المقرر لشهر"
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__return_date
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
 
 #. module: openeducat_library
-#: view:board.board:openeducat_library.board_libray_form
-msgid "Due Book of Today"
-msgstr "الكتاب المقرر لليوم"
-
-#. module: openeducat_library
-#: field:op.library.card.type,duration:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__duration
 msgid "Duration"
-msgstr "المدة"
+msgstr "المدة الزمنية"
 
 #. module: openeducat_library
-#: help:op.library.card.type,duration:0
+#: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "المدة من حيث \";عدد الأيام يؤدي\";"
+msgstr "مدة من حيث عدد الرصاص يوم"
 
 #. module: openeducat_library
-#: view:website:openeducat_library.report_student_library_card
-msgid "E-mail :"
-msgstr "البريد الإلكتروني:"
-
-#. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_search
-#: field:op.book,edition:0
-#: field:op.book.purchase,edition:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__edition
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
 msgid "Edition"
-msgstr "الطبعة"
+msgstr "الإصدار"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Education Details"
 msgstr "تفاصيل التعليم"
 
 #. module: openeducat_library
-#: code:addons/openeducat_library/wizards/issue_book.py:84
-#: code:addons/openeducat_library/wizards/issue_book.py:89
-#: code:addons/openeducat_library/wizards/return_book.py:54
-#, python-format
-msgid "Error!"
-msgstr "خطأ!"
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Educational"
+msgstr "تربوي"
 
 #. module: openeducat_library
-#: field:issue.book,faculty_id:0
-#: selection:issue.book,type:0
-#: field:op.book.movement,faculty_id:0
-#: selection:op.book.movement,type:0
-#: field:op.book.purchase,faculty_id:0
-#: field:op.library.card,faculty_id:0
+#: code:addons/openeducat_library/models/library.py:43
+#, python-format
+msgid "Enter proper value"
+msgstr "أدخل القيمة الصحيحة"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__faculty_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: selection:issue.media,type:0
 #: selection:op.library.card,type:0
+#: selection:op.media.movement,type:0
 msgid "Faculty"
 msgstr "أعضاء هيئة التدريس"
 
 #. module: openeducat_library
-#: field:op.book.movement,message_follower_ids:0
-#: field:op.book.purchase,message_follower_ids:0
-#: field:op.book.queue,message_follower_ids:0
-#: field:op.book.unit,message_follower_ids:0
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "First Name"
+msgstr "الاسم الاول"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_follower_ids
 msgid "Followers"
-msgstr "شوهد"
+msgstr "متابعون"
 
 #. module: openeducat_library
-#: field:op.book.queue,date_from:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_channel_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_channel_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_channel_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "المتابعون (القنوات)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_from
 msgid "From Date"
-msgstr "من تاريخ"
+msgstr "من التاريخ"
 
 #. module: openeducat_library
-#: code:addons/openeducat_library/models/book_queue.py:53
-#, python-format
-msgid "From Date should be greater than To Date!"
-msgstr "من التاريخ يجب أن تكون أكبر من \";أن التاريخ\";!"
-
-#. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_search
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: view:op.book.queue:openeducat_library.view_op_book_queue_search
-#: view:op.book.unit:openeducat_library.view_book_unit_search
-#: view:op.library.card:openeducat_library.view_op_library_card_search
-#: view:op.library.card.type:openeducat_library.view_op_library_card_type_search
-#: view:op.publisher:openeducat_library.view_op_publisher_search
-#: view:op.tag:openeducat_library.view_op_tag_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
 msgid "Group By..."
-msgstr "تجميع حسب..."
+msgstr "تجميع حسب.."
 
 #. module: openeducat_library
-#: help:op.book.movement,message_summary:0
-#: help:op.book.purchase,message_summary:0
-#: help:op.book.queue,message_summary:0
-#: help:op.book.unit,message_summary:0
-msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
-msgstr "يحمل ملخص الأحاديث (عدد الرسائل،...). هذا الملخص في تنسيق html مباشرة بغية إدراجها في آراء kanban."
-
-#. module: openeducat_library
-#: field:issue.book,id:0
-#: field:op.author,id:0
-#: field:op.book,id:0
-#: field:op.book.movement,id:0
-#: field:op.book.purchase,id:0
-#: field:op.book.queue,id:0
-#: field:op.book.unit,id:0
-#: field:op.library.card,id:0
-#: field:op.library.card.type,id:0
-#: field:op.publisher,id:0
-#: field:op.tag,id:0
-#: field:report.openeducat_library.report_book_barcode,id:0
-#: field:report.openeducat_library.report_student_library_card,id:0
-#: field:reserve.book,id:0
-#: field:return.book,id:0
-#: field:return.date,id:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__id
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode__id
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode__id
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
 msgid "ID"
-msgstr "معرف"
+msgstr "المعرف"
 
 #. module: openeducat_library
-#: field:op.book,isbn:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
 msgid "ISBN Code"
-msgstr "رمز ISBN"
+msgstr "كود ISBN"
 
 #. module: openeducat_library
-#: help:op.book.movement,message_unread:0
-#: help:op.book.purchase,message_unread:0
-#: help:op.book.queue,message_unread:0
-#: help:op.book.unit,message_unread:0
+#: sql_constraint:op.media:0
+msgid "ISBN code must be unique per media!"
+msgstr "يجب أن يكون رمز ISBN فريدة من نوعها في وسائل الإعلام!"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_unread
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_unread
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_unread
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_unread
 msgid "If checked new messages require your attention."
-msgstr "إذا كان التحقق من الرسائل الجديدة تتطلب الاهتمام الخاص بك."
+msgstr "إذا تم تتطلب الرسائل الجديدة انتباهكم."
 
 #. module: openeducat_library
-#: field:op.book,internal_code:0
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم، تتطلب الرسائل الجديدة انتباهكم."
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم، بعض الرسائل لها خطأ التسليم."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__internal_code
 msgid "Internal Code"
-msgstr "رمز داخلي"
+msgstr "كود الداخلي"
 
 #. module: openeducat_library
-#: field:op.book.movement,message_is_follower:0
-#: field:op.book.purchase,message_is_follower:0
-#: field:op.book.queue,message_is_follower:0
-#: field:op.book.unit,message_is_follower:0
-msgid "Is a Follower"
-msgstr "هو من اتباع"
+#: sql_constraint:op.media:0
+msgid "Internal Code must be unique per media!"
+msgstr "يجب أن يكون القانون الداخلي الفريد في وسائل الإعلام!"
 
 #. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.issue_book_act
-#: view:op.book.movement:openeducat_library.view_op_book_movement_form
-#: view:op.book.unit:openeducat_library.view_book_unit_form
-msgid "Issue Book"
-msgstr "كتاب القضية"
-
-#. module: openeducat_library
-#: field:op.library.card,issue_date:0
-msgid "Issue Date"
-msgstr "تاريخ الإصدار"
-
-#. module: openeducat_library
-#: view:website:openeducat_library.report_student_library_card
-msgid "Issue Date :"
-msgstr "تاريخ الإصدار:"
-
-#. module: openeducat_library
-#: code:addons/openeducat_library/models/book_movement.py:67
+#: code:addons/openeducat_library/models/media_purchase.py:64
 #, python-format
-msgid "Issue Date should be greater than Return Date."
-msgstr "يجب أن يكون تاريخ المسألة أكبر من \"; تاريخ العودة\"."
+msgid "Invalid Action!\n"
+" Parent can not create             Media Purchase Requests!"
+msgstr "عمل غير صالح!\n"
+" الأم لا يمكن إنشاء طلبات وسائل الإعلام الشراء!"
 
 #. module: openeducat_library
-#: selection:op.book.movement,state:0
-#: selection:op.book.unit,state:0
+#: code:addons/openeducat_library/models/media_queue.py:59
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not create             Media Queue Requests!"
+msgstr "عمل غير صالح!\n"
+" الأم لا يمكن إنشاء طلبات وسائل الإعلام بعدين!"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_purchase.py:71
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not edit             Media Purchase Requests!"
+msgstr "عمل غير صالح!\n"
+" الأم لا يمكن تحرير طلبات وسائل الإعلام الشراء!"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/models/media_queue.py:69
+#, python-format
+msgid "Invalid Action!\n"
+" Parent can not edit             Media Queue Requests!"
+msgstr "عمل غير صالح!\n"
+" الأم لا يمكن تحرير طلبات وسائل الإعلام بعدين!"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_account_invoice
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
+msgid "Invoice"
+msgstr "الفاتورة"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_is_follower
+msgid "Is Follower"
+msgstr "غير أتباع"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__issue_date
+msgid "Issue Date"
+msgstr "تاريخ الاصدار"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+msgid "Issue Media"
+msgstr "وسائل الإعلام قضية"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_issue_media
+msgid "Issue Media Wizard"
+msgstr "معالج وسائل الإعلام قضية"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.issue_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Issue media"
+msgstr "وسائل الإعلام قضية"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
+#: selection:op.media.unit,state:0
 msgid "Issued"
-msgstr "أصدر"
+msgstr "نشر"
 
 #. module: openeducat_library
-#: field:issue.book,issued_date:0
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: field:op.book.movement,issued_date:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__issued_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__issued_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Date"
 msgstr "تاريخ إصدارها"
 
 #. module: openeducat_library
-#: field:op.book.movement,message_last_post:0
-#: field:op.book.purchase,message_last_post:0
-#: field:op.book.queue,message_last_post:0
-#: field:op.book.unit,message_last_post:0
-msgid "Last Message Date"
-msgstr "تاريخ الرسالة"
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Issued Today"
+msgstr "اليوم صدر"
 
 #. module: openeducat_library
-#: field:issue.book,write_uid:0
-#: field:op.author,write_uid:0
-#: field:op.book,write_uid:0
-#: field:op.book.movement,write_uid:0
-#: field:op.book.purchase,write_uid:0
-#: field:op.book.queue,write_uid:0
-#: field:op.book.unit,write_uid:0
-#: field:op.library.card,write_uid:0
-#: field:op.library.card.type,write_uid:0
-#: field:op.publisher,write_uid:0
-#: field:op.tag,write_uid:0
-#: field:reserve.book,write_uid:0
-#: field:return.book,write_uid:0
-#: field:return.date,write_uid:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل ل"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Last Name"
+msgstr "الكنية"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_uid
 msgid "Last Updated by"
-msgstr "آخر تحديث قبل"
+msgstr "آخر تحديث بواسطة"
 
 #. module: openeducat_library
-#: field:issue.book,write_date:0
-#: field:op.author,write_date:0
-#: field:op.book,write_date:0
-#: field:op.book.movement,write_date:0
-#: field:op.book.purchase,write_date:0
-#: field:op.book.queue,write_date:0
-#: field:op.book.unit,write_date:0
-#: field:op.library.card,write_date:0
-#: field:op.library.card.type,write_date:0
-#: field:op.publisher,write_date:0
-#: field:op.tag,write_date:0
-#: field:reserve.book,write_date:0
-#: field:return.book,write_date:0
-#: field:return.date,write_date:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_date
 msgid "Last Updated on"
-msgstr "تاريخ آخر تحديث"
+msgstr "آخر تحديث:"
 
 #. module: openeducat_library
-#: field:op.book.purchase,librarian_id:0
-#: model:res.groups,name:openeducat_library.group_op_library
-msgid "Librarian"
-msgstr "أمين مكتبة"
-
-#. module: openeducat_library
-#: model:ir.ui.menu,name:openeducat_library.menu_op_dashboard_librarian
-msgid "Librarian Dashboard"
-msgstr "لوحة المكتبة"
-
-#. module: openeducat_library
-#: model:ir.ui.menu,name:openeducat_library.menu_op_book_request_faculty
 #: model:ir.ui.menu,name:openeducat_library.menu_op_library_root
-#: model:ir.ui.menu,name:openeducat_library.menu_op_school_library_config
-#: model:ir.ui.menu,name:openeducat_library.menu_op_school_library_root
-#: model:ir.ui.menu,name:openeducat_library.menu_student_library_main
-#: view:op.faculty:openeducat_library.view_op_faculty_form_library_inherit
-#: view:op.student:openeducat_library.view_op_student_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
+#: model:res.groups,name:openeducat_library.group_op_library
 msgid "Library"
 msgstr "مكتبة"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_library_card
-#: field:issue.book,library_card_id:0
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: field:op.book.movement,library_card_id:0
-#: field:op.faculty,library_card_id:0
-#: view:op.library.card:openeducat_library.view_op_library_card_form
-#: view:op.library.card:openeducat_library.view_op_library_card_search
-#: view:op.library.card:openeducat_library.view_op_library_card_tree
-#: field:op.student,library_card_id:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__library_card_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Library Card"
 msgstr "بطاقة مكتبة"
 
 #. module: openeducat_library
-#: view:website:openeducat_library.report_student_library_card
-msgid "Library Card No :"
-msgstr "رقم بطاقة المكتبة:"
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card_barcode
+msgid "Library Card Barcode"
+msgstr "مكتبة الباركود بطاقة"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_library_card_barcode
+msgid "Library Card Barcode Report"
+msgstr "مكتبة تقرير الباركود بطاقة"
+
+#. module: openeducat_library
+#: model:mail.template,report_name:openeducat_library.email_template_media_movement_after
+#: model:mail.template,subject:openeducat_library.email_template_media_movement_after
+msgid "Library Card Expired"
+msgstr "انتهاء صلاحية بطاقة المكتبة"
+
+#. module: openeducat_library
+#: model:mail.template,subject:openeducat_library.email_template_media_movement
+msgid "Library Card Renew"
+msgstr "بطاقة المكتبة تجديد ترخيص"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_library_card_type
-#: view:op.library.card.type:openeducat_library.view_op_library_card_type_form
-#: view:op.library.card.type:openeducat_library.view_op_library_card_type_search
-#: view:op.library.card.type:openeducat_library.view_op_library_card_type_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_tree
 msgid "Library Card Type"
 msgstr "نوع بطاقة المكتبة"
-
-#. module: openeducat_library
-#: view:website:openeducat_library.report_student_library_card
-msgid "Library Card Type :"
-msgstr "مكتبة نوع البطاقة:"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_type_view
@@ -603,347 +703,685 @@ msgid "Library Cards"
 msgstr "مكتبة البطاقات"
 
 #. module: openeducat_library
-#: model:ir.actions.report.xml,name:openeducat_library.action_report_student_library_card
-msgid "Library IdCard"
-msgstr "مكتبة إيدكارد"
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card
+msgid "Library ID Card"
+msgstr "بطاقة الهوية المكتبة"
 
 #. module: openeducat_library
-#: view:board.board:openeducat_library.board_libray_form
-#: model:ir.actions.act_window,name:openeducat_library.open_board_libray
-msgid "Libray Dashboard"
-msgstr "لوحة libray"
+#: sql_constraint:op.library.card:0
+msgid "Library card Number should be unique per card!"
+msgstr "يجب أن يكون عدد بطاقة مكتبة فريدة من نوعها للبطاقة الواحدة!"
 
 #. module: openeducat_library
-#: selection:op.book.movement,state:0
-#: selection:op.book.unit,state:0
+#: model:product.product,name:openeducat_library.op_product_7
+#: model:product.template,name:openeducat_library.op_product_7_product_template
+msgid "Library penalty fee"
+msgstr "رسوم عقوبة مكتبة"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
 msgid "Lost"
-msgstr "فقدت"
+msgstr "ضائع"
 
 #. module: openeducat_library
-#: code:addons/openeducat_library/wizards/issue_book.py:89
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "مرفق الرئيسي"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/wizards/issue_media.py:103
 #, python-format
-msgid "Maximum Number of book allowed for %s is : %s"
-msgstr "الحد الأقصى لعدد من الكتاب يسمح لمن %s : %s"
+msgid "Maximum Number of media allowed for %s is : %s"
+msgstr "الحد الأقصى لعدد من وسائل الإعلام يسمح ل٪ s هو:٪ ق"
 
 #. module: openeducat_library
-#: field:op.book.movement,message_ids:0
-#: field:op.book.purchase,message_ids:0
-#: field:op.book.queue,message_ids:0
-#: field:op.book.unit,message_ids:0
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_id
+#: model:ir.ui.menu,name:openeducat_library.menu_op_sub_media_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
+msgid "Media"
+msgstr "وسائل الإعلام"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media :"
+msgstr "وسائل الإعلام :"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_author
+#: model:ir.model,name:openeducat_library.model_return_media
+msgid "Media Author"
+msgstr "وسائل الاعلام الكاتب"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
+msgid "Media Barcode"
+msgstr "الباركود وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_media_barcode
+msgid "Media Barcode Report"
+msgstr "تقرير الباركود وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media
+msgid "Media Details"
+msgstr "تفاصيل وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_movement
+msgid "Media Movement"
+msgstr "حركة الإعلام"
+
+#. module: openeducat_library
+#: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
+#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_after_ir_actions_server
+msgid "Media Movement Line After 1 Days"
+msgstr "وسائل الاعلام حركة الخط بعد 1 يوم"
+
+#. module: openeducat_library
+#: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
+#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_1_ir_actions_server
+msgid "Media Movement Line Before 1 Days"
+msgstr "حركة الخط وسائل الإعلام قبل 1 يوم"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
+msgid "Media Movements"
+msgstr "حركات وسائل الإعلام"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Name"
+msgstr "اسم وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_purchase
+msgid "Media Purchase Request"
+msgstr "وسائل الاعلام طلب شراء"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_purchase_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_request_library_sub
+msgid "Media Purchase Requests"
+msgstr "طلبات شراء وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__queue_ids
+msgid "Media Queue"
+msgstr "وسائل الإعلام قائمة انتظار"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_queue
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
+msgid "Media Queue Request"
+msgstr "وسائل الإعلام قائمة انتظار طلب"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_queue_request_library_sub
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Queue Requests"
+msgstr "تطلب وسائل الإعلام قائمة انتظار"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+msgid "Media Reservation"
+msgstr "الحجز وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_reserve_media
+msgid "Media Reserve"
+msgstr "الاحتياطي وسائل الإعلام"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Media Return"
+msgstr "وسائل الاعلام العودة"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_tag
+msgid "Media Tags"
+msgstr "وسائل الإعلام الكلمات"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_type_view
+#: model:ir.model,name:openeducat_library.model_op_media_type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_type_id
+#: model:ir.ui.menu,name:openeducat_library.menu_op_tag_sub
+msgid "Media Type"
+msgstr "نوع الوسائط"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_unit
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media Unit"
+msgstr "وحدة الإعلام"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/wizards/return_media.py:52
+#, python-format
+msgid "Media Unit can not be returned                 because it's state is : %s"
+msgstr "وحدة الإعلام لا يمكن أن تعاد لانها دولة هي:٪ ق"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_unit_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_tree
+msgid "Media Units"
+msgstr "وحدات وسائل الإعلام"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__media_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+msgid "Media(s)"
+msgstr "وسائل الإعلام (ق)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error
+msgid "Message Delivery error"
+msgstr "رسالة الخطأ تسليم"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_ids
 msgid "Messages"
 msgstr "رسائل"
 
 #. module: openeducat_library
-#: help:op.book.movement,message_ids:0
-#: help:op.book.purchase,message_ids:0
-#: help:op.book.queue,message_ids:0
-#: help:op.book.unit,message_ids:0
-msgid "Messages and communication history"
-msgstr "رسائل ومحفوظات الاتصالات"
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Middle Name"
+msgstr "الاسم الوسطى"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-#: field:op.book,movement_line:0
-#: view:op.book.unit:openeducat_library.view_book_unit_form
-#: field:op.book.unit,movement_lines:0
-#: field:op.faculty,book_movement_lines:0
-#: field:op.student,book_movement_lines:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__movement_line
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Movements"
-msgstr "حركات"
+msgstr "الحركات"
 
 #. module: openeducat_library
-#: field:op.author,name:0
-#: view:op.book.queue:openeducat_library.view_op_book_queue_form
-#: field:op.book.unit,name:0
-#: field:op.library.card.type,name:0
-#: field:op.publisher,name:0
-#: view:op.tag:openeducat_library.view_op_tag_search
-#: field:op.tag,name:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
 msgid "Name"
-msgstr "الاسم"
+msgstr "اسم"
 
 #. module: openeducat_library
-#: field:op.library.card.type,allow_book:0
-msgid "No of Books Allowed"
-msgstr "أي من الكتب المسموح به"
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
+msgid "No of medias Allowed"
+msgstr "عدد سائل الإعلام المسموح بها"
 
 #. module: openeducat_library
-#: field:op.library.card,number:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
 msgid "Number"
-msgstr "عدد"
+msgstr "رقم"
 
 #. module: openeducat_library
-#: view:op.book.queue:openeducat_library.view_op_book_queue_search
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد من تطبيقات"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of error"
+msgstr "عدد من الخطأ"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي يتطلب العمل"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل مع الخطأ تسليم"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_unread_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_unread_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_unread_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل غير المقروءة"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_faculty
+msgid "OpenEduCat Faculty"
+msgstr "OpenEduCat كلية"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__partner_id
 msgid "Partner"
 msgstr "شريك"
 
 #. module: openeducat_library
-#: field:reserve.book,partner_id:0
-msgid "Partner id"
-msgstr "معرف شريك"
-
-#. module: openeducat_library
-#: field:op.book.movement,penalty:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__penalty
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Penalty"
-msgstr "عقوبة"
+msgstr "ضربة جزاء"
 
 #. module: openeducat_library
-#: field:op.library.card.type,penalty_amt_per_day:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__penalty_amt_per_day
 msgid "Penalty Amount per Day"
-msgstr "مقدار العقوبة لليوم الواحد"
+msgstr "عقوبة المبلغ في يوم"
 
 #. module: openeducat_library
-#: field:op.book.movement,partner_id:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__partner_id
 msgid "Person"
-msgstr "الشخص"
+msgstr "شخص"
 
 #. module: openeducat_library
-#: field:op.book.movement,reserver_name:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__reserver_name
 msgid "Person Name"
 msgstr "اسم الشخص"
 
 #. module: openeducat_library
-#: view:website:openeducat_library.report_student_library_card
-msgid "Phone :"
-msgstr "الهاتف:"
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Personal Information"
+msgstr "معلومات شخصية"
 
 #. module: openeducat_library
-#: view:issue.book:openeducat_library.issue_book_form
-#: view:reserve.book:openeducat_library.reserve_book_form
-#: view:return.book:openeducat_library.return_book_form
-#: view:return.date:openeducat_library.return_date_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
 msgid "Proceed"
-msgstr "المضي قدما"
+msgstr "تقدم"
 
 #. module: openeducat_library
-#: view:op.publisher:openeducat_library.view_op_publisher_form
-#: view:op.publisher:openeducat_library.view_op_publisher_search
-#: view:op.publisher:openeducat_library.view_op_publisher_tree
+#: model:ir.model,name:openeducat_library.model_op_publisher
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_tree
 msgid "Publisher"
 msgstr "الناشر"
 
 #. module: openeducat_library
-#: field:op.book,publisher_ids:0
-#: field:op.book.purchase,publisher:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__publisher_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__publisher
 msgid "Publisher(s)"
 msgstr "الناشر (ق)"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_publisher_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_publisher_sub
-#: model:ir.ui.menu,name:openeducat_library.menu_op_sub_publisher_library
 msgid "Publishers"
 msgstr "الناشرين"
 
 #. module: openeducat_library
-#: view:op.book.purchase:openeducat_library.view_op_purchase_form
-#: view:op.book.purchase:openeducat_library.view_op_purchase_search
-#: view:op.book.purchase:openeducat_library.view_op_purchase_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_tree
 msgid "Purchase Request"
-msgstr "طلب شراء"
+msgstr "طلب الشراء"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-#: view:op.book.purchase:openeducat_library.view_op_purchase_form
-#: view:op.book.queue:openeducat_library.view_op_book_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
 msgid "Reject"
 msgstr "رفض"
 
 #. module: openeducat_library
-#: selection:op.book.purchase,state:0
-#: selection:op.book.queue,state:0
+#: selection:op.media.purchase,state:0
+#: selection:op.media.queue,state:0
 msgid "Rejected"
-msgstr "ورفض"
+msgstr "مرفوض"
 
 #. module: openeducat_library
-#: selection:op.book.queue,state:0
+#: model:mail.template,report_name:openeducat_library.email_template_media_movement
+msgid "Renew"
+msgstr "جدد"
+
+#. module: openeducat_library
+#: selection:op.media.queue,state:0
 msgid "Request"
 msgstr "طلب"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-#: view:op.book.queue:openeducat_library.view_op_book_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
 msgid "Request Again"
 msgstr "طلب مرة أخرى"
 
 #. module: openeducat_library
-#: view:op.book.purchase:openeducat_library.view_op_purchase_form
-msgid "Request Book"
-msgstr "طلب كتاب"
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Request media"
+msgstr "وسائل الإعلام الطلب"
 
 #. module: openeducat_library
-#: selection:op.book.purchase,state:0
+#: selection:op.media.purchase,state:0
 msgid "Requested"
-msgstr "وطلب"
+msgstr "طلب"
 
 #. module: openeducat_library
-#: view:op.book.movement:openeducat_library.view_op_book_movement_form
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__requested_id
+msgid "Requested By"
+msgstr "بتوصية من"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Reservation Detail"
-msgstr "تفاصيل الحجز"
+msgstr "حجز التفاصيل"
 
 #. module: openeducat_library
-#: view:op.book.movement:openeducat_library.view_op_book_movement_form
-msgid "Reserve Book"
-msgstr "كتاب الاحتياطي"
-
-#. module: openeducat_library
-#: selection:op.book.movement,state:0
-#: selection:op.book.unit,state:0
+#: selection:op.media.movement,state:0
 msgid "Reserved"
-msgstr "محفوظة"
+msgstr "محجوز"
 
 #. module: openeducat_library
-#: model:ir.actions.act_window,name:openeducat_library.return_book_act
-#: view:op.book.movement:openeducat_library.view_op_book_movement_form
-#: view:op.book.unit:openeducat_library.view_book_unit_form
-msgid "Return Book"
-msgstr "إرجاع الكتاب"
-
-#. module: openeducat_library
-#: code:addons/openeducat_library/models/book_movement.py:106
-#: model:ir.actions.act_window,name:openeducat_library.return_date_act
-#: field:issue.book,return_date:0
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: field:op.book.movement,return_date:0
-#: view:return.date:openeducat_library.return_date_form
-#, python-format
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Return Date"
 msgstr "تاريخ العودة"
 
 #. module: openeducat_library
-#: selection:op.book.movement,state:0
+#: code:addons/openeducat_library/models/media_movement.py:85
+#: code:addons/openeducat_library/wizards/issue_media.py:52
+#, python-format
+msgid "Return Date cannot be set before Issued Date."
+msgstr "عودة التاريخ لا يمكن تعيين التسجيل قبل الصادرة."
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.return_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Return Media"
+msgstr "عودة وسائل الإعلام"
+
+#. module: openeducat_library
+#: selection:op.media.movement,state:0
 msgid "Returned"
 msgstr "عاد"
 
 #. module: openeducat_library
-#: field:op.book.queue,name:0
+#: selection:op.media.movement,state:0
+msgid "Returned Done"
+msgstr "عاد حررت"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Returned Today"
+msgstr "اليوم عاد"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__name
 msgid "Sequence No"
-msgstr "رقم التسلسل"
+msgstr "تسلسل لا"
 
 #. module: openeducat_library
-#: field:op.book.purchase,state:0
-#: view:op.book.unit:openeducat_library.view_book_unit_search
-#: field:op.book.unit,state:0
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
+msgid "Server Actions Media Movement"
+msgstr "تطبيقات الخادم حركة الإعلام"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
+msgid "Server Actions Media Movement After 1 Days"
+msgstr "تطبيقات الخادم حركة الإعلام بعد 1 يوم"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "الدولة"
+msgstr "حالة"
 
 #. module: openeducat_library
-#: field:op.book.movement,state:0
-#: view:op.book.queue:openeducat_library.view_op_book_queue_search
-#: field:op.book.queue,state:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
 msgid "Status"
-msgstr "مركز"
+msgstr "الحالة"
 
 #. module: openeducat_library
-#: field:issue.book,student_id:0
-#: selection:issue.book,type:0
-#: view:op.book.movement:openeducat_library.view_op_book_movement_search
-#: field:op.book.movement,student_id:0
-#: selection:op.book.movement,type:0
-#: field:op.book.purchase,student_id:0
-#: field:op.library.card,student_id:0
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street..."
+msgstr "شارع..."
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street2"
+msgstr ""
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_student
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__student_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+#: selection:issue.media,type:0
 #: selection:op.library.card,type:0
+#: selection:op.media.movement,type:0
 msgid "Student"
 msgstr "طالب"
 
 #. module: openeducat_library
-#: field:op.book.movement,type:0
-#: field:op.book.queue,partner_id:0
-#: field:op.library.card,partner_id:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__partner_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__partner_id
 msgid "Student/Faculty"
-msgstr "طالب/كلية الحقوق"
+msgstr "طالب / كلية"
 
 #. module: openeducat_library
-#: view:op.book.movement:openeducat_library.view_op_book_movement_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Student/Faculty Detail"
-msgstr "تفاصيل الطالب/كلية الحقوق"
+msgstr "طالب / كلية التفاصيل"
 
 #. module: openeducat_library
-#: field:op.book.purchase,subject_ids:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__subject_ids
 msgid "Subject"
-msgstr "هذا الموضوع"
+msgstr "موضوع"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-#: field:op.book,subject_ids:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__subject_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Subjects"
 msgstr "المواضيع"
 
 #. module: openeducat_library
-#: field:op.book.movement,message_summary:0
-#: field:op.book.purchase,message_summary:0
-#: field:op.book.queue,message_summary:0
-#: field:op.book.unit,message_summary:0
-msgid "Summary"
-msgstr "ملخص"
-
-#. module: openeducat_library
-#: view:op.tag:openeducat_library.view_op_tag_form
-#: view:op.tag:openeducat_library.view_op_tag_search
-#: view:op.tag:openeducat_library.view_op_tag_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_tree
 msgid "Tag"
-msgstr "العلامة"
+msgstr "بطاقة"
 
 #. module: openeducat_library
-#: field:op.book,tags:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__tags
 msgid "Tag(s)"
-msgstr "Tag(s)"
+msgstr "كلمة دلالية"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_tag_view
-#: model:ir.ui.menu,name:openeducat_library.menu_op_tag_sub
 msgid "Tags"
 msgstr "العلامات"
 
 #. module: openeducat_library
-#: field:op.book,name:0
-#: field:op.book.purchase,name:0
+#: code:addons/openeducat_library/models/media_movement.py:169
+#, python-format
+msgid "There is no income account defined for this                     product: \"%s\". You may have to install a chart of                     account from Accounting app, settings                     menu."
+msgstr "ليس هناك حساب الدخل تعريف لهذا المنتج: \"٪ الصورة\". قد يكون لديك لتثبيت رسما بيانيا من حساب من المحاسبة التطبيق، إعدادات القائمة."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Title"
-msgstr "العنوان"
+msgstr "عنوان"
 
 #. module: openeducat_library
-#: field:op.book.queue,date_to:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
 msgid "To Date"
-msgstr "وحتى الآن"
+msgstr "حتي اليوم"
 
 #. module: openeducat_library
-#: field:issue.book,type:0
-#: field:op.library.card,type:0
+#: code:addons/openeducat_library/models/media_queue.py:54
+#, python-format
+msgid "To Date cannot be set before From Date."
+msgstr "إلى تاريخ لا يمكن تعيين قبل من التسجيل."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__type
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
 msgid "Type"
-msgstr "نوع"
+msgstr "اكتب"
 
 #. module: openeducat_library
-#: view:op.book:openeducat_library.view_op_book_form
-#: field:op.book,unit_ids:0
+#: model:product.product,uom_name:openeducat_library.op_product_7
+#: model:product.template,uom_name:openeducat_library.op_product_7_product_template
+msgid "Unit(s)"
+msgstr "وحدة(ات)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__unit_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Units"
 msgstr "وحدات"
 
 #. module: openeducat_library
-#: field:op.book.movement,message_unread:0
-#: field:op.book.purchase,message_unread:0
-#: field:op.book.queue,message_unread:0
-#: field:op.book.unit,message_unread:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_unread
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_unread
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_unread
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_unread
 msgid "Unread Messages"
-msgstr "الرسائل غير المقروءة"
+msgstr "رسائل غير مقروءة"
 
 #. module: openeducat_library
-#: field:op.book.queue,user_id:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_unread_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_unread_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_unread_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "الرسائل غير المقروءة عداد"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__user_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "User"
-msgstr "المستخدم"
+msgstr "المستعمل"
 
 #. module: openeducat_library
-#: field:op.book.movement,website_message_ids:0
-#: field:op.book.purchase,website_message_ids:0
-#: field:op.book.queue,website_message_ids:0
-#: field:op.book.unit,website_message_ids:0
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__user_id
+msgid "Users"
+msgstr "المستخدمين"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__website_message_ids
 msgid "Website Messages"
 msgstr "رسائل الموقع"
 
 #. module: openeducat_library
-#: help:op.book.movement,website_message_ids:0
-#: help:op.book.purchase,website_message_ids:0
-#: help:op.book.queue,website_message_ids:0
-#: help:op.book.unit,website_message_ids:0
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__website_message_ids
 msgid "Website communication history"
-msgstr "موقع محفوظات الاتصالات"
+msgstr "موقع تاريخ الاتصال"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "ZIP"
+msgstr ""
+
+#. module: openeducat_library
+#: model:product.product,weight_uom_name:openeducat_library.op_product_7
+#: model:product.template,weight_uom_name:openeducat_library.op_product_7_product_template
+msgid "kg"
+msgstr "كجم"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "media"
+msgstr "وسائل الإعلام"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+msgid "media Issue"
+msgstr "العدد سائل الإعلام"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
+msgid "media Movement"
+msgstr "حركة وسائل الإعلام"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+msgid "media Queue Request"
+msgstr "وسائل الإعلام قائمة انتظار طلب"
+
+#. module: openeducat_library
+#: code:addons/openeducat_library/wizards/issue_media.py:97
+#, python-format
+msgid "media Unit can not be issued                     because it's state is : %s"
+msgstr "وحدة الإعلام لا يمكن أن تصدر لانها دولة هي:٪ ق"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+msgid "media Units"
+msgstr "وحدات وسائل الإعلام"
 

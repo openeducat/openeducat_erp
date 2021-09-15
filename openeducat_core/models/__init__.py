@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,7 +24,13 @@ from . import category
 from . import course
 from . import faculty
 from . import hr
+from . import department
 from . import res_company
 from . import student
 from . import subject
 from . import subject_registration
+from . import res_config_setting
+from . import update
+from . import student_portal
+from . import op_academic_term
+from . import op_academic_year

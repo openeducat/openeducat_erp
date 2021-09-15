@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,15 +19,16 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 from odoo.exceptions import UserError
+
 from ..models import media_unit
 
 
 class ReturnMedia(models.TransientModel):
-
     """ Retrun Media Wizard """
-    _name = 'return.media'
+    _name = "return.media"
+    _description = "Media Author"
 
     media_id = fields.Many2one('op.media', 'Media', readonly=True)
     media_unit_id = fields.Many2one(
@@ -36,7 +37,6 @@ class ReturnMedia(models.TransientModel):
         'Actual Return Date', default=lambda self: fields.Date.today(),
         required=True)
 
-    @api.multi
     def do_return(self):
         for media in self:
             if media.media_unit_id.state and \

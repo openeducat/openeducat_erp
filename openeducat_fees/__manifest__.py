@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,33 +21,37 @@
 
 {
     'name': 'OpenEduCat Fees',
-    'version': '11.0.1.0.0',
+    'version': '15.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Fees',
     'complexity': "easy",
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'account_invoicing'],
+    'depends': ['openeducat_core', 'account'],
     'data': [
+        'security/op_security.xml',
+        'security/ir.model.access.csv',
         'report/report_menu.xml',
         'report/fees_analysis_report_view.xml',
         'wizard/fees_detail_report_wizard_view.xml',
         'views/fees_terms_view.xml',
         'views/student_view.xml',
         'views/course_view.xml',
-        'security/fees_security.xml',
-        'fees_menu.xml',
-        'security/ir.model.access.csv'
+        'menus/op_menu.xml',
     ],
     'images': [
         'static/description/openeducat_fees_banner.jpg',
     ],
     'demo': [
+        'demo/product_category_demo.xml',
+        'demo/product_demo.xml',
+        'demo/fees_element_line_demo.xml',
         'demo/fees_terms_line_demo.xml',
         'demo/fees_terms_demo.xml',
         'demo/course_demo.xml',
+        'demo/student_fees_details_demo.xml',
     ],
     'installable': True,
     'auto_install': False,

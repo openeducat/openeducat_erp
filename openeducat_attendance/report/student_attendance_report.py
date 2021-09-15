@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -25,15 +25,13 @@ from odoo import models, api
 
 
 class StudentAttendanceReport(models.AbstractModel):
-
-    _name = 'report.openeducat_attendance.student_attendance_report'
+    _name = "report.openeducat_attendance.student_attendance_report"
+    _description = "Attendance Report"
 
     def get_student_name(self, data):
         student = self.env['op.student'].browse(data['student_id'])
         if student:
-            return ' '.join([student.name,
-                             student.middle_name and student.middle_name or '',
-                             student.last_name])
+            return student.name
 
     def get_data(self, data):
 
@@ -57,7 +55,7 @@ class StudentAttendanceReport(models.AbstractModel):
                  'line': lst}]
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

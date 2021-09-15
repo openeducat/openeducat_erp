@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,22 +21,22 @@
 
 {
     'name': 'OpenEduCat ERP',
-    'version': '11.0.1.0.0',
+    'version': '14.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_activity', 'openeducat_admission',
-                'openeducat_assignment', 'openeducat_attendance',
-                'openeducat_exam', 'openeducat_library',
-                'openeducat_parent', 'openeducat_support',
-                'openeducat_timetable', 'web_openeducat'],
-    'data': [
-    ],
-    'demo': [
+    'depends': [
+        'openeducat_admission',
+        'openeducat_assignment',
+        'openeducat_attendance',
+        'openeducat_library',
+        'openeducat_parent',
+        'openeducat_exam',
+        'web_openeducat',
     ],
     'images': [
         'static/description/openeducat_erp_banner.jpg',

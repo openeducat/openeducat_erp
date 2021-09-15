@@ -7,25 +7,26 @@
             <field name="arch" type="xml">
                 <form string="Student Attendance Report">
                     <group col="4" colspan="4">
-                        <field name="from_date" />
-                        <field name="to_date" />
+                        <field name="from_date"/>
+                        <field name="to_date"/>
                     </group>
                     <footer>
                         <span groups="base.group_user">
-                            <button
-                                string="Print"
-                                type="object" name="print_report" class="oe_highlight" />
-                            <button special="cancel" string="Close"
-                                type="object" />
+                            <button string="Print" type="object" name="print_report" class="oe_highlight"/>
+                            <button special="cancel" string="Close" type="object"/>
                         </span>
                     </footer>
                 </form>
             </field>
         </record>
 
-        <act_window id="student_attendance_act" name="Student Attendance"
-            res_model="student.attendance" src_model="op.student"
-            view_mode="form" target="new" view_type="form"
-            groups="openeducat_core.group_op_back_office_admin" />
+        <record id="op_student_attendance_act" model="ir.actions.act_window">
+            <field name="name">Student Attendance</field>
+            <field name="res_model">student.attendance</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
+        </record>
+
     </data>
 </odoo>

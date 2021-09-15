@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_attendance_type_tree" model="ir.ui.view">
+            <field name="name">op.attendance.type.tree</field>
+            <field name="model">op.attendance.type</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Attendance Type">
+                    <field name="name"/>
+                    <field name="present"/>
+                    <field name="absent"/>
+                    <field name="excused"/>
+                    <field name="late"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_attendance_type_form" model="ir.ui.view">
+            <field name="name">op.attendance.type.form</field>
+            <field name="model">op.attendance.type</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Attendance Type">
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group col="4" string="Student Should Be Marked As" name="student_marked_As">
+                            <field name="present"/>
+                            <field name="absent"/>
+                            <field name="excused"/>
+                            <field name="late"/>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_attendance_type_search" model="ir.ui.view">
+            <field name="name">op.attendance.type.search</field>
+            <field name="model">op.attendance.type</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Attendance Type">
+                    <field name="name"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Name" name="group_by_attendance_register_name"
+                                domain="[]" context="{'group_by':'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_attendance_type_view">
+            <field name="name">Attendance Types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.attendance.type</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_attendance_type_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_attendance_type_view_form">
+            <field name="act_window_id" ref="act_open_op_attendance_type_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_attendance_type_form"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_attendance_type_view_tree">
+            <field name="act_window_id" ref="act_open_op_attendance_type_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_attendance_type_tree"/>
+        </record>
+    </data>
+</odoo>

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -20,19 +20,18 @@
 ###############################################################################
 
 
-from odoo import models, api
+from odoo import models
 
 
 class AccountInvoice(models.Model):
+    _inherit = "account.move"
 
-    _inherit = "account.invoice"
-
-    @api.multi
     def action_invoice_paid(self):
         paid_invoice = super(AccountInvoice, self).action_invoice_paid()
-        if paid_invoice and self:
-            movement = self.env['op.media.movement'].search(
-                [('invoice_id', '=', self.id)])
-            if movement:
-                movement.state = 'return_done'
+        if self:
+            for record in self:
+                movement = self.env['op.media.movement'].sudo().search(
+                    [('invoice_id', '=', record.id)])
+                if movement and movement.invoice_id.state == 'paid':
+                    movement.state = 'return_done'
         return paid_invoice

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,14 +24,14 @@ from odoo.exceptions import ValidationError
 
 
 class StudentAttendance(models.TransientModel):
-    _name = 'student.attendance'
+    _name = "student.attendance"
+    _description = "Student Attendance"
 
     from_date = fields.Date(
         'From Date', required=True, default=lambda self: fields.Date.today())
     to_date = fields.Date(
         'To Date', required=True, default=lambda self: fields.Date.today())
 
-    @api.multi
     @api.constrains('from_date', 'to_date')
     def check_dates(self):
         for record in self:
@@ -41,7 +41,6 @@ class StudentAttendance(models.TransientModel):
                 raise ValidationError(
                     _("To Date cannot be set before From Date."))
 
-    @api.multi
     def print_report(self):
         data = self.read(['from_date', 'to_date'])[0]
         data.update({'student_id': self.env.context.get('active_id', False)})

@@ -4,46 +4,65 @@
         <record id="view_op_attendance_sheet_tree" model="ir.ui.view">
             <field name="name">op.attendance.sheet.tree</field>
             <field name="model">op.attendance.sheet</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Attendance Sheet">
-                    <field name="register_id" />
-                    <field name="name" />
-                    <field name="session_id" />
-                    <field name="attendance_date" />
-                    <field name="total_present" />
-                    <field name="total_absent" />
+                    <field name="register_id"/>
+                    <field name="name"/>
+                    <field name="session_id"/>
+                    <field name="attendance_date"/>
                 </tree>
             </field>
         </record>
+
         <record id="view_op_attendance_sheet_form" model="ir.ui.view">
             <field name="name">op.attendance.sheet.form</field>
             <field name="model">op.attendance.sheet</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Attendance Sheet">
                     <header>
-                        <button type="action" name="%(act_open_op_attendance_import_view)d" string="Attendance Sheet Import" class="oe_highlight" />
+                        <button type="object" name="attendance_start"
+                                states="draft" string="Attendance Start"
+                                class="oe_highlight"/>
+                        <button type="object" name="attendance_done"
+                                states="start" string="Attendance Taken"
+                                class="oe_highlight"/>
+                        <button type="object" name="attendance_draft"
+                                states="cancel" string="Draft"
+                                class="oe_highlight"/>
+                        <button type="object" name="attendance_cancel"
+                                states="draft,start" string="Cancel"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,start,done"/>
                     </header>
                     <sheet>
-                        <group col="4" colspan="4">
-                            <field name="register_id" />
-                            <field name="name" />
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div name="smart_button" class="oe_button_box">
+
+                        </div>
+                        <group col="4">
+                            <field name="register_id"/>
+                            <field name="name"/>
                             <field name="session_id" domain="[('course_id','=',course_id),('batch_id','=',batch_id)]"/>
-                            <field name="attendance_date" />
-                            <field name="course_id" invisible="1" />
-                            <field name="batch_id" invisible="1" />
+                            <field name="attendance_date"/>
+                            <field name="course_id" invisible="1"/>
+                            <field name="batch_id" invisible="1"/>
                         </group>
                         <group col="4" string="Students">
                             <field name="attendance_line" colspan="4" nolabel="1">
                                 <tree string="Attendance Line" editable="top">
-                                    <field name="student_id" domain="[('course_detail_ids.course_id','=',parent.course_id),('course_detail_ids.batch_id','=',parent.batch_id)]" />
-                                    <field name="present" />
-                                    <field name="remark" />
+                                    <field name="student_id"
+                                           domain="[('course_detail_ids.course_id','=',parent.course_id),('course_detail_ids.batch_id','=',parent.batch_id)]"/>
+                                    <field name="present"/>
+                                    <field name="late"/>
+                                    <field name="excused"/>
+                                    <field name="absent"/>
+                                    <field name="remark"/>
                                 </tree>
                             </field>
-                            <field name="total_present" />
-                            <field name="total_absent" />
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -53,46 +72,82 @@
                 </form>
             </field>
         </record>
+
         <record id="view_op_attendance_sheet_search" model="ir.ui.view">
             <field name="name">op.attendance.sheet.search</field>
             <field name="model">op.attendance.sheet</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Attendance Sheet">
-                    <field name="register_id" />
-                    <field name="attendance_date" />
-                    <field name="total_present" />
-                    <field name="total_absent" />
-                    <newline />
+                    <field name="register_id"/>
+                    <field name="attendance_date"/>
+                    <newline/>
+                    <filter string="Today" name="filter_attendance_today"
+                            domain="[('attendance_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string=" Week" name="filter_attendance_week"
+                            domain="[('attendance_date', '&gt;=', (context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')),
+                    ('attendance_date', '&lt;=', (context_today()-relativedelta(weekday=6)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Month" name="filter_attendance_month"
+                            domain="[('attendance_date', '&lt;=', (context_today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
+                                    ('attendance_date', '&gt;=', (context_today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
                     <group expand="0" string="Group By...">
-                        <filter string="Register" domain="[]"
-                            context="{'group_by':'register_id'}" />
-                        <filter string="Date" domain="[]" context="{'group_by':'attendance_date'}" />
+                        <filter string="Register" name="group_by_attendance_sheet_register_id"
+                                domain="[]" context="{'group_by':'register_id'}"/>
+                        <filter string="Date" name="group_by_attendance_sheet_attendance_date"
+                                domain="[]" context="{'group_by':'attendance_date'}"/>
                     </group>
                 </search>
             </field>
         </record>
+
+        <record id="view_op_attendance_sheet_pivot" model="ir.ui.view">
+            <field name="name">op.attendance.sheet.pivot</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Attendance Sheet">
+                    <field name="name" type="row"/>
+                    <field name="register_id" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_op_attendance_sheet_graph">
+            <field name="name">op.attendance.sheet.graph</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="arch" type="xml">
+                <graph string="Attendance Sheet" type="pie">
+                    <field name="register_id"/>
+                </graph>
+            </field>
+        </record>
+
+
         <record model="ir.actions.act_window" id="act_open_op_attendance_sheet_view">
             <field name="name">Attendance Sheets</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.attendance.sheet</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_op_attendance_sheet_search" />
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="search_view_id" ref="view_op_attendance_sheet_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_attendance_sheet_view_form">
-            <field name="act_window_id" ref="act_open_op_attendance_sheet_view" />
-            <field name="sequence" eval="20" />
+            <field name="act_window_id" ref="act_open_op_attendance_sheet_view"/>
+            <field name="sequence" eval="20"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_attendance_sheet_form" />
+            <field name="view_id" ref="view_op_attendance_sheet_form"/>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_attendance_sheet_view_tree">
-            <field name="act_window_id" ref="act_open_op_attendance_sheet_view" />
-            <field name="sequence" eval="10" />
+            <field name="act_window_id" ref="act_open_op_attendance_sheet_view"/>
+            <field name="sequence" eval="10"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_attendance_sheet_tree" />
+            <field name="view_id" ref="view_op_attendance_sheet_tree"/>
         </record>
     </data>
 </odoo>

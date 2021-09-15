@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,9 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class StudentMigrate(models.TransientModel):
-
     """ Student Migration Wizard """
-    _name = 'student.migrate'
+    _name = "student.migrate"
+    _description = "Student Migrate"
 
     date = fields.Date('Date', required=True, default=fields.Date.today())
     course_from_id = fields.Many2one('op.course', 'From Course', required=True)
@@ -36,13 +36,12 @@ class StudentMigrate(models.TransientModel):
     student_ids = fields.Many2many(
         'op.student', string='Student(s)', required=True)
 
-    @api.multi
     @api.constrains('course_from_id', 'course_to_id')
     def _check_admission_register(self):
         for record in self:
             if record.course_from_id == record.course_to_id:
-                raise ValidationError(_("From Course must not be same \
-                as To Course!"))
+                raise ValidationError(
+                    _("From Course must not be same as To Course!"))
 
             if record.course_from_id.parent_id:
                 if record.course_from_id.parent_id != \
@@ -51,22 +50,16 @@ class StudentMigrate(models.TransientModel):
                         "Can't migrate, As selected courses don't \
                         share same parent course!"))
             else:
-                raise ValidationError(_(
-                    "Can't migrate, Proceed for new admission"))
+                raise ValidationError(
+                    _("Can't migrate, Proceed for new admission"))
 
     @api.onchange('course_from_id')
     def onchange_course_id(self):
         self.student_ids = False
 
-    @api.multi
     def student_migrate_forward(self):
+        act_type = self.env.ref('openeducat_activity.op_activity_type_3')
         for record in self:
-            activity_type = self.env["op.activity.type"]
-            act_type = activity_type.search(
-                [('name', '=', 'Migration')], limit=1)
-            if not act_type:
-                act_type = activity_type.create({'name': 'Migration'})
-
             for student in record.student_ids:
                 activity_vals = {
                     'student_id': student.id,
@@ -80,7 +73,9 @@ class StudentMigrate(models.TransientModel):
                 student_course = self.env['op.student.course'].search(
                     [('student_id', '=', student.id),
                      ('course_id', '=', record.course_from_id.id)])
-                student_course.write({'course_id': record.course_to_id.id})
+                student_course.write({
+                    'course_id': record.course_to_id.id,
+                    'batch_id': record.batch_id.id})
                 reg_id = self.env['op.subject.registration'].create({
                     'student_id': student.id,
                     'batch_id': record.batch_id.id,

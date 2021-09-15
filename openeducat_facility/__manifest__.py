@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,20 +21,20 @@
 
 {
     'name': 'OpenEduCat Facility',
-    'version': '11.0.1.0.0',
+    'version': '14.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Facility',
     'complexity': "easy",
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
+        'security/ir.model.access.csv',
         'views/facility_view.xml',
         'views/facility_line_view.xml',
-        'security/ir.model.access.csv',
-        'facility_menu.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/facility_demo.xml'

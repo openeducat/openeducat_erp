@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,7 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpBatch(models.Model):
-    _name = 'op.batch'
+    _name = "op.batch"
+    _inherit = "mail.thread"
+    _description = "OpenEduCat Batch"
 
     code = fields.Char('Code', size=16, required=True)
     name = fields.Char('Name', size=32, required=True)
@@ -32,20 +34,20 @@ class OpBatch(models.Model):
         'Start Date', required=True, default=fields.Date.today())
     end_date = fields.Date('End Date', required=True)
     course_id = fields.Many2one('op.course', 'Course', required=True)
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_batch_code',
          'unique(code)', 'Code should be unique per batch!')]
 
-    @api.multi
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
         for record in self:
             start_date = fields.Date.from_string(record.start_date)
             end_date = fields.Date.from_string(record.end_date)
             if start_date > end_date:
-                raise ValidationError(_("End Date cannot be set before \
-                Start Date."))
+                raise ValidationError(
+                    _("End Date cannot be set before Start Date."))
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
@@ -60,3 +62,10 @@ class OpBatch(models.Model):
             return batches.name_get()
         return super(OpBatch, self).name_search(
             name, args, operator=operator, limit=limit)
+
+    @api.model
+    def get_import_templates(self):
+        return [{
+            'label': _('Import Template for Batch'),
+            'template': '/openeducat_core/static/xls/op_batch.xls'
+        }]

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -21,34 +21,32 @@
 
 {
     'name': 'OpenEduCat Assignment',
-    'version': '11.0.1.0.0',
+    'version': '15.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Assgiments',
     'complexity': "easy",
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Inc',
     'website': 'http://www.openeducat.org',
-    'depends': ['openeducat_core', 'base_automation'],
+    'depends': [
+        'base_automation',
+        'openeducat_core',
+    ],
     'data': [
+        'security/op_security.xml',
         'security/ir.model.access.csv',
-        'security/op_assignment_security.xml',
         'views/assignment_view.xml',
         'views/assignment_type_view.xml',
         'views/assignment_sub_line_view.xml',
         'views/student_view.xml',
-        'assignment_menu.xml',
         'data/action_rule_data.xml',
+        'menus/op_menu.xml',
     ],
     'demo': [
         'demo/assignment_type_demo.xml',
         'demo/assignment_demo.xml',
         'demo/assignment_sub_line_demo.xml'
-    ],
-    'test': [
-        'test/res_users_test.yml',
-        'test/assignment_sub_values.yml',
-        'test/assignment_creation_submission.yml'
     ],
     'images': [
         'static/description/openeducat_assignment_banner.jpg',

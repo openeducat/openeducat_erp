@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -23,7 +23,8 @@ from odoo import models, fields
 
 
 class OpAsset(models.Model):
-    _name = 'op.asset'
+    _name = "op.asset"
+    _description = "Classroom Assets"
 
     asset_id = fields.Many2one('op.classroom', 'Asset')
     product_id = fields.Many2one('product.product', 'Product', required=True)

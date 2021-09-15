@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,18 +19,18 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class StudentHallTicket(models.TransientModel):
-
     """ Student Hall Ticket Wizard """
-    _name = 'student.hall.ticket'
+    _name = "student.hall.ticket"
+    _description = "Student Hall Ticket"
 
     exam_session_id = fields.Many2one(
-        'op.exam.session', 'Exam Session', required=True)
+        'op.exam.session', 'Exam Session', required=True,
+        domain=[('state', 'not in', ['draft', 'cancel', 'done'])])
 
-    @api.multi
     def print_report(self):
         data = self.read(['exam_session_id'])[0]
         return self.env.ref(

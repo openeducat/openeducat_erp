@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,21 +21,30 @@
 
 {
     'name': 'Web OpenEduCat',
-    'description': 'Beautifies Website',
     'category': 'Website',
     "sequence": 3,
-    'version': '11.0.1.0.0',
+    'version': '14.0.1.0',
     'license': 'LGPL-3',
-    'author': 'Tech Receptives',
+    'author': 'OpenEduCat Incs',
     'website': 'http://www.openeducat.org',
     'data': [
         'views/assets.xml',
-        'views/navbar_template.xml',
+        'views/snippets/slider.xml',
+        'views/snippets/about-us.xml',
+        'views/snippets/ourcourse.xml',
+        'views/snippets/achievement.xml',
+        'views/snippets/teacher.xml',
+        'views/snippets/event.xml',
+        'views/snippets/newsfeed.xml',
+        'views/snippets/footer.xml',
+        'views/image_library.xml'
+    ],
+    'qweb': [
+        "static/src/xml/base_inherit.xml",
     ],
     'demo': [
-        'demo/homepage.xml',
-        'demo/footer_template.xml',
-        'demo/feature_template.xml',
+        'data/homepage_demo.xml',
+        'data/footer_template.xml',
     ],
     'images': [
         'static/description/web_openeducat_banner.jpg',
@@ -43,4 +52,5 @@
     'depends': [
         'website',
     ],
+    'application': True,
 }

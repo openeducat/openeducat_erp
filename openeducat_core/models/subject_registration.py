@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,16 +24,17 @@ from odoo.exceptions import ValidationError
 
 
 class OpSubjectRegistration(models.Model):
-    _name = 'op.subject.registration'
-    _inherit = ['mail.thread']
+    _name = "op.subject.registration"
+    _description = "Subject Registration Details"
+    _inherit = ["mail.thread"]
 
     name = fields.Char('Name', readonly=True, default='New')
     student_id = fields.Many2one('op.student', 'Student', required=True,
-                                 track_visibility='onchange')
+                                 tracking=True)
     course_id = fields.Many2one('op.course', 'Course', required=True,
-                                track_visibility='onchange')
+                                tracking=True)
     batch_id = fields.Many2one('op.batch', 'Batch', required=True,
-                               track_visibility='onchange')
+                               tracking=True)
     compulsory_subject_ids = fields.Many2many(
         'op.subject', 'subject_compulsory_rel',
         'register_id', 'subject_id', string="Compulsory Subjects",
@@ -44,21 +45,18 @@ class OpSubjectRegistration(models.Model):
         ('draft', 'Draft'), ('submitted', 'Submitted'),
         ('approved', 'Approved'), ('rejected', 'Rejected')],
         default='draft', string='state', copy=False,
-        track_visibility='onchange')
+        tracking=True)
     max_unit_load = fields.Float('Maximum Unit Load',
-                                 track_visibility='onchange')
+                                 tracking=True)
     min_unit_load = fields.Float('Minimum Unit Load',
-                                 track_visibility='onchange')
+                                 tracking=True)
 
-    @api.multi
     def action_reset_draft(self):
         self.state = 'draft'
 
-    @api.multi
     def action_reject(self):
         self.state = 'rejected'
 
-    @api.multi
     def action_approve(self):
         for record in self:
             subject_ids = []
@@ -79,7 +77,6 @@ class OpSubjectRegistration(models.Model):
                 raise ValidationError(
                     _("Course not found on student's admission!"))
 
-    @api.multi
     def action_submitted(self):
         self.state = 'submitted'
 
@@ -90,7 +87,6 @@ class OpSubjectRegistration(models.Model):
                 'op.subject.registration') or '/'
         return super(OpSubjectRegistration, self).create(vals)
 
-    @api.multi
     def get_subjects(self):
         for record in self:
             subject_ids = []

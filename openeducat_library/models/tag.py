@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -23,6 +23,7 @@ from odoo import models, fields
 
 
 class OpTag(models.Model):
-    _name = 'op.tag'
+    _name = "op.tag"
+    _description = "Media Tags"
 
     name = fields.Char('Name', size=64, required=True)

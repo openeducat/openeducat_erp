@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -23,7 +23,9 @@ from odoo import models, fields
 
 
 class OpMedia(models.Model):
-    _name = 'op.media'
+    _name = "op.media"
+    _description = "Media Details"
+    _order = "name"
 
     name = fields.Char('Title', size=128, required=True)
     isbn = fields.Char('ISBN Code', size=64)
@@ -43,6 +45,7 @@ class OpMedia(models.Model):
     queue_ids = fields.One2many('op.media.queue', 'media_id', 'Media Queue')
     unit_ids = fields.One2many('op.media.unit', 'media_id', 'Units')
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_name_isbn',

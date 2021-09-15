@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -22,8 +22,9 @@ from odoo import models, fields
 
 
 class OpGradeConfiguration(models.Model):
-    _name = 'op.grade.configuration'
-    _rec_name = 'result'
+    _name = "op.grade.configuration"
+    _rec_name = "result"
+    _description = "Grade Configuration"
 
     min_per = fields.Integer('Minimum Percentage', required=True)
     max_per = fields.Integer('Maximum Percentage', required=True)

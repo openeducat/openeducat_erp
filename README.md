@@ -1,8 +1,5 @@
-[![Build Status](https://travis-ci.org/openeducat/openeducat_erp.svg?branch=11.0)](https://travis-ci.org/openeducat/openeducat_erp)
-[![Coverage Status](https://coveralls.io/repos/openeducat/openeducat_erp/badge.svg?branch=11.0&service=github)](https://coveralls.io/github/openeducat/openeducat_erp?branch=11.0)
-
-OpenEduCat for Odoo 11
-=====================
+OpenEduCat for Odoo 14
+=======================
 
 OpenEduCat is a fully open source ERP system for educational institute, for efficient management of students, faculties, courses and classes keeping a collaborative platform.
 
@@ -13,5 +10,6 @@ To install OpenEduCat, Install Odoo / OpenERP  and go to `Settings -> Apps` and 
 Links
 =====
 
-* Documentation: http://doc.openeducat.org/
+* Demo: https://openeducat.org/demo
+* Documentation: https://doc.openeducat.org/
 * Changelog: [openeducat_erp/doc/changelog.rst](openeducat_erp/doc/changelog.rst)

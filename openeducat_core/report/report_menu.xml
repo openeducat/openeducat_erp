@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <report
-            id="action_report_student_idcard" 
-            model="op.student" 
-            string="Student IdCard"
-            report_type="qweb-pdf"
-            name="openeducat_core.report_student_idcard" 
-            file="openeducat_core.report_student_idcard"
-        />
-        <report
-            id="action_report_student_bonafide" 
-            model="op.student" 
-            string="Bonafide Certificate"
-            report_type="qweb-pdf"
-            name="openeducat_core.report_student_bonafide" 
-            file="openeducat_core.report_student_bonafide"
-        />
+        <record id="action_report_student_idcard" model="ir.actions.report">
+            <field name="name">Student ID Card</field>
+            <field name="model">op.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_core.report_student_idcard</field>
+            <field name="report_file">openeducat_core.report_student_idcard</field>
+            <field name="print_report_name">'Student ID Card - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_student_bonafide" model="ir.actions.report">
+            <field name="name">Bonafide Certificate</field>
+            <field name="model">op.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_core.report_student_bonafide</field>
+            <field name="report_file">openeducat_core.report_student_bonafide</field>
+            <field name="print_report_name">'Bonafide Certificate - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="openeducat_core.model_op_student"/>
+            <field name="binding_type">report</field>
+        </record>
     </data>
 </odoo>

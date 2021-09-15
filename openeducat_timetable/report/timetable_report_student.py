@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -20,26 +20,23 @@
 ###############################################################################
 
 import calendar
+import pytz
 import time
 from datetime import datetime
-
-import pytz
-
-from odoo import models, api, _
+from odoo import models, api, _, fields, tools
 
 
 class ReportTimetableStudentGenerate(models.AbstractModel):
-    _name = 'report.openeducat_timetable.report_timetable_student_generate'
+    _name = "report.openeducat_timetable.report_timetable_student_generate"
+    _description = "Timetable Student Report"
 
-    @api.multi
     def _convert_to_local_timezone(self, time):
         '''
             Converts time as per local timezone.
         '''
         if time:
-            timezone = pytz.timezone(self._context['tz'])
-            utc_in_time = pytz.utc.localize(
-                datetime.strptime(time, "%Y-%m-%d %H:%M:%S"))
+            timezone = pytz.timezone(self._context['tz'] or 'UTC')
+            utc_in_time = pytz.UTC.localize(fields.Datetime.from_string(time))
             local_time = utc_in_time.astimezone(timezone)
             return local_time
 
@@ -60,7 +57,6 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         return main_list
 
     def get_heading(self):
-
         dayofWeek = [_(calendar.day_name[0]),
                      _(calendar.day_name[1]),
                      _(calendar.day_name[2]),
@@ -71,21 +67,18 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         return dayofWeek
 
     def get_object(self, data):
-
         data_list = []
         for timetable_obj in self.env['op.session'].browse(
                 data['time_table_ids']):
-
-            oldDate = datetime.strptime(
-                timetable_obj.start_datetime, "%Y-%m-%d %H:%M:%S")
+            oldDate = pytz.UTC.localize(
+                fields.Datetime.from_string(timetable_obj.start_datetime))
             day = datetime.weekday(oldDate)
-
             timetable_data = {
                 'period': timetable_obj.timing_id.name,
                 'sequence': timetable_obj.timing_id.sequence,
                 'start_datetime': self._convert_to_local_timezone(
                     timetable_obj.start_datetime).strftime(
-                    "%Y-%m-%d %H:%M:%S"),
+                    tools.DEFAULT_SERVER_DATETIME_FORMAT),
                 'day': str(day),
                 'subject': timetable_obj.subject_id.name,
             }
@@ -95,7 +88,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
         return final_list
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

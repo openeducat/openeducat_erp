@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -25,7 +25,8 @@ from odoo import models, api
 
 
 class ReportAdmissionAnalysis(models.AbstractModel):
-    _name = 'report.openeducat_admission.report_admission_analysis'
+    _name = "report.openeducat_admission.report_admission_analysis"
+    _description = "Admission Analysis Report"
 
     def get_total_student(self, data):
         student_search = self.env['op.admission'].search_count(
@@ -44,20 +45,20 @@ class ReportAdmissionAnalysis(models.AbstractModel):
              ('admission_date', '<=', data['end_date'])],
             order='admission_date desc')
         res = {}
-        self.total_student = 0
+        # self.total_student = 0
+        total_student = 0
         for student in student_search:
-            self.total_student += 1
+            # self.total_student += 1
+            total_student += 1
             res = {
                 'name': student.name,
-                'middle_name': student.middle_name,
-                'last_name': student.last_name,
                 'application_no': student.application_number,
             }
             lst.append(res)
         return lst
 
     @api.model
-    def get_report_values(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
         docs = self.env[model].browse(self.env.context.get('active_id'))
         docargs = {

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,8 +24,9 @@ from odoo.exceptions import ValidationError
 
 
 class OpResultLine(models.Model):
-    _name = 'op.result.line'
-    _rec_name = 'marks'
+    _name = "op.result.line"
+    _rec_name = "marks"
+    _description = "Result Line"
 
     marksheet_line_id = fields.Many2one(
         'op.marksheet.line', 'Marksheet Line', ondelete='cascade')
@@ -43,22 +44,32 @@ class OpResultLine(models.Model):
         if (self.marks < 0.0):
             raise ValidationError(_("Enter proper Marks or Percentage!"))
 
-    @api.multi
     @api.depends('marks')
     def _compute_grade(self):
         for record in self:
             if record.evaluation_type == 'grade':
-                grades = record.marksheet_line_id.marksheet_reg_id.\
+                grades = record.marksheet_line_id.marksheet_reg_id. \
                     result_template_id.grade_ids
-                for grade in grades:
-                    if grade.min_per <= record.marks and \
-                            grade.max_per >= record.marks:
-                        record.grade = grade.result
+                if grades:
+                    for grade in grades:
+                        if grade.min_per <= record.marks and \
+                                grade.max_per >= record.marks:
+                            record.grade = grade.result
+                else:
+                    record.grade = None
+            else:
+                record.grade = None
 
-    @api.multi
     @api.depends('marks')
     def _compute_status(self):
         for record in self:
             record.status = 'pass'
             if record.marks < record.exam_id.min_marks:
                 record.status = 'fail'
+            else:
+                record.status = 'pass'
+
+    def unlink(self):
+        for res in self:
+            super(OpResultLine, res).unlink()
+        return self

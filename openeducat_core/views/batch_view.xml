@@ -4,77 +4,109 @@
         <record id="view_op_batch_tree" model="ir.ui.view">
             <field name="name">op.batch.tree</field>
             <field name="model">op.batch</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Batch">
-                    <field name="name" />
-                    <field name="code" />
-                    <field name="start_date" />
-                    <field name="end_date" />
-                    <field name="course_id" />
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="course_id"/>
                 </tree>
             </field>
         </record>
+
         <record id="view_op_batch_form" model="ir.ui.view">
             <field name="name">op.batch.form</field>
             <field name="model">op.batch</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Batch">
                     <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <group col="4" name="main">
-                            <field name="name" />
-                            <field name="code" />
-                            <field name="start_date" />
-                            <field name="end_date" />
-                            <field name="course_id" />
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="course_id"/>
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
+
         <record id="view_op_batch_search" model="ir.ui.view">
             <field name="name">op.batch.search</field>
             <field name="model">op.batch</field>
-            <field name="priority" eval="8" />
+            <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Batch">
-                    <field name="code" />
-                    <field name="name" />
-                    <field name="start_date" />
-                    <field name="end_date" />
-                    <field name="course_id" />
-                    <newline />
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="course_id"/>
+                    <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Start Date" domain="[]"
-                            context="{'group_by':'start_date'}" />
-                        <filter string="End Date" domain="[]" context="{'group_by':'end_date'}" />
-                        <filter string="Course" domain="[]" context="{'group_by':'course_id'}" />
+                        <filter name="group_by_batch_start_date"
+                                string="Start Date" domain="[]"
+                                context="{'group_by':'start_date'}"/>
+                        <filter name="group_by_batch_end_date"
+                                string="End Date" domain="[]"
+                                context="{'group_by':'end_date'}"/>
+                        <filter name="group_by_batch_course"
+                                string="Course" domain="[]" context="{'group_by':'course_id'}"/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                     </group>
                 </search>
             </field>
         </record>
+
+        <record id="view_op_batch_pivot" model="ir.ui.view">
+            <field name="name">op.batch.pivot</field>
+            <field name="model">op.batch</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Batch">
+                    <field name="name" type="row"/>
+                    <field name="course_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </pivot>
+            </field>
+        </record>
+
+
         <record model="ir.actions.act_window" id="act_open_op_batch_view">
             <field name="name">Batches</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.batch</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_op_batch_search" />
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="search_view_id" ref="view_op_batch_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_batch_view_form">
-            <field name="act_window_id" ref="act_open_op_batch_view" />
-            <field name="sequence" eval="20" />
+            <field name="act_window_id" ref="act_open_op_batch_view"/>
+            <field name="sequence" eval="20"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_batch_form" />
+            <field name="view_id" ref="view_op_batch_form"/>
         </record>
+
         <record model="ir.actions.act_window.view" id="act_open_op_batch_view_tree">
-            <field name="act_window_id" ref="act_open_op_batch_view" />
-            <field name="sequence" eval="10" />
+            <field name="act_window_id" ref="act_open_op_batch_view"/>
+            <field name="sequence" eval="10"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_batch_tree" />
+            <field name="view_id" ref="view_op_batch_tree"/>
         </record>
     </data>
 </odoo>

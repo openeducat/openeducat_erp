@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem name="TimeTables"
+              id="menu_op_timetable_root"
+              groups="openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"
+              web_icon="openeducat_timetable,static/description/icon.png"
+              sequence="90">
+    <menuitem name="Timetable"
+              id="menu_op_timetable"
+              groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty"
+              action="act_open_op_session_view"
+              sequence="10"/>
+        <!-- Configuration Menu -->
+    <menuitem name="Configuration"
+              id="menu_op_timetable_config"
+              sequence="40"
+              groups="openeducat_core.group_op_faculty,openeducat_core.group_op_back_office,openeducat_core.group_op_back_office_admin">
+        <menuitem id="menu_op_period"  name="Timing"  groups="openeducat_core.group_op_faculty" sequence="10"  action="act_open_op_timing_view"/>
+
+        <menuitem id="menu_generate_time_table"
+                  name="Generate Timetable"
+                  groups="openeducat_core.group_op_back_office"
+                  sequence="20"
+                  action="act_open_generate_time_table_view"/>
+
+        <menuitem id="menu_generate_time_table_report"
+                  name="Generate Timetable Report"
+                  groups="openeducat_core.group_op_back_office_admin"
+                  sequence="30"
+                  action="act_open_time_table_report_view"/>
+    </menuitem>
+    </menuitem>
+</odoo>

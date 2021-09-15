@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_student_course_tree" model="ir.ui.view">
+            <field name="name">op.student.course.tree</field>
+            <field name="model">op.student.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Student Course Detail">
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="roll_number"/>
+                    <field name="subject_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_op_student_course_form" model="ir.ui.view">
+            <field name="name">op.student.course.form</field>
+            <field name="model">op.student.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Student Course Detail">
+                    <sheet>
+                        <group col="4" colspan="4">
+                            <field name="student_id"/>
+                            <field name="course_id"/>
+                            <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                            <field name="roll_number"/>
+                            <field name="academic_years_id"/>
+                            <field name="academic_term_id"/>
+                        </group>
+                        <group col="4" string="Subjects">
+                            <field name="subject_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_op_student_course_search" model="ir.ui.view">
+            <field name="name">op.student.course.search</field>
+            <field name="model">op.student.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Student Course">
+                    <field name="student_id"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="roll_number"/>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Course" name="group_by_adm_course_id"
+                                domain="[]" context="{'group_by':'course_id'}"/>
+                        <filter string="Batch" name="group_by_adm_batch_id"
+                                domain="[]" context="{'group_by':'batch_id'}"/>
+                        <filter string="Academic Year" name="group_by_adm_academic_years_id"
+                                domain="[]" context="{'group_by':'academic_years_id'}"/>
+                        <filter string="Academic Term" name="group_by_adm_academic_term_id"
+                                domain="[]" context="{'group_by':'academic_term_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="view_op_student_course_pivot" model="ir.ui.view">
+            <field name="name">op.student.course.pivot</field>
+            <field name="model">op.student.course</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <pivot string="Student Course">
+                    <field name="student_id"/>
+                    <field name="course_id" type="row"/>
+                    <field name="batch_id"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_op_student_course_view">
+            <field name="name">Student Course Detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.student.course</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form,pivot</field>
+            <field name="search_view_id" ref="view_op_student_course_search"/>
+
+        </record>
+    </data>
+</odoo>

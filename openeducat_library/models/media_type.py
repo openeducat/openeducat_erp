@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -23,7 +23,8 @@ from odoo import models, fields
 
 
 class OpMediaType(models.Model):
-    _name = 'op.media.type'
+    _name = "op.media.type"
+    _description = "Media Type"
 
     name = fields.Char('Name', size=64, required=True)
     code = fields.Char('Code', size=64, required=True)

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,16 +24,17 @@ from odoo.exceptions import ValidationError
 
 
 class OpLibraryCardType(models.Model):
-    _name = 'op.library.card.type'
-    _description = 'Library Card Type'
+    _name = "op.library.card.type"
+    _description = "Library Card Type"
 
     name = fields.Char('Name', size=256, required=True)
-    allow_media = fields.Integer('No of medias Allowed', size=10,
+    allow_media = fields.Integer('No of medias Allowed', default=10,
                                  required=True)
     duration = fields.Integer(
         'Duration', help='Duration in terms of Number of Lead Days',
         required=True)
-    penalty_amt_per_day = fields.Float('Penalty Amount per Day', required=True)
+    penalty_amt_per_day = fields.Float('Penalty Amount per Day',
+                                       required=True)
 
     @api.constrains('allow_media', 'duration', 'penalty_amt_per_day')
     def check_details(self):
@@ -43,9 +44,9 @@ class OpLibraryCardType(models.Model):
 
 
 class OpLibraryCard(models.Model):
-    _name = 'op.library.card'
-    _rec_name = 'number'
-    _description = 'Library Card'
+    _name = "op.library.card"
+    _rec_name = "number"
+    _description = "Library Card"
 
     partner_id = fields.Many2one(
         'res.partner', 'Student/Faculty', required=True)
@@ -57,20 +58,28 @@ class OpLibraryCard(models.Model):
     type = fields.Selection(
         [('student', 'Student'), ('faculty', 'Faculty')],
         'Type', default='student', required=True)
-    student_id = fields.Many2one('op.student', 'Student')
-    faculty_id = fields.Many2one('op.faculty', 'Faculty')
+    student_id = fields.Many2one('op.student', 'Student',
+                                 domain=[('library_card_id', '=', False)])
+    faculty_id = fields.Many2one('op.faculty', 'Faculty',
+                                 domain=[('library_card_id', '=', False)])
+    active = fields.Boolean(default=True)
 
-    _sql_constraints = [
-        ('unique_library_card_number',
-         'unique(number)', 'Library card Number should be unique per card!'),
-    ]
+    _sql_constraints = [(
+        'unique_library_card_number',
+        'unique(number)',
+        'Library card Number should be unique per card!')]
 
     @api.model
     def create(self, vals):
         x = self.env['ir.sequence'].next_by_code(
             'op.library.card') or '/'
         vals['number'] = x
-        return super(OpLibraryCard, self).create(vals)
+        res = super(OpLibraryCard, self).create(vals)
+        if res.type == 'student':
+            res.student_id.library_card_id = res
+        else:
+            res.faculty_id.library_card_id = res
+        return res
 
     @api.onchange('type')
     def onchange_type(self):

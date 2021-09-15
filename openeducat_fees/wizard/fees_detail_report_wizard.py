@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#    Tech-Receptives Solutions Pvt. Ltd.
-#    Copyright (C) 2009-TODAY Tech-Receptives(<http://www.techreceptives.com>).
+#    OpenEduCat Inc
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,21 +19,20 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class FeesDetailReportWizard(models.TransientModel):
-
     """ Admission Analysis Wizard """
-    _name = 'fees.detail.report.wizard'
+    _name = "fees.detail.report.wizard"
+    _description = "Wizard For Fees Details Report"
 
     fees_filter = fields.Selection(
-        [('student', 'Student'), ('course', 'Course')], 'Fees Filter',
-        required=True)
+        [('student', 'Student'), ('course', 'Course')],
+        'Fees Filter', required=True)
     student_id = fields.Many2one('op.student', 'Student')
     course_id = fields.Many2one('op.course', 'Course')
 
-    @api.multi
     def print_report(self):
         data = {}
         if self.fees_filter == 'student':
