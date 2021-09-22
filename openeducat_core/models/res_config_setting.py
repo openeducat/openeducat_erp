@@ -157,3 +157,13 @@ class ResConfigSettings(models.TransientModel):
         string="Teams")
     module_openeducat_zoom = fields.Boolean(
         string="Zoom")
+    module_openeducat_student_leave_enterprise = fields.Boolean(
+        string="Student Leave")
+    module_openeducat_notice_board_enterprise = fields.Boolean(
+        string="Notice Board Enterprise")
+    module_openeducat_student_skill_assessment = fields.Boolean(
+        string="Skill Assessment Enterprise")
+    module_openeducat_lms_h5p = fields.Boolean(
+        string="LMS H5P Enterprise")
+    module_openeducat_online_appointment = fields.Boolean(
+        string="Online Appointment Enterprise")
