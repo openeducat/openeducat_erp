@@ -39,6 +39,7 @@
         'views/fees_terms_view.xml',
         'views/student_view.xml',
         'views/course_view.xml',
+        'views/fees_element_view.xml',
         'menus/op_menu.xml',
     ],
     'images': [

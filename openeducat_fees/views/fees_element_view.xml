@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="op_fees_element_tree_1" model="ir.ui.view">
+            <field name="name">op.fees.element.tree</field>
+            <field name="model">op.fees.element</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Fees Elements" editable="top">
+                    <field name="product_id"/>
+                    <field name="value"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="op_fees_element_form_1" model="ir.ui.view">
+            <field name="name">op.fees.element.form</field>
+            <field name="model">op.fees.element</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Fees Elements">
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="value"/>
+                            <field name="sequence"/>
+                            <field name="fees_terms_line_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_op_fees_element_view">
+            <field name="name">Fees Elements</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.fees.element</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
