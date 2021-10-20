@@ -83,7 +83,6 @@
         'static/src/xml/base.xml',
         'static/src/xml/dashboard_ext_openeducat.xml'
     ],
-    'js': [],
     'images': [
         'static/description/openeducat_core_banner.jpg',
     ],
