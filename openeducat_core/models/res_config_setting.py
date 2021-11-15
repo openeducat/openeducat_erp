@@ -167,3 +167,5 @@ class ResConfigSettings(models.TransientModel):
         string="LMS H5P Enterprise")
     module_openeducat_online_appointment = fields.Boolean(
         string="Online Appointment Enterprise")
+    module_openeducat_secure = fields.Boolean(
+        string="Secure QR")
