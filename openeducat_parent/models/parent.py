@@ -28,8 +28,7 @@ class OpParent(models.Model):
     _description = "Parent"
 
     name = fields.Many2one('res.partner', 'Name', required=True)
-    user_id = fields.Many2one('res.users', related='name.user_id',
-                              string='User', store=True)
+    user_id = fields.Many2one('res.users', string='User', store=True)
     student_ids = fields.Many2many('op.student', string='Student(s)')
     mobile = fields.Char(string='Mobile', related='name.mobile')
     active = fields.Boolean(default=True)
@@ -92,6 +91,7 @@ class OpParent(models.Model):
                     'groups_id': groups_id,
                     'child_ids': [(6, 0, user_ids)]
                 })
+                record.user_id = user_id
                 record.name.user_id = user_id
 
 
