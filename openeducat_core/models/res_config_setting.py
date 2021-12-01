@@ -169,3 +169,5 @@ class ResConfigSettings(models.TransientModel):
         string="Online Appointment Enterprise")
     module_openeducat_grievance_enterprise = fields.Boolean(
         string="Grievance")
+    module_openeducat_secure = fields.Boolean(
+        string="Secure QR")
