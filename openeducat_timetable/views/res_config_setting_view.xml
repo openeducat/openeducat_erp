@@ -11,25 +11,13 @@
                      attrs="{'invisible': [('module_openeducat_timetable' ,'=', False)]}">
                     <div class="mt16">
                         <div class="o_setting_left_pane">
-                            <field name="is_faculty_constraint"/>
+                            <field name="is_batch_constraint"/>
                         </div>
                         <div class="o_setting_right_pane">
-                            <label for="is_faculty_constraint"/>
+                            <label for="is_batch_constraint"/>
                             <div class="text-muted">
-                                If checked you will not allowed to create the session with same faculty on same date
-                                and time
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt16">
-                        <div class="o_setting_left_pane">
-                            <field name="is_classroom_constraint"/>
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="is_classroom_constraint"/>
-                            <div class="text-muted">
-                                If checked you will not allowed to create the session with same classroom on same date
-                                and time
+                                If checked you will not be allowed to create the session with the same batch even if
+                                it is for a different subject.
                             </div>
                         </div>
                     </div>
@@ -47,13 +35,25 @@
                     </div>
                     <div class="mt16">
                         <div class="o_setting_left_pane">
-                            <field name="is_batch_constraint"/>
+                            <field name="is_classroom_constraint"/>
                         </div>
                         <div class="o_setting_right_pane">
-                            <label for="is_batch_constraint"/>
+                            <label for="is_classroom_constraint"/>
                             <div class="text-muted">
-                                If checked you will not allowed to create the session with the same batch even if it is
-                                for different subject
+                                If checked you will not allowed to create the session with same classroom on same date
+                                and time
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <div class="o_setting_left_pane">
+                            <field name="is_faculty_constraint"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="is_faculty_constraint"/>
+                            <div class="text-muted">
+                                If checked you will not allowed to create the session with same faculty on same date
+                                and time
                             </div>
                         </div>
                     </div>

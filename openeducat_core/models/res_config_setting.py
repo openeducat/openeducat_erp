@@ -171,3 +171,9 @@ class ResConfigSettings(models.TransientModel):
         string="Grievance")
     module_openeducat_secure = fields.Boolean(
         string="Secure QR")
+    module_openeducat_mass_subject_registration = fields.Boolean(
+        string="Mass Subject Registration")
+    module_openeducat_attendance_report_xlsx = fields.Boolean(
+        string="Attendance Xlsx Report")
+    module_openeducat_asset_request_enterprise = fields.Boolean(
+        string="Asset Request Enterprise")
