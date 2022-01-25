@@ -89,4 +89,5 @@
     'installable': True,
     'auto_install': False,
     'application': True,
+    'post_init_hook': '_openeducat_post_init',
 }
