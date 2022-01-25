@@ -93,6 +93,7 @@
     'installable': True,
     'auto_install': False,
     'application': True,
+    'post_init_hook': '_openeducat_post_init',
     'assets': {
         'website.assets_frontend': [
             '/openeducat_core/static/src/scss/main.scss',
