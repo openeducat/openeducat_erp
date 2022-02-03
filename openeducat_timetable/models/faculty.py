@@ -26,3 +26,19 @@ class OpFaculty(models.Model):
     _inherit = "op.faculty"
 
     session_ids = fields.One2many('op.session', 'faculty_id', 'Sessions')
+    session_count = fields.Integer()
+
+    def count_purchase_order(self):
+        session = self.env['op.session'].search([('faculty_id', '=', self.id)])
+        count = 0
+        for rec in session:
+            count = count + len(rec)
+            self.write({'session_count': count})
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Sessions',
+            'view_mode': 'tree,form',
+            'res_model': 'op.session',
+            'domain': [('faculty_id', '=', self.id)],
+            'target': 'current',
+        }

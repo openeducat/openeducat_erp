@@ -7,11 +7,15 @@
             <field name="inherit_id" ref="openeducat_core.view_op_faculty_form"/>
             <field name="priority" eval="9"/>
             <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page name="time_table" string="Sessions">
-                        <field name="session_ids" colspan="4"/>
-                    </page>
-                </notebook>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button"
+                            type="object"
+                            name="count_purchase_order"
+                            style="border-right: 1px solid;"
+                            icon="fa-file">
+                        <field string="Sessions" name="session_count" widget="statinfo"/>
+                    </button>
+                </xpath>
             </field>
         </record>
     </data>

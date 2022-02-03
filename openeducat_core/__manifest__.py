@@ -97,6 +97,9 @@
     'assets': {
         'website.assets_frontend': [
             '/openeducat_core/static/src/scss/main.scss',
-        ],  
+        ],
+        'web.assets_backend': [
+            '/openeducat_core/static/src/scss/style.scss',
+        ],
     },
 }

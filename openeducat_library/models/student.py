@@ -28,3 +28,19 @@ class OpStudent(models.Model):
     library_card_id = fields.Many2one('op.library.card', 'Library Card')
     media_movement_lines = fields.One2many(
         'op.media.movement', 'student_id', 'Movements')
+    media_movement_lines_count = fields.Integer()
+
+    def count_media_movement_lines(self):
+        media = self.env['op.media.movement'].search([('student_id', '=', self.id)])
+        count = 0
+        for rec in media:
+            count = count + len(rec)
+            self.write({'media_movement_lines_count': count})
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Media Movement',
+            'view_mode': 'tree,form',
+            'res_model': 'op.media.movement',
+            'domain': [('student_id', '=', self.id)],
+            'target': 'current',
+        }
