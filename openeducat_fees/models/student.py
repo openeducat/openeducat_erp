@@ -157,14 +157,14 @@ class OpStudent(models.Model):
                                       'student_id',
                                       string='Fees Collection Details',
                                       tracking=True)
-    fees_details_count = fields.Integer()
+    fees_details_count = fields.Integer(compute='_compute_fees_details')
+
+    def _compute_fees_details(self):
+        for fees in self:
+            fees.fees_details_count = self.env['op.student.fees.details'].search_count(
+                [('student_id', '=', self.id)])
 
     def count_fees_details(self):
-        fees_details = self.env['op.student.fees.details'].search([('student_id', '=', self.id)])
-        count = 0
-        for rec in fees_details:
-            count = count + len(rec)
-            self.write({'fees_details_count': count})
         return {
             'type': 'ir.actions.act_window',
             'name': 'Fees Details',

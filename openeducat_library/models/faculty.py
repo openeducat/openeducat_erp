@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class OpFaculty(models.Model):
@@ -28,14 +28,14 @@ class OpFaculty(models.Model):
     library_card_id = fields.Many2one('op.library.card', 'Library Card')
     media_movement_lines = fields.One2many(
         'op.media.movement', 'faculty_id', 'Movements')
-    media_movement_lines_count = fields.Integer()
+    media_movement_lines_count = fields.Integer(compute='_compute_media_movement_lines')
+
+    def _compute_media_movement_lines(self):
+        for media in self:
+            media.media_movement_lines_count = self.env['op.media.movement'].search_count(
+                [('faculty_id', '=', self.id)])
 
     def count_media_movement_lines(self):
-        media = self.env['op.media.movement'].search([('faculty_id', '=', self.id)])
-        count = 0
-        for rec in media:
-            count = count + len(rec)
-            self.write({'media_movement_lines_count': count})
         return {
             'type': 'ir.actions.act_window',
             'name': 'Media Movement',
