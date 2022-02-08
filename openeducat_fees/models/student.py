@@ -159,6 +159,7 @@ class OpStudent(models.Model):
                                       tracking=True)
     fees_details_count = fields.Integer(compute='_compute_fees_details')
 
+    @api.depends('fees_detail_ids')
     def _compute_fees_details(self):
         for fees in self:
             fees.fees_details_count = self.env['op.student.fees.details'].search_count(

@@ -30,6 +30,7 @@ class OpFaculty(models.Model):
         'op.media.movement', 'faculty_id', 'Movements')
     media_movement_lines_count = fields.Integer(compute='_compute_media_movement_lines')
 
+    @api.depends('media_movement_lines')
     def _compute_media_movement_lines(self):
         for media in self:
             media.media_movement_lines_count = self.env['op.media.movement'].search_count(

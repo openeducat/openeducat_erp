@@ -28,6 +28,7 @@ class OpFaculty(models.Model):
     session_ids = fields.One2many('op.session', 'faculty_id', 'Sessions')
     session_count = fields.Integer(compute='_compute_session_details')
 
+    @api.depends('session_ids')
     def _compute_session_details(self):
         for session in self:
             session.session_count = self.env['op.session'].search_count(
