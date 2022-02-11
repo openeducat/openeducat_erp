@@ -44,6 +44,8 @@ class OpeneducatHome(home):
         return response
 
     def _login_redirect(self, uid, redirect=None):
+        if redirect:
+            return super(OpeneducatHome, self)._login_redirect(uid, redirect)
         if request.env.user.is_parent:
             return '/my/child'
         return '/my/home'
