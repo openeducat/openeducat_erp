@@ -213,3 +213,5 @@ class ResConfigSettings(models.TransientModel):
         string="Live Meeting Attentiveness")
     module_openeducat_attendance_face_recognition = fields.Boolean(
         string="Attendance Face Recognition")
+    module_openeducat_omr = fields.Boolean(
+        string="OMR")
