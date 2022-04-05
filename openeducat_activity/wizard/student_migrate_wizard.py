@@ -73,29 +73,18 @@ class StudentMigrate(models.TransientModel):
         act_type = self.env.ref('openeducat_activity.op_activity_type_3')
         for record in self:
             for student in record.student_ids:
-                if record.course_to_id:
-                    activity_vals = {
-                        'student_id': student.id,
-                        'type_id': act_type.id,
-                        'date': self.date,
-                        'description': 'Migration From' +
-                                       record.course_from_id.name +
-                                       ' to ' + record.course_to_id.name
-                    }
-                else:
-                    activity_vals = {
-                        'student_id': student.id,
-                        'type_id': act_type.id,
-                        'date': self.date,
-                        'description': 'Migration From' +
-                                       record.course_from_id.name +
-                                       ' to Completed Course'}
-                self.env['op.activity'].create(activity_vals)
-
                 if self.course_completed:
                     for course_update in student.course_detail_ids:
-                        if course_update.course_id == self.course_from_id:
+                        if course_update.course_id == record.course_from_id:
                             course_update.state = 'finished'
+                            activity_vals = {
+                                'student_id': student.id,
+                                'type_id': act_type.id,
+                                'date': self.date,
+                                'description': _('Migration From {} to Completed Course'.
+                                                 format(record.course_from_id.name)),
+                            }
+                            self.env['op.activity'].create(activity_vals)
                 else:
                     for course_update in student.course_detail_ids:
                         if course_update.course_id == self.course_from_id:
@@ -105,9 +94,8 @@ class StudentMigrate(models.TransientModel):
                                 'student_id': student.id,
                                 'type_id': act_type.id,
                                 'date': self.date,
-                                'description': 'Migration From' +
-                                               record.course_from_id.name +
-                                               ' to ' + record.course_to_id.name
+                                'description': _('Migration from {} to {}'.format(record.course_from_id.name,
+                                                                                  record.course_to_id.name))
                             }
                             self.env['op.activity'].create(activity_vals)
 
