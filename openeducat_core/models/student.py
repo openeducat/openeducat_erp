@@ -36,6 +36,9 @@ class OpStudentCourse(models.Model):
     subject_ids = fields.Many2many('op.subject', string='Subjects')
     academic_years_id = fields.Many2one('op.academic.year', 'Academic Year')
     academic_term_id = fields.Many2one('op.academic.term', 'Terms')
+    state = fields.Selection([('running', 'Running'),
+                              ('finished', 'Finished')],
+                             string="Status", default="running")
 
     _sql_constraints = [
         ('unique_name_roll_number_id',

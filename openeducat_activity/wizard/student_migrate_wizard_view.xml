@@ -9,6 +9,7 @@
                     <sheet>
                         <group>
                             <field name="date"/>
+                            <field name="course_completed"/>
                         </group>
                         <group col="2">
                             <group>
@@ -16,9 +17,12 @@
                                 <field name="optional_sub"/>
                             </group>
                             <group>
-                                <field name="course_to_id"/>
+                                <field name="course_to_id"
+                                       attrs="{'required':[('course_completed', '=', False)],
+                                       'invisible': [('course_completed', '=', True)]}"/>
                                 <field name="batch_id"
-                                       required="1"
+                                       attrs="{'required':[('course_completed', '=', False)],
+                                       'invisible': [('course_completed', '=', True)]}"
                                        domain="[('course_id','=', course_to_id)]"/>
                             </group>
                         </group>
