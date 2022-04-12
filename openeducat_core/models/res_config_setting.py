@@ -171,5 +171,7 @@ class ResConfigSettings(models.TransientModel):
         string="Secure QR")
     module_openeducat_grievance_enterprise = fields.Boolean(
         string="Grievance")
+    module_openeducat_attendance_face_recognition = fields.Boolean(
+        string="Student Attendance Face Recognition")
     module_openeducat_omr = fields.Boolean(
         string="OMR")

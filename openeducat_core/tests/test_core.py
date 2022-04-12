@@ -123,9 +123,9 @@ class TestCore(TestCoreCommon):
         faculty._get_faculties()
         faculty.create_faculty_user()
 
-    def test_case_10_studnet_wizard(self):
+    def test_case_10_student_wizard(self):
         student_id = self.env.ref('openeducat_core.op_student_1')
         vals = {'student_ids': [(6, 0, [student_id.id])]}
-        student = self.studnet_wizard.create(vals)
+        student = self.student_wizard.create(vals)
         student._get_students()
         student.create_user()
