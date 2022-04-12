@@ -52,8 +52,8 @@ class TestAdmission(TestAdmissionCommon):
             'image': False
         }
 
-        studnet_1 = self.op_admission.create(vals)
-        studnet_1.enroll_student()
+        student_1 = self.op_admission.create(vals)
+        student_1.enroll_student()
 
         vals_2 = {
             'name': 'Ahir',
@@ -75,9 +75,9 @@ class TestAdmission(TestAdmissionCommon):
             'fees': 1000,
         }
 
-        studnet_2 = self.op_admission.create(vals_2)
-        studnet_2.enroll_student()
-        studnet_2.onchange_student()
+        student_2 = self.op_admission.create(vals_2)
+        student_2.enroll_student()
+        student_2.onchange_student()
 
         for admission in admissions:
             admission._onchange_name()

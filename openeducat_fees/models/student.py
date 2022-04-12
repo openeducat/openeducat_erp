@@ -26,6 +26,7 @@ from flectra.exceptions import UserError
 class OpStudentFeesDetails(models.Model):
     _name = "op.student.fees.details"
     _description = "Student Fees Details"
+    _rec_name = 'student_id'
 
     fees_line_id = fields.Many2one('op.fees.terms.line', 'Fees Line')
     invoice_id = fields.Many2one('account.move', 'Invoice ID')

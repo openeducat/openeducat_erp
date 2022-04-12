@@ -38,4 +38,4 @@ class TestCoreCommon(common.SavepointCase):
         self.op_update = self.env['publisher_warranty.contract']
         self.employ_wizard = self.env['wizard.op.faculty.employee']
         self.faculty_user_wizard = self.env['wizard.op.faculty']
-        self.studnet_wizard = self.env['wizard.op.student']
+        self.student_wizard = self.env['wizard.op.student']
