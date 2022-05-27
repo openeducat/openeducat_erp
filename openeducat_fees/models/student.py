@@ -47,8 +47,8 @@ class OpStudentFeesDetails(models.Model):
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
     after_discount_amount = fields.Monetary(compute="_compute_discount_amount",
-                                         currency_field='currency_id',
-                                         string='After Discount Amount')
+                                            currency_field='currency_id',
+                                            string='After Discount Amount')
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
 
@@ -157,6 +157,24 @@ class OpStudent(models.Model):
                                       'student_id',
                                       string='Fees Collection Details',
                                       tracking=True)
+    fees_details_count = fields.Integer(compute='_compute_fees_details')
+
+    @api.depends('fees_detail_ids')
+    def _compute_fees_details(self):
+        for fees in self:
+            fees.fees_details_count = self.env['op.student.fees.details'].search_count(
+                [('student_id', '=', self.id)])
+
+    def count_fees_details(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Fees Details',
+            'view_mode': 'tree',
+            'res_model': 'op.student.fees.details',
+            'context': {'create': False},
+            'domain': [('student_id', '=', self.id)],
+            'target': 'current',
+        }
 
     def action_view_invoice(self):
         '''

@@ -92,7 +92,8 @@
             <field name="model_id" ref="openeducat_core.model_op_academic_term"/>
             <field name="global" eval="True"/>
             <field name="domain_force">
-                ['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id','in',user.company_ids.ids)]
+                ['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id','in',user.company_ids.ids),('company_id',
+                'in', company_ids)]
             </field>
         </record>
 
@@ -101,7 +102,8 @@
             <field name="model_id" ref="openeducat_core.model_op_academic_year"/>
             <field name="global" eval="True"/>
             <field name="domain_force">
-                ['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id','in',user.company_ids.ids)]
+                ['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id','in',user.company_ids.ids),('company_id',
+                'in', company_ids)]
             </field>
         </record>
     </data>
