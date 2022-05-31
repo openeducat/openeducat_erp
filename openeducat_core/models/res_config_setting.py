@@ -125,8 +125,6 @@ class ResConfigSettings(models.TransientModel):
         string="Fees On Duration")
     module_openeducat_lms_admission = fields.Boolean(
         string="LMS Admission")
-    module_openeducat_backend_theme = fields.Boolean(
-        string="Backend Theme")
     module_openeducat_crm_enterprise = fields.Boolean(
         string="CRM Enterprise")
     module_openeducat_dashboard_kpi = fields.Boolean(
