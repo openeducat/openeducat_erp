@@ -37,6 +37,18 @@ class ResConfigSettings(models.TransientModel):
     module_openeducat_library = fields.Boolean(string="Library")
     module_openeducat_attendance = fields.Boolean(string="Attendance")
     module_openeducat_quiz = fields.Boolean(string="Quiz Enterprise")
+    module_openeducat_quiz_drag_into_text = fields.Boolean(
+        string="Quiz Drag Into Text")
+    module_openeducat_quiz_match_following = fields.Boolean(
+        string="Quiz Match Following")
+    module_openeducat_quiz_match_images = fields.Boolean(
+        string="Quiz Match Images")
+    module_openeducat_quiz_multiple_choice = fields.Boolean(
+        string="Quiz Multiple Choice")
+    module_openeducat_quiz_numeric = fields.Boolean(
+        string="Quiz Numeric")
+    module_openeducat_quiz_sort_paragraphs = fields.Boolean(
+        string="Quiz Sort Paragraphs")
     module_openeducat_discipline = fields.Boolean(
         string="Discipline Enterprise")
     module_openeducat_health_enterprise = fields.Boolean(
@@ -93,6 +105,20 @@ class ResConfigSettings(models.TransientModel):
         string="LMS Sale Enterprise")
     module_openeducat_lms_survey = fields.Boolean(
         string="LMS Survey Enterprise")
+    module_openeducat_lms_drag_into_text = fields.Boolean(
+        string="Lms Drag Into Text")
+    module_openeducat_lms_match_images = fields.Boolean(
+        string="Lms Match Images")
+    module_openeducat_lms_numeric = fields.Boolean(
+        string="Lms Numeric")
+    module_openeducat_lms_interactive_video = fields.Boolean(
+        string="Lms Interactive Video")
+    module_openeducat_lms_match_following = fields.Boolean(
+        string="Lms Match Following")
+    module_openeducat_lms_multiple_choice = fields.Boolean(
+        string="Lms Multiple Choice")
+    module_openeducat_lms_sort_paragraphs = fields.Boolean(
+        string="Lms Sort Paragraphs")
     module_openeducat_meeting_enterprise = fields.Boolean(
         string="Meeting Enterprise")
     module_openeducat_online_admission = fields.Boolean(
