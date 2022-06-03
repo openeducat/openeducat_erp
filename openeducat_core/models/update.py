@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
+<<<<<<< HEAD
 #    OpenEduCat Inc.
+=======
+#    OpenEduCat Inc
+>>>>>>> e302d4d351c200474672e25aac56e692b8bed70d
 #    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
