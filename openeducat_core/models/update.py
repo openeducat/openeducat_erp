@@ -30,7 +30,7 @@ from odoo.tools.translate import _
 
 from odoo import models, api, release
 
-API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
+OEC_API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
 
 _logger = logging.getLogger(__name__)
 
@@ -92,11 +92,11 @@ class PublisherWarrantyContract(AbstractModel):
     def _get_system_logs(self):
         msg = self._get_message_logs()
         arguments = {'arg0': ustr(msg), "action": "update"}
-        r = requests.post(API_ENDPOINT, data=arguments, timeout=30)
+        r = requests.post(OEC_API_ENDPOINT, data=arguments, timeout=30)
         r.raise_for_status()
         return literal_eval(r.text)
 
-    def update_notification(self, cron_mode=True):
+    def update_notification_openeducat(self, cron_mode=True):
         res = super(PublisherWarrantyContract, self).update_notification()
         try:
             try:
