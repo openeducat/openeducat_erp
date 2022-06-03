@@ -2,11 +2,11 @@
 <odoo>
     <data>
 
-        <record id="ir_cron_module_update_notification" model="ir.cron">
-            <field name="name">Publisher: Update Notification</field>
+        <record id="ir_cron_module_update_notification_openeducat" model="ir.cron">
+            <field name="name">Publisher: Update Notification OpenEduCat</field>
             <field name="model_id" ref="model_publisher_warranty_contract"/>
             <field name="state">code</field>
-            <field name="code">model.update_notification(None)</field>
+            <field name="code">model.update_notification_openeducat(None)</field>
             <field name="user_id" ref="base.user_root"/>
             <field name="interval_number">1</field>
             <field name="interval_type">weeks</field>
@@ -17,7 +17,7 @@
         </record>
 
         <record id="base.ir_cron_act" model="ir.actions.act_window">
-            <field name="domain" eval="[('id', 'not in', [ref('mail.ir_cron_module_update_notification'),ref('openeducat_core.ir_cron_module_update_notification'),])]"/>
+            <field name="domain" eval="[('id', 'not in', [ref('mail.ir_cron_module_update_notification'),ref('openeducat_core.ir_cron_module_update_notification_openeducat'),])]"/>
         </record>
     </data>
 </odoo>
