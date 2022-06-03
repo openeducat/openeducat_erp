@@ -42,7 +42,6 @@ class PublisherWarrantyContract(AbstractModel):
 
     @api.model
     def _get_message_logs(self):
-        _logger.info("cccccccccccccccccccccccccc")
         Users = self.env['res.users']
         IrParamSudo = self.env['ir.config_parameter'].sudo()
         dbuuid = IrParamSudo.get_param('database.uuid')
@@ -91,7 +90,6 @@ class PublisherWarrantyContract(AbstractModel):
 
     @api.model
     def _get_system_logs(self):
-        _logger.info("bbbbbbbbbbbbbbbbbbbbb")
         msg = self._get_message_logs()
         arguments = {'arg0': ustr(msg), "action": "update"}
         r = requests.post(OEC_API_ENDPOINT, data=arguments, timeout=30)
@@ -99,7 +97,6 @@ class PublisherWarrantyContract(AbstractModel):
         return literal_eval(r.text)
 
     def update_notification_openeducat(self, cron_mode=True):
-        _logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAA")
         res = super(PublisherWarrantyContract, self).update_notification()
         try:
             try:
