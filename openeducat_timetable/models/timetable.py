@@ -225,9 +225,6 @@ class OpSession(models.Model):
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
-        for session in self:
-            if session.state not in ('draft', 'done'):
-                session.notify_user()
         return data
 
     @api.model
