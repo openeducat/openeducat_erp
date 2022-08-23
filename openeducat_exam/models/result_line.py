@@ -41,8 +41,9 @@ class OpResultLine(models.Model):
 
     @api.constrains('marks', 'marks')
     def _check_marks(self):
-        if (self.marks < 0.0):
-            raise ValidationError(_("Enter proper Marks or Percentage!"))
+        for record in self:
+            if record.marks < 0.0:
+                raise ValidationError(_("Enter proper Marks or Percentage!"))
 
     @api.depends('marks')
     def _compute_grade(self):

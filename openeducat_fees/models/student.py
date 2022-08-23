@@ -124,7 +124,7 @@ class OpStudentFeesDetails(models.Model):
                            'product_id': product.id}
             invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
 
-        invoice._compute_tax_totals_json()
+        invoice._compute_tax_totals()
         self.state = 'invoice'
         self.invoice_id = invoice.id
         return True

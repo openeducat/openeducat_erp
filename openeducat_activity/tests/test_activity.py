@@ -77,4 +77,4 @@ class TestStudentMigrateWizard(TestActivityCommon):
             'student_ids': self.env.ref('openeducat_core.op_student_2'),
         })
         student_migrate.student_migrate_forward()
-        student_migrate1.onchange_course_id()
+        student_migrate1.student_by_course()

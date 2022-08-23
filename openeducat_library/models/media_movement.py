@@ -181,6 +181,6 @@ class OpMediaMovement(models.Model):
                            'product_id': product.id, }
             invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
 
-            invoice._compute_tax_totals_json()
+            invoice._compute_tax_totals()
 #           invoice.action_invoice_open()
             self.invoice_id = invoice.id
