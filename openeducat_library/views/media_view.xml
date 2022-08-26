@@ -12,10 +12,12 @@
                     <field name="isbn"/>
                     <field name="internal_code"/>
                     <field name="edition"/>
-                    <field name="tags" invisible="1"/>
-                    <field name="author_ids" invisible="1"/>
-                    <field name="publisher_ids" invisible="1"/>
-                    <field name="course_ids" invisible="1"/>
+                    <field name="description" optional="hide"/>
+                    <field name="tags" widget="many2many_tags" optional="hide"/>
+                    <field name="author_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="publisher_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="course_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="subject_ids" widget="many2many_tags" optional="hide"/>
                 </tree>
             </field>
         </record>
