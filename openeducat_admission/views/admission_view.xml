@@ -8,14 +8,17 @@
             <field name="arch" type="xml">
                 <tree string="Registration">
                     <field name="application_number"/>
-                    <field name="title"/>
+                    <field name="title" optional="show"/>
                     <field name="name"/>
                     <field name="admission_date"/>
                     <field name="application_date"/>
                     <field name="course_id"/>
-                    <field name="batch_id" invisible="1"/>
+                    <field name="batch_id" optional="hide"/>
                     <field name="state"/>
                     <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                    <field name="gender" optional="hide"/>
+                    <field name="birth_date" optional="hide"/>
+                    <field name="email" optional="hide"/>
                 </tree>
             </field>
         </record>
