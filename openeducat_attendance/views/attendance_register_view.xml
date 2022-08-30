@@ -21,16 +21,19 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Attendance Register">
+                    <header/>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4" colspan="4">
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="course_id"/>
-                            <field name="batch_id"
-                                   context="{'course_id': course_id,'get_parent_batch':1}"/>
+                        <group>
+                            <group col="4" colspan="4">
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="course_id"/>
+                                <field name="batch_id"
+                                       context="{'course_id': course_id,'get_parent_batch':1}"/>
+                            </group>
                         </group>
                     </sheet>
                     <div class="oe_chatter">

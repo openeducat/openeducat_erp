@@ -22,16 +22,19 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Batch">
+                    <header/>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4" name="main">
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                            <field name="course_id"/>
+                        <group>
+                            <group col="4" colspan="4" name="main">
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="course_id"/>
+                            </group>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
