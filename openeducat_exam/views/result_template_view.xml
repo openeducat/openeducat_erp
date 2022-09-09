@@ -29,11 +29,13 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group colspan="4" col="4">
-                            <field name="name" select="1"/>
-                            <field name="result_date"/>
-                            <field name="exam_session_id"/>
-                            <field name="evaluation_type" invisible="1"/>
+                        <group>
+                            <group colspan="4" col="4">
+                                <field name="name" select="1"/>
+                                <field name="result_date"/>
+                                <field name="exam_session_id"/>
+                                <field name="evaluation_type" invisible="1"/>
+                            </group>
                         </group>
                         <separator string="Grades" colspan="4"
                                    attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>

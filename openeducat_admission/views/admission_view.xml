@@ -8,14 +8,17 @@
             <field name="arch" type="xml">
                 <tree string="Registration">
                     <field name="application_number"/>
-                    <field name="title"/>
+                    <field name="title" optional="show"/>
                     <field name="name"/>
                     <field name="admission_date"/>
                     <field name="application_date"/>
                     <field name="course_id"/>
-                    <field name="batch_id" invisible="1"/>
+                    <field name="batch_id" optional="hide"/>
                     <field name="state"/>
                     <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                    <field name="gender" optional="hide"/>
+                    <field name="birth_date" optional="hide"/>
+                    <field name="email" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -26,7 +29,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Registration">
-                    <header groups="base.group_user">
+                    <header>
                         <button string="Submit" states="draft" class="oe_highlight" type="object" name="submit_form"/>
                         <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object"
                                 class="oe_highlight"/>

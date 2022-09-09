@@ -16,6 +16,9 @@
                     <field name="company_id" groups="base.group_multi_company" optional="show"/>
                     <field name="product_id" invisible="1"/>
                     <field name="state"/>
+                    <field name="minimum_age_criteria" optional="hide"/>
+                    <field name="academic_years_id" optional="hide"/>
+                    <field name="academic_term_id" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -26,7 +29,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Admission Register">
-                    <header groups="base.group_user">
+                    <header>
                         <button name="confirm_register" states="draft" type="object" string="Confirm"
                                 class="oe_highlight"/>
                         <button name="start_application" states="confirm" type="object" string="Start Application"

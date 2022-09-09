@@ -10,16 +10,15 @@
                     <field name="library_card_id"/>
                     <field name="partner_id"/>
                     <field name="media_id"/>
+                    <field name="media_type_id" optional="hide"/>
                     <field name="media_unit_id"/>
                     <field name="issued_date"/>
                     <field name="return_date"/>
                     <field name="actual_return_date"/>
-                    <field name="penalty" widget="monetary"/>
+                    <field name="penalty" widget="monetary" optional="hide"/>
                     <field name="state"/>
                     <field name="invoice_id" invisible="1"/>
-                    <field name="type" invisible="1"/>
-                    <field name="student_id" invisible="1"/>
-                    <field name="faculty_id" invisible="1"/>
+                    <field name="type" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -30,7 +29,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="media Movement">
-                    <header groups="base.group_user">
+                    <header>
                         <button name="issue_media" string="Issue media" type="object" class="oe_highlight"
                                 attrs="{'invisible':[('state','not in',('available','reserve'))]}"
                                 groups="openeducat_library.group_op_library"/>

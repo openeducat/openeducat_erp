@@ -11,6 +11,7 @@
                     <field name="term_start_date"/>
                     <field name="term_end_date"/>
                     <field name="parent_term"/>
+                    <field name="academic_year_id" optional="hide"/>
                     <field name="company_id" groups="base.group_multi_company" optional="show"/>
                 </tree>
             </field>
@@ -22,16 +23,19 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Academic Term">
+                    <header/>
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="term_start_date"/>
-                            <field name="term_end_date"/>
-                        </group>
-                        <group>
-                            <field name="academic_year_id"/>
-                            <field name="parent_term"/>
-                            <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="term_start_date"/>
+                                <field name="parent_term"/>
+                            </group>
+                            <group>
+                                <field name="academic_year_id"/>
+                                <field name="term_end_date"/>
+                                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                            </group>
                         </group>
                     </sheet>
                 </form>

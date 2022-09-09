@@ -7,17 +7,17 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Attendance Line">
-                    <field name="attendance_id"/>
+                    <field name="attendance_id" optional="show"/>
                     <field name="student_id"/>
-                    <field name="attendance_type_id"/>
+                    <field name="attendance_type_id" optional="show"/>
                     <field name="present"/>
                     <field name="absent"/>
                     <field name="excused"/>
                     <field name="late"/>
-                    <field name="remark"/>
+                    <field name="remark" optional="show"/>
                     <field name="attendance_date"/>
-                    <field name="course_id"/>
-                    <field name="batch_id"/>
+                    <field name="course_id" optional="show"/>
+                    <field name="batch_id" optional="show"/>
                 </tree>
             </field>
         </record>
@@ -28,6 +28,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Attendance Line">
+                    <header/>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"

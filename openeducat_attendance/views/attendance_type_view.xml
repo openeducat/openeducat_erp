@@ -22,18 +22,21 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Attendance Type">
+                    <header/>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
                         <group>
-                            <field name="name"/>
-                        </group>
-                        <group col="4" string="Student Should Be Marked As" name="student_marked_As">
-                            <field name="present"/>
-                            <field name="absent"/>
-                            <field name="excused"/>
-                            <field name="late"/>
+                            <group col="4" colspan="4">
+                                <field name="name"/>
+                            </group>
+                            <group col="4" string="Student Should Be Marked As" name="student_marked_As">
+                                <field name="present"/>
+                                <field name="absent"/>
+                                <field name="excused"/>
+                                <field name="late"/>
+                            </group>
                         </group>
 
                     </sheet>

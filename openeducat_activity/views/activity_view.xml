@@ -11,7 +11,7 @@
                     <field name="faculty_id"/>
                     <field name="type_id"/>
                     <field name="date"/>
-                    <field name="description"/>
+                    <field name="description" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -22,6 +22,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Activity Log">
+                    <header/>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
