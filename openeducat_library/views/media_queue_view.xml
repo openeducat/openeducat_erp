@@ -37,17 +37,18 @@
                                statusbar_colors='{"reject":"red"}'/>
                     </header>
                     <sheet>
-                        <field name="active" invisible="1"/>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
-                        <div style="font-size:20px;font-weight:bold;">
-                            <field name="name"/>
-                        </div>
-                        <group col="4">
-                            <field name="user_id" placeholder="Name"/>
-                            <field name="media_id" placeholder="Media"/>
-                            <field name="date_from"/>
-                            <field name="date_to"/>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                            <div style="font-size:20px;font-weight:bold;">
+                                <field name="name"/>
+                            </div>
+                            <group col="4" colspan="4">
+                                <field name="user_id" placeholder="Name"/>
+                                <field name="media_id" placeholder="Media"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
