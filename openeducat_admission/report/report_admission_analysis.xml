@@ -17,7 +17,7 @@
                             <div class="row mt24">
                                 <div style="width:50%; margin-left:15px;">
                                     <b>Course:</b>
-                                    <span t-raw="'%s' % data['course_id'][1] if data['course_id'][1] else ''"/>
+                                    <span t-out="'%s' % data['course_id'][1] if data['course_id'][1] else ''"/>
                                 </div>
                                 <div style="width:50%; margin-left:15px;">
                                     <b>From Date:</b>
@@ -34,13 +34,12 @@
                                     <th>Application No.</th>
                                 </thead>
                                 <tbody class="text-center" style="font-size:12px;">
-                                    <tr t-foreach="get_data" t-as="o">
+                                    <tr t-foreach="get_data" t-as="data">
                                         <td>
-                                            <span t-esc="o['name']"/>
+                                            <span t-esc="data['name']"/>
                                         </td>
                                         <td>
-                                            <span
-                                                    t-raw="'%s' %   o['application_no']  if   o['application_no']   else ''"/>
+                                            <span t-out="'%s' %data['application_no'] if data['application_no'] else ''"/>
                                         </td>
                                     </tr>
                                 </tbody>

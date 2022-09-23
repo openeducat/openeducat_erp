@@ -80,8 +80,7 @@ class OpExam(models.Model):
         start_time = fields.Datetime.from_string(self.start_time)
         end_time = fields.Datetime.from_string(self.end_time)
         if start_time > end_time:
-            raise ValidationError(_('End Time cannot be set \
-            before Start Time.'))
+            raise ValidationError(_('End Time cannot be set before Start Time.'))
         elif start_time < session_start or start_time > session_end or \
                 end_time < session_start or end_time > session_end:
             raise ValidationError(

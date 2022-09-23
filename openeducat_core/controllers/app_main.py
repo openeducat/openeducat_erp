@@ -40,7 +40,7 @@ class OpeneducatHome(home):
                 if request.env.user.is_parent:
                     redirect = '/my/child'
                 else:
-                    redirect = '/my/home'
+                    redirect = '/my'
             return werkzeug.utils.redirect(redirect)
         return response
 
@@ -49,4 +49,4 @@ class OpeneducatHome(home):
             return super(OpeneducatHome, self)._login_redirect(uid, redirect)
         if request.env.user.is_parent:
             return '/my/child'
-        return '/my/home'
+        return '/my'

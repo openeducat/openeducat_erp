@@ -29,7 +29,7 @@
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Registration">
-                    <header groups="base.group_user">
+                    <header>
                         <button string="Submit" states="draft" class="oe_highlight" type="object" name="submit_form"/>
                         <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object"
                                 class="oe_highlight"/>
@@ -111,7 +111,7 @@
                             <page name="personal_detail" string="Personal Detail">
                                 <group col="4" colspan="4">
                                     <field name="gender"/>
-                                    <field name="birth_date" options="{'datepicker':{'maxDate': 'now'}}"/>
+                                    <field name="birth_date" options="{'datepicker':{'warn_future': true}}"/>
                                     <field name="email" placeholder="Email"/>
                                 </group>
                                 <label for="street" string="Address"/>

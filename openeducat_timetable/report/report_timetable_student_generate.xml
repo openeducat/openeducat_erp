@@ -83,14 +83,14 @@
                                         <th>Period</th>
                                         <span t-foreach="get_heading()" t-as="n">
                                             <th>
-                                                <span t-raw="n"/>
+                                                <span t-out="n"/>
                                             </th>
                                         </span>
                                     </thead>
                                     <tbody class="text-left" style="font-size:12px;">
                                         <tr t-foreach="get_object(data)" t-as="a">
                                             <td>
-                                                <span t-raw="a['name'] if  a['name']  else ''"/>
+                                                <span t-out="a['name'] if  a['name']  else ''"/>
                                             </td>
                                             <td>
                                                 <span t-esc="a['line'].get('0',{'subject':''})['subject']"/>
