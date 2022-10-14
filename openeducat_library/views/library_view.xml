@@ -12,7 +12,7 @@
                     <field name="allow_media"/>
                     <field name="duration"/>
                     <field name="penalty_amt_per_day"/>
-                </tree>
+                    </tree>
             </field>
         </record>
 
@@ -105,16 +105,20 @@
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
                         <group>
-                            <group col="4" colspan="4">
+                            <group>
                                 <field name="number"/>
-                                <field name="issue_date"/>
+<!--                                <field name="issue_date"/>-->
                                 <field name="library_card_type_id"/>
-                                <field name="type"/>
+<!--                                <field name="type"/>-->
                                 <field name="partner_id" readonly="1" force_save="1"/>
                                 <field name="student_id" options="{'no_create': True , 'no_open': True}"
                                        attrs="{'invisible':[('type','!=','student')],'required':[('type','=','student')]}"/>
                                 <field name="faculty_id" options="{'no_create': True , 'no_open': True}"
                                        attrs="{'invisible':[('type','!=','faculty')],'required':[('type','=','faculty')]}"/>
+                            </group>
+                            <group>
+                                <field name="issue_date"/>
+                                <field name="type"/>
                             </group>
                         </group>
                     </sheet>

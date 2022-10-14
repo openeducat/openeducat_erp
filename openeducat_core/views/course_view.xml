@@ -27,25 +27,34 @@
                 <form string="Course">
                     <header/>
                     <sheet>
+                        <div name="button_box" class="oe_button_box">
+                        </div>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group class="course_info">
-                            <field name="name" />
-                            <field name="code" />
+                        <group>
+                            <group class="course_info">
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
                         </group>
-
-                        <group colspan="4" col="4" name="main">
-
-                            <field name="evaluation_type"/>
-                            <field name="parent_id"/>
-                            <field name="min_unit_load"/>
-                            <field name="max_unit_load"/>
-                            <field name="department_id" groups="openeducat_core.group_multi_department"/>
+                        <group class="pt-3">
+                            <group name="main">
+                                <field name="evaluation_type"/>
+                                <field name="min_unit_load"/>
+                                <field name="department_id" groups="openeducat_core.group_multi_department"/>
+                            </group>
+                            <group>
+                                <field name="parent_id"/>
+                                <field name="max_unit_load"/>
+                            </group>
                         </group>
-                        <group string="Subjects" name="subject">
-                            <field name="subject_ids" nolabel="1"/>
-                        </group>
+                        <notebook>
+                            <page string="Subjects" name="subject">
+                                <field name="subject_ids" nolabel="1" readonly="1">
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>

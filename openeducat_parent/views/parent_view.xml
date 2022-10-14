@@ -47,11 +47,15 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4">
-                            <field name="name" placeholder="Parent Name"/>
-                            <field name="user_id" readonly="1"/>
-                            <field name="mobile" required="1"/>
-                            <field name="relationship_id" required="1"/>
+                        <group>
+                            <group>
+                                <field name="name" placeholder="Parent Name"/>
+                                <field name="mobile" required="1"/>
+                            </group>
+                            <group>
+                                <field name="user_id" readonly="1"/>
+                                <field name="relationship_id" required="1"/>
+                            </group>
                         </group>
                         <separator colspan="4" string="Student(s)"/>
                         <field name="student_ids"/>
