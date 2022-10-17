@@ -29,13 +29,15 @@
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
                         <group>
-                            <group col="4" colspan="4">
+                            <group>
                                 <field name="name"/>
-                                <field name="code"/>
                                 <field name="type"/>
                                 <field name="subject_type"/>
-                                <field name="grade_weightage"/>
                                 <field name="department_id" groups="openeducat_core.group_multi_department"/>
+                            </group>
+                            <group>
+                                                                <field name="code"/>
+                                                                <field name="grade_weightage"/>
                             </group>
                         </group>
                     </sheet>

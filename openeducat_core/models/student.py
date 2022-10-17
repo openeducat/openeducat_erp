@@ -66,9 +66,9 @@ class OpStudent(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _inherits = {"res.partner": "partner_id"}
 
-    first_name = fields.Char('First Name', size=128, translate=True)
-    middle_name = fields.Char('Middle Name', size=128, translate=True)
-    last_name = fields.Char('Last Name', size=128, translate=True)
+    first_name = fields.Char('First Name',  translate=True)
+    middle_name = fields.Char('Middle Name', translate=True)
+    last_name = fields.Char('Last Name', translate=True)
     birth_date = fields.Date('Birth Date')
     blood_group = fields.Selection([
         ('A+', 'A+ve'),

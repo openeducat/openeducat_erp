@@ -46,22 +46,44 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4">
-                            <field name="name"/>
-                            <field name="course_id"/>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                            <field name="product_id" context="{'default_type': 'service'}"/>
-                            <field name="min_count"/>
-                            <field name="max_count"/>
-                            <field name="company_id" groups="base.group_multi_company" optional="show"/>
-                            <field name="minimum_age_criteria" attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
-                            <field name="academic_years_id"/>
-                            <field name="academic_term_id"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="start_date"/>
+                                <field name="max_count"/>
+                                <field name="product_id" context="{'default_type': 'service'}"/>
+                                <field name="minimum_age_criteria"
+                                       attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
+                                <field name="academic_term_id"/>
+                            </group>
+                            <group>
+                                <field name="course_id"/>
+                                <field name="end_date"/>
+                                <field name="min_count"/>
+                                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                                <field name="academic_years_id"/>
+                            </group>
                         </group>
-                        <group string="Applications">
-                            <field name="admission_ids" nolabel="1" readonly="1"/>
-                        </group>
+                        <notebook>
+                            <page string="Applications" name="applications">
+                                <field name="admission_ids" nolabel="1" readonly="1">
+                                    <tree string="Registration">
+                                        <field name="application_number"/>
+                                        <field name="title" optional="show"/>
+                                        <field name="name"/>
+                                        <field name="admission_date"/>
+                                        <field name="application_date"/>
+                                        <field name="course_id"/>
+                                        <field name="batch_id" optional="hide"/>
+                                        <field name="state"/>
+                                        <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                                        <field name="gender" optional="hide"/>
+                                        <field name="birth_date" optional="hide"/>
+                                        <field name="email" optional="hide"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>

@@ -88,6 +88,8 @@
                                 attrs="{'invisible': [('user_id', '!=', False)]}"/>
                     </header>
                     <sheet>
+                        <div name="button_box" class="oe_button_box">
+                        </div>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
@@ -117,26 +119,27 @@
                                 </h2>
                             </div>
                         </div>
-                        <div name="button_box" class="oe_button_box">
-
-                        </div>
                         <notebook colspan="4">
                             <page name="personal_information"
                                   string="Personal Information">
-                                <group col="4" colspan="4" name="personal_detail">
-                                    <field name="gender" required="1"/>
-                                    <field name="birth_date" required="1"/>
-                                    <field name="nationality"/>
-                                    <field name="visa_info"/>
-                                    <field name="lang"/>
-                                    <field name="blood_group"/>
-                                    <field name="category_id"/>
-                                    <field name="emergency_contact" context="{'show_address': 1}"
-                                           options='{"always_reload": True}'/>
-                                    <field name="mobile" required="1"/>
-                                    <field name="user_id" string="User" readonly="1"/>
-                                    <field name="email" required="1"/>
-                                    <field name="partner_id" placeholder="Partner" required="0"/>
+                                <group name="personal_detail">
+                                    <group>
+                                        <field name="gender" required="1"/>
+                                        <field name="nationality"/>
+                                        <field name="lang"/>
+                                        <field name="category_id"/>
+                                        <field name="mobile" required="1"/>
+                                        <field name="email" required="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="birth_date" required="1"/>
+                                        <field name="visa_info"/>
+                                        <field name="blood_group"/>
+                                        <field name="emergency_contact" context="{'show_address': 1}"
+                                               options='{"always_reload": True}'/>
+                                        <field name="user_id" string="User" readonly="1"/>
+                                        <field name="partner_id" placeholder="Partner" required="0"/>
+                                    </group>
                                 </group>
                                 <group string="Address Detail" name="address">
                                     <label for="type"/>
@@ -165,9 +168,9 @@
                                         <field name="gr_no"/>
                                     </group>
                                 </group>
-                                <group>
+<!--                                <group>-->
                                     <separator string="Admission Details"
-                                               colspan="4"/>
+                                               />
                                     <field name="course_detail_ids"
                                            nolabel="1">
                                         <tree string="Course Details">
@@ -178,7 +181,7 @@
                                             <field name="state"/>
                                         </tree>
                                     </field>
-                                </group>
+<!--                                </group>-->
                             </page>
                         </notebook>
                     </sheet>

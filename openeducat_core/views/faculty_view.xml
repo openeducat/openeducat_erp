@@ -85,29 +85,32 @@
                                 class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/>
                     </header>
                     <sheet>
+                        <div name="button_box" class="oe_button_box">
+                        </div>
+
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
 
-                        <div>
+                        <div style="width:100%;">
                             <div>
                                 <field name="image_1920" widget="image" class="oe_left oe_avatar"/>
                             </div>
                             <div class="oe_title w-auto" style="padding-top:100px">
                                 <h3>
-                                    <field name="title" placeholder="Title" style="width:30%;"/>
+                                    <field name="title" placeholder="Title"/>
                                 </h3>
                                 <h2>
                                     <field name="name" placeholder="Name" required="1" invisible="1"/>
                                     <table>
                                         <tr>
-                                            <td style="padding-right:10px; max-width:120px;">
+                                            <td style="padding-right:10px; max-width:130px;">
                                                 <field name="first_name" required="1" placeholder="First Name"/>
                                             </td>
-                                            <td style="padding-right:10px; max-width:120px;">
+                                            <td style="padding-right:10px; max-width:130px;">
                                                 <field name="middle_name" placeholder="Middle Name"/>
                                             </td>
-                                            <td style="padding-right:10px; max-width:120px;">
+                                            <td style="padding-right:10px; max-width:130px;">
                                                 <field name="last_name" placeholder="Last Name"/>
                                             </td>
                                         </tr>
@@ -115,29 +118,35 @@
                                 </h2>
                             </div>
                         </div>
-                        <div name="button_box" class="oe_button_box">
-
-                        </div>
-                        <group col="6" colspan="4">
-                            <field name="gender"/>
-                            <field name="phone"/>
-                            <field name="mobile"/>
-                            <field name="email"/>
+                        <group>
+                            <group>
+                                <field name="gender"/>
+                                <field name="email"/>
+                            </group>
+                            <group>
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                            </group>
                         </group>
                         <notebook colspan="4">
                             <page name="personal_information" string="Personal Information">
-                                <group col="4">
-                                    <field name="birth_date"/>
-                                    <field name="blood_group"/>
-                                    <field name="nationality"/>
-                                    <field name="visa_info"/>
-                                    <field name="lang"/>
-                                    <field name="emergency_contact" context="{'show_address': 1}"
-                                           options='{"always_reload": True}'/>
-                                    <field name='emp_id'/>
-                                    <field name="main_department_id" groups="openeducat_core.group_multi_department"/>
-                                    <field name="allowed_department_ids" widget="many2many_tags"
-                                           groups="openeducat_core.group_multi_department"/>
+                                <group>
+                                    <group>
+                                        <field name="birth_date"/>
+                                        <field name="nationality"/>
+                                        <field name="lang"/>
+                                        <field name='emp_id'/>
+                                        <field name="main_department_id"
+                                               groups="openeducat_core.group_multi_department"/>
+                                    </group>
+                                    <group>
+                                        <field name="blood_group"/>
+                                        <field name="visa_info"/>
+                                        <field name="emergency_contact" context="{'show_address': 1}"
+                                               options='{"always_reload": True}'/>
+                                        <field name="allowed_department_ids" widget="many2many_tags"
+                                               groups="openeducat_core.group_multi_department"/>
+                                    </group>
                                 </group>
                                 <group string="Address Detail" name="address">
                                     <label for="type"/>

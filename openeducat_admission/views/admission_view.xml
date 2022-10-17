@@ -79,59 +79,86 @@
                         </div>
                         <notebook colspan="4">
                             <page name="admission_detail" string="Admission Detail">
-                                <group col="4" colspan="4">
-                                    <field name="register_id" domain="[('state', 'in', ['application','admission'])]"
-                                           widget="selection"/>
-                                    <field name="application_number"/>
-                                    <field name="application_date"/>
-                                    <field name="admission_date"/>
-                                    <field name="course_id"/>
-                                    <field name="batch_id"
-                                           context="{'course_id': course_id,'get_parent_batch':1}"/>
-                                    <field name="discount"/>
-                                    <field name="fees" attrs="{'required': [('state','not in', ['draft', 'submit'])]}"/>
-                                    <field name="due_date"/>
-                                    <field name="fees_term_id" required="1"
-                                           attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
-                                    <field name="is_student"/>
-                                    <field name="partner_id"/>
-                                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
-                                    <field name="student_id" placeholder="Student" options="{'no_create_edit': True}"
-                                           attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
-                                    <field name="fees_start_date"/>
+                                <group>
+                                    <group>
+                                        <field name="register_id"
+                                               domain="[('state', 'in', ['application','admission'])]"
+                                               widget="selection"/>
+                                        <field name="application_date"/>
+                                        <field name="course_id"/>
+                                        <field name="discount"/>
+
+                                        <field name="fees_term_id" required="1"
+                                               attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
+                                        <field name="partner_id"/>
+                                        <field name="student_id" placeholder="Student"
+                                               options="{'no_create_edit': True}"
+                                               attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
+
+                                    </group>
+                                    <group>
+                                        <field name="application_number"/>
+                                        <field name="admission_date"/>
+                                        <field name="batch_id"
+                                               context="{'course_id': course_id,'get_parent_batch':1}"/>
+                                        <field name="fees"
+                                               attrs="{'required': [('state','not in', ['draft', 'submit'])]}"/>
+                                        <field name="due_date"/>
+                                        <field name="is_student"/>
+                                        <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                                        <field name="fees_start_date"/>
+                                    </group>
                                 </group>
                             </page>
                             <page name="educational_detail" string="Educational Detail">
-                                <group col="4" colspan="4">
-                                    <field name="prev_institute_id"/>
-                                    <field name="prev_course_id"/>
-                                    <field name="prev_result"/>
+                                <group>
+                                    <group>
+                                        <field name="prev_institute_id"/>
+                                        <field name="prev_result"/>
+                                    </group>
+                                    <group>
+                                        <field name="prev_course_id"/>
+                                    </group>
                                 </group>
                             </page>
                             <page name="personal_detail" string="Personal Detail">
-                                <group col="4" colspan="4">
-                                    <field name="gender"/>
-                                    <field name="birth_date" options="{'datepicker':{'warn_future': true}}"/>
-                                    <field name="email" placeholder="Email"/>
+                                <group>
+                                    <group>
+                                        <field name="gender"/>
+                                        <field name="email" placeholder="Email"/>
+                                    </group>
+                                    <group>
+                                        <field name="birth_date" options="{'datepicker':{'warn_future': true}}"/>
+                                    </group>
                                 </group>
                                 <label for="street" string="Address"/>
                                 <div>
-                                    <field name="street" placeholder="Street..."/>
-                                    <field name="street2"/>
+                                    <div>
+                                        <field name="street" placeholder="Street..." nolabel="1" style="width: 100%%"/>
+                                        <field name="street2" placeholder="Street 2..." nolabel="1"
+                                               style="width: 100%%"/>
+                                    </div>
                                     <div class="address_format">
                                         <field name="city" placeholder="City" style="width: 40%%"/>
                                         <field name="state_id" options='{"no_open": True}'
                                                placeholder="State" style="width: 24%%"/>
                                         <field name="zip" placeholder="ZIP" style="width: 34%%"/>
                                     </div>
-                                    <field name="country_id" placeholder="Country" options='{"no_open": True}'/>
-                                    <field name="phone" placeholder="Phone"/>
-                                    <field name="mobile" placeholder="Mobile"/>
+                                    <div>
+                                        <field name="country_id" placeholder="Country" options='{"no_open": True}'
+                                               nolabel="1"/>
+                                        <field name="phone" placeholder="Phone" nolabel="1" style="width: 100%%"/>
+                                        <field name="mobile" placeholder="Mobile" nolabel="1" style="width: 100%%"/>
+                                    </div>
                                 </div>
-                                <group col="4" colspan="4">
-                                    <field name="family_business"/>
-                                    <field name="family_income"/>
-                                    <field name="nbr" invisible="1"/>
+                                <group>
+                                    <group>
+                                        <field name="family_business"/>
+                                        <field name="nbr" invisible="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="family_income"/>
+                                    </group>
                                 </group>
                             </page>
                         </notebook>
