@@ -34,14 +34,14 @@ class OpAdmission(models.Model):
     _order = 'id DESC'
 
     name = fields.Char(
-        'Name', size=128, required=True, translate=True)
+        'Name', required=True, translate=True)
     first_name = fields.Char(
-        'First Name', size=128, required=True, translate=True)
+        'First Name', required=True, translate=True)
     middle_name = fields.Char(
-        'Middle Name', size=128, translate=True,
+        'Middle Name', translate=True,
         states={'done': [('readonly', True)]})
     last_name = fields.Char(
-        'Last Name', size=128, required=True, translate=True,
+        'Last Name', required=True, translate=True,
         states={'done': [('readonly', True)]})
     title = fields.Many2one(
         'res.partner.title', 'Title', states={'done': [('readonly', True)]})
