@@ -22,13 +22,17 @@
                 <form string="Author">
                     <header/>
                     <sheet>
-                        <group col="4">
-                            <field name="name"/>
-                            <field name="address"
-                                   context="{'show_address': 1}"
-                                   options='{"always_reload": True}'/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="address"
+                                       context="{'show_address': 1}"
+                                       options='{"always_reload": True}'/>
+                            </group>
                         </group>
-                        <group string="Media(s)">
+                        <group col="4" string="Media(s)">
                             <field name="media_ids" colspan="4" nolabel="1"/>
                         </group>
                     </sheet>

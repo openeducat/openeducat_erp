@@ -33,19 +33,23 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4" colspan="4">
-                            <field name="attendance_id" widget="selection"/>
-                            <field name="student_id"
-                                   domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"/>
-                            <field name="attendance_type_id" options='{"no_open": True}'/>
-                            <field name="present"/>
-                            <field name="absent"/>
-                            <field name="excused"/>
-                            <field name="late"/>
-                            <field name="remark"/>
-                            <field name="course_id" widget="selection"/>
-                            <field name="batch_id" widget="selection"/>
-                            <field name="attendance_date"/>
+                        <group>
+                            <group>
+                                <field name="attendance_id" widget="selection"/>
+                                <field name="present"/>
+                                <field name="excused"/>
+                                <field name="remark"/>
+                                <field name="batch_id" widget="selection"/>
+                                <field name="attendance_date"/>
+                            </group>
+                            <group>
+                                <field name="student_id"
+                                       domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"/>
+                                <field name="attendance_type_id" options='{"no_open": True}'/>
+                                <field name="absent"/>
+                                <field name="late"/>
+                                <field name="course_id" widget="selection"/>
+                            </group>
                         </group>
                     </sheet>
                     <div class="oe_chatter">

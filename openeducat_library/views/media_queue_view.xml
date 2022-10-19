@@ -39,14 +39,19 @@
                     <sheet>
                         <group>
                             <field name="active" invisible="1"/>
-                            <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                            <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                    attrs="{'invisible': [('active', '=', True)]}"/>
                             <div style="font-size:20px;font-weight:bold;">
                                 <field name="name"/>
                             </div>
-                            <group col="4" colspan="4">
+                        </group>
+                        <group class="pt-3">
+                            <group>
                                 <field name="user_id" placeholder="Name"/>
-                                <field name="media_id" placeholder="Media"/>
                                 <field name="date_from"/>
+                            </group>
+                            <group>
+                                <field name="media_id" placeholder="Media"/>
                                 <field name="date_to"/>
                             </group>
                         </group>

@@ -77,7 +77,7 @@
                                 </table>
                             </h2>
                         </div>
-                        <notebook colspan="4">
+                        <notebook>
                             <page name="admission_detail" string="Admission Detail">
                                 <group>
                                     <group>
@@ -87,14 +87,10 @@
                                         <field name="application_date"/>
                                         <field name="course_id"/>
                                         <field name="discount"/>
-
-                                        <field name="fees_term_id" required="1"
-                                               attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
-                                        <field name="partner_id"/>
-                                        <field name="student_id" placeholder="Student"
-                                               options="{'no_create_edit': True}"
-                                               attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
-
+                                        <field name="due_date"/>
+                                        <field name="is_student"/>
+                                        <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                                        <field name="fees_start_date"/>
                                     </group>
                                     <group>
                                         <field name="application_number"/>
@@ -103,10 +99,12 @@
                                                context="{'course_id': course_id,'get_parent_batch':1}"/>
                                         <field name="fees"
                                                attrs="{'required': [('state','not in', ['draft', 'submit'])]}"/>
-                                        <field name="due_date"/>
-                                        <field name="is_student"/>
-                                        <field name="company_id" groups="base.group_multi_company" optional="show"/>
-                                        <field name="fees_start_date"/>
+                                        <field name="fees_term_id" required="1"
+                                               attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
+                                        <field name="partner_id"/>
+                                        <field name="student_id" placeholder="Student"
+                                               options="{'no_create_edit': True}"
+                                               attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
                                     </group>
                                 </group>
                             </page>
