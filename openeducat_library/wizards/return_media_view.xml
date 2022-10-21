@@ -6,10 +6,14 @@
             <field name="model">return.media</field>
             <field name="arch" type="xml">
                 <form string="Media Return">
-                    <group col="4">
-                        <field name="media_id"/>
-                        <field name="media_unit_id" domain="[('media_id','=',media_id)]"/>
-                        <field name="actual_return_date"/>
+                    <group>
+                        <group>
+                            <field name="media_id"/>
+                            <field name="actual_return_date"/>
+                        </group>
+                        <group>
+                            <field name="media_unit_id" domain="[('media_id','=',media_id)]"/>
+                        </group>
                     </group>
                     <footer groups="base.group_user">
                         <button name="do_return" type="object" string="Proceed" class="oe_highlight"/>

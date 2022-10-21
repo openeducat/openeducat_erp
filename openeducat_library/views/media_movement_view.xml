@@ -44,38 +44,50 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4">
-                            <field name="media_id"/>
-                            <field name="media_unit_id"
-                                   domain="['&amp;',('media_id','=',media_id),('state','=','available')]"
-                                   context="{'default_media_id': media_id}"/>
-                            <field name="media_type_id"/>
+                        <group>
+                            <group>
+                                <field name="media_id"/>
+                                <field name="media_type_id"/>
+                            </group>
+                            <group>
+                                <field name="media_unit_id"
+                                       domain="['&amp;',('media_id','=',media_id),('state','=','available')]"
+                                       context="{'default_media_id': media_id}"/>
+                            </group>
                         </group>
-                        <group col="4" string="Student/Faculty Detail">
-                            <field name="library_card_id"/>
-                            <field name="type" readonly="1" force_save="1"/>
-                            <field name="student_id" readonly="1" force_save="1"
-                                   attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"
-                                   context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
-                            <field name="faculty_id" readonly="1" force_save="1"
-                                   attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                        <group string="Student/Faculty Detail">
+                            <group class="pt-3">
+                                <field name="library_card_id"/>
+                                <field name="student_id" readonly="1" force_save="1"
+                                       attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"
+                                       context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
+                                <field name="faculty_id" readonly="1" force_save="1"
+                                       attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                            </group>
+                            <group class="pt-3">
+                                <field name="type" readonly="1" force_save="1"/>
+                            </group>
                         </group>
-                        <group col="4">
-                            <field name="issued_date"/>
-                            <field name="return_date"/>
-                            <field name="actual_return_date"/>
-                            <label for="penalty" string="Penalty"/>
-                            <div class="row">
-                                <div class="col-5 col-sm-5 col-md-6 col-lg-4">
-                                    <field name="penalty" widget="monetary"/>
+                        <group>
+                            <group class="pt-3">
+                                <field name="issued_date"/>
+                                <field name="actual_return_date"/>
+                                <field name="invoice_id"/>
+                            </group>
+                            <group class="pt-3">
+                                <field name="return_date"/>
+                                <label for="penalty" string="Penalty"/>
+                                <div class="row" name="penalty">
+                                    <div class="col-5 col-sm-5 col-md-6 col-lg-4">
+                                        <field name="penalty" widget="monetary"/>
+                                    </div>
+                                    <div class="col-7 col-sm-7 col-md-6 col-lg-8">
+                                        <button name="create_penalty_invoice" string="Create Invoice"
+                                                type="object" class="oe_highlight"
+                                                attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}"/>
+                                    </div>
                                 </div>
-                                <div class="col-7 col-sm-7 col-md-6 col-lg-8">
-                                    <button name="create_penalty_invoice" string="Create Invoice"
-                                            type="object" class="oe_highlight"
-                                            attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}"/>
-                                </div>
-                            </div>
-                            <field name="invoice_id"/>
+                            </group>
                         </group>
                         <group col="4" string="Reservation Detail" invisible="1">
                             <field name="partner_id"/>

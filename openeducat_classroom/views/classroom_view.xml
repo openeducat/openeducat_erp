@@ -28,12 +28,16 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4">
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="course_id"/>
-                            <field name="batch_id" domain="[('course_id','=',course_id)]"/>
-                            <field name="capacity"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="course_id"/>
+                                <field name="capacity"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                                <field name="batch_id" domain="[('course_id','=',course_id)]"/>
+                            </group>
                         </group>
                         <notebook>
                             <page name="facilities" string="Facilities">

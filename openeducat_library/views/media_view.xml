@@ -33,20 +33,22 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="2">
-                            <h1>
-                                <field name="name" placeholder="Media Name" style="width: 100%%"/>
-                            </h1>
-                        </group>
+                        <h1>
+                            <field name="name" placeholder="Media Name" style="width: 100%%"/>
+                        </h1>
                         <newline/>
-                        <group col="4">
-                            <field name="author_ids" widget="many2many_tags"/>
-                            <field name="publisher_ids" widget="many2many_tags"/>
-                            <field name="isbn"/>
-                            <field name="internal_code"/>
-                            <field name="edition"/>
-                            <field name="tags" widget="many2many_tags"/>
-                            <field name="media_type_id"/>
+                        <group class="pt-2">
+                            <group>
+                                <field name="author_ids" widget="many2many_tags"/>
+                                <field name="isbn"/>
+                                <field name="edition"/>
+                                <field name="media_type_id"/>
+                            </group>
+                            <group>
+                                <field name="publisher_ids" widget="many2many_tags"/>
+                                <field name="internal_code"/>
+                                <field name="tags" widget="many2many_tags"/>
+                            </group>
                         </group>
                         <notebook colspan="4">
                             <page name="units" string="Units">
@@ -56,11 +58,15 @@
                                 <field name="description" colspan="4"/>
                             </page>
                             <page name="education_details" string="Education Details">
-                                <group colspan="4">
-                                    <separator string="Courses"/>
-                                    <separator string="Subjects"/>
-                                    <field name="course_ids" nolabel="1" widget="many2many_tags"/>
-                                    <field name="subject_ids" nolabel="1" widget="many2many_tags"/>
+                                <group>
+                                    <group string='Courses'>
+                                        <field name="course_ids" nolabel="1" widget="many2many_tags"
+                                               style="width: 300%%"/>
+                                    </group>
+                                    <group string="Subjects">
+                                        <field name="subject_ids" nolabel="1" widget="many2many_tags"
+                                               style="width: 300%%"/>
+                                    </group>
                                 </group>
                             </page>
                             <page name="movements" string="Movements"

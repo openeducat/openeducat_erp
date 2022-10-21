@@ -39,11 +39,15 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4">
-                            <field name="name"/>
-                            <field name="media_id"/>
-                            <field name="barcode" readonly="1"/>
-                            <field name="media_type_id"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="barcode" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="media_id"/>
+                                <field name="media_type_id"/>
+                            </group>
                         </group>
                         <notebook>
                             <page name="movements" string="Movements">

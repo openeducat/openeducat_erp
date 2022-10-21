@@ -45,14 +45,16 @@
                         </div>
                         <group>
                             <group>
-
+                                <field name="register_id"/>
+                                <field name="session_id"
+                                       domain="[('course_id','=',course_id),('batch_id','=',batch_id)]"/>
+                                <field name="course_id" invisible="1"/>
+                                <field name="batch_id" invisible="1"/>
                             </group>
-                            <field name="register_id"/>
-                            <field name="name"/>
-                            <field name="session_id" domain="[('course_id','=',course_id),('batch_id','=',batch_id)]"/>
-                            <field name="attendance_date"/>
-                            <field name="course_id" invisible="1"/>
-                            <field name="batch_id" invisible="1"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="attendance_date"/>
+                            </group>
                         </group>
                         <group col="4" string="Students">
                             <field name="attendance_line" colspan="4" nolabel="1">
