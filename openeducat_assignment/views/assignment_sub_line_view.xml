@@ -43,21 +43,27 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4">
-                            <field name="student_id" domain="[('user_id','=',uid)]"/>
-                            <field name="assignment_id"
+                        <group>
+                            <group>
+                                <field name="student_id" domain="[('user_id','=',uid)]"/>
+                                <field name="assignment_id"
                                    domain="[('allocation_ids','=',student_id),('state','=','publish')]"/>
-                            <field name="submission_date"/>
-                            <field name="user_boolean" invisible="1"/>
-                            <field name="marks"
-                                   attrs="{'readonly':[('state','=','accept')], 'invisible':[('user_boolean','=',False),('state','!=','accept')]}"/>
+                                <field name="marks"
+                                       attrs="{'readonly':[('state','=','accept')], 'invisible':[('user_boolean','=',False),('state','!=','accept')]}"/>
+                            </group>
+                            <group>
+                                <field name="submission_date"/>
+                                <field name="user_boolean" invisible="1"/>
+                            </group>
                         </group>
-                        <group string="Description">
+                        <div>
+                            <label for="description" string="Description" class="mt32"/>
                             <field name="description" nolabel="1"/>
-                        </group>
-                        <group string="Note">
+                        </div>
+                        <div>
+                            <label for="note" string="Note" class="mt32"/>
                             <field name="note" nolabel="1"/>
-                        </group>
+                        </div>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>

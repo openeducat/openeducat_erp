@@ -26,14 +26,16 @@
                     <header/>
                     <sheet>
                         <group>
-                            <group colspan="4" col="4">
+                            <group>
                                 <field name="student_id"/>
-                                <field name="exam_id"/>
                                 <field name="marks"/>
-                                <field name="status"/>
                                 <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
-                                <field name="evaluation_type" invisible="1"/>
                                 <field name="marksheet_line_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="exam_id"/>
+                                <field name="status"/>
+                                <field name="evaluation_type" invisible="1"/>
                             </group>
                         </group>
                     </sheet>

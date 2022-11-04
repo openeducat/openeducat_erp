@@ -45,19 +45,23 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4" colspan="4">
+                        <group>
+                            <group>
                             <field name="name" select="1"/>
-                            <field name="exam_code"/>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                            <field name="course_id"/>
-                            <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"/>
-                            <field name="exam_type"/>
-                            <field name="evaluation_type"/>
-                            <field name="venue" domain="[('is_venue','=',True)]" required="1"/>
+                                <field name="start_date"/>
+                                <field name="course_id"/>
+                                <field name="exam_type"/>
+                                <field name="venue" domain="[('is_venue','=',True)]" required="1"/>
+                            </group>
+                            <group>
+                                <field name="exam_code"/>
+                                <field name="end_date"/>
+                                <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"/>
+                                <field name="evaluation_type"/>
+                            </group>
                         </group>
                         <group string="Exam(s)">
-                            <field name="exam_ids" colspan="4" readonly="1" nolabel="1">
+                            <field name="exam_ids" colspan="2" readonly="1" nolabel="1">
                                 <tree string="Exam">
                                     <field name="name"/>
                                     <field name="subject_id"/>
