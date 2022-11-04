@@ -45,21 +45,25 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4" colspan="4">
-                            <field name="session_id" required="1"/>
-                            <field name="name"/>
-                            <field name="subject_id"/>
-                            <field name="exam_code"/>
-                            <field name="start_time"/>
-                            <field name="end_time"/>
-                            <field name="total_marks"/>
-                            <field name="min_marks"/>
+                        <group>
+                            <group>
+                                <field name="session_id" required="1"/>
+                                <field name="subject_id"/>
+                                <field name="start_time"/>
+                                <field name="total_marks"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                                <field name="exam_code"/>
+                                <field name="end_time"/>
+                                <field name="min_marks"/>
+                            </group>
                         </group>
                         <group string="Attendees">
-                            <field name="attendees_line" colspan="4" nolabel="1"/>
+                            <field name="attendees_line" colspan="2" nolabel="1"/>
                         </group>
-                        <separator colspan="4" string="Description"/>
-                        <field name="note" colspan="4"/>
+                        <separator colspan="2" string="Description"/>
+                        <field name="note" colspan="2"/>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>

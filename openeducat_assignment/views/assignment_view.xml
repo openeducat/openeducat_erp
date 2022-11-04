@@ -55,21 +55,27 @@
                                        style="width: 100%"/>
                             </h1>
                         </div>
-                        <group colspan="4" col="4">
-                            <field name="course_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
-                                   attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="subject_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="faculty_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="assignment_type" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="reviewer" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <group>
+                            <group>
+                                <field name="course_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="subject_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="assignment_type" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
+                                       attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="faculty_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="reviewer" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
                         </group>
                         <notebook colspan="4">
                             <page name="basic_information" string="Basic Information">
-                                <group colspan="4" col="4">
-                                    <field name="issued_date" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                    <field name="submission_date" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                    <field name="marks" attrs="{'readonly':[('state','!=','draft')]}" required="1"/>
+                                <group>
+                                    <group name="i_date">
+                                        <field name="issued_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="submission_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="marks" attrs="{'readonly':[('state','!=','draft')]}" required="1"/>
+                                    </group>
                                 </group>
 
                                 <group id="mark">

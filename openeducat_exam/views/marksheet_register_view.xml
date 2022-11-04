@@ -35,18 +35,22 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group colspan="4" col="4">
-                            <field name="name"/>
-                            <field name="exam_session_id"/>
-                            <field name="generated_by"/>
-                            <field name="generated_date"/>
-                            <field name="total_pass"/>
-                            <field name="total_failed"/>
-                            <field name="result_template_id"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="generated_by"/>
+                                <field name="total_pass"/>
+                                <field name="result_template_id"/>
+                            </group>
+                            <group>
+                                <field name="exam_session_id"/>
+                                <field name="generated_date"/>
+                                <field name="total_failed"/>
+                            </group>
                         </group>
                         <separator string="Marksheets" colspan="4"/>
                         <group colspan="4">
-                            <field name="marksheet_line" nolabel="1"/>
+                            <field name="marksheet_line" colspan="2" nolabel="1"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
