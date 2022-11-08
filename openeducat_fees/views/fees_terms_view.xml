@@ -26,13 +26,17 @@
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <group col="4">
-                            <field name="name"/>
-                            <field name="active"/>
-                            <field name="discount"/>
-                            <field name="fees_terms" required="1"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="active"/>
+                                <field name="fees_terms" required="1"/>
+                            </group>
+                            <group>
+                                <field name="discount"/>
+                            </group>
                         </group>
-                        <field name="note" placeholder="Description..."/>
+                        <field name="note" placeholder="Description..." class="mt32"/>
                         <separator string="Terms" colspan="4"/>
                         <field name="line_ids">
                             <tree>
