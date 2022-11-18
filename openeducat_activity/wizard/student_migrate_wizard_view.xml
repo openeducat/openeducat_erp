@@ -8,10 +8,12 @@
                 <form string="Student Migrate" version="7.0">
                     <sheet>
                         <group>
-                            <field name="date"/>
-                            <field name="course_completed"/>
+                            <group>
+                                <field name="date"/>
+                                <field name="course_completed"/>
+                            </group>
                         </group>
-                        <group col="2">
+                        <group class="mt-3">
                             <group>
                                 <field name="course_from_id"/>
                                 <field name="optional_sub"/>
@@ -26,17 +28,19 @@
                                        domain="[('course_id','=', course_to_id)]"/>
                             </group>
                         </group>
-                        <group col="4" colspan="4" string="Student(s)">
-                            <field name="student_ids" colspan="4" nolabel="1"
-                                   domain="[('course_detail_ids.course_id', '=', course_from_id )]">
-                                <tree>
-                                    <field name="title"/>
-                                    <field name="name"/>
-                                    <field name="middle_name"/>
-                                    <field name="last_name"/>
-                                </tree>
-                            </field>
-                        </group>
+                        <notebook>
+                            <page string="Student(s)" name="students">
+                                <field name="student_ids" nolabel="1"
+                                       domain="[('course_detail_ids.course_id', '=', course_from_id )]">
+                                    <tree>
+                                        <field name="title"/>
+                                        <field name="name"/>
+                                        <field name="middle_name"/>
+                                        <field name="last_name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                     <footer>
                         <span groups="base.group_user">
