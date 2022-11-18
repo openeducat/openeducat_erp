@@ -29,17 +29,23 @@
                             <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
-                        <group col="4" colspan="4">
-                            <field name="student_id"/>
-                            <field name="course_id"/>
-                            <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
-                            <field name="roll_number"/>
-                            <field name="academic_years_id"/>
-                            <field name="academic_term_id"/>
+                        <group>
+                            <group>
+                                <field name="student_id"/>
+                                <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                                <field name="academic_years_id"/>
+                            </group>
+                            <group>
+                                <field name="course_id"/>
+                                <field name="roll_number"/>
+                                <field name="academic_term_id"/>
+                            </group>
                         </group>
-                        <group col="4" string="Subjects">
-                            <field name="subject_ids" colspan="4" nolabel="1"/>
-                        </group>
+                        <notebook>
+                            <page string="Subjects" name="subjects">
+                                <field name="subject_ids" nolabel="1"/>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>

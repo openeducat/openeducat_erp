@@ -38,47 +38,37 @@
             <field name="arch" type="xml">
                 <form string="Sessions">
                     <sheet>
-                        <group col="4" colspan="4">
-                            <field name="course_id"/>
-                            <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"/>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
+                        <group>
+                            <group>
+                                <field name="course_id"/>
+                                <field name="start_date"/>
+                            </group>
+                            <group>
+                                <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"/>
+                                <field name="end_date"/>
+                            </group>
                         </group>
                         <notebook>
                             <page name="monday" string="Monday">
-                                <group>
-                                    <field name="time_table_lines_1" nolabel="1" context="{'default_day': '0'}"/>
-                                </group>
+                                <field name="time_table_lines_1" nolabel="1" context="{'default_day': '0'}"/>
                             </page>
                             <page name="tuesday" string="Tuesday">
-                                <group>
-                                    <field name="time_table_lines_2" nolabel="1" context="{'default_day': '1'}"/>
-                                </group>
+                                <field name="time_table_lines_2" nolabel="1" context="{'default_day': '1'}"/>
                             </page>
                             <page name="wednesday" string="Wednesday">
-                                <group>
-                                    <field name="time_table_lines_3" nolabel="1" context="{'default_day': '2'}"/>
-                                </group>
+                                <field name="time_table_lines_3" nolabel="1" context="{'default_day': '2'}"/>
                             </page>
                             <page name="thursday" string="Thursday">
-                                <group>
-                                    <field name="time_table_lines_4" nolabel="1" context="{'default_day': '3'}"/>
-                                </group>
+                                <field name="time_table_lines_4" nolabel="1" context="{'default_day': '3'}"/>
                             </page>
                             <page name="friday" string="Friday">
-                                <group>
-                                    <field name="time_table_lines_5" nolabel="1" context="{'default_day': '4'}"/>
-                                </group>
+                                <field name="time_table_lines_5" nolabel="1" context="{'default_day': '4'}"/>
                             </page>
                             <page name="saturday" string="Saturday">
-                                <group>
-                                    <field name="time_table_lines_6" nolabel="1" context="{'default_day': '5'}"/>
-                                </group>
+                                <field name="time_table_lines_6" nolabel="1" context="{'default_day': '5'}"/>
                             </page>
                             <page name="sunday" string="Sunday">
-                                <group>
-                                    <field name="time_table_lines_7" nolabel="1" context="{'default_day': '6'}"/>
-                                </group>
+                                <field name="time_table_lines_7" nolabel="1" context="{'default_day': '6'}"/>
                             </page>
                         </notebook>
                     </sheet>
