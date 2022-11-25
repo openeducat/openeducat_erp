@@ -34,13 +34,13 @@
                                     <th>Application No.</th>
                                 </thead>
                                 <tbody class="text-center" style="font-size:12px;">
-                                    <tr t-foreach="get_data" t-as="o">
+                                    <tr t-foreach="get_data" t-as="r">
                                         <td>
-                                            <span t-esc="o['name']"/>
+                                            <span t-esc="r['name']"/>
                                         </td>
                                         <td>
                                             <span
-                                                    t-raw="'%s' %   o['application_no']  if   o['application_no']   else ''"/>
+                                                    t-raw="'%s' %   r['application_no']  if   r['application_no']   else ''"/>
                                         </td>
                                     </tr>
                                 </tbody>
