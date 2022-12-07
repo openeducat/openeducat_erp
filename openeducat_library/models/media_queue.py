@@ -54,15 +54,16 @@ class OpMediaQueue(models.Model):
             raise ValidationError(
                 _('To Date cannot be set before From Date.'))
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         if self.env.user.child_ids:
             raise Warning(_('Invalid Action!\n Parent can not create \
             Media Queue Requests!'))
-        if vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'].next_by_code(
-                'op.media.queue') or '/'
-        return super(OpMediaQueue, self).create(vals)
+        for vals in vals_list:
+            if vals.get('name', '/') == '/':
+                vals['name'] = self.env['ir.sequence'].next_by_code(
+                    'op.media.queue') or '/'
+        return super(OpMediaQueue, self).create(vals_list)
 
     def write(self, vals):
         if self.env.user.child_ids:

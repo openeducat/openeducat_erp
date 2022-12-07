@@ -69,12 +69,13 @@ class OpLibraryCard(models.Model):
         'unique(number)',
         'Library card Number should be unique per card!')]
 
-    @api.model
-    def create(self, vals):
-        x = self.env['ir.sequence'].next_by_code(
-            'op.library.card') or '/'
-        vals['number'] = x
-        res = super(OpLibraryCard, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            x = self.env['ir.sequence'].next_by_code(
+                'op.library.card') or '/'
+            vals['number'] = x
+        res = super(OpLibraryCard, self).create(vals_list)
         if res.type == 'student':
             res.student_id.library_card_id = res
         else:

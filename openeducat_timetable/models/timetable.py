@@ -161,7 +161,7 @@ class OpSession(models.Model):
                             'You cannot create a session for the same batch on same time '
                             'even if it is different subject'))
 
-    @api.model
+    @api.model_create_multi
     def create(self, values):
         res = super(OpSession, self).create(values)
         mfids = res.message_follower_ids

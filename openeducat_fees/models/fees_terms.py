@@ -55,7 +55,7 @@ class OpFeesTerms(models.Model):
     discount = fields.Float(string='Discount (%)',
                             digits='Discount', default=0.0)
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         res = super(OpFeesTerms, self).create(vals)
         if not res.line_ids:

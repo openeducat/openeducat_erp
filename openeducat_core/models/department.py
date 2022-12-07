@@ -30,7 +30,7 @@ class OpDepartment(models.Model):
     code = fields.Char('Code')
     parent_id = fields.Many2one('op.department', 'Parent Department')
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         department = super(OpDepartment, self).create(vals)
         self.env.user.write({'department_ids': [(4, department.id)]})
