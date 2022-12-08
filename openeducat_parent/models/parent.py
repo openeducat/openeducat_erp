@@ -45,14 +45,15 @@ class OpParent(models.Model):
     def _onchange_name(self):
         self.user_id = self.name.user_id and self.name.user_id.id or False
 
-    @api.model
-    def create(self, vals):
-        res = super(OpParent, self).create(vals)
-        if vals.get('student_ids', False) and res.name.user_id:
-            student_ids = self.student_ids.browse(res.student_ids.ids)
-            user_ids = [student_id.user_id.id for student_id in student_ids
-                        if student_id.user_id]
-            res.user_id.child_ids = [(6, 0, user_ids)]
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super(OpParent, self).create(vals_list)
+        for vals in vals_list:
+            if vals.get('student_ids', False) and res.name.user_id:
+                student_ids = self.student_ids.browse(res.student_ids.ids)
+                user_ids = [student_id.user_id.id for student_id in student_ids
+                            if student_id.user_id]
+                res.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
     def write(self, vals):
@@ -100,7 +101,7 @@ class OpStudent(models.Model):
 
     parent_ids = fields.Many2many('op.parent', string='Parent')
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         res = super(OpStudent, self).create(vals)
         if vals.get('parent_ids', False):
@@ -155,7 +156,7 @@ class OpStudent(models.Model):
 class OpSubjectRegistration(models.Model):
     _inherit = "op.subject.registration"
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
             raise exceptions.Warning(_('Invalid Action!\n Parent can not \

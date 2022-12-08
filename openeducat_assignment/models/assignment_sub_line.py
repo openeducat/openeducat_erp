@@ -96,7 +96,7 @@ class OpAssignmentSubLine(models.Model):
         res = super(OpAssignmentSubLine, self).unlink()
         return res
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
             raise Warning(_('Invalid Action!\n Parent can not \

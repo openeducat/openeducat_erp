@@ -47,12 +47,13 @@ class OpMediaUnit(models.Model):
          'Barcode must be unique per Media unit!'),
     ]
 
-    @api.model
-    def create(self, vals):
-        x = self.env['ir.sequence'].next_by_code(
-            'op.media.unit') or '/'
-        vals['barcode'] = x
-        return super(OpMediaUnit, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            x = self.env['ir.sequence'].next_by_code(
+                'op.media.unit') or '/'
+            vals['barcode'] = x
+        return super(OpMediaUnit, self).create(vals_list)
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):

@@ -56,7 +56,7 @@ class OpMediaPurchase(models.Model):
     def act_reject(self):
         self.state = 'reject'
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
             raise exceptions.Warning(_('Invalid Action!\n Parent can not create \
