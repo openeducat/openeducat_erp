@@ -1,482 +1,957 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_timetable
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: openeducaterptranslation\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-30 10:35+0000\n"
-"PO-Revision-Date: 2018-03-21 02:31-0400\n"
-"Last-Translator: akkicode <aakash@openeducat.org>\n"
-"Language-Team: Dutch, Belgium\n"
+"POT-Creation-Date: 2022-12-12 10:59+0000\n"
+"PO-Revision-Date: 2022-12-12 10:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: crowdin.com\n"
-"X-Crowdin-Project: openeducaterptranslation\n"
-"X-Crowdin-Language: nl-BE\n"
-"X-Crowdin-File: /master/openeducat_timetable/i18n/openeducat_timetable.pot\n"
-"Language: nl_BE\n"
+"Plural-Forms: \n"
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: model:mail.template,body_html:openeducat_timetable.session_details_changes
+msgid ""
+"\n"
+"                <ul class=\"o_mail_thread_message_tracking\">\n"
+"                    <li>\n"
+"                        Faculty:\n"
+"                            <span> ${object.faculty_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Subject:\n"
+"                            <span> ${object.subject_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Course:\n"
+"                            <span> ${object.course_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Batch:\n"
+"                            <span> ${object.batch_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Classroom:\n"
+"                            <span> ${object.classroom_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Start Time:\n"
+"                            <span> ${format_datetime(object.start_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        End Time:\n"
+"                            <span> ${format_datetime(object.end_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"\n"
+"                    <li>\n"
+"                        Status:\n"
+"                            % if object.state == 'confirm':\n"
+"                                <span> Confirmed </span>\n"
+"                            % elif object.state == 'cancel'\n"
+"                                <span> Canceled </span>\n"
+"                            % endif\n"
+"                    </li>\n"
+"                </ul>\n"
+"            "
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:mail.template,subject:openeducat_timetable.session_details_changes
+msgid "${object.get_subject()}"
+msgstr "$ {object.get_subject ()}"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__00
 msgid "00"
-msgstr "00"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,hour:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__10
 msgid "10"
-msgstr "10"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,hour:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__11
 msgid "11"
-msgstr "11"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,hour:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__12
 msgid "12"
-msgstr "12"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__15
 msgid "15"
-msgstr "15"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__30
 msgid "30"
-msgstr "30"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,minute:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__45
 msgid "45"
-msgstr "45"
+msgstr ""
 
 #. module: openeducat_timetable
-#: selection:op.period,am_pm:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>Batch :</b>"
+msgstr "<b> batch: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Batch:</b>"
+msgstr "<b> batch: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>Class :</b>"
+msgstr "<b> klasse: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Course:</b>"
+msgstr "<b> cursus: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>End:</b>"
+msgstr "<b> einde: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>Faculty Name:</b>"
+msgstr "<b> Faculteitsnaam: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Faculty:</b>"
+msgstr "<b> Faculteit: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>From Date :</b>"
+msgstr "<b> Van datum: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>From Date:</b>"
+msgstr "<b> Van datum: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Start:</b>"
+msgstr "<b> Start: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Subject:</b>"
+msgstr "<b> Onderwerp: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>To Date :</b>"
+msgstr "<b> tot op heden: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>To Date:</b>"
+msgstr "<b> tot op heden: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<span class=\"fa fa-bars fa-lg\" title=\"Session\"/>"
+msgstr "<span class=\"fa fa-bars fa-lg\" title=\"session\"/>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<span class=\"ml-2\">Faculty TimeTable</span>"
+msgstr "<span class=\"ml-2\"> facultaire tijdschema </span>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<span class=\"ml-2\">TimeTable</span>"
+msgstr "<span class=\"ml-2\"> Timetable </span>"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__am
 msgid "AM"
-msgstr "AM"
+msgstr "BEN"
 
 #. module: openeducat_timetable
-#: field:op.period,am_pm:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
 msgid "AM/PM"
-msgstr "AM/PM"
+msgstr "AM PM"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,batch_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,batch_id:0
-#: field:time.table.report,batch_id:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction
+msgid "Action Needed"
+msgstr "Actie nodig"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__active
+msgid "Active"
+msgstr "Actief"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Archived"
+msgstr "Gearchiveerde"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Are you sure you want to confirm selected sessions ?"
+msgstr "Weet u zeker dat u geselecteerde sessies wilt bevestigen?"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_attachment_count
+msgid "Attachment Count"
+msgstr "Bijlage tellen"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__batch_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__batch_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__batch_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Batch"
-msgstr "Batch"
+msgstr "Partij"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-#: view:website:openeducat_timetable.report_timetable_student_generate
-msgid "Batch:"
-msgstr "Partij:"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_batch_constraint
+msgid "Batch Constraint"
+msgstr "Batchbeperking"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_op_faculty_period_today
-msgid "Book"
-msgstr "Boek"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_batch_and_subject_constraint
+msgid "Batch and Subject Constraint"
+msgstr "Batch- en onderwerpbeperking"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-msgid "Class:"
-msgstr "Klasse:"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Cancel"
+msgstr "Annuleren"
 
 #. module: openeducat_timetable
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: view:time.table.report:openeducat_timetable.view_time_table_report_form
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__cancel
+msgid "Canceled"
+msgstr "Geannuleerd"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__classroom_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__classroom_id
+msgid "Classroom"
+msgstr "Klas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_classroom_constraint
+msgid "Classroom Constraint"
+msgstr "Klasbeperking"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
 msgid "Close"
-msgstr "Sluiten"
+msgstr "Dichtbij"
 
 #. module: openeducat_timetable
-#: field:op.timetable,color:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__color
 msgid "Color Index"
 msgstr "Kleurindex"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,course_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,course_id:0
-#: field:time.table.report,course_id:0
+#: model:ir.model,name:openeducat_timetable.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configuratie -instellingen"
+
+#. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_config
+msgid "Configuration"
+msgstr "Configuratie"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Confirm"
+msgstr "Bevestigen"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.session_confirmation_form_view_act
+msgid "Confirmation"
+msgstr "Bevestiging"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__confirm
+msgid "Confirmed"
+msgstr "Bevestigd"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__course_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__course_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__course_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Course"
 msgstr "Cursus"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Course:"
-msgstr "Cursus:"
-
-#. module: openeducat_timetable
-#: field:gen.time.table.line,create_uid:0
-#: field:generate.time.table,create_uid:0
-#: field:op.period,create_uid:0
-#: field:op.timetable,create_uid:0
-#: field:time.table.report,create_uid:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_uid
 msgid "Created by"
 msgstr "Gemaakt door"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,create_date:0
-#: field:generate.time.table,create_date:0
-#: field:op.period,create_date:0
-#: field:op.timetable,create_date:0
-#: field:time.table.report,create_date:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_date
 msgid "Created on"
 msgstr "Gemaakt op"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,day:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__day
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__type
 msgid "Day"
 msgstr "Dag"
 
 #. module: openeducat_timetable
-#: field:op.timetable,type:0
-msgid "Days"
-msgstr "Dagen"
-
-#. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
 msgid "Delete"
 msgstr "Verwijderen"
 
 #. module: openeducat_timetable
-#: field:op.period,duration:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__display_name
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__done
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Done"
+msgstr "Gedaan"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__draft
+msgid "Draft"
+msgstr "Voorlopige versie"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__duration
 msgid "Duration"
-msgstr "Duur"
+msgstr "Looptijd"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Edit..."
-msgstr "Bewerken..."
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "Edit"
+msgstr "Bewerk"
 
 #. module: openeducat_timetable
-#: field:op.timetable,end_datetime:0
-msgid "End"
-msgstr "Einde"
-
-#. module: openeducat_timetable
-#: field:generate.time.table,end_date:0
-#: field:time.table.report,end_date:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__end_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__end_date
 msgid "End Date"
 msgstr "Einddatum"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "FRI"
-msgstr "VR"
+#. odoo-python
+#: code:addons/openeducat_timetable/wizard/time_table_report.py:0
+#, python-format
+msgid "End Date cannot be set before                 Start Date."
+msgstr ""
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,faculty_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,faculty_id:0
-#: field:time.table.report,faculty_id:0
-#: selection:time.table.report,state:0
+#. odoo-python
+#: code:addons/openeducat_timetable/wizard/generate_timetable.py:0
+#, python-format
+msgid "End Date cannot be set before             Start Date."
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__end_datetime
+msgid "End Time"
+msgstr "Eindtijd"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "End Time cannot be set before Start Time."
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__faculty_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__faculty_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__faculty_id
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__time_table_report__state__faculty
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
 msgid "Faculty"
 msgstr "Faculteit"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "Faculty Name :"
-msgstr "Faculteit naam:"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_faculty_constraint
+msgid "Faculty Constraint"
+msgstr "Faculteitsbeperking"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "Faculty Time Table"
-msgstr "Faculteit Time Table"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_follower_ids
+msgid "Followers"
+msgstr "Volgers"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Faculty:"
-msgstr "Faculteit:"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Volgers (partners)"
 
 #. module: openeducat_timetable
-#: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__4
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Friday"
 msgstr "Vrijdag"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "From Date:"
-msgstr "Vanaf datum:"
-
-#. module: openeducat_timetable
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
 #: model:ir.actions.act_window,name:openeducat_timetable.act_open_generate_time_table_view
 #: model:ir.model,name:openeducat_timetable.model_generate_time_table
-#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table
-msgid "Generate Time Table"
-msgstr "Genereren van tijdschema"
+msgid "Generate Sessions"
+msgstr "Genereer sessies"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_time_table_report_view
+msgid "Generate Sessions Report"
+msgstr "Genereer Sessions Report"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_gen_time_table_line
 msgid "Generate Time Table Lines"
-msgstr "Genereren van tijd tabel lijnen"
+msgstr "Genereer tijdtabellijnen"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_open_time_table_report_view
 #: model:ir.model,name:openeducat_timetable.model_time_table_report
-#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table_report
-#: view:time.table.report:openeducat_timetable.view_time_table_report_form
 msgid "Generate Time Table Report"
-msgstr "Genereren van tijd verslag indienen"
+msgstr "Genereer tijdtabelrapport"
 
 #. module: openeducat_timetable
-#: model:ir.actions.report.xml,name:openeducat_timetable.report_student_timetable_generate
-#: model:ir.actions.report.xml,name:openeducat_timetable.report_teacher_timetable_generate
-msgid "Generate TimeTable"
-msgstr "Genereren van tijdschema"
+#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table
+msgid "Generate Timetable"
+msgstr "Genereer tijdschema"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
+#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table_report
+msgid "Generate Timetable Report"
+msgstr "Genereer het tijdschema -rapport"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Group By..."
-msgstr "Groeperen op..."
+msgstr "Groep door ..."
 
 #. module: openeducat_timetable
-#: field:op.period,hour:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__has_message
+msgid "Has Message"
+msgstr "Heeft bericht"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__hour
 msgid "Hours"
-msgstr "Uur"
+msgstr "Uren "
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,id:0
-#: field:generate.time.table,id:0
-#: field:op.period,id:0
-#: field:op.timetable,id:0
-#: field:report.openeducat_timetable.report_timetable_student_generate,id:0
-#: field:report.openeducat_timetable.report_timetable_teacher_generate,id:0
-#: field:time.table.report,id:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__id
 msgid "ID"
-msgstr "ID"
+msgstr "ID kaart"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,write_uid:0
-#: field:generate.time.table,write_uid:0
-#: field:op.period,write_uid:0
-#: field:op.timetable,write_uid:0
-#: field:time.table.report,write_uid:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not allowed to create the session with same classroom on same date\n"
+"                                and time"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not allowed to create the session with same faculty on same date\n"
+"                                and time"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not allowed to create the session with the same batch and same\n"
+"                                subject on same date and time"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not be allowed to create the session with the same batch even if\n"
+"                                it is for a different subject."
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Indien aangevinkt, vereisen nieuwe berichten uw aandacht. "
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Indien aangevinkt, hebben sommige berichten een leveringsfout. "
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "Import Template for Sessions"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_is_follower
+msgid "Is Follower"
+msgstr "Is volger"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report____last_update
+msgid "Last Modified on"
+msgstr "Laatst gewijzigd op"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_uid
 msgid "Last Updated by"
 msgstr "Laatst bijgewerkt door"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,write_date:0
-#: field:generate.time.table,write_date:0
-#: field:op.period,write_date:0
-#: field:op.timetable,write_date:0
-#: field:time.table.report,write_date:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_date
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr "Laatst geupdate op"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "MON"
-msgstr "MON"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Hoofdbijlage"
 
 #. module: openeducat_timetable
-#: field:op.period,minute:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_error
+msgid "Message Delivery error"
+msgstr "Berichtbezorgingsfout"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_ids
+msgid "Messages"
+msgstr "Berichten "
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__minute
 msgid "Minute"
 msgstr "Minuut"
 
 #. module: openeducat_timetable
-#: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Monday"
 msgstr "Maandag"
 
 #. module: openeducat_timetable
-#: field:op.period,name:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Month"
+msgstr "Maand"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__name
 msgid "Name"
 msgstr "Naam"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "PERIOD"
-msgstr "PERIODE"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "No"
+msgstr "Nee"
 
 #. module: openeducat_timetable
-#: selection:op.period,am_pm:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Aantal acties"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_error_counter
+msgid "Number of errors"
+msgstr "Aantal fouten"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Aantal berichten dat een actie vereist "
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Aantal berichten met leveringsfout"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_op_faculty
+msgid "OpenEduCat Faculty"
+msgstr "Openeducat -faculteit"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__pm
 msgid "PM"
-msgstr "PM"
+msgstr "P.M"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,period_id:0
-#: model:ir.actions.act_window,name:openeducat_timetable.act_op_student_period_today
-#: model:ir.model,name:openeducat_timetable.model_op_period
-#: view:op.period:openeducat_timetable.view_op_period_form
-#: view:op.period:openeducat_timetable.view_op_period_search
-#: view:op.period:openeducat_timetable.view_op_period_tree
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,period_id:0
+#: model:ir.model,name:openeducat_timetable.model_op_timing
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_tree
 msgid "Period"
 msgstr "Periode"
 
 #. module: openeducat_timetable
-#: view:board.board:openeducat_timetable.timetable_faculty_dashboard_form_view
-#: view:board.board:openeducat_timetable.timetable_student_dashboard_form_view
-msgid "Period for Today"
-msgstr "Periode voor vandaag"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
+msgid "Print"
+msgstr "Afdrukken"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_period_view
-#: model:ir.ui.menu,name:openeducat_timetable.menu_op_period
-msgid "Periods"
-msgstr "Perioden"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Proceed"
+msgstr "Doorgaan"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "SAT"
-msgstr "SAT"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS -leveringsfout"
 
 #. module: openeducat_timetable
-#: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__5
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Saturday"
 msgstr "Zaterdag"
 
 #. module: openeducat_timetable
-#: field:time.table.report,state:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__state
 msgid "Select"
-msgstr "Selecteer"
+msgstr "Selecteer "
 
 #. module: openeducat_timetable
-#: field:op.period,sequence:0
+#. odoo-python
+#: code:addons/openeducat_timetable/wizard/time_table_report.py:0
+#, python-format
+msgid "Select date range for a week!"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__sequence
 msgid "Sequence"
-msgstr "Volgorde"
+msgstr "Reeks"
 
 #. module: openeducat_timetable
-#: field:op.timetable,start_datetime:0
-msgid "Start"
-msgstr "Start"
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Session"
+msgstr "Sessie"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,start_date:0
-#: field:time.table.report,start_date:0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_pivot
+msgid "Session Analysis"
+msgstr "Sessieanalyse"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Session Confirmation"
+msgstr "Sessiebevestiging"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__session_count
+msgid "Session Count"
+msgstr "Sessie tellen"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_tree
+msgid "Session Line"
+msgstr "Sessielijn"
+
+#. module: openeducat_timetable
+#: model:mail.template,name:openeducat_timetable.session_details_changes
+msgid "Session details - Send by Email"
+msgstr "Sessiedetails - verzenden per e -mail"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_session_view
+#: model:ir.model,name:openeducat_timetable.model_op_session
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__session_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_faculty_form_session_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_calendar
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_tree
+msgid "Sessions"
+msgstr "Sessions "
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Set to Draft"
+msgstr "Ingesteld om op te stellen"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__start_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__start_date
 msgid "Start Date"
-msgstr "Begindatum"
+msgstr "Startdatum"
 
 #. module: openeducat_timetable
-#: selection:time.table.report,state:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__start_datetime
+msgid "Start Time"
+msgstr "Starttijd"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "State"
+msgstr "Staat"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__state
+msgid "Status"
+msgstr "Toestand"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__time_table_report__state__student
 msgid "Student"
-msgstr "Student"
+msgstr "Leerling"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,subject_id:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: field:op.timetable,subject_id:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__subject_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__subject_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Subject"
 msgstr "Onderwerp"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_timetable_kanban
-msgid "Subject:"
-msgstr "Onderwerp:"
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__6
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Sunday"
+msgstr "Zondag"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "THUR"
-msgstr "THUR"
-
-#. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "TUES"
-msgstr "DINS"
-
-#. module: openeducat_timetable
-#: view:gen.time.table.line:openeducat_timetable.view_gen_time_table_line_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_form
 msgid "Table Line"
-msgstr "Tabelregel"
+msgstr "Tafellijn"
 
 #. module: openeducat_timetable
-#: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__3
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Thursday"
 msgstr "Donderdag"
 
 #. module: openeducat_timetable
-#: field:gen.time.table.line,gen_time_table:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: model:ir.model,name:openeducat_timetable.model_op_timetable
-#: view:op.faculty:openeducat_timetable.view_op_faculty_form_timetable_inherit
-#: field:op.faculty,timetable_ids:0
-#: view:op.timetable:openeducat_timetable.view_op_timetable_calendar
-#: view:op.timetable:openeducat_timetable.view_op_timetable_calendar_dash
-#: view:op.timetable:openeducat_timetable.view_op_timetable_faculty_calendar_dash
-#: view:op.timetable:openeducat_timetable.view_op_timetable_form
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
-#: view:op.timetable:openeducat_timetable.view_op_timetable_tree
-#: view:website:openeducat_timetable.report_timetable_student_generate
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__gen_time_table
 msgid "Time Table"
-msgstr "Tijdschema"
+msgstr "Rooster"
 
 #. module: openeducat_timetable
-#: field:generate.time.table,time_table_lines:0
-#: field:generate.time.table,time_table_lines_1:0
-#: field:generate.time.table,time_table_lines_2:0
-#: field:generate.time.table,time_table_lines_3:0
-#: field:generate.time.table,time_table_lines_4:0
-#: field:generate.time.table,time_table_lines_5:0
-#: field:generate.time.table,time_table_lines_6:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines
 msgid "Time Table Lines"
-msgstr "Tijd tabel lijnen"
+msgstr "Tijdtafellijnen"
 
 #. module: openeducat_timetable
-#: view:time.table.report:openeducat_timetable.view_time_table_report_form
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_1
+msgid "Time Table Lines1"
+msgstr "Tijdtabellijnen1"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_2
+msgid "Time Table Lines2"
+msgstr "Tijdtabellijnen2"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_3
+msgid "Time Table Lines3"
+msgstr "Tijdtabellijnen3"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_4
+msgid "Time Table Lines4"
+msgstr "Tijdtabellijnen4"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_5
+msgid "Time Table Lines5"
+msgstr "Tijdtabellijnen5"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_6
+msgid "Time Table Lines6"
+msgstr "Tijdtabellijnen6"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_7
+msgid "Time Table Lines7"
+msgstr "Tijdtabellijnen7"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
 msgid "Time Table Report"
-msgstr "Tijd tabel verslag"
+msgstr "Tijdtabelrapport"
 
 #. module: openeducat_timetable
-#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_timetable_view
+#: model:ir.actions.report,name:openeducat_timetable.report_teacher_timetable_generate
+msgid "TimeTable for Faculties"
+msgstr "Rooster voor faculteiten"
+
+#. module: openeducat_timetable
+#: model:ir.actions.report,name:openeducat_timetable.report_student_timetable_generate
+msgid "TimeTable for Students"
+msgstr "Dijdschema voor studenten"
+
+#. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_root
+msgid "TimeTables"
+msgstr "Roosters"
+
+#. module: openeducat_timetable
 #: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable
-#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_main
-msgid "Time Tables"
-msgstr "Tijd tabellen"
+msgid "Timetable"
+msgstr "Rooster"
 
 #. module: openeducat_timetable
-#: view:gen.time.table.line:openeducat_timetable.view_gen_time_table_line_tree
-msgid "TimeTable Line"
-msgstr "Tijdschema lijn"
+#: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_student_generate
+msgid "Timetable Student Report"
+msgstr "Rapport over het tijdschema"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "To Date:"
-msgstr "Tot op heden:"
+#: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_teacher_generate
+msgid "Timetable Teacher Report"
+msgstr "Rapport over het tijdschema"
 
 #. module: openeducat_timetable
-#: view:op.timetable:openeducat_timetable.view_op_timetable_search
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__timing_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__timing_id
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_period
+msgid "Timing"
+msgstr "Timing "
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_timing_view
+msgid "Timings"
+msgstr "Timings "
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Today"
 msgstr "Vandaag"
 
 #. module: openeducat_timetable
-#: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__1
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Tuesday"
 msgstr "Dinsdag"
 
 #. module: openeducat_timetable
-#: view:website:openeducat_timetable.report_timetable_student_generate
-#: view:website:openeducat_timetable.report_timetable_teacher_generate
-msgid "WED"
-msgstr "WO"
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__user_ids
+msgid "Users"
+msgstr "Gebruikers "
 
 #. module: openeducat_timetable
-#: selection:gen.time.table.line,day:0
-#: view:generate.time.table:openeducat_timetable.view_generate_time_table_form
-#: selection:op.timetable,type:0
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__website_message_ids
+msgid "Website Messages"
+msgstr "Website -berichten"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__website_message_ids
+msgid "Website communication history"
+msgstr "Website communicatiegeschiedenis"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__2
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
 msgid "Wednesday"
 msgstr "Woensdag"
 
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Week"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_session_confirmation
+msgid "Wizard for Multiple Session Confirmation"
+msgstr "Wizard voor bevestiging van meerdere sessies "
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Yes"
+msgstr "Ja"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid ""
+"You cannot create a session for the same batch on same time and for same "
+"subject"
+msgstr ""
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid ""
+"You cannot create a session for the same batch on same time even if it is "
+"different subject"
+msgstr ""
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "You cannot create a session with same classroom on same date and time"
+msgstr ""
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "You cannot create a session with same faculty on same date and time"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "or"
+msgstr "of"
