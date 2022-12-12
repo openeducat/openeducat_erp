@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* openeducat_fees
+# 	* openeducat_fees
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-25 09:35+0000\n"
-"PO-Revision-Date: 2019-09-25 09:35+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2022-12-09 10:52+0000\n"
+"PO-Revision-Date: 2022-12-09 10:52+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,27 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: openeducat_fees
-#: model:ir.model.fields,help:openeducat_fees.field_op_student_fees_details__invoice_state
-msgid " * The 'Draft' status is used when a user is encoding a new and unconfirmed Invoice.\n"
-" * The 'Open' status is used when user creates invoice, an invoice number is generated. It stays in the open status till the user pays the invoice.\n"
-" * The 'In Payment' status is used when payments have been registered for the entirety of the invoice in a journal configured to post entries at bank reconciliation only, and some of them haven't been reconciled with a bank statement line yet.\n"
-" * The 'Paid' status is set automatically when the invoice is paid. Its related journal entries may or may not be reconciled.\n"
-" * The 'Cancelled' status is used when user cancel invoice."
-msgstr " * El estado 'Borrador' se utiliza cuando un usuario está codificando un nuevo y confirmar la factura.\n"
-" * El estado 'abierto' se utiliza cuando el usuario crea la factura, se genera un número de factura. Se queda en el estado abierto hasta que el usuario paga la factura.\n"
-" * El estado en el pago 'se utiliza cuando los pagos se han registrado para la totalidad de la factura en un diario configurado para publicar entradas en sólo la reconciliación de banco, y algunos de ellos no han sido reconciliados con una línea de estado de cuenta bancaria todavía.\n"
-" * El estado de 'pago' se ajusta automáticamente cuando se paga la factura. Sus entradas de diario relacionados pueden o no pueden reconciliarse.\n"
-" * El estado 'Cancelado' se utiliza cuando el usuario cancela la factura."
-
-#. module: openeducat_fees
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
-msgid "<br/>Invoiced"
-msgstr "<br/> facturado"
-
-#. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "<strong>Fees Detail</strong>"
-msgstr "<Strong> Tarifas Detalle </ strong>"
+msgstr "<strong> Detalles de las tarifas </strong>"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction
@@ -49,15 +31,22 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: openeducat_fees
-#: model:product.category,name:openeducat_fees.op_prod_cat1
-msgid "Admission Fees"
-msgstr "Cuotas de admisión"
+#: model:product.product,name:openeducat_fees.op_product_3
+#: model:product.template,name:openeducat_fees.op_product_3_product_template
+msgid "Admission Fees for Course-2"
+msgstr "Tarifas de admisión para el curso-2"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_6
+#: model:product.template,name:openeducat_fees.op_product_6_product_template
+msgid "Admission Fees for Course-4"
+msgstr "Tarifas de admisión para el curso 4"
 
 #. module: openeducat_fees
 #: model:product.product,name:openeducat_fees.op_product_1
 #: model:product.template,name:openeducat_fees.op_product_1_product_template
-msgid "Admission Fees for BOA"
-msgstr "Precio de las entradas para el BOA"
+msgid "Admission Fees for Course-Sem-1"
+msgstr "Tarifas de admisión para el curso-SEM-1"
 
 #. module: openeducat_fees
 #: model:product.product,name:openeducat_fees.op_product_2
@@ -66,59 +55,60 @@ msgid "Admission Fees for G8-AR"
 msgstr "Precio de las entradas para AR-G8"
 
 #. module: openeducat_fees
-#: model:product.product,name:openeducat_fees.op_product_6
-#: model:product.template,name:openeducat_fees.op_product_6_product_template
-msgid "Admission Fees for Grade-8"
-msgstr "Tasas de admisión para Grado-8"
-
-#. module: openeducat_fees
-#: model:product.product,name:openeducat_fees.op_product_3
-#: model:product.template,name:openeducat_fees.op_product_3_product_template
-msgid "Admission Fees for LTRP"
-msgstr "Precio de las entradas para LTRP"
-
-#. module: openeducat_fees
 #: model:product.product,name:openeducat_fees.op_product_4
 #: model:product.template,name:openeducat_fees.op_product_4_product_template
 msgid "Admission Fees for PPHD"
 msgstr "Precio de las entradas para PPHD"
 
 #. module: openeducat_fees
-#: selection:op.fees.terms,day_type:0
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__day_type__after
 msgid "After"
 msgstr "Después"
 
 #. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__after_discount_amount
+msgid "After Discount Amount"
+msgstr "Después de la cantidad de descuento"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_attachment_count
 msgid "Attachment Count"
-msgstr "cuenta de enlaces"
+msgstr "Recuento de adjuntos"
 
 #. module: openeducat_fees
-#: selection:op.fees.terms,day_type:0
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__batch_id
+msgid "Batch"
+msgstr "Lote"
+
+#. module: openeducat_fees
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__day_type__before
 msgid "Before"
-msgstr "antes de"
+msgstr "Antes"
 
 #. module: openeducat_fees
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__cancel
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
-#: selection:op.student.fees.details,state:0
 msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__company_id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__company_id
 msgid "Company"
-msgstr "Empresa"
+msgstr "Compañía"
 
 #. module: openeducat_fees
-#: selection:fees.detail.report.wizard,fees_filter:0
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__course_id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__course_id
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__fees_detail_report_wizard__fees_filter__course
 msgid "Course"
 msgstr "Curso"
-
-#. module: openeducat_fees
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
-msgid "Create Invoice"
-msgstr "Crear factura"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__create_uid
@@ -139,6 +129,11 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__currency_id
+msgid "Currency"
+msgstr "Divisa"
+
+#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__note
 msgid "Description"
 msgstr "Descripción"
@@ -149,24 +144,34 @@ msgid "Description..."
 msgstr "Descripción..."
 
 #. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__discount
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__discount
+msgid "Discount (%)"
+msgstr "Descuento (%)"
+
+#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__display_name
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__display_name
-#: model:ir.model.fields,field_description:openeducat_fees.field_report_openeducat_fees_report_fees_analysis__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
 
 #. module: openeducat_fees
-#: selection:op.student.fees.details,state:0
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__draft
 msgid "Draft"
-msgstr "Sequía"
+msgstr "Reclutar"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_date
+msgid "Due Date"
+msgstr "Fecha de vencimiento"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__due_days
 msgid "Due Days"
-msgstr "debido Días"
+msgstr "Día de vencimiento"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_id
@@ -176,85 +181,99 @@ msgstr "Tarifa"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__amount
 msgid "Fees Amount"
-msgstr "tasas Importe"
+msgstr "Monto de las tarifas"
 
 #. module: openeducat_fees
 #: model:ir.ui.menu,name:openeducat_fees.menu_op_fees_analysis_report_main
 msgid "Fees Analysis"
-msgstr "Análisis honorarios"
+msgstr "Análisis de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_detail_ids
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Fees Collection Details"
-msgstr "Honorarios de colección Detalles"
+msgstr "Detalles de la colección de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.actions.report,name:openeducat_fees.action_report_fees_detail_analysis
-msgid "Fees Detail Analysis"
-msgstr "Análisis honorarios Detalle"
+msgid "Fees Detail Analysi"
+msgstr "Tarifas Detalle Analysi"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
 msgid "Fees Details"
-msgstr "Cargos detalles"
+msgstr "Detalles de tarifas"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student__fees_details_count
+msgid "Fees Details Count"
+msgstr "Tarifas Detalles Count"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_terms_line
 msgid "Fees Details Line"
-msgstr "Honorarios detalles de la línea"
+msgstr "Línea de detalles de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.fees_detail_report_wizard_act
 msgid "Fees Details Report"
-msgstr "Honorarios detalles de informe"
+msgstr "Informe de detalles de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_element
 msgid "Fees Element for course"
-msgstr "Tasas de elemento de curso"
+msgstr "Elemento de tarifas para el curso"
 
 #. module: openeducat_fees
+#: model:ir.actions.act_window,name:openeducat_fees.act_op_fees_element_view
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__fees_element_line
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_form_1
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.op_fees_element_tree_1
 msgid "Fees Elements"
-msgstr "Elementos honorarios"
+msgstr "Tarifas elementos"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_factor
 msgid "Fees Factor"
-msgstr "Factor de honorarios"
+msgstr "Factor de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__fees_filter
 msgid "Fees Filter"
-msgstr "tasas de filtro"
+msgstr "Filtro de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__fees_line_id
 msgid "Fees Line"
-msgstr "honorarios Línea"
+msgstr "Línea de tarifas"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_search
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_tree
 msgid "Fees Reminder Terms"
-msgstr "Cargos Términos recordatorio"
+msgstr "Términos de recordatorio de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_report_openeducat_fees_report_fees_analysis
 msgid "Fees Report"
-msgstr "Informe honorarios"
+msgstr "Informe de tarifas"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_course__fees_start_date
+msgid "Fees Start Date"
+msgstr "Fecha de inicio de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_course__fees_term_id
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_course__fees_term_id
 msgid "Fees Term"
-msgstr "tasas Plazo"
+msgstr "Término de tarifas"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Fees Term Line"
-msgstr "Tasas Plazo Line"
+msgstr "Tarifas Línea de término"
 
 #. module: openeducat_fees
 #: model:ir.actions.act_window,name:openeducat_fees.act_open_fees_terms_view
@@ -262,45 +281,55 @@ msgstr "Tasas Plazo Line"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__name
 #: model:ir.ui.menu,name:openeducat_fees.menu_fees_terms
 msgid "Fees Terms"
-msgstr "Cargos Términos"
+msgstr "Términos de tarifas"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_fees_terms
 msgid "Fees Terms For Course"
-msgstr "Cargos Condiciones para el curso"
+msgstr "Términos de tarifas para el curso"
 
 #. module: openeducat_fees
-#: code:addons/openeducat_fees/models/fees_terms.py:56
+#: code:addons/openeducat_fees/models/fees_terms.py:0
 #, python-format
 msgid "Fees Terms must be Required!"
-msgstr "Cargos Términos deben ser requeridos!"
+msgstr ""
 
 #. module: openeducat_fees
 #: model:product.product,name:openeducat_fees.op_product_5
 #: model:product.template,name:openeducat_fees.op_product_5_product_template
-msgid "Fees for IELTS"
-msgstr "Las tarifas para el IELTS"
+msgid "Fees for Course-3"
+msgstr "Tarifas para el curso 3"
 
 #. module: openeducat_fees
-#: code:addons/openeducat_fees/models/fees_terms.py:63
+#: code:addons/openeducat_fees/models/fees_terms.py:0
 #, python-format
 msgid "Fees terms must be divided as such sum up in 100%"
-msgstr "Términos tarifas deben ser divididos como tal suma en 100%"
+msgstr ""
+
+#. module: openeducat_fees
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_date
+msgid "Fixed Fees of Dates"
+msgstr "Tarifas fijas de fechas"
+
+#. module: openeducat_fees
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__op_fees_terms__fees_terms__fixed_days
+msgid "Fixed Fees of Days"
+msgstr "Tarifas fijas de días"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_follower_ids
 msgid "Followers"
-msgstr "seguidores"
-
-#. module: openeducat_fees
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
+msgstr "Seguidores"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (Partners)"
+msgstr "Seguidores (socios)"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__id
@@ -308,24 +337,19 @@ msgstr "Seguidores (Partners)"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__id
-#: model:ir.model.fields,field_description:openeducat_fees.field_report_openeducat_fees_report_fees_analysis__id
 msgid "ID"
-msgstr ""
-
-#. module: openeducat_fees
-#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_unread
-msgid "If checked new messages require your attention."
-msgstr "Si se marca nuevos mensajes requieren su atención."
+msgstr "IDENTIFICACIÓN"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Si se selecciona, los mensajes nuevos requieren su atención."
+msgstr "Si se revisan, los nuevos mensajes requieren su atención."
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error
+#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Si está marcada, algunos mensajes tienen un error de entrega."
+msgstr "Si se verifican, algunos mensajes tienen un error de entrega."
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
@@ -333,20 +357,29 @@ msgid "Information"
 msgstr "Información"
 
 #. module: openeducat_fees
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_id
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_state
-msgid "Invoice"
-msgstr "Factura"
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__op_student_fees_details__state__invoice
+msgid "Invoice Created"
+msgstr "Factura creada"
 
 #. module: openeducat_fees
-#: selection:op.student.fees.details,state:0
-msgid "Invoice Created"
-msgstr "Creado factura"
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_id
+msgid "Invoice ID"
+msgstr "ID de factura"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__invoice_state
+msgid "Invoice Status"
+msgstr "Estado de la factura"
+
+#. module: openeducat_fees
+#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
+msgid "Invoiced"
+msgstr "Facturado"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_is_follower
 msgid "Is Follower"
-msgstr "es Seguidor"
+msgstr "Es seguidor"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard____last_update
@@ -354,9 +387,8 @@ msgstr "es Seguidor"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms____last_update
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line____last_update
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details____last_update
-#: model:ir.model.fields,field_description:openeducat_fees.field_report_openeducat_fees_report_fees_analysis____last_update
 msgid "Last Modified on"
-msgstr "Modificada por última vez"
+msgstr "Última modificación en"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_uid
@@ -365,7 +397,7 @@ msgstr "Modificada por última vez"
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms_line__write_uid
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización realizada por"
+msgstr "Última actualización por"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__write_date
@@ -380,27 +412,27 @@ msgstr "Ultima actualización en"
 #: model:product.product,name:openeducat_fees.op_product_7
 #: model:product.template,name:openeducat_fees.op_product_7_product_template
 msgid "Library Fees"
-msgstr "tasas de biblioteca"
+msgstr "Tarifas de biblioteca"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Adjunto principal"
+msgstr "Apego principal"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_error
 msgid "Message Delivery error"
-msgstr "Entrega de mensajes de error"
+msgstr "Error de entrega de mensajes"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_ids
 msgid "Messages"
-msgstr "mensajes"
+msgstr "Mensajes"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__no_days
 msgid "No of Days"
-msgstr "Número de días"
+msgstr "No de días"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_needaction_counter
@@ -409,13 +441,13 @@ msgstr "Número de acciones"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_error_counter
-msgid "Number of error"
-msgstr "Número de error"
+msgid "Number of errors"
+msgstr "Número de errores"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requiere una acción"
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_has_error_counter
@@ -423,14 +455,9 @@ msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de entrega"
 
 #. module: openeducat_fees
-#: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leídos"
-
-#. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_course
 msgid "OpenEduCat Course"
-msgstr "Curso OpenEduCat"
+msgstr "Curso abierto"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.fees_detail_report_wizard_form
@@ -445,7 +472,12 @@ msgstr "Producto"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__product_id
 msgid "Product(s)"
-msgstr "Producto (s)"
+msgstr "(S) producto (s)"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__sequence
@@ -458,17 +490,22 @@ msgid "Status"
 msgstr "Estado"
 
 #. module: openeducat_fees
-#: selection:fees.detail.report.wizard,fees_filter:0
 #: model:ir.model,name:openeducat_fees.model_op_student
 #: model:ir.model.fields,field_description:openeducat_fees.field_fees_detail_report_wizard__student_id
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__student_id
+#: model:ir.model.fields.selection,name:openeducat_fees.selection__fees_detail_report_wizard__fees_filter__student
 msgid "Student"
-msgstr "Estudiante"
+msgstr "Alumno"
+
+#. module: openeducat_fees
+#: model:ir.model,name:openeducat_fees.model_op_student_course
+msgid "Student Course Details"
+msgstr "Detalles del curso del estudiante"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_op_student_fees_details
 msgid "Student Fees Details"
-msgstr "Detalles Tarifas del estudiante"
+msgstr "Detalles de las tarifas de los estudiantes"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
@@ -478,25 +515,32 @@ msgstr "Nombre del estudiante"
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_student_fees_details__date
 msgid "Submit Date"
-msgstr "Fecha de someter"
+msgstr "Fecha de envío"
+
+#. module: openeducat_fees
+#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__fees_terms
+msgid "Term Type"
+msgstr "Tipo de término"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__line_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.view_fees_terms_form
 msgid "Terms"
-msgstr "Condiciones"
+msgstr "Términos"
 
 #. module: openeducat_fees
-#: code:addons/openeducat_fees/models/student.py:68
+#: code:addons/openeducat_fees/models/student.py:0
 #, python-format
 msgid "The value of the deposit amount must be positive."
-msgstr "El valor de la cantidad del depósito debe ser positivo."
+msgstr ""
 
 #. module: openeducat_fees
-#: code:addons/openeducat_fees/models/student.py:63
+#: code:addons/openeducat_fees/models/student.py:0
 #, python-format
-msgid "There is no income account defined for this product: \"%s\".You may have to install a chart of account from Accounting app, settings menu."
-msgstr "No existe una cuenta de ingresos definido para este producto: \"% s\" .tiene puede tener que instalar un plan de cuentas de la aplicación de Contabilidad, el menú correspondiente."
+msgid ""
+"There is no income account defined for this product: \"%s\".You may have to "
+"install a chart of account from Accounting app, settings menu."
+msgstr ""
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
@@ -506,28 +550,34 @@ msgstr "Cantidad total"
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Total Invoiced"
-msgstr "total facturado"
+msgstr "Total facturado"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Total Left"
-msgstr "izquierda total"
+msgstr "Totalmente a la izquierda"
 
 #. module: openeducat_fees
 #: model_terms:ir.ui.view,arch_db:openeducat_fees.report_fees_analysis
 msgid "Total Paid"
-msgstr "A cargo total"
+msgstr "Total pagado"
+
+#. module: openeducat_fees
+#: model:product.product,name:openeducat_fees.op_product_9
+#: model:product.template,name:openeducat_fees.op_product_9_product_template
+msgid "Transportation Fees"
+msgstr "Costos de transporte"
 
 #. module: openeducat_fees
 #: model:product.product,name:openeducat_fees.op_product_8
 #: model:product.template,name:openeducat_fees.op_product_8_product_template
 msgid "Tution Fees"
-msgstr "tasas tución"
+msgstr "Tarifas de tution"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__day_type
 msgid "Type"
-msgstr "Tipo"
+msgstr "Escribe"
 
 #. module: openeducat_fees
 #: model:product.product,uom_name:openeducat_fees.op_product_1
@@ -538,6 +588,7 @@ msgstr "Tipo"
 #: model:product.product,uom_name:openeducat_fees.op_product_6
 #: model:product.product,uom_name:openeducat_fees.op_product_7
 #: model:product.product,uom_name:openeducat_fees.op_product_8
+#: model:product.product,uom_name:openeducat_fees.op_product_9
 #: model:product.template,uom_name:openeducat_fees.op_product_1_product_template
 #: model:product.template,uom_name:openeducat_fees.op_product_2_product_template
 #: model:product.template,uom_name:openeducat_fees.op_product_3_product_template
@@ -546,18 +597,9 @@ msgstr "Tipo"
 #: model:product.template,uom_name:openeducat_fees.op_product_6_product_template
 #: model:product.template,uom_name:openeducat_fees.op_product_7_product_template
 #: model:product.template,uom_name:openeducat_fees.op_product_8_product_template
-msgid "Unit(s)"
-msgstr "Unidad(es)"
-
-#. module: openeducat_fees
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_unread
-msgid "Unread Messages"
-msgstr "Los mensajes no leídos"
-
-#. module: openeducat_fees
-#: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Los mensajes no leídos Contador"
+#: model:product.template,uom_name:openeducat_fees.op_product_9_product_template
+msgid "Units"
+msgstr "Unidades"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_element__value
@@ -566,42 +608,16 @@ msgid "Value (%)"
 msgstr "Valor (%)"
 
 #. module: openeducat_fees
-#: model_terms:ir.ui.view,arch_db:openeducat_fees.view_op_student_form_fees_inherit
-msgid "View Invoice"
-msgstr "Mirar la factura"
-
-#. module: openeducat_fees
 #: model:ir.model.fields,field_description:openeducat_fees.field_op_fees_terms__website_message_ids
 msgid "Website Messages"
-msgstr "Mensajes Sitio Web"
+msgstr "Mensajes del sitio web"
 
 #. module: openeducat_fees
 #: model:ir.model.fields,help:openeducat_fees.field_op_fees_terms__website_message_ids
 msgid "Website communication history"
-msgstr "historia de la comunicación Sitio Web"
+msgstr "Historial de comunicación del sitio web"
 
 #. module: openeducat_fees
 #: model:ir.model,name:openeducat_fees.model_fees_detail_report_wizard
 msgid "Wizard For Fees Details Report"
-msgstr "Asistente para Comisiones detalles Notificar"
-
-#. module: openeducat_fees
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_1
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_2
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_3
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_4
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_5
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_6
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_7
-#: model:product.product,weight_uom_name:openeducat_fees.op_product_8
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_1_product_template
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_2_product_template
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_3_product_template
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_4_product_template
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_5_product_template
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_6_product_template
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_7_product_template
-#: model:product.template,weight_uom_name:openeducat_fees.op_product_8_product_template
-msgid "kg"
-msgstr ""
-
+msgstr "Informe de detalles del mago para las tarifas"
