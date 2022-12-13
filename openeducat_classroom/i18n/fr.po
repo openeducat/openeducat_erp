@@ -1,41 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_classroom
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: openeducaterptranslation\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 11:11+0000\n"
-"PO-Revision-Date: 2018-03-21 03:24-0400\n"
-"Last-Translator: akkicode <aakash@openeducat.org>\n"
-"Language-Team: French, Canada\n"
+"POT-Creation-Date: 2022-12-09 10:22+0000\n"
+"PO-Revision-Date: 2022-12-09 10:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: crowdin.com\n"
-"X-Crowdin-Project: openeducaterptranslation\n"
-"X-Crowdin-Language: fr-CA\n"
-"X-Crowdin-File: /master/openeducat_classroom/i18n/openeducat_classroom.pot\n"
-"Language: fr_CA\n"
+"Plural-Forms: \n"
 
 #. module: openeducat_classroom
-#: field:op.asset,asset_id:0
-#: field:op.classroom,asset_line:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: openeducat_classroom
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: openeducat_classroom
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__asset_id
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__asset_line
 msgid "Asset"
 msgstr "Actif"
 
 #. module: openeducat_classroom
-#: view:op.classroom:openeducat_classroom.view_op_classroom_form
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
 msgid "Asset Management"
 msgstr "La gestion d'actifs"
 
 #. module: openeducat_classroom
-#: view:op.classroom:openeducat_classroom.view_op_classroom_search
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__batch_id
+msgid "Batch"
+msgstr "Lot"
+
+#. module: openeducat_classroom
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
 msgid "Capacity"
 msgstr "Capacité"
 
 #. module: openeducat_classroom
 #: model:ir.ui.menu,name:openeducat_classroom.menu_op_school_config_class_room
 msgid "Class Room Management"
-msgstr "Gestion de classe"
+msgstr "La gestion de classe"
 
 #. module: openeducat_classroom
 #: model:ir.actions.act_window,name:openeducat_classroom.act_open_op_classroom_view
@@ -44,88 +59,115 @@ msgid "Class Rooms"
 msgstr "Salles de classe"
 
 #. module: openeducat_classroom
-#: view:op.classroom:openeducat_classroom.view_op_classroom_form
-#: view:op.classroom:openeducat_classroom.view_op_classroom_search
-#: view:op.classroom:openeducat_classroom.view_op_classroom_tree
-#: field:op.facility.line,classroom_id:0
+#: model:ir.model,name:openeducat_classroom.model_op_classroom
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__classroom_id
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_tree
 msgid "Classroom"
 msgstr "Salle de classe"
 
 #. module: openeducat_classroom
-#: field:op.asset,code:0
-#: view:op.classroom:openeducat_classroom.view_op_classroom_search
-#: field:op.classroom,code:0
-msgid "Code"
-msgstr "Code"
+#: model:ir.model,name:openeducat_classroom.model_op_asset
+msgid "Classroom Assets"
+msgstr "Actifs en classe"
 
 #. module: openeducat_classroom
-#: field:op.classroom,course_id:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__code
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__code
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
+msgid "Code"
+msgstr ""
+
+#. module: openeducat_classroom
+#: model:ir.model.constraint,message:openeducat_classroom.constraint_op_classroom_unique_classroom_code
+msgid "Code should be unique per classroom!"
+msgstr "Le code doit être unique par classe!"
+
+#. module: openeducat_classroom
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__course_id
 msgid "Course"
 msgstr "Cours"
 
 #. module: openeducat_classroom
-#: field:op.asset,create_uid:0
-#: field:op.classroom,create_uid:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__create_uid
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: openeducat_classroom
-#: field:op.asset,create_date:0
-#: field:op.classroom,create_date:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__create_date
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Créé sur"
 
 #. module: openeducat_classroom
-#: view:op.classroom:openeducat_classroom.view_op_classroom_form
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__display_name
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__display_name
+msgid "Display Name"
+msgstr "Afficher un nom"
+
+#. module: openeducat_classroom
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
 msgid "Facilities"
 msgstr "Installations"
 
 #. module: openeducat_classroom
-#: field:op.classroom,facilities:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__facilities
 msgid "Facility Lines"
 msgstr "Lignes d'installation"
 
 #. module: openeducat_classroom
-#: view:op.classroom:openeducat_classroom.view_op_classroom_search
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
 msgid "Group By..."
-msgstr "Grouper par..."
+msgstr "Par groupe..."
 
 #. module: openeducat_classroom
-#: field:op.asset,id:0
-#: field:op.classroom,id:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__id
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__id
 msgid "ID"
-msgstr "ID"
+msgstr "IDENTIFIANT"
 
 #. module: openeducat_classroom
-#: field:op.asset,write_uid:0
-#: field:op.classroom,write_uid:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset____last_update
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom____last_update
+msgid "Last Modified on"
+msgstr "Dernier modification sur"
+
+#. module: openeducat_classroom
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__write_uid
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__write_uid
 msgid "Last Updated by"
 msgstr "Dernière mise à jour par"
 
 #. module: openeducat_classroom
-#: field:op.asset,write_date:0
-#: field:op.classroom,write_date:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__write_date
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__write_date
 msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: openeducat_classroom
-#: view:op.classroom:openeducat_classroom.view_op_classroom_search
-#: field:op.classroom,name:0
+#: model:ir.model,name:openeducat_classroom.model_op_facility_line
+msgid "Manage Facility Line"
+msgstr "Gérer la ligne des installations"
+
+#. module: openeducat_classroom
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__name
+#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
 msgid "Name"
 msgstr "Nom"
 
 #. module: openeducat_classroom
-#: field:op.classroom,capacity:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__capacity
 msgid "No of Person"
-msgstr "Nb de personnes"
+msgstr "Personne de personne"
 
 #. module: openeducat_classroom
-#: field:op.asset,product_id:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__product_id
 msgid "Product"
-msgstr "Article"
+msgstr "Produit"
 
 #. module: openeducat_classroom
-#: field:op.asset,product_uom_qty:0
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__product_uom_qty
 msgid "Quantity"
 msgstr "Quantité"
-
