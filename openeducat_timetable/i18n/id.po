@@ -60,6 +60,47 @@ msgid ""
 "                </ul>\n"
 "            "
 msgstr ""
+"\n"
+"                <ul class=\"o_mail_thread_message_tracking\">\n"
+"                    <li>\n"
+"                        Fakultas:\n"
+"                            <span> ${object.faculty_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Subjek:\n"
+"                            <span> ${object.subject_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Kursus:\n"
+"                            <span> ${object.course_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Kelompok:\n"
+"                            <span> ${object.batch_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Kelas:\n"
+"                            <span> ${object.classroom_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Waktu mulai:\n"
+"                            <span> ${format_datetime(object.start_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Akhir waktu:\n"
+"                            <span> ${format_datetime(object.end_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"\n"
+"                    <li>\n"
+"                        Status:\n"
+"                            % if object.state == 'confirm':\n"
+"                                <span> Dikonfirmasi </span>\n"
+"                            % elif object.state == 'cancel'\n"
+"                                <span> Dibatalkan </span>\n"
+"                            % endif\n"
+"                    </li>\n"
+"                </ul>\n"
+"            "
 
 #. module: openeducat_timetable
 #: model:mail.template,subject:openeducat_timetable.session_details_changes
@@ -360,7 +401,7 @@ msgstr "Durasi"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
 msgid "Edit"
-msgstr ""
+msgstr "Sunting"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__end_date
@@ -487,6 +528,8 @@ msgid ""
 "If checked you will not allowed to create the session with same classroom on same date\n"
 "                                and time"
 msgstr ""
+"Jika dicentang, Anda tidak akan diizinkan membuat sesi dengan kelas yang sama pada tanggal yang sama\n"
+"                                dan waktu"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
@@ -494,6 +537,8 @@ msgid ""
 "If checked you will not allowed to create the session with same faculty on same date\n"
 "                                and time"
 msgstr ""
+"Jika dicentang, Anda tidak akan diizinkan membuat sesi dengan fakultas yang sama pada tanggal yang sama\n"
+"                                dan waktu"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
@@ -501,6 +546,8 @@ msgid ""
 "If checked you will not allowed to create the session with the same batch and same\n"
 "                                subject on same date and time"
 msgstr ""
+"Jika dicentang, Anda tidak akan diizinkan membuat sesi dengan kelompok yang sama dan sama\n"
+" subjek pada tanggal dan waktu yang sama "
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
@@ -508,6 +555,8 @@ msgid ""
 "If checked you will not be allowed to create the session with the same batch even if\n"
 "                                it is for a different subject."
 msgstr ""
+"Jika dicentang, Anda tidak akan diizinkan membuat sesi dengan kumpulan yang sama meskipun\n"
+"itu untuk topik yang berbeda."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
@@ -927,6 +976,8 @@ msgid ""
 "You cannot create a session for the same batch on same time and for same "
 "subject"
 msgstr ""
+"Anda tidak dapat membuat sesi untuk kumpulan yang sama pada waktu yang sama dan untuk yang sama"
+"subjek"
 
 #. module: openeducat_timetable
 #. odoo-python
@@ -936,20 +987,22 @@ msgid ""
 "You cannot create a session for the same batch on same time even if it is "
 "different subject"
 msgstr ""
+"Anda tidak dapat membuat sesi untuk kumpulan yang sama pada waktu yang sama meskipun "
+"subjek yang berbeda"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 #, python-format
 msgid "You cannot create a session with same classroom on same date and time"
-msgstr ""
+msgstr "Anda tidak dapat membuat sesi dengan ruang kelas yang sama pada tanggal dan waktu yang sama"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 #, python-format
 msgid "You cannot create a session with same faculty on same date and time"
-msgstr ""
+msgstr "Anda tidak dapat membuat sesi dengan fakultas yang sama pada tanggal dan waktu yang sama"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
