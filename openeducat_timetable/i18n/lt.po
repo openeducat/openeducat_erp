@@ -1,0 +1,1002 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_timetable
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-13 05:03+0000\n"
+"PO-Revision-Date: 2022-12-13 05:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: openeducat_timetable
+#: model:mail.template,body_html:openeducat_timetable.session_details_changes
+msgid ""
+"\n"
+"                <ul class=\"o_mail_thread_message_tracking\">\n"
+"                    <li>\n"
+"                        Faculty:\n"
+"                            <span> ${object.faculty_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Subject:\n"
+"                            <span> ${object.subject_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Course:\n"
+"                            <span> ${object.course_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Batch:\n"
+"                            <span> ${object.batch_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Classroom:\n"
+"                            <span> ${object.classroom_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Start Time:\n"
+"                            <span> ${format_datetime(object.start_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        End Time:\n"
+"                            <span> ${format_datetime(object.end_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"\n"
+"                    <li>\n"
+"                        Status:\n"
+"                            % if object.state == 'confirm':\n"
+"                                <span> Confirmed </span>\n"
+"                            % elif object.state == 'cancel'\n"
+"                                <span> Canceled </span>\n"
+"                            % endif\n"
+"                    </li>\n"
+"                </ul>\n"
+"            "
+msgstr ""
+"\n"
+"                <Ul class = \"O_Mail_Thread_Message_Tracking\">\n"
+"                    <li>\n"
+"                        Fakultetas:\n"
+"                            <Pan> $ {Object.faculty_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Tema:\n"
+"                            <Pan> $ {Object.subject_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Kursas:\n"
+"                            <Pan> $ {Object.course_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Partija:\n"
+"                            <Pan> $ {Object.batch_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Klasė:\n"
+"                            <Pan> $ {Object.classroom_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Pradžios laikas:\n"
+"                            <Pan> $ {format_dateTime (objektas.start_dateTime, tz = user.tz)} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Pabaigos laikas:\n"
+"                            <Pan> $ {format_dateTime (objektas.end_dateTime, tz = user.tz)} </span>\n"
+"                    </li>\n"
+"\n"
+"                    <li>\n"
+"                        Būsena:\n"
+"                            %, jei objektas.state == 'patvirtinti':\n"
+"                                <Pan> Patvirtinta </span>\n"
+"                            % elif objektas.state == 'Atšaukti'\n"
+"                                <Pan> atšauktas </span>\n"
+"                            % Endif\n"
+"                    </li>\n"
+"                </ul>\n"
+"            "
+
+#. module: openeducat_timetable
+#: model:mail.template,subject:openeducat_timetable.session_details_changes
+msgid "${object.get_subject()}"
+msgstr "$ {Object.get_subject ()}"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__00
+msgid "00"
+msgstr "0"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__10
+msgid "10"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__11
+msgid "11"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__hour__12
+msgid "12"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__15
+msgid "15"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__30
+msgid "30"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__minute__45
+msgid "45"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>Batch :</b>"
+msgstr "<b> partija: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Batch:</b>"
+msgstr "<b> partija: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>Class :</b>"
+msgstr "<b> klasė: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Course:</b>"
+msgstr "<b> Kursas: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>End:</b>"
+msgstr "<b> pabaiga: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>Faculty Name:</b>"
+msgstr "<b> Fakulteto vardas: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Faculty:</b>"
+msgstr "<b> Fakultetas: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>From Date :</b>"
+msgstr "<b> Nuo datos: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>From Date:</b>"
+msgstr "<b> Nuo datos: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Start:</b>"
+msgstr "<b> Pradėti: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<b>Subject:</b>"
+msgstr "<b> Tema: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<b>To Date :</b>"
+msgstr "<b> iki šiol: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<b>To Date:</b>"
+msgstr "<b> iki šiol: </b>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "<span class=\"fa fa-bars fa-lg\" title=\"Session\"/>"
+msgstr "<span class=\"fa fa-bars fa-lg\" title=\"sesija\"/>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+msgid "<span class=\"ml-2\">Faculty TimeTable</span>"
+msgstr "<span class=\"Ml-2\"> Fakulteto tvarkaraštis </span>"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+msgid "<span class=\"ml-2\">TimeTable</span>"
+msgstr "<span class=\"Ml-2\"> Timetable </span>"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__am
+msgid "AM"
+msgstr "ESU"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
+msgid "AM/PM"
+msgstr "RYTO VAKARO"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction
+msgid "Action Needed"
+msgstr "Reikalingas veiksmas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__active
+msgid "Active"
+msgstr "Aktyvus"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Archived"
+msgstr "Archyvuota"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Are you sure you want to confirm selected sessions ?"
+msgstr "Ar tikrai norite patvirtinti pasirinktas sesijas?"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_attachment_count
+msgid "Attachment Count"
+msgstr "Priedų skaičius"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__batch_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__batch_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__batch_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Batch"
+msgstr "Partija"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_batch_constraint
+msgid "Batch Constraint"
+msgstr "Partijos apribojimas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_batch_and_subject_constraint
+msgid "Batch and Subject Constraint"
+msgstr "Partija ir temos suvaržymas"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__cancel
+msgid "Canceled"
+msgstr "Atšauktas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__classroom_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__classroom_id
+msgid "Classroom"
+msgstr "Klasė"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_classroom_constraint
+msgid "Classroom Constraint"
+msgstr "Klasės suvaržymas"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
+msgid "Close"
+msgstr "Uždaryti"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__color
+msgid "Color Index"
+msgstr "Spalvų rodyklė"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigūracijos nustatymai"
+
+#. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_config
+msgid "Configuration"
+msgstr "Konfigūracija"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Confirm"
+msgstr "Patvirtinti"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.session_confirmation_form_view_act
+msgid "Confirmation"
+msgstr "Patvirtinimas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__confirm
+msgid "Confirmed"
+msgstr "Patvirtinta"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__course_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__course_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__course_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Course"
+msgstr "Kursas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_uid
+msgid "Created by"
+msgstr "Sukurta"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_date
+msgid "Created on"
+msgstr "Sukurtas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__day
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__type
+msgid "Day"
+msgstr "Diena"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "Delete"
+msgstr "Ištrinti"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__display_name
+msgid "Display Name"
+msgstr "Rodomas pavadinimas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__done
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Done"
+msgstr "padaryta"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_session__state__draft
+msgid "Draft"
+msgstr "Juodraštis"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__duration
+msgid "Duration"
+msgstr "Trukmė"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "Edit"
+msgstr "Redaguoti"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__end_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__end_date
+msgid "End Date"
+msgstr "Pabaigos data"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/wizard/time_table_report.py:0
+#, python-format
+msgid "End Date cannot be set before                 Start Date."
+msgstr "Pabaigos data negali būti nustatyta anksčiau nei pradžios data."
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/wizard/generate_timetable.py:0
+#, python-format
+msgid "End Date cannot be set before             Start Date."
+msgstr "Pabaigos data negali būti nustatyta anksčiau nei pradžios data."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__end_datetime
+msgid "End Time"
+msgstr "Pabaigos laikas"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "End Time cannot be set before Start Time."
+msgstr "Pabaigos laikas negali būti nustatytas anksčiau nei pradžios laikas."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__faculty_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__faculty_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__faculty_id
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__time_table_report__state__faculty
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
+msgid "Faculty"
+msgstr "Fakultetas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_faculty_constraint
+msgid "Faculty Constraint"
+msgstr "Fakulteto suvaržymas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_follower_ids
+msgid "Followers"
+msgstr "Pasekėjai"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Stebėtojai (partneriai)"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__4
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Friday"
+msgstr "Penktadienis"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_generate_time_table_view
+#: model:ir.model,name:openeducat_timetable.model_generate_time_table
+msgid "Generate Sessions"
+msgstr "Generuoti sesijas"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_time_table_report_view
+msgid "Generate Sessions Report"
+msgstr "Generuoti sesijų ataskaitą"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_gen_time_table_line
+msgid "Generate Time Table Lines"
+msgstr "Generuoti laiko lentelės eilutes"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_time_table_report
+msgid "Generate Time Table Report"
+msgstr "Generuoti laiko lentelės ataskaitą"
+
+#. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table
+msgid "Generate Timetable"
+msgstr "Generuoti tvarkaraštį"
+
+#. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_generate_time_table_report
+msgid "Generate Timetable Report"
+msgstr "Generuoti tvarkaraštį"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Group By..."
+msgstr "Grupuoti pagal..."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__has_message
+msgid "Has Message"
+msgstr "Turi pranešimą"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__hour
+msgid "Hours"
+msgstr "Valandos"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__id
+msgid "ID"
+msgstr "Id"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not allowed to create the session with same classroom on same date\n"
+"                                and time"
+msgstr ""
+"Jei patikrinsite\n"
+"                                Ir laikas"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not allowed to create the session with same faculty on same date\n"
+"                                and time"
+msgstr ""
+"Jei patikrinsite\n"
+"                                Ir laikas"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not allowed to create the session with the same batch and same\n"
+"                                subject on same date and time"
+msgstr ""
+"Jei patikrinsite, jums nebus leista kurti seanso su ta pačia partija ir ta pati\n"
+"                                tema tą pačią dieną ir laiką"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
+msgid ""
+"If checked you will not be allowed to create the session with the same batch even if\n"
+"                                it is for a different subject."
+msgstr ""
+"Jei patikrinsite, jums nebus leista kurti seanso su ta pačia partija, net jei\n"
+"                                Tai skirta kitam dalykui."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Jei patikrinsite, nauji pranešimai reikalauja jūsų dėmesio."
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jei patikrinta, kai kurie pranešimai turi pristatymo klaidą."
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "Import Template for Sessions"
+msgstr "Importuoti seansų šabloną"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_is_follower
+msgid "Is Follower"
+msgstr "Yra sekėjas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation____last_update
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report____last_update
+msgid "Last Modified on"
+msgstr "Paskutinį kartą modifikuotas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_uid
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_uid
+msgid "Last Updated by"
+msgstr "Paskutinį kartą atnaujinta"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_date
+msgid "Last Updated on"
+msgstr "Paskutinį kartą atnaujinta"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Pagrindinis priedas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_error
+msgid "Message Delivery error"
+msgstr "Pranešimo pristatymo klaida"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_ids
+msgid "Messages"
+msgstr "Pranešimai"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__minute
+msgid "Minute"
+msgstr "Minutė"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__0
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Monday"
+msgstr "Pirmadienis"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Month"
+msgstr "Mėnuo"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__name
+msgid "Name"
+msgstr "vardas"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "No"
+msgstr "Ne"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Veiksmų skaičius"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_error_counter
+msgid "Number of errors"
+msgstr "Klaidų skaičius"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Pranešimų, kuriems reikalingas veiksmas, skaičius"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Pranešimų su pristatymo klaida skaičius"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_op_faculty
+msgid "OpenEduCat Faculty"
+msgstr "Atidaryti fakultetą"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__pm
+msgid "PM"
+msgstr ""
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_op_timing
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_tree
+msgid "Period"
+msgstr "Laikotarpis"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
+msgid "Print"
+msgstr "Spausdinti"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Proceed"
+msgstr "Tęsk"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS pristatymo klaida"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__5
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Saturday"
+msgstr "Šeštadienis"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__state
+msgid "Select"
+msgstr "Pasirinkite"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/wizard/time_table_report.py:0
+#, python-format
+msgid "Select date range for a week!"
+msgstr "Pasirinkite savaitės dienų seką!"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__sequence
+msgid "Sequence"
+msgstr "Seka"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Session"
+msgstr "Sesija"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_pivot
+msgid "Session Analysis"
+msgstr "Sesijos analizė"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Session Confirmation"
+msgstr "Sesijos patvirtinimas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__session_count
+msgid "Session Count"
+msgstr "Sesijos skaičius"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_tree
+msgid "Session Line"
+msgstr "Sesijos eilutė"
+
+#. module: openeducat_timetable
+#: model:mail.template,name:openeducat_timetable.session_details_changes
+msgid "Session details - Send by Email"
+msgstr "Sesijos informacija - siųsti el. Paštu"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_session_view
+#: model:ir.model,name:openeducat_timetable.model_op_session
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__session_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_faculty_form_session_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_calendar
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_tree
+msgid "Sessions"
+msgstr "Sesijos"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
+msgid "Set to Draft"
+msgstr "Nustatykite juodraštį"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__start_date
+#: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__start_date
+msgid "Start Date"
+msgstr "Pradžios data"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__start_datetime
+msgid "Start Time"
+msgstr "Pradžios laikas"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "State"
+msgstr "Būsena"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__state
+msgid "Status"
+msgstr "Būsena"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__time_table_report__state__student
+msgid "Student"
+msgstr "Studentas"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__subject_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__subject_id
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Subject"
+msgstr "Tema"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__6
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Sunday"
+msgstr "Sekmadienis"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_form
+msgid "Table Line"
+msgstr "Lentelės eilutė"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__3
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Thursday"
+msgstr "Ketvirtadienis"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__gen_time_table
+msgid "Time Table"
+msgstr "Laiko lentelė"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines
+msgid "Time Table Lines"
+msgstr "Laiko lentelės eilutės"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_1
+msgid "Time Table Lines1"
+msgstr "Laiko lentelės eilutės1"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_2
+msgid "Time Table Lines2"
+msgstr "Laiko lentelės eilutės2"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_3
+msgid "Time Table Lines3"
+msgstr "Laiko lentelės eilutės3"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_4
+msgid "Time Table Lines4"
+msgstr "Laiko lentelės eilutės4"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_5
+msgid "Time Table Lines5"
+msgstr "Laiko lentelės eilutės5"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_6
+msgid "Time Table Lines6"
+msgstr "Laiko lentelės eilutės6"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_7
+msgid "Time Table Lines7"
+msgstr "Laiko lentelės eilutės7"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
+msgid "Time Table Report"
+msgstr "Laiko lentelės ataskaita"
+
+#. module: openeducat_timetable
+#: model:ir.actions.report,name:openeducat_timetable.report_teacher_timetable_generate
+msgid "TimeTable for Faculties"
+msgstr "Fakultetų tvarkaraštis"
+
+#. module: openeducat_timetable
+#: model:ir.actions.report,name:openeducat_timetable.report_student_timetable_generate
+msgid "TimeTable for Students"
+msgstr "Grafikas studentams"
+
+#. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable_root
+msgid "TimeTables"
+msgstr "Tvarkaraščiai"
+
+#. module: openeducat_timetable
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable
+msgid "Timetable"
+msgstr "Tvarkaraštis"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_student_generate
+msgid "Timetable Student Report"
+msgstr "Tvarkaraščio studentų ataskaita"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_teacher_generate
+msgid "Timetable Teacher Report"
+msgstr "Tvarkaraščio mokytojo ataskaita"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__timing_id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__timing_id
+#: model:ir.ui.menu,name:openeducat_timetable.menu_op_period
+msgid "Timing"
+msgstr "Laikas"
+
+#. module: openeducat_timetable
+#: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_timing_view
+msgid "Timings"
+msgstr "Sesijos"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Today"
+msgstr "Šiandien"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__1
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Tuesday"
+msgstr "Antradienis"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__user_ids
+msgid "Users"
+msgstr "Vartotojai"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__website_message_ids
+msgid "Website Messages"
+msgstr "Svetainės pranešimai"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields,help:openeducat_timetable.field_op_session__website_message_ids
+msgid "Website communication history"
+msgstr "Tinklalapio komunikacijos istorija"
+
+#. module: openeducat_timetable
+#: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__2
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
+msgid "Wednesday"
+msgstr "Trečiadienis"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
+msgid "Week"
+msgstr "Savaitė"
+
+#. module: openeducat_timetable
+#: model:ir.model,name:openeducat_timetable.model_session_confirmation
+msgid "Wizard for Multiple Session Confirmation"
+msgstr "Vedlys kelioms sesijos patvirtinimams"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "Yes"
+msgstr "Taip"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "You cannot create a session for the same batch on same time and for same subject"
+msgstr "Negalite sukurti seanso tai pačiai paketai tuo pačiu laiku ir ta pačia tema"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "You cannot create a session for the same batch on same time even if it is different subject"
+msgstr "Negalite sukurti seanso tai pačiai paketai tuo pačiu metu, net jei tai yra kita tema"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "You cannot create a session with same classroom on same date and time"
+msgstr "Negalite sukurti sesijos toje pačioje klasėje tą pačią dieną ir laiku"
+
+#. module: openeducat_timetable
+#. odoo-python
+#: code:addons/openeducat_timetable/models/timetable.py:0
+#, python-format
+msgid "You cannot create a session with same faculty on same date and time"
+msgstr "Negalite sukurti sesijos su tuo pačiu fakultetu tą pačią dieną ir laiku"
+
+#. module: openeducat_timetable
+#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
+msgid "or"
+msgstr "arba"
