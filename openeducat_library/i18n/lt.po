@@ -1,0 +1,1425 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_library
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-13 05:02+0000\n"
+"PO-Revision-Date: 2022-12-13 05:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
+msgid ""
+"\n"
+"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
+"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> has been expired. Please return it as soon as possible.</p>\n"
+"            <p>Thank you.</p>\n"
+"            "
+msgstr ""
+"\n"
+"            <p> brangusis <strong> $ {Object.student_id.name} </strong>\n"
+"            <p> Jūsų $ {Object.media_type_id.name}, <strong> $ {Object.media_id.name} </strong> pasibaigė. Prašau grąžinti jį kuo greičiau. </p>\n"
+"            <p> Ačiū. </p>\n"
+"            "
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement
+msgid ""
+"\n"
+"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
+"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> will \n"
+"                % if object.get_diff_day() == 0:\n"
+"                    be expiring <strong>today.</strong>\n"
+"                % else:\n"
+"                    expire in <strong> ${object.get_diff_day()}</strong> day(s).\n"
+"                % endif\n"
+"                Please return it as soon as possible.</p>\n"
+"            <p>Thank you.</p>\n"
+"            "
+msgstr ""
+"\n"
+"            <p> brangusis <strong> $ {Object.student_id.name} </strong>\n"
+"            <p> tavo $ {object.media_type_id.name}, <strong> $ {object.media_id.name} </strong> will\n"
+"                %, jei objektas.get_diff_day () == 0:\n"
+"                    Būkite pasibaigęs <strong> šiandien. </strong>\n"
+"                % Kitas:\n"
+"                    Galimi <strong> $ {Object.get_diff_day ()} </strong> diena (-os).\n"
+"                % Endif\n"
+"                Prašau grąžinti jį kuo greičiau. </p>\n"
+"            <p> Ačiū. </p>\n"
+"            "
+
+#. module: openeducat_library
+#: model:ir.actions.report,print_report_name:openeducat_library.action_report_student_library_card
+msgid "'Library ID Card - %s' % (object.name)"
+msgstr "Bibliotekos ID kortelė - % s ' % (objektas.Name)"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        Card No :\n"
+"                                                    </span>"
+msgstr ""
+"<br/>\n"
+"                                                    <span style=\"font-weight: 600\">\n"
+"                                                        Kortelės Nr.:\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        Issued Date :\n"
+"                                                    </span>"
+msgstr ""
+"<br/>\n"
+"                                                    <span style=\"font-weight: 600\">\n"
+"                                                        Išduota data:\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        Type :\n"
+"                                                    </span>"
+msgstr ""
+"<br/>\n"
+"                                                    <span style=\"font-weight: 600\">\n"
+"                                                        Tipas:\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<span style=\"font-weight:600\">\n"
+"                                                        Name :\n"
+"                                                    </span>"
+msgstr ""
+"<span style=\"font-weight: 600\">\n"
+"                                                        Vardas :\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "<strong>Library Card(s) Barcode</strong>"
+msgstr "<strong> bibliotekos kortelė (-os) brūkšninis kodas </strong>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Accept"
+msgstr "Priimti"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__accept
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__accept
+msgid "Accepted"
+msgstr "Priimtas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction
+msgid "Action Needed"
+msgstr "Reikalingas veiksmas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__active
+msgid "Active"
+msgstr "Aktyvus"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__actual_return_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__actual_return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Actual Return Date"
+msgstr "Faktinė grąžinimo data"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_movement.py:0
+#, python-format
+msgid "Actual Return Date cannot be set before Issued Date"
+msgstr "Tikroji grąžinimo data negali būti nustatyta anksčiau nei išdavimo data"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__address
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__address_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Address"
+msgstr "Adresas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Address Detail"
+msgstr "Adreso detalė"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Admission Details"
+msgstr "Įėjimo informacija"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_view
+#: model:ir.ui.menu,name:openeducat_library.menu_library_medias
+msgid "All Media"
+msgstr "Visa žiniasklaida"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_search
+msgid "Archived"
+msgstr "Archyvuota"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_attachment_count
+msgid "Attachment Count"
+msgstr "Priedų skaičius"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_tree
+msgid "Author"
+msgstr "Autorius"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__author_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__author
+msgid "Author(s)"
+msgstr "Autorius (-ai)"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_author_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_author_sub
+msgid "Authors"
+msgstr "Autoriai"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__available
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_unit__state__available
+msgid "Available"
+msgstr "Galimas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__barcode
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Barcode"
+msgstr "Brūkšninis kodas"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unit_unique_name_barcode
+msgid "Barcode must be unique per Media unit!"
+msgstr "Brūkšninis kodas turi būti unikalus kiekviename žiniasklaidos bloke!"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/return_media.py:0
+#, python-format
+msgid "Can't return media."
+msgstr "Negalima grąžinti medijos."
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Barcode"
+msgstr "Kortelių brūkšninis kodas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Holder"
+msgstr "Kortelių savininkas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__library_card_type_id
+msgid "Card Type"
+msgstr "Kortelės tipas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "City"
+msgstr "Miestas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__code
+msgid "Code"
+msgstr "Kodas"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_type_unique_media_type_code
+msgid "Code should be unique per media type!"
+msgstr "Kodas turėtų būti unikalus kiekvieno tipo žiniasklaidai!"
+
+#. module: openeducat_library
+#: model:ir.ui.menu,name:openeducat_library.menu_op_school_library_config
+msgid "Configuration"
+msgstr "Konfigūracija"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Country"
+msgstr "Šalis"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__course_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__course_ids
+msgid "Course"
+msgstr "Kursas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Course Details"
+msgstr "Informacija apie kursą"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Courses"
+msgstr "Kursai"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Create Invoice"
+msgstr "Sukurkite sąskaitą faktūrą"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_uid
+msgid "Created by"
+msgstr "Sukurta"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_date
+msgid "Created on"
+msgstr "Sukurtas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__description
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Description"
+msgstr "apibūdinimas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__display_name
+msgid "Display Name"
+msgstr "Rodomas pavadinimas"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__draft
+msgid "Draft"
+msgstr "Juodraštis"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__return_date
+msgid "Due Date"
+msgstr "Terminas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__duration
+msgid "Duration"
+msgstr "Trukmė"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
+msgid "Duration in terms of Number of Lead Days"
+msgstr "Trukmė pagal pristatymo dienų skaičių"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__edition
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+msgid "Edition"
+msgstr "Leidimas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Education Details"
+msgstr "Išsami švietimo informacija"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Educational"
+msgstr "Edukacinis"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/library.py:0
+#, python-format
+msgid "Enter proper value"
+msgstr "Įveskite tinkamą vertę"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__faculty_id
+#: model:ir.model.fields.selection,name:openeducat_library.selection__issue_media__type__faculty
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_library_card__type__faculty
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__type__faculty
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Faculty"
+msgstr "Fakultetas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "First Name"
+msgstr "Pirmas vardas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_follower_ids
+msgid "Followers"
+msgstr "Pasekėjai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Stebėtojai (partneriai)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_from
+msgid "From Date"
+msgstr "Nuo datos"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+msgid "Group By..."
+msgstr "Grupuoti pagal..."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__has_message
+msgid "Has Message"
+msgstr "Turi pranešimą"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__id
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
+msgid "ID"
+msgstr "Id"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
+msgid "ISBN Code"
+msgstr "ISBN kodas"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_isbn
+msgid "ISBN code must be unique per media!"
+msgstr "ISBN kodas turi būti unikalus kiekvienoje laikmenoje!"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Jei patikrinsite, nauji pranešimai reikalauja jūsų dėmesio."
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jei patikrinta, kai kurie pranešimai turi pristatymo klaidą."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__internal_code
+msgid "Internal Code"
+msgstr "Vidinis kodas"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_internal_code
+msgid "Internal Code must be unique per media!"
+msgstr "Vidinis kodas turi būti unikalus kiekvienoje laikmenoje!"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_purchase.py:0
+#, python-format
+msgid "Invalid Action!\n Parent can not create Media Purchase Requests!"
+msgstr "Netinkamas veiksmas!\n Vienas iš tėvų negali sukurti medijos pirkimo užklausų!"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_queue.py:0
+#, python-format
+msgid "Invalid Action!\n Parent can not create Media Queue Requests!"
+msgstr "Netinkamas veiksmas!\n Vienas iš tėvų negali sukurti medijos eilės užklausų!"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_purchase.py:0
+#, python-format
+msgid "Invalid Action!\n Parent can not edit Media Purchase Requests!"
+msgstr "Netinkamas veiksmas!\n Tėvai negali redaguoti medijos pirkimo užklausų!"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_queue.py:0
+#, python-format
+msgid "Invalid Action!\n Parent can not edit Media Queue Requests!"
+msgstr "Netinkamas veiksmas!\n Tėvai negali redaguoti medijos eilės užklausų!"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
+msgid "Invoice"
+msgstr "Sąskaita faktūra"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_is_follower
+msgid "Is Follower"
+msgstr "Yra sekėjas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__issue_date
+msgid "Issue Date"
+msgstr "Išdavimo data"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+msgid "Issue Media"
+msgstr "Išduoti žiniasklaidą"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_issue_media
+msgid "Issue Media Wizard"
+msgstr "Išleisti žiniasklaidos vedlį"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.issue_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Issue media"
+msgstr "Išduoti žiniasklaidą"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__issue
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_unit__state__issue
+msgid "Issued"
+msgstr "Išduotas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__issued_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__issued_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Issued Date"
+msgstr "Išduota data"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Issued Today"
+msgstr "Išleista šiandien"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_account_move
+msgid "Journal Entry"
+msgstr "Žurnalo įrašas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media____last_update
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media____last_update
+msgid "Last Modified on"
+msgstr "Paskutinį kartą modifikuotas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Last Name"
+msgstr "Pavardė"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_uid
+msgid "Last Updated by"
+msgstr "Paskutinį kartą atnaujinta"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_date
+msgid "Last Updated on"
+msgstr "Paskutinį kartą atnaujinta"
+
+#. module: openeducat_library
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_root
+#: model:res.groups,name:openeducat_library.group_op_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
+msgid "Library"
+msgstr "Biblioteka"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_library_card
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__library_card_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Library Card"
+msgstr "Bibliotekos kortelė"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card_barcode
+msgid "Library Card Barcode"
+msgstr "Bibliotekos kortelių brūkšninis kodas"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_library_card_barcode
+msgid "Library Card Barcode Report"
+msgstr "Bibliotekos kortelių brūkšninių kodų ataskaita"
+
+#. module: openeducat_library
+#: model:mail.template,report_name:openeducat_library.email_template_media_movement_after
+#: model:mail.template,subject:openeducat_library.email_template_media_movement_after
+msgid "Library Card Expired"
+msgstr "Bibliotekos kortelės galiojimo laikas pasibaigė"
+
+#. module: openeducat_library
+#: model:mail.template,subject:openeducat_library.email_template_media_movement
+msgid "Library Card Renew"
+msgstr "Bibliotekos kortelės atnaujinimas"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_library_card_type
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_tree
+msgid "Library Card Type"
+msgstr "Bibliotekos kortelės tipas"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_type_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_card_type_sub
+msgid "Library Card Types"
+msgstr "Bibliotekos kortelių tipai"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_card_sub
+msgid "Library Cards"
+msgstr "Bibliotekos kortelės"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card
+msgid "Library ID Card"
+msgstr "Bibliotekos ID kortelė"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_library_card_unique_library_card_number
+msgid "Library card Number should be unique per card!"
+msgstr "Bibliotekos kortelės numeris turėtų būti unikalus už kortelę!"
+
+#. module: openeducat_library
+#: model:product.template,name:openeducat_library.op_product_7_product_template
+msgid "Library penalty fee"
+msgstr "Bibliotekos mokesčiai"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__lost
+msgid "Lost"
+msgstr "Pamesta"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_main_attachment_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Pagrindinis priedas"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/issue_media.py:0
+#, python-format
+msgid "Maximum Number of media allowed for %s is : %s"
+msgstr "Didžiausias leistinas %s laikmenų skaičius yra: %s"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_id
+#: model:ir.ui.menu,name:openeducat_library.menu_op_sub_media_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
+msgid "Media"
+msgstr "Žiniasklaida"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media :"
+msgstr "Žiniasklaida:"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_author
+#: model:ir.model,name:openeducat_library.model_return_media
+msgid "Media Author"
+msgstr "Žiniasklaidos autorius"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
+msgid "Media Barcode"
+msgstr "Žiniasklaidos brūkšninis kodas"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_media_barcode
+msgid "Media Barcode Report"
+msgstr "Žiniasklaidos brūkšninių kodų ataskaita"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media
+msgid "Media Details"
+msgstr "Informacija apie žiniasklaidą"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_movement
+#: model:mail.template,name:openeducat_library.email_template_media_movement
+msgid "Media Movement"
+msgstr "Žiniasklaidos judėjimas"
+
+#. module: openeducat_library
+#: model:mail.template,name:openeducat_library.email_template_media_movement_after
+msgid "Media Movement After Due Date Passed"
+msgstr "Žiniasklaidos judėjimas po termino datos"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_after_ir_actions_server
+msgid "Media Movement Line After 1 Days"
+msgstr "Žiniasklaidos judėjimo linija po 1 dienų"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_1_ir_actions_server
+msgid "Media Movement Line Before 1 Days"
+msgstr "Žiniasklaidos judėjimo linija prieš 1 dienas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
+msgid "Media Movement Lines Count"
+msgstr "Žiniasklaidos judėjimo linijų skaičius"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
+msgid "Media Movements"
+msgstr "Žiniasklaidos judesiai"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Name"
+msgstr "Žiniasklaidos vardas"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_purchase
+msgid "Media Purchase Request"
+msgstr "Žiniasklaidos pirkimo užklausa"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_purchase_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_request_library_sub
+msgid "Media Purchase Requests"
+msgstr "Žiniasklaidos pirkimo užklausos"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__queue_ids
+msgid "Media Queue"
+msgstr "Žiniasklaidos eilė"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_queue
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_graph
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
+msgid "Media Queue Request"
+msgstr "Žiniasklaidos eilės užklausa"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_queue_request_library_sub
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Queue Requests"
+msgstr "Žiniasklaidos eilės prašymai"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+msgid "Media Reservation"
+msgstr "Žiniasklaidos rezervacija"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_reserve_media
+msgid "Media Reserve"
+msgstr "Žiniasklaidos rezervas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Media Return"
+msgstr "Žiniasklaidos sugrįžimas"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_tag
+msgid "Media Tags"
+msgstr "Žiniasklaidos žymės"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_type_view
+#: model:ir.model,name:openeducat_library.model_op_media_type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_type_id
+#: model:ir.ui.menu,name:openeducat_library.menu_op_tag_sub
+msgid "Media Type"
+msgstr "Medijos tipas"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_unit
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media Unit"
+msgstr "Žiniasklaidos vienetas"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/return_media.py:0
+#, python-format
+msgid "Media Unit can not be returned because it's state is : %s"
+msgstr "Medijos vieneto negalima grąžinti, nes jo būsena yra: %s"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_unit_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_unit_graph
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_unit_pivot
+msgid "Media Units"
+msgstr "Žiniasklaidos padaliniai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__media_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+msgid "Media(s)"
+msgstr "Žiniasklaida (-os)"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error
+msgid "Message Delivery error"
+msgstr "Pranešimo pristatymo klaida"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_ids
+msgid "Messages"
+msgstr "Pranešimai"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Middle Name"
+msgstr "Antras vardas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__movement_line
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Movements"
+msgstr "Judesiai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+msgid "Name"
+msgstr "vardas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
+msgid "No of medias Allowed"
+msgstr "Jokių laikmenų neleidžiama"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
+msgid "Number"
+msgstr "Numeris"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Veiksmų skaičius"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of errors"
+msgstr "Klaidų skaičius"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Pranešimų, kuriems reikalingas veiksmas, skaičius"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Pranešimų su pristatymo klaida skaičius"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_faculty
+msgid "OpenEduCat Faculty"
+msgstr "Atidaryti fakultetą"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__partner_id
+msgid "Partner"
+msgstr "Partneris"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__penalty
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Penalty"
+msgstr "Bausmė"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__penalty_amt_per_day
+msgid "Penalty Amount per Day"
+msgstr "Baudos suma per dieną"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__partner_id
+msgid "Person"
+msgstr "Asmuo"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__reserver_name
+msgid "Person Name"
+msgstr "Asmens vardas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Personal Information"
+msgstr "Asmeninė informacija"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Proceed"
+msgstr "Tęsk"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_publisher
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_tree
+msgid "Publisher"
+msgstr "Leidėjas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__publisher_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__publisher
+msgid "Publisher(s)"
+msgstr "Leidėjas (-ai)"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_publisher_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_publisher_sub
+msgid "Publishers"
+msgstr "Leidėjai"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_purchase_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_graph
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_tree
+msgid "Purchase Request"
+msgstr "Pirkimo uzklausa"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Reject"
+msgstr "Atmesti"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__reject
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__reject
+msgid "Rejected"
+msgstr "Atstumtas"
+
+#. module: openeducat_library
+#: model:mail.template,report_name:openeducat_library.email_template_media_movement
+msgid "Renew"
+msgstr "Atnaujinti"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__request
+msgid "Request"
+msgstr "Prašymas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+msgid "Request Again"
+msgstr "Vėl paprašyti"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Request media"
+msgstr "Prašyti žiniasklaidos"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__request
+msgid "Requested"
+msgstr "Paprašė"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__requested_id
+msgid "Requested By"
+msgstr "Prašoma"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Reservation Detail"
+msgstr "Rezervavimo detalė"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__reserve
+msgid "Reserved"
+msgstr "Rezervuota"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Return Date"
+msgstr "Grįžimo data"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_movement.py:0
+#: code:addons/openeducat_library/wizards/issue_media.py:0
+#, python-format
+msgid "Return Date cannot be set before Issued Date."
+msgstr "Grąžinimo data negali būti nustatyta anksčiau nei išdavimo data."
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.return_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Return Media"
+msgstr "Grįžtanti žiniasklaida"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
+msgid "Returned"
+msgstr "Grįžo"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return_done
+msgid "Returned Done"
+msgstr "Grįžo padaryta"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Returned Today"
+msgstr "Grįžo šiandien"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "SMS pristatymo klaida"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__name
+msgid "Sequence No"
+msgstr "Seka Nr"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
+msgid "Server Actions Media Movement"
+msgstr "Serverio veiksmai žiniasklaidos judėjimas"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
+msgid "Server Actions Media Movement After 1 Days"
+msgstr "Serverio veiksmai žiniasklaidos judėjimas po 1 dienų"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "State"
+msgstr "Būsena"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+msgid "Status"
+msgstr "Būsena"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street..."
+msgstr "Gatvė ..."
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street2"
+msgstr "2 gatvė"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_student
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__student_id
+#: model:ir.model.fields.selection,name:openeducat_library.selection__issue_media__type__student
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_library_card__type__student
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__type__student
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Student"
+msgstr "Studentas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__partner_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__partner_id
+msgid "Student/Faculty"
+msgstr "Studentas/dėstytojai"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Student/Faculty Detail"
+msgstr "Studentų/dėstytojų detalė"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__subject_ids
+msgid "Subject"
+msgstr "Tema"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__subject_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Subjects"
+msgstr "Temos"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_tree
+msgid "Tag"
+msgstr "Žyma"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__tags
+msgid "Tag(s)"
+msgstr "Žyma (-os)"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_tag_view
+msgid "Tags"
+msgstr "Žymos"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_movement.py:0
+#, python-format
+msgid "There is no income account defined for this product: \"%s\". You may have to install a chart of account from Accounting app, settings menu."
+msgstr "Šiam produktui neapibrėžta pajamų sąskaita: \"%s\". Gali tekti įdiegti sąskaitų planą iš Apskaitos programos, nustatymų meniu."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Title"
+msgstr "Pavadinimas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
+msgid "To Date"
+msgstr "Iki šiol"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_queue.py:0
+#, python-format
+msgid "To Date cannot be set before From Date."
+msgstr "Iki datos negalima nustatyti anksčiau nei nuo datos."
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__type
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+msgid "Type"
+msgstr "Tipas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__unit_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Units"
+msgstr "Vienetai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__user_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "User"
+msgstr "Vartotojas"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__user_id
+msgid "Users"
+msgstr "Vartotojai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__website_message_ids
+msgid "Website Messages"
+msgstr "Svetainės pranešimai"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__website_message_ids
+msgid "Website communication history"
+msgstr "Tinklalapio komunikacijos istorija"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "ZIP"
+msgstr "Užtrauktukas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "media"
+msgstr "žiniasklaida"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+msgid "media Issue"
+msgstr "Žiniasklaidos problema"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
+msgid "media Movement"
+msgstr "Žiniasklaidos judėjimas"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+msgid "media Queue Request"
+msgstr "Žiniasklaidos eilės užklausa"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/issue_media.py:0
+#, python-format
+msgid "media Unit can not be issued because it's state is : %s"
+msgstr "laikmenos vienetas negali būti išduotas, nes jo būsena yra: %s"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+msgid "media Units"
+msgstr "Žiniasklaidos padaliniai"
