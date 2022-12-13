@@ -24,6 +24,11 @@ msgid ""
 "            <p>Thank you.</p>\n"
 "            "
 msgstr ""
+"\n"
+" <p>Gentile <strong> ${object.student_id.name} </strong>\n"
+" <p>Il tuo ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> è scaduto. Restituiscilo il prima possibile.</p>\n"
+" <p>Grazie.</p>\n"
+" "
 
 #. module: openeducat_library
 #: model:mail.template,body_html:openeducat_library.email_template_media_movement
@@ -40,11 +45,22 @@ msgid ""
 "            <p>Thank you.</p>\n"
 "            "
 msgstr ""
+"\n"
+" <p>Gentile <strong> ${object.student_id.name} </strong>\n"
+" <p>Il tuo ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> sarà \n"
+" % se oggetto.get_diff_day() == 0:\n"
+" in scadenza <strong>oggi.</strong>\n"
+"% altro:\n"
+" scade tra <strong> ${object.get_diff_day()}</strong> giorno/i.\n"
+" %endif\n"
+" Si prega di restituirlo il prima possibile.</p>\n"
+" <p>Grazie.</p>\n"
+" "
 
 #. module: openeducat_library
 #: model:ir.actions.report,print_report_name:openeducat_library.action_report_student_library_card
 msgid "'Library ID Card - %s' % (object.name)"
-msgstr ""
+msgstr "'Tessera d'identità della biblioteca - %s' % (nome.oggetto)"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -54,6 +70,10 @@ msgid ""
 "                                                        Card No :\n"
 "                                                    </span>"
 msgstr ""
+"<br/>\n"
+" <span style=\"font-weight:600\">\n"
+"Numero carta:\n"
+" </span>"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -63,6 +83,10 @@ msgid ""
 "                                                        Issued Date :\n"
 "                                                    </span>"
 msgstr ""
+"<br/>\n"
+" <span style=\"font-weight:600\">\n"
+" Data di emissione :\n"
+" </span>"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -72,6 +96,10 @@ msgid ""
 "                                                        Type :\n"
 "                                                    </span>"
 msgstr ""
+"<br/>\n"
+" <span style=\"font-weight:600\">\n"
+" Digita :\n"
+" </span>"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -80,6 +108,9 @@ msgid ""
 "                                                        Name :\n"
 "                                                    </span>"
 msgstr ""
+"<span style=\"font-weight:600\">\n"
+" Nome :\n"
+" </span>"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
@@ -129,7 +160,7 @@ msgstr "Data di restituzione effettiva"
 #: code:addons/openeducat_library/models/media_movement.py:0
 #, python-format
 msgid "Actual Return Date cannot be set before Issued Date"
-msgstr ""
+msgstr "La data di restituzione effettiva non può essere impostata prima della data di emissione"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__address
@@ -219,7 +250,7 @@ msgstr "Il codice a barre deve essere unico per unità multimediale!"
 #: code:addons/openeducat_library/wizards/return_media.py:0
 #, python-format
 msgid "Can't return media."
-msgstr ""
+msgstr "Impossibile restituire i file multimediali."
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
@@ -391,7 +422,7 @@ msgstr "Educativo"
 #: code:addons/openeducat_library/models/library.py:0
 #, python-format
 msgid "Enter proper value"
-msgstr ""
+msgstr "Immettere il valore corretto"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__faculty_id
@@ -517,6 +548,8 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not create             Media Purchase Requests!"
 msgstr ""
+"Azione non valida!\n"
+"Il genitore non può creare richieste di acquisto di contenuti multimediali!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -526,6 +559,8 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not create             Media Queue Requests!"
 msgstr ""
+"Azione non valida!\n"
+"Il genitore non può creare richieste di coda multimediale!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -535,6 +570,8 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not edit             Media Purchase Requests!"
 msgstr ""
+"Azione non valida!\n"
+"Il genitore non può modificare le richieste di acquisto di contenuti multimediali!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -544,6 +581,8 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not edit             Media Queue Requests!"
 msgstr ""
+"Azione non valida!\n"
+"Il genitore non può modificare le richieste della coda multimediale!"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
@@ -759,7 +798,7 @@ msgstr "Attacco principale"
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 #, python-format
 msgid "Maximum Number of media allowed for %s is : %s"
-msgstr ""
+msgstr "Il numero massimo di supporti consentiti per %s è : %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
@@ -924,9 +963,8 @@ msgstr "Unità multimediale"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 #, python-format
-msgid ""
-"Media Unit can not be returned                 because it's state is : %s"
-msgstr ""
+msgid "Media Unit can not be returned                 because it's state is : %s"
+msgstr "L'unità multimediale non può essere restituita perché il suo stato è: %s"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
@@ -1170,7 +1208,7 @@ msgstr "Data di ritorno"
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 #, python-format
 msgid "Return Date cannot be set before Issued Date."
-msgstr ""
+msgstr "La data di restituzione non può essere impostata prima della data di emissione."
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.return_media_act
@@ -1308,6 +1346,9 @@ msgid ""
 "\"%s\". You may have to install a chart of                     account from "
 "Accounting app, settings                     menu."
 msgstr ""
+"Non esiste un conto reddito definito per questo prodotto: "
+"\"%s\". Potrebbe essere necessario installare un piano dei conti da "
+"App di contabilità, menu delle impostazioni."
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__name
@@ -1326,7 +1367,7 @@ msgstr "Ad oggi"
 #: code:addons/openeducat_library/models/media_queue.py:0
 #, python-format
 msgid "To Date cannot be set before From Date."
-msgstr ""
+msgstr "A data non può essere impostato prima di From date."
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__type
@@ -1403,9 +1444,8 @@ msgstr "Richiesta di coda multimediale"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 #, python-format
-msgid ""
-"media Unit can not be issued                     because it's state is : %s"
-msgstr ""
+msgid "media Unit can not be issued                     because it's state is : %s"
+msgstr "L'unità multimediale non può essere emessa perché il suo stato è: %s"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search

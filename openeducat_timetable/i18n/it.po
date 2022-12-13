@@ -60,6 +60,47 @@ msgid ""
 "                </ul>\n"
 "            "
 msgstr ""
+"\n"
+"                <ul class=\"o_mail_thread_message_tracking\">\n"
+"                    <li>\n"
+"                        Facoltà:\n"
+"                            <span> ${object.faculty_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Materia:\n"
+"                            <span> ${object.subject_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Corso:\n"
+"                            <span> ${object.course_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Lotto:\n"
+"                            <span> ${object.batch_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Aula:\n"
+"                            <span> ${object.classroom_id.name} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Ora di inizio:\n"
+"                            <span> ${format_datetime(object.start_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"                    <li>\n"
+"                        Tempo scaduto:\n"
+"                            <span> ${format_datetime(object.end_datetime, tz=user.tz)} </span>\n"
+"                    </li>\n"
+"\n"
+"                    <li>\n"
+"                        Status:\n"
+"                            % if object.state == 'confirm':\n"
+"                                <span> Confermato </span>\n"
+"                            % elif object.state == 'cancel'\n"
+"                                <span> Annullato </span>\n"
+"                            % endif\n"
+"                    </li>\n"
+"                </ul>\n"
+"            "
 
 #. module: openeducat_timetable
 #: model:mail.template,subject:openeducat_timetable.session_details_changes
@@ -373,14 +414,14 @@ msgstr "Data di fine"
 #: code:addons/openeducat_timetable/wizard/time_table_report.py:0
 #, python-format
 msgid "End Date cannot be set before                 Start Date."
-msgstr ""
+msgstr "La data di fine non può essere impostata prima della data di inizio."
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/generate_timetable.py:0
 #, python-format
 msgid "End Date cannot be set before             Start Date."
-msgstr ""
+msgstr "La data di fine non può essere impostata prima della data di inizio."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__end_datetime
@@ -392,7 +433,7 @@ msgstr "Tempo scaduto"
 #: code:addons/openeducat_timetable/models/timetable.py:0
 #, python-format
 msgid "End Time cannot be set before Start Time."
-msgstr ""
+msgstr "L'ora di fine non può essere impostata prima dell'ora di inizio."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__faculty_id
@@ -487,6 +528,8 @@ msgid ""
 "If checked you will not allowed to create the session with same classroom on same date\n"
 "                                and time"
 msgstr ""
+"Se spuntato non potrai creare la sessione con la stessa aula nella stessa data\n"
+"                                E tempo"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
@@ -494,6 +537,8 @@ msgid ""
 "If checked you will not allowed to create the session with same faculty on same date\n"
 "                                and time"
 msgstr ""
+"Se spuntato non potrai creare la sessione con la stessa facoltà nella stessa data\n"
+"                                E tempo"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
@@ -501,6 +546,8 @@ msgid ""
 "If checked you will not allowed to create the session with the same batch and same\n"
 "                                subject on same date and time"
 msgstr ""
+"Se selezionato non ti sarà permesso di creare la sessione con lo stesso batch e lo stesso\n"
+"soggetto nella stessa data e ora"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
@@ -508,6 +555,8 @@ msgid ""
 "If checked you will not be allowed to create the session with the same batch even if\n"
 "                                it is for a different subject."
 msgstr ""
+"Se selezionato non ti sarà permesso di creare la sessione con lo stesso batch anche se\n"
+"è per un argomento diverso."
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
@@ -525,7 +574,7 @@ msgstr "Se controllati, alcuni messaggi hanno un errore di consegna."
 #: code:addons/openeducat_timetable/models/timetable.py:0
 #, python-format
 msgid "Import Template for Sessions"
-msgstr ""
+msgstr "Modello di importazione per le sessioni"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_is_follower
@@ -676,7 +725,7 @@ msgstr "Selezionare"
 #: code:addons/openeducat_timetable/wizard/time_table_report.py:0
 #, python-format
 msgid "Select date range for a week!"
-msgstr ""
+msgstr "Seleziona l'intervallo di date per una settimana!"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__sequence
@@ -927,6 +976,8 @@ msgid ""
 "You cannot create a session for the same batch on same time and for same "
 "subject"
 msgstr ""
+"Non puoi creare una sessione per lo stesso batch alla stessa ora e per lo stesso "
+"materia"
 
 #. module: openeducat_timetable
 #. odoo-python
@@ -936,20 +987,22 @@ msgid ""
 "You cannot create a session for the same batch on same time even if it is "
 "different subject"
 msgstr ""
+"Impossibile creare una sessione per lo stesso batch alla stessa ora anche se lo è"
+"oggetto diverso"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 #, python-format
 msgid "You cannot create a session with same classroom on same date and time"
-msgstr ""
+msgstr "Non è possibile creare una sessione con la stessa classe nella stessa data e ora"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 #, python-format
 msgid "You cannot create a session with same faculty on same date and time"
-msgstr ""
+msgstr "Non puoi creare una sessione con la stessa facoltà nella stessa data e ora"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form

@@ -23,6 +23,10 @@ msgid ""
 "<p>Thank you.</p>\n"
 "            "
 msgstr ""
+"<p>Gentile <strong>${object.student_id.name}</strong>\n"
+"<p>Il tuo invio del compito <strong>(${object.assignment_id.name})</strong> data <strong>(${object.submission_date})</strong> è stato superato. Invialo non appena possibile.</p>\n"
+"<p>Grazie.</p>\n"
+" "
 
 #. module: openeducat_assignment
 #: model:mail.template,body_html:openeducat_assignment.email_template_assignment_submission
@@ -32,6 +36,10 @@ msgid ""
 "<p>Thank you.</p>\n"
 "            "
 msgstr ""
+"<p>Gentile <strong>${object.student_id.name}</strong>\n"
+"<p>La data di invio del tuo compito <strong>(${object.assignment_id.name})</strong> è il <strong>${object.submission_date}</strong>. Inviala il prima possibile.</ p>\n"
+"<p>Grazie.</p>\n"
+" "
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
@@ -386,6 +394,8 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not             create Assignment Submissions!"
 msgstr ""
+"Azione non valida!\n"
+"Il genitore non può creare invii di compiti!"
 
 #. module: openeducat_assignment
 #. odoo-python
@@ -395,6 +405,8 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not edit             Assignment Submissions!"
 msgstr ""
+"Azione non valida!\n"
+"Il genitore non può modificare l'invio dei compiti!"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_is_follower
@@ -605,7 +617,7 @@ msgstr "Data di presentazione approvata"
 #: code:addons/openeducat_assignment/models/assignment.py:0
 #, python-format
 msgid "Submission Date cannot be set before Issue Date."
-msgstr ""
+msgstr "La data di invio non può essere impostata prima della data di emissione."
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__assignment_sub_line
@@ -678,4 +690,4 @@ msgstr "Settimana"
 #: code:addons/openeducat_assignment/models/assignment_sub_line.py:0
 #, python-format
 msgid "You can't delete none draft submissions!"
-msgstr ""
+msgstr "Non puoi eliminare nessuna bozza inviata!"
