@@ -104,12 +104,13 @@ class OpStudent(models.Model):
     @api.model_create_multi
     def create(self, vals):
         res = super(OpStudent, self).create(vals)
-        if vals.get('parent_ids', False):
-            for parent_id in res.parent_ids:
-                if parent_id.user_id:
-                    user_ids = [x.user_id.id for x in parent_id.student_ids
-                                if x.user_id]
-                    parent_id.user_id.child_ids = [(6, 0, user_ids)]
+        for values in vals:
+            if values.get('parent_ids', False):
+                for parent_id in res.parent_ids:
+                    if parent_id.user_id:
+                        user_ids = [x.user_id.id for x in parent_id.student_ids
+                                    if x.user_id]
+                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
     def write(self, vals):
