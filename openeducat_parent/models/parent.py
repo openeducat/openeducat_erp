@@ -82,7 +82,7 @@ class OpParent(models.Model):
             if not record.name.user_id:
                 groups_id = template and template.groups_id or False
                 user_ids = [
-                    x.user_id.id for x in record.student_ids if x.user_id]
+                    parent.user_id.id for parent in record.student_ids if parent.user_id]
                 user_id = users_res.create({
                     'name': record.name.name,
                     'partner_id': record.name.id,
@@ -104,12 +104,13 @@ class OpStudent(models.Model):
     @api.model_create_multi
     def create(self, vals):
         res = super(OpStudent, self).create(vals)
-        if vals.get('parent_ids', False):
-            for parent_id in res.parent_ids:
-                if parent_id.user_id:
-                    user_ids = [x.user_id.id for x in parent_id.student_ids
-                                if x.user_id]
-                    parent_id.user_id.child_ids = [(6, 0, user_ids)]
+        for values in vals:
+            if values.get('parent_ids', False):
+                for parent_id in res.parent_ids:
+                    if parent_id.user_id:
+                        user_ids = [student.user_id.id for student
+                                    in parent_id.student_ids if student.user_id]
+                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
         return res
 
     def write(self, vals):
@@ -119,8 +120,8 @@ class OpStudent(models.Model):
             if self.parent_ids:
                 for parent in self.parent_ids:
                     if parent.user_id:
-                        user_ids = [x.user_id.id for x in parent.student_ids
-                                    if x.user_id]
+                        user_ids = [parent.user_id.id for parent in parent.student_ids
+                                    if parent.user_id]
                         parent.user_id.child_ids = [(6, 0, user_ids)]
             else:
                 user_ids = self.env['res.users'].search([
