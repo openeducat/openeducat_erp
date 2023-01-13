@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="module_category_openeducat_timetable" model="ir.module.category">
+            <field name="name">OpenEduCat Discuss</field>
+            <field name="sequence">16</field>
+        </record>
+
+        <record id="group_op_timetable_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_category_openeducat_timetable"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('openeducat_core.group_op_faculty'))]"/>
+        </record>
+
+        <record id="group_op_timetable_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_category_openeducat_timetable"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_user'))]"/>
+        </record>
+
+        <record id="openeducat_core.group_op_back_office_admin" model="res.groups">
+            <field name="implied_ids"
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_manager'))]"/>
+        </record>
+
         <record model="ir.rule" id="student_session_rule">
             <field name="name">Student Session rule</field>
             <field name="model_id" ref="model_op_session"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_user'))]"/>
             <field name="domain_force">['|', ('user_ids','in',user.id), ('user_ids','in',user.child_ids.ids)]</field>
         </record>
 
-        <record model="ir.rule" id="backoffice_session_rule">
-            <field name="name">Backoffice Session Rule</field>
+        <record model="ir.rule" id="manager_session_rule">
+            <field name="name">Manager Session Rule</field>
             <field name="model_id" ref="model_op_session"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office'))]"/>
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_manager'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
-        <record model="ir.rule" id="faculty_session_rule">
-            <field name="name">faculty Session Rule</field>
+        <record model="ir.rule" id="user_session_rule">
+            <field name="name">User Session Rule</field>
             <field name="model_id" ref="model_op_session"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_user'))]"/>
             <field name="domain_force">[('faculty_id.user_id','=',user.id)]</field>
         </record>
     </data>

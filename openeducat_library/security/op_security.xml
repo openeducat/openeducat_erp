@@ -42,10 +42,10 @@
             <field name="model_id" ref="model_op_media_queue"/>
             <field name="domain_force">[(1,'=',1)]</field>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_faculty')),(4, ref('openeducat_core.group_op_back_office'))]"/>
+                   eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
         </record>
 
-        <record id="openeducat_core.group_op_back_office" model="res.groups">
+        <record id="openeducat_core.group_op_back_office_admin" model="res.groups">
             <field name="implied_ids"
                    eval="[(4, ref('openeducat_core.group_op_faculty')),(4, ref('base.group_partner_manager')),(4, ref('account.group_account_invoice'))]"/>
         </record>
