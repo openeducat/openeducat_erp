@@ -94,36 +94,35 @@ class OpStudentFeesDetails(models.Model):
         else:
             amount = self.amount
             name = product.name
-        invoice = inv_obj.create({
-            # 'partner_id': student.name,
-            'move_type': 'out_invoice',
-            'partner_id': partner_id.id,
-
-        })
         element_id = self.env['op.fees.element'].search([
             ('fees_terms_line_id', '=', self.fees_line_id.id)])
-        for records in element_id:
-            if records:
-                line_values = {'name': records.product_id.name,
-                               'account_id': account_id,
-                               'price_unit': records.value * self.amount / 100,
-                               'quantity': 1.0,
-                               'discount': self.discount or False,
-                               'product_uom_id': records.product_id.uom_id.id,
-                               'product_id': records.product_id.id, }
-                invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
-
-        if not element_id:
-            line_values = {'name': name,
-                           # 'origin': student.gr_no,
-                           'account_id': account_id,
-                           'price_unit': amount,
-                           'quantity': 1.0,
-                           'discount': self.discount or False,
-                           'product_uom_id': product.uom_id.id,
-                           'product_id': product.id}
-            invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
-
+        invoice_line_list = []
+        if element_id:
+            for records in element_id:
+                invoice_line_list.append((0, 0, {
+                    'name': records.product_id.name,
+                    'account_id': account_id,
+                    'price_unit': records.value * self.amount / 100,
+                    'quantity': 1.0,
+                    'discount': self.discount or False,
+                    'product_uom_id': records.product_id.uom_id.id,
+                    'product_id': records.product_id.id,
+                }))
+        else:
+            invoice_line_list.append((0, 0, {
+                'name': name,
+                'account_id': account_id,
+                'price_unit': amount,
+                'quantity': 1.0,
+                'discount': self.discount or False,
+                'product_uom_id': product.uom_id.id,
+                'product_id': product.id
+            }))
+        invoice = inv_obj.create({
+            'move_type': 'out_invoice',
+            'partner_id': partner_id.id,
+            'invoice_line_ids': invoice_line_list,
+        })
         invoice._compute_tax_totals()
         self.state = 'invoice'
         self.invoice_id = invoice.id
