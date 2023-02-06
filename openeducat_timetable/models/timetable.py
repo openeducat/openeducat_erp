@@ -65,6 +65,10 @@ class OpSession(models.Model):
         'res.users', compute='_compute_batch_users',
         store=True, string='Users')
     active = fields.Boolean(default=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
+
 
     @api.depends('start_datetime')
     def _compute_day(self):
@@ -225,6 +229,9 @@ class OpSession(models.Model):
     def write(self, vals):
         data = super(OpSession,
                      self.with_context(check_move_validity=False)).write(vals)
+        for session in self:
+            if session.state not in ('draft', 'done'):
+                session.notify_user()
         return data
 
     @api.model
