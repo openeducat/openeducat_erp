@@ -70,12 +70,15 @@ class OpMediaMovement(models.Model):
         'res.users', string='Users')
     invoice_id = fields.Many2one('account.move', 'Invoice', readonly=True)
     active = fields.Boolean(default=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
 
     def get_diff_day(self):
         for media_mov_id in self:
-            today_date = datetime.strptime(fields.Date.today(), '%Y-%m-%d')
+            today_date = datetime.strptime(str(fields.Date.today()), '%Y-%m-%d')
             return_date = datetime.strptime(
-                media_mov_id.return_date, '%Y-%m-%d')
+                str(media_mov_id.return_date), '%Y-%m-%d')
             diff = today_date - return_date
             return abs(diff.days)
 
@@ -147,7 +150,7 @@ class OpMediaMovement(models.Model):
             x = record.library_card_id.library_card_type_id
             if record.library_card_id and x:
                 penalty_days = actual_diff > standard_diff and actual_diff - \
-                    standard_diff or penalty_days
+                               standard_diff or penalty_days
                 penalty_amt = penalty_days * x.penalty_amt_per_day
             record.write({'penalty': penalty_amt})
 
@@ -182,5 +185,5 @@ class OpMediaMovement(models.Model):
             invoice.write({'invoice_line_ids': [(0, 0, line_values)]})
 
             invoice._compute_tax_totals()
-#           invoice.action_invoice_open()
+            #           invoice.action_invoice_open()
             self.invoice_id = invoice.id

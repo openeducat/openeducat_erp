@@ -4,52 +4,151 @@
         <!--Email template -->
         <record id="session_details_changes" model="mail.template">
             <field name="name">Session details - Send by Email</field>
-            <field name="email_from">${(user.email or '')|safe}</field>
-            <field name="email_to">${object.get_emails(object.message_follower_ids)}</field>
-            <field name="subject">${object.get_subject()}</field>
+            <field name="email_from">{{ (user.email or '') }}</field>
+            <field name="email_to">{{ (object.get_emails(object.message_follower_ids)) or '' }}</field>
+            <field name="subject">{{ object.get_subject() }}</field>
             <field name="model_id" ref="openeducat_timetable.model_op_session"/>
             <field name="auto_delete" eval="False"/>
-            <field name="body_html"><![CDATA[
-                <ul class="o_mail_thread_message_tracking">
-                    <li>
-                        Faculty:
-                            <span> ${object.faculty_id.name} </span>
-                    </li>
-                    <li>
-                        Subject:
-                            <span> ${object.subject_id.name} </span>
-                    </li>
-                    <li>
-                        Course:
-                            <span> ${object.course_id.name} </span>
-                    </li>
-                    <li>
-                        Batch:
-                            <span> ${object.batch_id.name} </span>
-                    </li>
-                    <li>
-                        Classroom:
-                            <span> ${object.classroom_id.name} </span>
-                    </li>
-                    <li>
-                        Start Time:
-                            <span> ${format_datetime(object.start_datetime, tz=user.tz)} </span>
-                    </li>
-                    <li>
-                        End Time:
-                            <span> ${format_datetime(object.end_datetime, tz=user.tz)} </span>
-                    </li>
+            <field name="body_html" type="html">
+                <table border="0" cellpadding="0" cellspacing="0"
+                       style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                    <tr>
+                        <td align="center">
+                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                   style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                                <tbody>
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle">
+                                                        <span style="font-size: 10px;">Session Details</span>
+                                                        <br/>
+                                                    </td>
+                                                    <td valign="middle" align="right">
+                                                        <img t-att-src="'/logo.png?company=%s' % object.company_id.id"
+                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                             t-att-alt="'%s' % object.company_id.name"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="top" style="font-size: 13px;">
+                                                        <ul class="o_mail_thread_message_tracking">
+                                                            <li>
+                                                                Faculty:
+                                                                <span>
+                                                                    <t t-out="object.faculty_id.name"/>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                Subject:
+                                                                <span>
+                                                                    <t t-out="object.subject_id.name"/>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                Course:
+                                                                <span>
+                                                                    <t t-out="object.course_id.name"/>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                Batch:
+                                                                <span>
+                                                                    <t t-out="object.batch_id.name"/>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                Classroom:
+                                                                <span>
+                                                                    <t t-out="object.classroom_id.name"/>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                Start Time:
+                                                                <span>
+                                                                    <t t-out="format_datetime(object.start_datetime, tz=user.tz)"/>
+                                                                </span>
+                                                            </li>
+                                                            <li>
+                                                                End Time:
+                                                                <span>
+                                                                    <t t-out="format_datetime(object.end_datetime, tz=user.tz)"/>
+                                                                </span>
+                                                            </li>
 
-                    <li>
-                        Status:
-                            % if object.state == 'confirm':
-                                <span> Confirmed </span>
-                            % elif object.state == 'cancel'
-                                <span> Canceled </span>
-                            % endif
-                    </li>
-                </ul>
-            ]]></field>
+                                                            <li>
+                                                                Status:
+                                                                <t t-if="object.state == 'confirm'">
+                                                                    <span>Confirmed</span>
+                                                                </t>
+                                                                <t t-elif="object.state == 'cancel'">
+                                                                    <span>Canceled</span>
+                                                                </t>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <hr width="100%"
+                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" style="min-width: 590px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                                   style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                                <tr>
+                                                    <td valign="middle" align="left">
+                                                        <t t-out="object.company_id.name or ''"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="middle" align="left" style="opacity: 0.7;">
+                                                        <t t-out="object.company_id.phone or ''"/>
+                                                        <t t-if="object.company_id.email">
+                                                            |
+                                                            <a href="'mailto:%s' % {{ object.company_id.email }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.company_id.email or ''"/>
+                                                            </a>
+                                                        </t>
+                                                        <t t-if="object.company_id.website">
+                                                            |
+                                                            <a href="'%s' % {{ object.company_id.website }}"
+                                                               style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.company_id.website or ''"/>
+                                                            </a>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </field>
         </record>
     </data>
 </odoo>

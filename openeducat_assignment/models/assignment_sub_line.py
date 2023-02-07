@@ -66,6 +66,10 @@ class OpAssignmentSubLine(models.Model):
     user_boolean = fields.Boolean(string='Check user',
                                   compute='_compute_get_user_group')
     active = fields.Boolean(default=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
+
 
     def act_draft(self):
         result = self.state = 'draft'
