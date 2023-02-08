@@ -70,12 +70,15 @@ class OpMediaMovement(models.Model):
         'res.users', string='Users')
     invoice_id = fields.Many2one('account.move', 'Invoice', readonly=True)
     active = fields.Boolean(default=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.user.company_id)
 
     def get_diff_day(self):
         for media_mov_id in self:
-            today_date = datetime.strptime(fields.Date.today(), '%Y-%m-%d')
+            today_date = datetime.strptime(str(fields.Date.today()), '%Y-%m-%d')
             return_date = datetime.strptime(
-                media_mov_id.return_date, '%Y-%m-%d')
+                str(media_mov_id.return_date), '%Y-%m-%d')
             diff = today_date - return_date
             return abs(diff.days)
 
