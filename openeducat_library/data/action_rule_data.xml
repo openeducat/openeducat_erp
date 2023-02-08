@@ -10,17 +10,108 @@
         <field name="auto_delete" eval="True"/>
         <field name="report_name">Renew</field>
         <field name="lang">${object.student_id.user_id.partner_id.lang}</field>
-        <field name="body_html"><![CDATA[
-            <p>Dear <strong> ${object.student_id.name} </strong>
-            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> will 
-                % if object.get_diff_day() == 0:
-                    be expiring <strong>today.</strong>
-                % else:
-                    expire in <strong> ${object.get_diff_day()}</strong> day(s).
-                % endif
-                Please return it as soon as possible.</p>
-            <p>Thank you.</p>
-            ]]></field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0"
+                   style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                <tr>
+                    <td align="center">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                               style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                            <tbody>
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="middle">
+                                                    <span style="font-size: 10px;">Library Card Renew</span>
+                                                    <br/>
+                                                </td>
+                                                <td valign="middle" align="right">
+                                                    <img src="/logo.png?company=${object.company_id.id}"
+                                                         style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                         alt="${object.company_id.name}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align:center;">
+                                                    <hr width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="top" style="font-size: 13px;">
+                                                    <div>
+                                                        <p>Dear </p>
+                                                        <strong>${object.student_id.name}</strong>
+                                                        <p>Your ${object.media_type_id.name}, <strong>
+                                                            ${object.media_id.name}
+                                                        </strong> will
+                                                            % if object.get_diff_day() == 0:
+                                                            be expiring
+                                                            <strong>today.</strong>
+                                                            % else:
+                                                            expire in <strong>${object.get_diff_day()}</strong> day(s).
+                                                            % endif
+                                                            Please return it as soon as possible.
+                                                        </p>
+                                                        <p>Thank you.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <hr width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="middle" align="left">
+                                                    ${object.company_id.name}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="middle" align="left" style="opacity: 0.7;">
+                                                    ${object.company_id.phone}
+                                                    % if object.company_id.email
+                                                    |
+                                                    <a href="'mailto:%s' % ${object.company_id.email}"
+                                                       style="text-decoration:none; color: #454748;">
+                                                        ${object.company_id.email}
+                                                    </a>
+                                                    % endif
+                                                    % if object.company_id.website
+                                                    |
+                                                    <a href="'%s' % ${object.company_id.website}"
+                                                       style="text-decoration:none; color: #454748;">
+                                                        ${object.company_id.website}
+                                                    </a>
+                                                    % endif
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </field>
     </record>
 
     <record id="library_card_media_movement_action" model="ir.actions.server">
@@ -49,11 +140,103 @@
         <field name="auto_delete" eval="True"/>
         <field name="report_name">Library Card Expired</field>
         <field name="lang">${object.student_id.user_id.partner_id.lang}</field>
-        <field name="body_html"><![CDATA[
-            <p>Dear <strong> ${object.student_id.name} </strong>
-            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> has been expired. Please return it as soon as possible.</p>
-            <p>Thank you.</p>
-            ]]></field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0"
+                   style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                <tr>
+                    <td align="center">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                               style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                            <tbody>
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="middle">
+                                                    <span style="font-size: 10px;"/>
+                                                    <br/>
+                                                </td>
+                                                <td valign="middle" align="right">
+                                                    <img src="/logo.png?company=${object.company_id.id}"
+                                                         style="padding: 0px; margin: 0px; height: auto; width: 80px;"
+                                                         alt="${object.company_id.name}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align:center;">
+                                                    <hr width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="top" style="font-size: 13px;">
+                                                    <div>
+                                                        <p>Dear </p>
+                                                        <strong>${object.student_id.name}</strong>
+                                                        <p>Your ${object.media_type_id.name}, <strong>
+                                                            ${object.media_id.name}
+                                                        </strong> has been expired. Please return it as soon as
+                                                            possible.
+                                                        </p>
+                                                        <p>Thank you.</p>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <hr width="100%"
+                                                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" style="min-width: 590px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                               style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                            <tr>
+                                                <td valign="middle" align="left">
+                                                    ${object.company_id.name}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="middle" align="left" style="opacity: 0.7;">
+                                                    ${object.company_id.phone}
+                                                    % if object.company_id.email
+                                                    |
+                                                    <a href="'mailto:%s' % ${object.company_id.email}"
+                                                       style="text-decoration:none; color: #454748;">
+                                                        ${object.company_id.email}
+                                                    </a>
+                                                    % endif
+                                                    % if object.company_id.website
+                                                    |
+                                                    <a href="'%s' % ${object.company_id.website}"
+                                                       style="text-decoration:none; color: #454748;">
+                                                        ${object.company_id.website}
+                                                    </a>
+                                                    % endif
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </field>
     </record>
 
     <record id="library_card_media_movement_action_after" model="ir.actions.server">
