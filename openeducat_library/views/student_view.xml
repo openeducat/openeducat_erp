@@ -17,22 +17,18 @@
             <field name="name">op.student.form.library.inherit</field>
             <field name="model">op.student</field>
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
-            <field name="priority" eval="9"/>
+            <field name="priority" eval="10"/>
             <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page name="library" string="Library">
-                        <group>
-                            <field name="library_card_id"/>
-                        </group>
-                    </page>
-                </notebook>
+                <field name="gr_no" position="after">
+                    <field name="library_card_id"/>
+                </field>
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button class="btn oe_stat_button"
                             type="object"
                             name="count_media_movement_lines"
                             style="border-right: 1px solid;"
                             icon="fa-file">
-                        <field string="Media Movements" name="media_movement_lines_count" widget="statinfo"/>
+                        <field string="Media" name="media_movement_lines_count" widget="statinfo"/>
                     </button>
                 </xpath>
             </field>

@@ -40,6 +40,7 @@
         'views/attendance_line_view.xml',
         'views/attendance_type_view.xml',
         'views/attendance_session_view.xml',
+        'views/student_view.xml',
         'report/student_attendance_report.xml',
         'report/report_menu.xml',
         'menus/op_menu.xml'
