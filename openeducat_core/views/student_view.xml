@@ -88,96 +88,78 @@
                                 attrs="{'invisible': [('user_id', '!=', False)]}"/>
                     </header>
                     <sheet>
+                        <div name="button_box" class="oe_button_box"/>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
-                        <div>
-                            <div>
-                                <field name="image_1920" widget="image" class="oe_left oe_avatar"/>
-                            </div>
-                            <div class="oe_title w-auto" style="padding-top:100px">
-                                <h3>
-                                    <field name="title" placeholder="Title"/>
-                                </h3>
-                                <h2>
-                                    <field name="name" placeholder="Name" required="1" invisible="1"/>
-                                    <table>
-                                        <tr>
-                                            <td style="padding-right:10px; max-width:120px;">
-                                                <field name="first_name" required="1" placeholder="First Name"/>
-                                            </td>
-                                            <td style="padding-right:10px; max-width:120px;">
-                                                <field name="middle_name" placeholder="Middle Name"/>
-                                            </td>
-                                            <td style="padding-right:10px; max-width:120px;">
-                                                <field name="last_name" placeholder="Last Name" required="1"/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </h2>
-                            </div>
-                        </div>
-                        <div name="button_box" class="oe_button_box">
 
+                        <field name="image_1920" widget="image" class="oe_left oe_avatar"/>
+                        <div class="oe_title mb24">
+                            <h3>
+                                <field name="title" placeholder="Title"/>
+                            </h3>
+                            <h2>
+                                <field name="name" placeholder="Name" required="1" invisible="1"/>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px;">
+                                            <field name="first_name" required="1" placeholder="First Name"/>
+                                        </td>
+                                        <td style="padding-right:10px;">
+                                            <field name="middle_name" placeholder="Middle Name"/>
+                                        </td>
+                                        <td style="padding-right:10px;">
+                                            <field name="last_name" placeholder="Last Name" required="1"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h2>
                         </div>
                         <notebook colspan="4">
-                            <page name="personal_information"
-                                  string="Personal Information">
-                                <group col="4" colspan="4" name="personal_detail">
-                                    <field name="gender" required="1"/>
-                                    <field name="birth_date" required="1"/>
-                                    <field name="nationality"/>
-                                    <field name="visa_info"/>
-                                    <field name="lang"/>
-                                    <field name="blood_group"/>
-                                    <field name="category_id"/>
-                                    <field name="emergency_contact" context="{'show_address': 1}"
-                                           options='{"always_reload": True}'/>
-                                    <field name="mobile" required="1"/>
-                                    <field name="user_id" string="User" readonly="1"/>
-                                    <field name="email" required="1"/>
-                                    <field name="partner_id" placeholder="Partner" required="0"/>
-                                </group>
-                                <group string="Address Detail" name="address">
-                                    <label for="type"/>
-                                    <div name="div_type">
-                                        <field class="oe_inline" name="type"/>
-                                    </div>
-                                    <label for="street" string="Address"/>
-                                    <div name="div_address">
-                                        <field name="street" placeholder="Street..."/>
-                                        <field name="street2" placeholder="Street2"/>
-                                        <div class="address_format">
-                                            <field name="city" placeholder="City" style="width: 40%%"/>
-                                            <field name="state_id" class="oe_no_button" placeholder="State"
-                                                   style="width: 37%%" options='{"no_open": True}'/>
-                                            <field name="zip" placeholder="ZIP" style="width: 20%%"/>
+                            <page name="personal_information" string="Personal Information">
+                                <group name="personal_detail">
+                                    <group>
+                                        <field name="gender" required="1"/>
+                                        <field name="birth_date" required="1"/>
+                                        <label for="type"/>
+                                        <div name="div_type">
+                                            <field class="oe_inline" name="type"/>
                                         </div>
-                                        <field name="country_id"
-                                               placeholder="Country" class="oe_no_button"
-                                               options='{"no_open": True}'/>
-                                    </div>
+                                        <span class="o_form_label o_td_label" name="address_name">
+                                            <b>Address</b>
+                                        </span>
+                                        <div class="o_address_format">
+                                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                            <field name="city" placeholder="City" class="o_address_city"/>
+                                            <field name="state_id" class="o_address_state" placeholder="State"
+                                                   options="{'no_open': True, 'no_quick_create': True}"
+                                                   context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                            <field name="country_id" placeholder="Country" class="o_address_country"
+                                                   options="{'no_open': True, 'no_create': True}"/>
+                                        </div>
+                                        <field name="emergency_contact" context="{'show_address': 1}"
+                                               options='{"always_reload": True}'/>
+                                    </group>
+                                    <group>
+                                        <field name="email" required="1"/>
+                                        <field name="mobile" required="1"/>
+                                        <field name="lang"/>
+                                        <field name="blood_group"/>
+                                        <field name="nationality"/>
+                                        <field name="visa_info"/>
+                                        <field name="category_id"/>
+                                        <field name="user_id" string="User" readonly="1"/>
+                                        <field name="partner_id" placeholder="Partner" required="0"/>
+                                    </group>
                                 </group>
                             </page>
-                            <page name="educational" string="Educational">
+                            <page name="miscellaneous" string="Miscellaneous">
                                 <group>
                                     <group colspan="3">
                                         <field name="gr_no"/>
                                     </group>
-                                </group>
-                                <group>
-                                    <separator string="Admission Details"
-                                               colspan="4"/>
-                                    <field name="course_detail_ids"
-                                           nolabel="1">
-                                        <tree string="Course Details">
-                                            <field name="course_id"/>
-                                            <field name="batch_id"/>
-                                            <field name="roll_number"/>
-                                            <field name="subject_ids" widget="many2many_tags"/>
-                                            <field name="state"/>
-                                        </tree>
-                                    </field>
                                 </group>
                             </page>
                         </notebook>
