@@ -19,10 +19,27 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class OpFaculty(models.Model):
     _inherit = "op.faculty"
 
     session_ids = fields.One2many('op.session', 'faculty_id', 'Sessions')
+    session_count = fields.Integer(compute='_compute_session_count')
+
+    @api.depends('session_ids')
+    def _compute_session_count(self):
+        for session in self:
+            session.session_count = self.env['op.session'].search_count(
+                [('faculty_id', '=', self.id)])
+
+    def action_view_sessions_details(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Sessions',
+            'view_mode': 'tree,form',
+            'res_model': 'op.session',
+            'domain': [('faculty_id', '=', self.id)],
+            'target': 'current',
+        }

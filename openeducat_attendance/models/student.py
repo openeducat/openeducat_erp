@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
@@ -19,29 +20,14 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models
 
 
 class OpStudent(models.Model):
     _inherit = "op.student"
 
-    library_card_id = fields.Many2one('op.library.card', 'Library Card')
-    media_movement_lines = fields.One2many(
-        'op.media.movement', 'student_id', 'Movements')
-    media_movement_lines_count = fields.Integer(compute='_compute_media_movement_lines')
-
-    @api.depends('media_movement_lines')
-    def _compute_media_movement_lines(self):
-        for media in self:
-            media.media_movement_lines_count = self.env['op.media.movement'].search_count(
-                [('student_id', '=', self.id)])
-
-    def action_view_media_movement_lines(self):
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Media Movement',
-            'view_mode': 'tree,form',
-            'res_model': 'op.media.movement',
-            'domain': [('student_id', '=', self.id)],
-            'target': 'current',
-        }
+    def get_attendance(self):
+        action = self.env.ref('openeducat_attendance.'
+                              'act_open_op_attendance_line_view').read()[0]
+        action['domain'] = [('student_id', 'in', self.ids)]
+        return action
