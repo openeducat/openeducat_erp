@@ -19,16 +19,18 @@
             <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
             <field name="priority" eval="9"/>
             <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page name="library" string="Library">
-                        <group>
-                            <field name="library_card_id"/>
-                        </group>
-                        <group string="Media Movements">
-                            <field name="media_movement_lines" nolabel="1"/>
-                        </group>
-                    </page>
-                </notebook>
+                <field name="gr_no" position="after">
+                    <field name="library_card_id"/>
+                </field>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button"
+                            type="object"
+                            name="action_view_media_movement_lines"
+                            style="border-right: 1px solid;"
+                            icon="fa-file">
+                        <field string="Media" name="media_movement_lines_count" widget="statinfo"/>
+                    </button>
+                </xpath>
             </field>
         </record>
 

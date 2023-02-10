@@ -5,18 +5,24 @@
             <field name="name">op.faculty.form.library.inherit</field>
             <field name="model">op.faculty</field>
             <field name="inherit_id" ref="openeducat_core.view_op_faculty_form" />
-            <field name="priority" eval="9" />
+            <field name="priority" eval="16" />
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page name="library" string="Library">
                         <group>
                             <field name="library_card_id" />
                         </group>
-                        <group string="Media Movements">
-                            <field name="media_movement_lines" nolabel="1" />
-                        </group>
                     </page>
                 </notebook>
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="btn oe_stat_button"
+                            type="object"
+                            name="action_view_media_movement"
+                            style="border-right: 1px solid;"
+                            icon="fa-file">
+                        <field string="Media" name="media_movement_lines_count" widget="statinfo"/>
+                    </button>
+                </xpath>
             </field>
         </record>
     </data>

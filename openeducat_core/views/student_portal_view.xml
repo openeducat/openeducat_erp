@@ -4,17 +4,17 @@
     <record id="student_portal_view" model="ir.ui.view">
         <field name="name">User portal</field>
         <field name="model">res.partner</field>
-
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_title')]" position="after">
-                <div class="portal_user">
-                    <group>
-                        <field name="is_parent" />
-                        <field name="is_student" />
-                    </group>
+            <field name="company_type" position="replace">
+                <div>
+                    <field name="company_type" widget="radio" options="{'horizontal': true}"/>
+                    <field name="is_parent" class="ml16"/>
+                    <label for="is_parent" class="mr16"/>
+                    <field name="is_student"/>
+                    <label for="is_student"/>
                 </div>
-            </xpath>
+            </field>
         </field>
     </record>
 
