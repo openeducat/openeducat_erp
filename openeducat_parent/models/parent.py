@@ -82,7 +82,8 @@ class OpParent(models.Model):
             if not record.name.user_id:
                 groups_id = template and template.groups_id or False
                 user_ids = [
-                    parent.user_id.id for parent in record.student_ids if parent.user_id]
+                    parent.user_id.id for
+                    parent in record.student_ids if parent.user_id]
                 user_id = users_res.create({
                     'name': record.name.name,
                     'partner_id': record.name.id,

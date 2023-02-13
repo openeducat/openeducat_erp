@@ -42,8 +42,8 @@ class StudentMigrate(models.TransientModel):
         self.student_ids = False
         if self.course_from_id:
             lists = []
-            student_ids = self.env['op.student.course'].search([('course_id', '=', self.course_from_id.id),
-                                                                ('state', '=', 'running')])
+            student_ids = self.env['op.student.course'].search([
+                ('course_id', '=', self.course_from_id.id), ('state', '=', 'running')])
             for i in student_ids:
                 lists.append(str(i.student_id.id))
             domain = {'student_ids': [('id', 'in', lists)]}
@@ -81,7 +81,8 @@ class StudentMigrate(models.TransientModel):
                                 'student_id': student.id,
                                 'type_id': act_type.id,
                                 'date': self.date,
-                                'description': _('Migration From {} to Completed Course'.
+                                'description': _('Migration From {}'
+                                                 ' to Completed Course'.
                                                  format(record.course_from_id.name)),
                             }
                             self.env['op.activity'].create(activity_vals)
@@ -94,8 +95,9 @@ class StudentMigrate(models.TransientModel):
                                 'student_id': student.id,
                                 'type_id': act_type.id,
                                 'date': self.date,
-                                'description': _('Migration from {} to {}'.format(record.course_from_id.name,
-                                                                                  record.course_to_id.name))
+                                'description': _('Migration from {} to {}'
+                                                 .format(record.course_from_id.name,
+                                                         record.course_to_id.name))
                             }
                             self.env['op.activity'].create(activity_vals)
 
@@ -112,9 +114,12 @@ class StudentMigrate(models.TransientModel):
                             reg_id = self.env['op.subject.registration'].create({
                                 'student_id': student.id,
                                 'batch_id': record.batch_id.id,
-                                'course_id': record.course_to_id.id,
-                                'min_unit_load': record.course_to_id.min_unit_load or 0.0,
-                                'max_unit_load': record.course_to_id.max_unit_load or 0.0,
+                                'course_id':
+                                    record.course_to_id.id,
+                                'min_unit_load':
+                                    record.course_to_id.min_unit_load or 0.0,
+                                'max_unit_load':
+                                    record.course_to_id.max_unit_load or 0.0,
                                 'state': 'draft',
                             })
                             reg_id.get_subjects()

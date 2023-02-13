@@ -70,7 +70,6 @@ class OpAssignmentSubLine(models.Model):
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
 
-
     def act_draft(self):
         result = self.state = 'draft'
         return result and result or False
