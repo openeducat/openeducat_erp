@@ -149,8 +149,9 @@ class OpMediaMovement(models.Model):
                 record.actual_return_date, record.issued_date)
             x = record.library_card_id.library_card_type_id
             if record.library_card_id and x:
-                penalty_days = actual_diff > standard_diff and actual_diff - \
-                               standard_diff or penalty_days
+                penalty_days = \
+                    actual_diff > standard_diff and \
+                    actual_diff - standard_diff or penalty_days
                 penalty_amt = penalty_days * x.penalty_amt_per_day
             record.write({'penalty': penalty_amt})
 

@@ -69,7 +69,6 @@ class OpSession(models.Model):
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
 
-
     @api.depends('start_datetime')
     def _compute_day(self):
         for record in self:
@@ -81,9 +80,9 @@ class OpSession(models.Model):
         for session in self:
             if session.faculty_id and session.subject_id \
                     and session.start_datetime:
-                session.name = session.faculty_id.name + ':' + \
-                               session.subject_id.name + ':' + \
-                               str(session.timing_id.name)
+                session.name = \
+                    session.faculty_id.name + ':' + \
+                    session.subject_id.name + ':' + str(session.timing_id.name)
 
     # For record rule on student and faculty dashboard
     @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
@@ -124,10 +123,14 @@ class OpSession(models.Model):
                     'batch_id', 'subject_id')
     def check_timetable_fields(self):
         res_param = self.env['ir.config_parameter'].sudo()
-        faculty_constraint = res_param.search([('key', '=', 'timetable.is_faculty_constraint')])
-        classroom_constraint = res_param.search([('key', '=', 'timetable.is_classroom_constraint')])
-        batch_and_subject_constraint = res_param.search([('key', '=', 'timetable.is_batch_and_subject_constraint')])
-        batch_constraint = res_param.search([('key', '=', 'timetable.is_batch_constraint')])
+        faculty_constraint = res_param.search([('key', '=',
+                                                'timetable.is_faculty_constraint')])
+        classroom_constraint = res_param.search([('key', '=',
+                                                  'timetable.is_classroom_constraint')])
+        batch_and_subject_constraint = res_param.search([
+            ('key', '=', 'timetable.is_batch_and_subject_constraint')])
+        batch_constraint = res_param.search([('key', '=',
+                                              'timetable.is_batch_constraint')])
         is_faculty_constraint = faculty_constraint.value
         is_classroom_constraint = classroom_constraint.value
         is_batch_and_subject_constraint = batch_and_subject_constraint.value
@@ -140,29 +143,34 @@ class OpSession(models.Model):
                             self.timing_id.id == session.timing_id.id and \
                             self.start_datetime.date() == session.start_datetime.date():
                         raise ValidationError(_(
-                            'You cannot create a session with same faculty on same date '
+                            'You cannot create a session with '
+                            'same faculty on same date '
                             'and time'))
                 if is_classroom_constraint:
                     if self.classroom_id.id == session.classroom_id.id and \
                             self.timing_id.id == session.timing_id.id and \
                             self.start_datetime.date() == session.start_datetime.date():
                         raise ValidationError(_(
-                            'You cannot create a session with same classroom on same date'
+                            'You cannot create a session with '
+                            'same classroom on same date'
                             ' and time'))
                 if is_batch_and_subject_constraint:
                     if self.batch_id.id == session.batch_id.id and \
                             self.timing_id.id == session.timing_id.id and \
-                            self.start_datetime.date() == session.start_datetime.date() \
+                            self.start_datetime.date() == \
+                            session.start_datetime.date() \
                             and self.subject_id.id == session.subject_id.id:
                         raise ValidationError(_(
-                            'You cannot create a session for the same batch on same time '
+                            'You cannot create a session for '
+                            'the same batch on same time '
                             'and for same subject'))
                 if is_batch_constraint:
                     if self.batch_id.id == session.batch_id.id and \
                             self.timing_id.id == session.timing_id.id and \
                             self.start_datetime.date() == session.start_datetime.date():
                         raise ValidationError(_(
-                            'You cannot create a session for the same batch on same time '
+                            'You cannot create a session for the '
+                            'same batch on same time '
                             'even if it is different subject'))
 
     @api.model
