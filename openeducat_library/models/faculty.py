@@ -33,7 +33,8 @@ class OpFaculty(models.Model):
     @api.depends('media_movement_lines')
     def _compute_media_movement_lines(self):
         for media in self:
-            media.media_movement_lines_count = self.env['op.media.movement'].search_count(
+            media.media_movement_lines_count = self.env[
+                'op.media.movement'].search_count(
                 [('faculty_id', '=', self.id)])
 
     def count_media_movement_lines(self):
