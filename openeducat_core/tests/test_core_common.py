@@ -20,9 +20,7 @@
 ###############################################################################
 
 
-from odoo.tests import common, TransactionCase
-from ..controllers import app_main
-from odoo.addons.website.tools import MockRequest
+from odoo.tests import TransactionCase
 
 
 class TestCoreCommon(TransactionCase):

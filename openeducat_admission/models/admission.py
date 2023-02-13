@@ -216,7 +216,9 @@ class OpAdmission(models.Model):
                 years = day // 365
                 if years < self.register_id.minimum_age_criteria:
                     raise ValidationError(_(
-                        "Not Eligible for Admission minimum required age is : %s " % self.register_id.minimum_age_criteria))
+                        "Not Eligible for Admission minimum "
+                        "required age is :"
+                        " %s " % self.register_id.minimum_age_criteria))
 
     def submit_form(self):
         self.state = 'submit'
@@ -267,8 +269,10 @@ class OpAdmission(models.Model):
                         student.course_id and student.course_id.id or False,
                     'batch_id':
                         student.batch_id and student.batch_id.id or False,
-                    'academic_years_id': student.register_id.academic_years_id.id or False,
-                    'academic_term_id': student.register_id.academic_term_id.id or False,
+                    'academic_years_id':
+                        student.register_id.academic_years_id.id or False,
+                    'academic_term_id':
+                        student.register_id.academic_term_id.id or False,
                     'fees_term_id': student.fees_term_id.id,
                     'fees_start_date': student.fees_start_date,
                 }]],

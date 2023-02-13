@@ -20,7 +20,7 @@
 ###############################################################################
 
 
-from odoo.tests import common,TransactionCase
+from odoo.tests import TransactionCase
 
 
 class TestAssignmentCommon(TransactionCase):

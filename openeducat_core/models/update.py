@@ -27,14 +27,13 @@ import requests
 from odoo.exceptions import UserError
 from odoo.tools import misc, ustr
 from odoo.tools.translate import _
+from odoo.models import AbstractModel
 
-from odoo import models, api, release
+from odoo import api, release
 
 OEC_API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
 
 _logger = logging.getLogger(__name__)
-
-from odoo.models import AbstractModel
 
 
 class PublisherWarrantyContract(AbstractModel):
