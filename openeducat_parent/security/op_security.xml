@@ -3,7 +3,7 @@
     <data>
         <record id="group_op_parent" model="res.groups">
             <field name="name">Parent</field>
-            <field name="category_id" ref="openeducat_core.module_category_openeducat_others"/>
+            <field name="category_id" ref="openeducat_core.module_category_all_other_education"/>
             <field name="implied_ids" eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
             <field name="users" eval="[(4, ref('base.user_admin'))]"/>
         </record>
@@ -18,7 +18,7 @@
         <record model="ir.rule" id="backoffice_login_rule">
             <field name="name">Backoffice Login rule</field>
             <field name="model_id" ref="model_op_parent"/>
-            <field name="groups" eval="[(4, ref('openeducat_core.group_op_back_office'))]"/>
+            <field name="groups" eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 

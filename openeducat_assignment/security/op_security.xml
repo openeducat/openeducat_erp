@@ -1,52 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record model="ir.rule" id="student_assignment_rule">
-            <field name="name">Student Assignment rule</field>
-            <field name="model_id" ref="model_op_assignment" />
-            <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]" />
-            <field name="domain_force"> ['|', ('allocation_ids.user_id','=',user.id), ('allocation_ids.user_id','in', user.child_ids.ids)]</field>
+        <record model="ir.module.category" id="module_category_all_op_assignment">
+            <field name="name">Assignment</field>
+            <field name="description">Helps you manage your institutes different-different users.</field>
+            <field name="sequence">105</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+        <record id="module_category_openeducat_assignment" model="ir.module.category">
+            <field name="name">Assignment</field>
+            <field name="parent_id" ref="openeducat_assignment.module_category_all_op_assignment"/>
+            <field name="sequence">16</field>
+        </record>
+
+        <record id="group_op_assignment_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_category_openeducat_assignment"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('base.group_user')), (4, ref('openeducat_core.group_op_faculty'))]"/>
+        </record>
+
+        <record id="group_op_assignment_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_category_openeducat_assignment"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_user'))]"/>
+        </record>
+
+        <record id="openeducat_core.group_op_back_office_admin" model="res.groups">
+            <field name="implied_ids"
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
         </record>
 
         <record model="ir.rule" id="student_assignment_sub_line_rule">
             <field name="name">Student Assignment Submission Line Rule</field>
-            <field name="model_id" ref="model_op_assignment_sub_line" />
+            <field name="model_id" ref="model_op_assignment_sub_line"/>
             <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]" />
-            <field name="domain_force">['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in', user.child_ids.ids)]</field>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
+            <field name="domain_force">['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in',
+                user.child_ids.ids)]
+            </field>
         </record>
 
-        <record model="ir.rule" id="faculty_assignment_rule">
-            <field name="name">Faculty Assignment rule</field>
-            <field name="model_id" ref="model_op_assignment" />
+        <record model="ir.rule" id="user_assignment_rule">
+            <field name="name">User Assignment rule</field>
+            <field name="model_id" ref="model_op_assignment"/>
             <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
-            <field name="domain_force"> [('faculty_id.user_id','=',user.id)]</field>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_user'))]"/>
+            <field name="domain_force">[('faculty_id.user_id','=',user.id)]</field>
         </record>
 
-        <record model="ir.rule" id="faculty_assignment_sub_line_rule">
-            <field name="name">Faculty Assignment Submission Line Rule</field>
-            <field name="model_id" ref="model_op_assignment_sub_line" />
+        <record model="ir.rule" id="user_assignment_sub_line_rule">
+            <field name="name">User Assignment Submission Line Rule</field>
+            <field name="model_id" ref="model_op_assignment_sub_line"/>
             <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_faculty'))]" />
-            <field name="domain_force"> [('assignment_id.faculty_id.user_id','=',user.id)]</field>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_user'))]"/>
+            <field name="domain_force">[('assignment_id.faculty_id.user_id','=',user.id)]</field>
         </record>
 
-        <record model="ir.rule" id="backoffice_assignment_rule">
-            <field name="name">Backoffice Assignment rule</field>
-            <field name="model_id" ref="model_op_assignment" />
+        <record model="ir.rule" id="manager_assignment_rule">
+            <field name="name">Manager Assignment rule</field>
+            <field name="model_id" ref="model_op_assignment"/>
             <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_back_office'))]" />
-            <field name="domain_force"> [(1,'=',1)]</field>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
-        <record model="ir.rule" id="backoffice_assignment_sub_line_rule">
-            <field name="name">Backoffice Assignment Submission Line Rule</field>
-            <field name="model_id" ref="model_op_assignment_sub_line" />
+        <record model="ir.rule" id="manager_assignment_sub_line_rule">
+            <field name="name">Manager Assignment Submission Line Rule</field>
+            <field name="model_id" ref="model_op_assignment_sub_line"/>
             <field name="groups"
-                eval="[(4, ref('openeducat_core.group_op_back_office'))]" />
-            <field name="domain_force"> [(1,'=',1)]</field>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
         </record>
     </data>
 </odoo>
