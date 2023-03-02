@@ -35,8 +35,6 @@ class OpAssignmentSubLine(models.Model):
             if self.env.user.has_group(
                     'openeducat_core.group_op_back_office_admin') or \
                     self.env.user.has_group(
-                        'openeducat_core.group_op_back_office') or \
-                    self.env.user.has_group(
                         'openeducat_core.group_op_faculty'):
                 user.user_boolean = True
             else:
