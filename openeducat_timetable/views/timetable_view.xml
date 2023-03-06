@@ -139,7 +139,7 @@
             <field name="name">session.kanban</field>
             <field name="model">op.session</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="type" class="o_kanban_small_column">
+                <kanban default_group_by="days" class="o_kanban_small_column">
                     <field name="type"/>
                     <field name="color"/>
                     <templates>
@@ -261,6 +261,13 @@
             <field name="sequence" eval="5"/>
             <field name="view_mode">kanban</field>
             <field name="view_id" ref="view_session_kanban"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_open_op_session_view_calendar">
+            <field name="act_window_id" ref="act_open_op_session_view"/>
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">calendar</field>
+            <field name="view_id" ref="view_op_session_calendar"/>
         </record>
     </data>
 </odoo>
