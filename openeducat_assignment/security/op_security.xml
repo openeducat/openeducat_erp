@@ -37,7 +37,7 @@
             <field name="name">Student Assignment rule</field>
             <field name="model_id" ref="model_op_assignment"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
             <field name="domain_force">['|', ('allocation_ids.user_id','=',user.id), ('allocation_ids.user_id','in',
                 user.child_ids.ids)]
             </field>
@@ -47,7 +47,7 @@
             <field name="name">Student Assignment Submission Line Rule</field>
             <field name="model_id" ref="model_op_assignment_sub_line"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
             <field name="domain_force">['|', ('student_id.user_id','=',user.id), ('student_id.user_id','in',
                 user.child_ids.ids)]
             </field>
@@ -57,7 +57,7 @@
             <field name="name">Faculty Assignment rule</field>
             <field name="model_id" ref="model_op_assignment"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_user'))]"/>
             <field name="domain_force">[('faculty_id.user_id','=',user.id)]</field>
         </record>
 
@@ -65,7 +65,7 @@
             <field name="name">Faculty Assignment Submission Line Rule</field>
             <field name="model_id" ref="model_op_assignment_sub_line"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_user'))]"/>
             <field name="domain_force">[('assignment_id.faculty_id.user_id','=',user.id)]</field>
         </record>
 
@@ -73,7 +73,7 @@
             <field name="name">Backoffice Assignment rule</field>
             <field name="model_id" ref="model_op_assignment"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
@@ -81,7 +81,7 @@
             <field name="name">Backoffice Assignment Submission Line Rule</field>
             <field name="model_id" ref="model_op_assignment_sub_line"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_assignment.group_op_assignment_manager'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
     </data>

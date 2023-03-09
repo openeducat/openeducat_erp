@@ -37,7 +37,7 @@
             <field name="name">Student Session rule</field>
             <field name="model_id" ref="model_op_session"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_manager'))]"/>
             <field name="domain_force">['|', ('user_ids','in',user.id), ('user_ids','in',user.child_ids.ids)]</field>
         </record>
 
@@ -45,7 +45,7 @@
             <field name="name">Backoffice Session Rule</field>
             <field name="model_id" ref="model_op_session"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_manager'))]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
 
@@ -53,7 +53,7 @@
             <field name="name">faculty Session Rule</field>
             <field name="model_id" ref="model_op_session"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+                   eval="[(4, ref('openeducat_timetable.group_op_timetable_user'))]"/>
             <field name="domain_force">[('faculty_id.user_id','=',user.id)]</field>
         </record>
     </data>
