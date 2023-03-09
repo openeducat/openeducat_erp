@@ -37,7 +37,7 @@
             <field name="name">Student Attendance</field>
             <field name="model_id" ref="model_op_attendance_line"/>
             <field name="groups"
-                   eval="[(4, ref('openeducat_core.group_op_back_office_admin'))]"/>
+                   eval="[(4, ref('openeducat_attendance.group_op_attendance_manager'))]"/>
             <field name="domain_force">['|', ('student_id.user_id','=',user.id),
                 ('student_id.user_id','in',user.child_ids.ids)]
             </field>
@@ -46,7 +46,7 @@
         <record id="rule_faculty_attendance_line" model="ir.rule">
             <field name="name">Faculty Attendance</field>
             <field name="model_id" ref="model_op_attendance_line"/>
-            <field name="groups" eval="[(4, ref('openeducat_core.group_op_faculty'))]"/>
+            <field name="groups" eval="[(4, ref('openeducat_attendance.group_op_attendance_user'))]"/>
             <field name="domain_force">[(1, '=', 1)]</field>
         </record>
     </data>
