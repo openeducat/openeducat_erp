@@ -68,12 +68,30 @@ class OpSession(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
+    days = fields.Selection([
+        ('monday', 'Monday'),
+        ('tuesday', 'Tuesday'),
+        ('wednesday', 'Wednesday'),
+        ('thursday', 'Thursday'),
+        ('friday', 'Friday'),
+        ('saturday', 'Saturday'),
+        ('sunday', 'Sunday')],
+        'Days',
+        group_expand='_expand_groups', store=True
+    )
+
+    @api.model
+    def _expand_groups(self, days, domain, order):
+        weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+        return [day for day in weekdays if day in days]
 
     @api.depends('start_datetime')
     def _compute_day(self):
         for record in self:
             record.type = fields.Datetime.from_string(
                 record.start_datetime).strftime("%A")
+            record.days = fields.Datetime.from_string(
+                record.start_datetime).strftime("%A").lower()
 
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
     def _compute_name(self):
