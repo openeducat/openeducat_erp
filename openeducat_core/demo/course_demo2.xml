@@ -25,84 +25,201 @@
                    eval="[(6,0, [ref('openeducat_core.op_subject_5'), ref('openeducat_core.op_subject_6'), ref('openeducat_core.op_subject_7'), ref('openeducat_core.op_subject_8')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
+        <record id="openeducat_core.op_course_Engg" model="op.course">
+            <field name="code">ENGG</field>
+            <field name="name">Engineering and Technology</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
         <record id="openeducat_core.op_course_4" model="op.course">
-            <field name="code">LRTP</field>
-            <field name="name">Land Restoration Programme</field>
-            <field name="evaluation_type">normal</field>
+            <field name="code">COMP</field>
+            <field name="name">Computer Engineering</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="parent_id" ref="openeducat_core.op_course_Engg"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_9'), ref('openeducat_core.op_subject_10'), ref('openeducat_core.op_subject_11'), ref('openeducat_core.op_subject_12')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
         <record id="openeducat_core.op_course_5" model="op.course">
-            <field name="code">IELTS</field>
-            <field name="name">IELTS</field>
-            <field name="evaluation_type">normal</field>
+            <field name="code">CIVIL</field>
+            <field name="name">Civil Engineering</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="parent_id" ref="openeducat_core.op_course_Engg"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_13'), ref('openeducat_core.op_subject_14'), ref('openeducat_core.op_subject_15'), ref('openeducat_core.op_subject_16')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
         <record id="openeducat_core.op_course_6" model="op.course">
-            <field name="code">G8C</field>
-            <field name="name">Grade-8-Course</field>
-            <field name="evaluation_type">normal</field>
+            <field name="code">CHEM</field>
+            <field name="name">Chemical Engineering</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="parent_id" ref="openeducat_core.op_course_Engg"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_17'), ref('openeducat_core.op_subject_18'), ref('openeducat_core.op_subject_19'), ref('openeducat_core.op_subject_20')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
+        <record id="openeducat_core.op_course_business_administration" model="op.course">
+            <field name="code">BM</field>
+            <field name="name">Business and Management</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
         <record id="openeducat_core.op_course_7" model="op.course">
-            <field name="code">DMLA</field>
-            <field name="name">Diploma in Machine Learning and AI</field>
-            <field name="evaluation_type">normal</field>
+            <field name="code">BBA</field>
+            <field name="name">Bachelor of Business Administration</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="parent_id" ref="openeducat_core.op_course_business_administration"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_21'), ref('openeducat_core.op_subject_22')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
         <record id="openeducat_core.op_course_8" model="op.course">
-            <field name="code">BBC</field>
-            <field name="name">Bachelor in Business Communication</field>
-            <field name="evaluation_type">normal</field>
+            <field name="code">BBM</field>
+            <field name="name">Bachelor of Business Management</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="parent_id" ref="openeducat_core.op_course_business_administration"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_23'), ref('openeducat_core.op_subject_24')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
         <record id="openeducat_core.op_course_9" model="op.course">
-            <field name="code">CDMC</field>
-            <field name="name">Certification in Digital Marketing and Communication</field>
-            <field name="evaluation_type">normal</field>
+            <field name="code">BMS</field>
+            <field name="name">Bachelor of Management Studies</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="parent_id" ref="openeducat_core.op_course_business_administration"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_25'), ref('openeducat_core.op_subject_26'), ref('openeducat_core.op_subject_27'), ref('openeducat_core.op_subject_28')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
-
         </record>
-
         <record id="openeducat_core.op_course_10" model="op.course">
-            <field name="code">DHM</field>
-            <field name="name">Diploma in Hotel Management</field>
-            <field name="evaluation_type">normal</field>
-            <field name="evaluation_type">normal</field>
+            <field name="code">MBA</field>
+            <field name="name">Master of Business Administration</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="parent_id" ref="openeducat_core.op_course_business_administration"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_29'), ref('openeducat_core.op_subject_30'), ref('openeducat_core.op_subject_31'), ref('openeducat_core.op_subject_32')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
-
+        </record>
+        <record id="openeducat_core.op_course_computer_science" model="op.course">
+            <field name="code">CS</field>
+            <field name="name">Computer Science</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
         <record id="openeducat_core.op_course_11" model="op.course">
-            <field name="code">CB</field>
-            <field name="name">Certificate in Banking</field>
+            <field name="code">DS</field>
+            <field name="name">Data Scientist</field>
             <field name="evaluation_type">normal</field>
-            <field name="evaluation_type">normal</field>
-            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_computer_science"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_33'), ref('openeducat_core.op_subject_34'), ref('openeducat_core.op_subject_35'), ref('openeducat_core.op_subject_36')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
         <record id="openeducat_core.op_course_12" model="op.course">
-            <field name="code">CIP</field>
-            <field name="name">Certificate in Photography</field>
+            <field name="code">DA</field>
+            <field name="name">Data Analyst</field>
             <field name="evaluation_type">normal</field>
-            <field name="evaluation_type">normal</field>
-            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_computer_science"/>
             <field name="subject_ids"
                    eval="[(6,0, [ref('openeducat_core.op_subject_37'), ref('openeducat_core.op_subject_38'), ref('openeducat_core.op_subject_39'), ref('openeducat_core.op_subject_40')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_marine_biology" model="op.course">
+            <field name="code">MBLSC</field>
+            <field name="name">Marine Biology and Life Sciences</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_13" model="op.course">
+            <field name="code">AG</field>
+            <field name="name">Agriculture</field>
+            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_marine_biology"/>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_41'), ref('openeducat_core.op_subject_42')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_14" model="op.course">
+            <field name="code">BPH</field>
+            <field name="name">Biophysics</field>
+            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_marine_biology"/>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_43'), ref('openeducat_core.op_subject_44')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_15" model="op.course">
+            <field name="code">FR</field>
+            <field name="name">Forestry</field>
+            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_marine_biology"/>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_45'), ref('openeducat_core.op_subject_46'), ref('openeducat_core.op_subject_47')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_medicine" model="op.course">
+            <field name="code">MD</field>
+            <field name="name">Medicine</field>
+            <field name="evaluation_type">GPA</field>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_16" model="op.course">
+            <field name="code">MBBS</field>
+            <field name="name">Bachelor of Medicine and Bachelor of Surgery</field>
+            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_medicine"/>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_48'), ref('openeducat_core.op_subject_49'), ref('openeducat_core.op_subject_50')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_17" model="op.course">
+            <field name="code">BPT</field>
+            <field name="name">Bachelor of Physiotherapy</field>
+            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_medicine"/>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_51'), ref('openeducat_core.op_subject_52'), ref('openeducat_core.op_subject_53')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_18" model="op.course">
+            <field name="code">BDS</field>
+            <field name="name">Bachelor of Dental Surgery</field>
+            <field name="evaluation_type">normal</field>
+            <field name="parent_id" ref="openeducat_core.op_course_medicine"/>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_54'), ref('openeducat_core.op_subject_55'), ref('openeducat_core.op_subject_56')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_19" model="op.course">
+            <field name="code">SS</field>
+            <field name="name">Social Studies</field>
+            <field name="evaluation_type">normal</field>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_57'), ref('openeducat_core.op_subject_58'), ref('openeducat_core.op_subject_59')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_20" model="op.course">
+            <field name="code">SC</field>
+            <field name="name">Science</field>
+            <field name="evaluation_type">normal</field>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_60'), ref('openeducat_core.op_subject_61'), ref('openeducat_core.op_subject_62')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_21" model="op.course">
+            <field name="code">CLS</field>
+            <field name="name">Cultural Studies</field>
+            <field name="evaluation_type">normal</field>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_63'), ref('openeducat_core.op_subject_64'), ref('openeducat_core.op_subject_65')])]"/>
+            <field name="department_id" ref="openeducat_core.op_department_3"/>
+        </record>
+        <record id="openeducat_core.op_course_22" model="op.course">
+            <field name="code">MTH</field>
+            <field name="name">Mathematics</field>
+            <field name="evaluation_type">normal</field>
+            <field name="subject_ids"
+                   eval="[(6,0, [ref('openeducat_core.op_subject_66'), ref('openeducat_core.op_subject_67'), ref('openeducat_core.op_subject_68')])]"/>
             <field name="department_id" ref="openeducat_core.op_department_3"/>
         </record>
     </data>
