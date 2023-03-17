@@ -80,11 +80,10 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
                 fields.Datetime.from_string(timetable_obj.start_datetime))
             day = datetime.weekday(oldDate)
             timetable_data = {
-                'period': timetable_obj.timing_id.name,
-                'period_time': timetable_obj.timing_id.hour + ':' +
-                timetable_obj.timing_id.minute +
-                timetable_obj.timing_id.am_pm,
-                'sequence': timetable_obj.timing_id.sequence,
+                'period': timetable_obj.timing,
+                # 'period_time': timetable_obj.timing_id.hour + ':' +
+                # timetable_obj.timing_id.minute +
+                # timetable_obj.timing_id.am_pm,
                 'start_datetime': self._convert_to_local_timezone(
                     timetable_obj.start_datetime).strftime(
                     tools.DEFAULT_SERVER_DATETIME_FORMAT),
@@ -97,7 +96,7 @@ class ReportTimeTableTeacherGenerate(models.AbstractModel):
                 'batch': timetable_obj.batch_id.name,
             }
             data_list.append(timetable_data)
-        ttdl = sorted(data_list, key=lambda k: k['sequence'])
+        ttdl = sorted(data_list, key=lambda k: k['period'])
         final_list = self.sort_tt(ttdl)
         return final_list
 
