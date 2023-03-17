@@ -22,6 +22,7 @@
 import calendar
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+import pytz
 
 week_days = [(calendar.day_name[0], _(calendar.day_name[0])),
              (calendar.day_name[1], _(calendar.day_name[1])),
@@ -39,7 +40,7 @@ class OpSession(models.Model):
 
     name = fields.Char(compute='_compute_name', string='Name', store=True)
     timing_id = fields.Many2one(
-        'op.timing', 'Timing', required=True, tracking=True)
+        'op.timing', 'Timing', tracking=True)
     start_datetime = fields.Datetime(
         'Start Time', required=True,
         default=lambda self: fields.Datetime.now())
@@ -79,6 +80,7 @@ class OpSession(models.Model):
         'Days',
         group_expand='_expand_groups', store=True
     )
+    timing = fields.Char()
 
     @api.model
     def _expand_groups(self, days, domain, order):
@@ -95,12 +97,17 @@ class OpSession(models.Model):
 
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
     def _compute_name(self):
+        tz = pytz.timezone(self.env.user.tz)
         for session in self:
             if session.faculty_id and session.subject_id \
-                    and session.start_datetime:
+                    and session.start_datetime and session.end_datetime:
                 session.name = \
                     session.faculty_id.name + ':' + \
-                    session.subject_id.name + ':' + str(session.timing_id.name)
+                    session.subject_id.name + ':' + str(
+                        session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + '-' + str(
+                        session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
+                session.timing = str(session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + ' - ' + str(
+                    session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
 
     # For record rule on student and faculty dashboard
     @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
@@ -137,7 +144,7 @@ class OpSession(models.Model):
             raise ValidationError(_(
                 'End Time cannot be set before Start Time.'))
 
-    @api.constrains('faculty_id', 'timing_id', 'start_datetime', 'classroom_id',
+    @api.constrains('faculty_id', 'start_datetime', 'end_datetime', 'classroom_id',
                     'batch_id', 'subject_id')
     def check_timetable_fields(self):
         res_param = self.env['ir.config_parameter'].sudo()
@@ -158,25 +165,24 @@ class OpSession(models.Model):
             if self.id != session.id:
                 if is_faculty_constraint:
                     if self.faculty_id.id == session.faculty_id.id and \
-                            self.timing_id.id == session.timing_id.id and \
-                            self.start_datetime.date() == session.start_datetime.date():
+                            session.start_datetime < self.start_datetime < session.end_datetime or \
+                            session.start_datetime < self.end_datetime < session.end_datetime:
                         raise ValidationError(_(
                             'You cannot create a session'
                             ' with same faculty on same date '
                             'and time'))
                 if is_classroom_constraint:
                     if self.classroom_id.id == session.classroom_id.id and \
-                            self.timing_id.id == session.timing_id.id and \
-                            self.start_datetime.date() == session.start_datetime.date():
+                            session.start_datetime < self.start_datetime < session.end_datetime or \
+                            session.start_datetime < self.end_datetime < session.end_datetime:
                         raise ValidationError(_(
                             'You cannot create a session '
                             'with same classroom on same date'
                             ' and time'))
                 if is_batch_and_subject_constraint:
                     if self.batch_id.id == session.batch_id.id and \
-                            self.timing_id.id == session.timing_id.id and \
-                            self.start_datetime.date() == \
-                            session.start_datetime.date() \
+                            session.start_datetime < self.start_datetime < session.end_datetime or \
+                            session.start_datetime < self.end_datetime < session.end_datetime \
                             and self.subject_id.id == session.subject_id.id:
                         raise ValidationError(_(
                             'You cannot create a session '
@@ -184,8 +190,8 @@ class OpSession(models.Model):
                             'and for same subject'))
                 if is_batch_constraint:
                     if self.batch_id.id == session.batch_id.id and \
-                            self.timing_id.id == session.timing_id.id and \
-                            self.start_datetime.date() == session.start_datetime.date():
+                            session.start_datetime < self.start_datetime < session.end_datetime or \
+                            session.start_datetime < self.end_datetime < session.end_datetime:
                         raise ValidationError(_(
                             'You cannot create a session for '
                             'the same batch on same time '
