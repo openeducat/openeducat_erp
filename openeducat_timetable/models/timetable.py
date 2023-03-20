@@ -85,9 +85,9 @@ class OpSession(models.Model):
     @api.depends('start_datetime', 'end_datetime')
     def _compute_timing(self):
         tz = pytz.timezone(self.env.user.tz)
-        for time in self:
-            time.timing = str(time.start_datetime.astimezone(tz).strftime('%I:%M%p')) + ' - ' + str(
-                time.end_datetime.astimezone(tz).strftime('%I:%M%p'))
+        for session in self:
+            session.timing = str(session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + ' - ' + str(
+                session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
 
     @api.model
     def _expand_groups(self, days, domain, order):
