@@ -15,7 +15,6 @@
                     <field name="end_datetime"/>
                     <field name="state"/>
                     <field name="course_id" optional="hide"/>
-                    <field name="timing_id" optional="hide"/>
                     <field name="type" optional="hide"/>
                 </tree>
             </field>
@@ -59,14 +58,19 @@
                         </group>
                         <group colspan="4" col="4">
                             <field name="faculty_id" options='{"no_open": True}'/>
-                            <field name="timing_id"/>
                             <field name="course_id" options='{"no_open": True}'/>
                             <field name="batch_id" options='{"no_open": True}'
                                    context="{'course_id': course_id,'get_parent_batch':1}"/>
                             <field name="subject_id"/>
                             <field name="classroom_id"/>
-                            <field name="start_datetime"/>
-                            <field name="end_datetime"/>
+                            <label for="start_datetime" string="Session Time"/>
+                            <div class="o_row">
+                                <field name="start_datetime" widget="daterange" class="oe_inline"
+                                       options="{'related_end_date': 'end_datetime'}"/>
+                                <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow"/>
+                                <field name="end_datetime" widget="daterange" nolabel="1" class="oe_inline"
+                                       options="{'related_start_date': 'start_datetime'}"/>
+                            </div>
                             <field name="type"/>
                         </group>
                     </sheet>
@@ -88,7 +92,6 @@
                     <field name="faculty_id" select="True"/>
                     <field name="course_id" select="True"/>
                     <field name="batch_id" select="True"/>
-                    <field name="timing_id" select="True"/>
                     <field name="subject_id" select="True"/>
                     <field name="start_datetime" select="True"/>
                     <field name="end_datetime" select="True"/>
@@ -110,8 +113,6 @@
                                 domain="[]" context="{'group_by':'course_id'}"/>
                         <filter string="Batch" name="group_by_session_batch_id"
                                 domain="[]" context="{'group_by':'batch_id'}"/>
-                        <filter string="Period" name="group_by_session_timing_id"
-                                domain="[]" context="{'group_by':'timing_id'}"/>
                         <filter string="Subject" name="group_by_session_subject_id"
                                 domain="[]" context="{'group_by':'subject_id'}"/>
                         <filter string="State" name="group_by_session_state"
@@ -131,7 +132,8 @@
                     <field name="faculty_id"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
-                    <field name="timing_id"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
                     <field name="subject_id"/>
                     <field name="type"/>
                 </calendar>
@@ -172,7 +174,7 @@
                                 <div class="oe_kanban_content">
                                     <div>
                                         <strong>
-                                            <field name="timing_id"/>
+                                            <field name="timing"/>
                                         </strong>
                                     </div>
                                     <div class="oe_kanban_left">
@@ -224,7 +226,6 @@
                 <pivot string="Session Analysis">
                     <field name="name"/>
                     <field name="faculty_id" type="col"/>
-                    <field name="timing_id"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
                     <field name="subject_id"/>
