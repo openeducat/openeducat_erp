@@ -80,7 +80,14 @@ class OpSession(models.Model):
         'Days',
         group_expand='_expand_groups', store=True
     )
-    timing = fields.Char()
+    timing = fields.Char(compute='_compute_timing')
+
+    @api.depends('start_datetime', 'end_datetime')
+    def _compute_timing(self):
+        tz = pytz.timezone(self.env.user.tz)
+        for session in self:
+            session.timing = str(session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + ' - ' + str(
+                session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
 
     @api.model
     def _expand_groups(self, days, domain, order):
@@ -106,8 +113,6 @@ class OpSession(models.Model):
                     session.subject_id.name + ':' + str(
                         session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + '-' + str(
                         session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
-                session.timing = str(session.start_datetime.astimezone(tz).strftime('%I:%M%p')) + ' - ' + str(
-                    session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
 
     # For record rule on student and faculty dashboard
     @api.depends('batch_id', 'faculty_id', 'user_ids.child_ids')
@@ -165,24 +170,33 @@ class OpSession(models.Model):
             if self.id != session.id:
                 if is_faculty_constraint:
                     if self.faculty_id.id == session.faculty_id.id and \
-                            session.start_datetime < self.start_datetime < session.end_datetime or \
-                            session.start_datetime < self.end_datetime < session.end_datetime:
+                            self.start_datetime.date() == session.start_datetime.date() and (
+                            session.start_datetime.time() < self.start_datetime.time() < session.end_datetime.time() or
+                            session.start_datetime.time() < self.end_datetime.time() < session.end_datetime.time() or
+                            self.start_datetime.time() <= session.start_datetime.time() < self.end_datetime.time() or
+                            self.start_datetime.time() < session.end_datetime.time() <= self.end_datetime.time()):
                         raise ValidationError(_(
                             'You cannot create a session'
                             ' with same faculty on same date '
                             'and time'))
                 if is_classroom_constraint:
                     if self.classroom_id.id == session.classroom_id.id and \
-                            session.start_datetime < self.start_datetime < session.end_datetime or \
-                            session.start_datetime < self.end_datetime < session.end_datetime:
+                            self.start_datetime.date() == session.start_datetime.date() and (
+                            session.start_datetime.time() < self.start_datetime.time() < session.end_datetime.time() or
+                            session.start_datetime.time() < self.end_datetime.time() < session.end_datetime.time() or
+                            self.start_datetime.time() <= session.start_datetime.time() < self.end_datetime.time() or
+                            self.start_datetime.time() < session.end_datetime.time() <= self.end_datetime.time()):
                         raise ValidationError(_(
                             'You cannot create a session '
                             'with same classroom on same date'
                             ' and time'))
                 if is_batch_and_subject_constraint:
                     if self.batch_id.id == session.batch_id.id and \
-                            session.start_datetime < self.start_datetime < session.end_datetime or \
-                            session.start_datetime < self.end_datetime < session.end_datetime \
+                            self.start_datetime.date() == session.start_datetime.date() and (
+                            session.start_datetime.time() < self.start_datetime.time() < session.end_datetime.time() or
+                            session.start_datetime.time() < self.end_datetime.time() < session.end_datetime.time() or
+                            self.start_datetime.time() <= session.start_datetime.time() < self.end_datetime.time() or
+                            self.start_datetime.time() < session.end_datetime.time() <= self.end_datetime.time()) \
                             and self.subject_id.id == session.subject_id.id:
                         raise ValidationError(_(
                             'You cannot create a session '
@@ -190,8 +204,11 @@ class OpSession(models.Model):
                             'and for same subject'))
                 if is_batch_constraint:
                     if self.batch_id.id == session.batch_id.id and \
-                            session.start_datetime < self.start_datetime < session.end_datetime or \
-                            session.start_datetime < self.end_datetime < session.end_datetime:
+                            self.start_datetime.date() == session.start_datetime.date() and (
+                            session.start_datetime.time() < self.start_datetime.time() < session.end_datetime.time() or
+                            session.start_datetime.time() < self.end_datetime.time() < session.end_datetime.time() or
+                            self.start_datetime.time() <= session.start_datetime.time() < self.end_datetime.time() or
+                            self.start_datetime.time() < session.end_datetime.time() <= self.end_datetime.time()):
                         raise ValidationError(_(
                             'You cannot create a session for '
                             'the same batch on same time '

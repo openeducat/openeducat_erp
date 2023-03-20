@@ -82,7 +82,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
                 'subject': timetable_obj.subject_id.name,
             }
             data_list.append(timetable_data)
-        ttdl = sorted(data_list, key=lambda k: k['period'])
+        ttdl = sorted(data_list, key=lambda k: k['start_datetime'])
         final_list = self.sort_tt(ttdl)
         return final_list
 
