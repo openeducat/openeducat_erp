@@ -76,6 +76,15 @@ class GenerateSession(models.TransientModel):
             if self.batch_id.course_id != self.course_id:
                 self.batch_id = False
 
+    def change_tz(self, date):
+        local_tz = pytz.timezone(
+            self.env.user.partner_id.tz or 'GMT')
+        local_dt = local_tz.localize(date, is_dst=None)
+        utc_dt = local_dt.astimezone(pytz.utc)
+        utc_dt = utc_dt.strftime("%Y-%m-%d %H:%M:%S")
+        return datetime.datetime.strptime(
+            utc_dt, "%Y-%m-%d %H:%M:%S")
+
     def act_gen_time_table(self):
         session_obj = self.env['op.session']
         for session in self:
@@ -85,28 +94,23 @@ class GenerateSession(models.TransientModel):
                 curr_date = start_date + datetime.timedelta(n)
                 for line in session.time_table_lines:
                     if int(line.day) == curr_date.weekday():
-                        hour = line.timing_id.hour
-                        if line.timing_id.am_pm == 'pm' and int(hour) != 12:
-                            hour = int(hour) + 12
-                        per_time = '%s:%s:00' % (hour, line.timing_id.minute)
-                        final_date = datetime.datetime.strptime(
+                        session_start_time = '%s:00' % '{0:02.0f}:{1:02.0f}'.format(
+                            *divmod(line.session_start_time * 60, 60))
+                        session_end_time = '%s:00' % '{0:02.0f}:{1:02.0f}'.format(
+                            *divmod(line.session_end_time * 60, 60))
+                        final_start_date = datetime.datetime.strptime(
                             curr_date.strftime('%Y-%m-%d ') +
-                            per_time, '%Y-%m-%d %H:%M:%S')
-                        local_tz = pytz.timezone(
-                            self.env.user.partner_id.tz or 'GMT')
-                        local_dt = local_tz.localize(final_date, is_dst=None)
-                        utc_dt = local_dt.astimezone(pytz.utc)
-                        utc_dt = utc_dt.strftime("%Y-%m-%d %H:%M:%S")
-                        curr_start_date = datetime.datetime.strptime(
-                            utc_dt, "%Y-%m-%d %H:%M:%S")
-                        curr_end_date = curr_start_date + datetime.timedelta(
-                            hours=line.timing_id.duration)
+                            session_start_time, '%Y-%m-%d %H:%M:%S')
+                        final_end_date = datetime.datetime.strptime(
+                            curr_date.strftime('%Y-%m-%d ') +
+                            session_end_time, '%Y-%m-%d %H:%M:%S')
+                        curr_start_date = self.change_tz(final_start_date)
+                        curr_end_date = self.change_tz(final_end_date)
                         session_obj.create({
                             'faculty_id': line.faculty_id.id,
                             'subject_id': line.subject_id.id,
                             'course_id': session.course_id.id,
                             'batch_id': session.batch_id.id,
-                            'timing_id': line.timing_id.id,
                             'classroom_id': line.classroom_id.id,
                             'start_datetime':
                             curr_start_date.strftime("%Y-%m-%d %H:%M:%S"),
@@ -126,7 +130,9 @@ class GenerateSessionLine(models.TransientModel):
         'generate.time.table', 'Time Table', required=True)
     faculty_id = fields.Many2one('op.faculty', 'Faculty', required=True)
     subject_id = fields.Many2one('op.subject', 'Subject', required=True)
-    timing_id = fields.Many2one('op.timing', 'Timing', required=True)
+    timing_id = fields.Many2one('op.timing', 'Timing')
+    session_start_time = fields.Float("Start Time")
+    session_end_time = fields.Float("End Time")
     classroom_id = fields.Many2one('op.classroom', 'Classroom')
     day = fields.Selection([
         ('0', calendar.day_name[0]),
