@@ -275,6 +275,7 @@ class OpAdmission(models.Model):
                         student.register_id.academic_term_id.id or False,
                     'fees_term_id': student.fees_term_id.id,
                     'fees_start_date': student.fees_start_date,
+                    'product_id': student.register_id.product_id.id,
                 }]],
                 'user_id': student_user.id,
                 'company_id': self.company_id.id,
@@ -308,6 +309,7 @@ class OpAdmission(models.Model):
                             record.batch_id and record.batch_id.id or False,
                         'fees_term_id': record.fees_term_id.id,
                         'fees_start_date': record.fees_start_date,
+                        'product_id': record.register_id.product_id.id,
                     }]],
                 })
             if record.fees_term_id.fees_terms in ['fixed_days', 'fixed_date']:
@@ -468,3 +470,11 @@ class OpAdmission(models.Model):
             'label': _('Import Template for Admission'),
             'template': '/openeducat_admission/static/xls/op_admission.xls'
         }]
+
+
+class OpStudentCourseInherit(models.Model):
+    _inherit = "op.student.course"
+
+    product_id = fields.Many2one(
+        'product.product', 'Course Fees', required=True,
+        domain=[('type', '=', 'service')], tracking=True)
