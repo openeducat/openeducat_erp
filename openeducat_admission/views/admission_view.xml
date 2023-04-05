@@ -236,5 +236,17 @@
             <field name="view_mode">tree</field>
             <field name="view_id" ref="view_op_admission_tree"/>
         </record>
+
+        <record id="view_op_student_course_form_admission_inherit" model="ir.ui.view">
+            <field name="name">op.student.course.form.admission.inherit</field>
+            <field name="model">op.student.course</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_course_form"/>
+            <field name="arch" type="xml">
+                <field name="fees_term_id" position="before">
+                    <field name="product_id"/>
+                </field>
+            </field>
+        </record>
+
     </data>
 </odoo>
