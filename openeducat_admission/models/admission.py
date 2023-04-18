@@ -471,5 +471,5 @@ class OpStudentCourseInherit(models.Model):
     _inherit = "op.student.course"
 
     product_id = fields.Many2one(
-        'product.product', 'Course Fees', required=True,
+        'product.product', 'Course Fees',
         domain=[('type', '=', 'service')], tracking=True)
