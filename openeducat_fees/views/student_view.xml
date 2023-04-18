@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_op_student_form_fees_inherit" model="ir.ui.view">
+            <field name="name">op.student.form.fees.inherit</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="btn oe_stat_button"
+                            type="object"
+                            name="count_fees_details"
+                            style="border-right: 1px solid;border-bottom: 1px solid;white-space: inherit;display: inline-flex;"
+                            icon="fa-file">
+                        <field string="Fees Details" name="fees_details_count" widget="statinfo"/>
+                    </button>
+                    <button class="btn oe_stat_button" type="object"
+                            name="action_view_invoice"
+                            style="border-right: 1px solid;"
+                            icon="fa-pencil-square-o">
+                        <field string="Invoiced" name="total_invoiced" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

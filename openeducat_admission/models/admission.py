@@ -347,6 +347,9 @@ class OpAdmission(models.Model):
                             'date': date_now,
                         })
                     val.append([0, False, dict_val])
+                record.student_id.write({
+                    'fees_detail_ids': val
+                })
             record.write({
                 'nbr': 1,
                 'state': 'done',
@@ -378,6 +381,8 @@ class OpAdmission(models.Model):
 
     def confirm_cancel(self):
         self.state = 'cancel'
+        if self.is_student and self.student_id.fees_detail_ids:
+            self.student_id.fees_detail_ids.state = 'cancel'
 
     def payment_process(self):
         self.state = 'fees_paid'
