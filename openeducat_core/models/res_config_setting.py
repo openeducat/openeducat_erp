@@ -77,6 +77,10 @@ class ResConfigSettings(models.TransientModel):
         string="Facility Enterprise")
     module_openeducat_fees_enterprise = fields.Boolean(
         string="Fees Enterprise")
+    module_openeducat_fees_plan = fields.Boolean(
+        string="Fees Plan")
+    module_openeducat_fees_parent_bridge = fields.Boolean(
+        string="Fees Parent Bridge")
     module_openeducat_library_barcode = fields.Boolean(
         string="Library Barcode Enterprise")
     module_openeducat_library_enterprise = fields.Boolean(
