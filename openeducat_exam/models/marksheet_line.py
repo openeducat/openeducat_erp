@@ -27,6 +27,7 @@ class OpMarksheetLine(models.Model):
     _name = "op.marksheet.line"
     _rec_name = "student_id"
     _description = "Marksheet Line"
+    _inherit = ['mail.thread']
 
     marksheet_reg_id = fields.Many2one(
         'op.marksheet.register', 'Marksheet Register')
