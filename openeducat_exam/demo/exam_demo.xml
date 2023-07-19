@@ -168,5 +168,10 @@
             <field name="end_time"
                    eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-20 06:30')"/>
         </record>
+
+       <record id="openeducat_core.op_user_faculty" model="res.users">
+              <field name="groups_id"
+              eval="[(4,ref('openeducat_exam.group_op_exam_user'))]"/>
+       </record>      
     </data>
 </odoo>

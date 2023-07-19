@@ -40,5 +40,10 @@
             <field name="start_datetime" eval="time.strftime('%Y-%m-%d 06:30:00')"/>
             <field name="end_datetime" eval="time.strftime('%Y-%m-%d 07:30:00')"/>
         </record>
+
+        <record id="openeducat_core.op_user_faculty" model="res.users">
+            <field name="groups_id"
+            eval="[(4,ref('openeducat_timetable.group_op_timetable_user'))]"/>
+        </record>
     </data>
 </odoo>

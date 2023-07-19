@@ -144,5 +144,10 @@
             <field name="fees_line_id" ref="openeducat_fees.op_fees_term_line_5"/>
             <field name="date" eval="(DateTime.today() + relativedelta(days=5))"/>
         </record>
+
+        <record id="openeducat_core.op_user_faculty" model="res.users">
+            <field name="groups_id"
+            eval="[(4,ref('openeducat_fees.group_openeducat_fees_user'))]"/>
+        </record>
     </data>
 </odoo>
