@@ -1299,5 +1299,10 @@
             <field name="present" eval="True"/>
             <field name="student_id" ref="openeducat_core.op_student_3"/>
         </record>
+
+        <record id="openeducat_core.op_user_faculty" model="res.users">
+            <field name="groups_id"
+            eval="[(4,ref('openeducat_attendance.group_op_attendance_user'))]"/>
+        </record>
     </data>
 </odoo>
