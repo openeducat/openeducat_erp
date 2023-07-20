@@ -100,6 +100,7 @@
         ],
         'web.assets_backend': [
             '/openeducat_core/static/src/scss/style.scss',
+            '/openeducat_core/static/src/js/g2_review.js',
         ],
     },
 }
