@@ -30,7 +30,7 @@ flectra.define('openeducat_core.g2_review', function (require) {
                     review_dialog.$modal.find('.modal-dialog').addClass('modal-dialog-centered');
                     review_dialog.$modal.find('.modal-body').removeClass('modal-body');
                     review_dialog.$el.find('#write_g2_review').on('click', (e) => {
-                        window.open('https://www.g2.com/products/openeducat/reviews/start?return_to=https%3A%2F%2Fwww.g2.com%2Fproducts%2Fopeneducat%2Ftake_survey', '_blank');
+                            window.open('https://openeducat.org/g2feedback', '_blank');
                         review_dialog.close();
 
                         utils.set_cookie(`g2_review_${session.db}`, true, nbDays * 24 * 60 * 60);
