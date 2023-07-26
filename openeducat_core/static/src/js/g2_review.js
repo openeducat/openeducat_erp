@@ -28,6 +28,7 @@ $(document).ready(function(){
                 review_dialog.$modal.find('.modal-dialog').addClass('modal-dialog-centered');
                 review_dialog.$modal.find('.modal-body').removeClass('modal-body');
                 review_dialog.$el.find('#write_g2_review').on('click', (e) => {
+                    e.preventDefault();
                     window.open('https://openeducat.org/g2feedback', '_blank');
                     review_dialog.close();
 
