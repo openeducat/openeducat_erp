@@ -96,11 +96,10 @@ class OpSession(models.Model):
 
     @api.depends('start_datetime')
     def _compute_day(self):
+        days = {0: 'monday', 1: 'tuesday', 2: 'wednesday', 3: 'thursday', 4: 'friday', 5: 'saturday', 6: 'sunday'}
         for record in self:
-            record.type = fields.Datetime.from_string(
-                record.start_datetime).strftime("%A")
-            record.days = fields.Datetime.from_string(
-                record.start_datetime).strftime("%A").lower()
+            record.type = days.get(record.start_datetime.weekday()).capitalize()
+            record.days = days.get(record.start_datetime.weekday())
 
     @api.depends('faculty_id', 'subject_id', 'start_datetime')
     def _compute_name(self):
