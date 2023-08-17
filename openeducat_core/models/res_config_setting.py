@@ -201,3 +201,15 @@ class ResConfigSettings(models.TransientModel):
         string="Student Attendance Face Recognition")
     module_openeducat_omr = fields.Boolean(
         string="OMR")
+    module_openeducat_auto_database_backup = fields.Boolean(
+        string="Database Backup to Local Server")
+    module_openeducat_auto_database_backup_dropbox = fields.Boolean(
+        string="Database Backup to Dropbox")
+    module_openeducat_auto_database_backup_ftp = fields.Boolean(
+        string="Database Backup to Remote FTP Server")
+    module_openeducat_auto_database_backup_google_drive = fields.Boolean(
+        string="Database Backup to Google Drive")
+    module_openeducat_auto_database_backup_onedrive = fields.Boolean(
+        string="Database Backup to Onedrive")
+    module_openeducat_auto_database_backup_sftp = fields.Boolean(
+        string="Database Backup to Remote SFTP Server")
