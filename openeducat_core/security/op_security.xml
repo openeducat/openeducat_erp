@@ -106,5 +106,16 @@
                 'in', company_ids)]
             </field>
         </record>
+
+        <record model="ir.rule" id="op_student_course_multi_comp_rule">
+            <field name="name">Student Course multi-company</field>
+            <field name="model_id" ref="openeducat_core.model_op_student_course"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                ['|','|',('student_id.company_id','=',False),('student_id.company_id','child_of',[user.company_id.id]),('student_id.company_id','in',user.company_ids.ids),('student_id.company_id',
+                'in', company_ids)]
+            </field>
+        </record>
+
     </data>
 </odoo>
