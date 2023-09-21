@@ -30,7 +30,7 @@
                                         </tr>
                                         <tr style="float:left; margin:10px 0;">
                                             <td>
-                                                <img class="image"
+                                                <img class="image" t-if="o.image_1920"
                                                      t-att-src="image_data_uri(o.image_1920)"
                                                      style="max-height:2.5cm; max-width:4cm; margin-left: 10px; margin-right: 10px; margin-bottom: 3px; border: 1px solid #ccc;"/>
                                             </td>
@@ -51,10 +51,12 @@
                                                     </span>
                                                     <span t-field='o.birth_date' t-options="{'widget':'date'}"/>
                                                     <br></br>
-                                                    <span style="font-weight:600">
-                                                        Course :
-                                                    </span>
-                                                    <span class="student" t-field='o.course_detail_ids[0].course_id.name'/>
+                                                    <t t-if="o.course_detail_ids">
+                                                        <span style="font-weight:600">
+                                                            Course :
+                                                        </span>
+                                                        <span class="student" t-field='o.course_detail_ids[0].course_id.name'/>
+                                                    </t>
                                                 </div>
                                             </td>
                                         </tr>
