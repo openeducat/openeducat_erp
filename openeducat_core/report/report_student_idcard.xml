@@ -51,10 +51,12 @@
                                                     </span>
                                                     <span t-field='o.birth_date' t-options="{'widget':'date'}"/>
                                                     <br></br>
-                                                    <span style="font-weight:600">
-                                                        Course :
-                                                    </span>
-                                                    <span class="student" t-if="o.course_detail_ids" t-field='o.course_detail_ids[0].course_id.name'/>
+                                                    <t t-if="o.course_detail_ids">
+                                                        <span style="font-weight:600">
+                                                            Course :
+                                                        </span>
+                                                        <span class="student" t-field='o.course_detail_ids[0].course_id.name'/>
+                                                    </t>
                                                 </div>
                                             </td>
                                         </tr>
