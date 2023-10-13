@@ -33,7 +33,7 @@ class OpStudentFeesDetails(models.Model):
     amount = fields.Monetary('Fees Amount', currency_field='currency_id')
     date = fields.Date('Submit Date')
     product_id = fields.Many2one('product.product', 'Product')
-    student_id = fields.Many2one('op.student', 'Student')
+    student_id = fields.Many2one('op.student', 'Student', required=True)
     fees_factor = fields.Float("Fees Factor")
     state = fields.Selection([
         ('draft', 'Draft'),
