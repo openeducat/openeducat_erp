@@ -26,8 +26,8 @@ class OpDepartment(models.Model):
     _name = "op.department"
     _description = "OpenEduCat Department"
 
-    name = fields.Char('Name')
-    code = fields.Char('Code')
+    name = fields.Char('Name', required=True)
+    code = fields.Char('Code', required=True)
     parent_id = fields.Many2one('op.department', 'Parent Department')
 
     @api.model
