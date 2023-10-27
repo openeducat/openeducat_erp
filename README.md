@@ -1,5 +1,5 @@
-OpenEduCat for Odoo 16
-=======================
+OpenEduCat for Odoo 17 ( WORK IN PROGRESS, NOT PRODUCTION READY )
+=================================================================
 
 OpenEduCat is a fully open source ERP system for educational institute, for efficient management of students, faculties, courses and classes keeping a collaborative platform.
 
