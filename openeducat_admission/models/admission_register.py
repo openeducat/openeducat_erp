@@ -31,28 +31,22 @@ class OpAdmissionRegister(models.Model):
     _order = 'id DESC'
 
     name = fields.Char(
-        'Name', required=True, readonly=True,
-        states={'draft': [('readonly', False)]})
+        'Name', required=True, readonly=True)
     start_date = fields.Date(
         'Start Date', required=True, readonly=True,
-        default=fields.Date.today(), states={'draft': [('readonly', False)]})
+        default=fields.Date.today())
     end_date = fields.Date(
         'End Date', required=True, readonly=True,
-        default=(fields.Date.today() + relativedelta(days=30)),
-        states={'draft': [('readonly', False)]})
+        default=(fields.Date.today() + relativedelta(days=30)))
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True, readonly=True,
-        states={'draft': [('readonly', False)]}, tracking=True)
+        'op.course', 'Course', required=True, readonly=True, tracking=True)
     min_count = fields.Integer(
-        'Minimum No. of Admission', readonly=True,
-        states={'draft': [('readonly', False)]})
+        'Minimum No. of Admission', readonly=True)
     max_count = fields.Integer(
-        'Maximum No. of Admission', readonly=True,
-        states={'draft': [('readonly', False)]}, default=30)
+        'Maximum No. of Admission', readonly=True, default=30)
     product_id = fields.Many2one(
         'product.product', 'Course Fees', required=True,
-        domain=[('type', '=', 'service')], readonly=True,
-        states={'draft': [('readonly', False)]}, tracking=True)
+        domain=[('type', '=', 'service')], readonly=True, tracking=True)
     admission_ids = fields.One2many(
         'op.admission', 'register_id', 'Admissions')
     state = fields.Selection(
@@ -65,11 +59,9 @@ class OpAdmissionRegister(models.Model):
     academic_years_id = \
         fields.Many2one('op.academic.year',
                         'Academic Year', readonly=True,
-                        states={'draft': [('readonly', False)]},
                         tracking=True)
     academic_term_id = fields.Many2one('op.academic.term',
                                        'Terms', readonly=True,
-                                       states={'draft': [('readonly', False)]},
                                        tracking=True)
     minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=3)
 

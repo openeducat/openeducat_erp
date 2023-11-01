@@ -7,8 +7,8 @@
             <form string="Fees Details">
                 <group>
                     <field name="fees_filter"/>
-                    <field name="student_id" attrs="{'invisible':[('fees_filter','!=','student')],'required':[('fees_filter','=','student')]}"/>
-                    <field name="course_id" attrs="{'invisible':[('fees_filter','!=','course')],'required':[('fees_filter','=','course')]}"/>
+                    <field name="student_id" invisible="fees_filter != 'student'" required="fees_filter == 'student'"/>
+                    <field name="course_id" invisible="fees_filter != 'course'" required="fees_filter == 'course'"/>
                 </group>
                 <footer groups="base.group_user">
                     <button name="print_report" type="object" string="Print" class="oe_highlight"/>

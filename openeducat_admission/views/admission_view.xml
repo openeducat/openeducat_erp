@@ -30,30 +30,36 @@
             <field name="arch" type="xml">
                 <form string="Registration">
                     <header>
-                        <button string="Submit" states="draft" class="oe_highlight" type="object" name="submit_form"/>
-                        <button name="confirm_in_progress" states="submit,pending" string="Confirm" type="object"
+                        <button string="Submit" invisible="state != 'draft'" class="oe_highlight" type="object"
+                                name="submit_form"/>
+                        <button name="confirm_in_progress" invisible="state not in ('submit','pending')"
+                                string="Confirm" type="object"
                                 class="oe_highlight"/>
-                        <button string="Admission Confirm" class="oe_highlight" states="confirm" type="object"
+                        <button string="Admission Confirm" class="oe_highlight" invisible="state != 'confirm'"
+                                type="object"
                                 name="admission_confirm"/>
-                        <button name="enroll_student" states="admission" string="Enroll" type="object"
+                        <button name="enroll_student" invisible="state != 'admission'" string="Enroll" type="object"
                                 class="oe_highlight"/>
-                        <button name="confirm_rejected" states="confirm,confirm_pending" string="Reject" type="object"/>
-                        <button name="confirm_pending" states="submit" string="Pending" type="object"/>
+                        <button name="confirm_rejected" invisible="state not in ('confirm','confirm_pending')"
+                                string="Reject" type="object"/>
+                        <button name="confirm_pending" invisible="state != 'submit'" string="Pending" type="object"/>
                         <button name="confirm_cancel" string="Cancel" type="object"/>
-                        <button name="confirm_to_draft" states="pending,reject,cancel" string="Set to Draft"
+                        <button name="confirm_to_draft" invisible="state not in ('pending','reject','cancel')"
+                                string="Set to Draft"
                                 type="object"/>
-                        <button name="open_student" states="done" string="Open Student Profile" type="object"/>
+                        <button name="open_student" invisible="state != 'done'" string="Open Student Profile"
+                                type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
 
-                        <field name="image" widget="image" class="oe_left oe_avatar"/>
+                        <field name="image" widget="image" class="oe_left oe_avatar" readonly="state == 'done'"/>
                         <div class="oe_title">
                             <h3>
-                                <field name="title" placeholder="Title" style="width: 30%%"/>
+                                <field name="title" placeholder="Title" style="width: 30%%" readonly="state == 'done'"/>
                             </h3>
                             <h2>
                                 <field name="name" placeholder="Name" required="1" style="padding-right:10px"
@@ -62,15 +68,16 @@
                                     <tr>
                                         <td>
                                             <field name="first_name" placeholder="First Name" required="1"
-                                                   style="padding-right:10px"
-                                                   attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                                   style="padding-right:10px" readonly="state == 'done'"/>
                                         </td>
                                         <td>
                                             <field name="middle_name" placeholder="Middle Name"
+                                                   readonly="state == 'done'"
                                                    style="padding-right:10px"/>
                                         </td>
                                         <td>
                                             <field name="last_name" placeholder="Last Name" required="1"
+                                                   readonly="state == 'done'"
                                                    style="padding-right:10px"/>
                                         </td>
                                     </tr>
@@ -81,81 +88,88 @@
                             <page name="admission_detail" string="Admission Detail">
                                 <group>
                                     <group>
-                                        <field name="register_id"
+                                        <field name="register_id" readonly="state == 'done'"
                                                domain="[('state', 'in', ['application','admission'])]"
                                                widget="selection"/>
-                                        <field name="application_date"/>
-                                        <field name="course_id"/>
+                                        <field name="application_date" readonly="state == 'done'"/>
+                                        <field name="course_id" readonly="state == 'done'"/>
                                         <field name="discount"/>
-                                        <field name="due_date"/>
+                                        <field name="due_date" readonly="state == 'done'"/>
                                         <field name="is_student"/>
                                         <field name="company_id" groups="base.group_multi_company" optional="show"/>
                                         <field name="fees_start_date"/>
                                     </group>
                                     <group>
                                         <field name="application_number"/>
-                                        <field name="admission_date"/>
-                                        <field name="batch_id"
-                                               context="{'course_id': course_id,'get_parent_batch':1}"/>
-                                        <field name="fees"
-                                               attrs="{'required': [('state','not in', ['draft', 'submit'])]}"/>
+                                        <field name="admission_date" readonly="state == 'done'"/>
+                                        <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
+                                               readonly="state == 'done'" required="state in ('submit','fees_paid')"/>
+                                        <field name="fees" readonly="state == 'done'"
+                                               required="state not in ('draft', 'submit')"/>
                                         <field name="fees_term_id" required="1"
-                                               attrs="{'readonly': [('state','not in', ['draft', 'submit', 'confirm'])]}"/>
+                                               readonly="state not in ('draft', 'submit', 'confirm')"/>
                                         <field name="partner_id"/>
-                                        <field name="student_id" placeholder="Student"
+                                        <field name="student_id" placeholder="Student" readonly="state == 'done'"
                                                options="{'no_create_edit': True}"
-                                               attrs="{'required':[('is_student','=',True)],'invisible': [('is_student','=', False)]}"/>
+                                               required="is_student == True" invisible="is_student == False"/>
                                     </group>
                                 </group>
                             </page>
                             <page name="educational_detail" string="Educational Detail">
                                 <group>
                                     <group>
-                                        <field name="prev_institute_id"/>
-                                        <field name="prev_result"/>
+                                        <field name="prev_institute_id" readonly="state == 'done'"/>
+                                        <field name="prev_result" readonly="state == 'done'"/>
                                     </group>
                                     <group>
-                                        <field name="prev_course_id"/>
+                                        <field name="prev_course_id" readonly="state == 'done'"/>
                                     </group>
                                 </group>
                             </page>
                             <page name="personal_detail" string="Personal Detail">
                                 <group>
                                     <group>
-                                        <field name="gender"/>
-                                        <field name="email" placeholder="Email"/>
+                                        <field name="gender" readonly="state == 'done'"/>
+                                        <field name="email" placeholder="Email" readonly="state == 'done'"/>
                                     </group>
                                     <group>
-                                        <field name="birth_date" options="{'datepicker':{'warn_future': true}}"/>
+                                        <field name="birth_date" options="{'datepicker':{'warn_future': true}}"
+                                               readonly="state == 'done'"/>
                                     </group>
                                 </group>
                                 <label for="street" string="Address"/>
                                 <div>
                                     <div>
-                                        <field name="street" placeholder="Street..." nolabel="1" style="width: 100%%"/>
+                                        <field name="street" placeholder="Street..." nolabel="1" style="width: 100%%"
+                                               readonly="state == 'done'"/>
                                         <field name="street2" placeholder="Street 2..." nolabel="1"
+                                               readonly="state == 'done'"
                                                style="width: 100%%"/>
                                     </div>
                                     <div class="address_format">
-                                        <field name="city" placeholder="City" style="width: 40%%"/>
-                                        <field name="state_id" options='{"no_open": True}'
+                                        <field name="city" placeholder="City" style="width: 40%%"
+                                               readonly="state == 'done'"/>
+                                        <field name="state_id" options='{"no_open": True}' readonly="state == 'done'"
                                                placeholder="State" style="width: 24%%"/>
-                                        <field name="zip" placeholder="ZIP" style="width: 34%%"/>
+                                        <field name="zip" placeholder="ZIP" style="width: 34%%"
+                                               readonly="state == 'done'"/>
                                     </div>
                                     <div>
                                         <field name="country_id" placeholder="Country" options='{"no_open": True}'
-                                               nolabel="1"/>
-                                        <field name="phone" placeholder="Phone" nolabel="1" style="width: 100%%"/>
-                                        <field name="mobile" placeholder="Mobile" nolabel="1" style="width: 100%%"/>
+                                               nolabel="1" readonly="state == 'done'"/>
+                                        <field name="phone" placeholder="Phone" nolabel="1" style="width: 100%%"
+                                               readonly="state == 'done'" required="state == 'submit'"/>
+                                        <field name="mobile" placeholder="Mobile" nolabel="1" style="width: 100%%"
+                                               readonly="state == 'done'" required="state == 'submit'"/>
                                     </div>
                                 </div>
                                 <group>
                                     <group>
-                                        <field name="family_business"/>
+                                        <field name="family_business" readonly="state == 'done'"/>
                                         <field name="nbr" invisible="1"/>
                                     </group>
                                     <group>
-                                        <field name="family_income"/>
+                                        <field name="family_income" readonly="state == 'done'"/>
                                     </group>
                                 </group>
                             </page>

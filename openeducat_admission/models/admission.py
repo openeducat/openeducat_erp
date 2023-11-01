@@ -38,84 +38,69 @@ class OpAdmission(models.Model):
     first_name = fields.Char(
         'First Name', required=True, translate=True)
     middle_name = fields.Char(
-        'Middle Name', translate=True,
-        states={'done': [('readonly', True)]})
+        'Middle Name', translate=True)
     last_name = fields.Char(
-        'Last Name', required=True, translate=True,
-        states={'done': [('readonly', True)]})
+        'Last Name', required=True, translate=True)
     title = fields.Many2one(
-        'res.partner.title', 'Title', states={'done': [('readonly', True)]})
+        'res.partner.title', 'Title')
     application_number = fields.Char(
         'Application Number', size=16, copy=False,
         required=True, readonly=True, store=True,
         default=lambda self:
         self.env['ir.sequence'].next_by_code('op.admission'))
     admission_date = fields.Date(
-        'Admission Date', copy=False,
-        states={'done': [('readonly', True)]})
+        'Admission Date', copy=False)
     application_date = fields.Datetime(
         'Application Date', required=True, copy=False,
-        states={'done': [('readonly', True)]},
         default=lambda self: fields.Datetime.now())
     birth_date = fields.Date(
-        'Birth Date', required=True, states={'done': [('readonly', True)]})
+        'Birth Date', required=True)
     course_id = fields.Many2one(
-        'op.course', 'Course', required=True,
-        states={'done': [('readonly', True)]})
+        'op.course', 'Course', required=True)
     batch_id = fields.Many2one(
-        'op.batch', 'Batch', required=False,
-        states={'done': [('readonly', True)],
-                'submit': [('required', True)],
-                'fees_paid': [('required', True)]})
+        'op.batch', 'Batch', required=False)
     street = fields.Char(
-        'Street', size=256, states={'done': [('readonly', True)]})
+        'Street', size=256)
     street2 = fields.Char(
-        'Street2', size=256, states={'done': [('readonly', True)]})
+        'Street2', size=256)
     phone = fields.Char(
-        'Phone', size=16, states={'done': [('readonly', True)],
-                                  'submit': [('required', True)]})
+        'Phone', size=16)
     mobile = fields.Char(
-        'Mobile', size=16,
-        states={'done': [('readonly', True)], 'submit': [('required', True)]})
+        'Mobile', size=16)
     email = fields.Char(
-        'Email', size=256, required=True,
-        states={'done': [('readonly', True)]})
-    city = fields.Char('City', size=64, states={'done': [('readonly', True)]})
-    zip = fields.Char('Zip', size=8, states={'done': [('readonly', True)]})
+        'Email', size=256, required=True)
+    city = fields.Char('City', size=64)
+    zip = fields.Char('Zip', size=8)
     state_id = fields.Many2one(
-        'res.country.state', 'States', states={'done': [('readonly', True)]})
+        'res.country.state', 'States')
     country_id = fields.Many2one(
-        'res.country', 'Country', states={'done': [('readonly', True)]})
-    fees = fields.Float('Fees', states={'done': [('readonly', True)]})
-    image = fields.Image('image', states={'done': [('readonly', True)]})
+        'res.country', 'Country')
+    fees = fields.Float('Fees')
+    image = fields.Image('image')
     state = fields.Selection(
         [('draft', 'Draft'), ('submit', 'Submitted'),
          ('confirm', 'Confirmed'), ('admission', 'Admission Confirm'),
          ('reject', 'Rejected'), ('pending', 'Pending'),
          ('cancel', 'Cancelled'), ('done', 'Done')],
         'State', default='draft', tracking=True)
-    due_date = fields.Date('Due Date', states={'done': [('readonly', True)]})
-    prev_institute_id = fields.Char('Previous Institute',
-                                    states={'done': [('readonly', True)]})
-    prev_course_id = fields.Char('Previous Course',
-                                 states={'done': [('readonly', True)]})
+    due_date = fields.Date('Due Date')
+    prev_institute_id = fields.Char('Previous Institute')
+    prev_course_id = fields.Char('Previous Course')
     prev_result = fields.Char(
-        'Previous Result', size=256, states={'done': [('readonly', True)]})
+        'Previous Result', size=256)
     family_business = fields.Char(
-        'Family Business', size=256, states={'done': [('readonly', True)]})
+        'Family Business', size=256)
     family_income = fields.Float(
-        'Family Income', states={'done': [('readonly', True)]})
+        'Family Income')
     gender = fields.Selection(
         [('m', 'Male'), ('f', 'Female'), ('o', 'Other')],
         string='Gender',
-        required=True,
-        states={'done': [('readonly', True)]})
+        required=True)
     student_id = fields.Many2one(
-        'op.student', 'Student', states={'done': [('readonly', True)]})
+        'op.student', 'Student')
     nbr = fields.Integer('No of Admission', readonly=True)
     register_id = fields.Many2one(
-        'op.admission.register', 'Admission Register', required=True,
-        states={'done': [('readonly', True)]})
+        'op.admission.register', 'Admission Register', required=True)
     partner_id = fields.Many2one('res.partner', 'Partner')
     is_student = fields.Boolean('Is Already Student')
     fees_term_id = fields.Many2one('op.fees.terms', 'Fees Term')
