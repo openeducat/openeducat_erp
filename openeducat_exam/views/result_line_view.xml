@@ -10,7 +10,8 @@
                     <field name="student_id"/>
                     <field name="exam_id"/>
                     <field name="marks"/>
-                    <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
+<!--                    <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>-->
+                    <field name="grade" invisible="evaluation_type != 'grade'"/>
                     <field name="status"/>
                     <field name="evaluation_type" invisible="1"/>
                 </tree>
@@ -29,7 +30,7 @@
                             <group>
                                 <field name="student_id"/>
                                 <field name="marks"/>
-                                <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
+                                <field name="grade" invisible="evaluation_type != 'grade'"/>
                                 <field name="marksheet_line_id" invisible="1"/>
                             </group>
                             <group>
