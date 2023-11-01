@@ -38,7 +38,7 @@
                 <xpath expr="//page[@name='access_rights']//group" position="after">
                     <group>
                         <group string="Multi Departments" name="Department"
-                               attrs="{'invisible': [('department_count', '&lt;=', 1)]}">
+                               invisible = "'department_count' &lt;= 1">
                             <field name="dept_id"/>
                             <field name="department_ids" widget="many2many_tags"/>
                             <field string="Departments count" name="department_count" invisible="1"/>

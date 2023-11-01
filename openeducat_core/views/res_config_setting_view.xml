@@ -1,19 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="res_config_settings_view_form_core" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.core</field>
         <field name="model">res.config.settings</field>
-        <field name="priority" eval="40"/>
-        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block" data-string="OpenEducat-CE"
+            <!-- <xpath expr="//div[hasclass('settings')]" position="inside"> -->
+            <xpath expr="//form" position="inside">
+                <!-- <div class="app_settings_block" data-string="OpenEducat-CE"
                      string="OpenEducat"
                      data-key="openeducat_core"
                      groups="openeducat_core.group_op_back_office_admin"
-                     id="openeducat_core_setting">
-                    <h2 id="openeducat_core_apps">OpenEduCat Apps</h2>
-
+                     id="openeducat_core_setting"> -->
+                <app data-string="OpenEducat-CE"
+                     string="OpenEducat"
+                     name="openeducat_core"
+                     groups="openeducat_core.group_op_back_office_admin"
+                     logo="openeducat_core/static/src/img/openeducat_favicon.ico"
+                     >
                     <div class="row mt16 o_settings_container"
                          title="Specify different activities which is held in an institute.">
                         <div class="col-12 col-lg-6 o_setting_box"
@@ -43,7 +48,7 @@
                                     Specify different activities which is held in an institute.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_activity' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_activity' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_activity_enterprise"/>
@@ -71,7 +76,7 @@
                                     It is used for admission procedure for the applicant.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_admission' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_admission' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_admission_enterprise"/>
@@ -117,7 +122,7 @@
                                     It allows you to store the details of alumni students.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_alumni_enterprise' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_alumni_enterprise' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_alumni_blog_enterprise"/>
@@ -179,7 +184,7 @@
                                     It provides the facility to configure the assignment type.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_assignment' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_assignment' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_assignment_enterprise"/>
@@ -240,7 +245,7 @@
                                     attendance, attendance register is created for particular batch and course
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_attendance' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_attendance' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_attendance_enterprise"/>
@@ -346,7 +351,7 @@
                                     It is used to configure the classroom.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_classroom' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_classroom' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_classroom_enterprise"/>
@@ -475,7 +480,7 @@
                                     Rooms.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_exam' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_exam' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_exam_enterprise"/>
@@ -521,7 +526,7 @@
                                     Specify different facilities of an institute.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_facility' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_facility' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_facility_enterprise"/>
@@ -552,7 +557,7 @@
                                     the courses of an institute.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_fees' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_fees' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_fees_plan"/>
@@ -665,7 +670,7 @@
                                     It provides the facility to configure library management
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_library' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_library' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_library_barcode"/>
@@ -769,7 +774,7 @@
                                     It allows you to store the details of the Parents.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_parent' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_parent' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_parent_enterprise"/>
@@ -799,7 +804,7 @@
                                     their team members.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_placement_enterprise' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_placement_enterprise' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_placement_job_enterprise"/>
@@ -829,7 +834,7 @@
                                     Specify different types of quiz which is held in an institute for students.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_quiz' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_quiz' ,'=', False)]">
                                     <div class="mt16 row">
                                         <div class="col-12 col-md-6 col-lg-6 mb16">
                                             <div class="o_setting_left_pane">
@@ -982,7 +987,7 @@
                                     details.
                                 </div>
                                 <div class="content-group"
-                                     attrs="{'invisible': [('module_openeducat_timetable' ,'=', False)]}">
+                                     invisible = "[('module_openeducat_timetable' ,'=', False)]">
                                     <div class="mt16">
                                         <div class="o_setting_left_pane">
                                             <field name="module_openeducat_timetable_enterprise"/>
@@ -1031,7 +1036,7 @@
                                         into local storage, FTP server, SFTP server, Dropbox, Google Drive or Onedrive.
                                     </div>
                                     <div class="content-group"
-                                         attrs="{'invisible': [('module_openeducat_auto_database_backup' ,'=', False)]}">
+                                         invisible = "[('module_openeducat_auto_database_backup' ,'=', False)]">
                                         <div class="mt16 row auto_backup_modules">
                                             <div class="col-12 col-md-6 col-lg-6 mb16">
                                                 <div class="o_setting_left_pane">
@@ -1115,7 +1120,7 @@
                                         Create your sections and course material in it.
                                     </div>
                                     <div class="content-group"
-                                         attrs="{'invisible': [('module_openeducat_lms' ,'=', False)]}">
+                                         invisible = "[('module_openeducat_lms' ,'=', False)]">
                                         <div class="mt16 row">
                                             <div class="col-12 col-md-6 col-lg-6 mb16">
                                                 <div class="o_setting_left_pane">
@@ -1388,7 +1393,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </app>
             </xpath>
         </field>
     </record>
@@ -1397,7 +1402,7 @@
         <field name="name">Settings</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.config.settings</field>
-        <field name="view_id" ref="res_config_settings_view_form_core"/>
+        <field name="view_id" ref="res_config_settings_view_form_core" />
         <field name="view_mode">form</field>
         <field name="target">inline</field>
         <field name="context">{'module' : 'openeducat_core'}</field>

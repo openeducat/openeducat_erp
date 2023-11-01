@@ -30,51 +30,58 @@
             <field name="arch" type="xml">
                 <form string="Assignment">
                     <header>
-                        <button name="act_publish" states="draft"
+                        
+                        <button name="act_publish" 
+                                invisible="state != 'draft'"
                                 type="object" string="Publish"
                                 class="oe_highlight" groups="openeducat_assignment.group_op_assignment_user"/>
-                        <button name="act_set_to_draft" states="publish"
+                        
+                        <button name="act_set_to_draft" invisible = "state != 'publish'"
                                 type="object" string="Set to Draft"
                                 class="oe_highlight" groups="openeducat_assignment.group_op_assignment_user"/>
+                        
                         <button name="act_finish" class="oe_highlight"
-                                states="publish" type="object" string="Finish"
+                                invisible = "state != 'publish'" type="object" string="Finish"
                                 groups="openeducat_assignment.group_op_assignment_user"/>
-                        <button name="act_cancel" states="publish"
+                       
+                        <button name="act_cancel" invisible = "state != 'publish'"
                                 type="object" string="Cancel"
                                 groups="openeducat_assignment.group_op_assignment_user"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,publish,finish"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
+                        
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <div>
                             <h1>
+                            
                                 <field name="name" placeholder="Assignment Name"
-                                       attrs="{'readonly':[('state','!=','draft')]}"
+                                       readonly="state !='draft'"
                                        style="width: 100%"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="course_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                <field name="subject_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                <field name="assignment_type" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="course_id" readonly="state !='draft'"/>
+                                <field name="subject_id" readonly="state !='draft'"/>
+                                <field name="assignment_type" readonly="state !='draft'"/>
                             </group>
                             <group>
                                 <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
-                                       attrs="{'readonly':[('state','!=','draft')]}"/>
-                                <field name="faculty_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                <field name="reviewer" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                       readonly="state !='draft'"/>
+                                <field name="faculty_id" readonly="state !='draft'"/>
+                                <field name="reviewer" readonly="state !='draft'"/>
                             </group>
                         </group>
                         <notebook colspan="4">
                             <page name="basic_information" string="Basic Information">
                                 <group>
                                     <group name="i_date">
-                                        <field name="issued_date" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                        <field name="submission_date" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                        <field name="marks" attrs="{'readonly':[('state','!=','draft')]}" required="1"/>
+                                        <field name="issued_date" readonly="state !='draft'"/>
+                                        <field name="submission_date" readonly="state !='draft'"/>
+                                        <field name="marks" readonly="state !='draft'" required="1"/>
                                     </group>
                                 </group>
 
@@ -82,7 +89,7 @@
                                     <field name="point" invisible="1"/>
                                 </group>
                                 <label for="description" string="Description" class="mt32"/>
-                                <field name="description" attrs="{'readonly':[('state','!=','draft')]}"
+                                <field name="description" readonly="state !='draft'"
                                        colspan="4"/>
                             </page>
                             <page name="allocation_infomation" string="Allocation Infomation">

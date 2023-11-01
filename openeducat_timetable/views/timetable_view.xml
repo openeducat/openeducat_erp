@@ -28,19 +28,19 @@
                 <form string="Session">
                     <header>
                         <button type="object" name="lecture_confirm"
-                                states="draft" string="Confirm"
+                                invisible="state != 'draft'" string="Confirm"
                                 groups="openeducat_timetable.group_op_timetable_user"
                                 class="oe_highlight"/>
                         <button type="object" name="lecture_done"
-                                states="confirm" string="Done"
+                                invisible="state != 'confirm'" string="Done"
                                 groups="openeducat_timetable.group_op_timetable_user"
                                 class="oe_highlight"/>
                         <button type="object" name="lecture_draft"
-                                states="cancel" string="Set to Draft"
+                                invisible="state != 'cancel'" string="Set to Draft"
                                 groups="openeducat_timetable.group_op_timetable_user"
                                 class="oe_highlight"/>
                         <button type="object" name="lecture_cancel"
-                                states="draft,confirm" string="Cancel"
+                                invisible="state in ('draft','confirm')" string="Cancel"
                                 groups="openeducat_timetable.group_op_timetable_user"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,confirm"/>
@@ -50,7 +50,7 @@
                         </div>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <div class="oe_title">
                             <h1>
                                 <field name="name"/>

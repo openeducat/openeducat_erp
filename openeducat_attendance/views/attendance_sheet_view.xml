@@ -23,23 +23,23 @@
                 <form string="Attendance Sheet">
                     <header>
                         <button type="object" name="attendance_start"
-                                states="draft" string="Attendance Start"
+                                invisible = "state != 'draft'" string="Attendance Start"
                                 class="oe_highlight"/>
                         <button type="object" name="attendance_done"
-                                states="start" string="Attendance Taken"
+                                invisible = "state != 'start'" string="Attendance Taken"
                                 class="oe_highlight"/>
                         <button type="object" name="attendance_draft"
-                                states="cancel" string="Draft"
+                                invisible = "state != 'cancel'" string="Draft"
                                 class="oe_highlight"/>
                         <button type="object" name="attendance_cancel"
-                                states="draft,start" string="Cancel"/>
+                                invisible = "state != ('draft','start')" string="Cancel"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,start,done"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <div name="button_box" class="oe_button_box">
 
                         </div>

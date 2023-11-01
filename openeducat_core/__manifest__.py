@@ -21,7 +21,7 @@
 
 {
     'name': 'OpenEduCat Core',
-    'version': '16.0.1.0',
+    'version': '17.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
@@ -102,6 +102,7 @@
             '/openeducat_core/static/src/scss/style.scss',
             '/openeducat_core/static/src/js/g2_review.js',
             '/openeducat_core/static/src/xml/review.xml',
+            '/openeducat_core/static/src/xml/web_client.xml',
         ],
     },
 }

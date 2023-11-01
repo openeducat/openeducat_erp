@@ -28,18 +28,18 @@
                     <header>
                         <button name="action_submitted" string="Submit"
                                 groups="openeducat_core.group_op_back_office_admin,openeducat_core.group_op_faculty"
-                                type="object" class="oe_highlight" states="draft"/>
+                                type="object" class="oe_highlight" invisible = "state != 'draft'"/>
                         <button name="action_approve" string="Approve"
                                 groups="openeducat_core.group_op_faculty"
                                 type="object" class="oe_highlight"
-                                states="submitted"/>
+                                invisible = "state != 'submitted'"/>
                         <button name="action_reject" string="Reject"
                                 groups="openeducat_core.group_op_faculty"
                                 type="object" class="oe_highlight"
-                                states="submitted"/>
+                                invisible = "state != 'submitted'"/>
                         <button string="Reset to Draft" class="oe_highlight"
                                 groups="openeducat_core.group_op_back_office_admin"
-                                states="rejected" type="object"
+                                invisible = "state != 'rejected'" type="object"
                                 name="action_reset_draft"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,rejected"/>
                     </header>
@@ -65,7 +65,7 @@
                             <separator string="Elective Subjects" colspan="2"/>
                             <field name="elective_subject_ids" widget="many2many_tags"
                                    domain="[('subject_type', '=', 'elective')]"
-                                   attrs="{'readonly':[('state','!=','draft')]}"/>
+                                   readonly = "state != 'draft'"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
