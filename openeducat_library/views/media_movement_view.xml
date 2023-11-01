@@ -31,19 +31,19 @@
                 <form string="media Movement">
                     <header>
                         <button name="issue_media" string="Issue media" type="object" class="oe_highlight"
-                                attrs="{'invisible':[('state','not in',('available','reserve'))]}"
+                                invisible="state not in ('available','reserve')"
                                 groups="openeducat_library.group_op_library"/>
                         <button name="%(return_media_act)d" string="Return Media"
                                 type="action"
                                 context="{'default_media_id': media_id, 'default_media_unit_id': media_unit_id}"
-                                attrs="{'invisible':[('state','!=','issue')]}"
+                                invisible="state != 'issue'"
                                 class="oe_highlight" groups="openeducat_library.group_op_library"/>
                         <field name="state" widget="statusbar" statusbar_visible="available,issue"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
                                 <field name="media_id"/>
@@ -59,10 +59,10 @@
                             <group class="pt-3">
                                 <field name="library_card_id"/>
                                 <field name="student_id" readonly="1" force_save="1"
-                                       attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"
+                                    required="type == 'student'" invisible= "type != 'student'"
                                        context="{'form_view_ref':'openeducat_library.view_op_student_library_form'}"/>
                                 <field name="faculty_id" readonly="1" force_save="1"
-                                       attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                                    required="type == 'faculty'" invisible= "type != 'faculty'"/>
                             </group>
                             <group class="pt-3">
                                 <field name="type" readonly="1" force_save="1"/>
@@ -84,7 +84,7 @@
                                     <div class="col-7 col-sm-7 col-md-6 col-lg-8">
                                         <button name="create_penalty_invoice" string="Create Invoice"
                                                 type="object" class="oe_highlight"
-                                                attrs="{'invisible':['|','|',('state','not in','return'),('invoice_id','!=',False),('penalty','=',0)]}"/>
+                                                invisible = "state not in 'return' or invoice_id != False or penalty == 0"/>
                                     </div>
                                 </div>
                             </group>

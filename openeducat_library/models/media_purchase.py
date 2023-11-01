@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo import exceptions
+from odoo.exceptions import ValidationError
 
 
 class OpMediaPurchase(models.Model):
@@ -59,12 +59,12 @@ class OpMediaPurchase(models.Model):
     @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
-            raise exceptions.Warning(_('Invalid Action!\n Parent can not create \
+            raise ValidationError(_('Invalid Action!\n Parent can not create \
             Media Purchase Requests!'))
         return super(OpMediaPurchase, self).create(vals)
 
     def write(self, vals):
         if self.env.user.child_ids:
-            raise exceptions.Warning(_('Invalid Action!\n Parent can not edit \
+            raise ValidationError(_('Invalid Action!\n Parent can not edit \
             Media Purchase Requests!'))
         return super(OpMediaPurchase, self).write(vals)

@@ -105,16 +105,16 @@
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
                                 <field name="number"/>
                                 <field name="library_card_type_id"/>
                                 <field name="type"/>
                                 <field name="student_id" options="{'no_create': True , 'no_open': True}"
-                                       attrs="{'invisible':[('type','!=','student')],'required':[('type','=','student')]}"/>
+                                invisible="type != 'student'" required= "type == 'student'"/>
                                 <field name="faculty_id" options="{'no_create': True , 'no_open': True}"
-                                       attrs="{'invisible':[('type','!=','faculty')],'required':[('type','=','faculty')]}"/>
+                                invisible="type != 'faculty'" required= "type == 'faculty'"/>                                       
                             </group>
                             <group>
                                 <field name="issue_date"/>

@@ -32,7 +32,7 @@
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <h1>
                             <field name="name" placeholder="Media Name" style="width: 100%%"/>
                         </h1>
@@ -81,15 +81,15 @@
                                         <field name="date_to"/>
                                         <field name="state"/>
                                         <button name="do_accept" string="Accept" type="object"
-                                                states="request" icon="fa-thumbs-up"
+                                                invisible="state != 'request'" icon="fa-thumbs-up"
                                                 style="font-size: 15px;"
                                                 groups="openeducat_library.group_op_library"/>
                                         <button name="do_reject" string="Reject" type="object"
-                                                states="request,accept" icon="fa-thumbs-down"
+                                                invisible="state not in ('request','accept')" icon="fa-thumbs-down"
                                                 style="font-size: 15px;"
                                                 groups="openeducat_library.group_op_library"/>
                                         <button name="do_request_again" string="Request Again"
-                                                states="reject" type="object" icon="fa-undo"
+                                                invisible="state != 'reject'" type="object" icon="fa-undo"
                                                 style="font-size: 15px;"
                                                 groups="openeducat_library.group_op_library"/>
                                     </tree>
