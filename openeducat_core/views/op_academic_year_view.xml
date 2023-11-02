@@ -24,8 +24,10 @@
                 <form string="Academic Year">
                     <header>
                         <field name="create_boolean" invisible="1"/>
+                        <!-- <button name="term_create" type="object" string="Create Terms" class="oe_highlight"
+                                attrs="{'invisible': ['|',('create_boolean', '!=', False), ('term_structure', '==', 'others')]}"/> -->
                         <button name="term_create" type="object" string="Create Terms" class="oe_highlight"
-                                attrs="{'invisible': ['|',('create_boolean', '!=', False), ('term_structure', '==', 'others')]}"/>
+                                invisible = "['|',('create_boolean', '!=', False), ('term_structure', '==', 'others')]"/>
                     </header>
                     <sheet>
                         <group>

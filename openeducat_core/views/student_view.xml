@@ -81,18 +81,25 @@
             <field name="arch" type="xml">
                 <form string="Student">
                     <header>
+                        <!-- <button type="object" name="create_student_user"
+                                string="Create Student User"
+                                class="oe_highlight"
+                                groups="openeducat_core.group_op_back_office_admin"
+                                attrs="{'invisible': [('user_id', '!=', False)]}"/> -->
                         <button type="object" name="create_student_user"
                                 string="Create Student User"
                                 class="oe_highlight"
                                 groups="openeducat_core.group_op_back_office_admin"
-                                attrs="{'invisible': [('user_id', '!=', False)]}"/>
+                                invisible ="'user_id', '!=', False"/>
                     </header>
                     <sheet>
                         <div name="button_box" class="oe_button_box">
                         </div>
                         <field name="active" invisible="1"/>
+                        <!-- <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/> -->
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible ="'active', '=', True"/>
                         <div style="width:100%;" class="row align-items-center">
                             <div class="col-4 col-lg-2">
                                 <field name="image_1920" widget="image" class="oe_left oe_avatar"/>

@@ -81,16 +81,20 @@
             <field name="arch" type="xml">
                 <form string="Faculty">
                     <header groups="openeducat_core.group_op_back_office_admin">
+                        <!-- <button name="%(faculty_create_employee_act)d" string="Create Employee" type="action"
+                                class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/> -->
                         <button name="%(faculty_create_employee_act)d" string="Create Employee" type="action"
-                                class="oe_highlight" attrs="{'invisible': [('emp_id', '!=', False)]}"/>
+                                class="oe_highlight" invisible = "[('emp_id', '!=', False)]"/>
                     </header>
                     <sheet>
                         <div name="button_box" class="oe_button_box">
                         </div>
 
                         <field name="active" invisible="1"/>
+                        <!-- <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/> -->
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible = "[('active', '=', True)]"/>
 
                         <div style="width:100%;" class="row align-items-center">
                             <div class="col-4 col-lg-2">

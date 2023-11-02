@@ -30,8 +30,10 @@
                         <div name="button_box" class="oe_button_box">
                         </div>
                         <field name="active" invisible="1"/>
+                        <!-- <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/> -->
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible = "[('active', '=', True)]"/>
                         <group>
                             <group class="course_info">
                                 <field name="name"/>

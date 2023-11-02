@@ -70,6 +70,7 @@ class ReportTicket(models.AbstractModel):
                 'line': self.get_subject(exam_session),
             }
             final_lst.append(res)
+        print(final_lst,"-___________________________________")
         return final_lst
 
     @api.model
