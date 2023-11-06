@@ -23,16 +23,16 @@
                 <form string="Attendance Sheet">
                     <header>
                         <button type="object" name="attendance_start"
-                                invisible = "state != 'draft'" string="Attendance Start"
+                                invisible="state != 'draft'" string="Attendance Start"
                                 class="oe_highlight"/>
                         <button type="object" name="attendance_done"
-                                invisible = "state != 'start'" string="Attendance Taken"
+                                invisible="state != 'start'" string="Attendance Taken"
                                 class="oe_highlight"/>
                         <button type="object" name="attendance_draft"
-                                invisible = "state != 'cancel'" string="Draft"
+                                invisible="state != 'cancel'" string="Draft"
                                 class="oe_highlight"/>
                         <button type="object" name="attendance_cancel"
-                                invisible = "state != ('draft','start')" string="Cancel"/>
+                                invisible="state not in ('draft','start')" string="Cancel"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,start,done"/>
                     </header>
