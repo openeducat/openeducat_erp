@@ -25,12 +25,12 @@
                         <button name="%(issue_media_act)d" string="Issue Media"
                                 type="action"
                                 context="{'default_media_id': media_id, 'default_media_unit_id': active_id}"
-                                attrs="{'invisible':[('state','!=','available')]}"
+                                invisible= "state != 'available'"
                                 class="oe_highlight" groups="openeducat_library.group_op_library"/>
                         <button name="%(return_media_act)d" string="Return Media"
                                 type="action"
                                 context="{'default_media_id': media_id, 'default_media_unit_id': active_id}"
-                                attrs="{'invisible':[('state','!=','issue')]}"
+                                invisible= "state != 'issue'"
                                 class="oe_highlight" groups="openeducat_library.group_op_library"/>
                         <field name="state" widget="statusbar" statusbar_visible="available,issue,reserve,lost"
                                statusbar_colors='{"r":"red"}'/>
@@ -38,7 +38,7 @@
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
                                 <field name="name"/>

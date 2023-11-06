@@ -20,7 +20,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
-from odoo import exceptions
+from odoo.exceptions import ValidationError
 
 
 class OpParent(models.Model):
@@ -47,7 +47,9 @@ class OpParent(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        print(vals_list,"vallllllllllll \n\n")
         res = super(OpParent, self).create(vals_list)
+        print(res,"=============res================")
         for vals in vals_list:
             if vals.get('student_ids', False) and res.name.user_id:
                 student_ids = self.student_ids.browse(res.student_ids.ids)
@@ -64,7 +66,7 @@ class OpParent(models.Model):
                 usr_ids = [student_id.user_id.id for student_id in student_ids
                            if student_id.user_id]
                 rec.user_id.child_ids = [(6, 0, usr_ids)]
-            rec.clear_caches()
+            rec.env.registry.clear_cache()
             return res
 
     def unlink(self):
@@ -77,8 +79,8 @@ class OpParent(models.Model):
         template = self.env.ref('openeducat_parent.parent_template_user')
         users_res = self.env['res.users']
         for record in self:
-            if not record.name.email:
-                raise exceptions.Warning(_('Update parent email id first.'))
+            if not record.name.email:                
+                raise ValidationError(_('Update parent email id first.'))
             if not record.name.user_id:
                 groups_id = template and template.groups_id or False
                 user_ids = [
@@ -136,7 +138,7 @@ class OpStudent(models.Model):
                 child_ids = parent_id.user_id.child_ids.ids
                 child_ids.append(vals['user_id'])
                 parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return res
 
     def unlink(self):
@@ -161,12 +163,12 @@ class OpSubjectRegistration(models.Model):
     @api.model_create_multi
     def create(self, vals):
         if self.env.user.child_ids:
-            raise exceptions.Warning(_('Invalid Action!\n Parent can not \
+            raise ValidationError(_('Invalid Action!\n Parent can not \
             create Subject Registration!'))
         return super(OpSubjectRegistration, self).create(vals)
 
     def write(self, vals):
         if self.env.user.child_ids:
-            raise exceptions.Warning(_('Invalid Action!\n Parent can not edit \
+            raise ValidationError(_('Invalid Action!\n Parent can not edit \
             Subject Registration!'))
         return super(OpSubjectRegistration, self).write(vals)

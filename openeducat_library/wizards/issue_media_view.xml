@@ -15,9 +15,9 @@
                         </group>
                         <group col="4">
                             <field name="student_id"
-                                   attrs="{'required':[('type','=','student')],'invisible':[('type','!=','student')]}"/>
+                                required= "type == 'student'" invisible= "type != 'student'"/>
                             <field name="faculty_id"
-                                   attrs="{'required':[('type','=','faculty')],'invisible':[('type','!=','faculty')]}"/>
+                                required="type == 'faculty'" invisible="type != 'faculty'"/>
                         </group>
                         <group col="4">
                             <field name="issued_date"/>

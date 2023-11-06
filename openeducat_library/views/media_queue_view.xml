@@ -25,13 +25,13 @@
                 <form string="media Queue Request">
                     <header groups="base.group_user">
                         <button name="do_accept" string="Accept" type="object"
-                                states="request" class="oe_highlight"
+                                invisible="state != 'request'" class="oe_highlight"
                                 groups="openeducat_core.group_op_back_office_admin,openeducat_library.group_op_library"/>
                         <button name="do_reject" string="Reject" type="object"
-                                states="request,accept"
+                                invisible="state not in ('request','accept')"                                
                                 groups="openeducat_core.group_op_back_office_admin,openeducat_library.group_op_library"/>
                         <button name="do_request_again" string="Request Again"
-                                states="reject" type="object"
+                        invisible="state != 'reject'" type="object"
                                 groups="openeducat_core.group_op_faculty,openeducat_core.group_op_back_office_admin"/>
                         <field name="state" widget="statusbar" statusbar_visible="request,reject,accept"
                                statusbar_colors='{"reject":"red"}'/>
@@ -40,7 +40,7 @@
                         <group>
                             <field name="active" invisible="1"/>
                             <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                    attrs="{'invisible': [('active', '=', True)]}"/>
+                                    invisible="active == True"/>
                             <div style="font-size:20px;font-weight:bold;">
                                 <field name="name"/>
                             </div>

@@ -42,12 +42,12 @@
                                 string="Create Parent User"
                                 groups="openeducat_core.group_op_back_office_admin"
                                 class="oe_highlight"
-                                attrs="{'invisible':[('user_id','!=',False)]}"/>
+                                invisible="user_id != False"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
                                 <field name="name" placeholder="Parent Name"/>
