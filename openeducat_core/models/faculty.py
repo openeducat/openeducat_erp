@@ -56,8 +56,8 @@ class OpFaculty(models.Model):
     visa_info = fields.Char('Visa Info', size=64)
     id_number = fields.Char('ID Card Number', size=64)
     login = fields.Char(
-        'Login', related='partner_id.user_id.login', readonly=1)
-    last_login = fields.Datetime('Latest Connection', readonly=1,
+        'Login', related='partner_id.user_id.login', readonly=True)
+    last_login = fields.Datetime('Latest Connection', readonly=True,
                                  related='partner_id.user_id.login_date')
     faculty_subject_ids = fields.Many2many('op.subject', string='Subject(s)',
                                            tracking=True)
@@ -94,7 +94,7 @@ class OpFaculty(models.Model):
                 'name': record.name,
                 'country_id': record.nationality.id,
                 'gender': record.gender,
-                'address_home_id': record.partner_id.id
+                'private_state_id': record.partner_id.id
             }
             emp_id = self.env['hr.employee'].create(vals)
             record.write({'emp_id': emp_id.id})

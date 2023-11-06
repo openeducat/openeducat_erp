@@ -4,14 +4,14 @@
         <record id="view_op_assignment_sub_line_tree" model="ir.ui.view">
             <field name="name">op.assignment.sub.line.tree</field>
             <field name="model">op.assignment.sub.line</field>
-            <field name="priority" eval="8"/>
+            <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <tree string="Assignment Sub Line">
-                    <field name="assignment_id"/>
-                    <field name="student_id"/>
-                    <field name="submission_date"/>
-                    <field name="state"/>
-                    <field name="marks" optional="hide"/>
+                    <field name="assignment_id" />
+                    <field name="student_id" />
+                    <field name="submission_date" />
+                    <field name="state" />
+                    <field name="marks" optional="hide" />
                 </tree>
             </field>
         </record>
@@ -19,55 +19,71 @@
         <record id="view_op_assignment_sub_line_form" model="ir.ui.view">
             <field name="name">op.assignment.sub.line.form</field>
             <field name="model">op.assignment.sub.line</field>
-            <field name="priority" eval="8"/>
+            <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <form string="Assignment Sub Line">
                     <header>
-                        <button name="act_submit" states="draft" type="object"
-                                string="Submit" class="oe_highlight"/>
-                        <button name="act_accept" states="submit" type="object"
-                                string="Accept" groups="openeducat_assignment.group_op_assignment_user" class="oe_highlight"/>
-                        <button name="act_change_req" states="submit" type="object"
-                                string="Change Require" groups="openeducat_assignment.group_op_assignment_user"/>
-                        <button name="act_reject" states="submit" type="object"
-                                string="Reject" groups="openeducat_assignment.group_op_assignment_user"/>
-                        <button name="act_draft" states="change" type="object"
-                                string="Change And Resubmit" groups="openeducat_assignment.group_op_assignment_manager"
-                                class="oe_highlight"/>
-                        <button name="act_draft" states="reject" type="object"
-                                string="Resubmit" groups="openeducat_assignment.group_op_assignment_manager"
-                                class="oe_highlight"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,submit,accept"/>
+                        <button name="act_submit"
+                                invisible="state != 'draft'"
+                                type="object"
+                                string="Submit"
+                                class="oe_highlight" />
+                        <button name="act_accept"
+                                invisible="state != 'submit'"
+                                type="object"
+                                string="Accept"
+                                groups="openeducat_assignment.group_op_assignment_user"
+                                class="oe_highlight" />
+                        <button name="act_change_req"
+                                invisible="state != 'submit'"
+                                type="object"
+                                string="Change Require"
+                                groups="openeducat_assignment.group_op_assignment_user" />
+                        <button name="act_reject"
+                                invisible="state != 'submit'"
+                                type="object"
+                                string="Reject"
+                                groups="openeducat_assignment.group_op_assignment_user" />
+                        <button name="act_draft"
+                                invisible="state != 'change'"
+                                type="object"
+                                string="Change And Resubmit"
+                                groups="openeducat_assignment.group_op_assignment_manager"
+                                class="oe_highlight" />
+                        <button name="act_draft"
+                                invisible="state != 'reject'"
+                                type="object"
+                                string="Resubmit"
+                                groups="openeducat_assignment.group_op_assignment_manager"
+                                class="oe_highlight" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submit,accept" />
                     </header>
                     <sheet>
-                        <field name="active" invisible="1"/>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="active" invisible="1" />
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active == True" />
                         <group>
                             <group>
-                                <field name="student_id" domain="[('user_id','=',uid)]"/>
-                                <field name="assignment_id"
-                                   domain="[('allocation_ids','=',student_id),('state','=','publish')]"/>
-                                <field name="marks"
-                                       attrs="{'readonly':[('state','=','accept')], 'invisible':[('user_boolean','=',False),('state','!=','accept')]}"/>
+                                <field name="student_id" domain="[('user_id','=',uid)]" />
+                                <field name="assignment_id" domain="[('allocation_ids','=',student_id),('state','=','publish')]" />
+                                <field name="marks" readonly="state == 'accept'" invisible="state != 'accept' or user_boolean == False" />
                             </group>
                             <group>
-                                <field name="submission_date"/>
-                                <field name="user_boolean" invisible="1"/>
+                                <field name="submission_date" />
+                                <field name="user_boolean" invisible="1" />
                             </group>
                         </group>
                         <div>
-                            <label for="description" string="Description" class="mt32"/>
-                            <field name="description" nolabel="1"/>
+                            <label for="description" string="Description" class="mt32" />
+                            <field name="description" nolabel="1" />
                         </div>
                         <div>
-                            <label for="note" string="Note" class="mt32"/>
-                            <field name="note" nolabel="1"/>
+                            <label for="note" string="Note" class="mt32" />
+                            <field name="note" nolabel="1" />
                         </div>
                     </sheet>
                     <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+                        <field name="message_ids" widget="mail_thread" />
                     </div>
                 </form>
             </field>
@@ -76,13 +92,13 @@
         <record id="view_op_assignment_sub_line_pivot" model="ir.ui.view">
             <field name="name">op.assignment.sub.line.pivot</field>
             <field name="model">op.assignment.sub.line</field>
-            <field name="priority" eval="8"/>
+            <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <pivot string="Assignment Sub Line">
-                    <field name="assignment_id" type="col"/>
-                    <field name="student_id"/>
-                    <field name="submission_date"/>
-                    <field name="state" type="row"/>
+                    <field name="assignment_id" type="col" />
+                    <field name="student_id" />
+                    <field name="submission_date" />
+                    <field name="state" type="row" />
                 </pivot>
             </field>
         </record>
@@ -92,8 +108,8 @@
             <field name="model">op.assignment.sub.line</field>
             <field name="arch" type="xml">
                 <graph string="Assignment Sub Line Graph View" type="pie">
-                    <field name="assignment_id"/>
-                    <field name="state"/>
+                    <field name="assignment_id" />
+                    <field name="state" />
                 </graph>
             </field>
         </record>
@@ -101,36 +117,28 @@
         <record id="view_op_assignment_sub_line_search" model="ir.ui.view">
             <field name="name">op.assignment.sub.line.search</field>
             <field name="model">op.assignment.sub.line</field>
-            <field name="priority" eval="8"/>
+            <field name="priority" eval="8" />
             <field name="arch" type="xml">
                 <search string="Assignment Sub Line">
-                    <field name="assignment_id"/>
-                    <field name="student_id"/>
-                    <field name="description"/>
-                    <field name="state"/>
-                    <field name="submission_date"/>
-                    <field name="note"/>
-                    <filter string="Today" name="filter_submission_today"
-                            domain="[('submission_date', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('submission_date', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]"/>
-                    <filter string="Week" name="filter_submission_week"
-                            domain="[('submission_date', '&gt;=',(context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d 00:00:00')),
-                                    ('submission_date', '&lt;', (context_today()+relativedelta(weekday=6)).strftime('%Y-%m-%d 23:59:59'))]"/>
-                    <filter string="Month" name="filter_submission_month"
-                            domain="[('submission_date', '&lt;=', (datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
-                                    ('submission_date', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
-                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                    <field name="assignment_id" />
+                    <field name="student_id" />
+                    <field name="description" />
+                    <field name="state" />
+                    <field name="submission_date" />
+                    <field name="note" />
+                    <filter string="Today" name="filter_submission_today" domain="[('submission_date', '&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('submission_date', '&lt;=', time.strftime('%%Y-%%m-%%d 23:59:59'))]" />
+                    <filter string="Week" name="filter_submission_week" domain="[('submission_date', '&gt;=',(context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d 00:00:00')),
+                                    ('submission_date', '&lt;', (context_today()+relativedelta(weekday=6)).strftime('%Y-%m-%d 23:59:59'))]" />
+                    <filter string="Month" name="filter_submission_month" domain="[('submission_date', '&lt;=', (datetime.date.today()+relativedelta(day=31)).strftime('%Y-%m-%d')),
+                                    ('submission_date', '&gt;=', (datetime.date.today()-relativedelta(day=1)).strftime('%Y-%m-%d'))]" />
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
 
                     <group expand="0" string="Group By...">
-                        <filter string="Assignment" domain="[]" name="group_by_assignment_id"
-                                context="{'group_by':'assignment_id'}"/>
-                        <filter string="Student" domain="[]" name="group_by_assignment_student_id"
-                                context="{'group_by':'student_id'}"/>
-                        <filter string="State" domain="[]" name="group_by_assignment_state"
-                                context="{'group_by':'state'}"/>
-                        <filter string="Submission Date" domain="[]" name="group_by_assignment_submission"
-                                context="{'group_by':'submission_date'}"/>
-                        <filter string="Marks" domain="[]" name="group_by_assignment_marks"
-                                context="{'group_by':'marks'}"/>
+                        <filter string="Assignment" domain="[]" name="group_by_assignment_id" context="{'group_by':'assignment_id'}" />
+                        <filter string="Student" domain="[]" name="group_by_assignment_student_id" context="{'group_by':'student_id'}" />
+                        <filter string="State" domain="[]" name="group_by_assignment_state" context="{'group_by':'state'}" />
+                        <filter string="Submission Date" domain="[]" name="group_by_assignment_submission" context="{'group_by':'submission_date'}" />
+                        <filter string="Marks" domain="[]" name="group_by_assignment_marks" context="{'group_by':'marks'}" />
                     </group>
                 </search>
             </field>
@@ -142,28 +150,28 @@
             <field name="res_model">op.assignment.sub.line</field>
             <field name="binding_view_types">form</field>
             <field name="view_mode">tree,form,pivot,graph</field>
-            <field name="search_view_id" ref="view_op_assignment_sub_line_search"/>
+            <field name="search_view_id" ref="view_op_assignment_sub_line_search" />
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_assignment_sub_line_view_form">
-            <field name="act_window_id" ref="act_open_op_assignment_sub_line_view"/>
-            <field name="sequence" eval="20"/>
+            <field name="act_window_id" ref="act_open_op_assignment_sub_line_view" />
+            <field name="sequence" eval="20" />
             <field name="view_mode">form</field>
-            <field name="view_id" ref="view_op_assignment_sub_line_form"/>
+            <field name="view_id" ref="view_op_assignment_sub_line_form" />
         </record>
 
         <record model="ir.actions.act_window.view" id="act_open_op_assignment_sub_line_view_tree">
-            <field name="act_window_id" ref="act_open_op_assignment_sub_line_view"/>
-            <field name="sequence" eval="10"/>
+            <field name="act_window_id" ref="act_open_op_assignment_sub_line_view" />
+            <field name="sequence" eval="10" />
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_op_assignment_sub_line_tree"/>
+            <field name="view_id" ref="view_op_assignment_sub_line_tree" />
         </record>
 
         <record model="ir.actions.act_window" id="act_open_op_assignment_sub_line_view_pivot">
             <field name="name">Assignment Submission Analysis Pivot</field>
             <field name="res_model">op.assignment.sub.line</field>
             <field name="view_mode">pivot</field>
-            <field name="view_id" ref="view_op_assignment_sub_line_pivot"/>
+            <field name="view_id" ref="view_op_assignment_sub_line_pivot" />
         </record>
 
     </data>

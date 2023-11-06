@@ -7,37 +7,38 @@
             <field name="subject">Submit Your Assignment</field>
             <field name="email_to">{{ object.student_id.user_id.partner_id.id }}</field>
             <field name="partner_to">{{ object.student_id.user_id.partner_id.id }}</field>
-            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
-            <field name="auto_delete" eval="True"/>
-            <field name="report_name">Assignment Submission</field>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line" />
+            <field name="auto_delete" eval="True" />
             <field name="lang">{{ object.student_id.user_id.partner_id.lang }}</field>
             <field name="body_html" type="html">
-                <table border="0" cellpadding="0" cellspacing="0"
-                       style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
                     <tr>
                         <td align="center">
-                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                            <table border="0"
+                                   cellpadding="0"
+                                   cellspacing="0"
+                                   width="590"
                                    style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
                                 <tbody>
                                     <tr>
                                         <td align="center" style="min-width: 590px;">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                            <table border="0"
+                                                   cellpadding="0"
+                                                   cellspacing="0"
+                                                   width="590"
                                                    style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
                                                 <tr>
                                                     <td valign="middle">
-                                                        <span style="font-size: 10px;"/>
-                                                        <br/>
+                                                        <span style="font-size: 10px;" />
+                                                        <br />
                                                     </td>
                                                     <td valign="middle" align="right">
-                                                        <img t-att-src="'/logo.png?company=%s' % object.company_id.id"
-                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
-                                                             t-att-alt="'%s' % object.company_id.name"/>
+                                                        <img t-att-src="'/logo.png?company=%s' % object.company_id.id" style="padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="'%s' % object.company_id.name" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" style="text-align:center;">
-                                                        <hr width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -45,21 +46,24 @@
                                     </tr>
                                     <tr>
                                         <td align="center" style="min-width: 590px;">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                            <table border="0"
+                                                   cellpadding="0"
+                                                   cellspacing="0"
+                                                   width="590"
                                                    style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <p>Dear</p>
                                                         <strong>
-                                                            <t t-out="object.student_id.name or ''"/>
+                                                            <t t-out="object.student_id.name or ''" />
                                                         </strong>
                                                         <p>Your Assignment Submission
                                                             <strong>
-                                                                <t t-out="object.assignment_id.name or ''"/>
+                                                                <t t-out="object.assignment_id.name or ''" />
                                                             </strong>
                                                             date is
                                                             <strong>
-                                                                <t t-out="object.submission_date or ''"/>
+                                                                <t t-out="object.submission_date or ''" />
                                                             </strong>
                                                             .
                                                             Please submit it as soon as possible.
@@ -69,8 +73,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:center;">
-                                                        <hr width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -78,28 +81,29 @@
                                     </tr>
                                     <tr>
                                         <td align="center" style="min-width: 590px;">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                            <table border="0"
+                                                   cellpadding="0"
+                                                   cellspacing="0"
+                                                   width="590"
                                                    style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
                                                 <tr>
                                                     <td valign="middle" align="left">
-                                                        <t t-out="object.company_id.name or ''"/>
+                                                        <t t-out="object.company_id.name or ''" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="middle" align="left" style="opacity: 0.7;">
-                                                        <t t-out="object.company_id.phone or ''"/>
+                                                        <t t-out="object.company_id.phone or ''" />
                                                         <t t-if="object.company_id.email">
                                                             |
-                                                            <a href="'mailto:%s' % {{ object.company_id.email }}"
-                                                               style="text-decoration:none; color: #454748;">
-                                                                <t t-out="object.company_id.email or ''"/>
+                                                            <a href="'mailto:%s' % {{ object.company_id.email }}" style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.company_id.email or ''" />
                                                             </a>
                                                         </t>
                                                         <t t-if="object.company_id.website">
                                                             |
-                                                            <a href="'%s' % {{ object.company_id.website }}"
-                                                               style="text-decoration:none; color: #454748;">
-                                                                <t t-out="object.company_id.website or ''"/>
+                                                            <a href="'%s' % {{ object.company_id.website }}" style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.company_id.website or ''" />
                                                             </a>
                                                         </t>
                                                     </td>
@@ -117,17 +121,17 @@
 
         <record id="assignment_sub_line_action" model="ir.actions.server">
             <field name="name">Server Actions Assignment Submission</field>
-            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line" />
             <field name="state">mail_post</field>
-            <field name="template_id" ref="email_template_assignment_submission"/>
+            <field name="template_id" ref="email_template_assignment_submission" />
         </record>
 
         <record id="test_rule_assignment_sub_line" model="base.automation">
             <field name="name">Assignment Submission Line</field>
             <field name="trigger">on_time</field>
-            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line" />
             <field name="filter_domain">[('state', '!=', 'accept')]</field>
-            <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]"/>
+            <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]" />
             <field name="trg_date_range">-1</field>
             <field name="trg_date_range_type">day</field>
         </record>
@@ -138,37 +142,38 @@
             <field name="subject">Assignment Submission Date Passed</field>
             <field name="email_to">{{ object.student_id.user_id.partner_id.id }}</field>
             <field name="partner_to">{{ object.student_id.user_id.partner_id.id }}</field>
-            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
-            <field name="auto_delete" eval="True"/>
-            <field name="report_name">Submission Date Passed</field>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line" />
+            <field name="auto_delete" eval="True" />
             <field name="lang">{{ object.student_id.user_id.partner_id.lang }}</field>
             <field name="body_html" type="html">
-                <table border="0" cellpadding="0" cellspacing="0"
-                       style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;">
                     <tr>
                         <td align="center">
-                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                            <table border="0"
+                                   cellpadding="0"
+                                   cellspacing="0"
+                                   width="590"
                                    style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
                                 <tbody>
                                     <tr>
                                         <td align="center" style="min-width: 590px;">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                            <table border="0"
+                                                   cellpadding="0"
+                                                   cellspacing="0"
+                                                   width="590"
                                                    style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
                                                 <tr>
                                                     <td valign="middle">
-                                                        <span style="font-size: 10px;"/>
-                                                        <br/>
+                                                        <span style="font-size: 10px;" />
+                                                        <br />
                                                     </td>
                                                     <td valign="middle" align="right">
-                                                        <img t-att-src="'/logo.png?company=%s' % object.company_id.id"
-                                                             style="padding: 0px; margin: 0px; height: auto; width: 80px;"
-                                                             t-att-alt="'%s' % object.company_id.name"/>
+                                                        <img t-att-src="'/logo.png?company=%s' % object.company_id.id" style="padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="'%s' % object.company_id.name" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" style="text-align:center;">
-                                                        <hr width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;"/>
+                                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -176,20 +181,24 @@
                                     </tr>
                                     <tr>
                                         <td align="center" style="min-width: 590px;">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                            <table border="0"
+                                                   cellpadding="0"
+                                                   cellspacing="0"
+                                                   width="590"
                                                    style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
                                                 <tr>
                                                     <td valign="top" style="font-size: 13px;">
                                                         <p>Dear</p>
                                                         <strong>
-                                                            <t t-out="object.student_id.name or ''"/>
+                                                            <t t-out="object.student_id.name or ''" />
                                                         </strong>
                                                         <p>Your Assignment Submission
                                                             <strong>
-                                                                <t t-out="object.assignment_id.name or ''"/>
+                                                                <t t-out="object.assignment_id.name or ''" />
                                                             </strong>
                                                             date
-                                                            <strong>(<t t-out="object.submission_date or ''"/>)
+                                                            <strong>(
+                                                                <t t-out="object.submission_date or ''" />)
                                                             </strong>
                                                             has
                                                             been passed. Please submit it as soon as possible.
@@ -199,8 +208,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align:center;">
-                                                        <hr width="100%"
-                                                            style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -208,28 +216,29 @@
                                     </tr>
                                     <tr>
                                         <td align="center" style="min-width: 590px;">
-                                            <table border="0" cellpadding="0" cellspacing="0" width="590"
+                                            <table border="0"
+                                                   cellpadding="0"
+                                                   cellspacing="0"
+                                                   width="590"
                                                    style="min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;">
                                                 <tr>
                                                     <td valign="middle" align="left">
-                                                        <t t-out="object.company_id.name or ''"/>
+                                                        <t t-out="object.company_id.name or ''" />
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="middle" align="left" style="opacity: 0.7;">
-                                                        <t t-out="object.company_id.phone or ''"/>
+                                                        <t t-out="object.company_id.phone or ''" />
                                                         <t t-if="object.company_id.email">
                                                             |
-                                                            <a href="'mailto:%s' % {{ object.company_id.email }}"
-                                                               style="text-decoration:none; color: #454748;">
-                                                                <t t-out="object.company_id.email or ''"/>
+                                                            <a href="'mailto:%s' % {{ object.company_id.email }}" style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.company_id.email or ''" />
                                                             </a>
                                                         </t>
                                                         <t t-if="object.company_id.website">
                                                             |
-                                                            <a href="'%s' % {{ object.company_id.website }}"
-                                                               style="text-decoration:none; color: #454748;">
-                                                                <t t-out="object.company_id.website or ''"/>
+                                                            <a href="'%s' % {{ object.company_id.website }}" style="text-decoration:none; color: #454748;">
+                                                                <t t-out="object.company_id.website or ''" />
                                                             </a>
                                                         </t>
                                                     </td>
@@ -247,17 +256,17 @@
 
         <record id="assignment_sub_line_action_after" model="ir.actions.server">
             <field name="name">Server Actions Assignment Submission After 1 Days</field>
-            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line" />
             <field name="state">mail_post</field>
-            <field name="template_id" ref="email_template_assignment_submission_after"/>
+            <field name="template_id" ref="email_template_assignment_submission_after" />
         </record>
 
         <record id="test_rule_assignment_sub_line_after" model="base.automation">
             <field name="name">Assignment Submission Line after 1 Days</field>
             <field name="trigger">on_time</field>
-            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line"/>
+            <field name="model_id" ref="openeducat_assignment.model_op_assignment_sub_line" />
             <field name="filter_domain">[('state', '!=', 'accept')]</field>
-            <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]"/>
+            <field name="trg_date_id" search="[('model','=','op.assignment.sub.line'),('name','=','submission_date')]" />
             <field name="trg_date_range">1</field>
             <field name="trg_date_range_type">day</field>
         </record>
