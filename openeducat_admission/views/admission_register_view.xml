@@ -30,38 +30,41 @@
             <field name="arch" type="xml">
                 <form string="Admission Register">
                     <header>
-                        <button name="confirm_register" states="draft" type="object" string="Confirm"
+                        <button name="confirm_register" invisible="state != 'draft'" type="object" string="Confirm"
                                 class="oe_highlight"/>
-                        <button name="start_application" states="confirm" type="object" string="Start Application"
+                        <button name="start_application" invisible="state != 'confirm'" type="object"
+                                string="Start Application"
                                 class="oe_highlight"/>
-                        <button name="start_admission" states="application" type="object" string="Start Admission"
+                        <button name="start_admission" invisible="state != 'application'" type="object"
+                                string="Start Admission"
                                 class="oe_highlight"/>
-                        <button name="close_register" states="admission" type="object" string="Done"
+                        <button name="close_register" invisible="state != 'admission'" type="object" string="Done"
                                 class="oe_highlight"/>
-                        <button name="cancel_register" states="draft,confirm" string="Cancel" type="object"/>
-                        <button name="set_to_draft" states="cancel" string="Set to Draft" type="object"/>
+                        <button name="cancel_register" invisible="state not in ('draft', 'confirm')" string="Cancel"
+                                type="object"/>
+                        <button name="set_to_draft" invisible="state != 'cancel'" string="Set to Draft" type="object"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,application,admission"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
-                                <field name="name"/>
-                                <field name="start_date"/>
-                                <field name="max_count"/>
-                                <field name="product_id" context="{'default_type': 'service'}"/>
-                                <field name="minimum_age_criteria"
-                                       attrs="{'readonly': [('state', 'not in', ('draft'))]}"/>
-                                <field name="academic_term_id"/>
+                                <field name="name" readonly="state != 'draft'"/>
+                                <field name="start_date" readonly="state != 'draft'"/>
+                                <field name="max_count" readonly="state != 'draft'"/>
+                                <field name="product_id" context="{'default_type': 'service'}"
+                                       readonly="state != 'draft'"/>
+                                <field name="minimum_age_criteria" readonly="state != 'draft'"/>
+                                <field name="academic_term_id" readonly="state != 'draft'"/>
                             </group>
                             <group>
-                                <field name="course_id"/>
-                                <field name="end_date"/>
-                                <field name="min_count"/>
+                                <field name="course_id" readonly="state != 'draft'"/>
+                                <field name="end_date" readonly="state != 'draft'"/>
+                                <field name="min_count" readonly="state != 'draft'"/>
                                 <field name="company_id" groups="base.group_multi_company" optional="show"/>
-                                <field name="academic_years_id"/>
+                                <field name="academic_years_id" readonly="state != 'draft'"/>
                             </group>
                         </group>
                         <notebook>

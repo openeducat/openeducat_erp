@@ -25,7 +25,7 @@
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
                                 <field name="name"/>
@@ -41,18 +41,18 @@
                         <field name="line_ids">
                             <tree>
                                 <field name="due_days"
-                                       attrs="{'column_invisible':[('parent.fees_terms','!=','fixed_days')],'required':[('parent.fees_terms','=','fixed_days')]}"/>
+                                       column_invisible="parent.fees_terms != 'fixed_days'" required="parent.fees_terms == 'fixed_days'"/>
                                 <field name="due_date"
-                                       attrs="{'column_invisible':[('parent.fees_terms','!=','fixed_date')],'required':[('parent.fees_terms','=','fixed_date')]}"/>
+                                       column_invisible="parent.fees_terms != 'fixed_date'" required="parent.fees_terms == 'fixed_date'"/>
                                 <field name="value" required="1"/>
                                 <field name="fees_element_line"/>
                             </tree>
                             <form string="Fees Term Line">
                                 <group colspan="4">
                                     <field name="due_days"
-                                           attrs="{'invisible':[('parent.fees_terms','!=','fixed_days')],'required':[('parent.fees_terms','=','fixed_days')]}"/>
-                                    <field name="due_date"
-                                           attrs="{'invisible':[('parent.fees_terms','!=','fixed_date')],'required':[('parent.fees_terms','=','fixed_date')]}"/>
+                                           invisible="parent.fees_terms != 'fixed_days'" required="parent.fees_terms == 'fixed_days'"/>
+                                    <field name="due_date" invisible="parent.fees_terms != 'fixed_date'" required="parent.fees_terms == 'fixed_date'"
+                                           />
                                     <field name="value" required="1"/>
                                     <field name="fees_element_line">
                                         <tree string="Information" editable="top">
