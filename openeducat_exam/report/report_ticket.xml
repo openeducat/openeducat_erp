@@ -19,7 +19,7 @@
                         <br/>
                         <br/>
                         <div class="oe_structure"/>
-                        <t t-foreach="get_data" t-as="o">
+                        <t t-foreach="get_data" t-as="ticket_data">
                             <div class="font">
                                 <div class="page">
                                     <br></br>
@@ -30,8 +30,8 @@
                                             <b>Hall Ticket</b>
                                         </h3>
                                         (
-                                        <span t-out="o['exam'] if o['exam'] else ''"/>
-                                        <span t-out="o['exam_code'] if o['exam_code'] else ''"/>
+                                        <span t-out="ticket_data['exam'] if ticket_data['exam'] else ''"/>
+                                        <span t-out="ticket_data['exam_code'] if ticket_data['exam_code'] else ''"/>
                                         )
                                     </div>
                                     <br></br>
@@ -45,19 +45,19 @@
                                                             <tr>
                                                                 <td>
                                                                     <b>Student Name :</b>
-                                                                    <span t-esc="o['student']"/>
+                                                                    <span t-esc="ticket_data['student']"/>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
                                                                     <b>Roll No :</b>
-                                                                    <span t-out="o['roll_number']  if  o['roll_number']  else ''"/>
+                                                                    <span t-out="ticket_data['roll_number']  if  ticket_data['roll_number']  else ''"/>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
                                                                     <b>Course :</b>
-                                                                    <span t-out="o['course']  if  o['course']  else ''"/>
+                                                                    <span t-out="ticket_data['course']  if  ticket_data['course']  else ''"/>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -73,10 +73,10 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="text-right">
-                                                                    <img t-if="o['image']" alt="Student Image"
+                                                                <td class="text-right" style="text-align: center;">
+                                                                    <img t-if="ticket_data['image']" alt="Student Image"
                                                                          style="padding-top: 16px; padding-bottom: 16px; "
-                                                                         t-att-src="image_data_uri(o['image'])"
+                                                                         t-att-src="image_data_uri(ticket_data['image'])"
                                                                          width="75"/>
                                                                 </td>
                                                             </tr>
@@ -97,7 +97,7 @@
                                             <th class="text-center">Supervisor Sign</th>
                                         </thead>
                                         <tbody class="text-center" style="font-size:12px;">
-                                            <tr t-foreach="o['line']" t-as='s'>
+                                            <tr t-foreach="ticket_data['line']" t-as='s'>
                                                 <td>
                                                     <span t-out="s['subject'] if  s['subject']  else ''"/>
                                                 </td>
