@@ -10,7 +10,7 @@
                     <field name="student_id"/>
                     <field name="total_marks"/>
                     <field name="percentage"/>
-                    <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
+                    <field name="grade" invisible="evaluation_type != 'grade'"/>
                     <field name="status"/>
                     <field name="evaluation_type" invisible="1"/>
                 </tree>
@@ -27,12 +27,12 @@
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
-                            <field name="student_id"/>
+                                <field name="student_id"/>
                                 <field name="total_marks"/>
-                                <field name="grade" attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
+                                <field name="grade" invisible="evaluation_type != 'grade'"/>
                             </group>
                             <group>
                                 <field name="status"/>

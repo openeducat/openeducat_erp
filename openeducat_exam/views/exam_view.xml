@@ -28,23 +28,23 @@
             <field name="arch" type="xml">
                 <form string="Exam">
                     <header groups="base.group_user">
-                        <button name="%(act_open_op_room_distribution_view)d" states="draft" type="action"
+                        <button name="%(act_open_op_room_distribution_view)d" invisible="state != 'draft'" type="action"
                                 string="Schedule Exam" class="oe_highlight"/>
-                        <button name="%(act_open_op_held_exam_view)d" states="schedule" type="action"
+                        <button name="%(act_open_op_held_exam_view)d" invisible="state != 'schedule'" type="action"
                                 string="Held Exam" class="oe_highlight"/>
-                        <button name="act_done" states="result_updated" type="object" string="Done"
+                        <button name="act_done" invisible="state != 'result_updated'" type="object" string="Done"
                                 class="oe_highlight"/>
-                        <button name="act_draft" states="cancel" type="object" string="Draft" class="oe_highlight"/>
-                        <button string="Result Updated" class="oe_highlight" states="held" type="object"
+                        <button name="act_draft" invisible="state != 'cancel'" type="object" string="Draft" class="oe_highlight"/>
+                        <button string="Result Updated" class="oe_highlight" invisible="state != 'held'" type="object"
                                 name="act_result_updated"/>
-                        <button name="act_cancel" states="draft,held,schedule" type="object" string="Cancel"/>
+                        <button name="act_cancel" invisible="state not in ['draft', 'held', 'schedule']" type="object" string="Cancel"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,held,scheduled,result_updated,done"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible = "active == True"/>
                         <group>
                             <group>
                                 <field name="session_id" required="1"/>

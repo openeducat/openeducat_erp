@@ -21,14 +21,14 @@
             <field name="arch" type="xml">
                 <form string="Result Template">
                     <header groups="openeducat_exam.group_op_exam_admin">
-                        <button string="Generate Result" type="object" states="draft" name="generate_result"
+                        <button string="Generate Result" type="object" invisible="state != 'draft'" name="generate_result"
                                 class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,result_generated"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
                                 <field name="name" select="1"/>
@@ -40,9 +40,9 @@
                             </group>
                         </group>
                         <separator string="Grades" colspan="4"
-                                   attrs="{'invisible':[('evaluation_type','!=','grade')]}"/>
+                                   invisible="evaluation_type != 'grade'"/>
                         <field name="grade_ids" colspan="4" nolabel="1"
-                               attrs="{'invisible':[('evaluation_type','!=','grade')],'required':[('evaluation_type','=','grade')]}"/>
+                               invisible="evaluation_type != 'grade'" required="evaluation_type != 'grade'"/>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>

@@ -25,16 +25,16 @@
             <field name="arch" type="xml">
                 <form string="Marksheet Register">
                     <header groups="openeducat_exam.group_op_exam_admin">
-                        <button name="action_validate" states="draft" string="Validate Marksheet" type="object"
+                        <button name="action_validate" invisible="state != 'draft'" string="Validate Marksheet" type="object"
                                 class="oe_highlight"/>
-                        <button name="act_draft" states="cancelled" string="Set to Draft" type="object"/>
-                        <button name="act_cancel" states="draft" type="object" string="Cancel"/>
+                        <button name="act_draft" invisible="state != 'cancelled'" string="Set to Draft" type="object"/>
+                        <button name="act_cancel" invisible="state != 'draft'" type="object" string="Cancel"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,validated,cancelled"/>
                     </header>
                     <sheet>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                attrs="{'invisible': [('active', '=', True)]}"/>
+                                invisible="active == True"/>
                         <group>
                             <group>
                                 <field name="name"/>
