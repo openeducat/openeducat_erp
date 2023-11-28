@@ -101,7 +101,7 @@ class OpSession(models.Model):
             record.type = days.get(record.start_datetime.weekday()).capitalize()
             record.days = days.get(record.start_datetime.weekday())
 
-    @api.depends('faculty_id', 'subject_id', 'start_datetime')
+    @api.depends('faculty_id', 'subject_id', 'start_datetime', 'end_datetime')
     def _compute_name(self):
         tz = pytz.timezone(self.env.user.tz)
         for session in self:

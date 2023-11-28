@@ -47,9 +47,7 @@ class OpParent(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        print(vals_list,"vallllllllllll \n\n")
         res = super(OpParent, self).create(vals_list)
-        print(res,"=============res================")
         for vals in vals_list:
             if vals.get('student_ids', False) and res.name.user_id:
                 student_ids = self.student_ids.browse(res.student_ids.ids)
