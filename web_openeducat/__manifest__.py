@@ -57,5 +57,8 @@
         'web.assets_frontend': [
             '/web_openeducat/static/src/scss/homepage.scss',
         ],
+        'web._assets_primary_variables': [
+            '/web_openeducat/static/src/scss/primary_variables.scss'
+        ],
     }
 }
