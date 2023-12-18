@@ -45,7 +45,7 @@ class OpStudentFeesDetails(models.Model):
                                      readonly=True)
     company_id = fields.Many2one(
         'res.company', string='Company',
-        default=lambda self: self.env.user.company_id)
+        default=lambda self: self.env.company)
     after_discount_amount = fields.Monetary(compute="_compute_discount_amount",
                                             currency_field='currency_id',
                                             string='After Discount Amount')
@@ -70,7 +70,7 @@ class OpStudentFeesDetails(models.Model):
 
     currency_id = fields.Many2one(
         'res.currency', string='Currency', compute='_compute_currency_id',
-        default=lambda self: self.env.user.company_id.currency_id.id)
+        default=lambda self: self.env.company.currency_id.id)
 
     def get_invoice(self):
         """ Create invoice for fee payment process of student """

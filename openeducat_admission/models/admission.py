@@ -126,7 +126,7 @@ class OpAdmission(models.Model):
     fees_start_date = fields.Date('Fees Start Date')
     company_id = fields.Many2one(
         'res.company', string='Company',
-        default=lambda self: self.env.user.company_id)
+        default=lambda self: self.env.company)
 
     _sql_constraints = [
         ('unique_application_number',

@@ -75,7 +75,7 @@ class OpAdmissionRegister(models.Model):
 
     company_id = fields.Many2one(
         'res.company', string='Company',
-        default=lambda self: self.env.user.company_id)
+        default=lambda self: self.env.company)
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
