@@ -39,7 +39,7 @@ class OpAcademicYear(models.Model):
     create_boolean = fields.Boolean()
     company_id = fields.Many2one(
         'res.company', string='Company',
-        default=lambda self: self.env.user.company_id)
+        default=lambda self: self.env.company)
 
     def term_create(self):
         num = 0

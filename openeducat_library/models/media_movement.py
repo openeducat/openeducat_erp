@@ -72,7 +72,7 @@ class OpMediaMovement(models.Model):
     active = fields.Boolean(default=True)
     company_id = fields.Many2one(
         'res.company', string='Company',
-        default=lambda self: self.env.user.company_id)
+        default=lambda self: self.env.company)
 
     def get_diff_day(self):
         for media_mov_id in self:
