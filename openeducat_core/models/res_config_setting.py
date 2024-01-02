@@ -231,3 +231,10 @@ class ResConfigSettings(models.TransientModel):
         string="Database Backup to Onedrive")
     module_openeducat_auto_database_backup_sftp = fields.Boolean(
         string="Database Backup to Remote SFTP Server")
+    attendance_subject_generic = fields.Selection([('subject', 'Subject Wise'), ('generic', 'Generic')],
+                                                  help="Subject-specific attendance will be gathered during a "
+                                                       "particular session, whereas general attendance will be "
+                                                       "collected by one responsible faculty member for the "
+                                                       "entire day.",
+                                                  config_parameter="attendance_subject_generic_parameter",
+                                                  default='subject')
