@@ -93,7 +93,7 @@ class OpStudent(models.Model):
     partner_id = fields.Many2one('res.partner', 'Partner',
                                  required=True, ondelete="cascade")
     user_id = fields.Many2one('res.users', 'User', ondelete="cascade")
-    gr_no = fields.Char("GR Number", size=20)
+    gr_no = fields.Char("Registration Number", size=20)
     category_id = fields.Many2one('op.category', 'Category')
     course_detail_ids = fields.One2many('op.student.course', 'student_id',
                                         'Course Details',
@@ -103,7 +103,7 @@ class OpStudent(models.Model):
     _sql_constraints = [(
         'unique_gr_no',
         'unique(gr_no)',
-        'GR Number must be unique per student!'
+        'Registration Number must be unique per student!'
     )]
 
     @api.onchange('first_name', 'middle_name', 'last_name')
