@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="res_config_settings_view_form_core" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.core</field>
@@ -7,133 +6,45 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app data-string="OpenEducat-CE"
-                     string="OpenEduCat"
-                     name="openeducat_core"
-                     groups="openeducat_core.group_op_back_office_admin"
-                     id="openeducat_core_setting">
+                <app data-string="OpenEducat-CE" string="OpenEduCat" name="openeducat_core"
+                    groups="openeducat_core.group_op_back_office_admin" id="openeducat_core_setting">
                     <div name="openeducat_core">
-                        <h2 id="openeducat_core_apps">OpenEduCat Apps</h2>
-                        <div class="row mt16 o_settings_container" title="Specify different activities which is held in an institute.">
-                            <div class="col-12 col-lg-6 o_setting_box" title="It specifies achievement of student.">
+                        <h2 id="openeducat_core_apps">Apps</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It specifies achievement of student.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_achievement_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_achievement_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/student-progression/student-progression.html#achievemen" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It specifies achievement of student.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/student-progression/student-progression.html#achievemen"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It specifies achievement of student. </div>
                                 </div>
                             </div>
-
                             <div class="col-12 col-lg-6 o_setting_box">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_activity" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_activity" />
-                                    <a href="https://doc.openeducat.org/applications/student-progression/student-progression.html#activity" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Specify different activities which is held in an institute.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_activity == False">
+                                    <a
+                                        href="https://doc.openeducat.org/applications/student-progression/student-progression.html#activity"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Specify different activities which is
+                                        held in an institute. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_activity == False">
                                         <div class="mt16">
                                             <div class="o_setting_left_pane">
                                                 <field name="module_openeducat_activity_enterprise" />
                                             </div>
                                             <div class="o_setting_right_pane">
                                                 <label for="module_openeducat_activity_enterprise" />
-                                                <div class="text-muted"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is used for admission procedure for the applicant.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_admission" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_admission" />
-                                    <a href="https://doc.openeducat.org/applications/enrollment/enrollment-admission-register.html#admission-registers" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It is used for admission procedure for the applicant.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_admission == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_admission_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_admission_enterprise" />
-                                                <div class="text-muted">
-                                                Manage Students Admission
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_mass_subject_registration" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_mass_subject_registration" />
-                                                <div class="text-muted">
-                                                Manage Students can Add Multiple Subjects
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_online_admission" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_online_admission" />
-                                                <div class="text-muted">
-                                                Manage Streamline and user-friendly online admissions process
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title=" It allows you to store the details of alumni students.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_alumni_enterprise" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_alumni_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/alumni/alumni-group-details.html#alumni-group" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It allows you to store the details of alumni students.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_alumni_enterprise == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_alumni_blog_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_alumni_blog_enterprise" />
-                                                <div class="text-muted">
-                                                Deliver and share knowledge with everyone by creating well-informed and
-                                                designed blogs by students or faculties.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_alumni_event_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_alumni_event_enterprise" />
-                                                <div class="text-muted">
-                                                Organize events, publish event information and images, send RSVP to
-                                                attendees and keep the count of who joined in.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_alumni_job_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_alumni_job_enterprise" />
-                                                <div class="text-muted">
-                                                This module allows alumni to create job post.
-                                                </div>
+                                                <div class="text-muted" />
                                             </div>
                                         </div>
                                     </div>
@@ -145,250 +56,34 @@
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_asset_request_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/asset-request/assets.html#asset" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    The Main Purpose of Implementing an Asset Management in Education Facilities
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It provides the facility to configure the assignment type.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_assignment" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_assignment" />
-                                    <a href="https://doc.openeducat.org/applications/Assignments/assignment-type.html#assignments" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It provides the facility to configure the assignment type.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_assignment == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_assignment_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_assignment_enterprise" />
-                                                <div class="text-muted">
-                                                Assign and manage assignments to individual students, group of students
-                                                or entire batch.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_assignment_grading_bridge" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_assignment_grading_bridge" />
-                                                <div class="text-muted">
-                                                Manage, automate, and enhance the assignment grading workflow seamlessly
-                                                with Assignment Grading Bridge.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_assignment_grading_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_assignment_grading_enterprise" />
-                                                <div class="text-muted">
-                                                Manage and expedite the assignment grading process efficiently with our
-                                                streamlined platform.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_assignment_rubrics" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_assignment_rubrics" />
-                                                <a href="https://doc.openeducat.org/applications/assignment-rubrics/rubrics-template.html#rubrics-template" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                This module allows Faculty to Create Rubrics Template to grade the
-                                                assignments based on points or percentage and manage the assignment
-                                                submission.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It provides the Attendance maintanance facility for an institute. To maintain attendance, attendance register is created for particular batch and course">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_attendance" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_attendance" />
-                                    <a href="https://doc.openeducat.org/applications/Attendance/attendance-register.html#attendance-register" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It provides the Attendance maintenance facility for an institute. To maintain
-                                    attendance, attendance register is created for particular batch and course
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_attendance == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_attendance_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_attendance_enterprise" />
-                                                <div class="text-muted">
-                                                Attendance system that improves employee time tracking, scheduling, and
-                                                reporting.
-                                                </div>
-                                                <div class="text-muted mt-3">
-                                                    Subject-specific attendance will be gathered during a particular
-                                                    session, whereas general attendance will be collected by one
-                                                    responsible
-                                                    faculty member for the entire day.
-                                                </div>
-                                                <div class="o_setting_right_pane mt-2">
-                                                    <field name="attendance_subject_generic" widget="radio"/>
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane mt-2">
-                                                <field name="module_openeducat_attendance_report_xlsx" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_attendance_report_xlsx" />
-                                                <div class="text-muted">
-                                                Download students attendace xlsx report
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_student_attendance_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_student_attendance_enterprise" />
-                                                <div class="text-muted">
-                                                It help the student to sign-in in their attendance sheet via kiosk mode
-                                                and barcode scanner.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_attendance_face_recognition" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_attendance_face_recognition" />
-                                                <div class="text-muted">
-                                                Student can sign-in in their attendance sheet using facial features from
-                                                image or video.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_student_leave_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_student_leave_enterprise" />
-                                                <a href="https://doc.openeducat.org/applications/student-leave-request/admin-student-leave.html#admin-side-configuration" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                OpenEduCat provides help to enhance the overall user system by providing
-                                                options to send leave requests to different groups or sections of
-                                                people.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_student_progress_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_student_progress_enterprise" />
-                                                <div class="text-muted">
-                                                Manage studetns progress report
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/asset-request/assets.html#asset"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> The Main Purpose of Implementing an
+                                        Asset Management in Education Facilities </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_backend_theme" />
+                                    <field name="module_backend_theme" />
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_backend_theme" />
-                                    <div class="text-muted">
-                                    Backend Theme
-                                    </div>
+                                    <label for="module_backend_theme" />
+                                    <div class="text-muted"> Backend Theme </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Campus helps you to provide the start up data of campus facility in an institute for students.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Campus helps you to provide the start up data of campus facility in an institute for students.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_campus_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_campus_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/campus/campus-facility.html#configure-facilities" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Campus helps you to provide the start up data of campus facility in an institute for
-                                    students.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is used to configure the class room.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_classroom" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_classroom" />
-                                    <a href="https://doc.openeducat.org/openeducat/class-room-openeducat.html#class-room-management" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It is used to configure the classroom.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_classroom == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_classroom_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_classroom_enterprise" />
-                                                <div class="text-muted">
-                                                Organize and manage classrooms with equipment and facilities required
-                                                for giving best classroom sessions.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_live" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_live" />
-                                                <div class="text-muted">
-                                                Live classroom comes with a dynamic set of teaching and learning tools
-                                                to simulate
-                                                a physical classroom learning environment.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_live_assignment" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_live_assignment" />
-                                                <div class="text-muted">
-                                                Faculties can use the live session to create, edit, and assign both team and individual assignments.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_live_attendance" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_live_attendance" />
-                                                <div class="text-muted">
-                                                Present makes taking attendance fast, accurate and easy. Get a clear view of your entire class roster.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_live_attentiveness" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_live_attentiveness" />
-                                                <div class="text-muted">
-                                                Participate in class discussion by sharing points of view, asking questions, and contributing to group projects.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/campus/campus-facility.html#configure-facilities"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Campus helps you to provide the start
+                                        up data of campus facility in an institute for students. </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
@@ -397,34 +92,23 @@
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_crm_enterprise" />
-                                    <div class="text-muted">
-                                    Automate lead and opportunity tracking with state of the art CRM system built-in
-                                    giving a unparallel competitive advantage.
-                                    </div>
+                                    <div class="text-muted"> Automate lead and opportunity tracking
+                                        with state of the art CRM system built-in giving a
+                                        unparallel competitive advantage. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_dashboard_kpi" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_dashboard_kpi" />
-                                    <a href="https://doc.openeducat.org/applications/kpi-dashboard/how-to.html#how-to-create-dashboard" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Monitor all your department from a real-time Dashboard.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It specifies overall discipline of student.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It specifies overall discipline of student.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_discipline" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_discipline" />
-                                    <a href="https://doc.openeducat.org/applications/discipline/discipline-misbehaviour-category.html#configure-misbehaviour-categories" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It specifies overall discipline of student.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/discipline/discipline-misbehaviour-category.html#configure-misbehaviour-categories"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It specifies overall discipline of
+                                        student. </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
@@ -433,116 +117,35 @@
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_event_enterprise" />
-                                    <div class="text-muted">
-                                    Manage Events for students
-                                    </div>
+                                    <div class="text-muted"> Manage Events for students </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It provides the facility to configure exam related details like Exam types and Exam Rooms.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_exam" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_exam" />
-                                    <a href="https://doc.openeducat.org/applications/exam/exam-configuration.html#configure-exam" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It provides the facility to configure exam related details like Exam types and Exam
-                                    Rooms.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_exam == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_exam_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_exam_enterprise" />
-                                                <div class="text-muted">
-                                                Schedule examination through various methods like CCE, CPA and much more
-                                                with just a few clicks.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_exam_gpa_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_exam_gpa_enterprise" />
-                                                <div class="text-muted">
-                                                Manage and optimize the grading and  assessment process with
-                                                Exam GPA Enterprise.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_exam_grading_bridge" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_exam_grading_bridge" />
-                                                <div class="text-muted">
-                                                Manage and streamline the exam grading process seamlessly with the
-                                                innovative Exam Grading Bridge.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Specify different facilities of an institute.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Specify different facilities of an institute.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_facility" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_facility" />
-                                    <a href="https://doc.openeducat.org/openeducat/basic-openeducat.html?highlight=facility#basic-configuration" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Specify different facilities of an institute.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_facility == False">
+                                    <a
+                                        href="https://doc.openeducat.org/openeducat/basic-openeducat.html?highlight=facility#basic-configuration"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Specify different facilities of an
+                                        institute. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_facility == False">
                                         <div class="mt16">
                                             <div class="o_setting_left_pane">
                                                 <field name="module_openeducat_facility_enterprise" />
                                             </div>
                                             <div class="o_setting_right_pane">
                                                 <label for="module_openeducat_facility_enterprise" />
-                                                <a href="https://doc.openeducat.org/openeducat/basic-openeducat.html?highlight=facility#details-of-facility-form" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                This module adds the feature to manage facilities to OpenEduCat.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Configuration of fees helps you to provide the start up data of fees according to the courses of an institute.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_fees" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_fees" />
-                                    <a href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#fees-management" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Configuration of fees helps you to provide the start up data of fees according to
-                                    the courses of an institute.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_fees == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_fees_plan" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_fees_plan" />
-                                                <a href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#configure-fees" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                This module adds you feature to create invoice for fees collection.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_fees_parent_bridge" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_fees_parent_bridge" string="Fees Access for Parents" />
-                                                <a href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#fees-on-duration" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                               This module allows parent to access fees details of their children.
-                                                </div>
+                                                <a
+                                                    href="https://doc.openeducat.org/openeducat/basic-openeducat.html?highlight=facility#details-of-facility-form"
+                                                    title="Documentation" class="o_doc_link"
+                                                    target="_blank" />
+                                                <div class="text-muted"> This module adds the
+                                                    feature to manage facilities to OpenEduCat. </div>
                                             </div>
                                         </div>
                                     </div>
@@ -554,10 +157,11 @@
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_grading" />
-                                    <a href="https://doc.openeducat.org/applications/Gradebook/academic-year.html#how-to-create-academic-year" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    A unique new way to manage student grades and homework from any device and platform.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/Gradebook/academic-year.html#how-to-create-academic-year"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> A unique new way to manage student
+                                        grades and homework from any device and platform. </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
@@ -566,323 +170,202 @@
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_grievance_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/grievance/gms-category.html#grievance-category" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    This module provides a helping hand to students.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/grievance/gms-category.html#grievance-category"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> This module provides a helping hand to
+                                        students. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It specifies health of the student.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It specifies health of the student.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_health_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_health_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/how-to-configure/how-to.html?highlight=health#health" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It specifies health of the student.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/how-to-configure/how-to.html?highlight=health#health"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It specifies health of the student. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is used To configure the job
-                                    type">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It is used To configure the job type">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_job_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_job_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/placement/job-details.html?highlight=job#job" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Configuration of Job Type in Placement Management will let the user to create the
-                                    job.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/placement/job-details.html?highlight=job#job"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Configuration of Job Type in Placement
+                                        Management will let the user to create the job. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Its Specify lesson planing for the  upcoming session.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Its Specify lesson planing for the upcoming session.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_lesson" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_lesson" />
-                                    <a href="https://doc.openeducat.org/applications/timetable/lesson-planning.html?highlight=lesson#lesson-planning" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It specifies lesson planing for the upcoming session.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/timetable/lesson-planning.html?highlight=lesson#lesson-planning"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It specifies lesson planing for the
+                                        upcoming session. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It provides the facility to configure library management">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_library" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_library" />
-                                    <a href="https://doc.openeducat.org/applications/library/library-configuration.html#library-configuration" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It provides the facility to configure library management
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_library == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_library_barcode" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_library_barcode" />
-                                                <a href="https://doc.openeducat.org/applications/library/library-barcode.html#barcode-scanning" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                Centralized barcode enabled integrated library management.
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_library_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_library_enterprise" />
-                                                <a href="https://doc.openeducat.org/applications/library/library-configuration.html#library-configuration" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                Manage books, articles, media and much more
-                                                </div>
-                                            </div>
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_digital_library" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_digital_library" />
-                                                <a href="https://doc.openeducat.org/applications/digital-library/category.html#how-to-create-category" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                This Module Adds The Feature Of Digital Library To Read Books In OpenEduCat.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is about parent teacher meeting related to student performance.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It is about parent teacher meeting related to student performance.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_meeting_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_meeting_enterprise" />
-                                    <div class="text-muted">
-                                    It is about parent teacher meeting related to student performance.
-                                    </div>
+                                    <div class="text-muted"> It is about parent teacher meeting
+                                        related to student performance. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Publish Notice and Circular.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Publish Notice and Circular.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_notice_board_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_notice_board_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/notice-board/notice-board-admin.html#how-to-configure-notice" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Publish Notice and Circular.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/notice-board/notice-board-admin.html#how-to-configure-notice"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Publish Notice and Circular. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is about Online Appointment Booking.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It is about Online Appointment Booking.">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_online_appointment" />
+                                    <field name="module_online_appointment" />
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_online_appointment" />
-                                    <a href="https://doc.openeducat.org/applications/online-appointment/how-to-create.html#how-to-create-online-appointment" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It is about Online Appointment Booking.
-                                    </div>
+                                    <label for="module_online_appointment" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/online-appointment/how-to-create.html#how-to-create-online-appointment"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It is about Online Appointment Booking. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is about checking OMR exam sheets using mobile.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It is about checking OMR exam sheets using mobile.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_omr" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_omr" />
-                                    <div class="text-muted">
-                                    It is about checking OMR exam sheets using Mobile.
-                                    </div>
+                                    <div class="text-muted"> It is about checking OMR exam sheets
+                                        using Mobile. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It allows you to store the details of the Parents.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It allows you to store the details of the Parents.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_parent" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_parent" />
-                                    <a href="https://doc.openeducat.org/applications/parent/parent-details.html#parent" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It allows you to store the details of the Parents.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_parent == False">
+                                    <a
+                                        href="https://doc.openeducat.org/applications/parent/parent-details.html#parent"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It allows you to store the details of
+                                        the Parents. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_parent == False">
                                         <div class="mt16">
                                             <div class="o_setting_left_pane">
                                                 <field name="module_openeducat_parent_enterprise" />
                                             </div>
                                             <div class="o_setting_right_pane">
                                                 <label for="module_openeducat_parent_enterprise" />
-                                                <div class="text-muted">
-                                                Give a better transparency to a parent about their child’s academic activities and achievements.
-                                                </div>
+                                                <div class="text-muted"> Give a better transparency
+                                                    to a parent about their child’s academic
+                                                    activities and achievements. </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" id="placement_enterprise" title="It allows you to store the details of the Placement Team, their team leader and
-                                    their team members.">
+                            <div class="col-12 col-lg-6 o_setting_box" id="placement_enterprise"
+                                title="It allows you to store the details of the Placement Team, their team leader and their team members.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_placement_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_placement_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/how-to-configure/how-to.html?highlight=placement#how-to-configure" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It allows you to store the details of the Placement Team, their team leader and
-                                    their team members.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_placement_enterprise == False">
+                                    <a
+                                        href="https://doc.openeducat.org/applications/how-to-configure/how-to.html?highlight=placement#how-to-configure"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It allows you to store the details of
+                                        the Placement Team, their team leader and their team
+                                        members. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_placement_enterprise == False">
                                         <div class="mt16">
                                             <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_placement_job_enterprise" />
+                                                <field
+                                                    name="module_openeducat_placement_job_enterprise" />
                                             </div>
                                             <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_placement_job_enterprise" />
-                                                <a href="https://doc.openeducat.org/applications/how-to-configure/how-to.html?highlight=placement#job-post" title="Documentation" class="o_doc_link" target="_blank" />
-                                                <div class="text-muted">
-                                                It provides the placement facility for student.
-                                                </div>
+                                                <label
+                                                    for="module_openeducat_placement_job_enterprise" />
+                                                <a
+                                                    href="https://doc.openeducat.org/applications/how-to-configure/how-to.html?highlight=placement#job-post"
+                                                    title="Documentation" class="o_doc_link"
+                                                    target="_blank" />
+                                                <div class="text-muted"> It provides the placement
+                                                    facility for student. </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Specify different types of quiz which is held in an institute for students.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_quiz" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_quiz" />
-                                    <a href="https://doc.openeducat.org/applications/quiz/quiz.html#question-bank" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Specify different types of quiz which is held in an institute for students.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_quiz == False">
-                                        <div class="mt16 row">
-                                            <div class="col-12 col-md-6 col-lg-6 mb16">
-                                                <div class="o_setting_left_pane">
-                                                    <field name="module_openeducat_quiz_anti_cheating" />
-                                                </div>
-                                                <div class="o_setting_right_pane">
-                                                    <label for="module_openeducat_quiz_anti_cheating" />
-                                                    <a href="https://doc.openeducat.org/applications/quiz/quiz.html#anti-cheating" title="Documentation" class="o_doc_link" target="_blank" />
-                                                    <div class="text-muted">
-                                                    With the growing use of online learning and giving examinations over the online mode.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6 col-lg-6 mb16">
-                                                <div class="o_setting_left_pane">
-                                                    <field name="module_openeducat_quiz_drag_into_text" />
-                                                </div>
-                                                <div class="o_setting_right_pane">
-                                                    <label for="module_openeducat_quiz_drag_into_text" />
-                                                    <div class="text-muted">
-                                                    Provides facility to conduct online exam platform with question type Drag Into Text.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6 col-lg-6 mb16">
-                                                <div class="o_setting_left_pane">
-                                                    <field name="module_openeducat_quiz_match_following" />
-                                                </div>
-                                                <div class="o_setting_right_pane">
-                                                    <label for="module_openeducat_quiz_match_following" />
-                                                    <div class="text-muted">
-                                                    Provides facility to conduct online exam platform with question type Match Following
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6 col-lg-6 mb16">
-                                                <div class="o_setting_left_pane">
-                                                    <field name="module_openeducat_quiz_match_images" />
-                                                </div>
-                                                <div class="o_setting_right_pane">
-                                                    <label for="module_openeducat_quiz_match_images" />
-                                                    <div class="text-muted">
-                                                    Quiz Match Images
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6 col-lg-6 mb16">
-                                                <div class="o_setting_left_pane">
-                                                    <field name="module_openeducat_quiz_multiple_choice" />
-                                                </div>
-                                                <div class="o_setting_right_pane">
-                                                    <label for="module_openeducat_quiz_multiple_choice" />
-                                                    <div class="text-muted">
-                                                   Provides facility to conduct online exam platform with question type Multiple Choice
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6 col-lg-6 mb16">
-                                                <div class="o_setting_left_pane">
-                                                    <field name="module_openeducat_quiz_numeric" />
-                                                </div>
-                                                <div class="o_setting_right_pane">
-                                                    <label for="module_openeducat_quiz_numeric" />
-                                                    <div class="text-muted">
-                                                    Provides facility to conduct online exam platform with question type Numeric.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6 col-lg-6 mb16">
-                                                <div class="o_setting_left_pane">
-                                                    <field name="module_openeducat_quiz_sort_paragraphs" />
-                                                </div>
-                                                <div class="o_setting_right_pane">
-                                                    <label for="module_openeducat_quiz_sort_paragraphs" />
-                                                    <div class="text-muted">
-                                                    Provides facility to conduct online exam platform with question type Sort Paragraphs.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Configure different scholarship types.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Configure different scholarship types.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_scholarship_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_scholarship_enterprise" />
-                                    <a href="https://doc.openeducat.org/openeducat/basic-openeducat.html?highlight=scholarship#configure-scholarship-types" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Configure different scholarship types.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/openeducat/basic-openeducat.html?highlight=scholarship#configure-scholarship-types"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Configure different scholarship types. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It will generate Secure QR Code.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It will generate Secure QR Code.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_secure" />
                                 </div>
                                 <div class="o_setting_right_pane" id="secure_qr">
                                     <label for="module_openeducat_secure" />
-                                    <a href="https://doc.openeducat.org/applications/secure/secure-configuration.html#configuration" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It will generate Secure QR Code.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/secure/secure-configuration.html#configuration"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It will generate Secure QR Code. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is used To configure the skill category.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="It is used To configure the skill category.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_skill_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_skill_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/student-skill-assessment/student-skill-assessment.html#student-skill-assessment" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It is used To configure the skill category.
-                                    </div>
+                                    <a
+                                        href="https://doc.openeducat.org/applications/student-skill-assessment/student-skill-assessment.html#student-skill-assessment"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It is used To configure the skill
+                                        category. </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
@@ -891,122 +374,424 @@
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_subject_material_allocation" />
-                                    <div class="text-muted">
-                                    Manage efficient allocation of subject materials with our streamlined system.
-                                    </div>
+                                    <div class="text-muted"> Manage efficient allocation of subject
+                                        materials with our streamlined system. </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="It is fully integrated application which provides a facility to manage the timing details.">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_timetable" />
-                                </div>
-                                <div class="o_setting_right_pane" id="timetable_constraints">
-                                    <label for="module_openeducat_timetable" />
-                                    <a href="https://doc.openeducat.org/applications/timetable/timetable-timing.html#timings" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    It is fully integrated application which provides a facility to manage the timing
-                                    details.
-                                    </div>
-                                    <div class="content-group" invisible="module_openeducat_timetable == False">
-                                        <div class="mt16">
-                                            <div class="o_setting_left_pane">
-                                                <field name="module_openeducat_timetable_enterprise" />
-                                            </div>
-                                            <div class="o_setting_right_pane">
-                                                <label for="module_openeducat_timetable_enterprise" />
-                                                <div class="text-muted">
-                                                Schedule session, inform students and faculties all with just a few clicks and one single screen.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="Configuration of routes in transportation helps you to provide the start up data of each route.">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Configuration of routes in transportation helps you to provide the start up data of each route.">
                                 <div class="o_setting_left_pane">
                                     <field name="module_openeducat_transportation_enterprise" />
                                 </div>
                                 <div class="o_setting_right_pane">
                                     <label for="module_openeducat_transportation_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/transportation/transportation-routes.html#configure-routes" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Configuration of routes in transportation helps you to provide the start up data of
-                                    each route.
+                                    <a
+                                        href="https://doc.openeducat.org/applications/transportation/transportation-routes.html#configure-routes"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Configuration of routes in
+                                        transportation helps you to provide the start up data of
+                                        each route. </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_attendance_apps">Admission</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="It is used for admission procedure for the applicant.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_admission" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_admission" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/enrollment/enrollment-admission-register.html#admission-registers"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It is used for admission procedure for
+                                        the applicant. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_admission == False">
+                                        <div class="row mt16">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_admission_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_admission_enterprise" />
+                                                    <div class="text-muted"> Manage Students
+                                                        Admission </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_mass_subject_registration" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_mass_subject_registration" />
+                                                    <div class="text-muted"> Manage Students can Add
+                                                        Multiple Subjects </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="module_openeducat_online_admission" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label for="module_openeducat_online_admission" />
+                                                    <div class="text-muted"> Manage Streamline and
+                                                        user-friendly online admissions process </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h2>OpenEduCat Backup</h2>
-                        <div class="row mt16 o_settings_container" title="Specify different activities which is held in an institute.">
+                        <h2 id="openeducat_attendance_apps">Alumni</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title=" It allows you to store the details of alumni students.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_alumni_enterprise" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_alumni_enterprise" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/alumni/alumni-group-details.html#alumni-group"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It allows you to store the details of
+                                        alumni students. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_alumni_enterprise == False">
+                                        <div class="row mt16">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_alumni_blog_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_alumni_blog_enterprise" />
+                                                    <div class="text-muted"> Deliver and share
+                                                        knowledge with everyone by creating
+                                                        well-informed and designed blogs by students
+                                                        or faculties. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_alumni_event_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_alumni_event_enterprise" />
+                                                    <div class="text-muted"> Organize events,
+                                                        publish event information and images, send
+                                                        RSVP to attendees and keep the count of who
+                                                        joined in. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_alumni_job_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_alumni_job_enterprise" />
+                                                    <div class="text-muted"> This module allows
+                                                        alumni to create job post. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_attendance_apps">Assignment</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="It provides the facility to configure the assignment type.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_assignment" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_assignment" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/Assignments/assignment-type.html#assignments"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It provides the facility to configure
+                                        the assignment type. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_assignment == False">
+                                        <div class="row mt16">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_assignment_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_assignment_enterprise" />
+                                                    <div class="text-muted"> Assign and manage
+                                                        assignments to individual students, group of
+                                                        students or entire batch. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_assignment_grading_bridge" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_assignment_grading_bridge" />
+                                                    <div class="text-muted"> Manage, automate, and
+                                                        enhance the assignment grading workflow
+                                                        seamlessly with Assignment Grading Bridge. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_assignment_grading_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_assignment_grading_enterprise" />
+                                                    <div class="text-muted"> Manage and expedite the
+                                                        assignment grading process efficiently with
+                                                        our streamlined platform. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_assignment_rubrics" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_assignment_rubrics" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/applications/assignment-rubrics/rubrics-template.html#rubrics-template"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> This module allows
+                                                        Faculty to Create Rubrics Template to grade
+                                                        the assignments based on points or
+                                                        percentage and manage the assignment
+                                                        submission. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_attendance_apps">Attendance</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="It provides the Attendance maintanance facility for an institute. To maintain attendance, attendance register is created for particular batch and course">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_attendance" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_attendance" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/Attendance/attendance-register.html#attendance-register"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It provides the Attendance maintenance
+                                        facility for an institute. To maintain attendance,
+                                        attendance register is created for particular batch and
+                                        course </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_attendance == False">
+                                        <div class="mt16 row">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_attendance_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_attendance_enterprise" />
+                                                    <div class="text-muted"> Attendance system that
+                                                        improves employee time tracking, scheduling,
+                                                        and reporting. </div>
+                                                    <div class="text-muted mt-3"> Subject-specific
+                                                        attendance will be gathered during a
+                                                        particular session, whereas general
+                                                        attendance will be collected by one
+                                                        responsible faculty member for the entire
+                                                        day. </div>
+                                                    <div class="o_setting_right_pane">
+                                                        <field name="attendance_subject_generic"
+                                                            widget="radio" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_attendance_report_xlsx" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_attendance_report_xlsx" />
+                                                    <div class="text-muted"> Download students
+                                                        attendace xlsx report </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_student_attendance_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_student_attendance_enterprise" />
+                                                    <div class="text-muted"> It help the student to
+                                                        sign-in in their attendance sheet via kiosk
+                                                        mode and barcode scanner. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_attendance_face_recognition" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_attendance_face_recognition" />
+                                                    <div class="text-muted"> Student can sign-in in
+                                                        their attendance sheet using facial features
+                                                        from image or video. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_student_leave_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_student_leave_enterprise" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/applications/student-leave-request/admin-student-leave.html#admin-side-configuration"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> OpenEduCat provides
+                                                        help to enhance the overall user system by
+                                                        providing options to send leave requests to
+                                                        different groups or sections of people. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_student_progress_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_student_progress_enterprise" />
+                                                    <div class="text-muted"> Manage studetns
+                                                        progress report </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Backup</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
                             <div class="col-12 col-lg-12 o_setting_box" title="">
-                                <div class="col-12 col-lg-12 o_setting_box" title="OpenEduCat auto backup modules helps you to generate backups of your databases automatically on regular interval of times. The generated backups can be stored into local storage, FTP server, SFTP server, Dropbox, Google Drive or Onedrive.User can enable auto remove option to automatically delete old backups. User can enable email notification to be notified about the success and failure of the backup generation and storage. Using Automatic Database Backup module user can generate and store database backups to multiple location.">
+                                <div class="col-12 col-lg-12 o_setting_box"
+                                    title="OpenEduCat auto backup modules helps you to generate backups of your databases automatically on regular interval of times. The generated backups can be stored into local storage, FTP server, SFTP server, Dropbox, Google Drive or Onedrive.User can enable auto remove option to automatically delete old backups. User can enable email notification to be notified about the success and failure of the backup generation and storage. Using Automatic Database Backup module user can generate and store database backups to multiple location.">
                                     <div class="o_setting_left_pane">
-                                        <field name="module_openeducat_auto_database_backup" />
+                                        <field name="module_auto_database_backup" />
                                     </div>
                                     <div class="o_setting_right_pane">
-                                        <label for="module_openeducat_auto_database_backup" />
-                                        <div class="text-muted">
-                                        OpenEduCat auto backup modules helps you to generate backups of your databases
-                                        automatically on regular interval of times. The generated backups can be stored
-                                        into local storage, FTP server, SFTP server, Dropbox, Google Drive or Onedrive.
-                                        </div>
-                                        <div class="content-group" invisible="module_openeducat_auto_database_backup == False">
+                                        <label for="module_auto_database_backup" />
+                                        <div class="text-muted"> OpenEduCat auto backup modules
+                                            helps you to generate backups of your databases
+                                            automatically on regular interval of times. The
+                                            generated backups can be stored into local storage, FTP
+                                            server, SFTP server, Dropbox, Google Drive or Onedrive. </div>
+                                        <div class="content-group"
+                                            invisible="module_auto_database_backup == False">
                                             <div class="mt16 row auto_backup_modules">
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_auto_database_backup_dropbox" />
+                                                        <field
+                                                            name="module_auto_database_backup_dropbox" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_auto_database_backup_dropbox" />
-                                                        <div class="text-muted">
-                                                        This module allows to store generated backups on Dropbox.
-                                                        </div>
+                                                        <label
+                                                            for="module_auto_database_backup_dropbox" />
+                                                        <div class="text-muted"> This module allows
+                                                            to store generated backups on Dropbox. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_auto_database_backup_ftp" />
+                                                        <field
+                                                            name="module_auto_database_backup_ftp" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_auto_database_backup_ftp" />
-                                                        <div class="text-muted">
-                                                        This module allows to store generated backups to remote FTP server.
-                                                        </div>
+                                                        <label
+                                                            for="module_auto_database_backup_ftp" />
+                                                        <div class="text-muted"> This module allows
+                                                            to store generated backups to remote FTP
+                                                            server. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_auto_database_backup_google_drive" />
+                                                        <field
+                                                            name="module_auto_database_backup_google_drive" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_auto_database_backup_google_drive" />
-                                                        <div class="text-muted">
-                                                        This module allows to store generated backups on Google Drive.
-                                                        </div>
+                                                        <label
+                                                            for="module_auto_database_backup_google_drive" />
+                                                        <div class="text-muted"> This module allows
+                                                            to store generated backups on Google
+                                                            Drive. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_auto_database_backup_onedrive" />
+                                                        <field
+                                                            name="module_auto_database_backup_onedrive" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_auto_database_backup_onedrive" />
-                                                        <div class="text-muted">
-                                                        This module allows to store generated backups on Onedrive.
-                                                        </div>
+                                                        <label
+                                                            for="module_auto_database_backup_onedrive" />
+                                                        <div class="text-muted"> This module allows
+                                                            to store generated backups on Onedrive. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_auto_database_backup_sftp" />
+                                                        <field
+                                                            name="module_auto_database_backup_sftp" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_auto_database_backup_sftp" />
-                                                        <div class="text-muted">
-                                                        This module allows to store generated backups to remote SFTP
-                                                        server just like FTP Server, but it adds a layer of security to
-                                                        the process.
-                                                        </div>
+                                                        <label
+                                                            for="module_auto_database_backup_sftp" />
+                                                        <div class="text-muted"> This module allows
+                                                            to store generated backups to remote
+                                                            SFTP server just like FTP Server, but it
+                                                            adds a layer of security to the process. </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1015,31 +800,296 @@
                                 </div>
                             </div>
                         </div>
-                        <h2>OpenEduCat LMS</h2>
-                        <div class="row mt16 o_settings_container" title="Specify different activities which is held in an institute.">
+                        <h2>Classroom</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="It is used to configure the class room.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_classroom" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_classroom" />
+                                    <a
+                                        href="https://doc.openeducat.org/openeducat/class-room-openeducat.html#class-room-management"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It is used to configure the classroom. </div>
+                                    <div class="row mt16 content-group"
+                                        invisible="module_openeducat_classroom == False">
+                                        <div class="col-12 col-lg-6 o_setting_box" title="">
+                                            <div class="o_setting_left_pane">
+                                                <field name="module_openeducat_classroom_enterprise" />
+                                            </div>
+                                            <div class="o_setting_right_pane">
+                                                <label for="module_openeducat_classroom_enterprise" />
+                                                <div class="text-muted"> Organize and manage
+                                                    classrooms with equipment and facilities
+                                                    required for giving best classroom sessions. </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 o_setting_box" title="">
+                                            <div class="o_setting_left_pane">
+                                                <field name="module_openeducat_live" />
+                                            </div>
+                                            <div class="o_setting_right_pane">
+                                                <label for="module_openeducat_live" />
+                                                <div class="text-muted"> Live classroom comes with a
+                                                    dynamic set of teaching and learning tools to
+                                                    simulate a physical classroom learning
+                                                    environment. </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 o_setting_box" title="">
+                                            <div class="o_setting_left_pane">
+                                                <field name="module_openeducat_live_assignment" />
+                                            </div>
+                                            <div class="o_setting_right_pane">
+                                                <label for="module_openeducat_live_assignment" />
+                                                <div class="text-muted"> Faculties can use the live
+                                                    session to create, edit, and assign both team
+                                                    and individual assignments. </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt16">
+                                            <div class="o_setting_left_pane">
+                                                <field name="module_openeducat_live_attendance" />
+                                            </div>
+                                            <div class="o_setting_right_pane">
+                                                <label for="module_openeducat_live_attendance" />
+                                                <div class="text-muted"> Present makes taking
+                                                    attendance fast, accurate and easy. Get a clear
+                                                    view of your entire class roster. </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt16">
+                                            <div class="o_setting_left_pane">
+                                                <field name="module_openeducat_live_attentiveness" />
+                                            </div>
+                                            <div class="o_setting_right_pane">
+                                                <label for="module_openeducat_live_attentiveness" />
+                                                <div class="text-muted"> Participate in class
+                                                    discussion by sharing points of view, asking
+                                                    questions, and contributing to group projects. </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_attendance_apps">Exam</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="It provides the facility to configure exam related details like Exam types and Exam Rooms.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_exam" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_exam" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/exam/exam-configuration.html#configure-exam"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It provides the facility to configure
+                                        exam related details like Exam types and Exam Rooms. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_exam == False">
+                                        <div class="row mt16">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="module_openeducat_exam_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label for="module_openeducat_exam_enterprise" />
+                                                    <div class="text-muted"> Schedule examination
+                                                        through various methods like CCE, CPA and
+                                                        much more with just a few clicks. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_exam_gpa_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_exam_gpa_enterprise" />
+                                                    <div class="text-muted"> Manage and optimize the
+                                                        grading and assessment process with Exam GPA
+                                                        Enterprise. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_exam_grading_bridge" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_exam_grading_bridge" />
+                                                    <div class="text-muted"> Manage and streamline
+                                                        the exam grading process seamlessly with the
+                                                        innovative Exam Grading Bridge. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_attendance_apps">Fees</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="Configuration of fees helps you to provide the start up data of fees according to the courses of an institute.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_fees" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_fees" />
+                                    <a
+                                        href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#fees-management"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Configuration of fees helps you to
+                                        provide the start up data of fees according to the courses
+                                        of an institute. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_fees == False">
+                                        <div class="row mt16">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="module_openeducat_fees_plan" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label for="module_openeducat_fees_plan" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#configure-fees"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> This module adds you
+                                                        feature to create invoice for fees
+                                                        collection. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_fees_parent_bridge" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_fees_parent_bridge"
+                                                        string="Fees Access for Parents" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/openeducat/fees-openeducat.html?highlight=fees#fees-on-duration"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> This module allows
+                                                        parent to access fees details of their
+                                                        children. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_attendance_apps">Library</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="It provides the facility to configure library management">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_library" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_library" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/library/library-configuration.html#library-configuration"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It provides the facility to configure
+                                        library management </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_library == False">
+                                        <div class="row mt16">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="module_openeducat_library_barcode" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label for="module_openeducat_library_barcode" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/applications/library/library-barcode.html#barcode-scanning"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> Centralized barcode
+                                                        enabled integrated library management. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_library_enterprise" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_library_enterprise" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/applications/library/library-configuration.html#library-configuration"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> Manage books, articles,
+                                                        media and much more </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="module_openeducat_digital_library" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label for="module_openeducat_digital_library" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/applications/digital-library/category.html#how-to-create-category"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> This Module Adds The
+                                                        Feature Of Digital Library To Read Books In
+                                                        OpenEduCat. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>LMS</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
                             <div class="col-12 col-lg-12 o_setting_box" title="">
-                                <div class="col-12 col-lg-12 o_setting_box" title="OpenEduCat learning management system helps you to create your online course. Create your sections and course material in it.">
+                                <div class="col-12 col-lg-12 o_setting_box"
+                                    title="OpenEduCat learning management system helps you to create your online course. Create your sections and course material in it.">
                                     <div class="o_setting_left_pane">
                                         <field name="module_openeducat_lms" />
                                     </div>
                                     <div class="o_setting_right_pane">
                                         <label for="module_openeducat_lms" />
-                                        <a href="https://doc.openeducat.org/applications/lms/lms-course.html#course" title="Documentation" class="o_doc_link" target="_blank" />
-                                        <div class="text-muted">
-                                        OpenEduCat learning management system helps you to create your online course.
-                                        Create your sections and course material in it.
-                                        </div>
-                                        <div class="content-group" invisible="module_openeducat_lms == False">
+                                        <a
+                                            href="https://doc.openeducat.org/applications/lms/lms-course.html#course"
+                                            title="Documentation" class="o_doc_link" target="_blank" />
+                                        <div class="text-muted"> OpenEduCat learning management
+                                            system helps you to create your online course. Create
+                                            your sections and course material in it. </div>
+                                        <div class="content-group"
+                                            invisible="module_openeducat_lms == False">
                                             <div class="mt16 row">
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_admission" />
+                                                        <field
+                                                            name="module_openeducat_lms_admission" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_admission" />
-                                                        <div class="text-muted">
-                                                        Manage enrollment effortlessly with LMS Admission.
-                                                        </div>
+                                                        <div class="text-muted"> Manage enrollment
+                                                            effortlessly with LMS Admission. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
@@ -1048,10 +1098,14 @@
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_blog" />
-                                                        <a href="https://doc.openeducat.org/applications/lms/lms-blog.html#blog" title="Documentation" class="o_doc_link" target="_blank" />
-                                                        <div class="text-muted">
-                                                        Deliver and share knowledge with everyone by creating well-informed and designed blogs by students or faculties.
-                                                        </div>
+                                                        <a
+                                                            href="https://doc.openeducat.org/applications/lms/lms-blog.html#blog"
+                                                            title="Documentation" class="o_doc_link"
+                                                            target="_blank" />
+                                                        <div class="text-muted"> Deliver and share
+                                                            knowledge with everyone by creating
+                                                            well-informed and designed blogs by
+                                                            students or faculties. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
@@ -1060,22 +1114,30 @@
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_forum" />
-                                                        <a href="https://doc.openeducat.org/applications/lms/lms-forum.html#forum" title="Documentation" class="o_doc_link" target="_blank" />
-                                                        <div class="text-muted">
-                                                        This module adds the feature of forum in learning management system to OpenEduCat.
-                                                        </div>
+                                                        <a
+                                                            href="https://doc.openeducat.org/applications/lms/lms-forum.html#forum"
+                                                            title="Documentation" class="o_doc_link"
+                                                            target="_blank" />
+                                                        <div class="text-muted"> This module adds
+                                                            the feature of forum in learning
+                                                            management system to OpenEduCat. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_gamification" />
+                                                        <field
+                                                            name="module_openeducat_lms_gamification" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_lms_gamification" />
-                                                        <a href="https://doc.openeducat.org/applications/lms/lms-gamification.html#gamification" title="Documentation" class="o_doc_link" target="_blank" />
-                                                        <div class="text-muted">
-                                                        This module adds the feature of gamification in learning management system to OpenEduCat.
-                                                        </div>
+                                                        <label
+                                                            for="module_openeducat_lms_gamification" />
+                                                        <a
+                                                            href="https://doc.openeducat.org/applications/lms/lms-gamification.html#gamification"
+                                                            title="Documentation" class="o_doc_link"
+                                                            target="_blank" />
+                                                        <div class="text-muted"> This module adds
+                                                            the feature of gamification in learning
+                                                            management system to OpenEduCat. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
@@ -1084,10 +1146,13 @@
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_h5p" />
-                                                        <a href="https://doc.openeducat.org/applications/lms/lms-course.html#h5p" title="Documentation" class="o_doc_link" target="_blank" />
-                                                        <div class="text-muted">
-                                                        Manage interactive and engaging content seamlessly with LMS H5P
-                                                        </div>
+                                                        <a
+                                                            href="https://doc.openeducat.org/applications/lms/lms-course.html#h5p"
+                                                            title="Documentation" class="o_doc_link"
+                                                            target="_blank" />
+                                                        <div class="text-muted"> Manage interactive
+                                                            and engaging content seamlessly with LMS
+                                                            H5P </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
@@ -1096,10 +1161,13 @@
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_sale" />
-                                                        <a href="https://doc.openeducat.org/applications/lms/lms-course-sale.html#course-sale" title="Documentation" class="o_doc_link" target="_blank" />
-                                                        <div class="text-muted">
-                                                        This module adds the feature in OpenEduCat LMS to sell courses online.
-                                                        </div>
+                                                        <a
+                                                            href="https://doc.openeducat.org/applications/lms/lms-course-sale.html#course-sale"
+                                                            title="Documentation" class="o_doc_link"
+                                                            target="_blank" />
+                                                        <div class="text-muted"> This module adds
+                                                            the feature in OpenEduCat LMS to sell
+                                                            courses online. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
@@ -1108,10 +1176,13 @@
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_survey" />
-                                                        <a href="https://doc.openeducat.org/applications/lms/lms-survey.html#survey" title="Documentation" class="o_doc_link" target="_blank" />
-                                                        <div class="text-muted">
-                                                        This module adds the feature of survey in learning management system to OpenEduCat.
-                                                        </div>
+                                                        <a
+                                                            href="https://doc.openeducat.org/applications/lms/lms-survey.html#survey"
+                                                            title="Documentation" class="o_doc_link"
+                                                            target="_blank" />
+                                                        <div class="text-muted"> This module adds
+                                                            the feature of survey in learning
+                                                            management system to OpenEduCat. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
@@ -1120,64 +1191,74 @@
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_website" />
-                                                        <div class="text-muted">
-                                                        Manage educational content with ease through LMS website.
-                                                        </div>
+                                                        <div class="text-muted"> Manage educational
+                                                            content with ease through LMS website. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_interactive_video" />
+                                                        <field
+                                                            name="module_openeducat_lms_interactive_video" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_lms_interactive_video" />
-                                                        <div class="text-muted">
-                                                        Provides facility to conduct online LMS platform Interactive video.
-                                                        </div>
+                                                        <label
+                                                            for="module_openeducat_lms_interactive_video" />
+                                                        <div class="text-muted"> Provides facility
+                                                            to conduct online LMS platform
+                                                            Interactive video. </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_drag_into_text" />
+                                                        <field
+                                                            name="module_openeducat_lms_drag_into_text" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_lms_drag_into_text" />
-                                                        <div class="text-muted">
-                                                        Lms Drag Into TextProvides facility to conduct online exam platform with question type Drag Into Text
-                                                        </div>
+                                                        <label
+                                                            for="module_openeducat_lms_drag_into_text" />
+                                                        <div class="text-muted"> Lms Drag Into
+                                                            TextProvides facility to conduct online
+                                                            exam platform with question type Drag
+                                                            Into Text </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_match_following" />
+                                                        <field
+                                                            name="module_openeducat_lms_match_following" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_lms_match_following" />
-                                                        <div class="text-muted">
-                                                        Provides facility to conduct online exam platform with question type Match Following
-                                                        </div>
+                                                        <label
+                                                            for="module_openeducat_lms_match_following" />
+                                                        <div class="text-muted"> Provides facility
+                                                            to conduct online exam platform with
+                                                            question type Match Following </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_match_images" />
+                                                        <field
+                                                            name="module_openeducat_lms_match_images" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_lms_match_images" />
-                                                        <div class="text-muted">
-                                                        Provides facility to conduct online exam platform with question type Match Images
-                                                        </div>
+                                                        <label
+                                                            for="module_openeducat_lms_match_images" />
+                                                        <div class="text-muted"> Provides facility
+                                                            to conduct online exam platform with
+                                                            question type Match Images </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_multiple_choice" />
+                                                        <field
+                                                            name="module_openeducat_lms_multiple_choice" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_lms_multiple_choice" />
-                                                        <div class="text-muted">
-                                                        Provides facility to conduct online exam platform with question type Multiple Choice
-                                                        </div>
+                                                        <label
+                                                            for="module_openeducat_lms_multiple_choice" />
+                                                        <div class="text-muted"> Provides facility
+                                                            to conduct online exam platform with
+                                                            question type Multiple Choice </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
@@ -1186,20 +1267,174 @@
                                                     </div>
                                                     <div class="o_setting_right_pane">
                                                         <label for="module_openeducat_lms_numeric" />
-                                                        <div class="text-muted">
-                                                        Provides facility to conduct online exam platform with question type Numeric
-                                                        </div>
+                                                        <div class="text-muted"> Provides facility
+                                                            to conduct online exam platform with
+                                                            question type Numeric </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-6 col-lg-6 mb16">
                                                     <div class="o_setting_left_pane">
-                                                        <field name="module_openeducat_lms_sort_paragraphs" />
+                                                        <field
+                                                            name="module_openeducat_lms_sort_paragraphs" />
                                                     </div>
                                                     <div class="o_setting_right_pane">
-                                                        <label for="module_openeducat_lms_sort_paragraphs" />
-                                                        <div class="text-muted">
-                                                        Provides facility to conduct online exam platform with question type Sort Paragraphs.
-                                                        </div>
+                                                        <label
+                                                            for="module_openeducat_lms_sort_paragraphs" />
+                                                        <div class="text-muted"> Provides facility
+                                                            to conduct online exam platform with
+                                                            question type Sort Paragraphs. </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_quiz_apps">Quiz</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="Specify different types of quiz which is held in an institute for students.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_quiz" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_quiz" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/quiz/quiz.html#question-bank"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Specify different types of quiz which
+                                        is held in an institute for students. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_quiz == False">
+                                        <div class="mt16 row">
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_quiz_anti_cheating" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_quiz_anti_cheating" />
+                                                    <a
+                                                        href="https://doc.openeducat.org/applications/quiz/quiz.html#anti-cheating"
+                                                        title="Documentation" class="o_doc_link"
+                                                        target="_blank" />
+                                                    <div class="text-muted"> With the growing use of
+                                                        online learning and giving examinations over
+                                                        the online mode. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_quiz_drag_into_text" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_quiz_drag_into_text" />
+                                                    <div class="text-muted"> Provides facility to
+                                                        conduct online exam platform with question
+                                                        type Drag Into Text. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_quiz_match_following" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_quiz_match_following" />
+                                                    <div class="text-muted"> Provides facility to
+                                                        conduct online exam platform with question
+                                                        type Match Following </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_quiz_match_images" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label for="module_openeducat_quiz_match_images" />
+                                                    <div class="text-muted"> Manage image-based quizzes effortlessly with Quiz Match Images. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_quiz_multiple_choice" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_quiz_multiple_choice" />
+                                                    <div class="text-muted"> Provides facility to
+                                                        conduct online exam platform with question
+                                                        type Multiple Choice </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field name="module_openeducat_quiz_numeric" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label for="module_openeducat_quiz_numeric" />
+                                                    <div class="text-muted"> Provides facility to
+                                                        conduct online exam platform with question
+                                                        type Numeric. </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                <div class="o_setting_left_pane">
+                                                    <field
+                                                        name="module_openeducat_quiz_sort_paragraphs" />
+                                                </div>
+                                                <div class="o_setting_right_pane">
+                                                    <label
+                                                        for="module_openeducat_quiz_sort_paragraphs" />
+                                                    <div class="text-muted"> Provides facility to
+                                                        conduct online exam platform with question
+                                                        type Sort Paragraphs. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="openeducat_timetable_apps">Timetable</h2>
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
+                            <div class="col-12 col-lg-12 o_setting_box"
+                                title="It is fully integrated application which provides a facility to manage the timing details.">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_openeducat_timetable" />
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_openeducat_timetable" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/timetable/timetable-timing.html#timings"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> It is fully integrated application
+                                        which provides a facility to manage the timing details. </div>
+                                    <div class="content-group"
+                                        invisible="module_openeducat_timetable == False">
+                                        <div class="row mt16" id="timetable_constraints">
+                                            <div class="content-group"
+                                                invisible="module_openeducat_timetable == False">
+                                                <div class="col-12 col-md-6 col-lg-6 mb16">
+                                                    <div class="o_setting_left_pane">
+                                                        <field
+                                                            name="module_openeducat_timetable_enterprise" />
+                                                    </div>
+                                                    <div class="o_setting_right_pane">
+                                                        <label
+                                                            for="module_openeducat_timetable_enterprise" />
+                                                        <div class="text-muted"> Schedule session,
+                                                            inform students and faculties all with
+                                                            just a few clicks and one single screen. </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1209,77 +1444,60 @@
                             </div>
                         </div>
                         <h2>Live Classroom Integrations</h2>
-                        <div class="row mt16 o_settings_container" title="Specify different activities which is held in an institute.">
+                        <div class="row mt16 o_settings_container"
+                            title="Specify different activities which is held in an institute.">
                             <div class="col-12 col-lg-6 o_setting_box" title="">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_bigbluebutton" />
+                                    <field name="module_bigbluebutton" />
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_bigbluebutton" />
-                                    <a href="https://doc.openeducat.org/applications/Bigbluebutton/bbb-configure.html#how-to-configure-bigbluebutton" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Harness the power of true open source web conferencing system for online learning.
-                                    </div>
+                                    <label for="module_bigbluebutton" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/Bigbluebutton/bbb-configure.html#how-to-configure-bigbluebutton"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Harness the power of true open source
+                                        web conferencing system for online learning. </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_googlemeet" />
+                                    <field name="module_googlemeet" />
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_googlemeet" />
-                                    <a href="https://doc.openeducat.org/applications/google-meet/google-meet-configure.html#how-to-configure-google-meet" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Google Meet helps you to organize online classrooms or live meetings.
-                                    </div>
+                                    <label for="module_googlemeet" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/google-meet/google-meet-configure.html#how-to-configure-google-meet"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Google Meet helps you to organize
+                                        online classrooms or live meetings. </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_jitsi_enterprise" />
+                                    <field name="module_teams" />
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_jitsi_enterprise" />
-                                    <a href="https://doc.openeducat.org/applications/google-meet/google-meet-configure.html#how-to-configure-google-meet" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Jitsi is a set of open-source projects that allows you to easily build and deploy secure videoconferencing solutions.
-                                    </div>
+                                    <label for="module_teams" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/microsoft-teams/microsoft-teams-configure.html#how-to-configure-microsoft-teams"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Microsoft Teams allows you to stay
+                                        connected and organized with Chat, Meet, Call and
+                                        Collaborate. </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6 o_setting_box" title="">
                                 <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_skypemeet" />
+                                    <field name="module_zoom" />
                                 </div>
                                 <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_skypemeet" />
-                                    <a href="https://doc.openeducat.org/applications/skype-meet/skype-meet-configure.html#skype-meet-integration-in-openeducat" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Skype Meet lets you create online meetings with no sign-ups or downloads required, simply generate your unique link and share it with all participants.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_teams" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_teams" />
-                                    <a href="https://doc.openeducat.org/applications/microsoft-teams/microsoft-teams-configure.html#how-to-configure-microsoft-teams" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Microsoft Teams allows you to stay connected and organized with Chat, Meet, Call and Collaborate.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6 o_setting_box" title="">
-                                <div class="o_setting_left_pane">
-                                    <field name="module_openeducat_zoom" />
-                                </div>
-                                <div class="o_setting_right_pane">
-                                    <label for="module_openeducat_zoom" />
-                                    <a href="https://doc.openeducat.org/applications/Zoom/zoom-configure.html#how-to-configure-zoom" title="Documentation" class="o_doc_link" target="_blank" />
-                                    <div class="text-muted">
-                                    Offer HD audio and video-enabled live classes with up to 100 participants at the same time at the most affordable cost.
-                                    </div>
+                                    <label for="module_zoom" />
+                                    <a
+                                        href="https://doc.openeducat.org/applications/Zoom/zoom-configure.html#how-to-configure-zoom"
+                                        title="Documentation" class="o_doc_link" target="_blank" />
+                                    <div class="text-muted"> Offer HD audio and video-enabled live
+                                        classes with up to 100 participants at the same time at the
+                                        most affordable cost. </div>
                                 </div>
                             </div>
                         </div>
@@ -1288,7 +1506,6 @@
             </xpath>
         </field>
     </record>
-
     <record id="openeducat_config_settings_core_action" model="ir.actions.act_window">
         <field name="name">Settings</field>
         <field name="type">ir.actions.act_window</field>
