@@ -4,7 +4,7 @@
 ##############################################################################
 #
 #    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
 #
 ##############################################################################
 

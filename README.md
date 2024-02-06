@@ -10,6 +10,6 @@ To install OpenEduCat, Install Odoo / OpenERP  and go to `Settings -> Apps` and 
 Links
 =====
 
-* Demo: https://openeducat.org/demo
+* Demo: https://www.openeducat.org/demo
 * Documentation: https://doc.openeducat.org/
 * Changelog: [openeducat_erp/doc/changelog.rst](openeducat_erp/doc/changelog.rst)

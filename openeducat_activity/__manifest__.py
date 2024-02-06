@@ -2,7 +2,7 @@
 ###############################################################################
 #
 #    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<http://www.openeducat.org>).
+#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -28,7 +28,7 @@
     'summary': 'Manage Activities',
     'complexity': "easy",
     'author': 'OpenEduCat Inc',
-    'website': 'http://www.openeducat.org',
+    'website': 'https://www.openeducat.org',
     'depends': ['openeducat_core'],
     'data': [
         'security/op_security.xml',
