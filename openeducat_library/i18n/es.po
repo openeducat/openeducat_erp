@@ -4,58 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-09 11:04+0000\n"
-"PO-Revision-Date: 2022-12-09 11:04+0000\n"
+"POT-Creation-Date: 2024-02-19 05:26+0000\n"
+"PO-Revision-Date: 2024-02-19 05:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: openeducat_library
-#: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
-msgid ""
-"\n"
-"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
-"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> has been expired. Please return it as soon as possible.</p>\n"
-"            <p>Thank you.</p>\n"
-"            "
-msgstr ""
-"\n"
-"            <p> Dear <strong> $ {object.student_id.name} </strong>\n"
-"            <p> Your $ {object.media_type_id.name}, <strong> $ {object.media_id.name} </strong> ha sido expirado. Devuélvelo lo antes posible. </p>\n"
-"            <p> Gracias. </p>\n"
-"            "
-
-#. module: openeducat_library
-#: model:mail.template,body_html:openeducat_library.email_template_media_movement
-msgid ""
-"\n"
-"            <p>Dear <strong> ${object.student_id.name} </strong>\n"
-"            <p>Your ${object.media_type_id.name}, <strong> ${object.media_id.name} </strong> will \n"
-"                % if object.get_diff_day() == 0:\n"
-"                    be expiring <strong>today.</strong>\n"
-"                % else:\n"
-"                    expire in <strong> ${object.get_diff_day()}</strong> day(s).\n"
-"                % endif\n"
-"                Please return it as soon as possible.</p>\n"
-"            <p>Thank you.</p>\n"
-"            "
-msgstr ""
-"\n"
-"            <p> Dear <strong> $ {object.student_id.name} </strong>\n"
-"            <p> Your $ {object.media_type_id.name}, <strong> $ {object.media_id.name} </strong> Will\n"
-"                % if object.get_diff_day () == 0:\n"
-"                    estar expirando <strong> hoy. </strong>\n"
-"                % más:\n"
-"                    expirar en <strong> $ {object.get_diff_day ()} </strong> día (s).\n"
-"                % terminara si\n"
-"                Devuélvelo lo antes posible. </p>\n"
-"            <p> Gracias. </p>\n"
-"            "
 
 #. module: openeducat_library
 #: model:ir.actions.report,print_report_name:openeducat_library.action_report_student_library_card
@@ -118,6 +76,211 @@ msgid "<strong>Library Card(s) Barcode</strong>"
 msgstr "<strong> tarjeta de barras de biblioteca </strong>"
 
 #. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                <tr>\n"
+"                    <td align=\"center\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\">\n"
+"                                                    <span style=\"font-size: 10px;\"></span>\n"
+"                                                    <br>\n"
+"                                                </td>\n"
+"                                                <td valign=\"middle\" align=\"right\">\n"
+"                                                    <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\">\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                    <p>Dear </p>\n"
+"                                                    <strong>\n"
+"                                                         <t t-out=\"object.student_id.name or ''\"></t></strong>\n"
+"                                                    <p>Your  <t t-out=\"object.media_type_id.name or ''\"></t>, <strong>\n"
+"                                                         <t t-out=\"object.media_id.name or ''\"></t>\n"
+"                                                    </strong> has been expired. Please return it as soon as possible.\n"
+"                                                    </p>\n"
+"                                                    <p>Thank you.</p>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\">\n"
+"                                                    <t t-out=\"object.company_id.name or ''\"></t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    <t t-out=\"object.company_id.phone or ''\"></t>\n"
+"                                                    <t t-if=\"object.company_id.email\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.email or ''\"></t>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                    <t t-if=\"object.company_id.website\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.website or ''\"></t>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </tbody>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </table>\n"
+"        "
+msgstr ""
+"\n"
+"            <p> Dear <strong> $ {object.student_id.name} </strong>\n"
+"            <p> Your $ {object.media_type_id.name}, <strong> $ {object.media_id.name} </strong> ha sido expirado. Devuélvelo lo antes posible. </p>\n"
+"            <p> Gracias. </p>\n"
+"            "
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                <tr>\n"
+"                    <td align=\"center\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\">\n"
+"                                                    <span style=\"font-size: 10px;\">Library Card Renew</span>\n"
+"                                                    <br>\n"
+"                                                </td>\n"
+"                                                <td valign=\"middle\" align=\"right\">\n"
+"                                                    <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\">\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                    <p>Dear</p>\n"
+"                                                    <strong>\n"
+"                                                        <t t-out=\"object.student_id.name or ''\"></t>\n"
+"                                                    </strong>\n"
+"                                                    <p>Your<t t-out=\"object.media_type_id.name or ''\"></t>,\n"
+"                                                        <strong>\n"
+"                                                            <t t-out=\"object.media_id.name or ''\"></t>\n"
+"                                                        </strong>\n"
+"                                                        will\n"
+"                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
+"                                                            be expiring\n"
+"                                                            <strong>today.</strong>\n"
+"                                                        </t>\n"
+"                                                        <t t-else=\"\">\n"
+"                                                            expire in\n"
+"                                                            <strong>\n"
+"                                                                <t t-out=\"object.get_diff_day() or ''\"></t>\n"
+"                                                            </strong>\n"
+"                                                            day(s).\n"
+"                                                        </t>\n"
+"                                                        Please return it as soon as possible.\n"
+"                                                    </p>\n"
+"                                                    <p>Thank you.</p>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\">\n"
+"                                                    <t t-out=\"object.company_id.name or ''\"></t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    <t t-out=\"object.company_id.phone or ''\"></t>\n"
+"                                                    <t t-if=\"object.company_id.email\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.email or ''\"></t>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                    <t t-if=\"object.company_id.website\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.website or ''\"></t>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </tbody>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </table>\n"
+"        "
+msgstr ""
+"\n"
+"            <p> Dear <strong> $ {object.student_id.name} </strong>\n"
+"            <p> Your $ {object.media_type_id.name}, <strong> $ {object.media_id.name} </strong> Will\n"
+"                % if object.get_diff_day () == 0:\n"
+"                    estar expirando <strong> hoy. </strong>\n"
+"                % más:\n"
+"                    expirar en <strong> $ {object.get_diff_day ()} </strong> día (s).\n"
+"                % terminara si\n"
+"                Devuélvelo lo antes posible. </p>\n"
+"            <p> Gracias. </p>\n"
+"            "
+
+#. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
@@ -156,6 +319,7 @@ msgid "Actual Return Date"
 msgstr "Fecha de devolución real"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_movement.py:0
 #, python-format
 msgid "Actual Return Date cannot be set before Issued Date"
@@ -246,6 +410,7 @@ msgid "Barcode must be unique per Media unit!"
 msgstr "¡El código de barras debe ser único por unidad de medios!"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 #, python-format
 msgid "Can't return media."
@@ -287,6 +452,11 @@ msgstr "Código"
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_type_unique_media_type_code
 msgid "Code should be unique per media type!"
 msgstr "¡El código debe ser único por tipo de medios!"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__company_id
+msgid "Company"
+msgstr "Compañía"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_op_school_library_config
@@ -417,6 +587,7 @@ msgid "Educational"
 msgstr "Educativo"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/library.py:0
 #, python-format
 msgid "Enter proper value"
@@ -539,6 +710,7 @@ msgid "Internal Code must be unique per media!"
 msgstr "¡El código interno debe ser único por medio!"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_purchase.py:0
 #, python-format
 msgid ""
@@ -549,6 +721,7 @@ msgstr ""
 " Padre no puede crear solicitudes de los medios de Compra!"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_queue.py:0
 #, python-format
 msgid ""
@@ -559,6 +732,7 @@ msgstr ""
 " Padre no puede crear solicitudes de los medios de cola!"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_purchase.py:0
 #, python-format
 msgid ""
@@ -569,6 +743,7 @@ msgstr ""
 " Padre no puede editar solicitudes de los medios de Compra!"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_queue.py:0
 #, python-format
 msgid ""
@@ -636,24 +811,6 @@ msgid "Journal Entry"
 msgstr "Entrada de diario"
 
 #. module: openeducat_library
-#: model:ir.model.fields,field_description:openeducat_library.field_issue_media____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_author____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_op_tag____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media____last_update
-#: model:ir.model.fields,field_description:openeducat_library.field_return_media____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Last Name"
 msgstr "Apellido"
@@ -698,7 +855,6 @@ msgstr "Ultima actualización en"
 #: model:ir.ui.menu,name:openeducat_library.menu_op_library_root
 #: model:res.groups,name:openeducat_library.group_op_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
-#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
 msgid "Library"
 msgstr "Biblioteca"
 
@@ -727,7 +883,6 @@ msgid "Library Card Barcode Report"
 msgstr "Informe de código de barras de tarjeta de biblioteca"
 
 #. module: openeducat_library
-#: model:mail.template,report_name:openeducat_library.email_template_media_movement_after
 #: model:mail.template,subject:openeducat_library.email_template_media_movement_after
 msgid "Library Card Expired"
 msgstr "Tarjeta de biblioteca expirada"
@@ -768,7 +923,6 @@ msgid "Library card Number should be unique per card!"
 msgstr "¡El número de tarjeta de la biblioteca debe ser único por tarjeta!"
 
 #. module: openeducat_library
-#: model:product.product,name:openeducat_library.op_product_7
 #: model:product.template,name:openeducat_library.op_product_7_product_template
 msgid "Library penalty fee"
 msgstr "multa Biblioteca"
@@ -779,14 +933,7 @@ msgid "Lost"
 msgstr "Perdió"
 
 #. module: openeducat_library
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_main_attachment_id
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_main_attachment_id
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_main_attachment_id
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Apego principal"
-
-#. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 #, python-format
 msgid "Maximum Number of media allowed for %s is : %s"
@@ -800,12 +947,14 @@ msgstr "Número máximo de los medios permitido para% s es:% s"
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_id
 #: model:ir.ui.menu,name:openeducat_library.menu_op_sub_media_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_pivot
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
 msgid "Media"
 msgstr "Medios de comunicación"
 
@@ -848,13 +997,11 @@ msgstr "Movimiento de los medios después de que pasó la fecha de vencimiento"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
-#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_after_ir_actions_server
 msgid "Media Movement Line After 1 Days"
 msgstr "Línea de movimiento de medios después de 1 días"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
-#: model:ir.actions.server,name:openeducat_library.test_rule_media_movement_line_1_ir_actions_server
 msgid "Media Movement Line Before 1 Days"
 msgstr "Línea de movimiento de medios antes de 1 días"
 
@@ -867,8 +1014,6 @@ msgstr "Cuenta de líneas de movimiento de medios"
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
-#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
 msgid "Media Movements"
 msgstr "Movimientos de medios"
 
@@ -952,6 +1097,7 @@ msgid "Media Unit"
 msgstr "Unidad de medios"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 #, python-format
 msgid ""
@@ -1053,7 +1199,7 @@ msgstr "Número de errores"
 #: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction_counter
 #: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction_counter
 #: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr "Número de mensajes que requieren una acción"
 
 #. module: openeducat_library
@@ -1137,6 +1283,14 @@ msgid "Purchase Request"
 msgstr "Solicitud de compra"
 
 #. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__rating_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__rating_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__rating_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__rating_ids
+msgid "Ratings"
+msgstr "Calificaciones"
+
+#. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
@@ -1148,11 +1302,6 @@ msgstr "Rechazar"
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__reject
 msgid "Rejected"
 msgstr "Rechazado"
-
-#. module: openeducat_library
-#: model:mail.template,report_name:openeducat_library.email_template_media_movement
-msgid "Renew"
-msgstr "Renovar"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__request
@@ -1197,6 +1346,7 @@ msgid "Return Date"
 msgstr "Fecha de regreso"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_movement.py:0
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 #, python-format
@@ -1332,6 +1482,7 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_movement.py:0
 #, python-format
 msgid ""
@@ -1356,6 +1507,7 @@ msgid "To Date"
 msgstr "Hasta la fecha"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/models/media_queue.py:0
 #, python-format
 msgid "To Date cannot be set before From Date."
@@ -1371,8 +1523,6 @@ msgstr "Escribe"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__unit_ids
-#: model:product.product,uom_name:openeducat_library.op_product_7
-#: model:product.template,uom_name:openeducat_library.op_product_7_product_template
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Units"
 msgstr "Unidades"
@@ -1433,6 +1583,7 @@ msgid "media Queue Request"
 msgstr "Solicitud de cola de medios"
 
 #. module: openeducat_library
+#. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 #, python-format
 msgid ""

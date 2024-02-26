@@ -1,42 +1,58 @@
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-#	* openeducat_parent
-#
+
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-09 06:54+0000\n"
-"PO-Revision-Date: 2019-12-09 06:54+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Project-Id-Version:Odoo Server 17.0"
+"Report-Msgid-Bugs-To:"
+"POT-Creation-Date:2024-02-16 05:11+0000"
+"PO-Revision-Date:2024-02-16 05:11+0000"
+"Last-Translator:"
+"Language-Team:"
+"MIME-Version:1.0"
+"Content-Type:text/plain; charset=UTF-8"
+"Content-Transfer-Encoding:"
+"Plural-Forms:"
 
 #. module: openeducat_parent
-#: sql_constraint:op.parent:0
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
+msgid "<span class=\"o_stat_text\">Parents</span>"
+msgstr "<span class=\"o_stat_text\">ผู้ปกครอง</span>"
+
+#. module: openeducat_parent
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
+msgid "Active"
+msgstr "คล่องแคล่ว"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
+msgid "Archived"
+msgstr "เก็บถาวรแล้ว"
+
+#. module: openeducat_parent
+#: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
 msgid "Can not create parent multiple times.!"
-msgstr "ไม่สามารถสร้างผู้ปกครองหลายครั้ง.!"
+msgstr "ไม่สามารถสร้างพาเรนต์ได้หลายครั้ง!"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Create Parent User"
-msgstr "สร้างผู้ใช้ผู้ปกครอง"
+msgstr "สร้างผู้ใช้หลัก"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_uid
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_uid
 msgid "Created by"
 msgstr "สร้างโดย"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_date
 msgid "Created on"
 msgstr "สร้างบน"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
 msgid "Display Name"
 msgstr "ชื่อที่แสดง"
 
@@ -47,47 +63,52 @@ msgstr "จัดกลุ่มตาม..."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
 msgid "ID"
-msgstr ""
+msgstr "บัตรประจำตัวประชาชน"
 
 #. module: openeducat_parent
-#: code:addons/openeducat_parent/models/parent.py:158
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
 #, python-format
-msgid "Invalid Action!\n"
+msgid ""
+"Invalid Action!\n"
 " Parent can not             create Subject Registration!"
-msgstr "การกระทำที่ไม่ถูกต้อง!\n"
-" ผู้ปกครองไม่สามารถสร้างการลงทะเบียนเรื่อง!"
+msgstr ""
+"การกระทำไม่ถูกต้อง!\n"
+" ผู้ปกครองไม่สามารถสร้างการลงทะเบียนหัวเรื่องได้!"
 
 #. module: openeducat_parent
-#: code:addons/openeducat_parent/models/parent.py:165
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
 #, python-format
-msgid "Invalid Action!\n"
+msgid ""
+"Invalid Action!\n"
 " Parent can not edit             Subject Registration!"
-msgstr "การกระทำที่ไม่ถูกต้อง!\n"
-" ผู้ปกครองไม่สามารถแก้ไขเรื่องการลงทะเบียน!"
-
-#. module: openeducat_parent
-#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent____last_update
-msgid "Last Modified on"
-msgstr "แก้ไขล่าสุดเมื่อ"
+msgstr ""
+"การกระทำไม่ถูกต้อง!\n"
+" ผู้ปกครองไม่สามารถแก้ไขการลงทะเบียนหัวเรื่องได้!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_uid
 msgid "Last Updated by"
-msgstr "Updated ล่าสุดโดย"
+msgstr "อัปเดตล่าสุดโดย"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "แก้ไขล่าสุดใน"
+msgstr "อัปเดตล่าสุดเมื่อ"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__mobile
 msgid "Mobile"
-msgstr "โทรศัพท์มือถือ"
+msgstr "มือถือ"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__name
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Name"
 msgstr "ชื่อ"
@@ -95,12 +116,12 @@ msgstr "ชื่อ"
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
+#: model:res.groups,name:openeducat_parent.group_op_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
-#: model:res.groups,name:openeducat_parent.group_op_parent
 msgid "Parent"
-msgstr "ผู้ปกครอง"
+msgstr "พ่อแม่"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
@@ -111,9 +132,22 @@ msgstr "ชื่อผู้ปกครอง"
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_view
 #: model:ir.ui.menu,name:openeducat_parent.menu_op_parent_root
 #: model:ir.ui.menu,name:openeducat_parent.menu_op_parent_sub_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "Parents"
-msgstr "พ่อแม่"
+msgstr "ผู้ปกครอง"
+
+#. module: openeducat_parent
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__relationship_id
+msgid "Relation with Student"
+msgstr "ความสัมพันธ์กับนักศึกษา"
+
+#. module: openeducat_parent
+#: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_relationship_view
+#: model:ir.model,name:openeducat_parent.model_op_parent_relationship
+#: model:ir.ui.menu,name:openeducat_parent.menu_op_parent_relationship_sub_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_form
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_tree
+msgid "Relationships"
+msgstr "ความสัมพันธ์"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
@@ -124,26 +158,22 @@ msgstr "นักเรียน"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Student(s)"
-msgstr "นักศึกษา (s)"
+msgstr "นักเรียน)"
 
 #. module: openeducat_parent
-#: model:ir.model.fields,help:openeducat_parent.field_op_parent__user_id
-msgid "The internal user in charge of this contact."
-msgstr "ผู้ใช้ภายในในค่าใช้จ่ายของการติดต่อนี้"
+#: model:ir.model,name:openeducat_parent.model_op_subject_registration
+msgid "Subject Registration Details"
+msgstr "รายละเอียดการลงทะเบียนเรื่อง"
 
 #. module: openeducat_parent
-#: code:addons/openeducat_parent/models/parent.py:81
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
 #, python-format
 msgid "Update parent email id first."
-msgstr "อัปเดตอีเมลรหัสผู้ปกครองครั้งแรก"
+msgstr "อัปเดตรหัสอีเมลหลักก่อน"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id
 msgid "User"
-msgstr "ผู้ใช้งาน"
-
-#. module: openeducat_parent
-#: model:ir.model,name:openeducat_parent.model_op_subject_registration
-msgid "op.subject.registration"
-msgstr ""
+msgstr "ผู้ใช้"
 

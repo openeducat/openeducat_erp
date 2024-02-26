@@ -1,24 +1,37 @@
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-#	* openeducat_parent
-#
+
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-25 09:21+0000\n"
-"PO-Revision-Date: 2019-09-25 09:21+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Project-Id-Version:Odoo Server 17.0"
+"Report-Msgid-Bugs-To:"
+"POT-Creation-Date:2024-02-16 05:11+0000"
+"PO-Revision-Date:2024-02-16 05:11+0000"
+"Last-Translator:"
+"Language-Team:"
+"MIME-Version:1.0"
+"Content-Type:text/plain; charset=UTF-8"
+"Content-Transfer-Encoding:"
+"Plural-Forms:"
 
 #. module: openeducat_parent
-#: sql_constraint:op.parent:0
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
+msgid "<span class=\"o_stat_text\">Parents</span>"
+msgstr "<span class=\"o_stat_text\">家长</span>"
+
+#. module: openeducat_parent
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
+msgid "Active"
+msgstr "积极的"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
+msgid "Archived"
+msgstr "已存档"
+
+#. module: openeducat_parent
+#: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
 msgid "Can not create parent multiple times.!"
-msgstr "无法创建父多次！"
+msgstr "无法多次创建父级。！"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
@@ -27,80 +40,88 @@ msgstr "创建父用户"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_uid
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_uid
 msgid "Created by"
 msgstr "由...制作"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_date
 msgid "Created on"
 msgstr "创建于"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
 msgid "Display Name"
 msgstr "显示名称"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Group By..."
-msgstr "分组..."
+msgstr "通过...分组..."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: openeducat_parent
-#: code:addons/openeducat_parent/models/parent.py:157
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
 #, python-format
-msgid "Invalid Action!\n"
+msgid ""
+"Invalid Action!\n"
 " Parent can not             create Subject Registration!"
-msgstr "无效的行动！\n"
-" 家长不能创建主题注册！"
+msgstr ""
+"无效操作！\n"
+"父级无法创建主题注册！"
 
 #. module: openeducat_parent
-#: code:addons/openeducat_parent/models/parent.py:164
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
 #, python-format
-msgid "Invalid Action!\n"
+msgid ""
+"Invalid Action!\n"
 " Parent can not edit             Subject Registration!"
-msgstr "无效的行动！\n"
-" 家长不能编辑主题注册！"
-
-#. module: openeducat_parent
-#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent____last_update
-msgid "Last Modified on"
-msgstr "最后修改"
+msgstr ""
+"无效操作！\n"
+"家长无法编辑主题注册！"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_uid
 msgid "Last Updated by"
-msgstr "上次更新"
+msgstr "最后更新者"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "最后更新于"
+msgstr "最后更新时间"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__mobile
 msgid "Mobile"
-msgstr "移动"
+msgstr "移动的"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__name
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Name"
-msgstr "名称"
+msgstr "姓名"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
+#: model:res.groups,name:openeducat_parent.group_op_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
-#: model:res.groups,name:openeducat_parent.group_op_parent
 msgid "Parent"
-msgstr "父母"
+msgstr "家长"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
@@ -111,9 +132,22 @@ msgstr "父母名字"
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_view
 #: model:ir.ui.menu,name:openeducat_parent.menu_op_parent_root
 #: model:ir.ui.menu,name:openeducat_parent.menu_op_parent_sub_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "Parents"
 msgstr "父母"
+
+#. module: openeducat_parent
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__relationship_id
+msgid "Relation with Student"
+msgstr "与学生的关系"
+
+#. module: openeducat_parent
+#: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_relationship_view
+#: model:ir.model,name:openeducat_parent.model_op_parent_relationship
+#: model:ir.ui.menu,name:openeducat_parent.menu_op_parent_relationship_sub_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_form
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_tree
+msgid "Relationships"
+msgstr "人际关系"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
@@ -124,26 +158,22 @@ msgstr "学生"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Student(s)"
-msgstr "学生们）"
+msgstr "学生）"
 
 #. module: openeducat_parent
-#: model:ir.model.fields,help:openeducat_parent.field_op_parent__user_id
-msgid "The internal user in charge of this contact."
-msgstr "内部用户负责这个接触的。"
+#: model:ir.model,name:openeducat_parent.model_op_subject_registration
+msgid "Subject Registration Details"
+msgstr "科目注册详情"
 
 #. module: openeducat_parent
-#: code:addons/openeducat_parent/models/parent.py:81
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
 #, python-format
 msgid "Update parent email id first."
-msgstr "第一次更新父电子邮件ID。"
+msgstr "首先更新父电子邮件 ID。"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id
 msgid "User"
 msgstr "用户"
-
-#. module: openeducat_parent
-#: model:ir.model,name:openeducat_parent.model_op_subject_registration
-msgid "op.subject.registration"
-msgstr ""
 
