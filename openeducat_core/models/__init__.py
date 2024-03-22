@@ -34,3 +34,4 @@ from . import update
 from . import student_portal
 from . import op_academic_term
 from . import op_academic_year
+from . import ir_module

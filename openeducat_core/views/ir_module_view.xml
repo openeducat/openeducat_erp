@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="module_view_kanban_apps_op_inherit">
+        <field name="name">Apps Kanban Data Modules Op</field>
+        <field name="model">ir.module.module</field>
+        <field name="inherit_id" ref="base.module_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_immediate_install']" position="attributes">
+                <attribute name="invisible">state != 'uninstalled' or module_type not in ('official','institutes')</attribute>
+            </xpath>
+             <xpath expr="//button[@name='button_immediate_install_app']" position="attributes">
+                <attribute name="invisible">state != 'uninstalled' or module_type in ('official','institutes')</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_immediate_install_app'][2]" position="attributes">
+                <attribute name="invisible">state == 'uninstalled' or module_type in ('official','institutes')</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
