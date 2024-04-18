@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <record id="paper_format_fees_analysis_report" model="report.paperformat">
+        <field name="name">Fees Report Paper Format</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
     <record id="action_report_fees_detail_analysis" model="ir.actions.report">
-        <field name="name">Fees Detail Analysi</field>
+        <field name="name">Fees Details Report</field>
         <field name="model">op.student</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">openeducat_fees.report_fees_analysis</field>
         <field name="report_file">openeducat_fees.report_fees_analysis</field>
+        <field name="paperformat_id" ref="openeducat_fees.paper_format_fees_analysis_report"/>
     </record>
 </odoo>

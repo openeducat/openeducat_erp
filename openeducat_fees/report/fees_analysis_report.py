@@ -44,15 +44,22 @@ class ReportFeesAnalysis(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         student_ids = []
+        docargs = {}
         if data['fees_filter'] == 'student':
             student_ids = self.env['op.student'].browse([data['student']])
         else:
             student_ids = self.env['op.student'].search(
                 [('course_detail_ids.course_id', '=', data['course'])])
-        docargs = {
+            course_id = self.env['op.course'].search([('id', '=', data['course'])])
+            report_type = 'course'
+            docargs.update({
+                'report_type': report_type,
+                'course_name': course_id.name,
+            })
+        docargs.update({
             'doc_ids': self.ids,
             'doc_model': 'op.student',
             'docs': student_ids,
             'get_invoice_amount': self.get_invoice_amount,
-        }
+        })
         return docargs
