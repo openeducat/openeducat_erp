@@ -5,24 +5,26 @@
             <t t-call="web.external_layout">
                 <div class="font">
                     <div class="page">
-                        <br/>
-                        <br/>
-                        <br/>
-                        <div class="text-center" style="font-size:16px;">
-                            <h3>
-                                <strong>Fees Detail</strong>
+                        <div class="text-center">
+                            <h3 class="mx-auto">
+                                <t t-if="report_type == 'course'">
+                                    <span t-esc="course_name"/>
+                                    -
+                                </t>
+                                <span>Fees Detail</span>
                             </h3>
+                            <hr style="width: 150px;margin: 0 auto;opacity: 1;"/>
                         </div>
-                        <br></br>
-                        <table class="table table-bordered">
-                            <thead class="text-center"  style="background-color:#eeeeee; font-size:14px; font-weight:600;">
+                        <table class="table table-bordered mt-5">
+                            <thead class="text-center"
+                                   style="background-color:#eeeeee; font-size:14px; font-weight:600;">
                                 <th>Student Name</th>
                                 <th>Total Amount</th>
                                 <th>Total Invoiced</th>
                                 <th>Total Paid</th>
-                                <th>Total Left</th>
+                                <th>Total Unpaid</th>
                             </thead>
-                            <tbody style="font-size:12px;">
+                            <tbody style="font-size:12px;border-top:0">
                                 <t t-foreach="docs" t-as="doc">
                                     <t t-set="amount" t-value="get_invoice_amount(doc)"/>
                                     <t t-set="total_amount" t-value="amount[0]"/>
@@ -31,16 +33,16 @@
                                         <td class="text-center">
                                             <span t-out="doc.name"/>
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <span t-esc="total_amount"/>
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <span t-esc="doc.total_invoiced"/>
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <span t-esc="total_paid"/>
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-end">
                                             <span t-esc="total_amount - total_paid"/>
                                         </td>
                                     </tr>
