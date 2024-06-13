@@ -19,7 +19,8 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api
+from odoo import models,_, fields, api
+from odoo.exceptions import ValidationError
 
 
 class OpClassroom(models.Model):
@@ -39,8 +40,19 @@ class OpClassroom(models.Model):
 
     _sql_constraints = [
         ('unique_classroom_code',
-         'unique(code)', 'Code should be unique per classroom!')]
+         'unique(code)', 'Code should be unique per classroom!'),
+        ('unique_classroom_name',
+         'unique(name)', 'Classroom name must be unique!')
+        ]
 
     @api.onchange('course_id')
     def onchange_course(self):
         self.batch_id = False
+
+    @api.constrains('asset_line','capacity')
+    def check_quantity(self):
+        for record in self:
+            if record.asset_line.product_uom_qty < 0.0:
+                raise ValidationError(_("Product's quantity must be positive"))
+            if record.capacity < 0:
+                raise ValidationError(_("Number of Person must be positive"))
