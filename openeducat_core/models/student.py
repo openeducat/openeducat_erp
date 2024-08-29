@@ -129,18 +129,34 @@ class OpStudent(models.Model):
             'label': _('Import Template for Students'),
             'template': '/openeducat_core/static/xls/op_student.xls'
         }]
-
+        
+    @api.model
     def create_student_user(self):
-        user_group = self.env.ref("base.group_portal") or False
+        # Use sudo() to bypass access rights checking if it's safe to do so
+        self = self.sudo()
+        
+        user_group = self.env.ref("base.group_portal", raise_if_not_found=False)
         users_res = self.env['res.users']
-        for record in self:
-            if not record.user_id:
-                user_id = users_res.create({
-                    'name': record.name,
-                    'partner_id': record.partner_id.id,
-                    'login': record.email,
-                    'groups_id': user_group,
-                    'is_student': True,
-                    'tz': self._context.get('tz'),
-                })
+
+        # Filter records that don't have a user_id assigned
+        records_without_user = self.filtered(lambda record: not record.user_id)
+
+        # Prepare user data in bulk
+        user_values_list = []
+        for record in records_without_user:
+            user_values_list.append({
+                'name': record.name,
+                'partner_id': record.partner_id.id,
+                'login': record.email if record.email else record.gr_no,
+                'groups_id': [(6, 0, [user_group.id])] if user_group else [],
+                'is_student': True,
+                'tz': self._context.get('tz'),
+            })
+
+        # Bulk create users
+        if user_values_list:
+            new_users = users_res.create(user_values_list)
+            # Assign the newly created user_ids back to the respective records
+            for record, user_id in zip(records_without_user, new_users):
                 record.user_id = user_id
+

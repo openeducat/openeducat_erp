@@ -21,7 +21,6 @@ $(document).ready(function(){
                 renderFooter: false,
                 renderHeader: false,
                 $parentNode: $(document.body),
-                $content: $(QWeb.render('openeducat_core.review_dialog')),
             });
             review_dialog.open();
             review_dialog.opened().then(function(){
