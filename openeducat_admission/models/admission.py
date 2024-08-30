@@ -290,7 +290,7 @@ class OpAdmission(models.Model):
                     [('register_id', '=', record.register_id.id),
                      ('state', '=', 'done')])
                 if not total_admission < record.register_id.max_count:
-                    msg = 'Max Admission In Admission Register :- (%s)' % (
+                    msg = 'Max Admission In Admission Register : (%s)' % (
                         record.register_id.max_count)
                     raise ValidationError(_(msg))
             if not record.student_id:
