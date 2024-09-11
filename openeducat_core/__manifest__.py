@@ -79,13 +79,13 @@
         'demo/op_academic_year_demo.xml',
         'demo/op_academic_term_demo.xml',
     ],
-    'css': [
-        'static/src/scss/base.scss'
-    ],
-    'qweb': [
-        'static/src/xml/base.xml',
-        'static/src/xml/dashboard_ext_openeducat.xml'
-    ],
+    #'css': [
+    #    'static/src/scss/base.scss'
+    #],
+    #'qweb': [
+    #    'static/src/xml/base.xml',
+    #    'static/src/xml/dashboard_ext_openeducat.xml'
+    #],
     'js': [],
     'images': [
         'static/description/openeducat_core_banner.jpg',
@@ -93,15 +93,14 @@
     'installable': True,
     'auto_install': False,
     'application': True,
-    'post_init_hook': '_openeducat_post_init',
-    'assets': {
-        'website.assets_frontend': [
-            '/openeducat_core/static/src/scss/main.scss',
-        ],
-        'web.assets_backend': [
-            '/openeducat_core/static/src/scss/style.scss',
-            '/openeducat_core/static/src/js/g2_review.js',
-            '/openeducat_core/static/src/xml/review.xml',
-        ],
-    },
+    #'assets': {
+    #    'website.assets_frontend': [
+    #        '/openeducat_core/static/src/scss/main.scss',
+    #    ],
+    #    'web.assets_backend': [
+    #        '/openeducat_core/static/src/scss/style.scss',
+    #        '/openeducat_core/static/src/js/g2_review.js',
+    #        '/openeducat_core/static/src/xml/review.xml',
+    #    ],
+    #},
 }

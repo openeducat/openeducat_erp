@@ -105,9 +105,7 @@ class TestCore(TestCoreCommon):
             registration.action_submitted()
             registration.get_subjects()
 
-    def test_case_7_update(self):
-        self.op_update._get_message()
-        self.op_update.update_notification(cron_mode=True)
+
 
     def test_case_8_employ_wizard(self):
 

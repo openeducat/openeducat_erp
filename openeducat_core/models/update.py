@@ -31,7 +31,7 @@ from odoo.models import AbstractModel
 
 from odoo import api, release
 
-OEC_API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
+OEC_API_ENDPOINT = "https://toto.org/publisher-warranty/"
 
 _logger = logging.getLogger(__name__)
 
