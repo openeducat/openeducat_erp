@@ -174,10 +174,33 @@ class OpStudent(models.Model):
 
             })
 
-        # Bulk create users
+                
         if user_values_list:
-            new_users = users_res.create(user_values_list)
+            try:
+                # Attempt to create users in bulk
+                new_users = users_res.create(user_values_list)
+            except Exception as e:
+                # Log the bulk creation error
+                _logger.error(f"Bulk creation failed for users: {user_values_list}")
+                _logger.error(f"Error details: {e}")
+                
+                # Initialize an empty list to store successfully created users
+                new_users = []
+                
+                # Retry creating users one by one
+                for user_values in user_values_list:
+                    try:
+                        new_user = users_res.create(user_values)
+                        new_users.append(new_user)
+                    except Exception as individual_error:
+                        # Log the error for the individual user
+                        _logger.error(f"Failed to create user: {user_values}")
+                        _logger.error(f"Error details: {individual_error}")
+                        # Continue with the next user, effectively dropping the problematic user
+                        continue
+
             # Assign the newly created user_ids back to the respective records
             for record, user_id in zip(records_without_user, new_users):
                 record.user_id = user_id
+
 
