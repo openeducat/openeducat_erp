@@ -142,6 +142,9 @@ class OpStudent(models.Model):
                     'groups_id': user_group,
                     'is_student': True,
                     'tz': self._context.get('tz'),
+                    'oauth_uid': record.email if record.email else False,
+                    'oauth_provider_id': self.env['auth.oauth.provider'].search([('name', '=', 'Azure AD Single Tenant')], limit=1).id if self.env['auth.oauth.provider'].search([('name', '=', 'Azure AD Single Tenant')], limit=1) else False,
+
                 })
                 record.user_id = user_id
                 
@@ -166,6 +169,9 @@ class OpStudent(models.Model):
                 'groups_id': [(6, 0, [user_group.id])] if user_group else [],
                 'is_student': True,
                 'tz': self._context.get('tz'),
+                'oauth_uid': record.email if record.email else False,
+                'oauth_provider_id': self.env['auth.oauth.provider'].search([('name', '=', 'Azure AD Single Tenant')], limit=1).id if self.env['auth.oauth.provider'].search([('name', '=', 'Azure AD Single Tenant')], limit=1) else False,
+
             })
 
         # Bulk create users
