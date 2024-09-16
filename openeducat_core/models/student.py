@@ -181,7 +181,7 @@ class OpStudent(models.Model):
                 new_users = users_res.create(user_values_list)
             except Exception as e:
                 # Log the bulk creation error
-                _logger.error(f"Bulk creation failed for users: {user_values_list}")
+                _logger.error(f"Bulk creation failed for users")
                 _logger.error(f"Error details: {e}")
                 
                 # Initialize an empty list to store successfully created users
