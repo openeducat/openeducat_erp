@@ -176,6 +176,7 @@ class OpStudent(models.Model):
 
                 
         if user_values_list:
+            failed = False
             try:
                 # Attempt to create users in bulk
                 new_users = users_res.create(user_values_list)
@@ -183,7 +184,9 @@ class OpStudent(models.Model):
                 # Log the bulk creation error
                 _logger.error(f"Bulk creation failed for users")
                 _logger.error(f"Error details: {e}")
+                failed = True
                 
+            if failed:
                 # Initialize an empty list to store successfully created users
                 new_users = []
                 
@@ -192,12 +195,13 @@ class OpStudent(models.Model):
                     try:
                         new_user = users_res.create(user_values)
                         new_users.append(new_user)
+                        self.env.cr.commit() 
                     except Exception as individual_error:
                         # Log the error for the individual user
                         _logger.error(f"Failed to create user: {user_values}")
                         _logger.error(f"Error details: {individual_error}")
                         # Continue with the next user, effectively dropping the problematic user
-                        continue
+                        self.env.cr.rollback()
 
             # Assign the newly created user_ids back to the respective records
             for record, user_id in zip(records_without_user, new_users):
