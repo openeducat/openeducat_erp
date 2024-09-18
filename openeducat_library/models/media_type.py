@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields
+from odoo import models, fields,api
 
 
 class OpMediaType(models.Model):
@@ -31,4 +31,10 @@ class OpMediaType(models.Model):
 
     _sql_constraints = [
         ('unique_media_type_code',
-         'unique(code)', 'Code should be unique per media type!')]
+         'unique(code)', 'Code should be unique per media type!'),('unique_media_type_name',
+         'unique(name)','Name should be unique per media type!')]
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        if self.name:
+            self.name = self.name[0].upper() + self.name[1:]
