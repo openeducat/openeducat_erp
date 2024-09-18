@@ -46,6 +46,12 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,application,admission"/>
                     </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="action_open_student"
+                                    type="object" icon="fa-id-card" style="border-right: 1px solid;">
+                                    <field string="Applications" name="application_count" widget="statinfo"/>
+                            </button>
+                        </div>
                         <field name="active" invisible="1"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 invisible="active == True"/>
@@ -67,26 +73,7 @@
                                 <field name="academic_years_id" readonly="state != 'draft'"/>
                             </group>
                         </group>
-                        <notebook>
-                            <page string="Applications" name="applications">
-                                <field name="admission_ids" nolabel="1" readonly="1">
-                                    <tree string="Registration">
-                                        <field name="application_number"/>
-                                        <field name="title" optional="show"/>
-                                        <field name="name"/>
-                                        <field name="admission_date"/>
-                                        <field name="application_date"/>
-                                        <field name="course_id"/>
-                                        <field name="batch_id" optional="hide"/>
-                                        <field name="state"/>
-                                        <field name="company_id" groups="base.group_multi_company" optional="show"/>
-                                        <field name="gender" optional="hide"/>
-                                        <field name="birth_date" optional="hide"/>
-                                        <field name="email" optional="hide"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
+
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
