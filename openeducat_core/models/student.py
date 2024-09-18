@@ -21,6 +21,7 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+import re
 
 
 class OpStudentCourse(models.Model):
@@ -122,6 +123,19 @@ class OpStudent(models.Model):
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+
+    @api.onchange('email')
+    def _validate_email(self):
+        for record in self:
+            if record.email:
+                if not re.match(r'^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$', record.email):
+                    raise ValidationError(_('Invalid email address. Please enter a valid email address.'))
+
+    @api.onchange("mobile")
+    def _validate_mobile(self):
+        if self.mobile:
+            if self.mobile.isalpha():
+                raise ValidationError(_("Enter Your Valid Mobile Number"))
 
     @api.model
     def get_import_templates(self):
