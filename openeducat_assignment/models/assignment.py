@@ -39,6 +39,9 @@ class GradingAssigment(models.Model):
         required=True)
     point = fields.Float('Points')
 
+    _sql_constraints = [
+        ('unique_assignment_name',
+         'unique(name)','Assignment Name should be unique !')]
 
 class OpAssignment(models.Model):
     _name = "op.assignment"
@@ -63,6 +66,12 @@ class OpAssignment(models.Model):
     active = fields.Boolean(default=True)
     grading_assignment_id = fields.Many2one('grading.assignment', 'Grading Assignment',
                                             required=True, ondelete="cascade")
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        if self.name:
+            self.name = self.name[0].upper() + self.name[1:]
+
 
     @api.constrains('issued_date', 'submission_date')
     def check_dates(self):
