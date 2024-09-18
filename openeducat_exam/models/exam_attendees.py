@@ -54,5 +54,5 @@ class OpExamAttendees(models.Model):
 
     @api.constrains('marks')
     def _check_marks(self):
-        if self.marks < 0.0:
-            raise ValidationError(_("Enter proper marks!"))
+        if self.marks < 0.0 or self.marks > self.exam_id.total_marks:
+            raise ValidationError(_("Please Enter Marks between 0 to %d" %self.exam_id.total_marks))
