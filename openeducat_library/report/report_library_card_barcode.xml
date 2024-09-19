@@ -29,11 +29,16 @@
                             <tbody>
                                 <t t-foreach="docs" t-as="card">
                                     <tr class="text-center">
-                                        <td style="vertical-align: middle;" width="50%">
+                                        <t t-if="card.student_id">
                                             <h4>
                                                 <span t-esc="card.student_id.name"/>
                                             </h4>
-                                        </td>
+                                        </t>
+                                        <t t-else="">
+                                            <h4>
+                                                <span t-esc="card.faculty_id.name"/>
+                                            </h4>
+                                        </t>
                                         <td style="padding:15px 0px 15px 0px;" width="50%">
                                             <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', card.number, 350, 60)"/>
                                         </td>
