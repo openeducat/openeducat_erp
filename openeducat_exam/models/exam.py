@@ -86,6 +86,22 @@ class OpExam(models.Model):
             raise ValidationError(
                 _('Exam Time should in between Exam Session Dates.'))
 
+    def _check_overlapping_times(self, record):
+        existing_exams = self.env['op.exam'].search([
+            ('subject_id', '=', record.subject_id.id),
+            ('id', '!=', record.id),
+            ('start_time', '<', record.end_time),
+            ('end_time', '>', record.start_time),
+        ])
+        if existing_exams:
+            raise ValidationError(_('The exam time overlaps with an existing exam for the same subject.'))
+
+    @api.model
+    def create(self, vals):
+        res =super(OpExam, self).create(vals)
+        self._check_overlapping_times(res)
+        return res
+
     def act_result_updated(self):
         self.state = 'result_updated'
 
