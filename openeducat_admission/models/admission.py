@@ -71,10 +71,10 @@ class OpAdmission(models.Model):
         'Email', size=256, required=True)
     city = fields.Char('City', size=64)
     zip = fields.Char('Zip', size=8)
-    state_id = fields.Many2one(
-        'res.country.state', 'States')
     country_id = fields.Many2one(
         'res.country', 'Country')
+    state_id = fields.Many2one(
+        'res.country.state', 'States' ,domain="[('country_id', '=', country_id)]")
     fees = fields.Float('Fees')
     image = fields.Image('image')
     state = fields.Selection(
@@ -177,6 +177,11 @@ class OpAdmission(models.Model):
         if self.course_id and self.course_id.fees_term_id:
             term_id = self.course_id.fees_term_id.id
         self.fees_term_id = term_id
+
+    @api.onchange('state_id')
+    def _onchange_state(self):
+        if self.state_id.country_id and self.country_id != self.state_id.country_id:
+            self.country_id = self.state_id.country_id
 
     @api.constrains('register_id', 'application_date')
     def _check_admission_register(self):
@@ -350,9 +355,9 @@ class OpAdmission(models.Model):
                 'max_unit_load': record.course_id.max_unit_load or 0.0,
                 'state': 'draft',
             })
-            if not record.mobile:
-                raise UserError(
-                    _('Please fill in the mobile number'))
+            # if not record.mobile:
+            #     raise UserError(
+            #         _('Please fill in the mobile number'))
             reg_id.get_subjects()
 
     def confirm_rejected(self):

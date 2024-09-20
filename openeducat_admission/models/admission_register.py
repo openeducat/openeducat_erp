@@ -64,10 +64,16 @@ class OpAdmissionRegister(models.Model):
                                        'Terms', readonly=True,
                                        tracking=True)
     minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=3)
+    application_count = fields.Integer(string="Total_record", compute="calculate_record_application")
 
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        if self.name:
+                self.name = self.name[0].upper() + self.name[1:]
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
@@ -87,6 +93,18 @@ class OpAdmissionRegister(models.Model):
             if record.min_count > record.max_count:
                 raise ValidationError(_(
                     "Min Admission can't be greater than Max Admission"))
+
+    def action_open_student(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "op.admission",
+            "domain": [("register_id", "=", self.id)],
+            "name": "Applications",
+            "view_mode": "tree,form",
+        }
+    def calculate_record_application(self):
+        record = self.env["op.admission"].search_count([("register_id", "=", self.id)])
+        self.application_count = record
 
     def confirm_register(self):
         self.state = 'confirm'
