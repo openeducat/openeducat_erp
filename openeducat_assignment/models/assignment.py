@@ -67,12 +67,6 @@ class OpAssignment(models.Model):
     grading_assignment_id = fields.Many2one('grading.assignment', 'Grading Assignment',
                                             required=True, ondelete="cascade")
 
-    @api.onchange('name')
-    def _onchange_name(self):
-        if self.name:
-            self.name = self.name[0].upper() + self.name[1:]
-
-
     @api.constrains('issued_date', 'submission_date')
     def check_dates(self):
         for record in self:
