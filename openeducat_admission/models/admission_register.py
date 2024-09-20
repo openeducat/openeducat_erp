@@ -70,10 +70,6 @@ class OpAdmissionRegister(models.Model):
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
 
-    @api.onchange('name')
-    def _onchange_name(self):
-        if self.name:
-                self.name = self.name[0].upper() + self.name[1:]
 
     @api.constrains('start_date', 'end_date')
     def check_dates(self):
