@@ -131,38 +131,27 @@
                                     <group>
                                         <field name="gender" readonly="state == 'done'"/>
                                         <field name="email" placeholder="Email" readonly="state == 'done'"/>
+                                         <label for="street" string="Address"/>
+                                            <div name="o_address_format">
+                                                <field name="street" placeholder="Street..." readonly="state == 'done'"/>
+                                                <field name="street2" placeholder="Street2" readonly="state == 'done'"/>
+                                                <div class="address_format">
+                                                    <field name="city" placeholder="City" style="width: 40%" readonly="state == 'done'"/>
+                                                    <field name="state_id" class="oe_no_button" placeholder="State"
+                                                           style="width: 37%" options="{&quot;no_open&quot;: True}" readonly="state == 'done'"/>
+                                                    <field name="zip" placeholder="ZIP" style="width: 20%" readonly="state == 'done'"/>
+                                                </div>
+                                                <field name="country_id" placeholder="Country" class="oe_no_button"
+                                                       options="{&quot;no_open&quot;: True}" readonly="state == 'done'"/>
+                                            </div>
                                     </group>
                                     <group>
                                         <field name="birth_date" options="{'datepicker':{'warn_future': true}}"
                                                readonly="state == 'done'"/>
+                                        <field name="phone" placeholder="Phone"  widget="phone" readonly="state == 'done'"/>
+                                        <field name="mobile"  placeholder="Mobile" widget="phone" readonly="state == 'done'"/>
                                     </group>
                                 </group>
-                                <label for="street" string="Address"/>
-                                <div>
-                                    <div>
-                                        <field name="street" placeholder="Street..." nolabel="1" style="width: 100%%"
-                                               readonly="state == 'done'"/>
-                                        <field name="street2" placeholder="Street 2..." nolabel="1"
-                                               readonly="state == 'done'"
-                                               style="width: 100%%"/>
-                                    </div>
-                                    <div class="address_format">
-                                        <field name="city" placeholder="City" style="width: 40%%"
-                                               readonly="state == 'done'"/>
-                                        <field name="state_id" options='{"no_open": True}' readonly="state == 'done'"
-                                               placeholder="State" style="width: 24%%"/>
-                                        <field name="zip" placeholder="ZIP" style="width: 34%%"
-                                               readonly="state == 'done'"/>
-                                    </div>
-                                    <div>
-                                        <field name="country_id" placeholder="Country" options='{"no_open": True}'
-                                               nolabel="1" readonly="state == 'done'"/>
-                                        <field name="phone" placeholder="Phone" nolabel="1" style="width: 100%%"
-                                               readonly="state == 'done'" required="state == 'submit'"/>
-                                        <field name="mobile" placeholder="Mobile" nolabel="1" style="width: 100%%"
-                                               readonly="state == 'done'" required="state == 'submit'"/>
-                                    </div>
-                                </div>
                                 <group>
                                     <group>
                                         <field name="family_business" readonly="state == 'done'"/>
