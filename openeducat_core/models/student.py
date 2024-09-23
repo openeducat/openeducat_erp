@@ -19,7 +19,7 @@
 #
 ###############################################################################
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api,_,tools
 from odoo.exceptions import ValidationError
 
 
@@ -122,6 +122,16 @@ class OpStudent(models.Model):
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+
+    @api.onchange('email')
+    def _validate_email(self):
+        if self.email and not tools.single_email_re.match(self.email):
+            raise ValidationError(_('Invalid Email! Please enter a valid email address.'))
+
+    @api.onchange("mobile")
+    def _validate_mobile(self):
+        if self.mobile and self.mobile.isalpha():
+            raise ValidationError(_("Enter Your Valid Mobile Number"))
 
     @api.model
     def get_import_templates(self):
