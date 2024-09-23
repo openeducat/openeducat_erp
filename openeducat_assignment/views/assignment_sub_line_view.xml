@@ -63,7 +63,7 @@
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active == True" />
                         <group>
                             <group>
-                                <field name="student_id" domain="[('user_id','=',uid)]" />
+                                <field name="student_id"/>
                                 <field name="assignment_id" domain="[('allocation_ids','=',student_id),('state','=','publish')]" />
                                 <field name="marks" readonly="state == 'accept'" invisible="state != 'accept' or user_boolean == False" />
                             </group>
