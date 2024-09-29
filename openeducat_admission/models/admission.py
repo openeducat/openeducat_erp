@@ -378,7 +378,7 @@ class OpAdmission(models.Model):
         value = {
             'domain': str([('id', '=', self.student_id.id)]),
             'view_type': 'form',
-            'view_mode': 'tree, form',
+            'view_mode': 'list, form',
             'res_model': 'op.student',
             'view_id': False,
             'views': [(form_view and form_view.id or False, 'form'),

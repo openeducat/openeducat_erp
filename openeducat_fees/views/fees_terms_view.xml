@@ -2,15 +2,15 @@
 <odoo>
     <data>
         <record id="view_fees_terms_tree" model="ir.ui.view">
-            <field name="name">op.fees.terms.tree</field>
+            <field name="name">op.fees.terms.list</field>
             <field name="model">op.fees.terms</field>
             <field name="type">tree</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Fees Reminder Terms">
+                <list string="Fees Reminder Terms">
                     <field name="name"/>
                     <field name="active"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -39,14 +39,14 @@
                         <field name="note" placeholder="Description..." class="mt32"/>
                         <separator string="Terms" colspan="4"/>
                         <field name="line_ids">
-                            <tree>
+                            <list>
                                 <field name="due_days"
                                        column_invisible="parent.fees_terms != 'fixed_days'" required="parent.fees_terms == 'fixed_days'"/>
                                 <field name="due_date"
                                        column_invisible="parent.fees_terms != 'fixed_date'" required="parent.fees_terms == 'fixed_date'"/>
                                 <field name="value" required="1"/>
                                 <field name="fees_element_line"/>
-                            </tree>
+                            </list>
                             <form string="Fees Term Line">
                                 <group colspan="4">
                                     <field name="due_days"
@@ -55,10 +55,10 @@
                                            />
                                     <field name="value" required="1"/>
                                     <field name="fees_element_line">
-                                        <tree string="Information" editable="top">
+                                        <list string="Information" editable="top">
                                             <field name="product_id"/>
                                             <field name="value"/>
-                                        </tree>
+                                        </list>
                                     </field>
                                 </group>
                             </form>
@@ -91,7 +91,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.fees.terms</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="view_fees_terms_search"/>
         </record>
 
@@ -105,7 +105,7 @@
         <record model="ir.actions.act_window.view" id="act_open_fees_terms_view_tree">
             <field name="act_window_id" ref="act_open_fees_terms_view"/>
             <field name="sequence" eval="10"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_fees_terms_tree"/>
         </record>
 

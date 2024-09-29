@@ -2,11 +2,11 @@
 <odoo>
     <data>
         <record id="view_subject_registration_tree" model="ir.ui.view">
-            <field name="name">op.subject.registration.tree</field>
+            <field name="name">op.subject.registration.list</field>
             <field name="model">op.subject.registration</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Course Registration">
+                <list string="Course Registration">
                     <field name="name"/>
                     <field name="student_id"/>
                     <field name="course_id"/>
@@ -15,7 +15,7 @@
                     <field name="max_unit_load" optional="hide"/>
                     <field name="compulsory_subject_ids" widget="many2many_tags" optional="hide"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -133,7 +133,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.subject.registration</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="view_mode">list,form,graph,pivot</field>
             <field name="search_view_id" ref="view_subject_registration_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>

@@ -2,16 +2,16 @@
 <odoo>
     <data>
         <record id="view_op_attendance_register_tree" model="ir.ui.view">
-            <field name="name">op.attendance.register.tree</field>
+            <field name="name">op.attendance.register.list</field>
             <field name="model">op.attendance.register</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Attendance Register">
+                <list string="Attendance Register">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -78,7 +78,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.attendance.register</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="view_op_attendance_register_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
@@ -94,7 +94,7 @@
         <record model="ir.actions.act_window.view" id="act_open_op_attendance_register_view_tree">
             <field name="act_window_id" ref="act_open_op_attendance_register_view"/>
             <field name="sequence" eval="10"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_attendance_register_tree"/>
         </record>
     </data>

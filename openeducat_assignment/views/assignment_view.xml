@@ -2,11 +2,11 @@
 <odoo>
     <data>
         <record id="view_op_assignment_tree" model="ir.ui.view">
-            <field name="name">op.assignment.tree</field>
+            <field name="name">op.assignment.list</field>
             <field name="model">op.assignment</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Assignment">
+                <list string="Assignment">
                     <field name="name"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
@@ -19,7 +19,7 @@
                     <field name="allocation_ids" invisible="1"/>
                     <field name="assignment_sub_line" invisible="1"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -96,21 +96,21 @@
                                 <field name="allocation_ids"
                                        domain="[('course_detail_ids.course_id','=',course_id),('course_detail_ids.batch_id','=',batch_id)]"
                                        colspan="4" nolabel="1">
-                                    <tree string="Allocation">
+                                    <list string="Allocation">
                                         <field name="title"/>
                                         <field name="name"/>
                                         <field name="middle_name"/>
                                         <field name="last_name"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                             <page name="submissions" string="Submissions">
                                 <field name="assignment_sub_line" colspan="4" nolabel="1">
-                                    <tree string="Submissions" create="0">
+                                    <list string="Submissions" create="0">
                                         <field name="student_id"/>
                                         <field name="state"/>
                                         <field name="submission_date"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -206,7 +206,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_mode">list,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_assignment_search"/>
         </record>
 
@@ -220,7 +220,7 @@
         <record model="ir.actions.act_window.view" id="act_open_op_assignment_view_tree">
             <field name="act_window_id" ref="act_open_op_assignment_view"/>
             <field name="sequence" eval="10"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_assignment_tree"/>
         </record>
     </data>

@@ -69,7 +69,7 @@ class OpSession(models.Model):
             return {
                 'name': 'Attendance Sheet',
                 'view_type': 'form',
-                'view_mode': 'tree',
+                'view_mode': 'list',
                 'views': [(view_id, 'form')],
                 'res_model': 'op.attendance.sheet',
                 'view_id': False,

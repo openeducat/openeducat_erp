@@ -41,7 +41,7 @@ class OpFaculty(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Media Movement',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'res_model': 'op.media.movement',
             'domain': [('faculty_id', '=', self.id)],
             'target': 'current',

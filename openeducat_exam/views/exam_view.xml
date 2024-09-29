@@ -2,11 +2,11 @@
 <odoo>
     <data>
         <record id="view_op_exam_tree" model="ir.ui.view">
-            <field name="name">op.exam.tree</field>
+            <field name="name">op.exam.list</field>
             <field name="model">op.exam</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Exam">
+                <list string="Exam">
                     <field name="session_id"/>
                     <field name="name"/>
                     <field name="subject_id"/>
@@ -17,7 +17,7 @@
                     <field name="note" optional="hide"/>
                     <field name="total_marks" optional="show"/>
                     <field name="min_marks" optional="show"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -111,7 +111,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.exam</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="view_op_exam_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
@@ -127,7 +127,7 @@
         <record model="ir.actions.act_window.view" id="act_open_op_exam_view_tree">
             <field name="act_window_id" ref="act_open_op_exam_view"/>
             <field name="sequence" eval="10"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_exam_tree"/>
         </record>
     </data>

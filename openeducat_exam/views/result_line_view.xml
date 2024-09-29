@@ -2,18 +2,18 @@
 <odoo>
     <data>
         <record id="view_op_result_line_tree" model="ir.ui.view">
-            <field name="name">op.result.line.tree</field>
+            <field name="name">op.result.line.list</field>
             <field name="model">op.result.line</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Result Line">
+                <list string="Result Line">
                     <field name="student_id"/>
                     <field name="exam_id"/>
                     <field name="marks"/>
                     <field name="grade" invisible="evaluation_type != 'grade'"/>
                     <field name="status"/>
                     <field name="evaluation_type" invisible="1"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -74,7 +74,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.result.line</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="view_op_result_line_search"/>
             <field name="domain">[]</field>
             <field name="context">{}</field>
@@ -90,7 +90,7 @@
         <record model="ir.actions.act_window.view" id="act_open_op_result_line_view_tree">
             <field name="act_window_id" ref="act_open_op_result_line_view"/>
             <field name="sequence" eval="10"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_result_line_tree"/>
         </record>
     </data>

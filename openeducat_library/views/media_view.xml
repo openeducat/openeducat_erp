@@ -2,11 +2,11 @@
 <odoo>
     <data>
         <record id="view_op_media_tree" model="ir.ui.view">
-            <field name="name">op.media.tree</field>
+            <field name="name">op.media.list</field>
             <field name="model">op.media</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Media">
+                <list string="Media">
                     <field name="name"/>
                     <field name="media_type_id"/>
                     <field name="isbn"/>
@@ -18,7 +18,7 @@
                     <field name="publisher_ids" widget="many2many_tags" optional="hide"/>
                     <field name="course_ids" widget="many2many_tags" optional="hide"/>
                     <field name="subject_ids" widget="many2many_tags" optional="hide"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -75,7 +75,7 @@
                             </page>
                             <page name="media_queue_requests" string="Media Queue Requests">
                                 <field name="queue_ids" colspan="4" nolabel="1">
-                                    <tree string="Media Queue Request">
+                                    <list string="Media Queue Request">
                                         <field name="user_id"/>
                                         <field name="date_from"/>
                                         <field name="date_to"/>
@@ -92,7 +92,7 @@
                                                 invisible="state != 'reject'" type="object" icon="fa-undo"
                                                 style="font-size: 15px;"
                                                 groups="openeducat_library.group_op_library"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -157,7 +157,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.media</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_mode">list,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_media_search"/>
         </record>
 
@@ -171,7 +171,7 @@
         <record model="ir.actions.act_window.view" id="act_open_op_media_view_tree">
             <field name="act_window_id" ref="act_open_op_media_view"/>
             <field name="sequence" eval="10"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_media_tree"/>
         </record>
     </data>

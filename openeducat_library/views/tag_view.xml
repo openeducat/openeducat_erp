@@ -2,13 +2,13 @@
 <odoo>
     <data>
         <record id="view_op_tag_tree" model="ir.ui.view">
-            <field name="name">op.tag.tree</field>
+            <field name="name">op.tag.list</field>
             <field name="model">op.tag</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <tree string="Tag">
+                <list string="Tag">
                     <field name="name" />
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -48,7 +48,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.tag</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="search_view_id" ref="view_op_tag_search" />
         </record>
 
@@ -62,7 +62,7 @@
         <record model="ir.actions.act_window.view" id="act_open_op_tag_view_tree">
             <field name="act_window_id" ref="act_open_op_tag_view" />
             <field name="sequence" eval="10" />
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_tag_tree" />
         </record>
     </data>

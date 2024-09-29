@@ -2,17 +2,17 @@
 <odoo>
     <data>
         <record id="view_op_activity_tree" model="ir.ui.view">
-            <field name="name">op.activity.tree</field>
+            <field name="name">op.activity.list</field>
             <field name="model">op.activity</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Activity Log">
+                <list string="Activity Log">
                     <field name="student_id"/>
                     <field name="faculty_id"/>
                     <field name="type_id"/>
                     <field name="date"/>
                     <field name="description" optional="hide"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -94,7 +94,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.activity</field>
             <field name="binding_view_types">form</field>
-            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="view_mode">list,form,pivot,graph</field>
             <field name="search_view_id" ref="view_op_activity_search"/>
         </record>
 
@@ -108,7 +108,7 @@
         <record model="ir.actions.act_window.view" id="act_open_op_activity_view_tree">
             <field name="act_window_id" ref="act_open_op_activity_view"/>
             <field name="sequence" eval="10"/>
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="view_id" ref="view_op_activity_tree"/>
         </record>
     </data>
