@@ -50,7 +50,7 @@ class OpCourse(models.Model):
 
     @api.constrains('parent_id')
     def _check_category_recursion(self):
-        if  self._has_cycle():
+        if self._has_cycle():
             raise ValidationError(_('You cannot create recursive categories.'))
 
     @api.model
