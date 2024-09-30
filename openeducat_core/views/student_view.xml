@@ -167,11 +167,7 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                        <field name="activity_ids" widget="mail_activity"/>
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>
@@ -202,6 +198,7 @@
             <field name="name">Students</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.student</field>
+            <field name="path">students</field>
             <field name="binding_view_types">form</field>
             <field name="view_mode">kanban,list,form</field>
             <field name="search_view_id" ref="view_op_student_search"/>

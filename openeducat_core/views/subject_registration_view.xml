@@ -68,11 +68,7 @@
                                    readonly = "state != 'draft'"/>
                         </group>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers"
-                               groups="base.group_user"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>
@@ -132,6 +128,7 @@
             <field name="name">Subject Registration</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.subject.registration</field>
+            <field name="path">subject-registration</field>
             <field name="binding_view_types">form</field>
             <field name="view_mode">list,form,graph,pivot</field>
             <field name="search_view_id" ref="view_subject_registration_search"/>

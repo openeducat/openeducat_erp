@@ -49,10 +49,9 @@ class OpCourse(models.Model):
          'unique(code)', 'Code should be unique per course!')]
 
     @api.constrains('parent_id')
-    def _check_parent_id_recursion(self):
-        if not self._check_recursion():
-            raise ValidationError(_('You cannot create recursive Course.'))
-        return True
+    def _check_category_recursion(self):
+        if  self._has_cycle():
+            raise ValidationError(_('You cannot create recursive categories.'))
 
     @api.model
     def get_import_templates(self):
