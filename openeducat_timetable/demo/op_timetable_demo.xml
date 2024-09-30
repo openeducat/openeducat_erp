@@ -41,6 +41,26 @@
             <field name="end_datetime" eval="time.strftime('%Y-%m-%d 07:30:00')"/>
         </record>
 
+        <record id="op_session_5" model="op.session">
+            <field name="timing_id" ref="op_timing_5"/>
+            <field name="faculty_id" ref="openeducat_core.op_faculty_12"/>
+            <field name="course_id" ref="openeducat_core.op_course_8"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_7"/>
+            <field name="subject_id" ref="openeducat_core.op_subject_23"/>
+            <field name="start_datetime" eval="time.strftime('%Y-%m-%d 06:30:00')"/>
+            <field name="end_datetime" eval="time.strftime('%Y-%m-%d 07:30:00')"/>
+        </record>
+
+        <record id="op_session_6" model="op.session">
+            <field name="timing_id" ref="op_timing_6"/>
+            <field name="faculty_id" ref="openeducat_core.op_faculty_5"/>
+            <field name="course_id" ref="openeducat_core.op_course_23"/>
+            <field name="batch_id" ref="openeducat_core.op_batch_12"/>
+            <field name="subject_id" ref="openeducat_core.op_subject_69"/>
+            <field name="start_datetime" eval="time.strftime('%Y-%m-%d 03:30:00')"/>
+            <field name="end_datetime" eval="time.strftime('%Y-%m-%d 04:30:00')"/>
+        </record>
+
         <record id="openeducat_core.op_user_faculty" model="res.users">
             <field name="groups_id"
             eval="[(4,ref('openeducat_timetable.group_op_timetable_user'))]"/>
