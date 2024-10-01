@@ -81,10 +81,7 @@
                             <field name="note" nolabel="1" />
                         </div>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
-                        <field name="message_ids" widget="mail_thread" />
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>
@@ -146,6 +143,7 @@
 
         <record model="ir.actions.act_window" id="act_open_op_assignment_sub_line_view">
             <field name="name">Assignment Submissions</field>
+            <field name="path">assignment-sub-line</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.assignment.sub.line</field>
             <field name="binding_view_types">form</field>
