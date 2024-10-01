@@ -65,4 +65,4 @@ class OpMediaUnit(models.Model):
         if not recs:
             recs = self.search(
                 [('barcode', operator, name)] + args, limit=limit)
-        return recs.name_get()
+        return [(res.id, res.display_name) for res in recs]

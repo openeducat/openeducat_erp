@@ -24,13 +24,13 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 import pytz
 
-week_days = [(calendar.day_name[0], _(calendar.day_name[0])),
-             (calendar.day_name[1], _(calendar.day_name[1])),
-             (calendar.day_name[2], _(calendar.day_name[2])),
-             (calendar.day_name[3], _(calendar.day_name[3])),
-             (calendar.day_name[4], _(calendar.day_name[4])),
-             (calendar.day_name[5], _(calendar.day_name[5])),
-             (calendar.day_name[6], _(calendar.day_name[6]))]
+week_days = [(calendar.day_name[0], (calendar.day_name[0])),
+             (calendar.day_name[1], (calendar.day_name[1])),
+             (calendar.day_name[2], (calendar.day_name[2])),
+             (calendar.day_name[3], (calendar.day_name[3])),
+             (calendar.day_name[4], (calendar.day_name[4])),
+             (calendar.day_name[5], (calendar.day_name[5])),
+             (calendar.day_name[6], (calendar.day_name[6]))]
 
 
 class OpSession(models.Model):
@@ -90,7 +90,7 @@ class OpSession(models.Model):
                 session.end_datetime.astimezone(tz).strftime('%I:%M%p'))
 
     @api.model
-    def _expand_groups(self, days, domain, order):
+    def _expand_groups(self, days, domain, order=None):
         weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
         return [day for day in weekdays if day in days]
 

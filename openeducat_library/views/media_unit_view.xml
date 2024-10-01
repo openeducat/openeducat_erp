@@ -24,12 +24,12 @@
                     <header groups="base.group_user">
                         <button name="%(issue_media_act)d" string="Issue Media"
                                 type="action"
-                                context="{'default_media_id': media_id, 'default_media_unit_id': active_id}"
+                                context="{'default_media_id': media_id, 'default_media_unit_id': id}"
                                 invisible= "state != 'available'"
                                 class="oe_highlight" groups="openeducat_library.group_op_library"/>
                         <button name="%(return_media_act)d" string="Return Media"
                                 type="action"
-                                context="{'default_media_id': media_id, 'default_media_unit_id': active_id}"
+                                context="{'default_media_id': media_id, 'default_media_unit_id': id}"
                                 invisible= "state != 'issue'"
                                 class="oe_highlight" groups="openeducat_library.group_op_library"/>
                         <field name="state" widget="statusbar" statusbar_visible="available,issue,reserve,lost"
@@ -55,10 +55,7 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>
@@ -114,6 +111,7 @@
             <field name="binding_view_types">form</field>
             <field name="view_mode">list,form,pivot,graph</field>
             <field name="domain">[]</field>
+            <field name="path">media-unit</field>
             <field name="context">{}</field>
         </record>
 
