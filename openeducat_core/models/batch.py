@@ -59,7 +59,7 @@ class OpBatch(models.Model):
                 lst.append(courses.parent_id.id)
                 courses = courses.parent_id
             batches = self.env['op.batch'].search([('course_id', 'in', lst)])
-            return batches.name_get()
+            return [(batch.id, batch.display_name) for batch in batches]
         return super(OpBatch, self).name_search(
             name, args, operator=operator, limit=limit)
 
