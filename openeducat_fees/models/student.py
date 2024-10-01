@@ -168,8 +168,9 @@ class OpStudent(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Fees Details',
-            'view_mode': 'list',
+            'view_mode': 'list,form',
             'res_model': 'op.student.fees.details',
+            'path':"student-fees-details",
             'context': {'create': False},
             'domain': [('student_id', '=', self.id)],
             'target': 'current',
