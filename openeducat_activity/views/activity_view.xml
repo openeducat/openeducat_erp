@@ -42,10 +42,7 @@
                             <field name="description" nolabel="1"/>
                         </div>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
+                    <chatter/>
                 </form>
             </field>
         </record>
@@ -91,6 +88,7 @@
 
         <record model="ir.actions.act_window" id="act_open_op_activity_view">
             <field name="name">Activity Logs</field>
+            <field name="path">activity</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">op.activity</field>
             <field name="binding_view_types">form</field>
