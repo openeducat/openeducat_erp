@@ -186,8 +186,7 @@ class OpAdmission(models.Model):
             application_date = fields.Date.from_string(rec.application_date)
             if application_date < start_date or application_date > end_date:
                 raise ValidationError(_(
-                    "Application Date should be between Start Date & \
-                    End Date of Admission Register."))
+                    "Application Date should be between Start Date & End Date of Admission Register."))
 
     @api.constrains('birth_date')
     def _check_birthdate(self):
@@ -382,7 +381,7 @@ class OpAdmission(models.Model):
             'res_model': 'op.student',
             'view_id': False,
             'views': [(form_view and form_view.id or False, 'form'),
-                      (tree_view and tree_view.id or False, 'tree')],
+                      (tree_view and tree_view.id or False, 'list')],
             'type': 'ir.actions.act_window',
             'res_id': self.student_id.id,
             'target': 'current',
@@ -439,7 +438,7 @@ class OpAdmission(models.Model):
             'res_model': 'account.invoice',
             'view_id': False,
             'views': [(form_view and form_view.id or False, 'form'),
-                      (tree_view and tree_view.id or False, 'tree')],
+                      (tree_view and tree_view.id or False, 'list')],
             'type': 'ir.actions.act_window',
             'res_id': invoice.id,
             'target': 'current',
