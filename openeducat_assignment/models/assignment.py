@@ -39,9 +39,6 @@ class GradingAssigment(models.Model):
         required=True)
     point = fields.Float('Points')
 
-    _sql_constraints = [
-        ('unique_assignment_name',
-         'unique(name)','Assignment Name should be unique !')]
 
 class OpAssignment(models.Model):
     _name = "op.assignment"
