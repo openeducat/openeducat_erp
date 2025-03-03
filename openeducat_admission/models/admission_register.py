@@ -63,7 +63,7 @@ class OpAdmissionRegister(models.Model):
     academic_term_id = fields.Many2one('op.academic.term',
                                        'Terms', readonly=True,
                                        tracking=True)
-    minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=3)
+    minimum_age_criteria = fields.Integer('Minimum Required Age(Years)', default=18)
     application_count = fields.Integer(string="Total_record", compute="calculate_record_application")
     is_favorite = fields.Boolean(string="Is Favorite", default=False)
     company_id = fields.Many2one('res.company', string='Company',default=lambda self: self.env.user.company_id)
