@@ -55,6 +55,8 @@ class OpResultLine(models.Model):
                         if grade.min_per <= record.marks and \
                                 grade.max_per >= record.marks:
                             record.grade = grade.result
+                        else:
+                            record.grade = None
                 else:
                     record.grade = None
             else:
