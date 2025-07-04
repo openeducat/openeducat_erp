@@ -209,3 +209,7 @@ class ResConfigSettings(models.TransientModel):
     )
     module_openeducat_thesis=fields.Boolean(string='Thesis')
     module_openeducat_convocation=fields.Boolean(string='Convocation')
+    module_openeducat_grading_migration_bridge = fields.Boolean(
+        string="Student Migration Grading Bridge")
+    module_openeducat_exam_migration_bridge = fields.Boolean(
+        string="Student Migration Exam Bridge")
