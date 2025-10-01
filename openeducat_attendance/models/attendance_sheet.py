@@ -39,7 +39,7 @@ class OpAttendanceSheet(models.Model):
         readonly=True)
     session_id = fields.Many2one('op.session', 'Session')
     attendance_date = fields.Date(
-        'Date', required=True, default=lambda self: fields.Date.today(),
+        'Date', required=True,
         tracking=True)
     attendance_line = fields.One2many(
         'op.attendance.line', 'attendance_id', 'Attendance Line')
@@ -50,6 +50,13 @@ class OpAttendanceSheet(models.Model):
         [('draft', 'Draft'), ('start', 'Attendance Start'),
          ('done', 'Attendance Taken'), ('cancel', 'Cancelled')],
         'Status', default='draft', tracking=True)
+
+    @api.onchange("session_id")
+    def _onchange_session_id_set_date(self):
+        """Set attendance_date = session_id.start_datetime.date()"""
+        for rec in self:
+            if rec.session_id and rec.session_id.start_datetime:
+                rec.attendance_date = rec.session_id.start_datetime.date()
 
     def attendance_draft(self):
         self.state = 'draft'
