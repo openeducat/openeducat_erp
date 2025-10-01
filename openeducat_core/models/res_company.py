@@ -61,7 +61,7 @@ class ResUsers(models.Model):
                 user_id = self.create(user_vals)
                 rec.user_id = user_id
                 if user_group:
-                    user_group.users = user_group.users + user_id
+                    user_group.user_ids = user_group.user_ids + user_id
 
     def _compute_department_count(self):
         department_count = self._department_count()

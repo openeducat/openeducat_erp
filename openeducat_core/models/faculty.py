@@ -94,7 +94,7 @@ class OpFaculty(models.Model):
             vals = {
                 'name': record.name,
                 'country_id': record.nationality.id,
-                'gender': record.gender,
+                'sex': record.gender,
             }
             emp_id = self.env['hr.employee'].create(vals)
             record.write({'emp_id': emp_id.id})

@@ -138,7 +138,7 @@ class OpStudent(models.Model):
                     'name': record.name,
                     'partner_id': record.partner_id.id,
                     'login': record.email,
-                    'groups_id': user_group,
+                    'group_ids': user_group,
                     'is_student': True,
                     'tz': self._context.get('tz'),
                 })
