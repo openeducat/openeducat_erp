@@ -6,16 +6,10 @@
             <field name="sequence">101</field>
             <field name="parent_id" eval="False"/>
         </record>
-        <record id="module_category_openeducat_admission" model="ir.module.category">
+        <record id="module_admission_privilege" model="res.groups.privilege">
             <field name="name">Admission</field>
             <field name="description">Helps you manage your institutes different-different users.</field>
-            <field name="parent_id" ref="openeducat_admission.module_category_all_op_admission"/>
-            <field name="sequence">1</field>
-        </record>
-
-        <record id="module_admission_privilege" model="res.groups.privilege">
-            <field name="name">Openeducat Admission Privilege</field>
-            <field name="category_id" ref="module_category_openeducat_admission"/>
+            <field name="category_id" ref="module_category_all_op_admission"/>
         </record>
 
         <record id="group_op_admission_user" model="res.groups">
