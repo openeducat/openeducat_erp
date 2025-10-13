@@ -24,3 +24,8 @@ class OpAcademicTerm(models.Model):
     company_id = fields.Many2one(
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
+    
+    _unique_name = models.Constraint('UNIQUE(name)', 'Name must be unique.')
+    _unique_start_date = models.Constraint('UNIQUE(term_start_date)', 'Start date must be unique.')
+    _unique_end_date = models.Constraint('UNIQUE(term_end_date)', 'End date must be unique.')
+

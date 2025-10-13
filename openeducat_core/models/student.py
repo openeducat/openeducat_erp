@@ -143,3 +143,9 @@ class OpStudent(models.Model):
                     'tz': self._context.get('tz'),
                 })
                 record.user_id = user_id
+
+class ResPartner(models.Model):
+    _inherit = "res.partner"
+
+    _unique_email = models.Constraint('unique(email)', 
+                                     'Email must be unique per partner!')

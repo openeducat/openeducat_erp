@@ -41,6 +41,8 @@ class OpAcademicYear(models.Model):
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
 
+    _unique_name = models.Constraint('UNIQUE(name)', 'Name must be unique.')
+
     def term_create(self):
         num = 0
         final = 1

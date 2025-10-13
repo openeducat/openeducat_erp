@@ -1,39 +1,53 @@
 <odoo>
-        <template id="student_attendance_report">
-            <t t-call="web.html_container">
-                <t t-call="web.external_layout">
-                    <div class="page">
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <div class="text-center">
-                            <h3>
-                                <strong>Student Attendance Detail</strong>
-                            </h3>
+    <template id="student_attendance_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center">
+                        <h3><strong>Student Attendance Detail</strong></h3>
+                    </div>
+                    <br/>
+                    <div class="row mt24">
+                        <div style="width:50%; margin-left:15px;">
+                            <b>Student:</b>
+                            <span t-esc="student_name"/>
                         </div>
-                        <br></br>
-                        <div class="row mt24">
-                            <div style="width:50%; margin-left:15px;">
-                                <b>Student Name:</b>
-                                <span t-esc="get_student_name"/>
-                            </div>
-                            <div style="width:50%; margin-left:15px;">
-                                <b>From Date:</b>
-                                <span t-esc="from_date" t-options="{'widget':'date'}"/>
-                                <b>To Date:</b>
-                                <span t-esc="to_date" t-options="{'widget':'date'}"/>
-                            </div>
+                        <div style="width:50%; margin-right:30px; text-align: left;">
+                            <b>From:</b>
+                            <span t-esc="from_date" class="me-2" t-options="{'widget':'date'}"/>
+                            <b>To:</b>
+                            <span t-esc="to_date" t-options="{'widget':'date'}"/>
                         </div>
-                        <br/>
-                        <table class="table table-bordered">
-                            <thead class="text-center"
-                                   style="background-color:#eeeeee; font-size:14px; font-weight:600;">
-                                <th class="text-center">Date</th>
-                                <th class="text-center">Remark</th>
-                            </thead>
-                            <tbody class="text-center" style="font-size:12px;">
-                                <t t-foreach="get_data" t-as="obj">
-                                    <tr t-foreach="obj['line']" t-as="l">
+                    </div>
+                    <br/>
+                    <table class="table table-bordered" style="width:100%; font-size:13px;">
+                        <thead style="background-color:#f5f5f5; font-weight:600;">
+                            <tr>
+                                <th class="text-center">Present</th>
+                                <th class="text-center">Excused</th>
+                                <th class="text-center">Absent</th>
+                                <th class="text-center">Late</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size:13px;">
+                            <tr>
+                                <td class="text-center"><span t-esc="present_count or 0"/></td>
+                                <td class="text-center"><span t-esc="excused_count or 0"/></td>
+                                <td class="text-center"><span t-esc="absent_count or 0"/></td>
+                                <td class="text-center"><span t-esc="late_count or 0"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <table class="table table-bordered">
+                        <thead class="text-center" style="background-color:#eeeeee; font-size:14px; font-weight:600;">
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Attendance</th>
+                        </thead>
+                        <tbody class="text-center" style="font-size:12px;">
+                            <t t-if="absences">
+                                <t t-foreach="absences" t-as="l">
+                                    <tr>
                                         <td class="text-center">
                                             <span t-esc="l['absent_date']" t-options="{'widget':'date'}"/>
                                         </td>
@@ -42,20 +56,20 @@
                                         </td>
                                     </tr>
                                 </t>
-                                <tr t-foreach="get_data" t-as="obj">
-                                    <td class="text-center">
-                                        <b>Total Absence</b>
-                                    </td>
-                                    <td class="text-center">
-                                        <b>
-                                            <span t-esc="obj['total']"/>
-                                        </b>
-                                    </td>
+                            </t>
+                            <t t-if="not absences">
+                                <tr>
+                                    <td colspan="2" class="text-center"><em>No absences in the selected period.</em></td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </t>
+                            </t>
+                            <tr>
+                                <td class="text-center"><b>Total Absence</b></td>
+                                <td class="text-center"><b><span t-esc="total_absences"/></b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </t>
-        </template>
+        </t>
+    </template>
 </odoo>
