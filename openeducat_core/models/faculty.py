@@ -107,6 +107,8 @@ class OpFaculty(models.Model):
             'template': '/openeducat_core/static/xls/op_faculty.xls'
         }]
 
+    def copy(self, default=None):
+        raise ValidationError(_('You cannot duplicate the Faculty — a Faculty must be unique.'))
 
 class PartnerTitle(models.Model):
     _name = 'res.partner.title'
