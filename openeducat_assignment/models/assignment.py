@@ -52,7 +52,7 @@ class OpAssignment(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'), ('publish', 'Published'),
         ('finish', 'Finished'), ('cancel', 'Cancel'),
-    ], 'State', required=True, default='draft', tracking=True)
+    ], 'Status', required=True, default='draft', tracking=True)
     submission_date = fields.Datetime('Submission Date', required=True,
                                       tracking=True)
     allocation_ids = fields.Many2many('op.student', string='Allocated To')
