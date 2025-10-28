@@ -62,22 +62,23 @@
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active == True" />
                         <group>
                             <group>
-                                <field name="student_id"/>
-                                <field name="assignment_id" domain="[('allocation_ids','=',student_id),('state','=','publish')]" />
+                                <field name="student_id" readonly="state == 'accept'"/>
+                                <field name="assignment_id" domain="[('allocation_ids','=',student_id),('state','=','publish')]" 
+                                readonly="state == 'accept'" />
                                 <field name="marks" readonly="state == 'accept'" />
                             </group>
                             <group>
-                                <field name="submission_date" />
+                                <field name="submission_date" readonly="state == 'accept'" />
                                 <field name="user_boolean" invisible="1" />
                             </group>
                         </group>
                         <div>
-                            <label for="description" string="Description" class="mt32" />
-                            <field name="description" nolabel="1" />
+                            <label for="description" string="Description" class="mt32" readonly="state == 'accept'" />
+                            <field name="description" nolabel="1" readonly="state == 'accept'" />
                         </div>
                         <div>
-                            <label for="note" string="Note" class="mt32" />
-                            <field name="note" nolabel="1" />
+                            <label for="note" string="Note" class="mt32" readonly="state == 'accept'" />
+                            <field name="note" nolabel="1" readonly="state == 'accept'" />
                         </div>
                     </sheet>
                     <chatter/>
