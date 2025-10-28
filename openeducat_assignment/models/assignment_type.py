@@ -15,7 +15,10 @@ class GradingAssigmentType(models.Model):
     _description = "Assignment Type"
 
     name = fields.Char(string="Name", required=True)
-    code = fields.Char(string="Code")
+    code = fields.Char(string="Code", required=True)
     assign_type = fields.Selection([('sub', 'Subjective'),
                                     ('attendance', 'Attendance')],
                                    string='Type', default='sub')
+
+    _unique_code = models.Constraint(
+        'unique(code)', "The code must be unique across all assignment types.")

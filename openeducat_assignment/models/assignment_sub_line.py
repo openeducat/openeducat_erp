@@ -46,7 +46,7 @@ class OpAssignmentSubLine(models.Model):
     description = fields.Text('Description', tracking=True)
     state = fields.Selection([
         ('draft', 'Draft'), ('submit', 'Submitted'), ('reject', 'Rejected'),
-        ('change', 'Change Req.'), ('accept', 'Accepted')], string='State',
+        ('change', 'Change Req.'), ('accept', 'Accepted')], string='Status',
         default='draft', tracking=True)
     submission_date = fields.Datetime(
         'Submission Date', readonly=True,
