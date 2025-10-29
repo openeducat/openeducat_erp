@@ -30,6 +30,9 @@ class OpResultLine(models.Model):
     marksheet_line_id = fields.Many2one(
         'op.marksheet.line', 'Marksheet Line', ondelete='cascade')
     exam_id = fields.Many2one('op.exam', 'Exam', required=True)
+    session_id = fields.Many2one(
+        'op.exam.session', string='Exam Session',
+        related='exam_id.session_id', store=True, readonly=True)
     evaluation_type = fields.Selection(
         related='exam_id.session_id.evaluation_type', store=True)
     marks = fields.Integer('Marks', required=True)
@@ -37,6 +40,11 @@ class OpResultLine(models.Model):
     student_id = fields.Many2one('op.student', 'Student', required=True)
     status = fields.Selection([('pass', 'Pass'), ('fail', 'Fail')], 'Status',
                               compute='_compute_status', store=True)
+
+    _unique_result_line = models.Constraint(
+        'unique(exam_id, student_id)',
+        'Result line for this student and exam already exists!'
+    )
 
     @api.constrains('marks', 'marks')
     def _check_marks(self):

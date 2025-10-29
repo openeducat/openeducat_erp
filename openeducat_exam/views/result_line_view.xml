@@ -73,9 +73,11 @@
             <field name="name">op.result.line.graph</field>
             <field name="model">op.result.line</field>
             <field name="arch" type="xml">
-                <graph string="Result Analysis" stacked="0">
+                <graph string="Result Analysis (Session / Exam)" type="bar" stacked="0">
+                    <field name="session_id" type="row"/>
                     <field name="exam_id" type="row"/>
                     <field name="status" type="col"/>
+                    <field name="id" type="measure" operator="count" string="Count"/>
                 </graph>
             </field>
         </record>

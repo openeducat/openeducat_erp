@@ -46,7 +46,7 @@ class OpExam(models.Model):
     state = fields.Selection(
         [('draft', 'Draft'), ('schedule', 'Scheduled'), ('held', 'Held'),
          ('result_updated', 'Result Updated'),
-         ('cancel', 'Cancelled'), ('done', 'Done')], 'State',
+         ('cancel', 'Cancelled'), ('done', 'Done')], 'Status',
         readonly=True, default='draft', tracking=True)
     note = fields.Text('Note')
     responsible_id = fields.Many2many('op.faculty', string='Responsible')
