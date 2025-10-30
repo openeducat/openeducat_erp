@@ -30,9 +30,9 @@ class OpAttendanceType(models.Model):
         'Name', size=20, required=True, tracking=True)
     active = fields.Boolean(default=True)
     present = fields.Boolean(
-        'Present ?', tracking=True)
+        'Present', tracking=True)
     excused = fields.Boolean(
-        'Excused ?', tracking=True)
+        'Excused', tracking=True)
     absent = fields.Boolean('Absent', tracking=True)
     late = fields.Boolean('Late', tracking=True)
     company_id = fields.Many2one(
