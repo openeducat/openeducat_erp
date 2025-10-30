@@ -73,7 +73,8 @@
                             <group>
                                 <field name="batch_id" context="{'course_id': course_id,'get_parent_batch':1}"
                                        readonly="state !='draft'"/>
-                                <field name="faculty_id" readonly="state !='draft'"/>
+                                <field name="faculty_id" readonly="state !='draft'"
+                                       domain="[('faculty_subject_ids','in',[subject_id])]"/>
                                 <field name="reviewer" readonly="state !='draft'"/>
                             </group>
                         </group>

@@ -43,7 +43,7 @@ class OpResultTemplate(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('result_generated', 'Result Generated')
-    ], string='State', default='draft', tracking=True)
+    ], string='Status', default='draft', tracking=True)
     active = fields.Boolean(default=True)
 
     @api.constrains('exam_session_id')
