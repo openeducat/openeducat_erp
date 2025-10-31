@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:17+0000\n"
-"PO-Revision-Date: 2025-04-29 09:17+0000\n"
+"POT-Creation-Date: 2025-10-30 10:20+0000\n"
+"PO-Revision-Date: 2025-10-30 10:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "<span class=\"o_stat_text\">Parents</span>"
-msgstr "<span class = \"o_stat_text\"> родители </span>"
+msgstr "<span class=\"o_stat_text\">Родители</span>"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
@@ -29,17 +29,22 @@ msgstr "Активный"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Archived"
-msgstr "Архивированный"
+msgstr "В архиве"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
 msgid "Can not create parent multiple times.!"
-msgstr "Не могу создать родителя несколько раз.!"
+msgstr "Невозможно создать родительский элемент несколько раз.!"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_relationship_unique_relationship_name
 msgid "Can not create relationship multiple times.!"
-msgstr "Не могу создать отношения несколько раз.!"
+msgstr "Невозможно создать отношения несколько раз.!"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Child of"
+msgstr "Дитя"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
@@ -50,36 +55,50 @@ msgstr "Создать родительского пользователя"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_uid
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_uid
 msgid "Created by"
-msgstr "Создан"
+msgstr "Создано"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_date
 msgid "Created on"
-msgstr "Создан на"
+msgstr "Создано"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Daughter of"
+msgstr "Дочь"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__display_name
 msgid "Display Name"
 msgstr "Отображаемое имя"
 
 #. module: openeducat_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
-msgid "Group By..."
-msgstr "Группа по ..."
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__email
+msgid "Email"
+msgstr "Электронная почта"
 
 #. module: openeducat_parent
 #: model:ir.module.category,description:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,description:openeducat_parent.module_category_openeducat_parent
 msgid "Helps you manage your institutes different-different users."
-msgstr "Помогает вам управлять вашими институтами различными пользователями."
+msgstr "Помогает вам управлять разными пользователями ваших институтов."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__id
 msgid "ID"
 msgstr "ИДЕНТИФИКАТОР"
+
+#. module: openeducat_parent
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
+msgid "Import Template for Parent"
+msgstr "Импортировать шаблон для родителя"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -88,7 +107,7 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not             create Subject Registration!"
 msgstr ""
-"Неверное действие!\n"
+"Недопустимое действие!\n"
 " Родитель не может создать регистрацию субъекта!"
 
 #. module: openeducat_parent
@@ -98,20 +117,20 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not edit             Subject Registration!"
 msgstr ""
-"Неверное действие!\n"
-" Родитель не может редактировать регистрацию предмета!"
+"Недопустимое действие!\n"
+" Родитель не может редактировать регистрацию субъекта!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_uid
 msgid "Last Updated by"
-msgstr "Последнее обновлено"
+msgstr "Последнее обновление:"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "Последнее обновлено"
+msgstr "Последнее обновление:"
 
 #. module: openeducat_parent
 #: model:res.groups,name:openeducat_parent.group_op_parent_manager
@@ -121,7 +140,7 @@ msgstr "Менеджер"
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__mobile
 msgid "Mobile"
-msgstr "Мобильный"
+msgstr "мобильный"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__name
@@ -134,17 +153,17 @@ msgstr "Имя"
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
 #: model:ir.module.category,name:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,name:openeducat_parent.module_category_openeducat_parent
+#: model:res.groups.privilege,name:openeducat_parent.module_privilege_openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
 msgid "Parent"
-msgstr "Родительский"
+msgstr "Родитель"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Parent Name"
-msgstr "Родительское имя"
+msgstr "Имя родителя"
 
 #. module: openeducat_parent
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_view
@@ -156,7 +175,7 @@ msgstr "Родители"
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__relationship_id
 msgid "Relation with Student"
-msgstr "Отношение со студентом"
+msgstr "Отношения со студентом"
 
 #. module: openeducat_parent
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_relationship_view
@@ -168,6 +187,11 @@ msgid "Relationships"
 msgstr "Отношения"
 
 #. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Son of"
+msgstr "Сын"
+
+#. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
 msgid "Student"
 msgstr "Студент"
@@ -176,18 +200,18 @@ msgstr "Студент"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Student(s)"
-msgstr "Студент (ы)"
+msgstr "Студент(ы)"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_subject_registration
 msgid "Subject Registration Details"
-msgstr "Регистрационные детали субъекта"
+msgstr "Детали регистрации субъекта"
 
 #. module: openeducat_parent
 #. odoo-python
 #: code:addons/openeducat_parent/models/parent.py:0
 msgid "Update parent email id first."
-msgstr "Сначала обновите родительский идентификатор электронной почты."
+msgstr "Сначала обновите адрес электронной почты родителя."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id

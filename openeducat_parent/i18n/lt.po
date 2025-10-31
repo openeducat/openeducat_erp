@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:17+0000\n"
-"PO-Revision-Date: 2025-04-29 09:17+0000\n"
+"POT-Creation-Date: 2025-10-30 10:20+0000\n"
+"PO-Revision-Date: 2025-10-30 10:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "<span class=\"o_stat_text\">Parents</span>"
-msgstr "<span class = \"o_stat_text\"> vecāki </span>"
+msgstr "<span class=\"o_stat_text\">Vecāki</span>"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
@@ -34,23 +34,28 @@ msgstr "Arhivēts"
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
 msgid "Can not create parent multiple times.!"
-msgstr "Nevar vairākas reizes radīt vecāku.!"
+msgstr "Nevar izveidot vecāku vairākas reizes.!"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_relationship_unique_relationship_name
 msgid "Can not create relationship multiple times.!"
-msgstr "Nevar vairākas reizes radīt attiecības.!"
+msgstr "Nevar izveidot attiecības vairākas reizes.!"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Child of"
+msgstr "Bērns no"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Create Parent User"
-msgstr "Izveidojiet vecāku lietotāju"
+msgstr "Izveidot vecāku lietotāju"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_uid
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_uid
 msgid "Created by"
-msgstr "Izveidots ar"
+msgstr "Izveidoja"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
@@ -59,27 +64,41 @@ msgid "Created on"
 msgstr "Izveidots"
 
 #. module: openeducat_parent
-#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
-#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
-msgid "Display Name"
-msgstr "Displeja nosaukums"
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Daughter of"
+msgstr "Meita"
 
 #. module: openeducat_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
-msgid "Group By..."
-msgstr "Grupa ..."
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__display_name
+msgid "Display Name"
+msgstr "Parādāmais nosaukums"
+
+#. module: openeducat_parent
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__email
+msgid "Email"
+msgstr "E-pasts"
 
 #. module: openeducat_parent
 #: model:ir.module.category,description:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,description:openeducat_parent.module_category_openeducat_parent
 msgid "Helps you manage your institutes different-different users."
-msgstr "Palīdz pārvaldīt savus institūtus dažādus diferencētus lietotājus."
+msgstr "Palīdz pārvaldīt savus institūtus dažādus lietotājus."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__id
 msgid "ID"
-msgstr "Personas apliecība"
+msgstr "ID"
+
+#. module: openeducat_parent
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
+msgid "Import Template for Parent"
+msgstr "Importēt veidni vecākiem"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -89,7 +108,7 @@ msgid ""
 " Parent can not             create Subject Registration!"
 msgstr ""
 "Nederīga darbība!\n"
-" Vecāks nevar izveidot priekšmetu reģistrāciju!"
+" Vecāki nevar izveidot priekšmeta reģistrāciju!"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -99,13 +118,13 @@ msgid ""
 " Parent can not edit             Subject Registration!"
 msgstr ""
 "Nederīga darbība!\n"
-" Vecāks nevar rediģēt priekšmetu reģistrāciju!"
+" Vecāki nevar rediģēt priekšmeta reģistrāciju!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_uid
 msgid "Last Updated by"
-msgstr "Pēdējo reizi atjaunināts"
+msgstr "Pēdējo reizi atjaunināja"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
@@ -116,7 +135,7 @@ msgstr "Pēdējo reizi atjaunināts"
 #. module: openeducat_parent
 #: model:res.groups,name:openeducat_parent.group_op_parent_manager
 msgid "Manager"
-msgstr "Vadītājs"
+msgstr "Pārvaldnieks"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__mobile
@@ -128,13 +147,13 @@ msgstr "Mobilais"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__name
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Name"
-msgstr "Nosaukt"
+msgstr "Vārds"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
 #: model:ir.module.category,name:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,name:openeducat_parent.module_category_openeducat_parent
+#: model:res.groups.privilege,name:openeducat_parent.module_privilege_openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
@@ -168,6 +187,11 @@ msgid "Relationships"
 msgstr "Attiecības"
 
 #. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Son of"
+msgstr "Dēls"
+
+#. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
 msgid "Student"
 msgstr "Students"
@@ -176,7 +200,7 @@ msgstr "Students"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Student(s)"
-msgstr "Students (-i)"
+msgstr "Students(-i)"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_subject_registration
@@ -187,7 +211,7 @@ msgstr "Priekšmeta reģistrācijas informācija"
 #. odoo-python
 #: code:addons/openeducat_parent/models/parent.py:0
 msgid "Update parent email id first."
-msgstr "Vispirms atjauniniet vecāku e -pasta ID."
+msgstr "Vispirms atjauniniet vecāku e-pasta ID."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:20+0000\n"
-"PO-Revision-Date: 2025-04-29 09:20+0000\n"
+"POT-Creation-Date: 2025-10-30 10:22+0000\n"
+"PO-Revision-Date: 2025-10-30 10:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "45"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
 msgid "<b style=\"margin-left:10px;\">To Date:</b>"
-msgstr "<b style =“保证金左：10px;”>截至日期：</b>"
+msgstr "<b style=\"margin-left:10px;\">迄今为止：</b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
@@ -68,7 +68,7 @@ msgstr "<b>批次：</b>"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
 msgid "<b>Class :</b>"
-msgstr "<b>类：</b>"
+msgstr "<b>类别：</b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
@@ -83,7 +83,7 @@ msgstr "<b>结束：</b>"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
 msgid "<b>Faculty Name:</b>"
-msgstr "<b>教师名称：</b>"
+msgstr "<b>教师姓名：</b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
@@ -93,12 +93,12 @@ msgstr "<b>教师：</b>"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
 msgid "<b>From Date :</b>"
-msgstr "<b>从日期开始：</b>"
+msgstr "<b>开始日期：</b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
 msgid "<b>From Date:</b>"
-msgstr "<b>从日期开始：</b>"
+msgstr "<b>开始日期：</b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
@@ -113,31 +113,22 @@ msgstr "<b>主题：</b>"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
 msgid "<b>To Date :</b>"
-msgstr "<b>到期：</b>"
-
-#. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
-msgid ""
-"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
-"title=\"Arrow\"/>"
-msgstr ""
-"<i class =“ fa fa-long-arrow-right mx-2” aria-label =“箭头图标” title =“ "
-"arrow”/>"
+msgstr "<b>迄今为止：</b>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
 msgid "<span class=\"fa fa-info-circle\" title=\"Openeducat Enterprise Module\"/>"
-msgstr "<span class =“ fa fa-info-circle” title =“ openeducat企业模块”/>"
+msgstr "<span class=\"fa fa-info-circle\" title=\"Openeducat 企业模块\"/>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_teacher_generate
 msgid "<span class=\"ml-2\">Faculty TimeTable</span>"
-msgstr "<span class =“ ML-2”>教职时间表</span>"
+msgstr "<span class=\"ml-2\">教师时间表</span>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.report_timetable_student_generate
 msgid "<span class=\"ml-2\">TimeTable</span>"
-msgstr "<span class =“ ML-2”>时间表</span>"
+msgstr "<span class=\"ml-2\">时间表</span>"
 
 #. module: openeducat_timetable
 #: model:mail.template,body_html:openeducat_timetable.session_details_changes
@@ -206,13 +197,14 @@ msgid ""
 "                                                            <li>\n"
 "                                                                Start Time:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"format_datetime(object.start_datetime, tz=user.tz)\"/>\n"
+"                                                                    <t t-set=\"zone\" t-value=\"ctx.get('timezone')\"/>\n"
+"                                                                    <t t-out=\"format_datetime(object.start_datetime, tz=zone)\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                End Time:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"format_datetime(object.end_datetime, tz=user.tz)\"/>\n"
+"                                                                    <t t-out=\"format_datetime(object.end_datetime, tz=zone)\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "\n"
@@ -280,7 +272,7 @@ msgstr "是"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
 msgid "AM/PM"
-msgstr "am/pm"
+msgstr "上午/下午"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction
@@ -296,17 +288,17 @@ msgstr "积极的"
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "Archived"
-msgstr "存档"
+msgstr "已存档"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
 msgid "Are you sure you want to confirm selected sessions ?"
-msgstr "您确定要确认选定的会议吗？"
+msgstr "您确定要确认选定的会话吗？"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_attachment_count
 msgid "Attachment Count"
-msgstr "依恋数"
+msgstr "附件计数"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__batch_id
@@ -319,7 +311,7 @@ msgstr "批"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_batch_constraint
 msgid "Batch Constraint"
-msgstr "批处理约束"
+msgstr "批次约束"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_batch_and_subject_constraint
@@ -345,7 +337,7 @@ msgstr "课堂"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_classroom_constraint
 msgid "Classroom Constraint"
-msgstr "教室约束"
+msgstr "课堂限制"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_generate_time_table_form
@@ -356,7 +348,7 @@ msgstr "关闭"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__color
 msgid "Color Index"
-msgstr "颜色索引"
+msgstr "颜色指数"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__company_id
@@ -404,7 +396,7 @@ msgstr "课程"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_uid
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_uid
 msgid "Created by"
-msgstr "由"
+msgstr "创建者："
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__create_date
@@ -414,7 +406,7 @@ msgstr "由"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__create_date
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__create_date
 msgid "Created on"
-msgstr "创建"
+msgstr "创建于"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__day
@@ -435,8 +427,12 @@ msgstr "删除"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_student_generate__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_teacher_generate__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__display_name
 msgid "Display Name"
@@ -473,13 +469,13 @@ msgstr "结束日期"
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/time_table_report.py:0
 msgid "End Date cannot be set before                 Start Date."
-msgstr "结束日期无法在开始日期之前设置。"
+msgstr "结束日期不能设置在开始日期之前。"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/generate_timetable.py:0
-msgid "End Date cannot be set before             Start Date."
-msgstr "结束日期无法在开始日期之前设置。"
+msgid "End Date cannot be set before Start Date."
+msgstr "结束日期不能设置在开始日期之前。"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__session_end_time
@@ -491,7 +487,7 @@ msgstr "结束时间"
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 msgid "End Time cannot be set before Start Time."
-msgstr "结束时间在开始时间之前无法设置。"
+msgstr "结束时间不能设置在开始时间之前。"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__faculty_id
@@ -505,7 +501,7 @@ msgstr "学院"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__is_faculty_constraint
 msgid "Faculty Constraint"
-msgstr "教师约束"
+msgstr "师资限制"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_follower_ids
@@ -515,7 +511,7 @@ msgstr "追随者"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "追随者（合作伙伴）"
+msgstr "关注者（合作伙伴）"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__4
@@ -533,12 +529,12 @@ msgstr "生成会话"
 #. module: openeducat_timetable
 #: model:ir.actions.act_window,name:openeducat_timetable.act_open_time_table_report_view
 msgid "Generate Sessions Report"
-msgstr "生成会议报告"
+msgstr "生成会话报告"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_gen_time_table_line
 msgid "Generate Time Table Lines"
-msgstr "生成时间表线"
+msgstr "生成时间表行"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_time_table_report
@@ -556,30 +552,29 @@ msgid "Generate Timetable Report"
 msgstr "生成时间表报告"
 
 #. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
-msgid "Group By..."
-msgstr "小组by ..."
-
-#. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__has_message
 msgid "Has Message"
-msgstr "有消息"
+msgstr "有留言"
 
 #. module: openeducat_timetable
 #: model:ir.module.category,description:openeducat_timetable.module_category_all_op_discuss
 msgid "Helps you manage your institutes different-different users."
-msgstr "帮助您管理机构不同不同的用户。"
+msgstr "帮助您管理机构中不同的用户。"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__hour
 msgid "Hours"
-msgstr "小时"
+msgstr "时间"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_student_generate__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_teacher_generate__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__id
 msgid "ID"
@@ -588,19 +583,19 @@ msgstr "ID"
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "如果已检查，新消息需要您的注意。"
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "如果已检查，有些消息会出现交货错误。"
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 msgid "Import Template for Sessions"
-msgstr "会话的导入模板"
+msgstr "会话导入模板"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_is_follower
@@ -615,7 +610,7 @@ msgstr "是追随者"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_uid
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_uid
 msgid "Last Updated by"
-msgstr "最后更新"
+msgstr "最后更新者"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__write_date
@@ -625,7 +620,7 @@ msgstr "最后更新"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__write_date
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__write_date
 msgid "Last Updated on"
-msgstr "最后更新"
+msgstr "最后更新时间"
 
 #. module: openeducat_timetable
 #: model:res.groups,name:openeducat_timetable.group_op_timetable_manager
@@ -640,7 +635,7 @@ msgstr "消息传递错误"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_ids
 msgid "Messages"
-msgstr "消息"
+msgstr "留言"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__minute
@@ -673,7 +668,7 @@ msgstr "不"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction_counter
 msgid "Number of Actions"
-msgstr "动作数量"
+msgstr "动作数"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_error_counter
@@ -683,17 +678,17 @@ msgstr "错误数"
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "需要操作的消息数量"
+msgstr "需要采取行动的消息数量"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "带交货错误的消息数"
+msgstr "发送错误的消息数"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_op_faculty
 msgid "OpenEduCat Faculty"
-msgstr "开放的教师"
+msgstr "OpenEduCat 教师"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__pm
@@ -728,7 +723,7 @@ msgstr "报告"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "SMS交付错误"
+msgstr "短信发送错误"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__5
@@ -753,28 +748,28 @@ msgstr "选择一周的日期范围！"
 msgid ""
 "Selecting this option will prevent session creation for the same batch and "
 "subject on the same date and time."
-msgstr "选择此选项将防止在同一日期和时间对相同批次的会话创建。"
+msgstr "选择此选项将阻止在同一日期和时间为同一批次和主题创建会话。"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
 msgid ""
 "Selecting this option will prevent session creation for the same batch, even"
 " if it's for a different subject."
-msgstr "选择此选项将防止相同批次的会话创建，即使是针对其他主题的。"
+msgstr "选择此选项将阻止为同一批次创建会话，即使它是针对不同的主题。"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
 msgid ""
 "Selecting this option will prevent session creation in the same classroom on"
 " the same date and time"
-msgstr "选择此选项将防止在同一日期和时间在同一教室中创建会话"
+msgstr "选择此选项将阻止在同一教室的同一日期和时间创建会话"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
 msgid ""
 "Selecting this option will prevent session creation with the same faculty on"
 " the same date and time."
-msgstr "选择此选项将防止在同一日期和时间与相同教职员工的会话创建。"
+msgstr "选择此选项将阻止在同一日期和时间与同一教师创建课程。"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__sequence
@@ -799,27 +794,27 @@ msgstr "会话确认"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__session_count
 msgid "Session Count"
-msgstr "会话计数"
+msgstr "会话数"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_tree
 msgid "Session Line"
-msgstr "会话行"
+msgstr "会话线"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
 msgid "Session Time"
-msgstr "会话时间"
+msgstr "会议时间"
 
 #. module: openeducat_timetable
 #: model:mail.template,name:openeducat_timetable.session_details_changes
 msgid "Session details - Send by Email"
-msgstr "会话详细信息 - 通过电子邮件发送"
+msgstr "会议详细信息 - 通过电子邮件发送"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__timing
 msgid "Session timing"
-msgstr "会话计时"
+msgstr "会话时间"
 
 #. module: openeducat_timetable
 #: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_session_view
@@ -838,7 +833,7 @@ msgstr "会议"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
 msgid "Set to Draft"
-msgstr "准备起草"
+msgstr "设置为草稿"
 
 #. module: openeducat_timetable
 #: model:ir.ui.menu,name:openeducat_timetable.menu_settings
@@ -889,7 +884,7 @@ msgstr "星期日"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_form
 msgid "Table Line"
-msgstr "表行"
+msgstr "表线"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__3
@@ -907,42 +902,42 @@ msgstr "时间表"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines
 msgid "Time Table Lines"
-msgstr "时间表线"
+msgstr "时间表线路"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_1
 msgid "Time Table Lines1"
-msgstr "时间表线1"
+msgstr "时间表线路1"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_2
 msgid "Time Table Lines2"
-msgstr "时间表线2"
+msgstr "时间表线路2"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_3
 msgid "Time Table Lines3"
-msgstr "时间表线3"
+msgstr "时间表线路3"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_4
 msgid "Time Table Lines4"
-msgstr "时间表线4"
+msgstr "时间表线路4"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_5
 msgid "Time Table Lines5"
-msgstr "时间表线5"
+msgstr "时间表线路5"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_6
 msgid "Time Table Lines6"
-msgstr "时间表线6"
+msgstr "时间表线路6"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_7
 msgid "Time Table Lines7"
-msgstr "时间表线7"
+msgstr "时间表线路7"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
@@ -952,29 +947,29 @@ msgstr "时间表报告"
 #. module: openeducat_timetable
 #: model:ir.actions.report,name:openeducat_timetable.report_teacher_timetable_generate
 msgid "TimeTable for Faculties"
-msgstr "适合教师的时间表"
+msgstr "院系时间表"
 
 #. module: openeducat_timetable
 #: model:ir.actions.report,name:openeducat_timetable.report_student_timetable_generate
 msgid "TimeTable for Students"
-msgstr "学生的时间表"
+msgstr "学生时间表"
 
 #. module: openeducat_timetable
 #: model:ir.module.category,name:openeducat_timetable.module_category_all_op_discuss
-#: model:ir.module.category,name:openeducat_timetable.module_category_openeducat_timetable
 #: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable
+#: model:res.groups.privilege,name:openeducat_timetable.module_privilege_openeducat_timetable
 msgid "Timetable"
 msgstr "时间表"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_student_generate
 msgid "Timetable Student Report"
-msgstr "时间表学生报告"
+msgstr "时间表 学生报告"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_teacher_generate
 msgid "Timetable Teacher Report"
-msgstr "时间表教师报告"
+msgstr "时间表 教师报告"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__timing_id
@@ -985,7 +980,7 @@ msgstr "定时"
 #. module: openeducat_timetable
 #: model:ir.actions.act_window,name:openeducat_timetable.act_open_op_timing_view
 msgid "Timings"
-msgstr "时间"
+msgstr "时间安排"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
@@ -1012,12 +1007,12 @@ msgstr "用户"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__website_message_ids
 msgid "Website Messages"
-msgstr "网站消息"
+msgstr "网站留言"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__website_message_ids
 msgid "Website communication history"
-msgstr "网站通信历史"
+msgstr "网站通讯历史"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__gen_time_table_line__day__2
@@ -1034,7 +1029,7 @@ msgstr "星期"
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_session_confirmation
 msgid "Wizard for Multiple Session Confirmation"
-msgstr "向导多个会话确认"
+msgstr "多会话确认向导"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
@@ -1047,7 +1042,7 @@ msgstr "是的"
 msgid ""
 "You cannot create a session for the same batch on same time and for same "
 "subject"
-msgstr "您不能同时和同一主题创建同一批次的会话"
+msgstr "您不能为同一批次、同一时间、同一主题创建会话"
 
 #. module: openeducat_timetable
 #. odoo-python
@@ -1055,26 +1050,21 @@ msgstr "您不能同时和同一主题创建同一批次的会话"
 msgid ""
 "You cannot create a session for the same batch on same time even if it is "
 "different subject"
-msgstr "即使是不同的主题，您也不能同时创建同一批次的会话"
+msgstr "即使主题不同，也不能在同一时间为同一批创建会话"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 msgid "You cannot create a session with same classroom on same date and time"
-msgstr "您不能在同一日期和时间与同一教室创建会话"
+msgstr "您无法在同一日期和时间创建同一教室的会话"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 msgid "You cannot create a session with same faculty on same date and time"
-msgstr "您不能在同一日期和时间与同一教师创建会议"
-
-#. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
-msgid "or"
-msgstr "或者"
+msgstr "您无法在相同的日期和时间与相同的教师创建课程"
 
 #. module: openeducat_timetable
 #: model:mail.template,subject:openeducat_timetable.session_details_changes
 msgid "{{ object.get_subject() }}"
-msgstr "{{object.get_subject（）}}"
+msgstr "{{ object.get_subject() }}"

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 06:54+0000\n"
-"PO-Revision-Date: 2025-04-29 06:54+0000\n"
+"POT-Creation-Date: 2025-10-30 09:51+0000\n"
+"PO-Revision-Date: 2025-10-30 09:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgid ""
 "                                                        </b>"
 msgstr ""
 "<b>考试\n"
-"                                                            姓名\n"
+"                                                            名称\n"
 "                                                        </b>"
 
 #. module: openeducat_exam
@@ -69,12 +69,12 @@ msgstr "<b>考试名称：</b>"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<b>Hall Ticket</b>"
-msgstr "<b>霍尔票</b>"
+msgstr "<b>大厅门票</b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<b>Roll No :</b>"
-msgstr "<b>滚动号：</b>"
+msgstr "<b>卷号：</b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -84,18 +84,18 @@ msgid ""
 "                                                        </b>"
 msgstr ""
 "<b>学生\n"
-"                                                            姓名\n"
+"                                                            名称\n"
 "                                                        </b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<b>Student Name :</b>"
-msgstr "<b>学生名称：</b>"
+msgstr "<b>学生姓名：</b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "<b>Student Name:</b>"
-msgstr "<b>学生名称：</b>"
+msgstr "<b>学生姓名：</b>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -115,7 +115,7 @@ msgstr "缺席的"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Absent Attendees"
-msgstr "缺席与会者"
+msgstr "缺席出席者"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_needaction
@@ -138,7 +138,7 @@ msgstr "积极的"
 #. odoo-python
 #: code:addons/openeducat_exam/models/result_template.py:0
 msgid "All subject exam should be done."
-msgstr "所有主题考试都应进行。"
+msgstr "所有科目考试都应该完成。"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
@@ -152,7 +152,7 @@ msgstr "所有主题考试都应进行。"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_search
 msgid "Archived"
-msgstr "存档"
+msgstr "已存档"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_attachment_count
@@ -160,24 +160,24 @@ msgstr "存档"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_attachment_count
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_attachment_count
 msgid "Attachment Count"
-msgstr "依恋数"
+msgstr "附件计数"
 
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_attendees_unique_attendees
 msgid "Attendee must be unique per exam."
-msgstr "参加者必须是每次考试的独特之处。"
+msgstr "每次考试的参加者必须是唯一的。"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__attendees_line
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_held_exam__attendees_line
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 msgid "Attendees"
-msgstr "与会者"
+msgstr "出席者"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__attendees_count
 msgid "Attendees Count"
-msgstr "与会者数"
+msgstr "出席人数"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__batch_id
@@ -204,15 +204,16 @@ msgid "Cancelled"
 msgstr "取消"
 
 #. module: openeducat_exam
-#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__capacity
-msgid "Capacity"
-msgstr "容量"
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Cannot cancel an exam that is already 'Done'."
+msgstr "无法取消已“完成”的考试。"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_room.py:0
 msgid "Capacity over Classroom capacity!"
-msgstr "能力超过教室的容量！"
+msgstr "容量超过教室容量！"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__classroom_id
@@ -228,17 +229,17 @@ msgstr "代码"
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_session_unique_exam_session_code
 msgid "Code should be unique per exam session!"
-msgstr "代码应该是唯一的每个考试课程！"
+msgstr "每次考试的代码应该是唯一的！"
 
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_type_unique_exam_type_code
 msgid "Code should be unique per exam type!"
-msgstr "代码应为每次考试类型唯一！"
+msgstr "每个考试类型的代码应该是唯一的！"
 
 #. module: openeducat_exam
 #: model:ir.model.constraint,message:openeducat_exam.constraint_op_exam_unique_exam_code
 msgid "Code should be unique per exam!"
-msgstr "代码应为每次考试唯一！"
+msgstr "每次考试的代码应该是唯一的！"
 
 #. module: openeducat_exam
 #: model:ir.ui.menu,name:openeducat_exam.menu_exam_configuration
@@ -274,7 +275,7 @@ msgstr "课程"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__create_uid
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__create_uid
 msgid "Created by"
-msgstr "由"
+msgstr "创建者："
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__create_date
@@ -290,7 +291,7 @@ msgstr "由"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__create_date
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__create_date
 msgid "Created on"
-msgstr "创建"
+msgstr "创建于"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
@@ -315,6 +316,9 @@ msgstr "描述"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__display_name
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__display_name
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__display_name
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_marksheet_report__display_name
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_ticket__display_name
+#: model:ir.model.fields,field_description:openeducat_exam.field_res_partner__display_name
 msgid "Display Name"
 msgstr "显示名称"
 
@@ -345,7 +349,7 @@ msgstr "结束日期"
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_session.py:0
 msgid "End Date cannot be set before Start Date."
-msgstr "结束日期无法在开始日期之前设置。"
+msgstr "结束日期不能设置在开始日期之前。"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__end_time
@@ -356,26 +360,32 @@ msgstr "结束时间"
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
+msgid "End Time and start time can not set at same time."
+msgstr "结束时间和开始时间不能同时设置。"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
 msgid "End Time cannot be set before Start Time."
-msgstr "结束时间在开始时间之前无法设置。"
+msgstr "结束时间不能设置在开始时间之前。"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_room.py:0
 msgid "Enter proper Capacity"
-msgstr "输入适当的容量"
+msgstr "输入正确的容量"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/result_line.py:0
 msgid "Enter proper Marks or Percentage!"
-msgstr "输入适当的标记或百分比！"
+msgstr "输入正确的分数或百分比！"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/marksheet_line.py:0
 msgid "Enter proper marks or percentage!"
-msgstr "输入适当的标记或百分比！"
+msgstr "输入正确的分数或百分比！"
 
 #. module: openeducat_exam
 #. odoo-python
@@ -387,7 +397,7 @@ msgstr "输入正确的标记！"
 #. odoo-python
 #: code:addons/openeducat_exam/models/marksheet_register.py:0
 msgid "Enter proper pass or fail!"
-msgstr "输入正确的通行证或失败！"
+msgstr "输入正确的通过或失败！"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__evaluation_type
@@ -405,7 +415,7 @@ msgstr "进化类型"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__exam_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__name
 #: model:ir.module.category,name:openeducat_exam.module_category_all_op_exam
-#: model:ir.module.category,name:openeducat_exam.module_category_openeducat_exam
+#: model:res.groups.privilege,name:openeducat_exam.module_category_openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_calendar_view
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
@@ -433,12 +443,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Exam Attendees"
-msgstr "考试参与者"
+msgstr "考试参加者"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_pivot
 msgid "Exam Attendees Pivot"
-msgstr "考试参与者枢纽"
+msgstr "考试参加者枢轴"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__exam_code
@@ -449,7 +459,7 @@ msgstr "考试代码"
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_report_openeducat_exam_report_marksheet_report
 msgid "Exam Marksheet Report"
-msgstr "考试标记报告报告"
+msgstr "考试成绩单报告"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
@@ -467,13 +477,13 @@ msgstr "考试枢轴"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_room_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_room_tree
 msgid "Exam Room"
-msgstr "考试室"
+msgstr "考场"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_room_distribution_view
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Exam Room Distribution"
-msgstr "考试室分配"
+msgstr "考场分布"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_room_view
@@ -481,7 +491,7 @@ msgstr "考试室分配"
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_room_sub
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Exam Rooms"
-msgstr "考试室"
+msgstr "考场"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_exam_session
@@ -496,17 +506,17 @@ msgstr "考试室"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Exam Session"
-msgstr "考试课程"
+msgstr "考试时段"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__exam_code
 msgid "Exam Session Code"
-msgstr "考试会话代码"
+msgstr "考试编号"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_pivot
 msgid "Exam Session Pivot"
-msgstr "考试会议枢轴"
+msgstr "考试课程枢轴"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_session_view
@@ -522,8 +532,8 @@ msgstr "考试票报告"
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
-msgid "Exam Time should in between Exam Session Dates."
-msgstr "考试时间应在考试期间之间。"
+msgid "Exam Time should be within the Exam Session Dates."
+msgstr "考试时间应在考试日期内。"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_exam_type
@@ -539,6 +549,26 @@ msgstr "考试类型"
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_type_sub
 msgid "Exam Types"
 msgstr "考试类型"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid ""
+"Exam can only be marked as 'Done' from 'Held'                     or 'Result"
+" Updated' state."
+msgstr "考试只能从“已举行”或“结果已更新”状态标记为“完成”。"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Exam can only be marked as 'Held' from 'Scheduled' state."
+msgstr "考试只能从“已安排”状态标记为“举行”。"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Exam can only be scheduled from 'Draft' state."
+msgstr "考试只能从“草稿”状态安排。"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__exam_ids
@@ -575,7 +605,7 @@ msgstr "追随者"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_partner_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "追随者（合作伙伴）"
+msgstr "关注者（合作伙伴）"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_form
@@ -586,7 +616,7 @@ msgstr "生成结果"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__generated_by
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Generated By"
-msgstr "生成"
+msgstr "生成者"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__generated_date
@@ -615,17 +645,7 @@ msgstr "等级配置"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_template_form
 msgid "Grades"
-msgstr "等级"
-
-#. module: openeducat_exam
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_type_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
-msgid "Group By..."
-msgstr "小组by ..."
+msgstr "成绩"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__has_message
@@ -633,7 +653,7 @@ msgstr "小组by ..."
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__has_message
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__has_message
 msgid "Has Message"
-msgstr "有消息"
+msgstr "有留言"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__held
@@ -646,20 +666,19 @@ msgstr "握住"
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_held_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Held Exam"
 msgstr "举行考试"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_held_exam_view
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Held Exam Wizard"
 msgstr "举行考试向导"
 
 #. module: openeducat_exam
 #: model:ir.module.category,description:openeducat_exam.module_category_all_op_exam
-#: model:ir.module.category,description:openeducat_exam.module_category_openeducat_exam
 msgid "Helps you manage your institutes different-different users."
-msgstr "帮助您管理机构不同不同的用户。"
+msgstr "帮助您管理机构中不同的用户。"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__id
@@ -674,6 +693,9 @@ msgstr "帮助您管理机构不同不同的用户。"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__id
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_marksheet_report__id
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_ticket__id
+#: model:ir.model.fields,field_description:openeducat_exam.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -683,7 +705,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__message_needaction
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "如果已检查，新消息需要您的注意。"
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__message_has_error
@@ -695,7 +717,7 @@ msgstr "如果已检查，新消息需要您的注意。"
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_has_error
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "如果已检查，有些消息会出现交货错误。"
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_is_follower
@@ -719,7 +741,7 @@ msgstr "是追随者"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__write_uid
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__write_uid
 msgid "Last Updated by"
-msgstr "最后更新"
+msgstr "最后更新者"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__write_date
@@ -735,7 +757,7 @@ msgstr "最后更新"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__write_date
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__write_date
 msgid "Last Updated on"
-msgstr "最后更新"
+msgstr "最后更新时间"
 
 #. module: openeducat_exam
 #: model:res.groups,name:openeducat_exam.group_op_exam_admin
@@ -747,7 +769,7 @@ msgstr "经理"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__marks
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Marks"
-msgstr "标记"
+msgstr "马克"
 
 #. module: openeducat_exam
 #: model:ir.actions.report,name:openeducat_exam.report_marksheet
@@ -762,18 +784,18 @@ msgstr "标记表"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
 msgid "Marksheet Line"
-msgstr "rarksheet系列"
+msgstr "标记表线"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_marksheet_line_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_marksheet_line_sub
 msgid "Marksheet Lines"
-msgstr "标记线"
+msgstr "标记表线"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_pivot
 msgid "Marksheet Pivot"
-msgstr "标记枢轴"
+msgstr "标记表枢轴"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_marksheet_register
@@ -784,19 +806,19 @@ msgstr "标记枢轴"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_tree
 msgid "Marksheet Register"
-msgstr "Marksheet寄存器"
+msgstr "记分表登记"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_marksheet_register_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_marksheet_register_sub
 msgid "Marksheet Registers"
-msgstr "马克表寄存器"
+msgstr "标记表寄存器"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__marksheet_line
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_form
 msgid "Marksheets"
-msgstr "标记表"
+msgstr "记分表"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_grade_configuration__max_per
@@ -807,7 +829,7 @@ msgstr "最大百分比"
 #. odoo-python
 #: code:addons/openeducat_exam/models/grade_configuration.py:0
 msgid "Maximum percentage should not be greater than 100"
-msgstr "最大百分比不应大于100"
+msgstr "最大百分比不应大于 100"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_has_error
@@ -823,7 +845,7 @@ msgstr "消息传递错误"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_ids
 msgid "Messages"
-msgstr "消息"
+msgstr "留言"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_grade_configuration__min_per
@@ -834,7 +856,7 @@ msgstr "最低百分比"
 #. odoo-python
 #: code:addons/openeducat_exam/models/grade_configuration.py:0
 msgid "Minimum percentage should be not greater than Maximum percentage"
-msgstr "最低百分比应不大于最大百分比"
+msgstr "最小百分比不应大于最大百分比"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -843,7 +865,7 @@ msgid ""
 "                                                    of Passing"
 msgstr ""
 "月/年\n"
-"                                                    传球"
+"                                                    通过的"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__name
@@ -852,6 +874,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_type_search
 msgid "Name"
 msgstr "姓名"
+
+#. module: openeducat_exam
+#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__capacity
+msgid "No of Seats"
+msgstr "座位数"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_session__evaluation_type__normal
@@ -887,7 +914,7 @@ msgstr "错误数"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__message_needaction_counter
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "需要操作的消息数量"
+msgstr "需要采取行动的消息数量"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__message_has_error_counter
@@ -895,7 +922,7 @@ msgstr "需要操作的消息数量"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__message_has_error_counter
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "带交货错误的消息数"
+msgstr "发送错误的消息数"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -904,7 +931,7 @@ msgid ""
 "                                                    Grade"
 msgstr ""
 "获得\n"
-"                                                    年级"
+"                                                    等级"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -913,7 +940,7 @@ msgid ""
 "                                                    Marks"
 msgstr ""
 "获得\n"
-"                                                    标记"
+"                                                    马克"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -923,8 +950,8 @@ msgid ""
 "                                                    Marks"
 msgstr ""
 "获得\n"
-"                                                    标记/总数\n"
-"                                                    标记"
+"                                                    分数/总分\n"
+"                                                    马克"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_marksheet_line__status__pass
@@ -938,19 +965,19 @@ msgid ""
 "Passing\n"
 "                                                    Marks"
 msgstr ""
-"通过\n"
-"                                                    标记"
+"路过\n"
+"                                                    马克"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__min_marks
 msgid "Passing Marks"
-msgstr "传球标记"
+msgstr "及格分数"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
 msgid "Passing Marks can't be greater than Total Marks"
-msgstr "传球标记不能大于总数"
+msgstr "及格分数不能高于总分"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__percentage
@@ -962,19 +989,19 @@ msgstr "百分比"
 #. odoo-python
 #: code:addons/openeducat_exam/models/result_template.py:0
 msgid "Percentage range conflict with other record."
-msgstr "百分比范围冲突与其他记录。"
+msgstr "百分比范围与其他记录冲突。"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_attendees.py:0
-msgid "Please Enter Marks between 0 to %d"
-msgstr "请输入0至％D之间的标记"
+msgid "Please Enter Marks between 0 and %d for a present student."
+msgstr "请为当前学生输入 0 到 %d 之间的分数。"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
 msgid "Please Enter both Room And student"
-msgstr "请输入房间和学生"
+msgstr "请同时输入房间和学生"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_attendees__status__present
@@ -1011,7 +1038,7 @@ msgstr "结果日期"
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_result_template__state__result_generated
 msgid "Result Generated"
-msgstr "结果产生"
+msgstr "结果生成"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_result_line
@@ -1025,7 +1052,7 @@ msgstr "结果线"
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_result_line_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_result_line_sub
 msgid "Result Lines"
-msgstr "结果线"
+msgstr "结果行"
 
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_result_template
@@ -1046,18 +1073,29 @@ msgstr "结果模板"
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__result_updated
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 msgid "Result Updated"
-msgstr "结果更新了"
+msgstr "结果已更新"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_grade_configuration__result
 msgid "Result to Display"
-msgstr "结果显示"
+msgstr "显示结果"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__result_line
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_form
 msgid "Results"
 msgstr "结果"
+
+#. module: openeducat_exam
+#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__results_entered
+msgid "Results Entered"
+msgstr "输入结果"
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Results can only be updated for exams in 'Held' state."
+msgstr "只能更新处于“已举行”状态的考试的结果。"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_attendees__room_id
@@ -1072,13 +1110,13 @@ msgstr "房间容量"
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_room_distribution
 msgid "Room Distribution"
-msgstr "房间分配"
+msgstr "房间分布"
 
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
 msgid "Room capacity must be greater than total number of student"
-msgstr "房间的容量必须大于学生总数"
+msgstr "房间容量必须大于学生总数"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_has_sms_error
@@ -1086,7 +1124,7 @@ msgstr "房间的容量必须大于学生总数"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__message_has_sms_error
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "SMS交付错误"
+msgstr "短信发送错误"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
@@ -1097,18 +1135,18 @@ msgstr "日程"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_room_distribution_form
 msgid "Schedule Exam"
-msgstr "时间表考试"
+msgstr "安排考试"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam__state__schedule
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_session__state__schedule
 msgid "Scheduled"
-msgstr "计划"
+msgstr "预定"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_form
 msgid "Set to Draft"
-msgstr "准备起草"
+msgstr "设置为草稿"
 
 #. module: openeducat_exam
 #: model:ir.ui.menu,name:openeducat_exam.menu_exam_config
@@ -1166,16 +1204,17 @@ msgid "Students"
 msgstr "学生"
 
 #. module: openeducat_exam
-#: model:ir.actions.report,name:openeducat_exam.action_student_hall_ticket_report
-msgid "Students Hall Tickets"
-msgstr "学生大厅门票"
-
-#. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
 msgid ""
-"Students are already scheduled for another exam during the specified time."
-msgstr "在指定的时间内，学生已经安排了另一次考试。"
+"Students (%s) are already scheduled for another active exam during the "
+"specified time."
+msgstr "学生 (%s) 已安排在指定时间内参加另一场正在进行的考试。"
+
+#. module: openeducat_exam
+#: model:ir.actions.report,name:openeducat_exam.action_student_hall_ticket_report
+msgid "Students Hall Tickets"
+msgstr "学生会堂门票"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__subject_id
@@ -1194,15 +1233,11 @@ msgstr "主管标志"
 
 #. module: openeducat_exam
 #. odoo-python
-#: code:addons/openeducat_exam/models/exam.py:0
-msgid "The exam time overlaps with an existing exam for the same subject."
-msgstr "考试时间与同一主题的现有考试重叠。"
-
-#. module: openeducat_exam
-#. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
-msgid "The selected rooms are already booked for the specified time."
-msgstr "所选的房间已经在指定的时间内预订。"
+msgid ""
+"The selected rooms (%s) are already booked for the specified time by other "
+"active exams."
+msgstr "所选房间 (%s) 已在指定时间被​​其他正在进行的考试预订。"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
@@ -1215,31 +1250,31 @@ msgid ""
 "Total\n"
 "                                                    Marks"
 msgstr ""
-"全部的\n"
-"                                                    标记"
+"总计\n"
+"                                                    马克"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__total_failed
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Total Fail"
-msgstr "总失败"
+msgstr "彻底失败"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__total_marks
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__total_marks
 msgid "Total Marks"
-msgstr "总数"
+msgstr "总分"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__total_pass
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
 msgid "Total Pass"
-msgstr "总通过"
+msgstr "总通过率"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__total_student
 msgid "Total Student"
-msgstr "总学生"
+msgstr "学生总数"
 
 #. module: openeducat_exam
 #: model:res.groups,name:openeducat_exam.group_op_exam_user
@@ -1254,7 +1289,7 @@ msgstr "验证标记表"
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_marksheet_register__state__validated
 msgid "Validated"
-msgstr "经过验证"
+msgstr "已验证"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__venue
@@ -1271,7 +1306,7 @@ msgstr "场地"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__website_message_ids
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__website_message_ids
 msgid "Website Messages"
-msgstr "网站消息"
+msgstr "网站留言"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,help:openeducat_exam.field_op_exam__website_message_ids
@@ -1279,7 +1314,7 @@ msgstr "网站消息"
 #: model:ir.model.fields,help:openeducat_exam.field_op_marksheet_register__website_message_ids
 #: model:ir.model.fields,help:openeducat_exam.field_op_result_template__website_message_ids
 msgid "Website communication history"
-msgstr "网站通信历史"
+msgstr "网站通讯历史"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form

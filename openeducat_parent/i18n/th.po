@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:17+0000\n"
-"PO-Revision-Date: 2025-04-29 09:17+0000\n"
+"POT-Creation-Date: 2025-10-30 10:20+0000\n"
+"PO-Revision-Date: 2025-10-30 10:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "<span class=\"o_stat_text\">Parents</span>"
-msgstr "<span class = \"o_stat_text\"> พ่อแม่ </span>"
+msgstr "<span class=\"o_stat_text\">ผู้ปกครอง</span>"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
@@ -29,17 +29,22 @@ msgstr "คล่องแคล่ว"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Archived"
-msgstr "ซึ่งเก็บถาวร"
+msgstr "เก็บถาวรแล้ว"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
 msgid "Can not create parent multiple times.!"
-msgstr "ไม่สามารถสร้างผู้ปกครองได้หลายครั้ง!"
+msgstr "ไม่สามารถสร้างพาเรนต์ได้หลายครั้ง!"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_relationship_unique_relationship_name
 msgid "Can not create relationship multiple times.!"
-msgstr "ไม่สามารถสร้างความสัมพันธ์หลายครั้ง!"
+msgstr "ไม่สามารถสร้างความสัมพันธ์ได้หลายครั้ง.!"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Child of"
+msgstr "ลูกของ"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
@@ -56,30 +61,44 @@ msgstr "สร้างโดย"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_date
 msgid "Created on"
-msgstr "สร้างขึ้นบน"
+msgstr "สร้างเมื่อ"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Daughter of"
+msgstr "ลูกสาวของ"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__display_name
 msgid "Display Name"
-msgstr "แสดงชื่อ"
+msgstr "ชื่อที่แสดง"
 
 #. module: openeducat_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
-msgid "Group By..."
-msgstr "กลุ่มโดย ..."
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__email
+msgid "Email"
+msgstr "อีเมล"
 
 #. module: openeducat_parent
 #: model:ir.module.category,description:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,description:openeducat_parent.module_category_openeducat_parent
 msgid "Helps you manage your institutes different-different users."
-msgstr "ช่วยให้คุณจัดการสถาบันผู้ใช้ที่แตกต่างกัน"
+msgstr "ช่วยคุณจัดการสถาบันของคุณกับผู้ใช้ที่แตกต่างกัน"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__id
 msgid "ID"
-msgstr "รหัสประจำตัว"
+msgstr "บัตรประจำตัวประชาชน"
+
+#. module: openeducat_parent
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
+msgid "Import Template for Parent"
+msgstr "นำเข้าเทมเพลตสำหรับผู้ปกครอง"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -89,7 +108,7 @@ msgid ""
 " Parent can not             create Subject Registration!"
 msgstr ""
 "การกระทำที่ไม่ถูกต้อง!\n"
-" ผู้ปกครองไม่สามารถสร้างการลงทะเบียนเรื่อง!"
+" ผู้ปกครองไม่สามารถสร้างการลงทะเบียนหัวเรื่องได้!"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -99,7 +118,7 @@ msgid ""
 " Parent can not edit             Subject Registration!"
 msgstr ""
 "การกระทำที่ไม่ถูกต้อง!\n"
-" ผู้ปกครองไม่สามารถแก้ไขการลงทะเบียนเรื่อง!"
+" ผู้ปกครองไม่สามารถแก้ไขเรื่องการลงทะเบียนได้!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
@@ -111,7 +130,7 @@ msgstr "อัปเดตล่าสุดโดย"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "อัปเดตล่าสุด"
+msgstr "อัปเดตล่าสุดเมื่อ"
 
 #. module: openeducat_parent
 #: model:res.groups,name:openeducat_parent.group_op_parent_manager
@@ -134,7 +153,7 @@ msgstr "ชื่อ"
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
 #: model:ir.module.category,name:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,name:openeducat_parent.module_category_openeducat_parent
+#: model:res.groups.privilege,name:openeducat_parent.module_privilege_openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
@@ -144,7 +163,7 @@ msgstr "พ่อแม่"
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Parent Name"
-msgstr "ชื่อแม่"
+msgstr "ชื่อผู้ปกครอง"
 
 #. module: openeducat_parent
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_view
@@ -156,7 +175,7 @@ msgstr "ผู้ปกครอง"
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__relationship_id
 msgid "Relation with Student"
-msgstr "ความสัมพันธ์กับนักเรียน"
+msgstr "ความสัมพันธ์กับนักศึกษา"
 
 #. module: openeducat_parent
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_relationship_view
@@ -166,6 +185,11 @@ msgstr "ความสัมพันธ์กับนักเรียน"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_tree
 msgid "Relationships"
 msgstr "ความสัมพันธ์"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Son of"
+msgstr "ลูกชายของ"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
@@ -181,7 +205,7 @@ msgstr "นักเรียน)"
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_subject_registration
 msgid "Subject Registration Details"
-msgstr "รายละเอียดการลงทะเบียนหัวเรื่อง"
+msgstr "รายละเอียดการลงทะเบียนเรื่อง"
 
 #. module: openeducat_parent
 #. odoo-python

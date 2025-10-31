@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 10:21+0000\n"
-"PO-Revision-Date: 2025-04-29 10:21+0000\n"
+"POT-Creation-Date: 2025-10-31 04:59+0000\n"
+"PO-Revision-Date: 2025-10-31 04:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,16 @@ msgstr ""
 msgid ""
 "<br/>\n"
 "                            <b>Total Number of Students :</b>"
+msgstr ""
+
+#. module: openeducat_admission
+#: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+msgid "<i class=\"fa fa-fw me-1 fa-envelope text-primary\" title=\"Email\"/>"
+msgstr ""
+
+#. module: openeducat_admission
+#: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
+msgid "<i class=\"fa fa-fw me-1 fa-phone text-primary\" title=\"Phone\"/>"
 msgstr ""
 
 #. module: openeducat_admission
@@ -107,8 +117,8 @@ msgstr ""
 #. module: openeducat_admission
 #: model:ir.model,name:openeducat_admission.model_op_admission
 #: model:ir.module.category,name:openeducat_admission.module_category_all_op_admission
-#: model:ir.module.category,name:openeducat_admission.module_category_openeducat_admission
 #: model:ir.ui.menu,name:openeducat_admission.menu_admission_register
+#: model:res.groups.privilege,name:openeducat_admission.module_admission_privilege
 msgid "Admission"
 msgstr ""
 
@@ -460,6 +470,16 @@ msgid "David L Adams"
 msgstr ""
 
 #. module: openeducat_admission
+#: model:ir.model.fields,help:openeducat_admission.field_op_admission__rotting_days
+msgid "Day count since this resource was last updated"
+msgstr ""
+
+#. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__rotting_days
+msgid "Days Rotting"
+msgstr ""
+
+#. module: openeducat_admission
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__discount
 msgid "Discount (%)"
 msgstr ""
@@ -469,6 +489,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__display_name
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_fees_line__display_name
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register__display_name
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_course__display_name
+#: model:ir.model.fields,field_description:openeducat_admission.field_report_openeducat_admission_report_admission_analysis__display_name
+#: model:ir.model.fields,field_description:openeducat_admission.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -621,12 +644,6 @@ msgid "Gender"
 msgstr ""
 
 #. module: openeducat_admission
-#: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_register_search
-#: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_search
-msgid "Group By..."
-msgstr ""
-
-#. module: openeducat_admission
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__has_message
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register__has_message
 msgid "Has Message"
@@ -634,7 +651,6 @@ msgstr ""
 
 #. module: openeducat_admission
 #: model:ir.module.category,description:openeducat_admission.module_category_all_op_admission
-#: model:ir.module.category,description:openeducat_admission.module_category_openeducat_admission
 msgid "Helps you manage your institutes different-different users."
 msgstr ""
 
@@ -658,6 +674,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__id
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_fees_line__id
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission_register__id
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_student_course__id
+#: model:ir.model.fields,field_description:openeducat_admission.field_report_openeducat_admission_report_admission_analysis__id
+#: model:ir.model.fields,field_description:openeducat_admission.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
@@ -895,7 +914,6 @@ msgstr ""
 
 #. module: openeducat_admission
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__mobile
-#: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Mobile"
 msgstr ""
 
@@ -1106,6 +1124,11 @@ msgid "Rossi"
 msgstr ""
 
 #. module: openeducat_admission
+#: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__is_rotting
+msgid "Rotting"
+msgstr ""
+
+#. module: openeducat_admission
 #: model:op.admission,first_name:openeducat_admission.op_admission_17
 msgid "Ruby"
 msgstr ""
@@ -1238,16 +1261,12 @@ msgstr ""
 
 #. module: openeducat_admission
 #: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
-msgid "Street 2..."
-msgstr ""
-
-#. module: openeducat_admission
-#: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Street..."
 msgstr ""
 
 #. module: openeducat_admission
 #: model:ir.model.fields,field_description:openeducat_admission.field_op_admission__street2
+#: model_terms:ir.ui.view,arch_db:openeducat_admission.view_op_admission_form
 msgid "Street2"
 msgstr ""
 

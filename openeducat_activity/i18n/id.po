@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 10:20+0000\n"
-"PO-Revision-Date: 2025-04-29 10:20+0000\n"
+"POT-Creation-Date: 2025-10-31 05:01+0000\n"
+"PO-Revision-Date: 2025-10-31 05:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__year_id
+msgid "Academic Year"
+msgstr "Tahun Akademik"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction
 msgid "Action Needed"
-msgstr "Tindakan yang dibutuhkan"
+msgstr "Dibutuhkan Tindakan"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__active
@@ -29,7 +34,7 @@ msgstr "Aktif"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_ids
 msgid "Activities"
-msgstr "Aktivitas"
+msgstr "Kegiatan"
 
 #. module: openeducat_activity
 #: model:ir.module.category,name:openeducat_activity.module_category_all_op_activity
@@ -41,7 +46,7 @@ msgstr "Aktivitas"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_student__activity_count
 msgid "Activity Count"
-msgstr "Jumlah aktivitas"
+msgstr "Jumlah Aktivitas"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_exception_decoration
@@ -59,23 +64,23 @@ msgstr "Tampilan Grafik Aktivitas"
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_search
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_tree
 msgid "Activity Log"
-msgstr "Log aktivitas"
+msgstr "Catatan Aktivitas"
 
 #. module: openeducat_activity
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_op_activity_view
 #: model:ir.ui.menu,name:openeducat_activity.menu_op_activity_sub
 msgid "Activity Logs"
-msgstr "Log aktivitas"
+msgstr "Log Aktivitas"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_pivot
 msgid "Activity Pivot"
-msgstr "Poros aktivitas"
+msgstr "Poros Aktivitas"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_state
 msgid "Activity State"
-msgstr "Keadaan aktivitas"
+msgstr "Status Aktivitas"
 
 #. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_op_activity_type
@@ -84,7 +89,7 @@ msgstr "Keadaan aktivitas"
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_search
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_tree
 msgid "Activity Type"
-msgstr "Jenis aktivitas"
+msgstr "Jenis Aktivitas"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_type_icon
@@ -95,7 +100,12 @@ msgstr "Ikon Jenis Aktivitas"
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_op_activity_type_view
 #: model:ir.ui.menu,name:openeducat_activity.menu_op_activity_type_sub
 msgid "Activity Types"
-msgstr "Jenis aktivitas"
+msgstr "Jenis Aktivitas"
+
+#. module: openeducat_activity
+#: model:ir.model.constraint,message:openeducat_activity.constraint_op_activity_type_unique_name
+msgid "Activity type must be unique!"
+msgstr "Jenis aktivitas harus unik!"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_form
@@ -108,21 +118,29 @@ msgstr "Diarsipkan"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_attachment_count
 msgid "Attachment Count"
-msgstr "Jumlah lampiran"
+msgstr "Jumlah Lampiran"
+
+#. module: openeducat_activity
+#. odoo-python
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
+msgid "Can't migrate, As selected courses don't share same Program!"
+msgstr ""
+"Tidak dapat bermigrasi, Karena kursus yang dipilih tidak berbagi Program "
+"yang sama!"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, As selected courses don't share same parent course!"
 msgstr ""
-"Tidak dapat bermigrasi, karena kursus yang dipilih tidak berbagi kursus "
-"orang tua yang sama!"
+"Tidak dapat bermigrasi, Karena kursus yang dipilih tidak berbagi kursus "
+"induk yang sama!"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, Proceed for new admission"
-msgstr "Tidak dapat bermigrasi, lanjutkan untuk masuk baru"
+msgstr "Tidak dapat bermigrasi, Lanjutkan untuk penerimaan baru"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
@@ -132,7 +150,7 @@ msgstr "Membatalkan"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_completed
 msgid "Course Completed?"
-msgstr "Kursus selesai?"
+msgstr "Kursus Selesai?"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__create_uid
@@ -146,7 +164,7 @@ msgstr "Dibuat oleh"
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_date
 msgid "Created on"
-msgstr "Dibuat di"
+msgstr "Dibuat pada"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__date
@@ -163,9 +181,10 @@ msgstr "Keterangan"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__display_name
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__display_name
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student__display_name
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__display_name
 msgid "Display Name"
-msgstr "Nama tampilan"
+msgstr "Nama Tampilan"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__faculty_id
@@ -180,12 +199,12 @@ msgstr "Pengikut"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Pengikut (mitra)"
+msgstr "Pengikut (Mitra)"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Ikon luar biasa font mis. tugas-tugas fa"
+msgstr "Ikon font yang mengagumkan, mis. tugas fa"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
@@ -195,28 +214,30 @@ msgstr "Maju"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_from_id
 msgid "From Course"
-msgstr "Dari tentu saja"
+msgstr "Dari Kursus"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "From Course must not be same as To Course!"
-msgstr "Dari kursus tidak boleh sama dengan kursus!"
+msgstr "From Course tidak boleh sama dengan To Course!"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__has_message
 msgid "Has Message"
-msgstr "Memiliki pesan"
+msgstr "Memiliki Pesan"
 
 #. module: openeducat_activity
 #: model:ir.module.category,description:openeducat_activity.module_category_all_op_activity
 #: model:ir.module.category,description:openeducat_activity.module_category_openeducat_activity
 msgid "Helps you manage your institutes different-different users."
-msgstr "Membantu Anda mengelola institut Anda pengguna yang berbeda."
+msgstr ""
+"Membantu Anda mengelola lembaga Anda dengan pengguna yang berbeda-beda."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__id
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__id
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student__id
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__id
 msgid "ID"
 msgstr "PENGENAL"
@@ -234,32 +255,32 @@ msgstr "Ikon untuk menunjukkan aktivitas pengecualian."
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Jika diperiksa, pesan baru memerlukan perhatian Anda."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Jika diperiksa, beberapa pesan memiliki kesalahan pengiriman."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_is_follower
 msgid "Is Follower"
-msgstr "Adalah pengikut"
+msgstr "Adalah Pengikut"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_uid
 msgid "Last Updated by"
-msgstr "Terakhir diperbarui oleh"
+msgstr "Terakhir Diperbarui oleh"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_date
 msgid "Last Updated on"
-msgstr "Terakhir diperbarui"
+msgstr "Terakhir Diperbarui pada"
 
 #. module: openeducat_activity
 #: model:res.groups,name:openeducat_activity.group_activity_manager
@@ -269,7 +290,7 @@ msgstr "Manajer"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_error
 msgid "Message Delivery error"
-msgstr "Kesalahan pengiriman pesan"
+msgstr "Kesalahan Pengiriman Pesan"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_ids
@@ -277,21 +298,9 @@ msgid "Messages"
 msgstr "Pesan"
 
 #. module: openeducat_activity
-#. odoo-python
-#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
-msgid "Migration From {} to Completed Course"
-msgstr "Migrasi dari {} ke kursus yang sudah selesai"
-
-#. module: openeducat_activity
-#. odoo-python
-#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
-msgid "Migration from {} to {}"
-msgstr "Migrasi dari {} ke {}"
-
-#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr "Batas waktu aktivitas saya"
+msgstr "Batas Waktu Aktivitas Saya"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__name
@@ -301,22 +310,22 @@ msgstr "Nama"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Batas waktu aktivitas berikutnya"
+msgstr "Batas Waktu Kegiatan Berikutnya"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_summary
 msgid "Next Activity Summary"
-msgstr "Ringkasan Aktivitas Berikutnya"
+msgstr "Ringkasan Kegiatan Berikutnya"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_type_id
 msgid "Next Activity Type"
-msgstr "Jenis aktivitas berikutnya"
+msgstr "Jenis Aktivitas Berikutnya"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Jumlah tindakan"
+msgstr "Jumlah Tindakan"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_error_counter
@@ -326,7 +335,7 @@ msgstr "Jumlah kesalahan"
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "Jumlah pesan yang membutuhkan tindakan"
+msgstr "Jumlah pesan yang memerlukan tindakan"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error_counter
@@ -334,19 +343,24 @@ msgid "Number of messages with delivery error"
 msgstr "Jumlah pesan dengan kesalahan pengiriman"
 
 #. module: openeducat_activity
+#: model:res.groups.privilege,name:openeducat_activity.module_activity_privilege
+msgid "Openeducat Activity Privilege"
+msgstr "Hak Istimewa Aktivitas Openeducat"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__optional_sub
 msgid "Optional Subjects"
-msgstr "Subjek opsional"
+msgstr "Mata Pelajaran Opsional"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_user_id
 msgid "Responsible User"
-msgstr "Pengguna yang bertanggung jawab"
+msgstr "Pengguna yang Bertanggung Jawab"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "Kesalahan pengiriman SMS"
+msgstr "Kesalahan Pengiriman SMS"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_state
@@ -356,9 +370,9 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
-"Status berdasarkan kegiatan\n"
-"Tinggal: Tanggal jatuh tempo sudah berlalu\n"
-"Hari ini: Tanggal aktivitas hari ini\n"
+"Status berdasarkan aktivitas\n"
+"Terlambat: Tanggal jatuh tempo sudah lewat\n"
+"Hari ini: Tanggal aktivitas adalah hari ini\n"
 "Direncanakan: Kegiatan di masa depan."
 
 #. module: openeducat_activity
@@ -370,40 +384,50 @@ msgstr "Murid"
 #. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_op_activity
 msgid "Student Activity"
-msgstr "Aktivitas siswa"
+msgstr "Aktivitas Siswa"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids_domain
+msgid "Student Ids Domain"
+msgstr "Domain ID Siswa"
 
 #. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_student_migrate
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student Migrate"
-msgstr "Siswa bermigrasi"
+msgstr "Migrasi Siswa"
 
 #. module: openeducat_activity
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_student_migrate_view
 #: model:ir.ui.menu,name:openeducat_activity.menu_student_migrate
 msgid "Student Migration"
-msgstr "Migrasi Siswa"
+msgstr "Migrasi Mahasiswa"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student(s)"
-msgstr "Mahasiswa"
+msgstr "Siswa"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__term_id
+msgid "Terms"
+msgstr "Ketentuan"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__batch_id
 msgid "To Batch"
-msgstr "Untuk batch"
+msgstr "Untuk Batch"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_to_id
 msgid "To Course"
-msgstr "Untuk tentu saja"
+msgstr "Ke Kursus"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr "Jenis aktivitas pengecualian pada catatan."
+msgstr "Jenis aktivitas pengecualian yang tercatat."
 
 #. module: openeducat_activity
 #: model:res.groups,name:openeducat_activity.group_activity_user
@@ -411,11 +435,16 @@ msgid "User"
 msgstr "Pengguna"
 
 #. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__valid_to_course_ids
+msgid "Valid To Courses"
+msgstr "Berlaku Untuk Kursus"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__website_message_ids
 msgid "Website Messages"
-msgstr "Pesan situs web"
+msgstr "Pesan Situs Web"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__website_message_ids
 msgid "Website communication history"
-msgstr "Riwayat Komunikasi Situs Web"
+msgstr "Riwayat komunikasi situs web"
