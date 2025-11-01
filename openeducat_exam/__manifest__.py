@@ -35,6 +35,7 @@
         'views/res_partner_view.xml',
         'views/exam_attendees_view.xml',
         'views/exam_room_view.xml',
+        'report/report_menu.xml',
         'views/exam_session_view.xml',
         'views/exam_type_view.xml',
         'wizard/room_distribution_view.xml',
@@ -47,7 +48,6 @@
         'views/result_template_view.xml',
         'report/report_ticket.xml',
         'report/student_marksheet.xml',
-        'report/report_menu.xml',
         'menus/op_menu.xml',
     ],
     'demo': [
