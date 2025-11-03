@@ -103,11 +103,3 @@ class OpExamSession(models.Model):
             'domain': [('id', 'in', self.exam_ids.ids)],
             'target': 'current',
         }
-    def action_student_hall_ticket(self):
-        return {
-            'type': 'ir.actions.report',
-            'report_name': 'openeducat_exam.report_ticket',
-            'report_file': 'openeducat_exam.report_ticket',
-            'report_type': 'qweb-pdf',
-            'context': {'active_ids': self.ids, 'active_model': self._name},
-        }
