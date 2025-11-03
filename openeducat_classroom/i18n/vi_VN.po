@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 05:53+0000\n"
-"PO-Revision-Date: 2025-04-29 05:53+0000\n"
+"POT-Creation-Date: 2025-10-30 09:45+0000\n"
+"PO-Revision-Date: 2025-10-30 09:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Tích cực"
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
 msgid "Archived"
-msgstr "Lưu trữ"
+msgstr "Đã lưu trữ"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__asset_id
@@ -40,7 +40,7 @@ msgstr "Quản lý tài sản"
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__batch_id
 msgid "Batch"
-msgstr "Đợt"
+msgstr "Lô"
 
 #. module: openeducat_classroom
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
@@ -62,12 +62,12 @@ msgstr "Phòng học"
 #: model:ir.model,name:openeducat_classroom.model_op_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__classroom_id
 #: model:ir.module.category,name:openeducat_classroom.module_category_all_op_classroom
-#: model:ir.module.category,name:openeducat_classroom.module_category_openeducat_classroom
+#: model:res.groups.privilege,name:openeducat_classroom.module_category_openeducat_classroom
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_tree
 msgid "Classroom"
-msgstr "Lớp học"
+msgstr "lớp học"
 
 #. module: openeducat_classroom
 #: model:ir.model,name:openeducat_classroom.model_op_asset
@@ -95,17 +95,18 @@ msgstr "Khóa học"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__create_uid
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__create_uid
 msgid "Created by"
-msgstr "Được tạo bởi"
+msgstr "Tạo bởi"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__create_date
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__create_date
 msgid "Created on"
-msgstr "Được tạo ra trên"
+msgstr "Được tạo vào"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__display_name
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__display_name
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__display_name
 msgid "Display Name"
 msgstr "Tên hiển thị"
 
@@ -127,21 +128,21 @@ msgstr ""
 "Tên cơ sở tồn tại. Vui lòng chọn một tên duy nhất hoặc cập nhật số lượng."
 
 #. module: openeducat_classroom
-#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
-msgid "Group By..."
-msgstr "Nhóm bởi ..."
-
-#. module: openeducat_classroom
 #: model:ir.module.category,description:openeducat_classroom.module_category_all_op_classroom
-#: model:ir.module.category,description:openeducat_classroom.module_category_openeducat_classroom
 msgid "Helps you manage your institutes different-different users."
-msgstr "Giúp bạn quản lý người dùng khác nhau của Viện."
+msgstr "Giúp bạn quản lý viện của mình với những người dùng khác nhau."
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__id
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__id
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__id
 msgid "ID"
 msgstr "NHẬN DẠNG"
+
+#. module: openeducat_classroom
+#: model:ir.model.constraint,message:openeducat_classroom.constraint_op_classroom_capacity_check
+msgid "Integer field must be greater than  0"
+msgstr "Trường số nguyên phải lớn hơn 0"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__write_uid
@@ -153,7 +154,7 @@ msgstr "Cập nhật lần cuối bởi"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__write_date
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__write_date
 msgid "Last Updated on"
-msgstr "Cập nhật lần cuối"
+msgstr "Cập nhật lần cuối vào"
 
 #. module: openeducat_classroom
 #: model:ir.model,name:openeducat_classroom.model_op_facility_line
@@ -173,8 +174,8 @@ msgstr "Tên"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__capacity
-msgid "No Of Person"
-msgstr "Không có người"
+msgid "No of Seats"
+msgstr "Số chỗ ngồi"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__product_id
@@ -189,4 +190,4 @@ msgstr "Số lượng"
 #. module: openeducat_classroom
 #: model:res.groups,name:openeducat_classroom.group_op_classroom_user
 msgid "User"
-msgstr "Người dùng"
+msgstr "người dùng"

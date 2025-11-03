@@ -4,16 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 10:20+0000\n"
-"PO-Revision-Date: 2025-04-29 10:20+0000\n"
+"POT-Creation-Date: 2025-10-31 05:01+0000\n"
+"PO-Revision-Date: 2025-10-31 05:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__year_id
+msgid "Academic Year"
+msgstr "Năm học"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction
@@ -46,7 +51,7 @@ msgstr "Số lượng hoạt động"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "Hoạt động trang trí ngoại lệ"
+msgstr "Trang trí ngoại lệ hoạt động"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_graph
@@ -98,31 +103,44 @@ msgid "Activity Types"
 msgstr "Loại hoạt động"
 
 #. module: openeducat_activity
+#: model:ir.model.constraint,message:openeducat_activity.constraint_op_activity_type_unique_name
+msgid "Activity type must be unique!"
+msgstr "Loại hoạt động phải là duy nhất!"
+
+#. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_form
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_search
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_form
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_search
 msgid "Archived"
-msgstr "Lưu trữ"
+msgstr "Đã lưu trữ"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_attachment_count
 msgid "Attachment Count"
-msgstr "Số lượng đính kèm"
+msgstr "Số lượng tệp đính kèm"
+
+#. module: openeducat_activity
+#. odoo-python
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
+msgid "Can't migrate, As selected courses don't share same Program!"
+msgstr ""
+"Không thể di chuyển vì các khóa học đã chọn không chia sẻ cùng một Chương "
+"trình!"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, As selected courses don't share same parent course!"
 msgstr ""
-"Không thể di chuyển, vì các khóa học được chọn không chia sẻ cùng một khóa "
-"học phụ huynh!"
+"Không thể di chuyển, vì các khóa học đã chọn không chia sẻ cùng khóa học "
+"gốc!"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, Proceed for new admission"
-msgstr "Không thể di chuyển, tiến hành nhập học mới"
+msgstr "Không thể di chuyển, Tiếp tục nhập học mới"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
@@ -139,14 +157,14 @@ msgstr "Khóa học đã hoàn thành?"
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_uid
 msgid "Created by"
-msgstr "Được tạo bởi"
+msgstr "Tạo bởi"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__create_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_date
 msgid "Created on"
-msgstr "Được tạo ra trên"
+msgstr "Được tạo vào"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__date
@@ -163,6 +181,7 @@ msgstr "Sự miêu tả"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__display_name
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__display_name
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student__display_name
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__display_name
 msgid "Display Name"
 msgstr "Tên hiển thị"
@@ -170,7 +189,7 @@ msgstr "Tên hiển thị"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__faculty_id
 msgid "Faculty"
-msgstr "Giảng viên"
+msgstr "Khoa"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_follower_ids
@@ -185,7 +204,7 @@ msgstr "Người theo dõi (Đối tác)"
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Biểu tượng tuyệt vời, ví dụ: Nhiệm vụ FA"
+msgstr "Phông chữ biểu tượng tuyệt vời, ví dụ: nhiệm vụ fa"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
@@ -201,7 +220,7 @@ msgstr "Từ khóa học"
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "From Course must not be same as To Course!"
-msgstr "Từ khóa học không được giống như khóa học!"
+msgstr "Từ Khóa học không được giống với Đến Khóa học!"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__has_message
@@ -212,11 +231,12 @@ msgstr "Có tin nhắn"
 #: model:ir.module.category,description:openeducat_activity.module_category_all_op_activity
 #: model:ir.module.category,description:openeducat_activity.module_category_openeducat_activity
 msgid "Helps you manage your institutes different-different users."
-msgstr "Giúp bạn quản lý người dùng khác nhau của Viện."
+msgstr "Giúp bạn quản lý viện của mình với những người dùng khác nhau."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__id
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__id
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student__id
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__id
 msgid "ID"
 msgstr "NHẬN DẠNG"
@@ -229,23 +249,23 @@ msgstr "Biểu tượng"
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr "Biểu tượng để chỉ ra một hoạt động ngoại lệ."
+msgstr "Biểu tượng để biểu thị một hoạt động ngoại lệ."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Nếu được kiểm tra, tin nhắn mới đòi hỏi sự chú ý của bạn."
+msgstr "Nếu được chọn, các tin nhắn mới cần bạn chú ý."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Nếu được kiểm tra, một số tin nhắn có lỗi giao hàng."
+msgstr "Nếu được chọn, một số tin nhắn có lỗi gửi."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_is_follower
 msgid "Is Follower"
-msgstr "Là người theo dõi"
+msgstr "là người theo dõi"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_uid
@@ -259,7 +279,7 @@ msgstr "Cập nhật lần cuối bởi"
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_date
 msgid "Last Updated on"
-msgstr "Cập nhật lần cuối"
+msgstr "Cập nhật lần cuối vào"
 
 #. module: openeducat_activity
 #: model:res.groups,name:openeducat_activity.group_activity_manager
@@ -275,18 +295,6 @@ msgstr "Lỗi gửi tin nhắn"
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_ids
 msgid "Messages"
 msgstr "Tin nhắn"
-
-#. module: openeducat_activity
-#. odoo-python
-#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
-msgid "Migration From {} to Completed Course"
-msgstr "Di chuyển từ {} sang khóa học đã hoàn thành"
-
-#. module: openeducat_activity
-#. odoo-python
-#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
-msgid "Migration from {} to {}"
-msgstr "Di chuyển từ {} sang {}"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__my_activity_date_deadline
@@ -334,9 +342,14 @@ msgid "Number of messages with delivery error"
 msgstr "Số lượng tin nhắn có lỗi gửi"
 
 #. module: openeducat_activity
+#: model:res.groups.privilege,name:openeducat_activity.module_activity_privilege
+msgid "Openeducat Activity Privilege"
+msgstr "Đặc quyền hoạt động Openeducat"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__optional_sub
 msgid "Optional Subjects"
-msgstr "Chủ đề tùy chọn"
+msgstr "Môn học tùy chọn"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_user_id
@@ -346,7 +359,7 @@ msgstr "Người dùng có trách nhiệm"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "Lỗi phân phối SMS"
+msgstr "Lỗi gửi SMS"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_state
@@ -356,10 +369,10 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
-"Tình trạng dựa trên các hoạt động\n"
-"Quá hạn: Ngày đến hạn đã được thông qua\n"
-"Hôm nay: Ngày hoạt động hôm nay\n"
-"Kế hoạch: Các hoạt động trong tương lai."
+"Trạng thái dựa trên hoạt động\n"
+"Quá hạn: Đã qua ngày đáo hạn\n"
+"Hôm nay: Ngày hoạt động là hôm nay\n"
+"Dự kiến: Hoạt động sắp tới."
 
 #. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_op_student
@@ -373,6 +386,11 @@ msgid "Student Activity"
 msgstr "Hoạt động của sinh viên"
 
 #. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids_domain
+msgid "Student Ids Domain"
+msgstr "Tên miền ID sinh viên"
+
+#. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_student_migrate
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student Migrate"
@@ -382,7 +400,7 @@ msgstr "Sinh viên di cư"
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_student_migrate_view
 #: model:ir.ui.menu,name:openeducat_activity.menu_student_migrate
 msgid "Student Migration"
-msgstr "Sinh viên di cư"
+msgstr "Di cư của sinh viên"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids
@@ -391,24 +409,34 @@ msgid "Student(s)"
 msgstr "(Các) sinh viên"
 
 #. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__term_id
+msgid "Terms"
+msgstr "Điều khoản"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__batch_id
 msgid "To Batch"
-msgstr "Đến lô"
+msgstr "Để hàng loạt"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_to_id
 msgid "To Course"
-msgstr "Để khóa học"
+msgstr "Đến khóa học"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr "Loại hoạt động ngoại lệ trong hồ sơ."
+msgstr "Loại hoạt động ngoại lệ được ghi lại."
 
 #. module: openeducat_activity
 #: model:res.groups,name:openeducat_activity.group_activity_user
 msgid "User"
-msgstr "Người dùng"
+msgstr "người dùng"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__valid_to_course_ids
+msgid "Valid To Courses"
+msgstr "Hợp lệ cho các khóa học"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__website_message_ids

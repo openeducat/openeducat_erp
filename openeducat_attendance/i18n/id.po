@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 05:50+0000\n"
-"PO-Revision-Date: 2025-04-29 05:50+0000\n"
+"POT-Creation-Date: 2025-10-30 09:16+0000\n"
+"PO-Revision-Date: 2025-10-30 09:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,40 +18,46 @@ msgstr ""
 #. module: openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_root
 msgid " Class Attendances"
-msgstr "Kehadiran kelas"
+msgstr "Kehadiran Kelas"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
-msgid "<b>From Date:</b>"
-msgstr "<b> dari tanggal: </b>"
+msgid "<b>From:</b>"
+msgstr "<b>Dari:</b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
-msgid "<b>Student Name:</b>"
-msgstr "<b> Nama Siswa: </b>"
+msgid "<b>Student:</b>"
+msgstr "<b>Siswa:</b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
-msgid "<b>To Date:</b>"
-msgstr "<b> Sampai saat ini: </b>"
+msgid "<b>To:</b>"
+msgstr "<b>Kepada:</b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<b>Total Absence</b>"
-msgstr "<b> Total Absen </b>"
+msgstr "<b>Total Absen</b>"
+
+#. module: openeducat_attendance
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
+msgid "<em>No absences in the selected period.</em>"
+msgstr "<em>Tidak ada absensi pada periode yang dipilih.</em>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_student_form_attendance_inherit
 msgid "<span class=\"o_stat_text\">Attendance</span>"
-msgstr "<span class = \"o_stat_text\"> Kehadiran </span>"
+msgstr "<span class=\"o_stat_text\">Kehadiran</span>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<strong>Student Attendance Detail</strong>"
-msgstr "<strong> Detail kehadiran siswa </strong>"
+msgstr "<strong>Rincian Kehadiran Siswa</strong>"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__absent
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
 msgid "Absent"
 msgstr "Absen"
@@ -59,12 +65,12 @@ msgstr "Absen"
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__excused
 msgid "Absent Excused"
-msgstr "Absen dimaafkan"
+msgstr "Absen Dimaafkan"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__absent
 msgid "Absent Unexcused"
-msgstr "Absen tidak dieksklusif"
+msgstr "Absen Tanpa Alasan"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_needaction
@@ -72,7 +78,7 @@ msgstr "Absen tidak dieksklusif"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_needaction
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_needaction
 msgid "Action Needed"
-msgstr "Tindakan yang dibutuhkan"
+msgstr "Dibutuhkan Tindakan"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__active
@@ -100,12 +106,13 @@ msgstr "Diarsipkan"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_attachment_count
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_attachment_count
 msgid "Attachment Count"
-msgstr "Jumlah lampiran"
+msgstr "Jumlah Lampiran"
 
 #. module: openeducat_attendance
 #: model:ir.module.category,name:openeducat_attendance.module_category_all_op_attendance
-#: model:ir.module.category,name:openeducat_attendance.module_category_openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance
+#: model:res.groups.privilege,name:openeducat_attendance.module_category_openeducat_attendance
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
 msgid "Attendance"
 msgstr "Kehadiran"
@@ -113,7 +120,7 @@ msgstr "Kehadiran"
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_pivot
 msgid "Attendance Analysis"
-msgstr "Analisis kehadiran"
+msgstr "Analisis Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_line_view
@@ -124,13 +131,13 @@ msgstr "Analisis kehadiran"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Attendance Line"
-msgstr "Garis kehadiran"
+msgstr "Garis Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_line
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_line_sub
 msgid "Attendance Lines"
-msgstr "Garis kehadiran"
+msgstr "Garis Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_register
@@ -143,7 +150,7 @@ msgstr "Daftar Kehadiran"
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_register_view
 msgid "Attendance Registers"
-msgstr "Register kehadiran"
+msgstr "Daftar Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_report_openeducat_attendance_student_attendance_report
@@ -160,24 +167,24 @@ msgstr "Laporan Kehadiran"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_tree
 msgid "Attendance Sheet"
-msgstr "Lembar kehadiran"
+msgstr "Lembar Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_sheet_view
 msgid "Attendance Sheets"
-msgstr "Lembar kehadiran"
+msgstr "Lembar Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__start
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Attendance Start"
-msgstr "Kehadiran Mulai"
+msgstr "Awal Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__done
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Attendance Taken"
-msgstr "Kehadiran yang diambil"
+msgstr "Kehadiran Diambil"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_type
@@ -187,12 +194,12 @@ msgstr "Kehadiran yang diambil"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_tree
 msgid "Attendance Type"
-msgstr "Jenis kehadiran"
+msgstr "Jenis Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_type_view
 msgid "Attendance Types"
-msgstr "Jenis kehadiran"
+msgstr "Jenis Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__batch_id
@@ -227,7 +234,7 @@ msgstr "Kode"
 #. module: openeducat_attendance
 #: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_register_unique_attendance_register_code
 msgid "Code should be unique per attendance register!"
-msgstr "Kode harus unik per daftar per hadir!"
+msgstr "Kode harus unik per daftar kehadiran!"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__company_id
@@ -264,7 +271,7 @@ msgstr "Dibuat oleh"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__create_date
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__create_date
 msgid "Created on"
-msgstr "Dibuat di"
+msgstr "Dibuat pada"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__attendance_date
@@ -280,9 +287,12 @@ msgstr "Tanggal"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_register__display_name
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__display_name
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__display_name
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_session__display_name
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_attendance.field_report_openeducat_attendance_student_attendance_report__display_name
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__display_name
 msgid "Display Name"
-msgstr "Nama tampilan"
+msgstr "Nama Tampilan"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__draft
@@ -291,9 +301,14 @@ msgid "Draft"
 msgstr "Draf"
 
 #. module: openeducat_attendance
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
+msgid "Excused"
+msgstr "Dimaafkan"
+
+#. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__excused
 msgid "Excused ?"
-msgstr "Dimaafkan?"
+msgstr "Permisi?"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__faculty_id
@@ -314,25 +329,17 @@ msgstr "Pengikut"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_partner_ids
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Pengikut (mitra)"
+msgstr "Pengikut (Mitra)"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__from_date
 msgid "From Date"
-msgstr "Dari tanggal"
+msgstr "Dari Tanggal"
 
 #. module: openeducat_attendance
 #: model:ir.actions.report,name:openeducat_attendance.action_report_student_attendance
 msgid "Generate Attendance"
-msgstr "Menghasilkan kehadiran"
-
-#. module: openeducat_attendance
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_register_search
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_search
-msgid "Group By..."
-msgstr "Kelompok dengan ..."
+msgstr "Hasilkan Kehadiran"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__has_message
@@ -340,18 +347,22 @@ msgstr "Kelompok dengan ..."
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__has_message
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__has_message
 msgid "Has Message"
-msgstr "Memiliki pesan"
+msgstr "Memiliki Pesan"
 
 #. module: openeducat_attendance
 #: model:ir.module.category,description:openeducat_attendance.module_category_all_op_attendance
 msgid "Helps you manage your institutes different-different users."
-msgstr "Membantu Anda mengelola institut Anda pengguna yang berbeda."
+msgstr ""
+"Membantu Anda mengelola lembaga Anda dengan pengguna yang berbeda-beda."
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_register__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__id
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_session__id
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_attendance.field_report_openeducat_attendance_student_attendance_report__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__id
 msgid "ID"
 msgstr "PENGENAL"
@@ -362,7 +373,7 @@ msgstr "PENGENAL"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__message_needaction
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Jika diperiksa, pesan baru memerlukan perhatian Anda."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__message_has_error
@@ -374,7 +385,7 @@ msgstr "Jika diperiksa, pesan baru memerlukan perhatian Anda."
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_error
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Jika diperiksa, beberapa pesan memiliki kesalahan pengiriman."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_is_follower
@@ -382,7 +393,7 @@ msgstr "Jika diperiksa, beberapa pesan memiliki kesalahan pengiriman."
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_is_follower
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_is_follower
 msgid "Is Follower"
-msgstr "Adalah pengikut"
+msgstr "Adalah Pengikut"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__write_uid
@@ -391,7 +402,7 @@ msgstr "Adalah pengikut"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__write_uid
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__write_uid
 msgid "Last Updated by"
-msgstr "Terakhir diperbarui oleh"
+msgstr "Terakhir Diperbarui oleh"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__write_date
@@ -400,11 +411,12 @@ msgstr "Terakhir diperbarui oleh"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__write_date
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__write_date
 msgid "Last Updated on"
-msgstr "Terakhir diperbarui"
+msgstr "Terakhir Diperbarui pada"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__late
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__late
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "Late"
 msgstr "Terlambat"
 
@@ -419,7 +431,7 @@ msgstr "Manajer"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_has_error
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_has_error
 msgid "Message Delivery error"
-msgstr "Kesalahan pengiriman pesan"
+msgstr "Kesalahan Pengiriman Pesan"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_ids
@@ -449,7 +461,7 @@ msgstr "Nama"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_needaction_counter
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Jumlah tindakan"
+msgstr "Jumlah Tindakan"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_has_error_counter
@@ -465,7 +477,7 @@ msgstr "Jumlah kesalahan"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__message_needaction_counter
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "Jumlah pesan yang membutuhkan tindakan"
+msgstr "Jumlah pesan yang memerlukan tindakan"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__message_has_error_counter
@@ -477,6 +489,7 @@ msgstr "Jumlah pesan dengan kesalahan pengiriman"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__present
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
 msgid "Present"
 msgstr "Hadiah"
@@ -506,7 +519,6 @@ msgstr "Register"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__remark
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "Remark"
 msgstr "Komentar"
 
@@ -516,7 +528,7 @@ msgstr "Komentar"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_has_sms_error
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "Kesalahan pengiriman SMS"
+msgstr "Kesalahan Pengiriman SMS"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__session_id
@@ -536,15 +548,16 @@ msgstr "Pengaturan"
 
 #. module: openeducat_attendance
 #: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_sheet_unique_register_sheet
-msgid "Sheet must be unique per Register/Session."
-msgstr "Lembar harus unik per register/sesi."
+msgid "Sheet must be unique per Register/Session"
+msgstr "Lembar harus unik per Pendaftaran/Sesi"
 
 #. module: openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_sheet_sub
 msgid "Sheets"
-msgstr "Lembaran"
+msgstr "Seprai"
 
 #. module: openeducat_attendance
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__state
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__state
 msgid "Status"
 msgstr "Status"
@@ -560,22 +573,22 @@ msgstr "Murid"
 #: model:ir.actions.act_window,name:openeducat_attendance.op_student_attendance_act
 #: model:ir.model,name:openeducat_attendance.model_student_attendance
 msgid "Student Attendance"
-msgstr "Kehadiran siswa"
+msgstr "Kehadiran Siswa"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_form
 msgid "Student Attendance Report"
-msgstr "Laporan kehadiran siswa"
+msgstr "Laporan Kehadiran Mahasiswa"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_form
 msgid "Student Should Be Marked As"
-msgstr "Siswa harus ditandai sebagai"
+msgstr "Siswa Harus Ditandai Sebagai"
 
 #. module: openeducat_attendance
 #: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_line_unique_student
 msgid "Student must be unique per Attendance."
-msgstr "Siswa harus unik per kehadiran."
+msgstr "Siswa harus unik per Kehadiran."
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
@@ -596,7 +609,7 @@ msgstr "Hingga saat ini"
 #. odoo-python
 #: code:addons/openeducat_attendance/wizards/student_attendance_wizard.py:0
 msgid "To Date cannot be set before From Date."
-msgstr "Sampai saat ini tidak dapat ditetapkan sebelumnya dari tanggal."
+msgstr "Sampai Tanggal tidak dapat diatur sebelum Tanggal Dari."
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
@@ -615,7 +628,7 @@ msgstr "Pengguna"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__website_message_ids
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__website_message_ids
 msgid "Website Messages"
-msgstr "Pesan situs web"
+msgstr "Pesan Situs Web"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__website_message_ids
@@ -623,7 +636,7 @@ msgstr "Pesan situs web"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__website_message_ids
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__website_message_ids
 msgid "Website communication history"
-msgstr "Riwayat Komunikasi Situs Web"
+msgstr "Riwayat komunikasi situs web"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search

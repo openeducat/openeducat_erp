@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:17+0000\n"
-"PO-Revision-Date: 2025-04-29 09:17+0000\n"
+"POT-Creation-Date: 2025-10-30 10:20+0000\n"
+"PO-Revision-Date: 2025-10-30 10:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "<span class=\"o_stat_text\">Parents</span>"
-msgstr "<span class = \"o_stat_text\"> Padres </span>"
+msgstr "<span class=\"o_stat_text\">Padres</span>"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
@@ -34,17 +34,22 @@ msgstr "Archivado"
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
 msgid "Can not create parent multiple times.!"
-msgstr "No se puede crear el padre varias veces.!"
+msgstr "¡No se puede crear el padre varias veces!"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_relationship_unique_relationship_name
 msgid "Can not create relationship multiple times.!"
-msgstr "No se puede crear una relación varias veces.!"
+msgstr "¡No se puede crear una relación varias veces!"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Child of"
+msgstr "hijo de"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Create Parent User"
-msgstr "Crear usuario principal"
+msgstr "Crear usuario padre"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_uid
@@ -56,31 +61,44 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Daughter of"
+msgstr "hija de"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
 
 #. module: openeducat_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
-msgid "Group By..."
-msgstr "Grupo de ..."
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__email
+msgid "Email"
+msgstr "Correo electrónico"
 
 #. module: openeducat_parent
 #: model:ir.module.category,description:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,description:openeducat_parent.module_category_openeducat_parent
 msgid "Helps you manage your institutes different-different users."
-msgstr ""
-"Le ayuda a administrar a sus institutos usuarios de diferentes diferencias."
+msgstr "Le ayuda a administrar los diferentes usuarios de sus institutos."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__id
 msgid "ID"
 msgstr "IDENTIFICACIÓN"
+
+#. module: openeducat_parent
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
+msgid "Import Template for Parent"
+msgstr "Importar plantilla para padre"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -89,8 +107,8 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not             create Subject Registration!"
 msgstr ""
-"Acción inválida!\n"
-" ¡El padre no puede crear el registro de temas!"
+"¡Acción no válida!\n"
+" ¡Los padres no pueden crear el registro de sujetos!"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -99,20 +117,20 @@ msgid ""
 "Invalid Action!\n"
 " Parent can not edit             Subject Registration!"
 msgstr ""
-"Acción inválida!\n"
-" ¡El padre no puede editar el registro de la materia!"
+"¡Acción no válida!\n"
+" ¡Los padres no pueden editar el registro de materias!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Actualizado por última vez por"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: openeducat_parent
 #: model:res.groups,name:openeducat_parent.group_op_parent_manager
@@ -135,7 +153,7 @@ msgstr "Nombre"
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
 #: model:ir.module.category,name:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,name:openeducat_parent.module_category_openeducat_parent
+#: model:res.groups.privilege,name:openeducat_parent.module_privilege_openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
@@ -157,7 +175,7 @@ msgstr "Padres"
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__relationship_id
 msgid "Relation with Student"
-msgstr "Relación con el estudiante"
+msgstr "Relación con el Estudiante"
 
 #. module: openeducat_parent
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_relationship_view
@@ -167,6 +185,11 @@ msgstr "Relación con el estudiante"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_tree
 msgid "Relationships"
 msgstr "Relaciones"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Son of"
+msgstr "hijo de"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
@@ -182,7 +205,7 @@ msgstr "Estudiantes)"
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_subject_registration
 msgid "Subject Registration Details"
-msgstr "Detalles de registro de asignaturas"
+msgstr "Detalles de registro del sujeto"
 
 #. module: openeducat_parent
 #. odoo-python

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:20+0000\n"
-"PO-Revision-Date: 2025-04-29 09:20+0000\n"
+"POT-Creation-Date: 2025-10-30 10:22+0000\n"
+"PO-Revision-Date: 2025-10-30 10:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -116,13 +116,6 @@ msgid "<b>To Date :</b>"
 msgstr ""
 
 #. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
-msgid ""
-"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
-"title=\"Arrow\"/>"
-msgstr ""
-
-#. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
 msgid "<span class=\"fa fa-info-circle\" title=\"Openeducat Enterprise Module\"/>"
 msgstr ""
@@ -204,13 +197,14 @@ msgid ""
 "                                                            <li>\n"
 "                                                                Start Time:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"format_datetime(object.start_datetime, tz=user.tz)\"/>\n"
+"                                                                    <t t-set=\"zone\" t-value=\"ctx.get('timezone')\"/>\n"
+"                                                                    <t t-out=\"format_datetime(object.start_datetime, tz=zone)\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
 "                                                                End Time:\n"
 "                                                                <span>\n"
-"                                                                    <t t-out=\"format_datetime(object.end_datetime, tz=user.tz)\"/>\n"
+"                                                                    <t t-out=\"format_datetime(object.end_datetime, tz=zone)\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "\n"
@@ -433,8 +427,12 @@ msgstr ""
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_student_generate__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_teacher_generate__display_name
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__display_name
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__display_name
 msgid "Display Name"
@@ -476,7 +474,7 @@ msgstr ""
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/generate_timetable.py:0
-msgid "End Date cannot be set before             Start Date."
+msgid "End Date cannot be set before Start Date."
 msgstr ""
 
 #. module: openeducat_timetable
@@ -554,11 +552,6 @@ msgid "Generate Timetable Report"
 msgstr ""
 
 #. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
-msgid "Group By..."
-msgstr ""
-
-#. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__has_message
 msgid "Has Message"
 msgstr ""
@@ -576,8 +569,12 @@ msgstr ""
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_op_faculty__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_student_generate__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_report_openeducat_timetable_report_timetable_teacher_generate__id
+#: model:ir.model.fields,field_description:openeducat_timetable.field_res_config_settings__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__id
 msgid "ID"
@@ -959,8 +956,8 @@ msgstr ""
 
 #. module: openeducat_timetable
 #: model:ir.module.category,name:openeducat_timetable.module_category_all_op_discuss
-#: model:ir.module.category,name:openeducat_timetable.module_category_openeducat_timetable
 #: model:ir.ui.menu,name:openeducat_timetable.menu_op_timetable
+#: model:res.groups.privilege,name:openeducat_timetable.module_privilege_openeducat_timetable
 msgid "Timetable"
 msgstr ""
 
@@ -1065,11 +1062,6 @@ msgstr ""
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 msgid "You cannot create a session with same faculty on same date and time"
-msgstr ""
-
-#. module: openeducat_timetable
-#: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
-msgid "or"
 msgstr ""
 
 #. module: openeducat_timetable

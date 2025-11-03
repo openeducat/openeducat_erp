@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 05:53+0000\n"
-"PO-Revision-Date: 2025-04-29 05:53+0000\n"
+"POT-Creation-Date: 2025-10-30 09:45+0000\n"
+"PO-Revision-Date: 2025-10-30 09:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -56,13 +56,13 @@ msgstr "Gestion des salles de classe"
 #: model:ir.actions.act_window,name:openeducat_classroom.act_open_op_classroom_view
 #: model:ir.ui.menu,name:openeducat_classroom.menu_op_classroom_sub
 msgid "Class Rooms"
-msgstr "Chambres de classe"
+msgstr "Salles de classe"
 
 #. module: openeducat_classroom
 #: model:ir.model,name:openeducat_classroom.model_op_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__classroom_id
 #: model:ir.module.category,name:openeducat_classroom.module_category_all_op_classroom
-#: model:ir.module.category,name:openeducat_classroom.module_category_openeducat_classroom
+#: model:res.groups.privilege,name:openeducat_classroom.module_category_openeducat_classroom
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_tree
@@ -72,7 +72,7 @@ msgstr "Classe"
 #. module: openeducat_classroom
 #: model:ir.model,name:openeducat_classroom.model_op_asset
 msgid "Classroom Assets"
-msgstr "Actifs en classe"
+msgstr "Actifs de classe"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__code
@@ -84,7 +84,7 @@ msgstr "Code"
 #. module: openeducat_classroom
 #: model:ir.model.constraint,message:openeducat_classroom.constraint_op_classroom_unique_classroom_code
 msgid "Code should be unique per classroom!"
-msgstr "Le code doit être unique par classe!"
+msgstr "Le code doit être unique par classe !"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__course_id
@@ -101,11 +101,12 @@ msgstr "Créé par"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__create_date
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__create_date
 msgid "Created on"
-msgstr "Créé sur"
+msgstr "Créé le"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__display_name
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__display_name
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__display_name
 msgid "Display Name"
 msgstr "Nom d'affichage"
 
@@ -124,25 +125,25 @@ msgstr "Lignes d'installation"
 msgid ""
 "Facility name exists. Please choose a unique name or update the quantity."
 msgstr ""
-"Le nom de l'installation existe. Veuillez choisir un nom unique ou mettre à "
-"jour la quantité."
-
-#. module: openeducat_classroom
-#: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
-msgid "Group By..."
-msgstr "Groupe par ..."
+"Le nom de l'établissement existe. Veuillez choisir un nom unique ou mettre à"
+" jour la quantité."
 
 #. module: openeducat_classroom
 #: model:ir.module.category,description:openeducat_classroom.module_category_all_op_classroom
-#: model:ir.module.category,description:openeducat_classroom.module_category_openeducat_classroom
 msgid "Helps you manage your institutes different-different users."
-msgstr "Vous aide à gérer vos instituts différents utilisateurs différente."
+msgstr "Vous aide à gérer les différents utilisateurs de votre institut."
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__id
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__id
+#: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__id
 msgid "ID"
 msgstr "IDENTIFIANT"
+
+#. module: openeducat_classroom
+#: model:ir.model.constraint,message:openeducat_classroom.constraint_op_classroom_capacity_check
+msgid "Integer field must be greater than  0"
+msgstr "Le champ entier doit être supérieur à 0"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__write_uid
@@ -154,12 +155,12 @@ msgstr "Dernière mise à jour par"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__write_date
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour sur"
+msgstr "Dernière mise à jour le"
 
 #. module: openeducat_classroom
 #: model:ir.model,name:openeducat_classroom.model_op_facility_line
 msgid "Manage Facility Line"
-msgstr "Gérer la ligne des installations"
+msgstr "Gérer la ligne d'installation"
 
 #. module: openeducat_classroom
 #: model:res.groups,name:openeducat_classroom.group_op_classroom_manager
@@ -174,8 +175,8 @@ msgstr "Nom"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__capacity
-msgid "No Of Person"
-msgstr "Personne de personne"
+msgid "No of Seats"
+msgstr "Nombre de sièges"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__product_id

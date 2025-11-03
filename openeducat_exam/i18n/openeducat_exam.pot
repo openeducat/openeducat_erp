@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 06:54+0000\n"
-"PO-Revision-Date: 2025-04-29 06:54+0000\n"
+"POT-Creation-Date: 2025-10-30 09:51+0000\n"
+"PO-Revision-Date: 2025-10-30 09:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -191,8 +191,9 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: openeducat_exam
-#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__capacity
-msgid "Capacity"
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Cannot cancel an exam that is already 'Done'."
 msgstr ""
 
 #. module: openeducat_exam
@@ -302,6 +303,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__display_name
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__display_name
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__display_name
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_marksheet_report__display_name
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_ticket__display_name
+#: model:ir.model.fields,field_description:openeducat_exam.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -338,6 +342,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__end_time
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__end_time
 msgid "End Time"
+msgstr ""
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "End Time and start time can not set at same time."
 msgstr ""
 
 #. module: openeducat_exam
@@ -392,7 +402,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__exam_id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__name
 #: model:ir.module.category,name:openeducat_exam.module_category_all_op_exam
-#: model:ir.module.category,name:openeducat_exam.module_category_openeducat_exam
+#: model:res.groups.privilege,name:openeducat_exam.module_category_openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_search
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_calendar_view
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
@@ -507,7 +517,7 @@ msgstr ""
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
-msgid "Exam Time should in between Exam Session Dates."
+msgid "Exam Time should be within the Exam Session Dates."
 msgstr ""
 
 #. module: openeducat_exam
@@ -523,6 +533,26 @@ msgstr ""
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_exam_type_view
 #: model:ir.ui.menu,name:openeducat_exam.menu_op_exam_type_sub
 msgid "Exam Types"
+msgstr ""
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid ""
+"Exam can only be marked as 'Done' from 'Held'                     or 'Result"
+" Updated' state."
+msgstr ""
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Exam can only be marked as 'Held' from 'Scheduled' state."
+msgstr ""
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Exam can only be scheduled from 'Draft' state."
 msgstr ""
 
 #. module: openeducat_exam
@@ -603,16 +633,6 @@ msgid "Grades"
 msgstr ""
 
 #. module: openeducat_exam
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_attendees_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_type_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_register_search
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
-msgid "Group By..."
-msgstr ""
-
-#. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__has_message
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__has_message
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_register__has_message
@@ -631,18 +651,17 @@ msgstr ""
 #. module: openeducat_exam
 #: model:ir.model,name:openeducat_exam.model_op_held_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
+#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Held Exam"
 msgstr ""
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_held_exam_view
-#: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Held Exam Wizard"
 msgstr ""
 
 #. module: openeducat_exam
 #: model:ir.module.category,description:openeducat_exam.module_category_all_op_exam
-#: model:ir.module.category,description:openeducat_exam.module_category_openeducat_exam
 msgid "Helps you manage your institutes different-different users."
 msgstr ""
 
@@ -659,6 +678,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_line__id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_result_template__id
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__id
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_marksheet_report__id
+#: model:ir.model.fields,field_description:openeducat_exam.field_report_openeducat_exam_report_ticket__id
+#: model:ir.model.fields,field_description:openeducat_exam.field_res_partner__id
 msgid "ID"
 msgstr ""
 
@@ -837,6 +859,11 @@ msgid "Name"
 msgstr ""
 
 #. module: openeducat_exam
+#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__capacity
+msgid "No of Seats"
+msgstr ""
+
+#. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_session__evaluation_type__normal
 msgid "Normal"
 msgstr ""
@@ -941,7 +968,7 @@ msgstr ""
 #. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam_attendees.py:0
-msgid "Please Enter Marks between 0 to %d"
+msgid "Please Enter Marks between 0 and %d for a present student."
 msgstr ""
 
 #. module: openeducat_exam
@@ -1031,6 +1058,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_marksheet_line__result_line
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_marksheet_line_form
 msgid "Results"
+msgstr ""
+
+#. module: openeducat_exam
+#: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__results_entered
+msgid "Results Entered"
+msgstr ""
+
+#. module: openeducat_exam
+#. odoo-python
+#: code:addons/openeducat_exam/models/exam.py:0
+msgid "Results can only be updated for exams in 'Held' state."
 msgstr ""
 
 #. module: openeducat_exam
@@ -1140,15 +1178,16 @@ msgid "Students"
 msgstr ""
 
 #. module: openeducat_exam
-#: model:ir.actions.report,name:openeducat_exam.action_student_hall_ticket_report
-msgid "Students Hall Tickets"
-msgstr ""
-
-#. module: openeducat_exam
 #. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
 msgid ""
-"Students are already scheduled for another exam during the specified time."
+"Students (%s) are already scheduled for another active exam during the "
+"specified time."
+msgstr ""
+
+#. module: openeducat_exam
+#: model:ir.actions.report,name:openeducat_exam.action_student_hall_ticket_report
+msgid "Students Hall Tickets"
 msgstr ""
 
 #. module: openeducat_exam
@@ -1168,14 +1207,10 @@ msgstr ""
 
 #. module: openeducat_exam
 #. odoo-python
-#: code:addons/openeducat_exam/models/exam.py:0
-msgid "The exam time overlaps with an existing exam for the same subject."
-msgstr ""
-
-#. module: openeducat_exam
-#. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
-msgid "The selected rooms are already booked for the specified time."
+msgid ""
+"The selected rooms (%s) are already booked for the specified time by other "
+"active exams."
 msgstr ""
 
 #. module: openeducat_exam

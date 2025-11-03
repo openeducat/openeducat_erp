@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 05:50+0000\n"
-"PO-Revision-Date: 2025-04-29 05:50+0000\n"
+"POT-Creation-Date: 2025-10-30 09:16+0000\n"
+"PO-Revision-Date: 2025-10-30 09:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,40 +18,46 @@ msgstr ""
 #. module: openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_root
 msgid " Class Attendances"
-msgstr "上课"
+msgstr "课堂出勤率"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
-msgid "<b>From Date:</b>"
-msgstr "<b>从日期开始：</b>"
+msgid "<b>From:</b>"
+msgstr "<b>来自：</b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
-msgid "<b>Student Name:</b>"
-msgstr "<b>学生名称：</b>"
+msgid "<b>Student:</b>"
+msgstr "<b>学生：</b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
-msgid "<b>To Date:</b>"
-msgstr "<b>到期：</b>"
+msgid "<b>To:</b>"
+msgstr "<b>致：</b>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<b>Total Absence</b>"
-msgstr "<b>总缺席</b>"
+msgstr "<b>完全缺席</b>"
+
+#. module: openeducat_attendance
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
+msgid "<em>No absences in the selected period.</em>"
+msgstr "<em>所选期间内没有缺席。</em>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_student_form_attendance_inherit
 msgid "<span class=\"o_stat_text\">Attendance</span>"
-msgstr "<span class =“ o_stat_text”>出勤</span>"
+msgstr "<span class=\"o_stat_text\">出勤</span>"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "<strong>Student Attendance Detail</strong>"
-msgstr "<strong>学生出勤细节</strong>"
+msgstr "<strong>学生出勤详细信息</strong>"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__absent
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
 msgid "Absent"
 msgstr "缺席的"
@@ -59,12 +65,12 @@ msgstr "缺席的"
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__excused
 msgid "Absent Excused"
-msgstr "没有原谅"
+msgstr "缺席请假"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__absent
 msgid "Absent Unexcused"
-msgstr "缺乏无故"
+msgstr "无故缺席"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_needaction
@@ -92,7 +98,7 @@ msgstr "积极的"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_form
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_search
 msgid "Archived"
-msgstr "存档"
+msgstr "已存档"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_attachment_count
@@ -100,20 +106,21 @@ msgstr "存档"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_attachment_count
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_attachment_count
 msgid "Attachment Count"
-msgstr "依恋数"
+msgstr "附件计数"
 
 #. module: openeducat_attendance
 #: model:ir.module.category,name:openeducat_attendance.module_category_all_op_attendance
-#: model:ir.module.category,name:openeducat_attendance.module_category_openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance
+#: model:res.groups.privilege,name:openeducat_attendance.module_category_openeducat_attendance
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
 msgid "Attendance"
-msgstr "出勤"
+msgstr "出席率"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_pivot
 msgid "Attendance Analysis"
-msgstr "出勤分析"
+msgstr "考勤分析"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_line_view
@@ -124,7 +131,7 @@ msgstr "出勤分析"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Attendance Line"
-msgstr "出勤线"
+msgstr "考勤线"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_line
@@ -138,17 +145,17 @@ msgstr "出勤线"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_register_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_register_tree
 msgid "Attendance Register"
-msgstr "出勤登记册"
+msgstr "出席登记"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_register_view
 msgid "Attendance Registers"
-msgstr "出勤记录"
+msgstr "考勤登记表"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_report_openeducat_attendance_student_attendance_report
 msgid "Attendance Report"
-msgstr "出勤报告"
+msgstr "考勤报告"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_sheet
@@ -160,12 +167,12 @@ msgstr "出勤报告"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_tree
 msgid "Attendance Sheet"
-msgstr "出勤表"
+msgstr "考勤表"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_sheet_view
 msgid "Attendance Sheets"
-msgstr "出勤表"
+msgstr "考勤表"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__start
@@ -177,7 +184,7 @@ msgstr "出勤开始"
 #: model:ir.model.fields.selection,name:openeducat_attendance.selection__op_attendance_sheet__state__done
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Attendance Taken"
-msgstr "出席"
+msgstr "出席人数"
 
 #. module: openeducat_attendance
 #: model:ir.model,name:openeducat_attendance.model_op_attendance_type
@@ -187,12 +194,12 @@ msgstr "出席"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_search
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_tree
 msgid "Attendance Type"
-msgstr "出勤类型"
+msgstr "考勤类型"
 
 #. module: openeducat_attendance
 #: model:ir.actions.act_window,name:openeducat_attendance.act_open_op_attendance_type_view
 msgid "Attendance Types"
-msgstr "出勤类型"
+msgstr "考勤类型"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__batch_id
@@ -227,7 +234,7 @@ msgstr "代码"
 #. module: openeducat_attendance
 #: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_register_unique_attendance_register_code
 msgid "Code should be unique per attendance register!"
-msgstr "代码应为每个出席登记册的唯一！"
+msgstr "每个出席登记的代码应该是唯一的！"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__company_id
@@ -255,7 +262,7 @@ msgstr "课程"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__create_uid
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__create_uid
 msgid "Created by"
-msgstr "由"
+msgstr "创建者："
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__create_date
@@ -264,7 +271,7 @@ msgstr "由"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__create_date
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__create_date
 msgid "Created on"
-msgstr "创建"
+msgstr "创建于"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__attendance_date
@@ -280,6 +287,9 @@ msgstr "日期"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_register__display_name
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__display_name
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__display_name
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_session__display_name
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_attendance.field_report_openeducat_attendance_student_attendance_report__display_name
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__display_name
 msgid "Display Name"
 msgstr "显示名称"
@@ -289,6 +299,11 @@ msgstr "显示名称"
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
 msgid "Draft"
 msgstr "草稿"
+
+#. module: openeducat_attendance
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
+msgid "Excused"
+msgstr "原谅"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__excused
@@ -314,25 +329,17 @@ msgstr "追随者"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_partner_ids
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "追随者（合作伙伴）"
+msgstr "关注者（合作伙伴）"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__from_date
 msgid "From Date"
-msgstr "从日期开始"
+msgstr "开始日期"
 
 #. module: openeducat_attendance
 #: model:ir.actions.report,name:openeducat_attendance.action_report_student_attendance
 msgid "Generate Attendance"
-msgstr "产生出席"
-
-#. module: openeducat_attendance
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_register_search
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_type_search
-msgid "Group By..."
-msgstr "小组by ..."
+msgstr "生成考勤"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__has_message
@@ -340,18 +347,21 @@ msgstr "小组by ..."
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__has_message
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__has_message
 msgid "Has Message"
-msgstr "有消息"
+msgstr "有留言"
 
 #. module: openeducat_attendance
 #: model:ir.module.category,description:openeducat_attendance.module_category_all_op_attendance
 msgid "Helps you manage your institutes different-different users."
-msgstr "帮助您管理机构不同不同的用户。"
+msgstr "帮助您管理机构中不同的用户。"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_register__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__id
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_session__id
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_attendance.field_report_openeducat_attendance_student_attendance_report__id
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__id
 msgid "ID"
 msgstr "ID"
@@ -362,7 +372,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__message_needaction
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "如果已检查，新消息需要您的注意。"
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__message_has_error
@@ -374,7 +384,7 @@ msgstr "如果已检查，新消息需要您的注意。"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_error
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "如果已检查，有些消息会出现交货错误。"
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__message_is_follower
@@ -391,7 +401,7 @@ msgstr "是追随者"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__write_uid
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__write_uid
 msgid "Last Updated by"
-msgstr "最后更新"
+msgstr "最后更新者"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__write_date
@@ -400,11 +410,12 @@ msgstr "最后更新"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__write_date
 #: model:ir.model.fields,field_description:openeducat_attendance.field_student_attendance__write_date
 msgid "Last Updated on"
-msgstr "最后更新"
+msgstr "最后更新时间"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__late
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__late
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "Late"
 msgstr "晚的"
 
@@ -427,7 +438,7 @@ msgstr "消息传递错误"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_ids
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_ids
 msgid "Messages"
-msgstr "消息"
+msgstr "留言"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search
@@ -465,7 +476,7 @@ msgstr "错误数"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__message_needaction_counter
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "需要操作的消息数量"
+msgstr "需要采取行动的消息数量"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__message_has_error_counter
@@ -473,10 +484,11 @@ msgstr "需要操作的消息数量"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__message_has_error_counter
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "带交货错误的消息数"
+msgstr "发送错误的消息数"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__present
+#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
 msgid "Present"
 msgstr "展示"
@@ -506,7 +518,6 @@ msgstr "寄存器"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__remark
-#: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_report
 msgid "Remark"
 msgstr "评论"
 
@@ -516,7 +527,7 @@ msgstr "评论"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__message_has_sms_error
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "SMS交付错误"
+msgstr "短信发送错误"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__session_id
@@ -536,8 +547,8 @@ msgstr "设置"
 
 #. module: openeducat_attendance
 #: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_sheet_unique_register_sheet
-msgid "Sheet must be unique per Register/Session."
-msgstr "表必须为每个登记册/会话唯一。"
+msgid "Sheet must be unique per Register/Session"
+msgstr "每个注册/会话的工作表必须是唯一的"
 
 #. module: openeducat_attendance
 #: model:ir.ui.menu,name:openeducat_attendance.menu_op_attendance_sheet_sub
@@ -545,6 +556,7 @@ msgid "Sheets"
 msgstr "床单"
 
 #. module: openeducat_attendance
+#: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_line__state
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__state
 msgid "Status"
 msgstr "地位"
@@ -560,7 +572,7 @@ msgstr "学生"
 #: model:ir.actions.act_window,name:openeducat_attendance.op_student_attendance_act
 #: model:ir.model,name:openeducat_attendance.model_student_attendance
 msgid "Student Attendance"
-msgstr "学生出席"
+msgstr "学生出勤率"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.student_attendance_form
@@ -575,7 +587,7 @@ msgstr "学生应被标记为"
 #. module: openeducat_attendance
 #: model:ir.model.constraint,message:openeducat_attendance.constraint_op_attendance_line_unique_student
 msgid "Student must be unique per Attendance."
-msgstr "学生必须每个出勤率独特。"
+msgstr "学生的每次出勤必须是唯一的。"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_form
@@ -596,7 +608,7 @@ msgstr "迄今为止"
 #. odoo-python
 #: code:addons/openeducat_attendance/wizards/student_attendance_wizard.py:0
 msgid "To Date cannot be set before From Date."
-msgstr "迄今为止无法在日期之前设置。"
+msgstr "截止日期不能设置在起始日期之前。"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_line_search
@@ -615,7 +627,7 @@ msgstr "用户"
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_sheet__website_message_ids
 #: model:ir.model.fields,field_description:openeducat_attendance.field_op_attendance_type__website_message_ids
 msgid "Website Messages"
-msgstr "网站消息"
+msgstr "网站留言"
 
 #. module: openeducat_attendance
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_line__website_message_ids
@@ -623,7 +635,7 @@ msgstr "网站消息"
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_sheet__website_message_ids
 #: model:ir.model.fields,help:openeducat_attendance.field_op_attendance_type__website_message_ids
 msgid "Website communication history"
-msgstr "网站通信历史"
+msgstr "网站通讯历史"
 
 #. module: openeducat_attendance
 #: model_terms:ir.ui.view,arch_db:openeducat_attendance.view_op_attendance_sheet_search

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 05:57+0000\n"
-"PO-Revision-Date: 2025-04-29 05:57+0000\n"
+"POT-Creation-Date: 2025-10-30 07:32+0000\n"
+"PO-Revision-Date: 2025-10-30 07:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -239,11 +239,6 @@ msgstr ""
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
-msgid "Allocation Infomation"
-msgstr ""
-
-#. module: openeducat_assignment
-#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
@@ -253,8 +248,8 @@ msgstr ""
 #. module: openeducat_assignment
 #: model:ir.model,name:openeducat_assignment.model_op_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__assignment_id
-#: model:ir.module.category,name:openeducat_assignment.module_category_all_op_assignment
-#: model:ir.module.category,name:openeducat_assignment.module_category_openeducat_assignment
+#: model:res.groups.privilege,name:openeducat_assignment.privilege_module_category_all_op_assignment
+#: model:res.groups.privilege,name:openeducat_assignment.privilege_module_category_openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.assignment_smart_button
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
@@ -433,6 +428,11 @@ msgid "Course"
 msgstr ""
 
 #. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__courses_subjects
+msgid "Courses Subjects"
+msgstr ""
+
+#. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__create_uid
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment_type__create_uid
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__create_uid
@@ -461,6 +461,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment_type__display_name
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__display_name
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__display_name
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_student__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -511,21 +512,9 @@ msgid "Grading Assignment"
 msgstr ""
 
 #. module: openeducat_assignment
-#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
-#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
-#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
-msgid "Group By..."
-msgstr ""
-
-#. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__has_message
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__has_message
 msgid "Has Message"
-msgstr ""
-
-#. module: openeducat_assignment
-#: model:ir.module.category,description:openeducat_assignment.module_category_all_op_assignment
-msgid "Helps you manage your institutes different-different users."
 msgstr ""
 
 #. module: openeducat_assignment
@@ -533,6 +522,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment_type__id
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__id
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__id
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_student__id
 msgid "ID"
 msgstr ""
 
@@ -666,6 +656,12 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: openeducat_assignment
+#. odoo-python
+#: code:addons/openeducat_assignment/models/assignment_sub_line.py:0
+msgid "Obtain Marks should not be greater than Actual Marks!"
+msgstr ""
+
+#. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__point
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__point
 msgid "Points"
@@ -728,11 +724,15 @@ msgid "Settings"
 msgstr ""
 
 #. module: openeducat_assignment
-#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__state
-#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__state
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "State"
+msgstr ""
+
+#. module: openeducat_assignment
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__state
+#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__state
+msgid "Status"
 msgstr ""
 
 #. module: openeducat_assignment
@@ -740,6 +740,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__student_id
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "Student"
+msgstr ""
+
+#. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
+msgid "Student Allocation"
 msgstr ""
 
 #. module: openeducat_assignment
@@ -798,6 +803,11 @@ msgstr ""
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
 msgid "Tag"
+msgstr ""
+
+#. module: openeducat_assignment
+#: model:ir.model.constraint,message:openeducat_assignment.constraint_grading_assignment_type_unique_code
+msgid "The code must be unique across all assignment types."
 msgstr ""
 
 #. module: openeducat_assignment

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:17+0000\n"
-"PO-Revision-Date: 2025-04-29 09:17+0000\n"
+"POT-Creation-Date: 2025-10-30 10:20+0000\n"
+"PO-Revision-Date: 2025-10-30 10:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "<span class=\"o_stat_text\">Parents</span>"
-msgstr "<span class = \"o_stat_text\"> forældre </span>"
+msgstr "<span class=\"o_stat_text\">Forældre</span>"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
@@ -42,46 +42,65 @@ msgid "Can not create relationship multiple times.!"
 msgstr "Kan ikke skabe forhold flere gange.!"
 
 #. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Child of"
+msgstr "Barn af"
+
+#. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Create Parent User"
-msgstr "Opret forælderbruger"
+msgstr "Opret overordnet bruger"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_uid
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_uid
 msgid "Created by"
-msgstr "Oprettet af"
+msgstr "Skabt af"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_date
 msgid "Created on"
-msgstr "Oprettet på"
+msgstr "Oprettet den"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Daughter of"
+msgstr "Datter af"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__display_name
 msgid "Display Name"
-msgstr "Visnavn"
+msgstr "Vist navn"
 
 #. module: openeducat_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
-msgid "Group By..."
-msgstr "Gruppe efter ..."
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__email
+msgid "Email"
+msgstr "E-mail"
 
 #. module: openeducat_parent
 #: model:ir.module.category,description:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,description:openeducat_parent.module_category_openeducat_parent
 msgid "Helps you manage your institutes different-different users."
 msgstr ""
-"Hjælper dig med at administrere dine institutter forskellige forskellige "
+"Hjælper dig med at administrere dine institutter forskellige-forskellige "
 "brugere."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__id
 msgid "ID"
-msgstr "Id"
+msgstr "ID"
+
+#. module: openeducat_parent
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
+msgid "Import Template for Parent"
+msgstr "Importer skabelon til forældre"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -91,7 +110,7 @@ msgid ""
 " Parent can not             create Subject Registration!"
 msgstr ""
 "Ugyldig handling!\n"
-" Forælder kan ikke oprette emneregistrering!"
+" Forældre kan ikke oprette emneregistrering!"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -101,7 +120,7 @@ msgid ""
 " Parent can not edit             Subject Registration!"
 msgstr ""
 "Ugyldig handling!\n"
-" Forælder kan ikke redigere emne registrering!"
+" Forældre kan ikke redigere emneregistrering!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
@@ -113,7 +132,7 @@ msgstr "Sidst opdateret af"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "Sidst opdateret om"
+msgstr "Sidst opdateret den"
 
 #. module: openeducat_parent
 #: model:res.groups,name:openeducat_parent.group_op_parent_manager
@@ -136,7 +155,7 @@ msgstr "Navn"
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
 #: model:ir.module.category,name:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,name:openeducat_parent.module_category_openeducat_parent
+#: model:res.groups.privilege,name:openeducat_parent.module_privilege_openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
@@ -146,7 +165,7 @@ msgstr "Forælder"
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Parent Name"
-msgstr "Forældrenes navn"
+msgstr "Forældres navn"
 
 #. module: openeducat_parent
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_view
@@ -158,7 +177,7 @@ msgstr "Forældre"
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__relationship_id
 msgid "Relation with Student"
-msgstr "Forhold til studerende"
+msgstr "Relation til elev"
 
 #. module: openeducat_parent
 #: model:ir.actions.act_window,name:openeducat_parent.act_open_op_parent_relationship_view
@@ -167,7 +186,12 @@ msgstr "Forhold til studerende"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_parent_relationship_tree
 msgid "Relationships"
-msgstr "Forhold"
+msgstr "Relationer"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Son of"
+msgstr "Søn af"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
@@ -178,18 +202,18 @@ msgstr "Studerende"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Student(s)"
-msgstr "Studerende (er)"
+msgstr "Elev(er)"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_subject_registration
 msgid "Subject Registration Details"
-msgstr "Emne registreringsoplysninger"
+msgstr "Detaljer om emneregistrering"
 
 #. module: openeducat_parent
 #. odoo-python
 #: code:addons/openeducat_parent/models/parent.py:0
 msgid "Update parent email id first."
-msgstr "Opdater forældrenes e -mail -id først."
+msgstr "Opdater forældre-e-mail-id først."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id

@@ -4,16 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 10:20+0000\n"
-"PO-Revision-Date: 2025-04-29 10:20+0000\n"
+"POT-Creation-Date: 2025-10-31 05:01+0000\n"
+"PO-Revision-Date: 2025-10-31 05:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__year_id
+msgid "Academic Year"
+msgstr "Anno accademico"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction
@@ -41,17 +46,17 @@ msgstr "Attività"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_student__activity_count
 msgid "Activity Count"
-msgstr "Conteggio delle attività"
+msgstr "Conteggio attività"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "Attività Eccezione Decorazione"
+msgstr "Decorazione delle eccezioni di attività"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_graph
 msgid "Activity Graph View"
-msgstr "Vista grafico delle attività"
+msgstr "Visualizzazione grafico delle attività"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_student__activity_log
@@ -70,12 +75,12 @@ msgstr "Registri delle attività"
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_pivot
 msgid "Activity Pivot"
-msgstr "PIVOT ATTIVITÀ"
+msgstr "Perno di attività"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_state
 msgid "Activity State"
-msgstr "Stato di attività"
+msgstr "Stato attività"
 
 #. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_op_activity_type
@@ -98,6 +103,11 @@ msgid "Activity Types"
 msgstr "Tipi di attività"
 
 #. module: openeducat_activity
+#: model:ir.model.constraint,message:openeducat_activity.constraint_op_activity_type_unique_name
+msgid "Activity type must be unique!"
+msgstr "Il tipo di attività deve essere unico!"
+
+#. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_form
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_search
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_form
@@ -108,21 +118,29 @@ msgstr "Archiviato"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_attachment_count
 msgid "Attachment Count"
-msgstr "Conteggio di attaccamento"
+msgstr "Conteggio allegati"
+
+#. module: openeducat_activity
+#. odoo-python
+#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
+msgid "Can't migrate, As selected courses don't share same Program!"
+msgstr ""
+"Impossibile eseguire la migrazione, poiché i corsi selezionati non "
+"condividono lo stesso programma!"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, As selected courses don't share same parent course!"
 msgstr ""
-"Non posso migrare, poiché i corsi selezionati non condividono lo stesso "
-"corso di genitore!"
+"Impossibile migrare, poiché i corsi selezionati non condividono lo stesso "
+"corso principale!"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, Proceed for new admission"
-msgstr "Non posso migrare, procedere per una nuova ammissione"
+msgstr "Impossibile migrare, procedere alla nuova ammissione"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
@@ -146,7 +164,7 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_date
 msgid "Created on"
-msgstr "Creato su"
+msgstr "Creato il"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__date
@@ -163,6 +181,7 @@ msgstr "Descrizione"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__display_name
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__display_name
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student__display_name
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__display_name
 msgid "Display Name"
 msgstr "Nome da visualizzare"
@@ -180,12 +199,12 @@ msgstr "Seguaci"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguaci (partner)"
+msgstr "Follower (partner)"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Font Awesome icona ad es. FA-Tasks"
+msgstr "Icona fantastica del carattere, ad es. compiti fa"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
@@ -195,13 +214,13 @@ msgstr "Inoltrare"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_from_id
 msgid "From Course"
-msgstr "Da corso"
+msgstr "Da Corso"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "From Course must not be same as To Course!"
-msgstr "Dal corso non deve essere lo stesso del corso!"
+msgstr "Dal corso non deve essere uguale a Al corso!"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__has_message
@@ -212,11 +231,12 @@ msgstr "Ha un messaggio"
 #: model:ir.module.category,description:openeducat_activity.module_category_all_op_activity
 #: model:ir.module.category,description:openeducat_activity.module_category_openeducat_activity
 msgid "Helps you manage your institutes different-different users."
-msgstr "Ti aiuta a gestire i tuoi istituti utenti diversi diversi."
+msgstr "Ti aiuta a gestire i diversi utenti dei tuoi istituti."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__id
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__id
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_student__id
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__id
 msgid "ID"
 msgstr "ID"
@@ -234,32 +254,32 @@ msgstr "Icona per indicare un'attività di eccezione."
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se controllati, i nuovi messaggi richiedono la tua attenzione."
+msgstr "Se selezionato, i nuovi messaggi richiedono la tua attenzione."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Se controllati, alcuni messaggi hanno un errore di consegna."
+msgstr "Se selezionato, alcuni messaggi presentano un errore di consegna."
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_is_follower
 msgid "Is Follower"
-msgstr "È follower"
+msgstr "È seguace"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_uid
 msgid "Last Updated by"
-msgstr "Ultimo aggiornamento da"
+msgstr "Ultimo aggiornamento di"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_date
 msgid "Last Updated on"
-msgstr "Ultimo aggiornamento su"
+msgstr "Ultimo aggiornamento il"
 
 #. module: openeducat_activity
 #: model:res.groups,name:openeducat_activity.group_activity_manager
@@ -269,7 +289,7 @@ msgstr "Manager"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_error
 msgid "Message Delivery error"
-msgstr "Errore di consegna dei messaggi"
+msgstr "Errore di consegna del messaggio"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_ids
@@ -277,21 +297,9 @@ msgid "Messages"
 msgstr "Messaggi"
 
 #. module: openeducat_activity
-#. odoo-python
-#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
-msgid "Migration From {} to Completed Course"
-msgstr "Migrazione da {} al corso completato"
-
-#. module: openeducat_activity
-#. odoo-python
-#: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
-msgid "Migration from {} to {}"
-msgstr "Migrazione da {} a {}"
-
-#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr "La mia scadenza di attività"
+msgstr "Scadenza della mia attività"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__name
@@ -301,17 +309,17 @@ msgstr "Nome"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "Scadenza dell'attività successiva"
+msgstr "Prossima scadenza delle attività"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_summary
 msgid "Next Activity Summary"
-msgstr "Riepilogo dell'attività successiva"
+msgstr "Riepilogo attività successiva"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_type_id
 msgid "Next Activity Type"
-msgstr "Tipo di attività successivo"
+msgstr "Tipo di attività successiva"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction_counter
@@ -334,9 +342,14 @@ msgid "Number of messages with delivery error"
 msgstr "Numero di messaggi con errore di consegna"
 
 #. module: openeducat_activity
+#: model:res.groups.privilege,name:openeducat_activity.module_activity_privilege
+msgid "Openeducat Activity Privilege"
+msgstr "Privilegio di attività Openeducat"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__optional_sub
 msgid "Optional Subjects"
-msgstr "Soggetti opzionali"
+msgstr "Materie facoltative"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_user_id
@@ -346,7 +359,7 @@ msgstr "Utente responsabile"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr "Errore di consegna SMS"
+msgstr "Errore di consegna dell'SMS"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_state
@@ -356,9 +369,9 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
-"Stato basato sulle attività\n"
-"In ritardo: la data di scadenza è già passata\n"
-"Oggi: la data di attività è oggi\n"
+"Stato in base alle attività\n"
+"In ritardo: la data di scadenza è già trascorsa\n"
+"Oggi: la data dell'attività è oggi\n"
 "Pianificato: attività future."
 
 #. module: openeducat_activity
@@ -373,10 +386,15 @@ msgid "Student Activity"
 msgstr "Attività degli studenti"
 
 #. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids_domain
+msgid "Student Ids Domain"
+msgstr "Dominio ID studente"
+
+#. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_student_migrate
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student Migrate"
-msgstr "Studente migrare"
+msgstr "Studenti Migrati"
 
 #. module: openeducat_activity
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_student_migrate_view
@@ -388,17 +406,22 @@ msgstr "Migrazione degli studenti"
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student(s)"
-msgstr "Studente (i)"
+msgstr "Studente(i)"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__term_id
+msgid "Terms"
+msgstr "Termini"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__batch_id
 msgid "To Batch"
-msgstr "Batch"
+msgstr "In batch"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_to_id
 msgid "To Course"
-msgstr "Per curare"
+msgstr "Al corso"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_exception_decoration
@@ -411,6 +434,11 @@ msgid "User"
 msgstr "Utente"
 
 #. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__valid_to_course_ids
+msgid "Valid To Courses"
+msgstr "Valido per i corsi"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__website_message_ids
 msgid "Website Messages"
 msgstr "Messaggi del sito web"
@@ -418,4 +446,4 @@ msgstr "Messaggi del sito web"
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__website_message_ids
 msgid "Website communication history"
-msgstr "Storia di comunicazione del sito Web"
+msgstr "Cronologia della comunicazione del sito web"

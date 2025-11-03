@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 09:17+0000\n"
-"PO-Revision-Date: 2025-04-29 09:17+0000\n"
+"POT-Creation-Date: 2025-10-30 10:20+0000\n"
+"PO-Revision-Date: 2025-10-30 10:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "<span class=\"o_stat_text\">Parents</span>"
-msgstr "<span class = \"o_stat_text\"> أولياء الأمور </span>"
+msgstr "<span class=\"o_stat_text\">أولياء الأمور</span>"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
@@ -29,22 +29,27 @@ msgstr "نشيط"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Archived"
-msgstr "أرشفة"
+msgstr "مؤرشف"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
 msgid "Can not create parent multiple times.!"
-msgstr "لا يمكن إنشاء الوالد عدة مرات.!"
+msgstr "لا يمكن إنشاء الأصل عدة مرات.!"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_relationship_unique_relationship_name
 msgid "Can not create relationship multiple times.!"
-msgstr "لا يمكن خلق العلاقة عدة مرات.!"
+msgstr "لا يمكن إنشاء العلاقة عدة مرات.!"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Child of"
+msgstr "طفل"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 msgid "Create Parent User"
-msgstr "إنشاء المستخدم الأصل"
+msgstr "إنشاء مستخدم الوالدين"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_uid
@@ -56,30 +61,44 @@ msgstr "تم إنشاؤها بواسطة"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__create_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__create_date
 msgid "Created on"
-msgstr "تم إنشاؤها على"
+msgstr "تم الإنشاء بتاريخ"
+
+#. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Daughter of"
+msgstr "ابنة"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__display_name
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__display_name
 msgid "Display Name"
 msgstr "اسم العرض"
 
 #. module: openeducat_parent
-#: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
-msgid "Group By..."
-msgstr "مجموعة من ..."
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__email
+msgid "Email"
+msgstr "بريد إلكتروني"
 
 #. module: openeducat_parent
 #: model:ir.module.category,description:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,description:openeducat_parent.module_category_openeducat_parent
 msgid "Helps you manage your institutes different-different users."
-msgstr "يساعدك على إدارة معاهدك المستخدمين المختلفين."
+msgstr "يساعدك على إدارة معاهدك بمستخدمين مختلفين."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__id
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__id
 msgid "ID"
 msgstr "بطاقة تعريف"
+
+#. module: openeducat_parent
+#. odoo-python
+#: code:addons/openeducat_parent/models/parent.py:0
+msgid "Import Template for Parent"
+msgstr "استيراد قالب للوالدين"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -89,7 +108,7 @@ msgid ""
 " Parent can not             create Subject Registration!"
 msgstr ""
 "إجراء غير صالح!\n"
-" لا يمكن للوالدين إنشاء تسجيل موضوع!"
+" لا يمكن للوالد إنشاء تسجيل الموضوع!"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -99,7 +118,7 @@ msgid ""
 " Parent can not edit             Subject Registration!"
 msgstr ""
 "إجراء غير صالح!\n"
-" لا يمكن للوالدين تعديل تسجيل الموضوع!"
+" لا يمكن للوالد تعديل تسجيل الموضوع!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
@@ -111,7 +130,7 @@ msgstr "آخر تحديث بواسطة"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "آخر تحديث على"
+msgstr "آخر تحديث بتاريخ"
 
 #. module: openeducat_parent
 #: model:res.groups,name:openeducat_parent.group_op_parent_manager
@@ -134,7 +153,7 @@ msgstr "اسم"
 #: model:ir.model,name:openeducat_parent.model_op_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__parent_ids
 #: model:ir.module.category,name:openeducat_parent.module_category_all_parent
-#: model:ir.module.category,name:openeducat_parent.module_category_openeducat_parent
+#: model:res.groups.privilege,name:openeducat_parent.module_privilege_openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
@@ -168,6 +187,11 @@ msgid "Relationships"
 msgstr "العلاقات"
 
 #. module: openeducat_parent
+#: model_terms:ir.ui.view,arch_db:openeducat_parent.report_student_bonafide_parent
+msgid "Son of"
+msgstr "ابن"
+
+#. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_student
 msgid "Student"
 msgstr "طالب"
@@ -187,7 +211,7 @@ msgstr "تفاصيل تسجيل الموضوع"
 #. odoo-python
 #: code:addons/openeducat_parent/models/parent.py:0
 msgid "Update parent email id first."
-msgstr "تحديث معرف البريد الإلكتروني الأصل أولاً."
+msgstr "قم بتحديث معرف البريد الإلكتروني للوالد أولاً."
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id

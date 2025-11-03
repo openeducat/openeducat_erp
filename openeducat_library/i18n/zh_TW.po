@@ -1,0 +1,1606 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_library
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-30 10:04+0000\n"
+"PO-Revision-Date: 2025-10-30 10:04+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: openeducat_library
+#: model:ir.actions.report,print_report_name:openeducat_library.action_report_student_library_card
+msgid "'Library ID Card - %s' % (object.name)"
+msgstr "'圖書館 ID 卡 - %s' % (object.name)"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        Card No :\n"
+"                                                    </span>"
+msgstr ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        卡號：\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        Issued Date :\n"
+"                                                    </span>"
+msgstr ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        簽發日期：\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        Type :\n"
+"                                                    </span>"
+msgstr ""
+"<br/>\n"
+"                                                    <span style=\"font-weight:600\">\n"
+"                                                        類型：\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid ""
+"<span style=\"font-weight:600\">\n"
+"                                                        Name :\n"
+"                                                    </span>"
+msgstr ""
+"<span style=\"font-weight:600\">\n"
+"                                                        姓名：\n"
+"                                                    </span>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "<strong>Library Card(s) Barcode</strong>"
+msgstr "<strong>圖書館卡條形碼</strong>"
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                <tr>\n"
+"                    <td align=\"center\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\">\n"
+"                                                    <span style=\"font-size: 10px;\"/>\n"
+"                                                    <br/>\n"
+"                                                </td>\n"
+"                                                <td valign=\"middle\" align=\"right\">\n"
+"                                                    <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                    <p>Dear </p>\n"
+"                                                    <strong>\n"
+"                                                         <t t-out=\"object.student_id.name or ''\"/></strong>\n"
+"                                                    <p>Your  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
+"                                                         <t t-out=\"object.media_id.name or ''\"/>\n"
+"                                                    </strong> has been expired. Please return it as soon as possible.\n"
+"                                                    </p>\n"
+"                                                    <p>Thank you.</p>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\">\n"
+"                                                    <t t-out=\"object.company_id.name or ''\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    <t t-out=\"object.company_id.phone or ''\"/>\n"
+"                                                    <t t-if=\"object.company_id.email\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.email or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                    <t t-if=\"object.company_id.website\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.website or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </tbody>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </table>\n"
+"        "
+msgstr ""
+
+#. module: openeducat_library
+#: model:mail.template,body_html:openeducat_library.email_template_media_movement
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                <tr>\n"
+"                    <td align=\"center\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\">\n"
+"                                                    <span style=\"font-size: 10px;\">Library Card Renew</span>\n"
+"                                                    <br/>\n"
+"                                                </td>\n"
+"                                                <td valign=\"middle\" align=\"right\">\n"
+"                                                    <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                    <p>Dear</p>\n"
+"                                                    <strong>\n"
+"                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
+"                                                    </strong>\n"
+"                                                    <p>Your<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                        <strong>\n"
+"                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
+"                                                        </strong>\n"
+"                                                        will\n"
+"                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
+"                                                            be expiring\n"
+"                                                            <strong>today.</strong>\n"
+"                                                        </t>\n"
+"                                                        <t t-else=\"\">\n"
+"                                                            expire in\n"
+"                                                            <strong>\n"
+"                                                                <t t-out=\"object.get_diff_day() or ''\"/>\n"
+"                                                            </strong>\n"
+"                                                            day(s).\n"
+"                                                        </t>\n"
+"                                                        Please return it as soon as possible.\n"
+"                                                    </p>\n"
+"                                                    <p>Thank you.</p>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\">\n"
+"                                                    <t t-out=\"object.company_id.name or ''\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    <t t-out=\"object.company_id.phone or ''\"/>\n"
+"                                                    <t t-if=\"object.company_id.email\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.email or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                    <t t-if=\"object.company_id.website\">\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.website or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </tbody>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </table>\n"
+"        "
+msgstr ""
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Accept"
+msgstr "接受"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__accept
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__accept
+msgid "Accepted"
+msgstr "公認"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction
+msgid "Action Needed"
+msgstr "需要採取行動"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__active
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__active
+msgid "Active"
+msgstr "積極的"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__actual_return_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__actual_return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Actual Return Date"
+msgstr "實際返回日期"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_movement.py:0
+msgid "Actual Return Date cannot be set before Issued Date"
+msgstr "實際歸還日期不能早於發行日期"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Address"
+msgstr "地址"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Address Detail"
+msgstr "地址詳情"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Admission Details"
+msgstr "入學詳情"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_view
+#: model:ir.ui.menu,name:openeducat_library.menu_library_medias
+msgid "All Media"
+msgstr "所有媒體"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_search
+msgid "Archived"
+msgstr "已存檔"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_attachment_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_attachment_count
+msgid "Attachment Count"
+msgstr "附件計數"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_tree
+msgid "Author"
+msgstr "作者"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__author_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__author
+msgid "Author(s)"
+msgstr "作者"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_author_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_author_sub
+msgid "Authors"
+msgstr "作者"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__available
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_unit__state__available
+msgid "Available"
+msgstr "可用的"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__barcode
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Barcode"
+msgstr "條碼"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unit_unique_name_barcode
+msgid "Barcode must be unique per Media unit!"
+msgstr "每個媒體單元的條形碼必須是唯一的！"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/return_media.py:0
+msgid "Can't return media."
+msgstr "無法退回媒體。"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Barcode"
+msgstr "卡條碼"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Card Holder"
+msgstr "卡夾"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__library_card_type_id
+msgid "Card Type"
+msgstr "卡類型"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "City"
+msgstr "城市"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__code
+msgid "Code"
+msgstr "代碼"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_type_unique_media_type_code
+msgid "Code should be unique per media type!"
+msgstr "每個媒體類型的代碼應該是唯一的！"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: openeducat_library
+#: model:ir.ui.menu,name:openeducat_library.menu_op_school_library_config
+msgid "Configuration"
+msgstr "配置"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Country"
+msgstr "國家"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__course_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__course_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Course"
+msgstr "課程"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Course Details"
+msgstr "課程詳情"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Create Invoice"
+msgstr "創建發票"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_uid
+msgid "Created by"
+msgstr "創建者："
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_date
+msgid "Created on"
+msgstr "創建於"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__description
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Description"
+msgstr "描述"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_account_move__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__display_name
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__draft
+msgid "Draft"
+msgstr "草稿"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__return_date
+msgid "Due Date"
+msgstr "兩個日期"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__duration
+msgid "Duration"
+msgstr "期間"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
+msgid "Duration in terms of Number of Lead Days"
+msgstr "以前置天數表示的持續時間"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__edition
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+msgid "Edition"
+msgstr "版"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Education Details"
+msgstr "教育詳情"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Educational"
+msgstr "教育性"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/library.py:0
+msgid "Enter proper value"
+msgstr "輸入正確的值"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__faculty_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__faculty_id
+#: model:ir.model.fields.selection,name:openeducat_library.selection__issue_media__type__faculty
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_library_card__type__faculty
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__type__faculty
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Faculty"
+msgstr "學院"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "First Name"
+msgstr "名"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_follower_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_follower_ids
+msgid "Followers"
+msgstr "追隨者"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_partner_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "關注者（合作夥伴）"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_from
+msgid "From Date"
+msgstr "開始日期"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__has_message
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__has_message
+msgid "Has Message"
+msgstr "有留言"
+
+#. module: openeducat_library
+#: model:ir.module.category,description:openeducat_library.module_category_all_Library
+msgid "Helps you manage your institutes different-different users."
+msgstr "幫助您管理機構中不同的用戶。"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_account_move__id
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__id
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_library_card_barcode__id
+#: model:ir.model.fields,field_description:openeducat_library.field_report_openeducat_library_report_media_barcode__id
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
+msgid "ID"
+msgstr "ID"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
+msgid "ISBN Code"
+msgstr "國際標準書號"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_isbn
+msgid "ISBN code must be unique per media!"
+msgstr "每個媒體的 ISBN 代碼必須是唯一的！"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_issue_media__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "如果選中，則有新消息需要您注意。"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_issue_media__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_issue_media__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_sms_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "如果檢查，則某些消息存在傳送錯誤。"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__internal_code
+msgid "Internal Code"
+msgstr "內碼"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_internal_cod
+msgid "Internal Code must be unique per media!"
+msgstr "每個媒體的內碼必須是唯一的！"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_purchase.py:0
+msgid ""
+"Invalid Action!\n"
+" Parent can not create             Media Purchase Requests!"
+msgstr ""
+"無效動作！\n"
+" 家長無法創建媒體購買請求！"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_queue.py:0
+msgid ""
+"Invalid Action!\n"
+" Parent can not create             Media Queue Requests!"
+msgstr ""
+"無效動作！\n"
+" 父級無法創建媒體隊列請求！"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_purchase.py:0
+msgid ""
+"Invalid Action!\n"
+" Parent can not edit             Media Purchase Requests!"
+msgstr ""
+"無效動作！\n"
+" 家長無法編輯媒體購買請求！"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_queue.py:0
+msgid ""
+"Invalid Action!\n"
+" Parent can not edit             Media Queue Requests!"
+msgstr ""
+"無效動作！\n"
+" 家長無法編輯媒體隊列請求！"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
+msgid "Invoice"
+msgstr "發票"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_is_follower
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_is_follower
+msgid "Is Follower"
+msgstr "是追隨者"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__issue_date
+msgid "Issue Date"
+msgstr "簽發日期"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+msgid "Issue Media"
+msgstr "發行媒體"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_issue_media
+msgid "Issue Media Wizard"
+msgstr "問題媒體嚮導"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.issue_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Issue media"
+msgstr "發行媒體"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__issue
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_unit__state__issue
+msgid "Issued"
+msgstr "發布"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__issued_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__issued_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Issued Date"
+msgstr "簽發日期"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Issued Today"
+msgstr "今天發布"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_account_move
+msgid "Journal Entry"
+msgstr "日記條目"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Last Name"
+msgstr "姓"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_uid
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_uid
+msgid "Last Updated by"
+msgstr "最後更新者"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__write_date
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__write_date
+msgid "Last Updated on"
+msgstr "最後更新時間"
+
+#. module: openeducat_library
+#: model:ir.module.category,name:openeducat_library.module_category_all_Library
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_root
+#: model:res.groups.privilege,name:openeducat_library.module_privilege_openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+msgid "Library"
+msgstr "圖書館"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_library_card
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__library_card_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__library_card_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Library Card"
+msgstr "圖書卡"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card_barcode
+msgid "Library Card Barcode"
+msgstr "借書證條形碼"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_library_card_barcode
+msgid "Library Card Barcode Report"
+msgstr "借書證條碼報告"
+
+#. module: openeducat_library
+#: model:mail.template,subject:openeducat_library.email_template_media_movement_after
+msgid "Library Card Expired"
+msgstr "圖書卡已過期"
+
+#. module: openeducat_library
+#: model:mail.template,subject:openeducat_library.email_template_media_movement
+msgid "Library Card Renew"
+msgstr "借書卡更新"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_library_card_type
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_type_tree
+msgid "Library Card Type"
+msgstr "圖書卡類型"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_type_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_card_type_sub
+msgid "Library Card Types"
+msgstr "圖書卡類型"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_library_card_sub
+msgid "Library Cards"
+msgstr "圖書卡"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_student_library_card
+msgid "Library ID Card"
+msgstr "圖書館身份證"
+
+#. module: openeducat_library
+#: model:ir.model.constraint,message:openeducat_library.constraint_op_library_card_unique_library_card_number
+msgid "Library card Number should be unique per card!"
+msgstr "每張借書證號碼應該是唯一的！"
+
+#. module: openeducat_library
+#: model:product.template,name:openeducat_library.op_product_7_product_template
+msgid "Library penalty fee"
+msgstr "圖書館罰款"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__lost
+msgid "Lost"
+msgstr "丟失的"
+
+#. module: openeducat_library
+#: model:res.groups,name:openeducat_library.group_op_library
+msgid "Manager"
+msgstr "主管"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/issue_media.py:0
+msgid "Maximum Number of media allowed for %s is : %s"
+msgstr "%s 允許的最大媒體數量為：%s"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_id
+#: model:ir.ui.menu,name:openeducat_library.menu_op_sub_media_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_graph
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
+msgid "Media"
+msgstr "媒體"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media :"
+msgstr "媒體 ："
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_author
+#: model:ir.model,name:openeducat_library.model_return_media
+msgid "Media Author"
+msgstr "媒體作者"
+
+#. module: openeducat_library
+#: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
+msgid "Media Barcode"
+msgstr "媒體條形碼"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_media_barcode
+msgid "Media Barcode Report"
+msgstr "媒體條形碼報告"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media
+msgid "Media Details"
+msgstr "媒體詳情"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_movement
+#: model:mail.template,name:openeducat_library.email_template_media_movement
+msgid "Media Movement"
+msgstr "媒體運動"
+
+#. module: openeducat_library
+#: model:mail.template,name:openeducat_library.email_template_media_movement_after
+msgid "Media Movement After Due Date Passed"
+msgstr "截止日期過後的媒體動態"
+
+#. module: openeducat_library
+#: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
+msgid "Media Movement Line After 1 Days"
+msgstr "1天后媒體移動線"
+
+#. module: openeducat_library
+#: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
+msgid "Media Movement Line Before 1 Days"
+msgstr "1天前媒體動向"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
+msgid "Media Movement Lines Count"
+msgstr "媒體移動線路數"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
+msgid "Media Movements"
+msgstr "媒體動態"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Name"
+msgstr "媒體名稱"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_purchase
+msgid "Media Purchase Request"
+msgstr "媒體購買請求"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_purchase_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_request_library_sub
+msgid "Media Purchase Requests"
+msgstr "媒體購買請求"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__queue_ids
+msgid "Media Queue"
+msgstr "媒體隊列"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_queue
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_graph
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
+msgid "Media Queue Request"
+msgstr "媒體隊列請求"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_queue_request_library_sub
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Media Queue Requests"
+msgstr "媒體隊列請求"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+msgid "Media Reservation"
+msgstr "媒體預約"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_reserve_media
+msgid "Media Reserve"
+msgstr "媒體儲備"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Media Return"
+msgstr "媒體回報"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_tag
+msgid "Media Tags"
+msgstr "媒體標籤"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_type_view
+#: model:ir.model,name:openeducat_library.model_op_media_type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__media_type_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_type_id
+#: model:ir.ui.menu,name:openeducat_library.menu_media_type
+msgid "Media Type"
+msgstr "媒體類型"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_media_unit
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__media_unit_id
+#: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media Unit"
+msgstr "媒體單位"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/return_media.py:0
+msgid "Media Unit can not be returned because it's already: %s"
+msgstr "媒體單元無法退回，因為它已經：%s"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_media_unit_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_unit_graph
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_unit_pivot
+msgid "Media Units"
+msgstr "媒體單位"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/wizards/issue_media.py:0
+msgid "Media unit can not be issued because it's already: %s"
+msgstr "無法發行媒體單元，因為它已經是：%s"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__media_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+msgid "Media(s)"
+msgstr "媒體"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error
+msgid "Message Delivery error"
+msgstr "消息傳遞錯誤"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_ids
+msgid "Messages"
+msgstr "留言"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Middle Name"
+msgstr "中間名字"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__movement_line
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__movement_lines
+#: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Movements"
+msgstr "動作"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_author__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_publisher__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_tag__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+msgid "Name"
+msgstr "姓名"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
+msgid "No of Media Allowed"
+msgstr "允許攜帶的媒體數量"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
+msgid "Number"
+msgstr "數字"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of Actions"
+msgstr "動作數"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of errors"
+msgstr "錯誤數"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_issue_media__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "需要採取行動的消息數量"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_issue_media__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error_counter
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "發送錯誤的消息數"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_faculty
+msgid "OpenEduCat Faculty"
+msgstr "OpenEduCat 教師"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__partner_id
+msgid "Partner"
+msgstr "夥伴"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__penalty
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Penalty"
+msgstr "懲罰"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__penalty_amt_per_day
+msgid "Penalty Amount/Day"
+msgstr "罰款金額/天"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__partner_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__partner_id
+msgid "Person"
+msgstr "人"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__reserver_name
+msgid "Person Name"
+msgstr "人名"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Personal Information"
+msgstr "個人信息"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
+msgid "Proceed"
+msgstr "繼續"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_publisher
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_tree
+msgid "Publisher"
+msgstr "出版商"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__publisher_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__publisher
+msgid "Publisher(s)"
+msgstr "出版商"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_publisher_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_publisher_sub
+msgid "Publishers"
+msgstr "出版商"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_purchase_pivot
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_graph
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_tree
+msgid "Purchase Request"
+msgstr "購買請求"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Reject"
+msgstr "拒絕"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__reject
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__reject
+msgid "Rejected"
+msgstr "被拒絕"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__request
+msgid "Request"
+msgstr "要求"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+msgid "Request Again"
+msgstr "再次請求"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__request_date
+msgid "Request Date"
+msgstr "請求日期"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__request_no
+msgid "Request No."
+msgstr "請求編號"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
+msgid "Request media"
+msgstr "請求媒體"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__request
+msgid "Requested"
+msgstr "已請求"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__requested_id
+msgid "Requested By"
+msgstr "請求者"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Reservation Detail"
+msgstr "預訂詳情"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__reserve
+msgid "Reserved"
+msgstr "預訂的"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Return Date"
+msgstr "返回日期"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_movement.py:0
+#: code:addons/openeducat_library/wizards/issue_media.py:0
+msgid "Return Date cannot be set before Issued Date."
+msgstr "返回日期不能設置在發行日期之前。"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.return_media_act
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Return Media"
+msgstr "返回媒體"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
+msgid "Returned"
+msgstr "已返回"
+
+#. module: openeducat_library
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return_done
+msgid "Returned Done"
+msgstr "返回完成"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "Returned Today"
+msgstr "今天返回"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_sms_error
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "短信發送錯誤"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__name
+msgid "Sequence No"
+msgstr "序列號"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
+msgid "Server Actions Media Movement"
+msgstr "服務器操作 媒體移動"
+
+#. module: openeducat_library
+#: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
+msgid "Server Actions Media Movement After 1 Days"
+msgstr "1 天后服務器操作媒體移動"
+
+#. module: openeducat_library
+#: model:ir.ui.menu,name:openeducat_library.menu_library_config
+msgid "Settings"
+msgstr "設定"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "State"
+msgstr "狀態"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+msgid "Status"
+msgstr "地位"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street..."
+msgstr "街道..."
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Street2"
+msgstr "街2號"
+
+#. module: openeducat_library
+#: model:ir.model,name:openeducat_library.model_op_student
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__student_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__student_id
+#: model:ir.model.fields.selection,name:openeducat_library.selection__issue_media__type__student
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_library_card__type__student
+#: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__type__student
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Student"
+msgstr "學生"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__partner_id
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__partner_id
+msgid "Student/Faculty"
+msgstr "學生/教師"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+msgid "Student/Faculty Detail"
+msgstr "學生/教師詳細信息"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__subject_ids
+msgid "Subject"
+msgstr "主題"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__subject_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Subjects"
+msgstr "科目"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_tree
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_tree
+msgid "Tag"
+msgstr "標籤"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__tags
+msgid "Tag(s)"
+msgstr "標籤"
+
+#. module: openeducat_library
+#: model:ir.actions.act_window,name:openeducat_library.act_open_op_tag_view
+#: model:ir.ui.menu,name:openeducat_library.menu_op_tag_sub
+msgid "Tags"
+msgstr "標籤"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_movement.py:0
+msgid ""
+"There is no income account defined for this product: \"%s\". You may have to"
+" install a chart of account from Accounting app, settings menu."
+msgstr "沒有為此產品定義收入帳戶：“%s”。您可能需要從會計應用程序的設置菜單安裝會計科目表。"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__name
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "Title"
+msgstr "標題"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
+msgid "To Date"
+msgstr "迄今為止"
+
+#. module: openeducat_library
+#. odoo-python
+#: code:addons/openeducat_library/models/media_queue.py:0
+msgid "To Date cannot be set before From Date."
+msgstr "截止日期不能設置在起始日期之前。"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__type
+#: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__type
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
+msgid "Type"
+msgstr "類型"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__unit_ids
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
+msgid "Units"
+msgstr "單位"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__user_id
+#: model:res.groups,name:openeducat_library.group_op_library_user
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "User"
+msgstr "用戶"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__user_id
+msgid "Users"
+msgstr "用戶"
+
+#. module: openeducat_library
+#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__website_message_ids
+msgid "Website Messages"
+msgstr "網站留言"
+
+#. module: openeducat_library
+#: model:ir.model.fields,help:openeducat_library.field_issue_media__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__website_message_ids
+#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__website_message_ids
+msgid "Website communication history"
+msgstr "網站通訊歷史"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
+msgid "ZIP"
+msgstr "拉鍊"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+msgid "media"
+msgstr "媒體"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
+msgid "media Issue"
+msgstr "媒體問題"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
+msgid "media Movement"
+msgstr "媒體運動"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
+msgid "media Queue Request"
+msgstr "媒體隊列請求"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
+msgid "media Units"
+msgstr "媒體單位"
