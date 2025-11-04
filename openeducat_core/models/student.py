@@ -39,6 +39,7 @@ class OpStudentCourse(models.Model):
     state = fields.Selection([('running', 'Running'),
                               ('finished', 'Finished')],
                              string="Status", default="running")
+    active = fields.Boolean(default=True)
 
     _sql_constraints = [
         ('unique_name_roll_number_id',
