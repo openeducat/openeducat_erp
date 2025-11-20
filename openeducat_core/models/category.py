@@ -30,6 +30,6 @@ class OpCategory(models.Model):
     company_id = fields.Many2one(
         "res.company", string="Company", default=lambda self: self.env.company
     )
-    
-    _unique_category_code = models.Constraint('unique(code)', 
+
+    _unique_category_code = models.Constraint('unique(code)',
                                               'Code should be unique per category!')

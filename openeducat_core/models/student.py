@@ -100,9 +100,9 @@ class OpStudent(models.Model):
         string='Certificate No.',
         readonly=True,
         copy=False,)
-    
-    _unique_gr_no = models.Constraint('unique(gr_no)', 
-                                     'Registration Number must be unique per student!')
+
+    _unique_gr_no = models.Constraint('unique(gr_no)',
+                                      'Registration Number must be unique per student!')
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name_1(self):
@@ -144,8 +144,9 @@ class OpStudent(models.Model):
                 })
                 record.user_id = user_id
 
+
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    _unique_email = models.Constraint('unique(email)', 
-                                     'Email must be unique per partner!')
+    _unique_email = models.Constraint('unique(email)',
+                                      'Email must be unique per partner!')

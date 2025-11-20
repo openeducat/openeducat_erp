@@ -107,8 +107,6 @@ class OpFaculty(models.Model):
             'template': '/openeducat_core/static/xls/op_faculty.xls'
         }]
 
-    def copy(self, default=None):
-        raise ValidationError(_('You cannot duplicate the Faculty — a Faculty must be unique.'))
 
 class PartnerTitle(models.Model):
     _name = 'res.partner.title'
@@ -122,8 +120,9 @@ class PartnerTitle(models.Model):
     def _compute_display_name(self):
         for record in self:
             record.display_name = f"{record.shortcut}"
-            
+
+
 class ResPartner(models.Model):
     _inherit = "res.partner"
-    
+
     title: PartnerTitle = fields.Many2one('res.partner.title')

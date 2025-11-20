@@ -35,7 +35,8 @@ class StudentMigrate(models.TransientModel):
     student_ids = fields.Many2many(
         'op.student', string='Student(s)', required=True)
     course_completed = fields.Boolean(string="Course Completed?")
-    valid_to_course_ids = fields.Many2many('op.course', compute='_compute_valid_to_courses', string="Valid To Courses")
+    valid_to_course_ids = fields.Many2many(
+        'op.course', compute='_compute_valid_to_courses', string="Valid To Courses")
     student_ids_domain = fields.Many2many(
         'op.student', compute='_compute_student_domain', store=False
     )
@@ -74,7 +75,7 @@ class StudentMigrate(models.TransientModel):
                     if record.course_from_id.program_id != \
                             record.course_to_id.program_id:
                         raise ValidationError(_(
-                            "Can't migrate, As selected courses don't share same Program!"))
+                            "Can't migrate, As selected courses don't share same Program!")) # noqa
             else:
                 raise ValidationError(
                     _("Can't migrate, Proceed for new admission"))

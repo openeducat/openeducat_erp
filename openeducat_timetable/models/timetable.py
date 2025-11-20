@@ -270,7 +270,7 @@ class OpSession(models.Model):
                 if user.sudo().partner_id:
                     template.partner_to = user.sudo().partner_id.id
                     context = dict(self.env.context)
-                    user = self.env['res.users'].search([('partner_id', '=', user.sudo().partner_id.id)])
+                    user = self.env['res.users'].search([('partner_id', '=', user.sudo().partner_id.id)]) # noqa
                     context['timezone'] = user.tz or 'UTC'
                     template.with_context(context).send_mail(session.id)
 

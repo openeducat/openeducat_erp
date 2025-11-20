@@ -28,5 +28,4 @@ class OpParentRelation(models.Model):
     name = fields.Char('Name', required=True)
 
     _unique_relationship_name = models.Constraint(
-    'unique(name)',
-    'Can not create relationship multiple times.!')
+        'unique(name)', 'Can not create relationship multiple times.!')

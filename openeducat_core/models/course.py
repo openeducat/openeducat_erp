@@ -43,9 +43,9 @@ class OpCourse(models.Model):
         self.env.user.dept_id and self.env.user.dept_id.id or False)
     active = fields.Boolean(default=True)
     program_id = fields.Many2one('op.program', string="Program", tracking=True)
-    
-    _unique_course_code = models.Constraint('unique(code)', 
-                                           'Code should be unique per course!')
+
+    _unique_course_code = models.Constraint('unique(code)',
+                                            'Code should be unique per course!')
 
     @api.constrains('parent_id')
     def _check_category_recursion(self):

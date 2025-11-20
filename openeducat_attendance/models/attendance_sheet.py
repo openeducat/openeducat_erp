@@ -70,9 +70,9 @@ class OpAttendanceSheet(models.Model):
     def attendance_cancel(self):
         self.state = 'cancel'
 
-    _unique_register_sheet =  models.Constraint(
+    _unique_register_sheet = models.Constraint(
         'unique(register_id,session_id,attendance_date)',
-         'Sheet must be unique per Register/Session')
+        'Sheet must be unique per Register/Session')
 
     @api.model_create_multi
     def create(self, vals_list):

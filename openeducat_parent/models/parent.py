@@ -26,7 +26,8 @@ class OpParent(models.Model):
     _name = "op.parent"
     _description = "Parent"
 
-    name = fields.Many2one('res.partner', 'Name', required=True, domain="[('is_parent', '=', True)]")
+    name = fields.Many2one('res.partner', 'Name', required=True,
+                           domain="[('is_parent', '=', True)]")
     user_id = fields.Many2one('res.users', string='User', store=True)
     student_ids = fields.Many2many('op.student', string='Student(s)', required=True,)
     mobile = fields.Char(string='Mobile')
@@ -35,16 +36,13 @@ class OpParent(models.Model):
     relationship_id = fields.Many2one('op.parent.relationship',
                                       'Relation with Student', required=True)
 
-    _unique_parent = models.Constraint(
-    'unique(name)',
-    'Can not create parent multiple times.!')
-
+    _unique_parent = models.Constraint('unique(name)',
+                                       'Can not create parent multiple times.!')
 
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
             self.user_id = self.name.user_id.id if self.name.user_id else False
-            print(self.name.phone)
             self.mobile = self.name.phone
             self.email = self.name.email
 
@@ -213,7 +211,8 @@ class OpStudent(models.Model):
 
     def get_parent(self):
         self.ensure_one()
-        action = self.env.ref('openeducat_parent.act_open_op_parent_view').sudo().read()[0]
+        action = self.env.ref(
+            'openeducat_parent.act_open_op_parent_view').sudo().read()[0]
         action['domain'] = [('student_ids', 'in', self.ids)]
         action['context'] = {'default_student_ids': [(6, 0, self.ids)]}
         return action

@@ -46,10 +46,8 @@ class OpMedia(models.Model):
     unit_ids = fields.One2many('op.media.unit', 'media_id', 'Units')
     media_type_id = fields.Many2one('op.media.type', 'Media Type')
     active = fields.Boolean(default=True)
+    _unique_name_isbn = models.Constraint('unique(isbn)',
+                                          'ISBN code must be unique per media!')
 
-
-    _unique_name_isbn = models.Constraint('unique(isbn)', 
-                                    'ISBN code must be unique per media!')
-    
-    _unique_name_internal_cod = models.Constraint('unique(internal_code)', 
-                                    'Internal Code must be unique per media!')
+    _unique_name_internal_cod = models.Constraint(
+        'unique(internal_code)', 'Internal Code must be unique per media!')

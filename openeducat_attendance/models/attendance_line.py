@@ -57,10 +57,11 @@ class OpAttendanceLine(models.Model):
     attendance_type_id = fields.Many2one(
         'op.attendance.type', 'Attendance Type',
         required=False, tracking=True)
-    state = fields.Selection(related = "attendance_id.state")
+    state = fields.Selection(related="attendance_id.state")
 
-    _unique_student = models.Constraint('unique(student_id,attendance_id,attendance_date)',
-         'Student must be unique per Attendance.')
+    _unique_student = models.Constraint(
+        'unique(student_id,attendance_id,attendance_date)',
+        'Student must be unique per Attendance.')
 
     @api.onchange('attendance_type_id')
     def onchange_attendance_type(self):
