@@ -295,7 +295,8 @@ class OpAdmission(models.Model):
                     'product_id': student.register_id.product_id.id,
                 }]],
                 'user_id': student_user.id if student_user else False,
-                'company_id': self.company_id.id
+                'company_id': self.company_id.id,
+                partner_id':student_user.partner_id.id if student_user else False
             })
             return details
 
