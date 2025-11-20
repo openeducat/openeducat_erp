@@ -38,7 +38,7 @@ class OpExamRoom(models.Model):
                 raise ValidationError(_('Enter proper Capacity'))
             elif rec.capacity > rec.classroom_id.capacity:
                 raise ValidationError(_('Capacity over Classroom capacity!'))
- 
+
     @api.onchange('classroom_id')
     def onchange_classroom(self):
         if self.classroom_id:

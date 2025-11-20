@@ -38,9 +38,9 @@ class OpProgram(models.Model):
     image_1920 = fields.Image('Image', attachment=True)
     program_level_id = fields.Many2one(
         'op.program.level', 'Program Level', required=True)
-    
-    _unique_program_code = models.Constraint('unique(code)', 
-                                           'Code should be unique per program!')
+
+    _unique_program_code = models.Constraint('unique(code)',
+                                             'Code should be unique per program!')
 
 
 class OpProgramLevel(models.Model):
@@ -49,6 +49,6 @@ class OpProgramLevel(models.Model):
     _description = "OpenEduCat Program level"
 
     name = fields.Char('Name', required=True, translate=True, tracking=True)
-    
-    _unique_level_name = models.Constraint('unique(name)', 
+
+    _unique_level_name = models.Constraint('unique(name)',
                                            'Name should be unique per Program level!')

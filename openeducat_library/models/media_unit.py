@@ -40,8 +40,8 @@ class OpMediaUnit(models.Model):
                                     store=True, string='Media Type')
     active = fields.Boolean(default=True)
 
-    _unique_name_barcode = models.Constraint('unique(barcode)', 
-                                    'Barcode must be unique per Media unit!')
+    _unique_name_barcode = models.Constraint('unique(barcode)',
+                                             'Barcode must be unique per Media unit!')
 
     @api.model_create_multi
     def create(self, vals_list):

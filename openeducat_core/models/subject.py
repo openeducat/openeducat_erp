@@ -42,8 +42,8 @@ class OpSubject(models.Model):
         self.env.user.dept_id and self.env.user.dept_id.id or False)
     active = fields.Boolean(default=True)
 
-    _unique_subject_code = models.Constraint('unique(code)', 
-                                            'Code should be unique per subject!')
+    _unique_subject_code = models.Constraint('unique(code)',
+                                             'Code should be unique per subject!')
 
     @api.model
     def get_import_templates(self):

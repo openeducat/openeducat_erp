@@ -19,7 +19,6 @@
 ###############################################################################
 
 import time
-from operator import itemgetter
 
 from odoo import api, fields, models
 
@@ -44,7 +43,8 @@ class StudentAttendanceReport(models.AbstractModel):
         if to_date:
             domain.append(('attendance_date', '<=', to_date))
 
-        lines = self.env['op.attendance.line'].search(domain, order='attendance_date asc')
+        lines = self.env['op.attendance.line'].search(
+            domain, order='attendance_date asc')
 
         absences = []
         for line in lines:
@@ -66,7 +66,7 @@ class StudentAttendanceReport(models.AbstractModel):
             })
 
         # sort (already ordered by attendance_date from search, keep fallback)
-        absences.sort(key=lambda x: (x['absent_date'] is False, x['absent_date'] or fields.Date.to_string(fields.Date.context_today(self))))
+        absences.sort(key=lambda x: (x['absent_date'] is False, x['absent_date'] or fields.Date.to_string(fields.Date.context_today(self)))) # noqa
         return absences
 
     @api.model

@@ -62,8 +62,8 @@ class OpExamSession(models.Model):
     exams_count = fields.Integer(
         compute='_compute_exams_count', string="Exams")
 
-    _unique_exam_session_code= models.Constraint('unique(exam_code)',
-                                           'Code should be unique per exam session!')
+    _unique_exam_session_code = models.Constraint(
+        'unique(exam_code)', 'Code should be unique per exam session!')
 
     def _compute_exams_count(self):
         for rec in self:

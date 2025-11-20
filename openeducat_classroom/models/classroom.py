@@ -35,11 +35,11 @@ class OpClassroom(models.Model):
     asset_line = fields.One2many('op.asset', 'asset_id',
                                  string='Asset')
     active = fields.Boolean(default=True)
-    
-    _unique_classroom_code = models.Constraint('unique(code)', 
+
+    _unique_classroom_code = models.Constraint('unique(code)',
                                                'Code should be unique per classroom!')
-    _capacity_check = models.Constraint('CHECK (capacity > 0)', 
-                                       'Integer field must be greater than  0')
+    _capacity_check = models.Constraint('CHECK (capacity > 0)',
+                                        'Integer field must be greater than  0')
 
     @api.onchange('course_id')
     def onchange_course(self):
