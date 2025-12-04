@@ -34,4 +34,4 @@ class HrEmployee(models.Model):
     def onchange_address_id(self):
         if self.address_id:
             self.work_phone = self.address_id.phone
-            self.mobile_phone = self.address_id.mobile
+
