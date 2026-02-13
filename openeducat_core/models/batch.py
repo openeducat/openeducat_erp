@@ -27,7 +27,7 @@ class OpBatch(models.Model):
     _inherit = "mail.thread"
     _description = "OpenEduCat Batch"
 
-    code = fields.Char('Code', size=16, required=True)
+    code = fields.Char('Code test deploy bhola server', size=16, required=True)
     name = fields.Char('Name', size=32, required=True)
     start_date = fields.Date(
         'Start Date', required=True, default=fields.Date.today())
