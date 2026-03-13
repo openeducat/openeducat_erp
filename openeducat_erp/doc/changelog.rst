@@ -37,7 +37,7 @@ Changelog
 - Added meeting feature for parent, faculty & back office. `Enterprise`
 - Added feature to manage board affiliation details. `Enterprise`
 - Added feature of gamification for students. `Enterprise`
-- Added new backend theme for OpenEduCat. `Enterprise`
+- Added new backend theme for OpenEMIS. `Enterprise`
 - Improved access rights & rules for security.
 - Solve reported issues #60 #76.
 
@@ -83,14 +83,14 @@ Changelog
 
 `8.0.0`
 -------
-- OpenEduCat Now compatible with Odoo v8.
+- OpenEMIS Now compatible with Odoo v8.
 - Added demo portal
 
 
 `7.1.3.1`
 ---------
 
-- Added Annoucement Bar on the top to keep users updated with latest news about OpenEduCat
+- Added Annoucement Bar on the top to keep users updated with latest news about OpenEMIS
 - minor bug fixes
 
 `7.1.3`

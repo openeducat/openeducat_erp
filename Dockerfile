@@ -8,7 +8,7 @@
 #   docker run -p 8069:8069 --env HOST=<pg-host> --env USER=odoo \
 #     --env PASSWORD=odoo openemis:latest
 
-FROM odoo:17.0
+FROM odoo:18.0
 
 LABEL maintainer="openEMIS <support@openemis.org>" \
       org.opencontainers.image.title="openEMIS" \

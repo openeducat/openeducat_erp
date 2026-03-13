@@ -1,1 +1,1 @@
-This module adds classroom management feature to OpenEduCat_Core.
+This module adds classroom management feature to OpenEMIS Core.
