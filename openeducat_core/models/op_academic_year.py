@@ -1,9 +1,9 @@
-# Part of OpenEduCat. See LICENSE file for full copyright & licensing details.
+# Part of openEMIS. See LICENSE file for full copyright & licensing details.
 
 ##############################################################################
 #
-#    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
+#    openEMIS
+#    Copyright (C) 2009-TODAY openEMIS(<https://www.openemis.org>).
 #
 ##############################################################################
 

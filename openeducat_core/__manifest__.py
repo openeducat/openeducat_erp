@@ -1,7 +1,7 @@
 ###############################################################################
 #
-#    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
+#    openEMIS
+#    Copyright (C) 2009-TODAY openEMIS(<https://www.openemis.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,15 +19,15 @@
 ###############################################################################
 
 {
-    'name': 'OpenEduCat Core',
+    'name': 'openEMIS Core',
     'version': '18.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 1,
     'summary': 'Manage Students, Faculties and Education Institute',
     'complexity': "easy",
-    'author': 'OpenEduCat Inc',
-    'website': 'https://www.openeducat.org',
+    'author': 'openEMIS',
+    'website': 'https://www.openemis.org',
     'depends': ['board', 'hr', 'web', 'website'],
     'data': [
         'security/op_security.xml',
@@ -72,11 +72,16 @@
         'demo/op.batch.csv',
         'demo/base_demo.xml',
         'demo/res_partner_demo.xml',
+        'demo/openemis_student_bulk_partners.xml',
+        'demo/openemis_faculty_bulk_partners.xml',
         'demo/res_users_demo.xml',
         'demo/category_demo.xml',
         'demo/student_demo.xml',
+        'demo/openemis_student_bulk.xml',
         'demo/student_course_demo.xml',
+        'demo/openemis_student_course_bulk.xml',
         'demo/faculty_demo.xml',
+        'demo/openemis_faculty_bulk.xml',
         'demo/res_condig_fav_icon.xml',
         'demo/op_academic_year_demo.xml',
         'demo/op_academic_term_demo.xml',

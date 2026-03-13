@@ -1,7 +1,7 @@
 ###############################################################################
 #
-#    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
+#    openEMIS
+#    Copyright (C) 2009-TODAY openEMIS(<https://www.openemis.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -25,7 +25,7 @@ from odoo.exceptions import ValidationError
 class OpBatch(models.Model):
     _name = "op.batch"
     _inherit = "mail.thread"
-    _description = "OpenEduCat Batch"
+    _description = "openEMIS Batch"
 
     code = fields.Char('Code', size=16, required=True)
     name = fields.Char('Name', size=32, required=True)

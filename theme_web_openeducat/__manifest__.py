@@ -1,10 +1,10 @@
 {
-    'name': 'OpenEduCat Theme',
-    'summary': 'OpenEduCat Theme',
-    'website' : 'https://openeducat.org/',
+    'name': 'openEMIS Theme',
+    'summary': 'openEMIS Theme',
+    'website': 'https://www.openemis.org',
     'category': 'Theme',
     'version': '18.0.1.0',
-    'author': 'OpenEduCat',
+    'author': 'openEMIS',
     'depends': [
         'website',
         'theme_default',

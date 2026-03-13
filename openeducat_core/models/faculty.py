@@ -1,7 +1,7 @@
 ###############################################################################
 #
-#    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
+#    openEMIS
+#    Copyright (C) 2009-TODAY openEMIS(<https://www.openemis.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -24,7 +24,7 @@ from odoo.exceptions import ValidationError
 
 class OpFaculty(models.Model):
     _name = "op.faculty"
-    _description = "OpenEduCat Faculty"
+    _description = "openEMIS Faculty"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _inherits = {"res.partner": "partner_id"}
     _parent_name = False

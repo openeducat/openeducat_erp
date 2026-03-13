@@ -1,7 +1,7 @@
 ###############################################################################
 #
-#    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
+#    openEMIS
+#    Copyright (C) 2009-TODAY openEMIS(<https://www.openemis.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,15 +19,15 @@
 ###############################################################################
 
 {
-    'name': 'OpenEduCat Activity',
+    'name': 'openEMIS Activity',
     'version': '18.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Activities',
     'complexity': "easy",
-    'author': 'OpenEduCat Inc',
-    'website': 'https://www.openeducat.org',
+    'author': 'openEMIS',
+    'website': 'https://www.openemis.org',
     'depends': ['openeducat_core'],
     'data': [
         'security/op_security.xml',

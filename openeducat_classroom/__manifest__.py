@@ -1,7 +1,7 @@
 ###############################################################################
 #
-#    OpenEduCat Inc
-#    Copyright (C) 2009-TODAY OpenEduCat Inc(<https://www.openeducat.org>).
+#    openEMIS
+#    Copyright (C) 2009-TODAY openEMIS(<https://www.openemis.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Lesser General Public License as
@@ -19,15 +19,15 @@
 ###############################################################################
 
 {
-    'name': 'OpenEduCat Classroom',
+    'name': 'openEMIS Classroom',
     'version': '18.0.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
     'summary': 'Manage Classroom',
     'complexity': "easy",
-    'author': 'OpenEduCat Inc',
-    'website': 'https://www.openeducat.org',
+    'author': 'openEMIS',
+    'website': 'https://www.openemis.org',
     'depends': ['openeducat_core', 'openeducat_facility', 'product'],
     'data': [
         'security/op_classroom_security.xml',
@@ -37,6 +37,7 @@
     ],
     'demo': [
         'demo/classroom_demo.xml',
+        'demo/openemis_classrooms_bulk.xml',
         'demo/facility_line_demo.xml'
     ],
     'images': [
