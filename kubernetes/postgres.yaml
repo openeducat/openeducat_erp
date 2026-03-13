@@ -1,0 +1,92 @@
+---
+# Persistent storage for PostgreSQL data
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: openemis
+  labels:
+    app: postgres
+    app.kubernetes.io/part-of: openemis
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+# Secret holding database credentials
+# WARNING: These are example credentials for local development only.
+# In production, replace with strong passwords or inject from a secret
+# management system (e.g. Sealed Secrets, External Secrets Operator).
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+  namespace: openemis
+  labels:
+    app: postgres
+    app.kubernetes.io/part-of: openemis
+type: Opaque
+stringData:
+  POSTGRES_DB: postgres
+  POSTGRES_USER: odoo
+  POSTGRES_PASSWORD: odoo
+---
+# PostgreSQL Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: openemis
+  labels:
+    app: postgres
+    app.kubernetes.io/part-of: openemis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+# PostgreSQL Service (ClusterIP – reachable only within the cluster)
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: openemis
+  labels:
+    app: postgres
+    app.kubernetes.io/part-of: openemis
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
