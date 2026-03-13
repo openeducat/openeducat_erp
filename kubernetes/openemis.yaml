@@ -1,0 +1,150 @@
+---
+# Persistent storage for Odoo file store
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: odoo-pvc
+  namespace: openemis
+  labels:
+    app: openemis
+    app.kubernetes.io/part-of: openemis
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+# ConfigMap for Odoo / openEMIS runtime configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openemis-config
+  namespace: openemis
+  labels:
+    app: openemis
+    app.kubernetes.io/part-of: openemis
+data:
+  HOST: postgres
+  USER: odoo
+  PORT: "5432"
+---
+# openEMIS (Odoo) Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openemis
+  namespace: openemis
+  labels:
+    app: openemis
+    app.kubernetes.io/part-of: openemis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openemis
+  template:
+    metadata:
+      labels:
+        app: openemis
+    spec:
+      initContainers:
+        # Wait until PostgreSQL is accepting connections before starting Odoo
+        - name: wait-for-postgres
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z postgres 5432; do
+                echo "Waiting for PostgreSQL..."; sleep 2;
+              done
+      containers:
+        - name: openemis
+          # Replace with a specific version tag (e.g. openemis:v1.0.0) for production deployments.
+          # Using 'latest' is acceptable for local development only.
+          image: openemis:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8069
+              name: http
+          envFrom:
+            - configMapRef:
+                name: openemis-config
+            - secretRef:
+                name: postgres-secret
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - name: odoo-data
+              mountPath: /var/lib/odoo
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "2"
+              memory: "2Gi"
+          readinessProbe:
+            httpGet:
+              path: /web/health
+              port: 8069
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /web/health
+              port: 8069
+            initialDelaySeconds: 60
+            periodSeconds: 20
+      volumes:
+        - name: odoo-data
+          persistentVolumeClaim:
+            claimName: odoo-pvc
+---
+# Service – exposes openEMIS within the cluster
+apiVersion: v1
+kind: Service
+metadata:
+  name: openemis
+  namespace: openemis
+  labels:
+    app: openemis
+    app.kubernetes.io/part-of: openemis
+spec:
+  selector:
+    app: openemis
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8069
+---
+# Ingress – routes external HTTP traffic to openEMIS
+# Requires an Ingress controller (e.g. ingress-nginx) to be installed.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openemis-ingress
+  namespace: openemis
+  labels:
+    app: openemis
+    app.kubernetes.io/part-of: openemis
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+spec:
+  rules:
+    - host: openemis.example.com   # TODO: replace with your actual hostname before deploying
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: openemis
+                port:
+                  number: 80

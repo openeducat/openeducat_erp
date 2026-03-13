@@ -29,7 +29,7 @@ from odoo.models import AbstractModel
 from odoo.tools import misc
 from odoo.tools.translate import _
 
-OEC_API_ENDPOINT = "https://srv.openeducat.org/publisher-warranty/"
+OEC_API_ENDPOINT = "https://srv.openemis.org/publisher-warranty/"
 
 _logger = logging.getLogger(__name__)
 
@@ -93,7 +93,7 @@ class PublisherWarrantyContract(AbstractModel):
         r.raise_for_status()
         return literal_eval(r.text)
 
-    def update_notification_openeducat(self, cron_mode=True):
+    def update_notification_openemis(self, cron_mode=True):
         res = super(PublisherWarrantyContract, self).update_notification()
         try:
             try:
