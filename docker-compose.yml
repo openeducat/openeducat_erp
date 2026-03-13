@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: openemis_db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  odoo:
+    image: odoo:17.0
+    container_name: openemis_odoo
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - odoo_data:/var/lib/odoo
+      - ./:/mnt/extra-addons
+    command: >
+      --db_host=db
+      --db_user=odoo
+      --db_password=odoo
+      --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  odoo_data:
