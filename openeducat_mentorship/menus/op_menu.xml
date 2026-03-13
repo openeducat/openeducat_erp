@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_op_mentorship_root"
+              name="Mentorship"
+              sequence="397"
+              web_icon="openeducat_mentorship,static/description/icon.png"
+              groups="openeducat_mentorship.group_op_mentorship_user,
+                      openeducat_mentorship.group_op_mentorship_manager"/>
+
+    <menuitem id="menu_op_mentorship_mentors"
+              name="Mentors"
+              parent="menu_op_mentorship_root"
+              sequence="10"
+              action="act_open_op_mentor"
+              groups="openeducat_mentorship.group_op_mentorship_user,
+                      openeducat_mentorship.group_op_mentorship_manager"/>
+
+    <menuitem id="menu_op_mentorship_groups"
+              name="Groups"
+              parent="menu_op_mentorship_root"
+              sequence="20"
+              action="act_open_op_mentorship_group"
+              groups="openeducat_mentorship.group_op_mentorship_user,
+                      openeducat_mentorship.group_op_mentorship_manager"/>
+
+    <menuitem id="menu_op_mentorship_dm"
+              name="Direct Messages"
+              parent="menu_op_mentorship_root"
+              sequence="30"
+              action="act_open_op_direct_messages"
+              groups="openeducat_mentorship.group_op_mentorship_user,
+                      openeducat_mentorship.group_op_mentorship_manager"/>
+
+    <menuitem id="menu_op_mentorship_questions"
+              name="Group Questions"
+              parent="menu_op_mentorship_root"
+              sequence="40"
+              action="act_open_op_group_questions"
+              groups="openeducat_mentorship.group_op_mentorship_user,
+                      openeducat_mentorship.group_op_mentorship_manager"/>
+
+    <menuitem id="menu_op_mentorship_all"
+              name="All Messages"
+              parent="menu_op_mentorship_root"
+              sequence="50"
+              action="act_open_op_mentorship_message"
+              groups="openeducat_mentorship.group_op_mentorship_manager"/>
+
+</odoo>

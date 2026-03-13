@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Career Match List View -->
+    <record id="view_op_career_match_list" model="ir.ui.view">
+        <field name="name">op.career.match.list</field>
+        <field name="model">op.career.match</field>
+        <field name="arch" type="xml">
+            <list string="Career Matches"
+                  decoration-success="match_status=='eligible'"
+                  decoration-warning="match_status=='conditionally_eligible'"
+                  decoration-danger="match_status=='not_eligible'"
+                  decoration-muted="match_status=='not_evaluated'">
+                <field name="student_id"/>
+                <field name="career_id"/>
+                <field name="predicted_percentage"/>
+                <field name="minimum_points"/>
+                <field name="match_score"/>
+                <field name="match_status"/>
+                <field name="evaluation_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Career Match Form View -->
+    <record id="view_op_career_match_form" model="ir.ui.view">
+        <field name="name">op.career.match.form</field>
+        <field name="model">op.career.match</field>
+        <field name="arch" type="xml">
+            <form string="Career Suitability Match">
+                <header>
+                    <button name="action_evaluate_match"
+                            string="Evaluate Match"
+                            type="object"
+                            class="btn-primary"/>
+                    <field name="match_status" widget="statusbar"
+                           statusbar_visible="not_evaluated,eligible,conditionally_eligible,not_eligible"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Student &amp; Career">
+                            <field name="student_id"/>
+                            <field name="career_id"/>
+                            <field name="prediction_id"/>
+                        </group>
+                        <group string="Match Results">
+                            <field name="predicted_percentage"/>
+                            <field name="minimum_points"/>
+                            <field name="match_score"/>
+                            <field name="evaluation_date"/>
+                        </group>
+                    </group>
+                    <group string="Counsellor Notes">
+                        <field name="counsellor_notes" nolabel="1"
+                               colspan="2"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_career_match_search" model="ir.ui.view">
+        <field name="name">op.career.match.search</field>
+        <field name="model">op.career.match</field>
+        <field name="arch" type="xml">
+            <search string="Search Career Matches">
+                <field name="student_id"/>
+                <field name="career_id"/>
+                <filter string="Eligible" name="eligible"
+                        domain="[('match_status','=','eligible')]"/>
+                <filter string="Conditionally Eligible"
+                        name="conditionally_eligible"
+                        domain="[('match_status','=','conditionally_eligible')]"/>
+                <filter string="Not Eligible" name="not_eligible"
+                        domain="[('match_status','=','not_eligible')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_student" string="Student"
+                            context="{'group_by':'student_id'}"/>
+                    <filter name="group_status" string="Suitability"
+                            context="{'group_by':'match_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="act_open_op_career_match" model="ir.actions.act_window">
+        <field name="name">Career Matches</field>
+        <field name="res_model">op.career.match</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_career_match_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a career match or generate matches automatically
+                from a student record.
+            </p>
+        </field>
+    </record>
+
+</odoo>

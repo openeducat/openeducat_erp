@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Mentor List View -->
+    <record id="view_op_mentor_list" model="ir.ui.view">
+        <field name="name">op.mentor.list</field>
+        <field name="model">op.mentor</field>
+        <field name="arch" type="xml">
+            <list string="Mentors"
+                  decoration-success="state=='approved'"
+                  decoration-warning="state=='pending'"
+                  decoration-danger="state=='suspended'">
+                <field name="name"/>
+                <field name="mentor_type"/>
+                <field name="profession"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="state"/>
+                <field name="approval_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Mentor Form View -->
+    <record id="view_op_mentor_form" model="ir.ui.view">
+        <field name="name">op.mentor.form</field>
+        <field name="model">op.mentor</field>
+        <field name="arch" type="xml">
+            <form string="Mentor">
+                <header>
+                    <button name="action_approve"
+                            string="Approve"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'pending'"
+                            groups="openeducat_mentorship.group_op_mentorship_manager"/>
+                    <button name="action_suspend"
+                            string="Suspend"
+                            type="object"
+                            invisible="state != 'approved'"
+                            groups="openeducat_mentorship.group_op_mentorship_manager"/>
+                    <button name="action_reject"
+                            string="Reject"
+                            type="object"
+                            invisible="state not in ('pending','approved')"
+                            groups="openeducat_mentorship.group_op_mentorship_manager"/>
+                    <button name="action_reset_pending"
+                            string="Reset to Pending"
+                            type="object"
+                            invisible="state == 'pending'"
+                            groups="openeducat_mentorship.group_op_mentorship_manager"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,approved,suspended"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Personal Details">
+                            <field name="partner_id"/>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            <field name="mentor_type"/>
+                            <field name="profession"/>
+                        </group>
+                        <group string="Approval">
+                            <field name="approved_by"/>
+                            <field name="approval_date"/>
+                        </group>
+                    </group>
+                    <group string="Bio">
+                        <field name="bio" nolabel="1" colspan="2"/>
+                    </group>
+                    <notebook>
+                        <page name="expertise" string="Areas of Expertise">
+                            <field name="expertise_subject_ids"
+                                   widget="many2many_tags"/>
+                        </page>
+                        <page name="groups" string="Mentorship Groups">
+                            <field name="group_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="subject_ids"
+                                           widget="many2many_tags"/>
+                                    <field name="question_count"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_mentor_search" model="ir.ui.view">
+        <field name="name">op.mentor.search</field>
+        <field name="model">op.mentor</field>
+        <field name="arch" type="xml">
+            <search string="Search Mentors">
+                <field name="name"/>
+                <field name="profession"/>
+                <field name="expertise_subject_ids"/>
+                <filter string="Approved" name="approved"
+                        domain="[('state','=','approved')]"/>
+                <filter string="Pending" name="pending"
+                        domain="[('state','=','pending')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_type" string="Type"
+                            context="{'group_by':'mentor_type'}"/>
+                    <filter name="group_state" string="Status"
+                            context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="act_open_op_mentor" model="ir.actions.act_window">
+        <field name="name">Mentors</field>
+        <field name="res_model">op.mentor</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_mentor_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Register a new mentor.
+            </p>
+        </field>
+    </record>
+
+</odoo>

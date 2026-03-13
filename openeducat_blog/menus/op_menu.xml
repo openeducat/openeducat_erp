@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_op_blog_root"
+              name="Blog"
+              sequence="399"
+              web_icon="openeducat_blog,static/description/icon.png"
+              groups="openeducat_blog.group_op_blog_reader,
+                      openeducat_blog.group_op_blog_author,
+                      openeducat_blog.group_op_blog_manager"/>
+
+    <menuitem id="menu_op_blog_published"
+              name="Articles"
+              parent="menu_op_blog_root"
+              sequence="10"
+              action="act_open_op_blog_published"
+              groups="openeducat_blog.group_op_blog_reader,
+                      openeducat_blog.group_op_blog_author,
+                      openeducat_blog.group_op_blog_manager"/>
+
+    <menuitem id="menu_op_blog_my_posts"
+              name="My Posts"
+              parent="menu_op_blog_root"
+              sequence="20"
+              action="act_open_op_blog_post"
+              groups="openeducat_blog.group_op_blog_author,
+                      openeducat_blog.group_op_blog_manager"/>
+
+    <menuitem id="menu_op_blog_all_posts"
+              name="All Posts"
+              parent="menu_op_blog_root"
+              sequence="30"
+              action="act_open_op_blog_post"
+              groups="openeducat_blog.group_op_blog_manager"/>
+
+    <menuitem id="menu_op_blog_comments"
+              name="Moderate Comments"
+              parent="menu_op_blog_root"
+              sequence="40"
+              action="act_open_op_blog_comment_pending"
+              groups="openeducat_blog.group_op_blog_manager"/>
+
+    <menuitem id="menu_op_blog_config"
+              name="Configuration"
+              parent="menu_op_blog_root"
+              sequence="50"
+              groups="openeducat_blog.group_op_blog_manager"/>
+
+    <menuitem id="menu_op_blog_categories"
+              name="Categories"
+              parent="menu_op_blog_config"
+              sequence="10"
+              action="act_open_op_blog_category"
+              groups="openeducat_blog.group_op_blog_manager"/>
+
+</odoo>

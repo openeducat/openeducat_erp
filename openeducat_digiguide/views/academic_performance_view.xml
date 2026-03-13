@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Academic Performance List View -->
+    <record id="view_op_academic_performance_list" model="ir.ui.view">
+        <field name="name">op.academic.performance.list</field>
+        <field name="model">op.academic.performance</field>
+        <field name="arch" type="xml">
+            <list string="Academic Performance">
+                <field name="student_id"/>
+                <field name="subject_id"/>
+                <field name="grade"/>
+                <field name="term"/>
+                <field name="assessment_type"/>
+                <field name="score"/>
+                <field name="max_score"/>
+                <field name="percentage"/>
+                <field name="grade_letter"/>
+                <field name="academic_year"/>
+                <field name="is_national_exam_grade"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Academic Performance Form View -->
+    <record id="view_op_academic_performance_form" model="ir.ui.view">
+        <field name="name">op.academic.performance.form</field>
+        <field name="model">op.academic.performance</field>
+        <field name="arch" type="xml">
+            <form string="Academic Performance Record">
+                <sheet>
+                    <group>
+                        <group string="Student &amp; Subject">
+                            <field name="student_id"/>
+                            <field name="subject_id"/>
+                        </group>
+                        <group string="Assessment Details">
+                            <field name="academic_year"/>
+                            <field name="grade"/>
+                            <field name="term"/>
+                            <field name="assessment_type"/>
+                            <field name="is_national_exam_grade"/>
+                        </group>
+                        <group string="Scores">
+                            <field name="score"/>
+                            <field name="max_score"/>
+                            <field name="percentage"/>
+                            <field name="grade_letter"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1" colspan="2"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Academic Performance Search View -->
+    <record id="view_op_academic_performance_search" model="ir.ui.view">
+        <field name="name">op.academic.performance.search</field>
+        <field name="model">op.academic.performance</field>
+        <field name="arch" type="xml">
+            <search string="Search Academic Performance">
+                <field name="student_id"/>
+                <field name="subject_id"/>
+                <field name="academic_year"/>
+                <filter string="Grade 1" name="grade_1"
+                        domain="[('grade','=','grade_1')]"/>
+                <filter string="Grade 3" name="grade_3"
+                        domain="[('grade','=','grade_3')]"/>
+                <filter string="Grade 6" name="grade_6"
+                        domain="[('grade','=','grade_6')]"/>
+                <filter string="Grade 9" name="grade_9"
+                        domain="[('grade','=','grade_9')]"/>
+                <filter string="Grade 12" name="grade_12"
+                        domain="[('grade','=','grade_12')]"/>
+                <filter string="National Exam Records"
+                        name="national_exam"
+                        domain="[('is_national_exam_grade','=',True)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_student" string="Student"
+                            context="{'group_by':'student_id'}"/>
+                    <filter name="group_grade" string="Grade"
+                            context="{'group_by':'grade'}"/>
+                    <filter name="group_subject" string="Subject"
+                            context="{'group_by':'subject_id'}"/>
+                    <filter name="group_year" string="Academic Year"
+                            context="{'group_by':'academic_year'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="act_open_op_academic_performance" model="ir.actions.act_window">
+        <field name="name">Academic Performance</field>
+        <field name="res_model">op.academic.performance</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_academic_performance_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add an academic performance record.
+            </p>
+        </field>
+    </record>
+
+</odoo>

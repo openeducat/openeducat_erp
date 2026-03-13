@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- KUCCPS Career List View -->
+    <record id="view_op_kuccps_career_list" model="ir.ui.view">
+        <field name="name">op.kuccps.career.list</field>
+        <field name="model">op.kuccps.career</field>
+        <field name="arch" type="xml">
+            <list string="KUCCPS Careers / Programmes">
+                <field name="kuccps_code"/>
+                <field name="name"/>
+                <field name="institution_name"/>
+                <field name="institution_type"/>
+                <field name="minimum_grade"/>
+                <field name="minimum_points"/>
+                <field name="duration_years"/>
+                <field name="sync_status"/>
+                <field name="last_sync_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- KUCCPS Career Form View -->
+    <record id="view_op_kuccps_career_form" model="ir.ui.view">
+        <field name="name">op.kuccps.career.form</field>
+        <field name="model">op.kuccps.career</field>
+        <field name="arch" type="xml">
+            <form string="KUCCPS Career / Programme">
+                <header>
+                    <button name="action_sync_from_kuccps"
+                            string="Sync All from KUCCPS API"
+                            type="object"
+                            class="btn-primary"
+                            groups="openeducat_digiguide.group_op_digiguide_manager"/>
+                    <field name="sync_status" widget="statusbar"
+                           statusbar_visible="pending,synced,error"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Programme Details">
+                            <field name="name"/>
+                            <field name="kuccps_code"/>
+                            <field name="cluster"/>
+                            <field name="duration_years"/>
+                        </group>
+                        <group string="Institution">
+                            <field name="institution_name"/>
+                            <field name="institution_type"/>
+                            <field name="minimum_grade"/>
+                            <field name="minimum_points"/>
+                        </group>
+                    </group>
+                    <group string="Required Subjects">
+                        <field name="required_subjects" nolabel="1"
+                               colspan="2"/>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1" colspan="2"/>
+                    </group>
+                    <group string="API Metadata"
+                           groups="openeducat_digiguide.group_op_digiguide_manager">
+                        <field name="last_sync_date"/>
+                        <field name="raw_api_response" nolabel="1"
+                               colspan="2" readonly="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_kuccps_career_search" model="ir.ui.view">
+        <field name="name">op.kuccps.career.search</field>
+        <field name="model">op.kuccps.career</field>
+        <field name="arch" type="xml">
+            <search string="Search KUCCPS Careers">
+                <field name="name"/>
+                <field name="kuccps_code"/>
+                <field name="institution_name"/>
+                <filter string="Universities" name="university"
+                        domain="[('institution_type','=','university')]"/>
+                <filter string="Colleges / TVET" name="college"
+                        domain="[('institution_type','=','college')]"/>
+                <filter string="Synced" name="synced"
+                        domain="[('sync_status','=','synced')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_institution" string="Institution"
+                            context="{'group_by':'institution_name'}"/>
+                    <filter name="group_type" string="Type"
+                            context="{'group_by':'institution_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Server Action: Sync from KUCCPS -->
+    <record id="action_sync_kuccps" model="ir.actions.server">
+        <field name="name">Sync from KUCCPS API</field>
+        <field name="model_id" ref="model_op_kuccps_career"/>
+        <field name="binding_model_id" ref="model_op_kuccps_career"/>
+        <field name="state">code</field>
+        <field name="code">
+model.action_sync_from_kuccps()
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="act_open_op_kuccps_career" model="ir.actions.act_window">
+        <field name="name">KUCCPS Careers</field>
+        <field name="res_model">op.kuccps.career</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_kuccps_career_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a career or use "Sync from KUCCPS API" to
+                fetch programmes automatically.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -18,6 +18,8 @@
                     <field name="publisher_ids" widget="many2many_tags" optional="hide"/>
                     <field name="course_ids" widget="many2many_tags" optional="hide"/>
                     <field name="subject_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="grade_level" optional="hide"/>
+                    <field name="resource_format" optional="hide"/>
                 </list>
             </field>
         </record>
@@ -63,6 +65,11 @@
                                 </group>
                                 <group string="Subjects">
                                     <field name="subject_ids" nolabel="1" widget="many2many_tags" />
+                                </group>
+                                <group string="CBC Classification">
+                                    <field name="grade_level"/>
+                                    <field name="topic"/>
+                                    <field name="resource_format"/>
                                 </group>
                             </page>
                             <page name="movements" string="Movements"
@@ -114,12 +121,18 @@
                     <field name="course_ids"/>
                     <field name="subject_ids"/>
                     <field name="internal_code"/>
+                    <field name="grade_level"/>
+                    <field name="resource_format"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Edition" name="group_by_lbr_media_edition"
                                 domain="[]" context="{'group_by':'edition'}"/>
                         <filter string="Type" name="group_by_lbr_media_type"
                                 domain="[]" context="{'group_by':'media_type_id'}"/>
+                        <filter string="Grade Level" name="group_by_grade_level"
+                                domain="[]" context="{'group_by':'grade_level'}"/>
+                        <filter string="Resource Format" name="group_by_resource_format"
+                                domain="[]" context="{'group_by':'resource_format'}"/>
                         <filter string="Archived" name="inactive"
                                 domain="[('active', '=', False)]"/>
                     </group>

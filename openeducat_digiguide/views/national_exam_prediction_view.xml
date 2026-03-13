@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- National Exam Prediction List View -->
+    <record id="view_op_national_exam_prediction_list" model="ir.ui.view">
+        <field name="name">op.national.exam.prediction.list</field>
+        <field name="model">op.national.exam.prediction</field>
+        <field name="arch" type="xml">
+            <list string="National Exam Predictions"
+                  decoration-success="state=='confirmed'"
+                  decoration-info="state=='computed'"
+                  decoration-muted="state=='draft'">
+                <field name="student_id"/>
+                <field name="national_exam_grade"/>
+                <field name="predicted_percentage"/>
+                <field name="predicted_grade_letter"/>
+                <field name="confidence_level"/>
+                <field name="computation_date"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- National Exam Prediction Form View -->
+    <record id="view_op_national_exam_prediction_form" model="ir.ui.view">
+        <field name="name">op.national.exam.prediction.form</field>
+        <field name="model">op.national.exam.prediction</field>
+        <field name="arch" type="xml">
+            <form string="National Exam Prediction">
+                <header>
+                    <button name="action_compute_prediction"
+                            string="Compute Prediction"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_confirm"
+                            string="Confirm"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'computed'"/>
+                    <button name="action_reset_draft"
+                            string="Reset to Draft"
+                            type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,computed,confirmed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Student">
+                            <field name="student_id"/>
+                            <field name="national_exam_grade"/>
+                        </group>
+                        <group string="Prediction Results">
+                            <field name="predicted_percentage"/>
+                            <field name="predicted_grade_letter"/>
+                            <field name="confidence_level"/>
+                            <field name="computation_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="source_data" string="Source Performance Data">
+                            <field name="performance_ids">
+                                <list>
+                                    <field name="grade"/>
+                                    <field name="term"/>
+                                    <field name="subject_id"/>
+                                    <field name="assessment_type"/>
+                                    <field name="percentage"/>
+                                    <field name="grade_letter"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="notes" string="Notes">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_national_exam_prediction_search" model="ir.ui.view">
+        <field name="name">op.national.exam.prediction.search</field>
+        <field name="model">op.national.exam.prediction</field>
+        <field name="arch" type="xml">
+            <search string="Search Predictions">
+                <field name="student_id"/>
+                <filter string="Draft" name="draft"
+                        domain="[('state','=','draft')]"/>
+                <filter string="Computed" name="computed"
+                        domain="[('state','=','computed')]"/>
+                <filter string="Confirmed" name="confirmed"
+                        domain="[('state','=','confirmed')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_student" string="Student"
+                            context="{'group_by':'student_id'}"/>
+                    <filter name="group_exam" string="National Exam"
+                            context="{'group_by':'national_exam_grade'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="act_open_op_national_exam_prediction" model="ir.actions.act_window">
+        <field name="name">National Exam Predictions</field>
+        <field name="res_model">op.national.exam.prediction</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id"
+               ref="view_op_national_exam_prediction_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new national exam prediction.
+            </p>
+        </field>
+    </record>
+
+</odoo>
