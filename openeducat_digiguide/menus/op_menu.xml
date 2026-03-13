@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_op_digiguide_root"
+              name="DigiGuide"
+              sequence="395"
+              web_icon="openeducat_digiguide,static/description/icon.png"
+              groups="openeducat_digiguide.group_op_digiguide_user,
+                      openeducat_digiguide.group_op_digiguide_manager"/>
+
+    <!-- Performance -->
+    <menuitem id="menu_op_digiguide_performance"
+              name="Academic Performance"
+              parent="menu_op_digiguide_root"
+              sequence="10"
+              action="act_open_op_academic_performance"
+              groups="openeducat_digiguide.group_op_digiguide_user,
+                      openeducat_digiguide.group_op_digiguide_manager"/>
+
+    <!-- Predictions -->
+    <menuitem id="menu_op_digiguide_predictions"
+              name="Exam Predictions"
+              parent="menu_op_digiguide_root"
+              sequence="20"
+              action="act_open_op_national_exam_prediction"
+              groups="openeducat_digiguide.group_op_digiguide_user,
+                      openeducat_digiguide.group_op_digiguide_manager"/>
+
+    <!-- Career Matches -->
+    <menuitem id="menu_op_digiguide_career_match"
+              name="Career Matches"
+              parent="menu_op_digiguide_root"
+              sequence="30"
+              action="act_open_op_career_match"
+              groups="openeducat_digiguide.group_op_digiguide_user,
+                      openeducat_digiguide.group_op_digiguide_manager"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_op_digiguide_config"
+              name="Configuration"
+              parent="menu_op_digiguide_root"
+              sequence="50"/>
+
+    <menuitem id="menu_op_digiguide_kuccps"
+              name="KUCCPS Careers"
+              parent="menu_op_digiguide_config"
+              sequence="10"
+              action="act_open_op_kuccps_career"
+              groups="openeducat_digiguide.group_op_digiguide_manager"/>
+
+</odoo>

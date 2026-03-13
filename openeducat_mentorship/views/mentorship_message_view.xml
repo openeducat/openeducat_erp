@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Mentorship Message List View -->
+    <record id="view_op_mentorship_message_list" model="ir.ui.view">
+        <field name="name">op.mentorship.message.list</field>
+        <field name="model">op.mentorship.message</field>
+        <field name="arch" type="xml">
+            <list string="Messages"
+                  decoration-success="state=='answered'"
+                  decoration-muted="state=='closed'">
+                <field name="subject_line"/>
+                <field name="student_id"/>
+                <field name="mentor_id"/>
+                <field name="group_id"/>
+                <field name="subject_id"/>
+                <field name="message_type"/>
+                <field name="state"/>
+                <field name="reply_count"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Mentorship Message Form View -->
+    <record id="view_op_mentorship_message_form" model="ir.ui.view">
+        <field name="name">op.mentorship.message.form</field>
+        <field name="model">op.mentorship.message</field>
+        <field name="arch" type="xml">
+            <form string="Mentorship Message">
+                <header>
+                    <button name="action_mark_answered"
+                            string="Mark Answered"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'open'"/>
+                    <button name="action_close"
+                            string="Close"
+                            type="object"
+                            invisible="state == 'closed'"/>
+                    <button name="action_reopen"
+                            string="Reopen"
+                            type="object"
+                            invisible="state == 'open'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="open,answered,closed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="From / To">
+                            <field name="student_id"/>
+                            <field name="mentor_id"
+                                   invisible="message_type not in ('direct_message','group_answer')"/>
+                            <field name="group_id"
+                                   invisible="message_type not in ('group_question','group_answer')"/>
+                            <field name="message_type"/>
+                            <field name="subject_id"/>
+                        </group>
+                        <group string="Classification">
+                            <field name="parent_id"
+                                   invisible="message_type != 'group_answer'"/>
+                            <field name="ai_category_tags"/>
+                        </group>
+                    </group>
+                    <group string="Subject">
+                        <field name="subject_line" nolabel="1" colspan="2"/>
+                    </group>
+                    <group string="Message">
+                        <field name="body" nolabel="1" colspan="2"/>
+                    </group>
+                    <notebook invisible="message_type == 'direct_message'">
+                        <page name="replies" string="Answers / Replies">
+                            <field name="reply_ids">
+                                <list>
+                                    <field name="mentor_id"/>
+                                    <field name="subject_line"/>
+                                    <field name="state"/>
+                                    <field name="create_date"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_mentorship_message_search" model="ir.ui.view">
+        <field name="name">op.mentorship.message.search</field>
+        <field name="model">op.mentorship.message</field>
+        <field name="arch" type="xml">
+            <search string="Search Messages">
+                <field name="subject_line"/>
+                <field name="student_id"/>
+                <field name="mentor_id"/>
+                <filter string="Direct Messages" name="dm"
+                        domain="[('message_type','=','direct_message')]"/>
+                <filter string="Group Questions" name="group_q"
+                        domain="[('message_type','=','group_question')]"/>
+                <filter string="Open" name="open"
+                        domain="[('state','=','open')]"/>
+                <filter string="Answered" name="answered"
+                        domain="[('state','=','answered')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_student" string="Student"
+                            context="{'group_by':'student_id'}"/>
+                    <filter name="group_mentor" string="Mentor"
+                            context="{'group_by':'mentor_id'}"/>
+                    <filter name="group_type" string="Type"
+                            context="{'group_by':'message_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action: All Messages -->
+    <record id="act_open_op_mentorship_message" model="ir.actions.act_window">
+        <field name="name">Messages</field>
+        <field name="res_model">op.mentorship.message</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id"
+               ref="view_op_mentorship_message_search"/>
+    </record>
+
+    <!-- Window Action: Direct Messages only -->
+    <record id="act_open_op_direct_messages" model="ir.actions.act_window">
+        <field name="name">Direct Messages</field>
+        <field name="res_model">op.mentorship.message</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('message_type','=','direct_message')]</field>
+        <field name="search_view_id"
+               ref="view_op_mentorship_message_search"/>
+    </record>
+
+    <!-- Window Action: Group Questions only -->
+    <record id="act_open_op_group_questions" model="ir.actions.act_window">
+        <field name="name">Group Questions</field>
+        <field name="res_model">op.mentorship.message</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('message_type','=','group_question')]</field>
+        <field name="search_view_id"
+               ref="view_op_mentorship_message_search"/>
+    </record>
+
+</odoo>

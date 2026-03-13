@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Blog Post List View -->
+    <record id="view_op_blog_post_list" model="ir.ui.view">
+        <field name="name">op.blog.post.list</field>
+        <field name="model">op.blog.post</field>
+        <field name="arch" type="xml">
+            <list string="Blog Posts"
+                  decoration-success="state=='published'"
+                  decoration-warning="state=='review'"
+                  decoration-muted="state in ('draft','archived')">
+                <field name="name"/>
+                <field name="author_id"/>
+                <field name="author_type"/>
+                <field name="grade_level"/>
+                <field name="category_ids" widget="many2many_tags"/>
+                <field name="state"/>
+                <field name="publish_date"/>
+                <field name="view_count"/>
+                <field name="comment_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Blog Post Kanban View -->
+    <record id="view_op_blog_post_kanban" model="ir.ui.view">
+        <field name="name">op.blog.post.kanban</field>
+        <field name="model">op.blog.post</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="author_id"/>
+                <field name="state"/>
+                <field name="grade_level"/>
+                <field name="comment_count"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            <div class="text-muted">
+                                <field name="author_id"/>
+                                • <field name="grade_level"/>
+                            </div>
+                            <div>
+                                <span class="badge">
+                                    <field name="comment_count"/> comments
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Blog Post Form View -->
+    <record id="view_op_blog_post_form" model="ir.ui.view">
+        <field name="name">op.blog.post.form</field>
+        <field name="model">op.blog.post</field>
+        <field name="arch" type="xml">
+            <form string="Blog Post">
+                <header>
+                    <button name="action_submit_review"
+                            string="Submit for Review"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_publish"
+                            string="Publish"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'review'"
+                            groups="openeducat_blog.group_op_blog_manager"/>
+                    <button name="action_archive_post"
+                            string="Archive"
+                            type="object"
+                            invisible="state == 'archived'"/>
+                    <button name="action_reset_draft"
+                            string="Reset to Draft"
+                            type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,review,published"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Post Details">
+                            <field name="name"/>
+                            <field name="slug"/>
+                            <field name="author_id"/>
+                            <field name="author_type"/>
+                            <field name="grade_level"/>
+                            <field name="allow_comments"/>
+                        </group>
+                        <group string="Classification">
+                            <field name="category_ids"
+                                   widget="many2many_tags"/>
+                            <field name="subject_ids"
+                                   widget="many2many_tags"/>
+                            <field name="tags"/>
+                        </group>
+                    </group>
+                    <group string="Summary">
+                        <field name="summary" nolabel="1" colspan="2"/>
+                    </group>
+                    <group string="Cover Image">
+                        <field name="cover_image" widget="image"
+                               options="{'size': [800, 300]}"
+                               nolabel="1"/>
+                    </group>
+                    <group string="Article Content">
+                        <field name="body" nolabel="1" colspan="2"/>
+                    </group>
+                    <group string="Statistics" readonly="1">
+                        <field name="publish_date"/>
+                        <field name="view_count"/>
+                        <field name="comment_count"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_blog_post_search" model="ir.ui.view">
+        <field name="name">op.blog.post.search</field>
+        <field name="model">op.blog.post</field>
+        <field name="arch" type="xml">
+            <search string="Search Blog Posts">
+                <field name="name"/>
+                <field name="author_id"/>
+                <field name="subject_ids"/>
+                <field name="category_ids"/>
+                <filter string="Published" name="published"
+                        domain="[('state','=','published')]"/>
+                <filter string="Under Review" name="review"
+                        domain="[('state','=','review')]"/>
+                <filter string="Draft" name="draft"
+                        domain="[('state','=','draft')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_author" string="Author"
+                            context="{'group_by':'author_id'}"/>
+                    <filter name="group_grade" string="Grade Level"
+                            context="{'group_by':'grade_level'}"/>
+                    <filter name="group_state" string="Status"
+                            context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Actions -->
+    <record id="act_open_op_blog_post" model="ir.actions.act_window">
+        <field name="name">Blog Posts</field>
+        <field name="res_model">op.blog.post</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_op_blog_post_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Write a new educational blog post.
+            </p>
+        </field>
+    </record>
+
+    <record id="act_open_op_blog_published" model="ir.actions.act_window">
+        <field name="name">Published Articles</field>
+        <field name="res_model">op.blog.post</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('state','=','published')]</field>
+        <field name="search_view_id" ref="view_op_blog_post_search"/>
+    </record>
+
+</odoo>

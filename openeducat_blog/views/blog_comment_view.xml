@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Blog Comment List View -->
+    <record id="view_op_blog_comment_list" model="ir.ui.view">
+        <field name="name">op.blog.comment.list</field>
+        <field name="model">op.blog.comment</field>
+        <field name="arch" type="xml">
+            <list string="Blog Comments"
+                  decoration-success="state=='approved'"
+                  decoration-warning="state=='pending'"
+                  decoration-danger="state=='rejected'">
+                <field name="post_id"/>
+                <field name="author_id"/>
+                <field name="body"/>
+                <field name="state"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Blog Comment Form View -->
+    <record id="view_op_blog_comment_form" model="ir.ui.view">
+        <field name="name">op.blog.comment.form</field>
+        <field name="model">op.blog.comment</field>
+        <field name="arch" type="xml">
+            <form string="Blog Comment">
+                <header>
+                    <button name="action_approve"
+                            string="Approve"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'pending'"
+                            groups="openeducat_blog.group_op_blog_manager"/>
+                    <button name="action_reject"
+                            string="Reject"
+                            type="object"
+                            invisible="state != 'pending'"
+                            groups="openeducat_blog.group_op_blog_manager"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,approved,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="post_id"/>
+                        <field name="author_id"/>
+                        <field name="parent_id"/>
+                    </group>
+                    <group string="Comment">
+                        <field name="body" nolabel="1" colspan="2"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_op_blog_comment_search" model="ir.ui.view">
+        <field name="name">op.blog.comment.search</field>
+        <field name="model">op.blog.comment</field>
+        <field name="arch" type="xml">
+            <search string="Search Comments">
+                <field name="post_id"/>
+                <field name="author_id"/>
+                <filter string="Pending" name="pending"
+                        domain="[('state','=','pending')]"/>
+                <filter string="Approved" name="approved"
+                        domain="[('state','=','approved')]"/>
+                <filter string="Rejected" name="rejected"
+                        domain="[('state','=','rejected')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="act_open_op_blog_comment" model="ir.actions.act_window">
+        <field name="name">Blog Comments</field>
+        <field name="res_model">op.blog.comment</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_blog_comment_search"/>
+    </record>
+
+    <!-- Window Action: Pending Comments -->
+    <record id="act_open_op_blog_comment_pending" model="ir.actions.act_window">
+        <field name="name">Pending Comments</field>
+        <field name="res_model">op.blog.comment</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state','=','pending')]</field>
+        <field name="search_view_id" ref="view_op_blog_comment_search"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_blog">
+        <field name="name">Blog</field>
+        <field name="description">Educational blog for students, teachers and mentors.</field>
+        <field name="sequence">130</field>
+    </record>
+
+    <record id="group_op_blog_reader" model="res.groups">
+        <field name="name">Reader</field>
+        <field name="category_id" ref="module_category_blog"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="group_op_blog_author" model="res.groups">
+        <field name="name">Author</field>
+        <field name="category_id" ref="module_category_blog"/>
+        <field name="implied_ids"
+               eval="[(4, ref('base.group_user')),
+                      (4, ref('openeducat_blog.group_op_blog_reader'))]"/>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="group_op_blog_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_blog"/>
+        <field name="implied_ids"
+               eval="[(4, ref('base.group_user')),
+                      (4, ref('openeducat_blog.group_op_blog_author'))]"/>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>

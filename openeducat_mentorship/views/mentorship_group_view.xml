@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Mentorship Group List View -->
+    <record id="view_op_mentorship_group_list" model="ir.ui.view">
+        <field name="name">op.mentorship.group.list</field>
+        <field name="model">op.mentorship.group</field>
+        <field name="arch" type="xml">
+            <list string="Mentorship Groups">
+                <field name="name"/>
+                <field name="subject_ids" widget="many2many_tags"/>
+                <field name="is_open"/>
+                <field name="question_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Mentorship Group Form View -->
+    <record id="view_op_mentorship_group_form" model="ir.ui.view">
+        <field name="name">op.mentorship.group.form</field>
+        <field name="model">op.mentorship.group</field>
+        <field name="arch" type="xml">
+            <form string="Mentorship Group">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="is_open"/>
+                        </group>
+                        <group>
+                            <field name="subject_ids"
+                                   widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1" colspan="2"/>
+                    </group>
+                    <notebook>
+                        <page name="mentors" string="Mentors">
+                            <field name="mentor_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="mentor_type"/>
+                                    <field name="profession"/>
+                                    <field name="expertise_subject_ids"
+                                           widget="many2many_tags"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="students" string="Students"
+                              invisible="is_open">
+                            <field name="student_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="gr_no"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="questions" string="Questions">
+                            <field name="question_ids">
+                                <list>
+                                    <field name="subject_line"/>
+                                    <field name="student_id"/>
+                                    <field name="subject_id"/>
+                                    <field name="state"/>
+                                    <field name="reply_count"/>
+                                    <field name="create_date"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Window Action -->
+    <record id="act_open_op_mentorship_group" model="ir.actions.act_window">
+        <field name="name">Mentorship Groups</field>
+        <field name="res_model">op.mentorship.group</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a mentorship group.
+            </p>
+        </field>
+    </record>
+
+</odoo>

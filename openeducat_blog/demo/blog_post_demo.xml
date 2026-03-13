@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="blog_post_demo_1" model="op.blog.post">
+        <field name="name">Why Mathematics is the Language of the Universe</field>
+        <field name="slug">why-mathematics-is-the-language-of-the-universe</field>
+        <field name="author_id" ref="base.res_partner_1"/>
+        <field name="author_type">teacher</field>
+        <field name="grade_level">grade_9</field>
+        <field name="category_ids" eval="[(4, ref('blog_cat_stem'))]"/>
+        <field name="summary">An exploration of how mathematics underpins science and everyday life.</field>
+        <field name="body">&lt;p&gt;Mathematics is not just a school subject – it is the language in which the universe is written…&lt;/p&gt;</field>
+        <field name="state">published</field>
+        <field name="publish_date" eval="fields.Datetime.now()"/>
+    </record>
+    <record id="blog_post_demo_2" model="op.blog.post">
+        <field name="name">Choosing a Career: What Grade 9 Students Should Know</field>
+        <field name="slug">choosing-a-career-grade-9-students</field>
+        <field name="author_id" ref="base.res_partner_2"/>
+        <field name="author_type">mentor</field>
+        <field name="grade_level">grade_9</field>
+        <field name="category_ids" eval="[(4, ref('blog_cat_career'))]"/>
+        <field name="summary">Practical advice on exploring career paths early in your education journey.</field>
+        <field name="body">&lt;p&gt;Career planning does not start at Grade 12. The choices you make from Grade 7 onwards shape the doors that open for you…&lt;/p&gt;</field>
+        <field name="state">published</field>
+        <field name="publish_date" eval="fields.Datetime.now()"/>
+    </record>
+</odoo>
