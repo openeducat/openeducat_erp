@@ -1,6 +1,6 @@
-# OpenEMIS / OpenEduCat - System Screenshots
+# openEMIS – System Screenshots
 
-These screenshots document the major modules of the **OpenEMIS** system, built on the **OpenEduCat** educational ERP platform (Odoo 17). The system was brought up locally using Docker with PostgreSQL and populated with demo data.
+These screenshots document the major modules of the **openEMIS** system – an Open Source Educational Management Information System built on the Odoo ERP framework. The system was brought up locally using Docker with PostgreSQL and populated with demo data.
 
 ---
 
@@ -68,9 +68,9 @@ These screenshots document the major modules of the **OpenEMIS** system, built o
 ## System Setup
 
 **Stack:**
-- Odoo 17.0 (Community Edition)
+- Odoo 18.0 (Community Edition)
 - PostgreSQL 15
-- OpenEduCat modules: `openeducat_core`, `openeducat_admission`, `openeducat_exam`,
+- openEMIS modules: `openeducat_core`, `openeducat_admission`, `openeducat_exam`,
   `openeducat_attendance`, `openeducat_library`, `openeducat_timetable`,
   `openeducat_assignment`, `openeducat_parent`, `openeducat_activity`,
   `openeducat_facility`, `openeducat_fees`
@@ -82,4 +82,11 @@ docker compose up -d
 # Wait ~60 seconds for Odoo to initialize
 # Visit http://localhost:8069
 # Login: admin / admin
+```
+
+**Populating 100+ demo records per entity:**
+```bash
+# (Re-)generate bulk demo XML files
+python scripts/generate_demo_data.py
+# Then re-install the modules with demo data enabled in Odoo
 ```
