@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15
@@ -11,12 +9,19 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
 
   odoo:
-    image: odoo:17.0
+    image: odoo:18.0
     container_name: openemis_odoo
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - "8069:8069"
     environment:
@@ -31,7 +36,14 @@ services:
       --db_user=odoo
       --db_password=odoo
       --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
+      --log-level=info
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8069/web/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
 
 volumes:
   db_data:

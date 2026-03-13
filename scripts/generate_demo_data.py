@@ -94,7 +94,7 @@ CITIES = [
     ("Philadelphia", "base.state_us_39", "base.us", "19101"),
     ("San Antonio", "base.state_us_44", "base.us", "78201"),
     ("San Diego", "base.state_us_5", "base.us", "92101"),
-    ("London", "base.state_gb_eng", "base.uk", "EC1A 1BB"),
+    ("London", "base.state_uk104", "base.uk", "EC1A 1BB"),
     ("Berlin", "base.state_de_be", "base.de", "10115"),
     ("Paris", "base.state_fr_75", "base.fr", "75001"),
     ("Tokyo", False, "base.jp", "100-0001"),
