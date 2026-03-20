@@ -1,4 +1,3 @@
-cat > /workspaces/soome_erp/entrypoint.sh << 'EOF'
 #!/bin/sh
 exec python /odoo/odoo-bin \
     --db_host="$DB_HOST" \
@@ -10,5 +9,3 @@ exec python /odoo/odoo-bin \
     --http-port="${PORT:-8069}" \
     -i base \
     --without-demo=all
-EOF
-chmod +x /workspaces/soome_erp/entrypoint.sh
