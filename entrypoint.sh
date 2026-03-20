@@ -1,4 +1,7 @@
 #!/bin/sh
+echo "DB_HOST=$DB_HOST"
+echo "DB_PORT=$DB_PORT"
+echo "DB_NAME=$DB_NAME"
 exec python /odoo/odoo-bin \
     --db_host="$DB_HOST" \
     --db_port="$DB_PORT" \
