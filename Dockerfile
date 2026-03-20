@@ -19,7 +19,7 @@ CMD python odoo-bin \
     --db_port=$DB_PORT \
     --db_user=$DB_USER \
     --db_password=$DB_PASSWORD \
-    --db_name=$DB_NAME \
+    --database=$DB_NAME \
     --addons-path=/odoo/addons,/mnt/extra-addons \
     --http-port=8069 \
     -i base \
