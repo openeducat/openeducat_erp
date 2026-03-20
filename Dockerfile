@@ -11,16 +11,9 @@ WORKDIR /odoo
 RUN pip install -r requirements.txt && pip install phonenumbers "setuptools<71"
 
 COPY . /mnt/extra-addons
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 8069
 
-CMD python odoo-bin \
-    --db_host=$DB_HOST \
-    --db_port=$DB_PORT \
-    --db_user=$DB_USER \
-    --db_password=$DB_PASSWORD \
-    --database=$DB_NAME \
-    --addons-path=/odoo/addons,/mnt/extra-addons \
-    --http-port=8069 \
-    -i base \
-    --without-demo=all
+ENTRYPOINT ["/entrypoint.sh"]
