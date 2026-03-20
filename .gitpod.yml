@@ -12,9 +12,19 @@ tasks:
       cd $HOME/odoo17 && python3 -m venv venv && source venv/bin/activate
       pip install -r requirements.txt && pip install phonenumbers
     command: |
+      cat > $HOME/odoo17/odoo.conf << EOF
+      [options]
+      addons_path = $HOME/odoo17/addons,$GITPOD_REPO_ROOT
+      db_host = $DB_HOST
+      db_port = $DB_PORT
+      db_name = $DB_NAME
+      db_user = $DB_USER
+      db_password = $DB_PASSWORD
+      http_port = 8069
+      EOF
       cd $HOME/odoo17
       source venv/bin/activate
-      python odoo-bin -c $GITPOD_REPO_ROOT/odoo.conf
+      python odoo-bin -c $HOME/odoo17/odoo.conf
 
 ports:
   - port: 8069
