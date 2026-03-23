@@ -1,14 +1,15 @@
-from odoo import api, SUPERUSER_ID
+from odoo import models, api
 
 
 def post_init_hook(env):
-    # Renommer les modules OpenEduCat -> SOOME
+    _rename_openeducat(env)
+
+
+def _rename_openeducat(env):
     modules = env['ir.module.module'].search([('name', 'like', 'openeducat')])
     for m in modules:
         if 'OpenEduCat' in (m.shortdesc or ''):
             m.shortdesc = m.shortdesc.replace('OpenEduCat', 'SOOME')
-
-    # Renommer les menus racines
     renommages = {
         'menu_op_school_root': 'SOOME',
         'menu_op_faculty_root': 'SOOME - Enseignants',
@@ -21,8 +22,16 @@ def post_init_hook(env):
     ])
     for d in data:
         menu = env['ir.ui.menu'].browse(d.res_id)
-        nouveau_nom = renommages.get(d.name)
-        if nouveau_nom:
-            menu.name = nouveau_nom
+        nouveau = renommages.get(d.name)
+        if nouveau:
+            menu.name = nouveau
 
-    env.cr.commit()
+
+class IrModuleModule(models.Model):
+    _inherit = 'ir.module.module'
+
+    def button_immediate_install(self):
+        result = super().button_immediate_install()
+        if any('openeducat' in m.name for m in self):
+            _rename_openeducat(self.env)
+        return result
