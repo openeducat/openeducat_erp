@@ -4,16 +4,14 @@ image:
 tasks:
   - name: Setup SOOME
     init: |
+      pip3 install --upgrade pip "setuptools<71" wheel phonenumbers
       git clone https://www.github.com/odoo/odoo --depth 1 --branch 17.0 --single-branch $HOME/odoo17
-      cd $HOME/odoo17 && python3 -m venv venv && source venv/bin/activate
-      pip install --upgrade pip setuptools wheel
-      pip install "setuptools<71"
-      pip install -r requirements.txt && pip install phonenumbers
+      pip3 install -r $HOME/odoo17/requirements.txt
     command: |
-      sudo service postgresql start
-      sudo -u postgres psql -c "CREATE USER odoo WITH PASSWORD 'odoo' CREATEDB;" 2>/dev/null || true
-      sudo -u postgres psql -c "CREATE DATABASE odoo_soome OWNER odoo;" 2>/dev/null || true
-      cat > $HOME/odoo17/odoo.conf << EOF
+      pg_ctlcluster 15 main start 2>/dev/null || pg_ctlcluster 14 main start 2>/dev/null || true
+      psql -U gitpod -c "CREATE USER odoo WITH PASSWORD 'odoo' CREATEDB;" 2>/dev/null || true
+      psql -U gitpod -c "CREATE DATABASE odoo_soome OWNER odoo;" 2>/dev/null || true
+      cat > $HOME/odoo17/odoo.conf << CONF
       [options]
       addons_path = $HOME/odoo17/addons,/workspaces/soome_erp
       db_host = localhost
@@ -22,9 +20,8 @@ tasks:
       db_user = odoo
       db_password = odoo
       http_port = 8069
-      EOF
-      cd $HOME/odoo17 && source venv/bin/activate
-      python odoo-bin -c $HOME/odoo17/odoo.conf -i base,web,mail,auth_totp,base_setup,bus,web_tour,iap,web_editor --without-demo=all
+      CONF
+      python3 $HOME/odoo17/odoo-bin -c $HOME/odoo17/odoo.conf -i base,web,mail,auth_totp,base_setup,bus,web_tour,iap,web_editor --without-demo=all
 
 ports:
   - port: 8069
