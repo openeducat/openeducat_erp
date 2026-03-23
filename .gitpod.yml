@@ -1,30 +1,30 @@
+image:
+  file: .gitpod.Dockerfile
+
 tasks:
-  - name: Setup Odoo + SOOME
+  - name: Setup SOOME
     init: |
-      sudo apt-get update && sudo apt-get install -y \
-        python3-pip python3-dev python3-venv \
-        libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev \
-        libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev \
-        libfreetype6-dev liblcms2-dev libwebp-dev \
-        libharfbuzz-dev libfribidi-dev libxcb1-dev \
-        libpq-dev git curl node-less npm
       git clone https://www.github.com/odoo/odoo --depth 1 --branch 17.0 --single-branch $HOME/odoo17
       cd $HOME/odoo17 && python3 -m venv venv && source venv/bin/activate
+      pip install --upgrade pip setuptools wheel
+      pip install "setuptools<71"
       pip install -r requirements.txt && pip install phonenumbers
     command: |
+      sudo service postgresql start
+      sudo -u postgres psql -c "CREATE USER odoo WITH PASSWORD 'odoo' CREATEDB;" 2>/dev/null || true
+      sudo -u postgres psql -c "CREATE DATABASE odoo_soome OWNER odoo;" 2>/dev/null || true
       cat > $HOME/odoo17/odoo.conf << EOF
       [options]
       addons_path = $HOME/odoo17/addons,/workspaces/soome_erp
-      db_host = $DB_HOST
-      db_port = $DB_PORT
-      db_name = $DB_NAME
-      db_user = $DB_USER
-      db_password = $DB_PASSWORD
+      db_host = localhost
+      db_port = 5432
+      db_name = odoo_soome
+      db_user = odoo
+      db_password = odoo
       http_port = 8069
       EOF
-      cd $HOME/odoo17
-      source venv/bin/activate
-      python odoo-bin -c $HOME/odoo17/odoo.conf
+      cd $HOME/odoo17 && source venv/bin/activate
+      python odoo-bin -c $HOME/odoo17/odoo.conf -i base,web,mail,auth_totp,base_setup,bus,web_tour,iap,web_editor --without-demo=all
 
 ports:
   - port: 8069
