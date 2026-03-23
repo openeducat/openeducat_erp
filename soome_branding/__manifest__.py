@@ -9,7 +9,7 @@
     ],
     'assets': {
         'web.assets_common': [
-            'soome_branding/static/src/css/database_selector.css',
+            'soome_branding/static/src/css/soome.css',
         ],
     },
     'post_init_hook': 'post_init_hook',
