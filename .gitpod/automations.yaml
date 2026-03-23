@@ -4,22 +4,17 @@ tasks:
     triggeredBy:
       - postEnvironmentStart
     command: |
-      echo "vscode ALL=(ALL) NOPASSWD:ALL" | sudo -S tee /etc/sudoers.d/vscode 2>/dev/null || true
       sudo apt-get update -y
       sudo apt-get install -y python3 python3-pip python3-venv postgresql libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libpq-dev git curl node-less npm
 
-      # Initialiser PostgreSQL dans /workspaces pour persistance
+      # PostgreSQL persistant
       if [ ! -d "/workspaces/soome_erp/pgdata" ]; then
         sudo mkdir -p /workspaces/soome_erp/pgdata
         sudo chown postgres:postgres /workspaces/soome_erp/pgdata
         sudo -u postgres /usr/lib/postgresql/16/bin/initdb -D /workspaces/soome_erp/pgdata
       fi
-
-      # Démarrer PostgreSQL
       sudo -u postgres /usr/lib/postgresql/16/bin/pg_ctl -D /workspaces/soome_erp/pgdata start -l /workspaces/soome_erp/pgdata/postgresql.log
       sleep 3
-
-      # Créer utilisateur odoo
       sudo -u postgres psql -c "CREATE USER odoo WITH PASSWORD 'odoo' CREATEDB;" 2>/dev/null || true
       sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'postgres';" 2>/dev/null || true
 
@@ -29,6 +24,9 @@ tasks:
         git clone https://www.github.com/odoo/odoo --depth 1 --branch 17.0 --single-branch $HOME/odoo17
         python3 -m pip install -r $HOME/odoo17/requirements.txt --break-system-packages
       fi
+
+      # Appliquer les patches SOOME
+      bash /workspaces/soome_erp/scripts/patch_odoo.sh
 
       # odoo.conf
       printf '[options]\naddons_path = %s/odoo17/addons,/workspaces/soome_erp\ndb_host = localhost\ndb_port = 5432\ndb_user = odoo\ndb_password = odoo\nadmin_passwd = admin\nhttp_port = 8069\n' "$HOME" > $HOME/odoo.conf
