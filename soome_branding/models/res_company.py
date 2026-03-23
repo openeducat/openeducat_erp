@@ -6,10 +6,13 @@ def post_init_hook(env):
 
 
 def _rename_openeducat(env):
+    # Renommer TOUS les modules openeducat (installés ou non)
     modules = env['ir.module.module'].search([('name', 'like', 'openeducat')])
     for m in modules:
         if 'OpenEduCat' in (m.shortdesc or ''):
             m.shortdesc = m.shortdesc.replace('OpenEduCat', 'SOOME')
+
+    # Renommer les menus racines
     renommages = {
         'menu_op_school_root': 'SOOME',
         'menu_op_faculty_root': 'SOOME - Enseignants',
