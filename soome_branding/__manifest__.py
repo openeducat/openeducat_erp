@@ -9,7 +9,7 @@
     ],
     'assets': {
         'web.assets_common': [
-            'soome_branding/static/src/img/soome_logo.svg',
+            'soome_branding/static/src/css/database_selector.css',
         ],
     },
     'post_init_hook': 'post_init_hook',
