@@ -6,13 +6,19 @@ tasks:
     command: |
       sudo apt-get update -y
       sudo apt-get install -y python3 python3-pip python3-venv postgresql libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libpq-dev git curl node-less npm
+      sudo service postgresql start
+      sudo sed -i 's/peer/trust/g' /etc/postgresql/16/main/pg_hba.conf
+      sudo sed -i 's/scram-sha-256/trust/g' /etc/postgresql/16/main/pg_hba.conf
+      sudo service postgresql restart
+      psql -U postgres -c "CREATE USER odoo WITH PASSWORD 'odoo' CREATEDB;" 2>/dev/null || true
+      psql -U postgres -c "CREATE DATABASE odoo_soome OWNER odoo;" 2>/dev/null || true
+      psql -U postgres -c "ALTER USER postgres WITH PASSWORD 'postgres';" 2>/dev/null || true
+      sudo sed -i 's/trust/md5/g' /etc/postgresql/16/main/pg_hba.conf
+      sudo service postgresql restart
       python3 -m pip install --upgrade pip "setuptools<71" wheel phonenumbers --break-system-packages
       if [ ! -d "$HOME/odoo17" ]; then
         git clone https://www.github.com/odoo/odoo --depth 1 --branch 17.0 --single-branch $HOME/odoo17
         python3 -m pip install -r $HOME/odoo17/requirements.txt --break-system-packages
       fi
-      sudo service postgresql start
-      sudo -u postgres psql -c "CREATE USER odoo WITH PASSWORD 'odoo' CREATEDB;" 2>/dev/null || true
-      sudo -u postgres psql -c "CREATE DATABASE odoo_soome OWNER odoo;" 2>/dev/null || true
       printf '[options]\naddons_path = %s/odoo17/addons,/workspaces/soome_erp\ndb_host = localhost\ndb_port = 5432\ndb_name = odoo_soome\ndb_user = odoo\ndb_password = odoo\nhttp_port = 8069\n' "$HOME" > $HOME/odoo.conf
       python3 $HOME/odoo17/odoo-bin -c $HOME/odoo.conf -i base,web,mail,auth_totp,base_setup,bus,web_tour,iap,web_editor --without-demo=all
