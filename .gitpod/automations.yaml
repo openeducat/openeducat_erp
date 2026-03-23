@@ -4,22 +4,22 @@ tasks:
     triggeredBy:
       - postEnvironmentStart
     command: |
-      pip3 install --upgrade pip "setuptools<71" wheel phonenumbers
+      python3 -m pip install --upgrade pip "setuptools<71" wheel phonenumbers
       if [ ! -d "$HOME/odoo17" ]; then
         git clone https://www.github.com/odoo/odoo --depth 1 --branch 17.0 --single-branch $HOME/odoo17
-        pip3 install -r $HOME/odoo17/requirements.txt
+        python3 -m pip install -r $HOME/odoo17/requirements.txt
       fi
       pg_ctlcluster 15 main start 2>/dev/null || pg_ctlcluster 14 main start 2>/dev/null || true
       psql -U gitpod -c "CREATE USER odoo WITH PASSWORD 'odoo' CREATEDB;" 2>/dev/null || true
       psql -U gitpod -c "CREATE DATABASE odoo_soome OWNER odoo;" 2>/dev/null || true
       cat > $HOME/odoo17/odoo.conf << CONF
-      [options]
-      addons_path = $HOME/odoo17/addons,/workspaces/soome_erp
-      db_host = localhost
-      db_port = 5432
-      db_name = odoo_soome
-      db_user = odoo
-      db_password = odoo
-      http_port = 8069
-      CONF
+[options]
+addons_path = $HOME/odoo17/addons,/workspaces/soome_erp
+db_host = localhost
+db_port = 5432
+db_name = odoo_soome
+db_user = odoo
+db_password = odoo
+http_port = 8069
+CONF
       python3 $HOME/odoo17/odoo-bin -c $HOME/odoo17/odoo.conf -i base,web,mail,auth_totp,base_setup,bus,web_tour,iap,web_editor --without-demo=all
