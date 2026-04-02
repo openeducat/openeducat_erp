@@ -18,7 +18,8 @@
 #
 ###############################################################################
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class OpDepartment(models.Model):
@@ -31,6 +32,10 @@ class OpDepartment(models.Model):
 
     @api.model_create_multi
     def create(self, vals):
-        department = super(OpDepartment, self).create(vals)
-        self.env.user.write({'department_ids': [(4, department.id)]})
-        return department
+        departments = super(OpDepartment, self).create(vals)
+        if departments:
+            self.env.user.write({'department_ids': [(4, d.id) for d in departments]})
+        return departments
+
+    def copy(self, default=None):
+        raise ValidationError(_('You cannot duplicate a department record.'))

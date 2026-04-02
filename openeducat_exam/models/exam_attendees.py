@@ -44,7 +44,7 @@ class OpExamAttendees(models.Model):
     room_id = fields.Many2one('op.exam.room', 'Room')
 
     _unique_attendees = models.Constraint('unique(student_id,exam_id)',
-                                          'Attendee must be unique per exam.')
+         'Attendee must be unique per exam.')
 
     @api.onchange('marks')
     def _onchange_marks(self):

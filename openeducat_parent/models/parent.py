@@ -105,21 +105,21 @@ class OpParent(models.Model):
         return res
 
     def write(self, vals):
+        res = super(OpParent, self).write(vals)
         for rec in self:
-            res = super(OpParent, self).write(vals)
             if vals.get('student_ids', False) and rec.name.user_id:
                 student_ids = rec.student_ids.browse(rec.student_ids.ids)
                 usr_ids = [student_id.user_id.id for student_id in student_ids
                            if student_id.user_id]
                 rec.user_id.child_ids = [(6, 0, usr_ids)]
             rec.env.registry.clear_cache()
-            return res
+        return res
 
     def unlink(self):
         for record in self:
             if record.name.user_id:
                 record.user_id.child_ids = [(6, 0, [])]
-            return super(OpParent, self).unlink()
+        return super(OpParent, self).unlink()
 
     def create_parent_user(self):
         template = self.env.ref('openeducat_parent.parent_template_user')

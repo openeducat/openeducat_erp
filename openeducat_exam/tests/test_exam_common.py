@@ -37,4 +37,46 @@ class TestExamCommon(common.TransactionCase):
         self.op_result_template = self.env['op.result.template']
         self.op_held_exam = self.env['op.held.exam']
         self.op_room_distribution = self.env['op.room.distribution']
-        self.student_hall_ticket = self.env['student.hall.ticket']
+
+
+        # Setup basic data
+        self.course = self.env['op.course'].create({'name': 'Test course', 'code': 'TC1'})
+        self.batch = self.env['op.batch'].create({
+            'name': 'Test Batch', 'code': 'TB1', 'course_id': self.course.id,
+            'start_date': '2025-01-01', 'end_date': '2025-12-31'
+        })
+        self.subject = self.env['op.subject'].create({'name': 'Test Subject', 'code': 'TS1'})
+        self.student = self.env['op.student'].create({
+            'first_name': 'Test', 'last_name': 'Student', 'gender': 'm',
+            'birth_date': '2010-01-01',
+        })
+        self.exam_type = self.env['op.exam.type'].create({'name': 'Final', 'code': 'F1'})
+        self.classroom = self.env['op.classroom'].create({
+            'name': 'Room 1', 
+            'code': 'R1',
+            'capacity': 30
+        })
+        self.session = self.op_exam_session.create({
+            'name': 'Test Session',
+            'course_id': self.course.id,
+            'batch_id': self.batch.id,
+            'exam_code': 'S001',
+            'start_date': '2025-01-01',
+            'end_date': '2025-12-31',
+            'exam_type': self.exam_type.id,
+        })
+        self.exam = self.op_exam.create({
+            'session_id': self.session.id,
+            'subject_id': self.subject.id,
+            'exam_code': 'E001',
+            'name': 'Test Exam',
+            'total_marks': 100,
+            'min_marks': 40,
+            'start_time': '2025-01-01 10:00:00',
+            'end_time': '2025-01-01 13:00:00',
+            'state': 'done',
+        })
+        self.result_template = self.op_result_template.create({
+            'name': 'Test Template',
+            'exam_session_id': self.session.id,
+        })

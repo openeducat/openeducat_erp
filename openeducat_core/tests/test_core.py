@@ -92,7 +92,7 @@ class TestCore(TestCoreCommon):
     def test_case_7_subject_registartion(self):
         vals = {
             'student_id': self.env.ref('openeducat_core.op_student_1').id,
-            'course_id': self.env.ref('openeducat_core.op_course_2').id,
+            'course_id': self.env.ref('openeducat_core.op_course_1').id,
             'batch_id': self.env.ref('openeducat_core.op_batch_1').id,
         }
         registrations = self.subject_registration.create(vals)

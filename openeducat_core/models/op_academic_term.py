@@ -25,8 +25,9 @@ class OpAcademicTerm(models.Model):
         'res.company', string='Company',
         default=lambda self: self.env.user.company_id)
 
-    _unique_name = models.Constraint('UNIQUE(name)', 'Name must be unique.')
-    _unique_start_date = models.Constraint('UNIQUE(term_start_date)',
-                                           'Start date must be unique.')
-    _unique_end_date = models.Constraint('UNIQUE(term_end_date)',
-                                         'End date must be unique.')
+    _unique_name = models.Constraint('UNIQUE(name, academic_year_id)',
+                                     'Name must be unique per Academic Year.')
+    _unique_start_date = models.Constraint('UNIQUE(term_start_date, academic_year_id)',
+                                           'Start date must be unique per Academic Year.')
+    _unique_end_date = models.Constraint('UNIQUE(term_end_date, academic_year_id)',
+                                         'End date must be unique per Academic Year.')

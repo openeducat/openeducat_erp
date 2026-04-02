@@ -32,9 +32,10 @@ class TestAttendanceRegister(TestAttendanceCommon):
     def test_case_attendance_register(self):
         register = self.op_attendance_register.search([])
         for record in register:
-            info('      Attendance Register : %s' % record.name)
-            info('      Course : %s' % record.course_id.name)
-            info('      Code : %s' % record.code)
+            pass
+            # info('      Attendance Register : %s' % record.name)
+            # info('      Course : %s' % record.course_id.name)
+            # info('      Code : %s' % record.code)
 
 
 class TestAttendanceSheet(TestAttendanceCommon):
@@ -50,7 +51,7 @@ class TestAttendanceSheet(TestAttendanceCommon):
                 self.env.ref('openeducat_attendance.'
                              'op_attendance_register_1').id
         })
-        info('  Details Of Attendance Sheet:.....')
+        # info('  Details Of Attendance Sheet:.....')
         for record in sheet:
             record.attendance_draft()
             record.attendance_start()
@@ -65,12 +66,13 @@ class TestAttendanceLine(TestAttendanceCommon):
 
     def test_case_attendance_line(self):
         line = self.op_attendance_line.search([])
-        info('  Details Of Attendance Lines:.....')
+        # info('  Details Of Attendance Lines:.....')
         for record in line:
-            info('      Attendance Sheet : %s' % record.attendance_id.name)
-            info('      Student : %s' % record.student_id.name)
-            info('      Register : %s' % record.register_id.name)
-            info('      Present : %s' % record.present)
+            pass
+            # info('      Attendance Sheet : %s' % record.attendance_id.name)
+            # info('      Student : %s' % record.student_id.name)
+            # info('      Register : %s' % record.register_id.name)
+            # info('      Present : %s' % record.present)
 
 
 class TestAttendanceWizard(TestAttendanceCommon):

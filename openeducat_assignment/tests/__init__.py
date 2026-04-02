@@ -19,3 +19,4 @@
 ###############################################################################
 
 from . import test_assignment
+from . import test_assignment_robust

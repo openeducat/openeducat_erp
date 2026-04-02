@@ -63,26 +63,36 @@ class SessionReport(models.TransientModel):
                 self.batch_id = False
 
     def gen_time_table_report(self):
+        self.ensure_one()
         template = self.env.ref(
             'openeducat_timetable.report_teacher_timetable_generate')
         data = self.read(
             ['start_date', 'end_date', 'course_id', 'batch_id', 'state',
              'faculty_id'])[0]
-        if data['state'] == 'student':
+        if self.state == 'student':
+            domain = [
+                ('start_datetime', '>=', self.start_date),
+                ('end_datetime', '<=', self.end_date)
+            ]
+            if self.course_id:
+                domain.append(('course_id', '=', self.course_id.id))
+            if self.batch_id:
+                domain.append(('batch_id', '=', self.batch_id.id))
+                
             time_table_ids = self.env['op.session'].search(
-                [('course_id', '=', data['course_id'][0]),
-                 ('batch_id', '=', data['batch_id'][0]),
-                 ('start_datetime', '>=', data['start_date']),
-                 ('end_datetime', '<=', data['end_date'])],
-                order='start_datetime asc')
+                domain, order='start_datetime asc')
             data.update({'time_table_ids': time_table_ids.ids})
             template = self.env.ref(
                 'openeducat_timetable.report_student_timetable_generate')
         else:
+            domain = [
+                ('start_datetime', '>=', self.start_date),
+                ('end_datetime', '<=', self.end_date)
+            ]
+            if self.faculty_id:
+                domain.append(('faculty_id', '=', self.faculty_id.id))
+                
             teacher_time_table_ids = self.env['op.session'].search(
-                [('start_datetime', '>=', data['start_date']),
-                 ('end_datetime', '<=', data['end_date']),
-                 ('faculty_id', '=', data['faculty_id'][0])],
-                order='start_datetime asc')
+                domain, order='start_datetime asc')
             data.update({'teacher_time_table_ids': teacher_time_table_ids.ids})
         return template.report_action(self, data=data)
