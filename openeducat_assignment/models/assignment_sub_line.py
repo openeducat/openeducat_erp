@@ -85,12 +85,12 @@ class OpAssignmentSubLine(models.Model):
         result = self.state = 'reject'
         return result and result or False
 
-    @api.onchange('marks')
-    def _onchange_marks(self):
-        if self.assignment_id.marks < self.marks:
-            raise ValidationError(
-                _("Obtain Marks should not be greater than Actual Marks!"))
-        return {}
+    @api.constrains('marks', 'assignment_id')
+    def _check_marks(self):
+        for record in self:
+            if record.assignment_id.marks < record.marks:
+                raise ValidationError(
+                    _("Obtain Marks should not be greater than Actual Marks!"))
 
     def unlink(self):
         for record in self:

@@ -69,7 +69,7 @@
                                statusbar_visible="draft,confirm,done"/>
                     </header>
                     <sheet>
-                        <field name="active" invisible="1"/>
+                        <field name="active" invisible="True"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 invisible="active == True"/>
 
@@ -86,7 +86,7 @@
                                         <div class="d-flex student-name">
                                             <div class="">
                                                 <h1 class="d-md-flex align-items-center gap-1 w-50">
-                                                    <field name="name" placeholder="Name" required="1" invisible="1"/>
+                                                    <field name="name" placeholder="Name" required="1" invisible="True"/>
                                                     <field name="first_name" widget="inline_char" required="1" placeholder="First Name"/>
                                                     <field name="middle_name" widget="inline_char" placeholder="Middle Name"/>
                                                     <field name="last_name" widget="inline_char" placeholder="Last Name"/>
@@ -117,7 +117,7 @@
                                                widget="selection"/>
                                         <field name="application_date"
                                                readonly="state == 'done'"/>
-                                        <field name="course_ids" invisible="1"/>
+                                        <field name="course_ids" invisible="True"/>
                                         <field name="course_id"
                                                readonly="state == 'done'"
                                                domain="[('id', 'in', course_ids)]"
@@ -180,7 +180,7 @@
                                         <field name="family_business"
                                                readonly="state == 'done'"/>
 
-                                        <field name="nbr" invisible="1"/>
+                                        <field name="nbr" invisible="True"/>
                                     </group>
                                     <group>
                                         <label for="street" string="Address"/>

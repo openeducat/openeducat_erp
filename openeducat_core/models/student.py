@@ -100,12 +100,14 @@ class OpStudent(models.Model):
         string='Certificate No.',
         readonly=True,
         copy=False,)
+    name = fields.Char(related='partner_id.name', inherited=True, readonly=False)
+    email = fields.Char(related='partner_id.email', readonly=False)
 
     _unique_gr_no = models.Constraint('unique(gr_no)',
                                       'Registration Number must be unique per student!')
 
     @api.onchange('first_name', 'middle_name', 'last_name')
-    def _onchange_name_1(self):
+    def _onchange_name(self):
         fname = self.first_name or ""
         mname = self.middle_name or ""
         lname = self.last_name or ""
@@ -115,12 +117,39 @@ class OpStudent(models.Model):
         else:
             self.name = "New"
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('name') or vals.get('name') == 'New':
+                fname = vals.get('first_name') or ""
+                mname = vals.get('middle_name') or ""
+                lname = vals.get('last_name') or ""
+                if fname or mname or lname:
+                    vals['name'] = " ".join(filter(None, [fname, mname, lname]))
+                else:
+                    vals['name'] = "New"
+        return super(OpStudent, self).create(vals_list)
+
+    def copy(self, default=None):
+        raise ValidationError(_('You cannot duplicate a student record.'))
+
     @api.constrains('birth_date')
     def _check_birthdate(self):
         for record in self:
             if record.birth_date and record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+
+    @api.constrains('email')
+    def _check_email_unique(self):
+        for record in self:
+            if record.email:
+                duplicate = self.env['res.partner'].search([
+                    ('email', '=', record.email),
+                    ('id', '!=', record.partner_id.id)
+                ], limit=1)
+                if duplicate:
+                    raise ValidationError(_('Email must be unique per partner!'))
 
     @api.model
     def get_import_templates(self):
@@ -140,13 +169,6 @@ class OpStudent(models.Model):
                     'login': record.email,
                     'group_ids': user_group,
                     'is_student': True,
-                    'tz': self._context.get('tz'),
+                    'tz': self.env.context.get('tz'),
                 })
                 record.user_id = user_id
-
-
-class ResPartner(models.Model):
-    _inherit = "res.partner"
-
-    _unique_email = models.Constraint('unique(email)',
-                                      'Email must be unique per partner!')

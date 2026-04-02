@@ -19,3 +19,5 @@
 ###############################################################################
 
 from . import test_attendance
+from . import test_attendance_robust
+from . import test_attendance_common

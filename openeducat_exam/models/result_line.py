@@ -80,6 +80,4 @@ class OpResultLine(models.Model):
                 record.status = 'pass'
 
     def unlink(self):
-        for res in self:
-            super(OpResultLine, res).unlink()
-        return self
+        return super(OpResultLine, self).unlink()

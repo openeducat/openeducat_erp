@@ -19,3 +19,4 @@
 ###############################################################################
 
 from . import test_timetable
+from . import test_timetable_robust

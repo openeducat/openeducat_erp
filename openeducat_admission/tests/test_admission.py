@@ -130,3 +130,115 @@ class TestAdmissionAnalysisWizard(TestAdmissionCommon):
         }
         admission = self.wizard_admission.create(vals)
         admission.print_report()
+
+
+class TestAdmissionScenarios(TestAdmissionCommon):
+
+    def setUp(self):
+        super(TestAdmissionScenarios, self).setUp()
+
+    def test_01_admission_workflow(self):
+        """ Test the complete admission state transition workflow """
+        from odoo.exceptions import ValidationError
+        
+        course = self.env.ref('openeducat_core.op_course_1')
+        
+        register = self.op_register.create({
+            'name': 'Test Register 2026',
+            'course_id': course.id,
+            'start_date': '2026-01-01',
+            'end_date': '2026-12-31',
+            'min_count': 1,
+            'max_count': 50,
+        })
+        register.confirm_register()
+        register.start_application()
+        self.assertEqual(register.state, 'application')
+
+        admission = self.op_admission.create({
+            'name': 'DOE',
+            'first_name': 'John',
+            'last_name': 'Doe',
+            'birth_date': '2005-01-01',
+            'gender': 'm',
+            'course_id': course.id,
+            'register_id': register.id,
+            'email': 'john.doe@example.com',
+            'state': 'draft',
+        })
+        self.assertEqual(admission.state, 'draft')
+
+        admission.submit_form()
+        self.assertEqual(admission.state, 'submit')
+        
+        admission.confirm_in_progress()
+        self.assertEqual(admission.state, 'confirm')
+        
+        admission.admission_confirm()
+        self.assertEqual(admission.state, 'admission')
+
+        admission.enroll_student()
+        self.assertEqual(admission.state, 'done')
+        
+        self.assertTrue(admission.student_id)
+        self.assertEqual(admission.student_id.first_name, 'John')
+
+    def test_02_register_capacity(self):
+        """ Test admission capacity constraints on the register """
+        from odoo.exceptions import ValidationError
+        
+        course = self.env.ref('openeducat_core.op_course_2')
+        register = self.op_register.create({
+            'name': 'Test Registration Full',
+            'course_id': course.id,
+            'start_date': '2026-01-01',
+            'end_date': '2026-12-31',
+            'min_count': 1,
+            'max_count': 1,
+        })
+        register.confirm_register()
+        register.start_application()
+
+        admission1 = self.op_admission.create({
+            'name': 'A',
+            'first_name': 'Test',
+            'last_name': '1',
+            'birth_date': '2005-01-01',
+            'gender': 'm',
+            'course_id': course.id,
+            'register_id': register.id,
+            'email': 't1@example.com',
+        })
+        admission1.submit_form()
+        admission1.enroll_student()
+
+        admission2 = self.op_admission.create({
+            'name': 'B',
+            'first_name': 'Test',
+            'last_name': '2',
+            'birth_date': '2005-01-01',
+            'gender': 'm',
+            'course_id': course.id,
+            'register_id': register.id,
+            'email': 't2@example.com',
+        })
+        
+        # Test if an error is raised during over-enrolling
+        with self.assertRaises(ValidationError):
+            admission2.submit_form()
+            admission2.enroll_student()
+
+    def test_03_register_invalid_dates(self):
+        """ Test validation when start_date is > end_date """
+        from odoo.exceptions import ValidationError
+        course = self.env.ref('openeducat_core.op_course_3')
+        
+        with self.assertRaises(ValidationError):
+            self.op_register.create({
+                'name': 'Test Invalid Dates',
+                'course_id': course.id,
+                'start_date': '2026-12-31',
+                'end_date': '2026-01-01',
+                'min_count': 1,
+                'max_count': 50,
+            })

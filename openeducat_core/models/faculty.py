@@ -69,6 +69,8 @@ class OpFaculty(models.Model):
         'op.department', string='Allowed Department',
         default=lambda self:
         self.env.user.department_ids and self.env.user.department_ids.ids or False)
+    name = fields.Char(related='partner_id.name', inherited=True, readonly=False)
+    email = fields.Char(related='partner_id.email', readonly=False)
     active = fields.Boolean(default=True)
 
     @api.constrains('birth_date')
@@ -77,6 +79,31 @@ class OpFaculty(models.Model):
             if record.birth_date > fields.Date.today():
                 raise ValidationError(_(
                     "Birth Date can't be greater than current date!"))
+
+    @api.constrains('email')
+    def _check_email_unique(self):
+        for record in self:
+            if record.email:
+                duplicate = self.env['res.partner'].search([
+                    ('email', '=', record.email),
+                    ('id', '!=', record.partner_id.id)
+                ], limit=1)
+                if duplicate:
+                    raise ValidationError(_('Email must be unique per partner!'))
+
+    @api.constrains('email')
+    def _check_email_unique(self):
+        for record in self:
+            if record.email:
+                duplicate = self.env['res.partner'].search([
+                    ('email', '=', record.email),
+                    ('id', '!=', record.partner_id.id)
+                ], limit=1)
+                if duplicate:
+                    raise ValidationError(_('Email must be unique per partner!'))
+    
+    def copy(self, default=None):
+        raise ValidationError(_('You cannot duplicate a faculty record.'))
 
     @api.onchange('first_name', 'middle_name', 'last_name')
     def _onchange_name(self):
@@ -88,6 +115,19 @@ class OpFaculty(models.Model):
             self.name = " ".join(filter(None, [fname, mname, lname]))
         else:
             self.name = "New"
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('name') or vals.get('name') == 'New':
+                fname = vals.get('first_name') or ""
+                mname = vals.get('middle_name') or ""
+                lname = vals.get('last_name') or ""
+                if fname or mname or lname:
+                    vals['name'] = " ".join(filter(None, [fname, mname, lname]))
+                else:
+                    vals['name'] = "New"
+        return super(OpFaculty, self).create(vals_list)
 
     def create_employee(self):
         for record in self:
