@@ -104,10 +104,8 @@
         ],
         'web.assets_backend': [
             '/openeducat_core/static/src/scss/style.scss',
-            '/openeducat_core/static/src/js/g2_review.js',
             '/openeducat_core/static/src/js/field_inline_char.js',
             '/openeducat_core/static/src/js/inline_many2one.js',
-            '/openeducat_core/static/src/xml/review.xml',
             '/openeducat_core/static/src/xml/web_client.xml',
         ],
     },
