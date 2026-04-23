@@ -98,14 +98,22 @@ class OpStudentFeesDetails(models.Model):
         invoice_line_list = []
         if element_id:
             for records in element_id:
+                line_product = records.product_id
+                line_account_id = line_product.property_account_income_id.id \
+                    or line_product.categ_id.property_account_income_categ_id.id
+                if not line_account_id:
+                    raise UserError(
+                        _('There is no income account defined for this product: "%s".'
+                          'You may have to install a chart of account from Accounting'
+                          ' app, settings menu.') % line_product.name)
                 invoice_line_list.append((0, 0, {
-                    'name': records.product_id.name,
-                    'account_id': account_id,
+                    'name': line_product.name,
+                    'account_id': line_account_id,
                     'price_unit': records.value * self.amount / 100,
                     'quantity': 1.0,
                     'discount': self.discount or False,
-                    'product_uom_id': records.product_id.uom_id.id,
-                    'product_id': records.product_id.id,
+                    'product_uom_id': line_product.uom_id.id,
+                    'product_id': line_product.id,
                 }))
         else:
             invoice_line_list.append((0, 0, {
