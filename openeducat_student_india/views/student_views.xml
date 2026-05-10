@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Student Form View Customization -->
+        <record id="view_op_student_form_india" model="ir.ui.view">
+            <field name="name">op.student.form.india</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+            <field name="arch" type="xml">
+                <!-- Hide visa_info and nationality fields -->
+                <xpath expr="//field[@name='visa_info']" position="replace"/>
+                <xpath expr="//field[@name='nationality']" position="replace"/>
+
+                <!-- Add India-specific fields section after personal info -->
+                <xpath expr="//field[@name='emergency_contact']" position="after">
+                    <group string="India Specific Information" colspan="2">
+                        <field name="aadhar_number"
+                               placeholder="12-digit Aadhar ID"/>
+                        <field name="religion"/>
+                        <field name="caste"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Student List View Customization -->
+        <record id="view_op_student_tree_india" model="ir.ui.view">
+            <field name="name">op.student.tree.india</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_tree"/>
+            <field name="arch" type="xml">
+                <!-- Hide visa_info and nationality from list view -->
+                <xpath expr="//field[@name='visa_info']" position="replace"/>
+                <xpath expr="//field[@name='nationality']" position="replace"/>
+            </field>
+        </record>
+    </data>
+</odoo>
