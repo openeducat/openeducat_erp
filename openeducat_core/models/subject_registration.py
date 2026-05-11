@@ -50,6 +50,7 @@ class OpSubjectRegistration(models.Model):
     min_unit_load = fields.Float('Minimum Unit Load',
                                  tracking=True)
     is_read = fields.Boolean(string="Read?", default=False)
+    is_read_by_parent = fields.Boolean(default=False, string="Read by Parent?")
     company_id = fields.Many2one(
         "res.company", string="Company", default=lambda self: self.env.company
     )

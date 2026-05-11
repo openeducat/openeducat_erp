@@ -224,7 +224,8 @@ class OpSubjectRegistration(models.Model):
         return super(OpSubjectRegistration, self).create(vals)
 
     def write(self, vals):
-        if self.env.user.child_ids:
-            raise ValidationError(_('Invalid Action!\n Parent can not edit \
-            Subject Registration!'))
+        _read_only_fields = {'is_read_by_parent', 'is_read'}
+        if self.env.user.child_ids and not set(vals.keys()) <= _read_only_fields:
+            raise ValidationError(_('Invalid Action!\n Parent can not edit '
+                                    'Subject Registration!'))
         return super(OpSubjectRegistration, self).write(vals)
