@@ -8,7 +8,13 @@ class BonafideCertificateReport(models.AbstractModel):
     @api.model
     def _get_report_values(self, docids, data=None):
         model = self.env.context.get('active_model')
-        docs = self.env[model].browse(self.env.context.get('active_ids'))
+        if not model:
+            report_name = 'openeducat_core.report_student_bonafide'
+            report = self.env['ir.actions.report']._get_report_from_name(report_name)
+            model = report.model
+
+        active_ids = self.env.context.get('active_ids') or docids
+        docs = self.env[model].browse(active_ids)
 
         for student in docs:
             if not student.certificate_number:

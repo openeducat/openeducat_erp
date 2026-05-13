@@ -34,9 +34,10 @@ class OpStudent(models.Model):
         for media in self:
             media.media_movement_lines_count = \
                 self.env['op.media.movement'].search_count(
-                    [('student_id', '=', self.id)])
+                    [('student_id', '=', media.id)])
 
     def count_media_movement_lines(self):
+        self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
             'name': 'Media Movement',
