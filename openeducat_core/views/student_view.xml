@@ -8,36 +8,39 @@
                 <kanban sample="1">
                     <field name="id"/>
                     <field name="image_1920"/>
+                    <field name="gr_no"/>
+                    <field name="course_detail_ids"/>
+                    <field name="email"/>
+                    <field name="phone"/>
                     <templates>
                         <t t-name="card" class="flex-row">
                             <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
-                           <aside class="o_kanban_aside_full">
+                            <aside class="o_kanban_aside_full" style="width: 95px; min-width: 95px; flex-shrink: 0; align-self: stretch; position: relative;">
                                 <t t-if="record.image_1920.value">
-                                    <div class="o_kanban_image_fill position-relative w-100">
-                                        <field name="image_1920" alt="Contact image" class="h-100" widget="image" options="{'img_class': 'object-fit-cover'}"/>
-                                    </div>
+                                    <field name="image_1920" alt="Student photo" class="o_kanban_image_fill w-100" style="height: calc(100% + 16px) !important; margin-top: -8px; margin-bottom: -8px; margin-left: -8px;" widget="image" options="{'img_class': 'object-fit-cover h-100 w-100'}"/>
                                 </t>
                                 <t t-else="">
-                                    <div class="o_kanban_image_fill position-relative w-100">
-                                        <field name="avatar_128" class="h-100" widget="image" options="{'img_class': 'object-fit-cover'}"/>
-                                    </div>
+                                    <field name="avatar_128" class="o_kanban_image_fill w-100" style="height: calc(100% + 16px) !important; margin-top: -8px; margin-bottom: -8px; margin-left: -8px;" widget="image" options="{'img_class': 'object-fit-cover h-100 w-100'}"/>
                                 </t>
                             </aside>
-                            <main class="ml16 ps-2 ps-md-0">
-                                <div class="mb-1">
-                                    <field name="name" class="mb-0 fw-bold fs-5"/>
+                            <main class="p-1 d-flex flex-column justify-content-between">
+                                <div>
+                                    <field name="name" class="fw-bold d-block text-truncate" style="font-size:0.95rem;"/>
+                                    <div class="text-muted" style="font-size:0.75rem;" t-if="record.gr_no.value">
+                                        <field name="gr_no"/>
+                                    </div>
+                                    <div class="mt-2 text-truncate" t-if="record.email.value" style="font-size:0.82rem;">
+                                        <i class="fa fa-fw me-1 fa-envelope text-primary" title="Email"/>
+                                        <field name="email" class="text-truncate"/>
+                                    </div>
+                                    <div class="text-truncate mt-1" t-if="record.phone.value" style="font-size:0.82rem;">
+                                        <i class="fa fa-fw me-1 fa-phone text-primary" title="Phone"/>
+                                        <field name="phone" class="text-truncate"/>
+                                    </div>
                                 </div>
-                                <div class="text-truncate">
-                                    <i class="fa fa-fw me-2 fa-envelope text-primary" title="Email" t-if="record.email"/>
-                                    <field name="email" class="text-truncate"/>
-                                </div>
-                                <div class="text-truncate">
-                                    <i class="fa fa-fw me-2 fa-phone text-primary" title="phone" t-if="record.phone"/>
-                                    <field name="phone" class="text-truncate"/>
-                                </div>
-                                <footer class="py-0">
-                                    <div class="d-flex ms-auto">
-                                        <field name="activity_ids" widget="kanban_activity" class="m-2 ms-2"/>
+                                <footer class="pt-2 mt-2" style="border-top: 1px solid #e9ecef;">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <field name="activity_ids" widget="kanban_activity"/>
                                     </div>
                                 </footer>
                             </main>
