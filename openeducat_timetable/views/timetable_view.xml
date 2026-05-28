@@ -142,9 +142,18 @@
             <field name="name">session.kanban</field>
             <field name="model">op.session</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="days" class="o_kanban_small_column">
+                <kanban default_group_by="days" class="o_kanban_small_column" sample="1">
                     <field name="type"/>
                     <field name="color"/>
+                    <field name="state"/>
+                    <field name="faculty_id"/>
+                    <field name="subject_id"/>
+                    <field name="course_id"/>
+                    <field name="batch_id"/>
+                    <field name="classroom_id"/>
+                    <field name="start_datetime"/>
+                    <field name="end_datetime"/>
+                    <field name="timing"/>
                     <templates>
                         <t t-name="menu">
                             <t t-if="widget.editable">
@@ -156,47 +165,74 @@
                             <ul class="oe_kanban_colorpicker" data-field="color" />
                         </t>
                         <t t-name="card">
-                            <div t-attf-class="o_kanban_color_#{record.color.raw_value} oe_kanban_global_click">
-                                <div class="oe_kanban_content">
-                                    <div>
-                                        <strong>
+                            <!-- State Ribbons -->
+                            <widget name="web_ribbon" title="Draft"     bg_color="bg-info text-white"    invisible="state != 'draft'"/>
+                            <widget name="web_ribbon" title="Confirmed" bg_color="bg-primary text-white" invisible="state != 'confirm'"/>
+                            <widget name="web_ribbon" title="Done"      bg_color="bg-success text-white" invisible="state != 'done'"/>
+                            <widget name="web_ribbon" title="Cancelled" bg_color="bg-danger text-white"  invisible="state != 'cancel'"/>
+
+                            <main class="d-flex flex-column gap-2 p-1 position-relative">
+                                <!-- Card Header: Timing / Subject -->
+                                <div class="d-flex align-items-start gap-2 pe-5">
+                                    <div class="flex-grow-1 d-flex flex-column gap-1" style="min-width: 0;">
+                                        <h5 class="mb-0 fw-bold text-primary text-truncate"
+                                            style="font-size: 1.05rem; line-height: 1.3;"
+                                            t-att-title="record.timing.value">
                                             <field name="timing"/>
-                                        </strong>
+                                        </h5>
+                                        <div t-if="record.subject_id.raw_value"
+                                             class="d-flex align-items-center small text-muted text-truncate">
+                                            <i class="fa fa-book me-2 flex-shrink-0" style="width:14px;" title="Subject"/>
+                                            <span class="text-truncate"><field name="subject_id"/></span>
+                                        </div>
                                     </div>
-                                    <div class="oe_kanban_left">
-                                        <li t-if="record.faculty_id.raw_value">
-                                            <b>Faculty: </b>
-                                            <field name="faculty_id"/>
-                                        </li>
-                                        <li t-if="record.subject_id.raw_value" class="text-truncate">
-                                            <b>Subject: </b>
-                                            <field name="subject_id"/>
-                                        </li>
-                                        <li t-if="record.course_id.raw_value">
-                                            <b>Course: </b>
-                                            <field name="course_id"/>
-                                        </li>
-                                        <li t-if="record.batch_id.raw_value">
-                                            <b>Batch: </b>
-                                            <field name="batch_id"/>
-                                        </li>
-                                        <li t-if="record.start_datetime.raw_value">
-                                            <b>Start: </b>
-                                            <field name="start_datetime"/>
-                                        </li>
-                                        <li t-if="record.end_datetime.raw_value">
-                                            <b>End: </b>
-                                            <field name="end_datetime"/>
-                                        </li>
-                                    </div>
-                                    <div class="oe_clear"></div>
                                 </div>
-                            </div>
+
+                                <!-- Metadata -->
+                                <div class="d-flex flex-column gap-1">
+                                    <div t-if="record.course_id.raw_value"
+                                         class="d-flex align-items-center small text-muted text-truncate">
+                                        <i class="fa fa-graduation-cap me-2 flex-shrink-0" style="width:14px;" title="Course"/>
+                                        <span class="text-truncate"><field name="course_id"/></span>
+                                    </div>
+                                    <div t-if="record.batch_id.raw_value"
+                                         class="d-flex align-items-center small text-muted text-truncate">
+                                        <i class="fa fa-users me-2 flex-shrink-0" style="width:14px;" title="Batch"/>
+                                        <span class="text-truncate"><field name="batch_id"/></span>
+                                    </div>
+                                    <div t-if="record.faculty_id.raw_value"
+                                         class="d-flex align-items-center small text-muted text-truncate">
+                                        <i class="fa fa-user me-2 flex-shrink-0" style="width:14px;" title="Faculty"/>
+                                        <span class="text-truncate"><field name="faculty_id"/></span>
+                                    </div>
+                                    <div t-if="record.classroom_id.raw_value"
+                                         class="d-flex align-items-center small text-muted text-truncate">
+                                        <i class="fa fa-map-marker me-2 flex-shrink-0" style="width:14px;" title="Classroom"/>
+                                        <span class="text-truncate"><field name="classroom_id"/></span>
+                                    </div>
+                                    <div t-if="record.start_datetime.raw_value"
+                                         class="d-flex align-items-center small text-muted">
+                                        <i class="fa fa-clock-o me-2 flex-shrink-0" style="width:14px;" title="Time"/>
+                                        <span>
+                                            <field name="start_datetime"/>
+                                            <span t-if="record.end_datetime.raw_value" class="mx-1">–</span>
+                                            <field name="end_datetime" invisible="not end_datetime"/>
+                                        </span>
+                                    </div>
+                                    <div t-if="record.type.raw_value"
+                                         class="d-flex align-items-center small text-muted text-truncate">
+                                        <i class="fa fa-tag me-2 flex-shrink-0" style="width:14px;" title="Type"/>
+                                        <span class="text-truncate"><field name="type"/></span>
+                                    </div>
+                                </div>
+
+                            </main>
                         </t>
                     </templates>
                 </kanban>
             </field>
         </record>
+
 
         <record id="view_op_session_pivot" model="ir.ui.view">
             <field name="name">op.session.pivot</field>
