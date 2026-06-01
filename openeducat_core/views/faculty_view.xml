@@ -12,38 +12,38 @@
                     <field name="email"/>
                     <field name="phone"/>
                     <templates>
-                        <t t-name="card" class="flex-row">
+                        <t t-name="card" class="d-flex flex-column bg-white shadow-sm border-0 p-0" style="border-radius: 8px; overflow: hidden; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
                             <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
-                            <aside class="o_kanban_aside_full" style="width: 95px; min-width: 95px; flex-shrink: 0; align-self: stretch; position: relative;">
-                                <t t-if="record.image_1920.value">
-                                    <field name="image_1920" alt="Faculty photo" class="o_kanban_image_fill w-100" style="height: calc(100% + 16px) !important; margin-top: -8px; margin-bottom: -8px; margin-left: -8px;" widget="image" options="{'img_class': 'object-fit-cover h-100 w-100'}"/>
-                                </t>
-                                <t t-else="">
-                                    <field name="avatar_128" class="o_kanban_image_fill w-100" style="height: calc(100% + 16px) !important; margin-top: -8px; margin-bottom: -8px; margin-left: -8px;" widget="image" options="{'img_class': 'object-fit-cover h-100 w-100'}"/>
-                                </t>
-                            </aside>
-                            <main class="p-1 d-flex flex-column justify-content-between">
-                                <div>
-                                    <field name="name" class="fw-bold d-block text-truncate mb-1" style="font-size:0.95rem;"/>
-                                    <!-- <div class="text-muted text-truncate" style="font-size:0.75rem;" t-if="record.main_department_id.value">
-                                        <field name="main_department_id" class="text-truncate"/>
-                                    </div> -->
-                                    <div class="text-truncate mt-2" t-if="record.email.value" style="font-size:0.82rem;">
-                                        <i class="fa fa-fw me-1 fa-envelope text-primary" title="Email"/>
-                                        <field name="email" class="text-truncate"/>
+
+                            <!-- Main Header: Square Image + Contact Info -->
+                            <div class="d-flex p-3 w-100" style="background-color: #fafbfc;">
+                                <div class="rounded-3 shadow-sm me-3 bg-white d-flex justify-content-center align-items-center" style="width: 85px; height: 85px; overflow: hidden; flex-shrink: 0; border: 1px solid #e9ecef;">
+                                    <t t-if="record.image_1920.value">
+                                        <field name="image_1920" class="w-100 h-100" style="object-fit: cover;" widget="image" options="{'img_class': 'w-100 h-100 object-fit-cover'}"/>
+                                    </t>
+                                    <t t-else="">
+                                        <field name="avatar_128" class="w-100 h-100" style="object-fit: cover;" widget="image" options="{'img_class': 'w-100 h-100 object-fit-cover'}"/>
+                                    </t>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center flex-grow-1" style="min-width: 0;">
+                                    <field name="name" class="fw-bold text-dark d-block text-truncate mb-1" style="font-size:1.15rem;"/>
+                                    <div class="d-flex align-items-center text-truncate mb-1" t-if="record.email.value" style="font-size:0.85rem; min-width: 0;">
+                                        <i class="fa fa-envelope text-primary me-2 flex-shrink-0" title="Email"/>
+                                        <span class="text-truncate d-block text-dark" style="min-width: 0; color: #374151 !important;"><field name="email"/></span>
                                     </div>
-                                    <div class="text-truncate mt-1" t-if="record.phone.value" style="font-size:0.82rem;">
-                                        <i class="fa fa-fw me-1 fa-phone text-primary" title="Phone"/>
-                                        <field name="phone" class="text-truncate"/>
+                                    <div class="d-flex align-items-center text-truncate" t-if="record.phone.value" style="font-size:0.85rem; min-width: 0;">
+                                        <i class="fa fa-phone text-success me-2 flex-shrink-0" title="Phone"/>
+                                        <span class="text-truncate d-block text-dark" style="min-width: 0; color: #374151 !important;"><field name="phone"/></span>
                                     </div>
                                 </div>
-                                <footer class="pt-2 mt-2" style="border-top: 1px solid #e9ecef;">
-                                    <div class="d-flex align-items-center justify-content-between w-100">
-                                        <div name="footer_stats" class="d-flex align-items-center gap-1"/>
-                                        <field name="activity_ids" widget="kanban_activity"/>
-                                    </div>
-                                </footer>
-                            </main>
+                            </div>
+
+                            <!-- Footer: Stat Buttons + Activity Icon -->
+                            <footer class="px-3 py-1 d-flex flex-nowrap align-items-center gap-2 w-100 mt-auto bg-white" style="border-top: 1px solid #f0f0f0; min-height: 45px;">
+                                <div name="activity_box" class="d-flex align-items-center justify-content-center bg-light px-2 py-1 rounded-3 ms-auto border border-light-subtle" style="height: 32px; color: #212529 !important;">
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                </div>
+                            </footer>
                         </t>
                     </templates>
                 </kanban>
