@@ -47,7 +47,7 @@ class OpBatch(models.Model):
                     _("End Date cannot be set before Start Date."))
 
     @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
+    def name_search(self, name='', domain=None, operator='ilike', limit=100):
         if self.env.context.get('get_parent_batch', False):
             lst = []
             lst.append(self.env.context.get('course_id'))
@@ -57,8 +57,8 @@ class OpBatch(models.Model):
                 courses = courses.parent_id
             batches = self.env['op.batch'].search([('course_id', 'in', lst)])
             return [(batch.id, batch.display_name) for batch in batches]
-        return super(OpBatch, self).name_search(
-            name, args, operator=operator, limit=limit)
+        return super().name_search(
+            name, domain=domain, operator=operator, limit=limit)
 
     @api.model
     def get_import_templates(self):

@@ -33,9 +33,16 @@
                                 type="object" string="Publish"
                                 class="oe_highlight" groups="openeducat_assignment.group_op_assignment_user"/>
 
-                        <button name="act_set_to_draft" invisible="state != 'publish'"
-                                type="object" string="Set to Draft"
-                                class="oe_highlight" groups="openeducat_assignment.group_op_assignment_user"/>
+                        <button name="act_set_to_draft"
+                                invisible="state not in ('publish', 'cancel')"
+                                type="object" string="Reset to Draft"
+                                groups="openeducat_assignment.group_op_assignment_user"/>
+                        <!-- Reset from ``finish`` lives in
+                             openeducat_grade_connector — that module owns
+                             the marks trail and knows the confirm-dialog
+                             wording. Base offers no reset from finish
+                             because without grading there is no risk. -->
+
 
                         <button name="act_finish" class="oe_highlight"
                                 invisible="state != 'publish'" type="object" string="Finish"

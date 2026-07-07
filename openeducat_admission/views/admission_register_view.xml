@@ -41,6 +41,10 @@
                         <button name="cancel_register" invisible="state not in ('draft', 'confirm')" string="Cancel"
                                 type="object"/>
                         <button name="set_to_draft" invisible="state != 'cancel'" string="Set to Draft" type="object"/>
+                        <button name="action_reset_to_draft"
+                                invisible="state in ('draft', 'cancel')"
+                                string="Reset to Draft" type="object"
+                                confirm="Reset this register to draft? Linked admissions are not touched."/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirm,application,admission"/>
                     </header>
                     <sheet>

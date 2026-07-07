@@ -19,8 +19,9 @@
 ##############################################################################
 
 from dateutil.relativedelta import relativedelta
+from markupsafe import Markup
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 
 class OpAdmissionRegister(models.Model):
@@ -159,6 +160,32 @@ class OpAdmissionRegister(models.Model):
 
     def close_register(self):
         self.state = 'done'
+
+    def action_reset_to_draft(self):
+        """Roll the register back to draft from any later state so the
+        operator can correct fields that go readonly past draft
+        (start_date, end_date, product_id, etc.). Chatter records the
+        previous state + the operator; linked admissions are left alone.
+        """
+        for rec in self:
+            if rec.state == 'draft':
+                raise UserError(_(
+                    "Register '%(name)s' is already in the draft state.",
+                    name=rec.name or rec.id,
+                ))
+            prior_state = dict(
+                rec._fields['state']._description_selection(self.env)
+            ).get(rec.state, rec.state)
+            rec.state = 'draft'
+            rec.message_post(body=Markup(_(
+                "<b>Reset to draft.</b><br/>"
+                "Previous state: %(prior)s<br/>"
+                "By: %(user)s"
+            )) % {
+                'prior': prior_state,
+                'user': self.env.user.name,
+            })
+        return True
 
     def action_open_draft_courses(self):
         return {
