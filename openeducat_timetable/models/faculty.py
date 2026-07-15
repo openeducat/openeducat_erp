@@ -29,9 +29,13 @@ class OpFaculty(models.Model):
 
     @api.depends('session_ids')
     def _compute_session_details(self):
-        for session in self:
-            session.session_count = self.env['op.session'].search_count(
-                [('faculty_id', '=', self.id)])
+        # Previously `self.id` was used inside the per-record loop —
+        # `self` here is the ENTIRE recordset, not the current record,
+        # so every faculty row got the count for the first faculty's
+        # id (or crashed with "singleton expected" on a multi-record
+        # recompute). Use `faculty.id` from the loop variable.
+        for faculty in self:
+            faculty.session_count = len(faculty.session_ids)
 
     def count_sessions_details(self):
         return {

@@ -131,11 +131,32 @@ class OpFaculty(models.Model):
 
     def create_employee(self):
         for record in self:
+            # If this faculty is already linked to an internal user
+            # (via `res.users.partner_id = faculty.partner_id`), reuse
+            # it on the new hr.employee instead of creating a fresh
+            # employee with no user link. Without this, the "Create
+            # User?" prompt on the employee form would appear even
+            # though a user already exists, and picking "no" left
+            # the employee with `user_id = False` — the whole
+            # faculty↔employee↔user chain fell apart, breaking
+            # anything downstream that walks `emp_id.user_id`
+            # (Time Off manager assignments, appraisal owners, etc.).
+            existing_user = self.env['res.users'].sudo().search(
+                [('partner_id', '=', record.partner_id.id)], limit=1,
+            )
             vals = {
                 'name': record.name,
                 'country_id': record.nationality.id,
                 'sex': record.gender,
             }
+            if existing_user:
+                vals['user_id'] = existing_user.id
+                # `work_contact_id` is hr.employee's canonical partner
+                # link in Odoo 19 (replaced `address_home_id`). Point
+                # it at the faculty's partner so the employee card
+                # shows the same contact block instead of Odoo
+                # auto-creating an empty duplicate partner.
+                vals['work_contact_id'] = record.partner_id.id
             emp_id = self.env['hr.employee'].create(vals)
             record.write({'emp_id': emp_id.id})
             record.partner_id.write({'partner_share': True, 'employee': True})

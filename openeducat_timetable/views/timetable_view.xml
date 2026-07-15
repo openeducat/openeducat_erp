@@ -36,11 +36,11 @@
                                 groups="openeducat_timetable.group_op_timetable_user"
                                 class="oe_highlight"/>
                         <button type="object" name="lecture_draft"
-                                invisible="state != 'cancel'" string="Set to Draft"
-                                groups="openeducat_timetable.group_op_timetable_user"
-                                class="oe_highlight"/>
+                                invisible="state not in ('confirm', 'cancel')"
+                                string="Reset to Draft"
+                                groups="openeducat_timetable.group_op_timetable_user"/>
                         <button type="object" name="lecture_cancel"
-                                invisible="state in ('draft','confirm')" string="Cancel"
+                                invisible="state not in ('confirm','done')" string="Cancel"
                                 groups="openeducat_timetable.group_op_timetable_user"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,confirm"/>
@@ -58,22 +58,37 @@
                         </div>
                         <group>
                             <group>
-                                <field name="faculty_id" options='{"no_open": True}'/>
-                                <field name="course_id" options='{"no_open": True}'/>
-                                <field name="subject_id"/>
-                                <field name="type"/>
+                                <field name="faculty_id" options='{"no_open": True}'
+                                       readonly="state != 'draft'"/>
+                                <field name="course_id" options='{"no_open": True}'
+                                       readonly="state != 'draft'"/>
+                                <field name="subject_id"
+                                       readonly="state != 'draft'"/>
+                                <field name="type"
+                                       readonly="state != 'draft'"/>
                             </group>
                             <group>
                                 <field name="batch_id" options='{"no_open": True}'
-                                       context="{'course_id': course_id,'get_parent_batch':1}"/>
-                                <field name="classroom_id"/>
+                                       context="{'course_id': course_id,'get_parent_batch':1}"
+                                       readonly="state != 'draft'"/>
+                                <field name="classroom_id"
+                                       readonly="state != 'draft'"/>
                                 <label for="start_datetime" string="Session Time"/>
                                 <div class="o_row">
                                     <field name="start_datetime" widget="daterange" class="oe_inline"
-                                           options="{'end_date_field': 'end_datetime'}"/>
-                                    <field name="end_datetime" invisible="1"/>
+                                           options="{'end_date_field': 'end_datetime'}"
+                                           readonly="state != 'draft'"/>
+                                    <field name="end_datetime" invisible="1"
+                                           readonly="state != 'draft'"/>
                                 </div>
                             </group>
+                        </group>
+                        <group>
+                            <field name="student_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True, 'no_create_edit': True}"
+                                domain="[('course_detail_ids.batch_id', '=', batch_id)]"
+                                readonly="state != 'draft'"/>
                         </group>
                     </sheet>
                     <chatter/>
@@ -120,20 +135,79 @@
             </field>
         </record>
 
+        <!--
+            Quick-create dialog for the calendar view. When the user
+            drags on the calendar (or clicks + on a slot), Odoo pops
+            this small form instead of the default name-only prompt.
+
+            Domains ensure the pickers stay coherent:
+              * batch_id   → limited to batches of the chosen course.
+              * subject_id → limited to subjects declared on the chosen
+                             course (op.course.subject_ids M2M).
+              * faculty_id → left open (no per-course faculty roster
+                             in the base data model).
+
+            start_datetime + end_datetime are pre-filled by Odoo from
+            the calendar slot the user clicked. They stay editable in
+            case the user wants to tweak.
+        -->
+        <record id="view_op_session_form_quick_create" model="ir.ui.view">
+            <field name="name">op.session.form.quick-create</field>
+            <field name="model">op.session</field>
+            <field name="priority" eval="10"/>
+            <field name="arch" type="xml">
+                <form string="Quick Session">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="course_id"/>
+                                <field name="batch_id"
+                                       domain="[('course_id', '=', course_id)]"/>
+                                <field name="subject_id"
+                                       domain="[('id', 'in', course_id and course_subject_ids or [])]"/>
+                                <field name="course_subject_ids"
+                                       invisible="1"/>
+                                <field name="faculty_id"/>
+                                <field name="classroom_id"/>
+                            </group>
+                            <group>
+                                <field name="start_datetime"/>
+                                <field name="end_datetime"/>
+                            </group>
+                        </group>
+                        <separator string="Students"/>
+                        <field name="student_ids"
+                               widget="many2many_tags"
+                               class="w-100 d-block"
+                               options="{'no_create': True, 'no_create_edit': True}"
+                               domain="[('course_detail_ids.batch_id', '=', batch_id)]"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
         <record id="view_op_session_calendar" model="ir.ui.view">
             <field name="name">op.session.calendar</field>
             <field name="model">op.session</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <calendar string="Sessions" date_start="start_datetime"
-                          color="course_id" date_stop="end_datetime">
+                <calendar string="Sessions"
+                          date_start="start_datetime"
+                          date_stop="end_datetime"
+                          color="course_id"
+                          event_open_popup="true"
+                          quick_create="true"
+                          quick_create_view_id="%(openeducat_timetable.view_op_session_form_quick_create)d">
                     <field name="faculty_id"/>
                     <field name="course_id"/>
                     <field name="batch_id"/>
                     <field name="start_datetime"/>
                     <field name="end_datetime"/>
                     <field name="subject_id"/>
+                    <field name="classroom_id"/>
                     <field name="type"/>
+                    <field name="student_ids"
+                           domain="[('course_detail_ids.batch_id', '=', batch_id)]"/>
                 </calendar>
             </field>
         </record>
