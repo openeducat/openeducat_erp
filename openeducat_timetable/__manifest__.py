@@ -43,6 +43,7 @@
         'wizard/session_confirmation.xml',
         'views/timetable_templates.xml',
         'menus/op_menu.xml',
+        'data/backfill_student_ids_action.xml',
     ],
     'demo': [
         'demo/timing_demo.xml',

@@ -503,6 +503,16 @@ class OpSession(models.Model):
         # from `student_ids`, or old faculty).
         _rebalance_watched = {'faculty_id', 'student_ids'}
         old_desired = {}
+        # Snapshot the OLD student sets too so we can post a chatter
+        # message per session describing exactly who was added or
+        # removed and by whom. `mail.thread` field-level tracking on
+        # a Many2many field would only give "list changed" without
+        # naming individuals; a dedicated `message_post` produces a
+        # readable audit-trail entry.
+        old_students = {}
+        if 'student_ids' in vals:
+            for session in self:
+                old_students[session.id] = session.student_ids
         if any(f in vals for f in _rebalance_watched):
             # Prefetch followers on the whole recordset in one query
             # before the per-session read below — Odoo's ORM prefetch
@@ -534,11 +544,53 @@ class OpSession(models.Model):
                         partner_ids=to_remove.ids)
                 # Subscribe newly qualifying partners.
                 session._sync_session_followers()
+            if session.id in old_students:
+                session._log_student_ids_change(old_students[session.id])
             if should_notify and session.state not in ('draft', 'done'):
                 to_notify |= session
         if to_notify:
             to_notify.notify_user()
         return data
+
+    def _log_student_ids_change(self, old_students):
+        """Post a chatter message enumerating student additions /
+        removals so the session's audit trail shows who was moved
+        in or out of a class and by whom.
+
+        Called from `write()` when `student_ids` was in the vals.
+        No-ops when the effective set is unchanged (a write of the
+        same M2M list — e.g. via `(6, 0, [same ids])` — is common
+        during onchange re-application and shouldn't spam the log).
+        """
+        self.ensure_one()
+        old_ids = set(old_students.ids)
+        new_ids = set(self.student_ids.ids)
+        added = self.student_ids.filtered(lambda s: s.id not in old_ids)
+        removed = old_students.filtered(lambda s: s.id not in new_ids)
+        if not added and not removed:
+            return
+        actor = self.env.user.name or _('System')
+        parts = []
+        if added:
+            parts.append(_(
+                "%(actor)s added: %(names)s",
+                actor=actor,
+                names=', '.join(added.mapped('name')),
+            ))
+        if removed:
+            parts.append(_(
+                "%(actor)s removed: %(names)s",
+                actor=actor,
+                names=', '.join(removed.mapped('name')),
+            ))
+        # Plain-text body so translated multi-line stays legible in
+        # the chatter. `message_type='comment'` puts it in the same
+        # feed as user notes rather than the technical-log tab.
+        self.message_post(
+            body='<br/>'.join(parts),
+            message_type='comment',
+            subtype_xmlid='mail.mt_note',
+        )
 
     @api.model
     def get_import_templates(self):
