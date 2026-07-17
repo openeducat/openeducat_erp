@@ -80,7 +80,12 @@ class OpAssignment(models.Model):
 
     @api.onchange('course_id')
     def onchange_course(self):
+        # Course change resets both the batch and the allocation. The
+        # cleared batch triggers `onchange_batch_id` on the next tick
+        # (with a False batch → allocation stays empty), so the two
+        # side-effects compose safely.
         self.batch_id = False
+        self.allocation_ids = [(5, 0, 0)]
         if self.course_id:
             subject_ids = self.env['op.course'].search([
                 ('id', '=', self.course_id.id)]).subject_ids
@@ -91,6 +96,26 @@ class OpAssignment(models.Model):
         for rec in self:
             if rec.course_id:
                 rec.courses_subjects = rec.course_id.subject_ids
+
+    @api.onchange('batch_id')
+    def onchange_batch_id_populate_allocation(self):
+        """Auto-populate `allocation_ids` with every student enrolled
+        in the chosen batch. Users can still prune the list manually —
+        the assignment editor sees the full roster pre-populated and
+        can drop individuals if the work isn't for everyone.
+
+        Reads through `op.student.course` (the enrollment link
+        table) rather than `op.student` directly, so students who
+        transferred courses or are inactive in this batch don't leak
+        in from other batches they've been in.
+        """
+        if not self.batch_id:
+            self.allocation_ids = [(5, 0, 0)]
+            return
+        enrollments = self.env['op.student.course'].search(
+            [('batch_id', '=', self.batch_id.id)]
+        )
+        self.allocation_ids = [(6, 0, enrollments.mapped('student_id').ids)]
 
     def act_publish(self):
         result = self.state = 'publish'

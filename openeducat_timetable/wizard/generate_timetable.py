@@ -90,6 +90,15 @@ class GenerateSession(models.TransientModel):
         for session in self:
             start_date = session.start_date
             end_date = session.end_date
+            # Pre-compute student allocation for this batch ONCE, then
+            # attach the same set to every created session below.
+            # Bulk `create()` doesn't fire `_onchange_batch_id_populate_students`
+            # (onchanges only run through form clients), so without
+            # this the wizard-generated sessions ship with empty
+            # `student_ids` and are invisible on the enterprise portal.
+            batch_student_ids = self.env['op.student.course'].search([
+                ('batch_id', '=', session.batch_id.id),
+            ]).mapped('student_id').ids
             for n in range((end_date - start_date).days + 1):
                 curr_date = start_date + datetime.timedelta(n)
                 for line in session.time_table_lines:
@@ -117,6 +126,7 @@ class GenerateSession(models.TransientModel):
                             'end_datetime':
                             curr_end_date.strftime("%Y-%m-%d %H:%M:%S"),
                             'type': calendar.day_name[int(line.day)],
+                            'student_ids': [(6, 0, batch_student_ids)],
                         })
             if data:
                 session_obj.create(data)

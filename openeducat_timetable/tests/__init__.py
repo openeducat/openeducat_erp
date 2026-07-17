@@ -18,5 +18,20 @@
 #
 ###############################################################################
 
+# Pre-existing suite (kept as-is).
 from . import test_timetable
 from . import test_timetable_robust
+
+# New tier-A/B suite added this session — each file guards a
+# specific regression class we hit.
+from . import test_install
+from . import test_compute_timing
+from . import test_compute_name
+from . import test_compute_batch_users
+from . import test_check_timetable_fields
+from . import test_notify_user
+from . import test_follower_sync
+from . import test_faculty_session_count
+from . import test_onchange_batch_populate
+from . import test_wizard_generate_timetable
+from . import test_migration_backfill

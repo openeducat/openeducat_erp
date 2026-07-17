@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    On-demand backfill for `op.session.student_ids`.
+
+    Same logic as `migrations/19.0.1.1.0/post-migrate.py` but exposed as
+    a Server Action so admins can re-run it whenever they notice sessions
+    with an empty `student_ids` field. Two entry points:
+
+      1. Sessions list view → "Actions" cog menu (`binding_model_id`
+         pinned to op.session, `binding_view_types="list"`). Select
+         the sessions you want to backfill, click Actions → "Backfill
+         Students from Batch". If nothing is selected the action runs
+         over EVERY session with an empty `student_ids` — same scope
+         as the post-migrate script.
+      2. Direct call from the Odoo shell / Settings → Technical →
+         Server Actions → run.
+
+    Idempotent: only touches sessions whose `student_ids` is still
+    empty. Sessions with no batch are skipped (nothing to source from).
+-->
+<odoo noupdate="1">
+    <record id="action_backfill_op_session_student_ids" model="ir.actions.server">
+        <field name="name">Backfill Students from Batch</field>
+        <field name="model_id" ref="model_op_session"/>
+        <field name="binding_model_id" ref="model_op_session"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+# Scope: user-selected sessions if any, otherwise every empty session.
+Session = env['op.session']
+if records:
+    sessions = records.filtered(
+        lambda s: s.batch_id and not s.student_ids
+    )
+else:
+    sessions = Session.search([
+        ('batch_id', '!=', False),
+        ('student_ids', '=', False),
+    ])
+
+if not sessions:
+    action = {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {
+            'title': 'Nothing to Backfill',
+            'message': 'All targeted sessions already have students assigned.',
+            'type': 'info',
+            'sticky': False,
+        },
+    }
+else:
+    # Group by batch → one enrollment query per batch (not per session).
+    Enrollment = env['op.student.course']
+    by_batch = {}
+    for session in sessions:
+        by_batch.setdefault(session.batch_id.id, Session)
+        by_batch[session.batch_id.id] |= session
+
+    all_batch_ids = list(by_batch.keys())
+    enrollments = Enrollment.search([('batch_id', 'in', all_batch_ids)])
+    students_by_batch = {}
+    for enr in enrollments:
+        students_by_batch.setdefault(enr.batch_id.id, env['op.student'])
+        if enr.student_id:
+            students_by_batch[enr.batch_id.id] |= enr.student_id
+
+    touched_sessions = 0
+    touched_pairs = 0
+    for batch_id, batch_sessions in by_batch.items():
+        students = students_by_batch.get(batch_id)
+        if not students:
+            continue
+        # Same context flags as the post-migrate script: don't fire
+        # calendar sync or notify_user emails for legacy data.
+        batch_sessions.with_context(
+            no_calendar_sync=True, dont_notify=True,
+        ).write({'student_ids': [(6, 0, students.ids)]})
+        touched_sessions += len(batch_sessions)
+        touched_pairs += len(batch_sessions) * len(students)
+
+    action = {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {
+            'title': 'Backfill Complete',
+            'message': (
+                'Populated %d session(s) across %d batch(es) '
+                '(%d session/student pairs).'
+                % (touched_sessions, len(by_batch), touched_pairs)
+            ),
+            'type': 'success',
+            'sticky': False,
+        },
+    }
+        </field>
+    </record>
+</odoo>

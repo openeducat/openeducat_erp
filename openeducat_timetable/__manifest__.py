@@ -19,7 +19,7 @@
 ###############################################################################
 {
     'name': 'OpenEduCat Timetable',
-    'version': '19.0.1.0',
+    'version': '19.0.1.1.0',
     'license': 'LGPL-3',
     'category': 'Education',
     "sequence": 3,
@@ -43,6 +43,7 @@
         'wizard/session_confirmation.xml',
         'views/timetable_templates.xml',
         'menus/op_menu.xml',
+        'data/backfill_student_ids_action.xml',
     ],
     'demo': [
         'demo/timing_demo.xml',
