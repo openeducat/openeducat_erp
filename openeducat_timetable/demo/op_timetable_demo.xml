@@ -49,4 +49,13 @@
             eval="[(4,ref('openeducat_timetable.group_op_timetable_user'))]"/>
         </record>
 
+        <!--
+            Backfill student_ids on the demo sessions above from each
+            batch's demo enrollment roster. Runs at demo-load time
+            only (this file itself is gated by the manifest's `demo`
+            key), replacing the old post_init_hook that had to run
+            unconditionally and no-op on production.
+        -->
+        <function model="op.session" name="_backfill_demo_student_ids"/>
+
 </odoo>

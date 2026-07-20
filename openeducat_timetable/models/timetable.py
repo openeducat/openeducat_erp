@@ -395,11 +395,25 @@ class OpSession(models.Model):
 
     @api.onchange('course_id')
     def onchange_course(self):
-        self.batch_id = False
+        # Clear batch (batch belongs to a course — old batch is
+        # invalid after a course swap) AND subject (a subject picked
+        # under the OLD course is likely not in the NEW course's
+        # subject list; without this the form kept the stale subject
+        # even though the dropdown was re-scoped, and only the M2O
+        # domain filter hinted at the mismatch).
+        # Keep the subject only when the NEW course still includes it
+        # (uncommon but valid — subjects are M2M-shared across courses).
         if self.course_id:
-            subject_ids = self.env['op.course'].search([
-                ('id', '=', self.course_id.id)]).subject_ids
-            return {'domain': {'subject_id': [('id', 'in', subject_ids.ids)]}}
+            course_subject_ids = self.course_id.subject_ids.ids
+            if self.subject_id and self.subject_id.id not in course_subject_ids:
+                self.subject_id = False
+            self.batch_id = False
+            return {
+                'domain': {'subject_id': [('id', 'in', course_subject_ids)]}
+            }
+        # Course cleared → wipe dependent selections too.
+        self.batch_id = False
+        self.subject_id = False
 
     def notify_user(self):
         """Send ONE email per session to all followers with an email.
@@ -598,3 +612,46 @@ class OpSession(models.Model):
             'label': _('Import Template for Sessions'),
             'template': '/openeducat_timetable/static/xls/op_session.xls'
         }]
+
+    @api.model
+    def _backfill_demo_student_ids(self):
+        """Populate `student_ids` on demo sessions from their batch roster.
+
+        Called from `demo/op_timetable_demo.xml` via a `<function>`
+        tag — runs at demo-data-load time only (never on a real
+        production install, since production runs with demo=off).
+
+        The old post_init_hook ran on every install and had to guard
+        against production; moving this into the demo XML makes the
+        scope explicit: the demo file already only loads with demo,
+        so this call inherits the same gate. On a fresh install with
+        demo enabled, demo sessions come pre-populated with the demo
+        batch's demo students. Idempotent — only touches sessions
+        with an empty `student_ids`.
+        """
+        sessions = self.search([
+            ('batch_id', '!=', False),
+            ('student_ids', '=', False),
+        ])
+        if not sessions:
+            return
+        by_batch = {}
+        for session in sessions:
+            by_batch.setdefault(session.batch_id.id, self.browse())
+            by_batch[session.batch_id.id] |= session
+        enrollments = self.env['op.student.course'].search([
+            ('batch_id', 'in', list(by_batch.keys())),
+        ])
+        students_by_batch = {}
+        for enr in enrollments:
+            students_by_batch.setdefault(
+                enr.batch_id.id, self.env['op.student'])
+            if enr.student_id:
+                students_by_batch[enr.batch_id.id] |= enr.student_id
+        for batch_id, batch_sessions in by_batch.items():
+            students = students_by_batch.get(batch_id)
+            if not students:
+                continue
+            batch_sessions.with_context(
+                no_calendar_sync=True, dont_notify=True,
+            ).write({'student_ids': [(6, 0, students.ids)]})
