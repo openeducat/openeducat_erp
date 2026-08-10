@@ -129,6 +129,12 @@ class OpAdmissionRegister(models.Model):
                 raise ValidationError(_(
                     "Min Admission can't be greater than Max Admission"))
 
+    @api.constrains('minimum_age_criteria')
+    def check_minimum_age_criteria(self):
+        for record in self:
+            if record.minimum_age_criteria < 0:
+                raise ValidationError(_("Minimum Required Age must be positive!"))
+
     def open_student_application(self):
         return {
             "type": "ir.actions.act_window",

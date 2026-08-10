@@ -35,7 +35,7 @@ class ReportTimetableStudentGenerate(models.AbstractModel):
             Converts time as per local timezone.
         '''
         if time:
-            timezone = pytz.timezone(self._context['tz'] or 'UTC')
+            timezone = pytz.timezone(self.env.context.get('tz') or 'UTC')
             utc_in_time = pytz.UTC.localize(fields.Datetime.from_string(time))
             local_time = utc_in_time.astimezone(timezone)
             return local_time
