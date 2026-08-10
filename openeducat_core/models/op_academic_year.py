@@ -9,7 +9,8 @@
 
 from datetime import timedelta
 
-from odoo import fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class OpAcademicYear(models.Model):
@@ -42,6 +43,12 @@ class OpAcademicYear(models.Model):
         default=lambda self: self.env.user.company_id)
 
     _unique_name = models.Constraint('UNIQUE(name)', 'Name must be unique.')
+
+    @api.constrains('start_date', 'end_date')
+    def _check_dates(self):
+        for record in self:
+            if record.start_date and record.end_date and record.start_date > record.end_date:
+                raise ValidationError(_("End Date cannot be set before Start Date."))
 
     def term_create(self):
         num = 0

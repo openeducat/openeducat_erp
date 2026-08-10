@@ -7,7 +7,8 @@
 #
 ##############################################################################
 
-from odoo import fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class OpAcademicTerm(models.Model):
@@ -31,3 +32,9 @@ class OpAcademicTerm(models.Model):
                                            'Start date must be unique per Academic Year.')
     _unique_end_date = models.Constraint('UNIQUE(term_end_date, academic_year_id)',
                                          'End date must be unique per Academic Year.')
+
+    @api.constrains('term_start_date', 'term_end_date')
+    def _check_dates(self):
+        for record in self:
+            if record.term_start_date and record.term_end_date and record.term_start_date > record.term_end_date:
+                raise ValidationError(_("End Date cannot be set before Start Date."))

@@ -75,6 +75,12 @@ class OpAssignment(models.Model):
                 raise ValidationError(_(
                     "Submission Date cannot be set before Issue Date."))
 
+    @api.constrains('marks')
+    def _check_marks(self):
+        for record in self:
+            if record.marks < 0:
+                raise ValidationError(_("Marks cannot be negative!"))
+
     def _compute_assignment_count_compute(self):
         self.assignment_sub_line_count = len(self.assignment_sub_line)
 
