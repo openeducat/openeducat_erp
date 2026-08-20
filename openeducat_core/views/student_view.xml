@@ -78,7 +78,22 @@
             <field name="model">op.student</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <form string="Student" js_class="hr_employee_form">
+                <!-- No js_class here. `hr_employee_form` registers hr's
+                     EmployeeFormController, which overrides the Archive action
+                     to open the "Employee Termination" wizard
+                     (hr/static/src/views/archive_employee_hook.js) and passes
+                     `this.model.root.resId` as active_ids. On this form that
+                     is an op.student id, handed to hr.departure.wizard, which
+                     expects an hr.employee id — so archiving a student either
+                     errored or wrote departure fields onto whichever employee
+                     happened to share that id.
+
+                     It was added in d6485eb0 ([19.0][MOD] updated UI for
+                     student and faculty, 2025-10-08) as part of a pure restyle;
+                     the styling in that commit is a global .oe_stat_button rule
+                     and does not depend on the js_class, so removing it changes
+                     appearance not at all and restores the standard Archive. -->
+                <form string="Student">
                     <header>
                     </header>
                     <sheet>
