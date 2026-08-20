@@ -75,7 +75,14 @@
             <field name="model">op.faculty</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <form string="Faculty" js_class="hr_employee_form">
+                <!-- Removed for the same reason as student_view.xml.
+                     Faculty look like the better fit for an employee wizard,
+                     but they are not: the hook passes the op.faculty id, while
+                     the link to HR is `emp_id` — a DIFFERENT id on
+                     hr.employee. So the wizard received the wrong record here
+                     too. If Register Departure is wanted for staff, drive it
+                     from emp_id on the employee itself. -->
+                <form string="Faculty">
                     <header groups="openeducat_core.group_op_back_office_admin">
                     </header>
                     <sheet>
