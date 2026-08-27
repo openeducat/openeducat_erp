@@ -5,68 +5,40 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
-                        <div class="page" style="padding-top:10px;font-family:'Odoo Unicode Support Noto';">
-                            <div style="max-height: 229px; width: 400px;margin-bottom: 10px;">
-                                <table width="100%" style="border-collapse:collapse;border: 1px solid black;">
-                                    <tbody>
-                                        <tr>
-                                            <td style="padding:5px; width:60px;">
-                                                <img class="image"
-                                                    alt="Library Card"
-                                                    t-att-src="image_data_uri(res_company.logo)"
-                                                    style="max-width:2.2cm;"/>
-                                            </td>
-                                            <td style="padding:5px;">
-                                                <p style="font-size:15px; font-weight:600; margin:0;">
-                                                    Library Card
-                                                </p>
-                                                <p style="color:#3087c3; font-weight:600; font-size:13px; margin:2px 0 0;"
-                                                t-out="res_company.partner_id.name if res_company.partner_id.name else ''"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="padding:0;">
-                                                <div style="height:1px; width:100%; background-color:#2d4383;"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding:6px; width:90px;">
-                                                <img class="image"
-                                                    t-att-src="image_data_uri(o.image_1920)"
-                                                    style="max-height:2.9cm; max-width:4cm; border:1px solid #ccc;"/>
-                                            </td>
-                                            <td style="padding:5px; font-size:12px; vertical-align:top;">
-                                                <span style="font-weight:600;">Name :</span>
-                                                <span t-field="o.name"/><br/>
-
-                                                <span style="font-weight:600;">Card No :</span>
-                                                <span t-if="o.library_card_id">
-                                                    <span t-field="o.library_card_id.number"/>
-                                                </span><br/>
-
-                                                <span style="font-weight:600;">Type :</span>
-                                                <span t-if="o.library_card_id">
-                                                    <span t-field="o.library_card_id.library_card_type_id.name"/>
-                                                </span><br/>
-
-                                                <span style="font-weight:600;">Issued Date :</span>
-                                                <span t-if="o.library_card_id">
-                                                    <span t-field="o.library_card_id.issue_date"
-                                                        t-options="{'widget':'date'}"/>
-                                                </span>
-                                                <div style="margin-top:6px;" t-if="o.library_card_id.number">
-                                                    <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'
-                                                        % ('Code128', o.library_card_id.number, 240, 35)"/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="padding:0;">
-                                                <div style="height:12px; width:100%; background-color:#2d4383;"></div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="page mt-4 border border-dark border-2 p-3 mb-4" style="width: 440px; min-height: 260px;">
+                            <div class="d-flex align-items-center mb-2">
+                                <img class="image me-3" t-att-src="image_data_uri(res_company.logo)" style="max-height: 60px; max-width: 100px;"/>
+                                <div>
+                                    <h2 class="mb-0 mt-0 fs-4 text-nowrap">Library Card</h2>
+                                    <span class="text-muted fw-bold small text-nowrap" t-out="res_company.partner_id.name if res_company.partner_id.name else ''"/>
+                                </div>
+                            </div>
+                            <hr class="w-100 mt-2 mb-3"/>
+                            <div class="row m-0">
+                                <div class="col-4 p-0">
+                                    <img class="img-thumbnail w-100 p-0" t-att-src="image_data_uri(o.image_1920)" style="max-height: 130px; object-fit: contain;"/>
+                                </div>
+                                <div class="col-8 ps-3 pe-0">
+                                    <p class="mb-1 small">
+                                        <strong>Name:</strong>
+                                        <span t-field="o.name"/>
+                                    </p>
+                                    <p class="mb-1 small" t-if="o.library_card_id">
+                                        <strong>Card No:</strong>
+                                        <span t-field="o.library_card_id.number"/>
+                                    </p>
+                                    <p class="mb-1 small" t-if="o.library_card_id">
+                                        <strong>Type:</strong>
+                                        <span t-field="o.library_card_id.library_card_type_id.name"/>
+                                    </p>
+                                    <p class="mb-1 small" t-if="o.library_card_id">
+                                        <strong>Issued Date:</strong>
+                                        <span t-field="o.library_card_id.issue_date" t-options="{'widget':'date'}"/>
+                                    </p>
+                                    <div class="mt-2" t-if="o.library_card_id and o.library_card_id.number">
+                                        <img class="img-fluid" t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.library_card_id.number, 180, 30)" alt="Barcode"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </t>

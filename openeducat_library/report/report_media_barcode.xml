@@ -4,26 +4,29 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
-                        <div class="page" style="font-family: 'Odoo Unicode Support Noto';">
-                            <br/><br/><br/><br/>
-                            <h3><strong>Media : <span t-esc="o.name"/></strong></h3><br/>
-                            <table class="table table-bordered">
+                        <t t-set="layout_document_title">
+                            <span>Media: <t t-esc="o.name"/></span>
+                        </t>
+                        <div class="page">
+                            <div class="oe_structure" id="report_media_barcode_structure"/>
+                            <table class="table table-sm o_main_table table-borderless mt-4">
                                 <thead>
-                                    <th class="text-center">Media Unit</th>
-                                    <th class="text-center">Barcode</th>
+                                    <tr>
+                                        <th class="text-center align-middle">Media Unit</th>
+                                        <th class="text-center align-middle">Barcode</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="text-center" t-foreach="o.unit_ids" t-as="unit">
-                                        <td  style="vertical-align: middle; font-size: 12px;">
-                                            <span t-if="unit.name"><span t-field='unit.name'/></span>
+                                        <td class="align-middle small">
+                                            <span t-if="unit.name" t-field="unit.name"/>
                                         </td>
-                                        <td style="padding:10px 0px 10px 0px;">
-                                            <span><img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', unit.barcode, 300, 40)"/></span>
+                                        <td class="align-middle py-3">
+                                            <img class="img-fluid" t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', unit.barcode, 300, 40)" alt="Barcode"/>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <br/><br/>
                         </div>
                     </t>
                 </t>

@@ -1,48 +1,36 @@
 <odoo>
 
         <template id="report_library_card_barcode">
-            <style type="text/css">
-                .font{
-                font-size:14px;
-                font-family:"Helvetica"
-                }
-                @page{
-                margin-top:1%;
-                size: A4;
-                }
-            </style>
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
-                    <div class="page" style="font-family: 'Odoo Unicode Support Noto';">
-                        <div class="row text-center">
-                            <h2>
-                                <strong>Library Card(s) Barcode</strong>
-                            </h2>
-                        </div>
-                        <br></br>
-                        <br></br>
-                        <table width="100%" class="table table-bordered">
+                    <t t-set="layout_document_title">
+                        Library Card(s) Barcode
+                    </t>
+                    <div class="page">
+                        <div class="oe_structure" id="report_library_card_barcode_structure"/>
+                        
+                        <table class="table table-sm o_main_table table-borderless mt-4">
                             <thead>
-                                <th class="text-center">Card Holder</th>
-                                <th class="text-center">Card Barcode</th>
+                                <tr>
+                                    <th class="text-center align-middle">Card Holder</th>
+                                    <th class="text-center align-middle">Card Barcode</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <t t-foreach="docs" t-as="card">
                                     <tr class="text-center">
-                                        <td style="vertical-align: middle;" width="50%">
+                                        <td class="align-middle w-50">
                                             <h4>
-                                                <span t-esc="card.student_id.name"/>
+                                                <span t-field="card.student_id.name"/>
                                             </h4>
                                         </td>
-                                        <td style="padding:15px 0px 15px 0px;" width="50%">
-                                            <img t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', card.number, 350, 60)"/>
+                                        <td class="align-middle py-3 w-50">
+                                            <img class="img-fluid" t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', card.number, 350, 60)" alt="Barcode"/>
                                         </td>
                                     </tr>
                                 </t>
                             </tbody>
                         </table>
-                        <br></br>
-                        <br></br>
                     </div>
                 </t>
             </t>
