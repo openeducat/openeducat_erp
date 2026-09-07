@@ -4,44 +4,33 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
-                        <div class="page"
-                            style="width: 440px; height: 320px; border: 2px solid #000000; font-family: Arial, sans-serif,'Odoo Unicode Support Noto'; ">
-
-                            <div
-                                style="align-items: center; padding: 10px 0 0 10px; border-radius: 10px 10px 0 0;">
-
-                                <img class="image" t-att-src="image_data_uri(res_company.logo)"
-                                                    style="width: 107px; height: 55px; margin-right: 10px;" />
-
+                        <div class="page" style="width: 440px; height: 320px; border: 2px solid #000000;">
+                            <div style="align-items: center; padding: 10px 0 0 10px; border-radius: 10px 10px 0 0;">
+                                <img class="image" t-att-src="image_data_uri(res_company.logo)" style="width: 107px; height: 55px; margin-right: 10px;" />
                             </div>
                             <hr class="w-100"/>
-                            <div class="d-flex" style="display: flex; align-items: center; padding-left: 11px;">
+                            <div class="d-flex align-items-center" style="padding-left: 11px;">
                                 <div style="width: 34%;">
-                                <img class="image" t-if="o.image_1920"
-                                                    t-att-src="image_data_uri(o.image_1920)"
-                                                    style="width: 123px;; margin-bottom:27px; border-radius: 5px; border: 2px solid #000000;"/>
+                                    <img class="image" t-if="o.image_1920" t-att-src="image_data_uri(o.image_1920)" style="width: 123px; margin-bottom: 27px; border-radius: 5px; border: 2px solid #000000;"/>
                                 </div>
-
-                                <!-- Student Info -->
                                 <div style="width: 60%;">
-                                    <h4 style="margin-buttom: 10px; color: #000000;">STUDENT ID CARD</h4>
+                                    <h4 style="margin-bottom: 10px; color: #000000;">STUDENT ID CARD</h4>
                                     <p class="mb-1">
                                         <strong>Name:</strong>
-                                        <span t-esc='o.name'/>
+                                        <span t-out="o.name"/>
                                     </p>
                                     <p class="mb-1">
                                         <strong>Blood Group:</strong>
-                                        <t t-esc="o.blood_group" />
+                                        <span t-out="o.blood_group"/>
                                     </p>
                                     <p class="mb-1">
                                         <strong>Birthdate:</strong>
-                                        <t t-esc="o.birth_date" t-options='{"widget":"date"}' />
+                                        <span t-esc="o.birth_date" t-options='{"widget":"date"}'/>
                                     </p>
                                     <t t-if="o.course_detail_ids">
                                         <p class="mb-1">
                                             <strong>Course:</strong>
-                                            <span class="student"
-                                                t-field='o.course_detail_ids[0].course_id.name' />
+                                            <span class="student" t-out="o.course_detail_ids[0].course_id.name"/>
                                         </p>
                                     </t>
                                 </div>

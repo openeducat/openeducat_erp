@@ -1,73 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="student_attendance_report">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
-                <div class="page" style="font-family: 'Odoo Unicode Support Noto';">
-                    <div class="text-center">
-                        <h3><strong>Student Attendance Detail</strong></h3>
-                    </div>
-                    <br/>
-                    <div class="row mt24">
-                        <div style="width:50%;">
-                            <b>Student:</b>
-                            <span t-esc="student_name"/>
+                <t t-set="layout_document_title">Student Attendance Detail</t>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div id="informations" class="row mt-5 pt-3 mb-4">
+                        <div class="col-auto col-3" t-if="student_name" name="student">
+                            <strong>STUDENT</strong>
+                            <p class="m-0" t-esc="student_name"/>
                         </div>
-                        <div style="width:50%;text-align:right;">
-                            <b>From:</b>
-                            <span t-esc="from_date" class="me-2" t-options="{'widget':'date'}"/>
-                            <b>To:</b>
-                            <span t-esc="to_date" t-options="{'widget':'date'}"/>
+                        <div class="col-auto col-3" t-if="from_date" name="from_date">
+                            <strong>FROM DATE</strong>
+                            <p class="m-0" t-esc="from_date" t-options="{'widget': 'date'}"/>
+                        </div>
+                        <div class="col-auto col-3" t-if="to_date" name="to_date">
+                            <strong>TO DATE</strong>
+                            <p class="m-0" t-esc="to_date" t-options="{'widget': 'date'}"/>
                         </div>
                     </div>
-                    <br/>
-                    <table class="table table-bordered" style="width:100%; font-size:13px;">
-                        <thead style="background-color:#f5f5f5; font-weight:600;">
+                    <!-- Overview Table -->
+                    <table class="table o_main_table table-borderless mt-2">
+                        <thead>
                             <tr>
-                                <th class="text-center">Present</th>
-                                <th class="text-center">Excused</th>
-                                <th class="text-center">Absent</th>
-                                <th class="text-center">Late</th>
+                                <th class="text-start">PRESENT</th>
+                                <th class="text-end">EXCUSED</th>
+                                <th class="text-end">ABSENT</th>
+                                <th class="text-end">LATE</th>
                             </tr>
                         </thead>
-                        <tbody style="font-size:13px;">
+                        <tbody>
                             <tr>
-                                <td class="text-center"><span t-esc="present_count or 0"/></td>
-                                <td class="text-center"><span t-esc="excused_count or 0"/></td>
-                                <td class="text-center"><span t-esc="absent_count or 0"/></td>
-                                <td class="text-center"><span t-esc="late_count or 0"/></td>
+                                <td class="text-start"><span t-esc="present_count or 0"/></td>
+                                <td class="text-end"><span t-esc="excused_count or 0"/></td>
+                                <td class="text-end"><span t-esc="absent_count or 0"/></td>
+                                <td class="text-end"><span t-esc="late_count or 0"/></td>
                             </tr>
                         </tbody>
                     </table>
-                    <br/>
-                    <table class="table table-bordered">
-                        <thead class="text-center" style="background-color:#eeeeee; font-size:14px; font-weight:600;">
-                            <th class="text-center">Date</th>
-                            <th class="text-center">Attendance</th>
+
+                    <!-- Absence Details Table -->
+                    <table class="table o_main_table table-borderless mt-4">
+                        <thead>
+                            <tr>
+                                <th class="text-start">DATE</th>
+                                <th class="text-start">ATTENDANCE</th>
+                            </tr>
                         </thead>
-                        <tbody class="text-center" style="font-size:12px;">
+                        <tbody>
                             <t t-if="absences">
                                 <t t-foreach="absences" t-as="l">
                                     <tr>
-                                        <td class="text-center">
-                                            <span t-esc="l['absent_date']" t-options="{'widget':'date'}"/>
+                                        <td class="text-start">
+                                            <span t-esc="l['absent_date']" t-options="{'widget': 'date'}"/>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-start">
                                             <span t-esc="l['remark']"/>
                                         </td>
                                     </tr>
                                 </t>
                             </t>
-                            <t t-if="not absences">
+                            <t t-else="">
                                 <tr>
-                                    <td colspan="2" class="text-center"><em>No absences in the selected period.</em></td>
+                                    <td colspan="2" class="text-start text-muted">
+                                        <em>No absences in the selected period.</em>
+                                    </td>
                                 </tr>
                             </t>
-                            <tr>
-                                <td class="text-center"><b>Total Absence</b></td>
-                                <td class="text-center"><b><span t-esc="total_absences"/></b></td>
-                            </tr>
                         </tbody>
                     </table>
+
+                    <!-- Total Section -->
+                    <div id="total" class="row justify-content-start mt-2">
+                        <div class="col-4">
+                            <table class="o_total_table table table-borderless">
+                                <tr class="o_total">
+                                    <td><strong>TOTAL ABSENCE</strong></td>
+                                    <td class="text-end">
+                                        <strong><span t-esc="total_absences"/></strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </t>
         </t>

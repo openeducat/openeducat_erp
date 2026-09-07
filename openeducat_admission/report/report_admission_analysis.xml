@@ -3,49 +3,56 @@
         <template id="report_admission_analysis">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
-                    <div class="font">
-                        <div class="page" style="font-family: 'Odoo Unicode Support Noto';">
-                            <br></br>
-                            <br></br>
-                            <br></br>
-                            <div class="text-center">
-                                <h3>
-                                    <strong>Admission Analysis</strong>
-                                </h3>
+                    <t t-set="layout_document_title">
+                        Admission Analysis
+                    </t>
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div id="informations" class="row mt-5 pt-3 mb-4">
+                            <div class="col-auto col-3" t-if="data.get('course_id') and data['course_id'][1]" name="course">
+                                <strong>COURSE</strong>
+                                <p class="m-0" t-out="data['course_id'][1]"/>
                             </div>
-                            <div class="row mt24">
-                                <div style="width:50%; margin-left:15px;">
-                                    <b>Course:</b>
-                                    <span t-out="'%s' % data['course_id'][1] if data['course_id'][1] else ''"/>
-                                </div>
-                                <div style="width:50%; margin-left:15px;">
-                                    <b>From Date:</b>
-                                    <span t-esc="data['start_date']" t-options="{'widget':'date'}"/>
-                                    <b style="padding-left:10px;">To Date:</b>
-                                    <span t-esc="data['end_date']" t-options="{'widget':'date'}"/>
-                                </div>
+                            <div class="col-auto col-3" t-if="data.get('start_date')" name="start_date">
+                                <strong>FROM DATE</strong>
+                                <p class="m-0" t-esc="data['start_date']" t-options="{'widget': 'date'}"/>
                             </div>
-                            <br></br>
-                            <table class="table table-bordered">
-                                <thead class="text-center"
-                                       style="background-color:#eeeeee; font-size:14px; font-weight:600;">
-                                    <th style="width:50%; padding-left:15px;">Student Name</th>
-                                    <th style="width:50%; padding-left:15px;">Application No.</th>
-                                </thead>
-                                <tbody class="text-center" style="font-size:12px;">
-                                    <tr t-foreach="get_data" t-as="data">
-                                        <td>
-                                            <span t-esc="data['name']"/>
+                            <div class="col-auto col-3" t-if="data.get('end_date')" name="end_date">
+                                <strong>TO DATE</strong>
+                                <p class="m-0" t-esc="data['end_date']" t-options="{'widget': 'date'}"/>
+                            </div>
+                        </div>
+                        <table class="table o_main_table table-borderless mt-2" style="font-size:14px;">
+                            <thead>
+                                <tr>
+                                    <th class="text-start">STUDENT NAME</th>
+                                    <th class="text-start">APPLICATION NO.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="get_data" t-as="record">
+                                    <tr>
+                                        <td class="text-start">
+                                            <span t-esc="record['name']"/>
                                         </td>
-                                        <td>
-                                            <span t-out="'%s' %data['application_no'] if data['application_no'] else ''"/>
+                                        <td class="text-start">
+                                            <span t-out="record['application_no'] if record.get('application_no') else ''"/>
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                            <br></br>
-                            <b>Total Number of Students :</b>
-                            <span t-esc="get_total_student"/>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div id="total" class="row justify-content-start mt-2">
+                            <div class="col-4">
+                                <table class="o_total_table table table-borderless">
+                                    <tr class="o_total">
+                                        <td><strong>TOTAL STUDENTS</strong></td>
+                                        <td class="text-end">
+                                            <strong><span t-esc="get_total_student"/></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </t>

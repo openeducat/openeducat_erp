@@ -2,322 +2,172 @@
 <odoo>
 
         <template id="report_marksheet_report">
-            <style>
-                .font{
-                font-size:14px;
-                font-family:"Helvetica"
-                }
-                @page{
-                margin-top:1%;
-                size: A4;
-                }
-            </style>
             <t t-call="web.html_container">
-                <t t-call="web.external_layout">
-                    <div class="font">
-                        <div class="page" style="font-family: 'Odoo Unicode Support Noto';">
-                            <br/>
-                            <br/>
-                            <br/>
-                            <t t-foreach="get_objects(docs)" t-as="objs">
-                                <t t-foreach="objs" t-as="obj">
-                                    <div class="text-center">
-                                        <h3>
-                                            <strong>MarkSheet
-                                            </strong>
-                                        </h3>
+                <t t-foreach="get_objects(docs)" t-as="objs">
+                    <t t-foreach="objs" t-as="obj">
+                        <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <div class="text-center mt-4 mb-4">
+                                <h2 class="mt-2 mb-2">
+                                    <strong>MarkSheet</strong>
+                                </h2>
+                            </div>
+                                <t t-if="obj.evaluation_type == 'normal'">
+                                    <div id="informations" class="row mt-4 mb-4">
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Student Name</strong>
+                                            <p class="m-0" t-out="obj.student_id.name or ''"/>
+                                        </div>
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Course</strong>
+                                            <p class="m-0" t-out="obj.marksheet_reg_id.exam_session_id.course_id.name or ''"/>
+                                        </div>
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Exam Name</strong>
+                                            <p class="m-0" t-out="obj.marksheet_reg_id.name or ''"/>
+                                        </div>
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Exam Code</strong>
+                                            <p class="m-0" t-out="obj.marksheet_reg_id.exam_session_id.exam_code or ''"/>
+                                        </div>
                                     </div>
-                                    <br></br>
-                                    <t
-                                            t-if="obj.evaluation_type == 'normal'">
-                                        <table width="100%">
-                                            <tbody style="font-size:14px;">
-                                                <tr style="padding:7px;">
-                                                    <td width="50%" style="padding:7px;">
-                                                        <b>Student Name:</b>
-                                                        <span t-out="obj.student_id.name if obj.student_id.name else ''"/>
-                                                    </td>
-                                                    <td class="text-right" width="50%" style="padding:7px;">
-                                                        <b>Course:</b>
-                                                        <span t-out="obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="50%" style="padding:7px;">
-                                                        <b>Exam Name:</b>
-                                                        <span t-out="obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
-                                                    </td>
-                                                    <td class="text-right" width="50%" style="padding:7px;">
-                                                        <b>Exam Code:</b>
-                                                        <span t-out="obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <br></br>
-                                        <br></br>
-                                        <table class="table table-bordered">
-                                            <thead class="text-center"
-                                                   style="background-color:#eeeeee; font-size:14px; font-weight:600;">
-                                                <th
-                                                        class="text-center">Subject
-                                                </th>
-                                                <th
-                                                        class="text-center">Exam
-                                                    Type
-                                                </th>
-                                                <th
-                                                        class="text-center">Total
-                                                    Marks
-                                                </th>
-                                                <th
-                                                        class="text-center">Passing
-                                                    Marks
-                                                </th>
-                                                <th
-                                                        class="text-center">Obtained
-                                                    Marks
-                                                </th>
-                                            </thead>
-                                            <tbody class="text-left" style="font-size:12px;">
-                                                <t t-foreach="get_lines(obj)" t-as="lines">
-                                                    <t
-                                                            t-foreach="lines"
-                                                            t-as="result">
-                                                        <tr>
-                                                            <td
-                                                                    class="text-center">
-                                                                <span
-                                                                        t-out="result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
-                                                            </td>
-                                                            <td
-                                                                    class="text-center">
-                                                                <span
-                                                                        t-out="result.exam_id.session_id.exam_type.name if result.exam_id.session_id.exam_type.name else ''"/>
-                                                            </td>
-                                                            <td
-                                                                    class="text-right">
-                                                                <span
-                                                                        t-out="result.exam_id.total_marks if result.exam_id.total_marks else ''"/>
-                                                            </td>
-                                                            <td
-                                                                    class="text-right">
-                                                                <span
-                                                                        t-out="result.exam_id.min_marks if  result.exam_id.min_marks else ''"/>
-                                                            </td>
-                                                            <td
-                                                                    class="text-right">
-                                                                <span
-                                                                        t-out="result.marks if result.marks else '--'"/>
-                                                            </td>
-                                                        </tr>
-                                                    </t>
+                                    <table class="table table-sm o_main_table table-borderless mt-4 mb-0" name="marks_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center align-middle">Subject</th>
+                                                <th class="text-center align-middle">Exam Type</th>
+                                                <th class="text-center align-middle">Total Marks</th>
+                                                <th class="text-center align-middle">Passing Marks</th>
+                                                <th class="text-center align-middle">Obtained Marks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="get_lines(obj)" t-as="lines">
+                                                <t t-foreach="lines" t-as="result">
+                                                    <tr>
+                                                        <td class="text-start">
+                                                            <span t-out="result.exam_id.subject_id.name or ''"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span t-out="result.exam_id.session_id.exam_type.name or ''"/>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <span t-out="result.exam_id.total_marks or ''"/>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <span t-out="result.exam_id.min_marks or ''"/>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <span t-out="result.marks if result.marks else '--'"/>
+                                                        </td>
+                                                    </tr>
                                                 </t>
-                                            </tbody>
-                                        </table>
-                                        <br></br>
-                                        <table width="100%"
-                                               class="table table-bordered">
-                                            <thead class="text-center"
-                                                   style="background-color:#eeeeee; font-size:14px; font-weight:600;">
-                                                <th
-                                                        class="text-center">Month/Year
-                                                    of Passing
-                                                </th>
-                                                <th
-                                                        class="text-center">Obtained
-                                                    Marks/Total
-                                                    Marks
-                                                </th>
-                                                <th
-                                                        class="text-center">Percentage
-                                                </th>
-                                                <th
-                                                        class="text-center">Result
-                                                </th>
-                                            </thead>
-                                            <tbody class="text-left" style="font-size:12px;">
-                                                <tr>
-                                                    <td
-                                                            class="text-center">
-                                                        <span
-                                                                t-out="get_date(obj.generated_date) if  get_date(obj.generated_date) else ''"/>
-                                                    </td>
-                                                    <td
-                                                            class="text-center">
-                                                        <span
-                                                                t-out="obj.total_marks if  obj.total_marks else ''"/>
-                                                        /
-                                                        <span
-                                                                t-out="get_total(get_lines(obj)) if  get_total(get_lines(obj)) else ''"/>
-                                                    </td>
-
-                                                    <td
-                                                            class="text-center">
-                                                        <span
-                                                                t-out="obj.percentage  if  obj.percentage  else ''"/>
-                                                        %
-                                                    </td>
-                                                    <td
-                                                            class="text-center">
-                                                        <span style="text-transform: capitalize"
-                                                                t-out="obj.status if obj.status else ''"/>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </t>
-                                    <t
-                                            t-if="obj.evaluation_type == 'grade'">
-                                        <table width="100%">
-                                            <tbody>
-                                                <tr>
-                                                    <td
-                                                            width="17%">
-                                                        <b>Student
-                                                            Name
-                                                        </b>
-                                                    </td>
-                                                    <td>
-                                                        :
-                                                        <span
-                                                                t-out="obj.student_id.name if obj.student_id.name else ''"/>
-                                                    </td>
-                                                    <td
-                                                            width="15%">
-                                                        <b>Course
-                                                        </b>
-                                                    </td>
-                                                    <td>
-                                                        :
-                                                        <span
-                                                                t-out="obj.marksheet_reg_id.exam_session_id.course_id.name if  obj.marksheet_reg_id.exam_session_id.course_id.name else ''"/>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td
-                                                            width="17%">
-                                                        <b>Exam
-                                                            Name
-                                                        </b>
-                                                    </td>
-                                                    <td>
-                                                        :
-                                                        <span
-                                                                t-out="obj.marksheet_reg_id.name if   obj.marksheet_reg_id.name else ''"/>
-                                                    </td>
-                                                    <td
-                                                            width="15%">
-                                                        <b>Exam
-                                                            Code
-                                                        </b>
-                                                    </td>
-                                                    <td>
-                                                        :
-                                                        <span
-                                                                t-out="obj.marksheet_reg_id.exam_session_id.exam_code if   obj.marksheet_reg_id.exam_session_id.exam_code else ''"/>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <br></br>
-                                        <br></br>
-
-                                        <table
-                                                class="table table-bordered">
-                                            <thead>
-                                                <th
-                                                        class="text-center">Subject
-                                                </th>
-                                                <th
-                                                        class="text-center">Exam
-                                                    Type
-                                                </th>
-                                                <th
-                                                        class="text-center">Grade
-                                                </th>
-                                                <th
-                                                        class="text-center">Absent
-                                                </th>
-                                            </thead>
-                                            <tbody>
-                                                <t t-foreach="get_lines(obj)" t-as="lines">
-                                                    <t t-foreach="lines" t-as="result">
-                                                        <tr>
-                                                            <td
-                                                                    class="text-left">
-                                                                <span
-                                                                        t-out="result.exam_id.subject_id.name if result.exam_id.subject_id.name else ''"/>
-                                                            </td>
-                                                            <td
-                                                                    class="text-left">
-                                                                <span
-                                                                        t-out="result.exam_id.session_id.exam_type.name if result.exam_id.session_id.exam_type.name else ''"/>
-                                                            </td>
-                                                            <td
-                                                                    class="text-center">
-                                                                <span
-                                                                        t-out="result.grade if result.grade else '--'"/>
-                                                            </td>
-                                                            <td
-                                                                    class="text-center">
-                                                                <span
-                                                                        t-out="'P' if result.marks &gt; 0 else 'A'"/>
-                                                            </td>
-                                                        </tr>
-                                                    </t>
-                                                </t>
-                                            </tbody>
-                                        </table>
-                                        <br></br>
-
-                                        <table width="100%"
-                                               class="table table-bordered">
-                                            <thead>
-                                                <th
-                                                        class="text-center">Month/Year
-                                                    of Passing
-                                                </th>
-                                                <th
-                                                        class="text-center">Obtained
-                                                    Grade
-                                                </th>
-                                                <th
-                                                        class="text-center">Percentage
-                                                </th>
-                                                <th
-                                                        class="text-center">Result
-                                                </th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td
-                                                            class="text-center">
-                                                        <span
-                                                                t-out="get_date(obj.generated_date) if  get_date(obj.generated_date) else ''"/>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span t-out="obj.grade if  obj.grade else ''"/>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <span
-                                                                t-out="obj.percentage  if  obj.percentage  else ''"/>
-                                                        %
-                                                    </td>
-                                                    <td
-                                                            class="text-center">
-                                                        <span
-                                                                t-out="obj.status if obj.status else ''"/>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </t>
-                                    <p style="page-break-after: always;"></p>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-sm o_main_table table-borderless mt-4">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center align-middle">Month/Year of Passing</th>
+                                                <th class="text-center align-middle">Obtained Marks / Total Marks</th>
+                                                <th class="text-center align-middle">Percentage</th>
+                                                <th class="text-center align-middle">Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center align-middle">
+                                                    <span t-out="get_date(obj.generated_date) or ''"/>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <span t-out="obj.total_marks or ''"/> / <span t-out="get_total(get_lines(obj)) or ''"/>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <span t-out="obj.percentage or ''"/> %
+                                                </td>
+                                                <td class="text-center align-middle text-capitalize fw-bold">
+                                                    <span t-out="obj.status or ''"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </t>
-                            </t>
-                        </div>
-                    </div>
+                                <t t-if="obj.evaluation_type == 'grade'">
+                                    <div id="informations" class="row mt-4 mb-4">
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Student Name</strong>
+                                            <p class="m-0" t-out="obj.student_id.name or ''"/>
+                                        </div>
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Course</strong>
+                                            <p class="m-0" t-out="obj.marksheet_reg_id.exam_session_id.course_id.name or ''"/>
+                                        </div>
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Exam Name</strong>
+                                            <p class="m-0" t-out="obj.marksheet_reg_id.name or ''"/>
+                                        </div>
+                                        <div class="col-auto col-3 mw-100 mb-2">
+                                            <strong>Exam Code</strong>
+                                            <p class="m-0" t-out="obj.marksheet_reg_id.exam_session_id.exam_code or ''"/>
+                                        </div>
+                                    </div>
+                                    <table class="table table-sm o_main_table table-borderless mt-4 mb-0" name="grades_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center align-middle">Subject</th>
+                                                <th class="text-center align-middle">Exam Type</th>
+                                                <th class="text-center align-middle">Grade</th>
+                                                <th class="text-center align-middle">Absent</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="get_lines(obj)" t-as="lines">
+                                                <t t-foreach="lines" t-as="result">
+                                                    <tr>
+                                                        <td class="text-start">
+                                                            <span t-out="result.exam_id.subject_id.name or ''"/>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <span t-out="result.exam_id.session_id.exam_type.name or ''"/>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <span t-out="result.grade if result.grade else '--'"/>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <span t-out="'P' if result.marks > 0 else 'A'"/>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-sm o_main_table table-borderless mt-4">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center align-middle">Month/Year of Passing</th>
+                                                <th class="text-center align-middle">Obtained Grade</th>
+                                                <th class="text-center align-middle">Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center align-middle">
+                                                    <span t-out="get_date(obj.generated_date) or ''"/>
+                                                </td>
+                                                <td class="text-center align-middle">
+                                                    <span t-out="obj.grade or ''"/>
+                                                </td>
+                                                <td class="text-center align-middle text-capitalize fw-bold">
+                                                    <span t-out="obj.status or ''"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </t>
+                            </div>
+                        </t>
+                    </t>
                 </t>
             </t>
         </template>

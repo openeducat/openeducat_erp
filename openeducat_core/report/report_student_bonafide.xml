@@ -4,64 +4,72 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
-                    <div class="page" style="font-family: 'Odoo Unicode Support Noto'">
-                        <div class="mt-6 text-center">
-                            <h4 style="position:relative;font-size:25px;padding-bottom:5px; width: 34%; display:inline-block; border-bottom:2px solid black;">
-                                 <strong>BONAFIDE CERTIFICATE</strong>
-                             </h4>
-                         </div>
-                        <br/>
-                        <div style="width: 100%; margin-bottom: 5px; font-size: 20px;">
-                            <span style="float: left;">
-                                <b>Certificate No. : </b>
-                                <span t-out="o.certificate_number or '____________'"/>
-                            </span>
-                            <span style="float: right;">
-                                <b>Date : </b>
-                                <span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget':'date'}"/>
-                            </span>
-                            <div style="clear: both;"></div>
+                    <div class="page fs-5">
+                        <div class="oe_structure"/>
+                        <div class="text-center mt-4 mb-5">
+                            <h2 class="mt-2 mb-2">
+                                <strong>BONAFIDE CERTIFICATE</strong>
+                            </h2>
                         </div>
-                        <br/>
-                        <div style="font-size: 20px;">
-                            <p>
+                        <div id="informations" class="row mt-4 mb-5">
+                            <div class="col-6" name="certificate_no">
+                                <strong>Certificate No: </strong>
+                                <span t-out="o.certificate_number or '____________'"/>
+                            </div>
+                            <div class="col-6 text-end" name="date">
+                                <strong>Date: </strong>
+                                <span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget':'date'}"/>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="lh-lg">
                                 This is to certify that
                                 <strong><span t-out="o.title.shortcut or ''"/></strong>
                                 <strong><span t-out="o.name or ''"/></strong>
-                                <t t-if="o.course_detail_ids[0].state == 'running'"> is </t>
-                                <t t-if="o.course_detail_ids[0].state == 'finished'"> was </t>
+                                <t t-if="o.course_detail_ids and o.course_detail_ids[0].state == 'running'"> is </t>
+                                <t t-if="o.course_detail_ids and o.course_detail_ids[0].state == 'finished'"> was </t>
                                 a bonafide student of
-                                <strong><span t-out="o.course_detail_ids[0].course_id.name if o.course_detail_ids else  ''"/></strong>,
-                                <span t-out="o.course_detail_ids[0].course_id.department_id.name if o.course_detail_ids else''"/>
-                                at <strong><span t-out="o.company_id.name or ''"/></strong>
-                                from <b><span t-esc="o.course_detail_ids[0].create_date if o.course_detail_ids else ''" t-options="{'widget':'date'}"/></b> to
-                                <b><span t-esc="time.strftime('%Y-%m-%d')"  t-options="{'widget':'date'}"/></b>.
+                                <strong><span t-out="o.course_detail_ids[0].course_id.name if o.course_detail_ids else ''"/></strong>,
+                                <span t-out="o.course_detail_ids[0].course_id.department_id.name if o.course_detail_ids else ''"/>
+                                at <strong><span t-out="o.company_id.name or res_company.name or ''"/></strong>
+                                from <strong><span t-esc="o.course_detail_ids[0].create_date if o.course_detail_ids else ''" t-options="{'widget':'date'}"/></strong> to
+                                <strong><span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget':'date'}"/></strong>.
                             </p>
-                            <p>
+                            <p class="lh-lg">
                                 The student is currently studying
-                                <t t-if="o.course_detail_ids[0].academic_years_id.name or o.course_detail_ids[0].academic_term_id.name">
+                                <t t-if="o.course_detail_ids and (o.course_detail_ids[0].academic_years_id.name or o.course_detail_ids[0].academic_term_id.name)">
                                     in the
-                                    <strong><span t-out="o.course_detail_ids[0].academic_years_id.name if o.course_detail_ids else''"/></strong>
+                                    <strong><span t-out="o.course_detail_ids[0].academic_years_id.name if o.course_detail_ids else ''"/></strong>
                                     <span> &amp;nbsp; </span>
-                                    <strong><span t-out="o.course_detail_ids[0].academic_term_id.name if o.course_detail_ids else''"/></strong>
+                                    <strong><span t-out="o.course_detail_ids[0].academic_term_id.name if o.course_detail_ids else ''"/></strong>
                                 </t>
-                                of the <strong><span t-out="o.course_detail_ids[0].course_id.name if o.course_detail_ids else''"/></strong> program
-                                under <strong><span t-out="o.company_id.name or ''"/></strong>
-                                bearing the Enrollment Student ID :
-                                <strong><span t-out="o.course_detail_ids[0].roll_number if o.course_detail_ids else''"/></strong>.
+                                of the <strong><span t-out="o.course_detail_ids[0].course_id.name if o.course_detail_ids else ''"/></strong> program
+                                under <strong><span t-out="o.company_id.name or res_company.name or ''"/></strong>
+                                bearing the Enrollment Student ID:
+                                <strong><span t-out="o.course_detail_ids[0].roll_number if o.course_detail_ids else ''"/></strong>.
                             </p>
-                            <p>
+                            <p class="lh-lg" t-if="data and data.get('purpose_display')">
                                 This certificate is issued upon the request of the student for the purpose of
-                                <strong><span t-out="data.get('purpose_display', '') if data else ''"/></strong>.
+                                <strong><span t-out="data.get('purpose_display', '')"/></strong>.
                             </p>
-                            <div style="width: 100%; margin-top: 30px; display: flex; justify-content: space-between;">
-                               <div>
-                                   <b>Principal / Head of Institution</b><br/>
-                                   (Signature with seal)<br/>
-                                   Name : <span t-out=" '_____________'"/><br/>
-                                   Designation : <span t-out="'_____________'"/>
-                               </div>
-                           </div>
+                            <!-- Signature Section -->
+                            <div class="row mt-4">
+                                <div class="col-6"></div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <strong>Principal / Head of Institution</strong>
+                                        <div class="text-muted mt-1 fs-6">(Signature with seal)</div>
+                                    </div>
+                                    <div class="row align-items-end mt-4 g-0">
+                                        <div class="col-auto me-2"><strong>Name:</strong></div>
+                                        <div class="col border-bottom border-dark"></div>
+                                    </div>
+                                    <div class="row align-items-end mt-3 g-0">
+                                        <div class="col-auto me-2"><strong>Designation:</strong></div>
+                                        <div class="col border-bottom border-dark"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </t>

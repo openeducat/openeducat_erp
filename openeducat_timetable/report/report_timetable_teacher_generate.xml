@@ -1,112 +1,96 @@
 <odoo>
 
         <template id="report_timetable_teacher_generate">
-            <style>
-                .font{
-                font-size:18px;
-                font-family:"Helvetica"
-                }
-                @page{
-                size: A4;
-                }
-            </style>
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
-                        <div class="font">
-                            <div class="page" style="font-family: 'Odoo Unicode Support Noto';">
-                                <br/>
-                                <br/>
-                                <br/>
-                                <div style="text-align: center;">
-                                    <h2>
-                                        <b>
-                                            <span t-field='res_company.name'/>
-                                            <span class="ml-2">Faculty TimeTable</span>
-                                        </b>
-                                    </h2>
+                        <t t-set="layout_document_title">
+                            <span>Faculty TimeTable</span>
+                        </t>
+                        <div class="page">
+                            <div id="informations" class="row mt-4 mb-4">
+                                <div class="col-auto col-4 mw-100 mb-2">
+                                    <strong>Faculty Name</strong>
+                                    <p class="m-0" t-esc="get_full_name(data)"/>
                                 </div>
-                                <br></br>
-                                <div class="row mt24">
-                                    <div style="width:50%; margin-left:15px;">
-                                        <b>Faculty Name:</b>
-                                        <span t-esc="get_full_name(data)"/>
-                                    </div>
-                                    <div style="width:50%; margin-left:15px;">
-                                        <b>From Date:</b>
-                                        <span t-esc="data['start_date']" t-options="{'widget':'date'}"/>
-                                        <b style="margin-left:10px;">To Date:</b>
-                                        <span t-esc="data['end_date']" t-options="{'widget':'date'}"/>
-                                    </div>
+                                <div class="col-auto col-4 mw-100 mb-2">
+                                    <strong>From Date</strong>
+                                    <p class="m-0" t-esc="data['start_date']" t-options="{'widget':'date'}"/>
                                 </div>
-                                <br></br>
-                                <table class="table table-bordered">
-                                    <thead class="text-center" style="background-color:#eeeeee; font-size:14px; font-weight:600;">
-                                        <th style="text-align:center;font-weight:bold;">Period</th>
-                                        <span t-foreach="get_heading()" t-as="n">
-                                            <th style="text-align:center;font-weight:bold;">
+                                <div class="col-auto col-4 mw-100 mb-2">
+                                    <strong>To Date</strong>
+                                    <p class="m-0" t-esc="data['end_date']" t-options="{'widget':'date'}"/>
+                                </div>
+                            </div>
+                            
+                            <table class="table table-sm o_main_table table-borderless mt-4">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center align-middle" style="text-transform: capitalize;">Period</th>
+                                        <t t-foreach="get_heading()" t-as="n">
+                                            <th class="text-center align-middle" style="text-transform: capitalize;">
                                                 <span t-out="n"/>
                                             </th>
-                                        </span>
-                                    </thead>
-                                    <tbody class="text-center" style="font-size:12px;">
-                                        <tr t-foreach="get_object(data)" t-as="a">
-                                            <td class="text-left">
-                                                <span t-esc="'%s' %  a['name'] if  a['name']  else ''"/>
-                                            </td>
-                                            <td class="text-left">
-                                                <span t-esc="a['line'].get('0',{'course':''})['course']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('0',{'batch':''})['batch']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('0',{'subject':''})['subject']"/>
-                                            </td>
-                                            <td class="text-left">
-                                                <span t-esc="a['line'].get('1',{'course':''})['course']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('1',{'batch':''})['batch']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('1',{'subject':''})['subject']"/>
-                                            </td>
-                                            <td class="text-left">
-                                                <span t-esc="a['line'].get('2',{'course':''})['course']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('2',{'batch':''})['batch']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('2',{'subject':''})['subject']"/>
-                                            </td>
-                                            <td class="text-left">
-                                                <span t-esc="a['line'].get('3',{'course':''})['course']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('3',{'batch':''})['batch']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('3',{'subject':''})['subject']"/>
-                                            </td>
-                                            <td class="text-left">
-                                                <span t-esc="a['line'].get('4',{'course':''})['course']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('4',{'batch':''})['batch']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('4',{'subject':''})['subject']"/>
-                                            </td>
-                                            <td class="text-left">
-                                                <span t-esc="a['line'].get('5',{'course':''})['course']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('5',{'batch':''})['batch']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('5',{'subject':''})['subject']"/>
-                                            </td>
-                                            <td class="text-left">
-                                                <span t-esc="a['line'].get('6',{'course':''})['course']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('6',{'batch':''})['batch']"/>
-                                                <br></br>
-                                                <span t-esc="a['line'].get('6',{'subject':''})['subject']"/>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                        </t>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center small">
+                                    <tr t-foreach="get_object(data)" t-as="a">
+                                        <td class="text-start align-middle fw-bold">
+                                            <span t-esc="'%s' %  a['name'] if  a['name']  else ''"/>
+                                        </td>
+                                        <td class="text-start align-middle">
+                                            <span t-esc="a['line'].get('0',{'course':''})['course']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('0',{'batch':''})['batch']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('0',{'subject':''})['subject']"/>
+                                        </td>
+                                        <td class="text-start align-middle">
+                                            <span t-esc="a['line'].get('1',{'course':''})['course']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('1',{'batch':''})['batch']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('1',{'subject':''})['subject']"/>
+                                        </td>
+                                        <td class="text-start align-middle">
+                                            <span t-esc="a['line'].get('2',{'course':''})['course']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('2',{'batch':''})['batch']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('2',{'subject':''})['subject']"/>
+                                        </td>
+                                        <td class="text-start align-middle">
+                                            <span t-esc="a['line'].get('3',{'course':''})['course']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('3',{'batch':''})['batch']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('3',{'subject':''})['subject']"/>
+                                        </td>
+                                        <td class="text-start align-middle">
+                                            <span t-esc="a['line'].get('4',{'course':''})['course']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('4',{'batch':''})['batch']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('4',{'subject':''})['subject']"/>
+                                        </td>
+                                        <td class="text-start align-middle">
+                                            <span t-esc="a['line'].get('5',{'course':''})['course']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('5',{'batch':''})['batch']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('5',{'subject':''})['subject']"/>
+                                        </td>
+                                        <td class="text-start align-middle">
+                                            <span t-esc="a['line'].get('6',{'course':''})['course']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('6',{'batch':''})['batch']"/>
+                                            <br/>
+                                            <span t-esc="a['line'].get('6',{'subject':''})['subject']"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </t>
                 </t>
