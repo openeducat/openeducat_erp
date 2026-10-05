@@ -45,6 +45,11 @@
         'menus/op_menu.xml',
         'data/backfill_student_ids_action.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'openeducat_timetable/static/src/views/**/*',
+        ],
+    },
     'demo': [
         'demo/timing_demo.xml',
         'demo/op_timetable_demo.xml'

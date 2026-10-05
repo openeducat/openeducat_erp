@@ -1,0 +1,30 @@
+// Keep the close button inside the header, vertically centred next to
+// the (single line) title, as in the Odoo 19 calendar popover.
+.o_cw_popover.o_op_calendar_popover {
+    .o_popover_header {
+        padding-right: 3rem !important;
+
+        > * {
+            @include o-text-overflow(block);
+        }
+    }
+
+    .o_card_popover_close {
+        top: map-get($spacers, 3) !important;
+        right: map-get($spacers, 2) !important;
+        height: $h4-font-size * $line-height-base;
+        align-items: center;
+        padding: 0 map-get($spacers, 2) !important;
+        font-size: $h4-font-size;
+        opacity: .7;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    // Field labels ("Students", "Lecture Topic"...) stay on one line.
+    .o_popover_body span.fw-bold {
+        white-space: nowrap;
+    }
+}
