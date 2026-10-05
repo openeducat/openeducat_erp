@@ -176,3 +176,28 @@
         flex: 1 1 auto;
     }
 }
+
+.o_kanban_record:has(.o_widget_web_ribbon) .o_dropdown_kanban .btn {
+    &, &:hover, &:focus, &:active, &.show {
+        background-color: transparent;
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+    > .oi {
+        text-shadow: 0 0 3px rgba($white, .9);
+    }
+}
+
+.o_cw_popover:has(.o_popover_header) .o_card_popover_close {
+    // `!important` to beat the `p-1` utility on the element.
+    padding: map-get($spacers, 3) !important;
+    // `calc` because `$spacer` is px while `$h4-font-size` is rem, and Sass
+    // refuses to add the two.
+    min-height: calc(#{map-get($spacers, 3)} * 2 + #{$h4-font-size} * #{$line-height-base});
+    align-items: center;
+}
+
+.o_cw_popover .o_popover_body > .o_card_record > .d-flex.align-items-center.gap-2 > :first-child {
+    flex-shrink: 0;
+}
