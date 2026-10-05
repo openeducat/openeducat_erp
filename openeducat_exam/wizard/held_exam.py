@@ -43,10 +43,6 @@ class OpHeldExam(models.TransientModel):
             'course_id': session.course_id.id,
             'exam_id': active_id,
             'subject_id': exam.subject_id.id,
-
-            'attendees_line': [
-                    (6, 0, exam.attendees_line.ids)
-                ],
         })
         return res
 
