@@ -2,13 +2,11 @@
 
 import {standardFieldProps} from '@web/views/fields/standard_field_props';
 import {registry} from '@web/core/registry';
-import { Component } from "@odoo/owl";
+import { Component, useProps } from "@odoo/owl";
 
 export class FeesTermsDisplay extends Component {
     static template = "website.FieldFeesTermsDisplay";
-    static props = {
-        ...standardFieldProps,
-    };
+    props = useProps(standardFieldProps);
 
     get terms() {
         const selection = this.props.record.fields[this.props.name].selection;
