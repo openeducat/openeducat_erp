@@ -220,17 +220,18 @@ class OpAdmission(models.Model):
                 today_date = fields.Date.today()
                 day = (today_date - record.birth_date).days
                 years = day // 365
-                if years < self.register_id.minimum_age_criteria:
+                if years < record.register_id.minimum_age_criteria:
                     raise ValidationError(_(
                         "Not Eligible for Admission minimum "
                         "required age is :"
-                        " %s " % self.register_id.minimum_age_criteria))
+                        " %s " % record.register_id.minimum_age_criteria))
 
     @api.constrains('name')
     def create_sequence(self):
-        if not self.application_number:
-            self.application_number = self.env['ir.sequence'].next_by_code(
-                'op.admission') or '/'
+        for record in self:
+            if not record.application_number:
+                record.application_number = self.env[
+                    'ir.sequence'].next_by_code('op.admission') or '/'
 
     def submit_form(self):
         self.state = 'submit'
