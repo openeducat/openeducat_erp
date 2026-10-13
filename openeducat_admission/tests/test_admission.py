@@ -242,3 +242,38 @@ class TestAdmissionScenarios(TestAdmissionCommon):
                 'min_count': 1,
                 'max_count': 50,
             })
+
+    def test_04_multi_create_application_number(self):
+        """ Creating several admissions in one create() call gives each
+        record its own application number """
+        course = self.env['op.course'].create({
+            'name': 'Multi Create Course',
+            'code': 'MULTI-ADM',
+        })
+        register = self.op_register.create({
+            'name': 'Test Register Multi Create',
+            'course_id': course.id,
+            'start_date': '2026-01-01',
+            'end_date': '2026-12-31',
+            'min_count': 1,
+            'max_count': 50,
+        })
+        vals = {
+            'birth_date': '2005-01-01',
+            'gender': 'm',
+            'course_id': course.id,
+            'register_id': register.id,
+            'application_date': '2026-06-01 10:00:00',
+        }
+        admissions = self.op_admission.create([
+            dict(vals, name='MULTI A', first_name='Multi', last_name='A',
+                 email='multi.a@example.com'),
+            dict(vals, name='MULTI B', first_name='Multi', last_name='B',
+                 email='multi.b@example.com'),
+        ])
+        self.assertEqual(len(admissions), 2)
+        for admission in admissions:
+            self.assertTrue(admission.application_number)
+            self.assertNotEqual(admission.application_number, '/')
+        self.assertNotEqual(admissions[0].application_number,
+                            admissions[1].application_number)
