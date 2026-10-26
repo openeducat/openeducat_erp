@@ -9,15 +9,15 @@
                     <div id="informations" class="row mt-5 pt-3 mb-4">
                         <div class="col-auto col-3" t-if="student_name" name="student">
                             <strong>STUDENT</strong>
-                            <p class="m-0" t-esc="student_name"/>
+                            <p class="m-0" t-out="student_name"/>
                         </div>
                         <div class="col-auto col-3" t-if="from_date" name="from_date">
                             <strong>FROM DATE</strong>
-                            <p class="m-0" t-esc="from_date" t-options="{'widget': 'date'}"/>
+                            <p class="m-0" t-out="from_date" t-options="{'widget': 'date'}"/>
                         </div>
                         <div class="col-auto col-3" t-if="to_date" name="to_date">
                             <strong>TO DATE</strong>
-                            <p class="m-0" t-esc="to_date" t-options="{'widget': 'date'}"/>
+                            <p class="m-0" t-out="to_date" t-options="{'widget': 'date'}"/>
                         </div>
                     </div>
                     <!-- Overview Table -->
@@ -32,10 +32,10 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-start"><span t-esc="present_count or 0"/></td>
-                                <td class="text-end"><span t-esc="excused_count or 0"/></td>
-                                <td class="text-end"><span t-esc="absent_count or 0"/></td>
-                                <td class="text-end"><span t-esc="late_count or 0"/></td>
+                                <td class="text-start"><span t-out="present_count or 0"/></td>
+                                <td class="text-end"><span t-out="excused_count or 0"/></td>
+                                <td class="text-end"><span t-out="absent_count or 0"/></td>
+                                <td class="text-end"><span t-out="late_count or 0"/></td>
                             </tr>
                         </tbody>
                     </table>
@@ -53,10 +53,10 @@
                                 <t t-foreach="absences" t-as="l">
                                     <tr>
                                         <td class="text-start">
-                                            <span t-esc="l['absent_date']" t-options="{'widget': 'date'}"/>
+                                            <span t-out="l['absent_date']" t-options="{'widget': 'date'}"/>
                                         </td>
                                         <td class="text-start">
-                                            <span t-esc="l['remark']"/>
+                                            <span t-out="l['remark']"/>
                                         </td>
                                     </tr>
                                 </t>
@@ -78,7 +78,7 @@
                                 <tr class="o_total">
                                     <td><strong>TOTAL ABSENCE</strong></td>
                                     <td class="text-end">
-                                        <strong><span t-esc="total_absences"/></strong>
+                                        <strong><span t-out="total_absences"/></strong>
                                     </td>
                                 </tr>
                             </table>
