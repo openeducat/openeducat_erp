@@ -189,13 +189,32 @@
     }
 }
 
-.o_cw_popover:has(.o_popover_header) .o_card_popover_close {
-    // `!important` to beat the `p-1` utility on the element.
-    padding: map-get($spacers, 3) !important;
-    // `calc` because `$spacer` is px while `$h4-font-size` is rem, and Sass
-    // refuses to add the two.
-    min-height: calc(#{map-get($spacers, 3)} * 2 + #{$h4-font-size} * #{$line-height-base});
-    align-items: center;
+// Calendar event popover: the close icon is absolutely positioned at the
+// top-right corner. Give the header and the icon box the same fixed height
+// (same scheme as openeducat_discipline's calendar_popover.scss) so the icon
+// sits on the title's centre line; sizing the box from spacers instead left it
+// taller than the header and the icon a few px below the title.
+// The timetable popover has its own rule (op_calendar_popover.scss).
+$o-cw-popover-header-height: 3rem;
+
+.o_cw_popover:not(.o_op_calendar_popover):has(.o_popover_header) {
+    .o_popover_header {
+        align-items: center;
+        min-height: $o-cw-popover-header-height;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        padding-right: 3rem !important;
+    }
+    .o_card_popover_close {
+        // `!important` to beat the `p-1` utility on the element and core's
+        // `margin: map-get($spacers, 3) map-get($spacers, 2)`
+        // (calendar_common_popover.scss)
+        padding: 0 !important;
+        margin: 0 !important;
+        height: $o-cw-popover-header-height;
+        width: $o-cw-popover-header-height;
+        align-items: center;
+    }
 }
 
 .o_cw_popover .o_popover_body > .o_card_record > .d-flex.align-items-center.gap-2 > :first-child {

@@ -106,6 +106,7 @@
             '/openeducat_core/static/src/scss/style.scss',
             '/openeducat_core/static/src/js/field_inline_char.js',
             '/openeducat_core/static/src/js/inline_many2one.js',
+            '/openeducat_core/static/src/js/board_layout_patch.js',
             '/openeducat_core/static/src/xml/web_client.xml',
         ],
     },

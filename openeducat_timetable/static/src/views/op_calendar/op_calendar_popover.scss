@@ -1,7 +1,13 @@
 // Keep the close button inside the header, vertically centred next to
 // the (single line) title, as in the Odoo 19 calendar popover.
 .o_cw_popover.o_op_calendar_popover {
+    // Header and close box share one fixed height, so the icon sits on the
+    // title's centre line whatever padding other modules give the header
     .o_popover_header {
+        align-items: center;
+        min-height: 3rem;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
         padding-right: 3rem !important;
 
         > * {
@@ -10,11 +16,15 @@
     }
 
     .o_card_popover_close {
-        top: map-get($spacers, 3) !important;
-        right: map-get($spacers, 2) !important;
-        height: $h4-font-size * $line-height-base;
+        // core adds `margin: map-get($spacers, 3) map-get($spacers, 2)`
+        // (calendar_common_popover.scss), which pushed it below the header
+        top: 0 !important;
+        right: 0 !important;
+        margin: 0 !important;
+        height: 3rem;
+        width: 3rem;
         align-items: center;
-        padding: 0 map-get($spacers, 2) !important;
+        padding: 0 !important;
         font-size: $h4-font-size;
         opacity: .7;
 
