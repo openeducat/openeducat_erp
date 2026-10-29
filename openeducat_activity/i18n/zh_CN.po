@@ -4,16 +4,29 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-31 05:01+0000\n"
-"PO-Revision-Date: 2025-10-31 05:01+0000\n"
+"POT-Creation-Date: 2026-10-28 12:37+0000\n"
+"PO-Revision-Date: 2026-10-28 12:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: openeducat_activity
+#: model:ir.module.category,description:openeducat_activity.module_category_all_op_activity
+#: model:ir.module.category,description:openeducat_activity.module_category_openeducat_activity
+msgid ""
+"\n"
+"            Helps you manage your institute users.\n"
+"        "
+msgstr ""
+"\n"
+"            帮助您管理您的机构用户。\n"
+"        "
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__year_id
@@ -23,13 +36,13 @@ msgstr "学年"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction
 msgid "Action Needed"
-msgstr "需要采取行动"
+msgstr "待处理"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__active
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__active
 msgid "Active"
-msgstr "积极的"
+msgstr "有效"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_ids
@@ -39,6 +52,7 @@ msgstr "活动"
 #. module: openeducat_activity
 #: model:ir.module.category,name:openeducat_activity.module_category_all_op_activity
 #: model:ir.module.category,name:openeducat_activity.module_category_openeducat_activity
+#: model:res.groups.privilege,name:openeducat_activity.module_activity_privilege
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.activity_smart_button
 msgid "Activity"
 msgstr "活动"
@@ -51,7 +65,7 @@ msgstr "活动计数"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "活动异常装饰"
+msgstr "活动异常标示"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_graph
@@ -75,7 +89,12 @@ msgstr "活动日志"
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_pivot
 msgid "Activity Pivot"
-msgstr "活动枢轴"
+msgstr "活动数据透视表"
+
+#. module: openeducat_activity
+#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_plans_ids
+msgid "Activity Plans"
+msgstr "活动计划"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_state
@@ -113,30 +132,30 @@ msgstr "活动类型必须是唯一的！"
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_form
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.view_op_activity_type_search
 msgid "Archived"
-msgstr "已存档"
+msgstr "归档"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_attachment_count
 msgid "Attachment Count"
-msgstr "附件计数"
+msgstr "附件数量"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, As selected courses don't share same Program!"
-msgstr "无法迁移，因为所选课程不共享相同的程序！"
+msgstr "无法转移，因为所选课程不共享同一计划！"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, As selected courses don't share same parent course!"
-msgstr "无法迁移，因为所选课程不共享同一父课程！"
+msgstr "无法转移，因为所选课程不共享同一父课程！"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "Can't migrate, Proceed for new admission"
-msgstr "无法迁移，继续新入学"
+msgstr "无法转学，继续新生入学"
 
 #. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
@@ -153,14 +172,14 @@ msgstr "课程完成了吗？"
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_uid
 msgid "Created by"
-msgstr "创建者："
+msgstr "创建人"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__create_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__create_date
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__create_date
 msgid "Created on"
-msgstr "创建于"
+msgstr "创建日期"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__date
@@ -185,12 +204,12 @@ msgstr "显示名称"
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__faculty_id
 msgid "Faculty"
-msgstr "学院"
+msgstr "教师"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_follower_ids
 msgid "Followers"
-msgstr "追随者"
+msgstr "关注者"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_partner_ids
@@ -198,36 +217,25 @@ msgid "Followers (Partners)"
 msgstr "关注者（合作伙伴）"
 
 #. module: openeducat_activity
-#: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr "字体很棒的图标，例如fa 任务"
-
-#. module: openeducat_activity
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Forward"
-msgstr "向前"
+msgstr "继续"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_from_id
 msgid "From Course"
-msgstr "来自课程"
+msgstr "当前课程"
 
 #. module: openeducat_activity
 #. odoo-python
 #: code:addons/openeducat_activity/wizard/student_migrate_wizard.py:0
 msgid "From Course must not be same as To Course!"
-msgstr "起始课程不得与终止课程相同！"
+msgstr "当前课程不得与新课程相同！"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__has_message
 msgid "Has Message"
-msgstr "有留言"
-
-#. module: openeducat_activity
-#: model:ir.module.category,description:openeducat_activity.module_category_all_op_activity
-#: model:ir.module.category,description:openeducat_activity.module_category_openeducat_activity
-msgid "Helps you manage your institutes different-different users."
-msgstr "帮助您管理机构中不同的用户。"
+msgstr "有消息"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__id
@@ -250,25 +258,25 @@ msgstr "指示异常活动的图标。"
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "如果选中，则有新消息需要您注意。"
+msgstr "如果勾选此项，则需要查看新消息。"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "如果检查，则某些消息存在传送错误。"
+msgstr "如果勾选此项， 某些消息将出现发送错误。"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_is_follower
 msgid "Is Follower"
-msgstr "是追随者"
+msgstr "是关注者"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__write_uid
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__write_uid
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr "最后更新人"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__write_date
@@ -278,54 +286,69 @@ msgid "Last Updated on"
 msgstr "最后更新时间"
 
 #. module: openeducat_activity
+#: model:ir.module.module,summary:base.module_openeducat_activity
+msgid "Manage Activities"
+msgstr "管理活动"
+
+#. module: openeducat_activity
 #: model:res.groups,name:openeducat_activity.group_activity_manager
 msgid "Manager"
 msgstr "经理"
 
 #. module: openeducat_activity
+#: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_type_icon
+msgid "Material Symbols icon e.g. checklist"
+msgstr "Material Symbols 图标，例如 checklist"
+
+#. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_error
 msgid "Message Delivery error"
-msgstr "消息传递错误"
+msgstr "消息发送错误"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_ids
 msgid "Messages"
-msgstr "留言"
+msgstr "消息"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr "我的活动截止日期"
+msgstr "我的活动截止时间"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity_type__name
 msgid "Name"
-msgstr "姓名"
+msgstr "名称"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr "下一个活动截止日期"
+msgstr "下一活动截止日期"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_summary
 msgid "Next Activity Summary"
-msgstr "下一步活动总结"
+msgstr "下一活动摘要"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_type_id
 msgid "Next Activity Type"
-msgstr "下一个活动类型"
+msgstr "下一活动类型"
+
+#. module: openeducat_activity
+#: model:res.groups.privilege,placeholder:openeducat_activity.module_activity_privilege
+msgid "No"
+msgstr "No"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_needaction_counter
 msgid "Number of Actions"
-msgstr "动作数"
+msgstr "操作数量"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_error_counter
 msgid "Number of errors"
-msgstr "错误数"
+msgstr "错误数量"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_needaction_counter
@@ -335,22 +358,22 @@ msgstr "需要采取行动的消息数量"
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "发送错误的消息数"
+msgstr "发送错误的消息的数量"
 
 #. module: openeducat_activity
-#: model:res.groups.privilege,name:openeducat_activity.module_activity_privilege
-msgid "Openeducat Activity Privilege"
-msgstr "Openeducat活动特权"
+#: model:ir.module.module,shortdesc:base.module_openeducat_activity
+msgid "OpenEduCat Activity"
+msgstr "OpenEduCat 活动"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__optional_sub
 msgid "Optional Subjects"
-msgstr "选修科目"
+msgstr "可选学校科目"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__activity_user_id
 msgid "Responsible User"
-msgstr "负责任的用户"
+msgstr "责任用户"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__message_has_sms_error
@@ -366,9 +389,9 @@ msgid ""
 "Planned: Future activities."
 msgstr ""
 "基于活动的状态\n"
-"逾期：截止日期已过\n"
+"逾期：超出到期日期\n"
 "今天：活动日期是今天\n"
-"计划：未来的活动。"
+"计划：未来活动。"
 
 #. module: openeducat_activity
 #: model:ir.model,name:openeducat_activity.model_op_student
@@ -390,39 +413,44 @@ msgstr "学生 ID 域"
 #: model:ir.model,name:openeducat_activity.model_student_migrate
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student Migrate"
-msgstr "学生移民"
+msgstr "学生转学"
 
 #. module: openeducat_activity
 #: model:ir.actions.act_window,name:openeducat_activity.act_open_student_migrate_view
 #: model:ir.ui.menu,name:openeducat_activity.menu_student_migrate
 msgid "Student Migration"
-msgstr "学生移民"
+msgstr "学生课程转学"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__student_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_activity.student_migrate_form
 msgid "Student(s)"
-msgstr "学生）"
+msgstr "学生"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__term_id
 msgid "Terms"
-msgstr "条款"
+msgstr "学期"
+
+#. module: openeducat_activity
+#: model:ir.module.module,description:base.module_openeducat_activity
+msgid "This module provide feature of Activity Management.\n"
+msgstr "该模块提供活动管理功能。\n"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__batch_id
 msgid "To Batch"
-msgstr "至批次"
+msgstr "新学生组"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__course_to_id
 msgid "To Course"
-msgstr "前往课程"
+msgstr "新课程"
 
 #. module: openeducat_activity
 #: model:ir.model.fields,help:openeducat_activity.field_op_activity__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr "记录的异常活动的类型。"
+msgstr "记录中异常活动的类型。"
 
 #. module: openeducat_activity
 #: model:res.groups,name:openeducat_activity.group_activity_user
@@ -433,13 +461,3 @@ msgstr "用户"
 #: model:ir.model.fields,field_description:openeducat_activity.field_student_migrate__valid_to_course_ids
 msgid "Valid To Courses"
 msgstr "适用于课程"
-
-#. module: openeducat_activity
-#: model:ir.model.fields,field_description:openeducat_activity.field_op_activity__website_message_ids
-msgid "Website Messages"
-msgstr "网站留言"
-
-#. module: openeducat_activity
-#: model:ir.model.fields,help:openeducat_activity.field_op_activity__website_message_ids
-msgid "Website communication history"
-msgstr "网站通讯历史"
