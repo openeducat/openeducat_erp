@@ -4,21 +4,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-30 10:20+0000\n"
-"PO-Revision-Date: 2025-10-30 10:20+0000\n"
+"POT-Creation-Date: 2026-10-28 12:40+0000\n"
+"PO-Revision-Date: 2026-10-28 12:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.parent_student_form_view
 msgid "<span class=\"o_stat_text\">Parents</span>"
-msgstr "<span class=\"o_stat_text\">Pais</span>"
+msgstr "<span class=\"o_stat_text\">Encarregados de Educação</span>"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__active
@@ -29,7 +30,7 @@ msgstr "Ativo"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Archived"
-msgstr "Arquivado"
+msgstr "Arquivados"
 
 #. module: openeducat_parent
 #: model:ir.model.constraint,message:openeducat_parent.constraint_op_parent_unique_parent
@@ -74,15 +75,16 @@ msgstr "Filha de"
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__display_name
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__display_name
 msgid "Display Name"
-msgstr "Nome de exibição"
+msgstr "Nome"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__email
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 #. module: openeducat_parent
 #: model:ir.module.category,description:openeducat_parent.module_category_all_parent
+#: model:res.groups.privilege,description:openeducat_parent.module_privilege_openeducat_parent
 msgid "Helps you manage your institutes different-different users."
 msgstr ""
 "Ajuda você a gerenciar usuários diferentes e diferentes de seus institutos."
@@ -93,7 +95,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_student__id
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_subject_registration__id
 msgid "ID"
-msgstr "EU IA"
+msgstr "ID"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -109,29 +111,34 @@ msgid ""
 " Parent can not             create Subject Registration!"
 msgstr ""
 "Ação inválida!\n"
-" O pai não pode criar registro de assunto!"
+" Os pais não podem criar registro de disciplina escolar!"
 
 #. module: openeducat_parent
 #. odoo-python
 #: code:addons/openeducat_parent/models/parent.py:0
 msgid ""
 "Invalid Action!\n"
-" Parent can not edit             Subject Registration!"
+" Parent can not edit Subject Registration!"
 msgstr ""
 "Ação inválida!\n"
-" Os pais não podem editar o registro do assunto!"
+" Os pais não podem editar o registro da disciplina escolar!"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_uid
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Última Atualização por"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__write_date
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent_relationship__write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Última Atualização em"
+
+#. module: openeducat_parent
+#: model:ir.module.module,summary:base.module_openeducat_parent
+msgid "Manage Parent"
+msgstr "Gerenciar pai"
 
 #. module: openeducat_parent
 #: model:res.groups,name:openeducat_parent.group_op_parent_manager
@@ -141,7 +148,7 @@ msgstr "Gerente"
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__mobile
 msgid "Mobile"
-msgstr "Móvel"
+msgstr "Telemóvel"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__name
@@ -149,6 +156,16 @@ msgstr "Móvel"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 msgid "Name"
 msgstr "Nome"
+
+#. module: openeducat_parent
+#: model:res.groups.privilege,placeholder:openeducat_parent.module_privilege_openeducat_parent
+msgid "No"
+msgstr "No"
+
+#. module: openeducat_parent
+#: model:ir.module.module,shortdesc:base.module_openeducat_parent
+msgid "OpenEduCat Parent"
+msgstr "Pais OpenEduCat"
 
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_parent
@@ -159,7 +176,7 @@ msgstr "Nome"
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_search
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_tree
 msgid "Parent"
-msgstr "Pai"
+msgstr "Encarregado de Educação"
 
 #. module: openeducat_parent
 #: model_terms:ir.ui.view,arch_db:openeducat_parent.view_op_parent_form
@@ -171,7 +188,7 @@ msgstr "Nome dos Pais"
 #: model:ir.ui.menu,name:openeducat_parent.menu_op_parent_root
 #: model:ir.ui.menu,name:openeducat_parent.menu_op_school_config_parent
 msgid "Parents"
-msgstr "Pais"
+msgstr "Encarregados de Educação"
 
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__relationship_id
@@ -206,7 +223,12 @@ msgstr "Aluno(s)"
 #. module: openeducat_parent
 #: model:ir.model,name:openeducat_parent.model_op_subject_registration
 msgid "Subject Registration Details"
-msgstr "Detalhes de registro do assunto"
+msgstr "Detalhes de inscrição na disciplina escolar"
+
+#. module: openeducat_parent
+#: model:ir.module.module,description:base.module_openeducat_parent
+msgid "This module provide parent management system.\n"
+msgstr "Este módulo fornece sistema de gerenciamento de pais.\n"
 
 #. module: openeducat_parent
 #. odoo-python
@@ -217,4 +239,4 @@ msgstr "Atualize o ID do e-mail principal primeiro."
 #. module: openeducat_parent
 #: model:ir.model.fields,field_description:openeducat_parent.field_op_parent__user_id
 msgid "User"
-msgstr "Usuário"
+msgstr "Utilizador"

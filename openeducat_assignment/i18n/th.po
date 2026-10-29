@@ -4,16 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-30 07:32+0000\n"
-"PO-Revision-Date: 2025-10-30 07:32+0000\n"
+"POT-Creation-Date: 2026-10-28 12:37+0000\n"
+"PO-Revision-Date: 2026-10-28 12:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: openeducat_assignment
 #: model:mail.template,body_html:openeducat_assignment.email_template_assignment_submission_after
@@ -87,13 +88,13 @@ msgid ""
 "                                                        <t t-out=\"object.company_id.phone or ''\"/>\n"
 "                                                        <t t-if=\"object.company_id.email\">\n"
 "                                                            |\n"
-"                                                            <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                                <t t-out=\"object.company_id.email or ''\"/>\n"
 "                                                            </a>\n"
 "                                                        </t>\n"
 "                                                        <t t-if=\"object.company_id.website\">\n"
 "                                                            |\n"
-"                                                            <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                                <t t-out=\"object.company_id.website or ''\"/>\n"
 "                                                            </a>\n"
 "                                                        </t>\n"
@@ -109,6 +110,96 @@ msgid ""
 "                </table>\n"
 "            "
 msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\"/>\n"
+"                                                        <br/>\n"
+"                                                    </td>\n"
+"                                                    <td valign=\"middle\" align=\"right\">\n"
+"                                                        <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                        <p>ที่รัก</p>\n"
+"                                                        <strong>\n"
+"                                                            <t t-out=\"object.student_id.name or ''\"/>\n"
+"                                                        </strong>\n"
+"                                                        <p>การส่งการบ้านของคุณ\n"
+"                                                            <strong>\n"
+"                                                                <t t-out=\"object.assignment_id.name or ''\"/>\n"
+"                                                            </strong>\n"
+"                                                            วันที่\n"
+"                                                            <strong>(\n"
+"                                                                <t t-out=\"object.submission_date or ''\"/>)\n"
+"                                                            </strong>\n"
+"                                                            มี\n"
+"                                                            ผ่านไปแล้ว กรุณาส่งโดยเร็วที่สุด\n"
+"                                                        </p>\n"
+"                                                        <p>ขอบคุณ</p>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"                                                        <t t-out=\"object.company_id.name or ''\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                        <t t-out=\"object.company_id.phone or ''\"/>\n"
+"                                                        <t t-if=\"object.company_id.email\">\n"
+"                                                            |\n"
+"                                                            <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                                <t t-out=\"object.company_id.email or ''\"/>\n"
+"                                                            </a>\n"
+"                                                        </t>\n"
+"                                                        <t t-if=\"object.company_id.website\">\n"
+"                                                            |\n"
+"                                                            <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                                <t t-out=\"object.company_id.website or ''\"/>\n"
+"                                                            </a>\n"
+"                                                        </t>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            "
 
 #. module: openeducat_assignment
 #: model:mail.template,body_html:openeducat_assignment.email_template_assignment_submission
@@ -182,13 +273,13 @@ msgid ""
 "                                                        <t t-out=\"object.company_id.phone or ''\"/>\n"
 "                                                        <t t-if=\"object.company_id.email\">\n"
 "                                                            |\n"
-"                                                            <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                                <t t-out=\"object.company_id.email or ''\"/>\n"
 "                                                            </a>\n"
 "                                                        </t>\n"
 "                                                        <t t-if=\"object.company_id.website\">\n"
 "                                                            |\n"
-"                                                            <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                                <t t-out=\"object.company_id.website or ''\"/>\n"
 "                                                            </a>\n"
 "                                                        </t>\n"
@@ -204,6 +295,96 @@ msgid ""
 "                </table>\n"
 "            "
 msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\"/>\n"
+"                                                        <br/>\n"
+"                                                    </td>\n"
+"                                                    <td valign=\"middle\" align=\"right\">\n"
+"                                                        <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                        <p>ที่รัก</p>\n"
+"                                                        <strong>\n"
+"                                                            <t t-out=\"object.student_id.name or ''\"/>\n"
+"                                                        </strong>\n"
+"                                                        <p>การส่งการบ้านของคุณ\n"
+"                                                            <strong>\n"
+"                                                                <t t-out=\"object.assignment_id.name or ''\"/>\n"
+"                                                            </strong>\n"
+"                                                            วันที่คือ\n"
+"                                                            <strong>\n"
+"                                                                <t t-out=\"object.submission_date or ''\"/>\n"
+"                                                            </strong>\n"
+"                                                            .\n"
+"                                                            กรุณาส่งโดยเร็วที่สุด\n"
+"                                                        </p>\n"
+"                                                        <p>ขอบคุณ</p>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"                                                        <t t-out=\"object.company_id.name or ''\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                        <t t-out=\"object.company_id.phone or ''\"/>\n"
+"                                                        <t t-if=\"object.company_id.email\">\n"
+"                                                            |\n"
+"                                                            <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                                <t t-out=\"object.company_id.email or ''\"/>\n"
+"                                                            </a>\n"
+"                                                        </t>\n"
+"                                                        <t t-if=\"object.company_id.website\">\n"
+"                                                            |\n"
+"                                                            <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                                <t t-out=\"object.company_id.website or ''\"/>\n"
+"                                                            </a>\n"
+"                                                        </t>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            "
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
@@ -225,7 +406,7 @@ msgstr "จำเป็นต้องดำเนินการ"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__active
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__active
 msgid "Active"
-msgstr "คล่องแคล่ว"
+msgstr "เปิดใช้งาน"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__allocation_ids
@@ -261,22 +442,22 @@ msgstr "งานที่มอบหมาย"
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_student__assignment_count
 msgid "Assignment Count"
-msgstr "จำนวนการมอบหมาย"
+msgstr "จำนวนการบ้านที่ได้รับมอบหมาย"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_graph
 msgid "Assignment Graph View"
-msgstr "มุมมองกราฟการมอบหมาย"
+msgstr "มุมมองกราฟการบ้านการบ้าน"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Assignment Name"
-msgstr "ชื่องาน"
+msgstr "ชื่อการบ้าน"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_pivot
 msgid "Assignment Pivot View"
-msgstr "มุมมอง Pivot ที่ได้รับมอบหมาย"
+msgstr "มุมมองตารางเดือยการบ้าน"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
@@ -284,48 +465,48 @@ msgstr "มุมมอง Pivot ที่ได้รับมอบหมา�
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_tree
 msgid "Assignment Sub Line"
-msgstr "สายย่อยที่ได้รับมอบหมาย"
+msgstr "การบ้านสายย่อยการบ้าน"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_graph
 msgid "Assignment Sub Line Graph View"
-msgstr "มุมมองกราฟเส้นย่อยที่ได้รับมอบหมาย"
+msgstr "การบ้าน การบ้าน มุมมองกราฟเส้นย่อย"
 
 #. module: openeducat_assignment
 #: model:ir.model,name:openeducat_assignment.model_op_assignment_sub_line
 #: model:mail.template,name:openeducat_assignment.email_template_assignment_submission
 msgid "Assignment Submission"
-msgstr "การส่งงานมอบหมาย"
+msgstr "การส่งการบ้าน"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_sub_line_view_pivot
 msgid "Assignment Submission Analysis Pivot"
-msgstr "Pivot การวิเคราะห์การส่งการมอบหมาย"
+msgstr "ตารางสรุปการวิเคราะห์การส่งการบ้าน การมอบหมายงาน"
 
 #. module: openeducat_assignment
 #: model:mail.template,subject:openeducat_assignment.email_template_assignment_submission_after
 msgid "Assignment Submission Date Passed"
-msgstr "วันที่ส่งงานผ่านแล้ว"
+msgstr "พ้นวันที่ส่งการบ้านแล้ว"
 
 #. module: openeducat_assignment
 #: model:base.automation,name:openeducat_assignment.test_rule_assignment_sub_line
 msgid "Assignment Submission Line"
-msgstr "สายส่งการมอบหมาย"
+msgstr "สายส่งการบ้าน"
 
 #. module: openeducat_assignment
 #: model:base.automation,name:openeducat_assignment.test_rule_assignment_sub_line_after
 msgid "Assignment Submission Line after 1 Days"
-msgstr "สายส่งการมอบหมายหลังจาก 1 วัน"
+msgstr "ไลน์ส่งการบ้านหลังจาก 1 วัน"
 
 #. module: openeducat_assignment
 #: model:mail.template,name:openeducat_assignment.email_template_assignment_submission_after
 msgid "Assignment Submission Passed"
-msgstr "การส่งงานมอบหมายผ่านแล้ว"
+msgstr "การบ้านส่งการบ้านผ่านแล้ว"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_sub_line_view
 msgid "Assignment Submissions"
-msgstr "การส่งงานมอบหมาย"
+msgstr "การส่งการบ้าน"
 
 #. module: openeducat_assignment
 #: model:ir.model,name:openeducat_assignment.model_grading_assignment_type
@@ -333,7 +514,7 @@ msgstr "การส่งงานมอบหมาย"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__assignment_type
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Assignment Type"
-msgstr "ประเภทการมอบหมาย"
+msgstr "ประเภทการบ้าน"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_type_view
@@ -341,12 +522,12 @@ msgstr "ประเภทการมอบหมาย"
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_form
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_tree
 msgid "Assignment Types"
-msgstr "ประเภทการมอบหมายงาน"
+msgstr "ประเภทการบ้านที่ได้รับมอบหมาย"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_student__allocation_ids
 msgid "Assignment(s)"
-msgstr "การมอบหมายงาน"
+msgstr "งานที่มอบหมาย"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_view
@@ -354,18 +535,18 @@ msgstr "การมอบหมายงาน"
 #: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_root
 #: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_sub
 msgid "Assignments"
-msgstr "การมอบหมายงาน"
+msgstr "งานที่มอบหมาย"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_attachment_count
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_attachment_count
 msgid "Attachment Count"
-msgstr "จำนวนไฟล์แนบ"
+msgstr "จำนวนสิ่งที่แนบมา"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__grading_assignment_type__assign_type__attendance
 msgid "Attendance"
-msgstr "การเข้าร่วม"
+msgstr "การเข้าเรียน"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
@@ -376,7 +557,7 @@ msgstr "ข้อมูลพื้นฐาน"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__batch_id
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Batch"
-msgstr "แบทช์"
+msgstr "รุ่น"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__op_assignment__state__cancel
@@ -408,7 +589,7 @@ msgstr "ตรวจสอบผู้ใช้"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment_type__code
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
 msgid "Code"
-msgstr "รหัส"
+msgstr "โค้ด"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__company_id
@@ -430,7 +611,7 @@ msgstr "คอร์ส"
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__courses_subjects
 msgid "Courses Subjects"
-msgstr "รายวิชา รายวิชา"
+msgstr "หลักสูตร สาขาวิชาของโรงเรียน"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__create_uid
@@ -463,7 +644,7 @@ msgstr "คำอธิบาย"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__display_name
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_student__display_name
 msgid "Display Name"
-msgstr "ชื่อที่แสดง"
+msgstr "แสดงชื่อ"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__op_assignment__state__draft
@@ -476,22 +657,22 @@ msgstr "ร่าง"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__faculty_id
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Faculty"
-msgstr "คณะ"
+msgstr "อาจารย์"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__faculty_user_id
 msgid "Faculty User"
-msgstr "ผู้ใช้คณะ"
+msgstr "ผู้ใช้ครู"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Finish"
-msgstr "เสร็จ"
+msgstr "เสร็จสิ้น"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__op_assignment__state__finish
 msgid "Finished"
-msgstr "ที่เสร็จเรียบร้อย"
+msgstr "เสร็จสิ้นแล้ว"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_follower_ids
@@ -503,13 +684,13 @@ msgstr "ผู้ติดตาม"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_partner_ids
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "ผู้ติดตาม (พันธมิตร)"
+msgstr "ผู้ติดตาม (พาร์ทเนอร์)"
 
 #. module: openeducat_assignment
 #: model:ir.model,name:openeducat_assignment.model_grading_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__grading_assignment_id
 msgid "Grading Assignment"
-msgstr "การมอบหมายการให้เกรด"
+msgstr "การให้คะแนนการบ้านการบ้าน"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__has_message
@@ -518,19 +699,25 @@ msgid "Has Message"
 msgstr "มีข้อความ"
 
 #. module: openeducat_assignment
+#: model:res.groups.privilege,description:openeducat_assignment.privilege_module_category_all_op_assignment
+#: model:res.groups.privilege,description:openeducat_assignment.privilege_module_category_openeducat_assignment
+msgid "Helps you manage your institutes different-different users."
+msgstr "ช่วยคุณจัดการสถาบันของคุณกับผู้ใช้ที่แตกต่างกัน"
+
+#. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__id
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment_type__id
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__id
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__id
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_student__id
 msgid "ID"
-msgstr "บัตรประจำตัวประชาชน"
+msgstr "ID"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_needaction
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "หากเลือก ข้อความใหม่จะต้องได้รับการดูแลจากคุณ"
+msgstr "ถ้าเลือก ข้อความใหม่จะต้องการความสนใจจากคุณ"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_has_error
@@ -538,7 +725,7 @@ msgstr "หากเลือก ข้อความใหม่จะต้�
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_has_error
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "หากเลือก แสดงว่าบางข้อความมีข้อผิดพลาดในการส่ง"
+msgstr "ถ้าเลือก ข้อความบางข้อความมีข้อผิดพลาดในการส่ง"
 
 #. module: openeducat_assignment
 #. odoo-python
@@ -548,7 +735,7 @@ msgid ""
 " Parent can not             create Assignment Submissions!"
 msgstr ""
 "การกระทำที่ไม่ถูกต้อง!\n"
-" ผู้ปกครองไม่สามารถสร้างการส่งการมอบหมายได้!"
+" ผู้ปกครองไม่สามารถสร้างการส่งการบ้านได้!"
 
 #. module: openeducat_assignment
 #. odoo-python
@@ -558,13 +745,13 @@ msgid ""
 " Parent can not edit             Assignment Submissions!"
 msgstr ""
 "การกระทำที่ไม่ถูกต้อง!\n"
-" ผู้ปกครองไม่สามารถแก้ไขการส่งงานมอบหมายได้!"
+" ผู้ปกครองไม่สามารถแก้ไขการส่งการบ้านได้!"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_is_follower
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_is_follower
 msgid "Is Follower"
-msgstr "เป็นผู้ตาม"
+msgstr "เป็นผู้ติดตาม"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__issued_date
@@ -579,7 +766,7 @@ msgstr "วันที่ออก"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__write_uid
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__write_uid
 msgid "Last Updated by"
-msgstr "อัปเดตล่าสุดโดย"
+msgstr "อัปเดตครั้งล่าสุดโดย"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__write_date
@@ -587,7 +774,12 @@ msgstr "อัปเดตล่าสุดโดย"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__write_date
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__write_date
 msgid "Last Updated on"
-msgstr "อัปเดตล่าสุดเมื่อ"
+msgstr "อัปเดตครั้งล่าสุดเมื่อ"
+
+#. module: openeducat_assignment
+#: model:ir.module.module,summary:base.module_openeducat_assignment
+msgid "Manage Assgiments"
+msgstr "จัดการการมอบหมาย"
 
 #. module: openeducat_assignment
 #: model:res.groups,name:openeducat_assignment.group_op_assignment_manager
@@ -600,13 +792,19 @@ msgstr "ผู้จัดการ"
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "Marks"
-msgstr "เครื่องหมาย"
+msgstr "คะแนน"
+
+#. module: openeducat_assignment
+#. odoo-python
+#: code:addons/openeducat_assignment/models/assignment.py:0
+msgid "Marks cannot be negative!"
+msgstr "เกรดต้องไม่ติดลบ!"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_has_error
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_has_error
 msgid "Message Delivery error"
-msgstr "ข้อผิดพลาดในการส่งข้อความ"
+msgstr "เกิดข้อผิดพลาดในการส่งข้อความ"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_ids
@@ -630,22 +828,28 @@ msgid "Name"
 msgstr "ชื่อ"
 
 #. module: openeducat_assignment
+#: model:res.groups.privilege,placeholder:openeducat_assignment.privilege_module_category_all_op_assignment
+#: model:res.groups.privilege,placeholder:openeducat_assignment.privilege_module_category_openeducat_assignment
+msgid "No"
+msgstr "No"
+
+#. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__note
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Note"
-msgstr "บันทึก"
+msgstr "โน้ต"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_needaction_counter
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_needaction_counter
 msgid "Number of Actions"
-msgstr "จำนวนการกระทำ"
+msgstr "จํานวนการดําเนินการ"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_has_error_counter
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__message_has_error_counter
 msgid "Number of errors"
-msgstr "จำนวนข้อผิดพลาด"
+msgstr "จํานวนข้อผิดพลาด"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_needaction_counter
@@ -657,13 +861,18 @@ msgstr "จำนวนข้อความที่ต้องดำเนิ
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__message_has_error_counter
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "จำนวนข้อความที่มีข้อผิดพลาดในการส่ง"
+msgstr "จํานวนข้อความที่มีข้อผิดพลาดในการส่ง"
 
 #. module: openeducat_assignment
 #. odoo-python
 #: code:addons/openeducat_assignment/models/assignment_sub_line.py:0
 msgid "Obtain Marks should not be greater than Actual Marks!"
-msgstr "คะแนนที่ได้รับไม่ควรมากกว่าคะแนนจริง!"
+msgstr "เกรดที่ได้รับไม่ควรมากกว่าเกรดจริง!"
+
+#. module: openeducat_assignment
+#: model:ir.module.module,shortdesc:base.module_openeducat_assignment
+msgid "OpenEduCat Assignment"
+msgstr "การบ้าน OpenEduCat"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__point
@@ -679,7 +888,7 @@ msgstr "เผยแพร่"
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__op_assignment__state__publish
 msgid "Published"
-msgstr "ที่ตีพิมพ์"
+msgstr "เผยแพร่แล้ว"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
@@ -692,6 +901,11 @@ msgid "Rejected"
 msgstr "ถูกปฏิเสธ"
 
 #. module: openeducat_assignment
+#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
+msgid "Reset to Draft"
+msgstr "รีเซ็ตเป็นฉบับร่าง"
+
+#. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
 msgid "Resubmit"
 msgstr "ส่งอีกครั้ง"
@@ -699,7 +913,7 @@ msgstr "ส่งอีกครั้ง"
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__reviewer
 msgid "Reviewer"
-msgstr "ผู้วิจารณ์"
+msgstr "ผู้ตรวจ"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_has_sms_error
@@ -710,17 +924,12 @@ msgstr "ข้อผิดพลาดในการส่ง SMS"
 #. module: openeducat_assignment
 #: model:ir.actions.server,name:openeducat_assignment.assignment_sub_line_action
 msgid "Server Actions Assignment Submission"
-msgstr "การส่งการมอบหมายการดำเนินการของเซิร์ฟเวอร์"
+msgstr "การส่งการบ้านการกระทำของเซิร์ฟเวอร์"
 
 #. module: openeducat_assignment
 #: model:ir.actions.server,name:openeducat_assignment.assignment_sub_line_action_after
 msgid "Server Actions Assignment Submission After 1 Days"
-msgstr "การส่งการมอบหมายการดำเนินการของเซิร์ฟเวอร์หลังจาก 1 วัน"
-
-#. module: openeducat_assignment
-#: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
-msgid "Set to Draft"
-msgstr "ตั้งค่าเป็นแบบร่าง"
+msgstr "การส่งการบ้านการบ้านการกระทำของเซิร์ฟเวอร์หลังจาก 1 วัน"
 
 #. module: openeducat_assignment
 #: model:ir.ui.menu,name:openeducat_assignment.menu_assignment_config
@@ -731,7 +940,7 @@ msgstr "การตั้งค่า"
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "State"
-msgstr "สถานะ"
+msgstr "จังหวัด"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__state
@@ -756,7 +965,7 @@ msgstr "การจัดสรรนักศึกษา"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__subject_id
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 msgid "Subject"
-msgstr "เรื่อง"
+msgstr "วิชา"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__grading_assignment_type__assign_type__sub
@@ -766,7 +975,7 @@ msgstr "อัตนัย"
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__assignment_sub_line
 msgid "Submission"
-msgstr "การส่ง"
+msgstr "การส่งงาน"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__submission_date
@@ -787,7 +996,7 @@ msgstr "ไม่สามารถกำหนดวันที่ยื่น
 #: model:ir.ui.menu,name:openeducat_assignment.menu_op_assignment_sub_line_sub
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_form
 msgid "Submissions"
-msgstr "การส่งผลงาน"
+msgstr "งานที่ส่ง"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_form
@@ -797,7 +1006,7 @@ msgstr "ส่ง"
 #. module: openeducat_assignment
 #: model:mail.template,subject:openeducat_assignment.email_template_assignment_submission
 msgid "Submit Your Assignment"
-msgstr "ส่งงานของคุณ"
+msgstr "ส่งการบ้านของคุณ"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__op_assignment_sub_line__state__submit
@@ -807,17 +1016,22 @@ msgstr "ส่งแล้ว"
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_type_search
 msgid "Tag"
-msgstr "แท็ก"
+msgstr "ฉลาก"
 
 #. module: openeducat_assignment
 #: model:ir.model.constraint,message:openeducat_assignment.constraint_grading_assignment_type_unique_code
 msgid "The code must be unique across all assignment types."
-msgstr "รหัสจะต้องไม่ซ้ำกันในงานทุกประเภท"
+msgstr "รหัสต้องไม่ซ้ำกันในการบ้านทุกประเภท"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__faculty_user_id
 msgid "The internal user in charge of this contact."
-msgstr "ผู้ใช้ภายในที่รับผิดชอบการติดต่อนี้"
+msgstr "ผู้ติดต่อ"
+
+#. module: openeducat_assignment
+#: model:ir.module.module,description:base.module_openeducat_assignment
+msgid "This module provide feature of Assignments.\n"
+msgstr "โมดูลนี้มีคุณสมบัติของการบ้าน\n"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
@@ -829,25 +1043,13 @@ msgstr "วันนี้"
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment_type__assign_type
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_tree
 msgid "Type"
-msgstr "พิมพ์"
+msgstr "ประเภท"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__user_id
 #: model:res.groups,name:openeducat_assignment.group_op_assignment_user
 msgid "User"
 msgstr "ผู้ใช้"
-
-#. module: openeducat_assignment
-#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__website_message_ids
-#: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__website_message_ids
-msgid "Website Messages"
-msgstr "ข้อความเว็บไซต์"
-
-#. module: openeducat_assignment
-#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment__website_message_ids
-#: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__website_message_ids
-msgid "Website communication history"
-msgstr "ประวัติการสื่อสารเว็บไซต์"
 
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search

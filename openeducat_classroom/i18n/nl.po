@@ -4,16 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-30 09:45+0000\n"
-"PO-Revision-Date: 2025-10-30 09:45+0000\n"
+"POT-Creation-Date: 2026-10-28 12:37+0000\n"
+"PO-Revision-Date: 2026-10-28 12:37+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__active
@@ -30,17 +31,17 @@ msgstr "Gearchiveerd"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__asset_id
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__asset_line
 msgid "Asset"
-msgstr "Bezit"
+msgstr "Uitrusting"
 
 #. module: openeducat_classroom
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_form
 msgid "Asset Management"
-msgstr "Vermogensbeheer"
+msgstr "Beheer van uitrustingsartikelen"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__batch_id
 msgid "Batch"
-msgstr "Partij"
+msgstr "Groep"
 
 #. module: openeducat_classroom
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
@@ -50,7 +51,7 @@ msgstr "Capaciteit"
 #. module: openeducat_classroom
 #: model:ir.ui.menu,name:openeducat_classroom.menu_op_school_config_class_room
 msgid "Class Room Management"
-msgstr "Beheer van klaslokalen"
+msgstr "Beheer van schoolklassen"
 
 #. module: openeducat_classroom
 #: model:ir.actions.act_window,name:openeducat_classroom.act_open_op_classroom_view
@@ -67,7 +68,7 @@ msgstr "Klaslokalen"
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_search
 #: model_terms:ir.ui.view,arch_db:openeducat_classroom.view_op_classroom_tree
 msgid "Classroom"
-msgstr "Klas"
+msgstr "Klaslokaal"
 
 #. module: openeducat_classroom
 #: model:ir.model,name:openeducat_classroom.model_op_asset
@@ -95,13 +96,13 @@ msgstr "Cursus"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__create_uid
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__create_uid
 msgid "Created by"
-msgstr "Gemaakt door"
+msgstr "Aangemaakt door"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__create_date
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__create_date
 msgid "Created on"
-msgstr "Gemaakt op"
+msgstr "Aangemaakt op"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__display_name
@@ -118,16 +119,19 @@ msgstr "Faciliteiten"
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__facilities
 msgid "Facility Lines"
-msgstr "Facilitaire lijnen"
+msgstr "Lijnen voor schoolfaciliteiten"
 
 #. module: openeducat_classroom
 #: model:ir.model.constraint,message:openeducat_classroom.constraint_op_facility_line_unique_facility_classroom
 msgid ""
 "Facility name exists. Please choose a unique name or update the quantity."
-msgstr "Faciliteitnaam bestaat. Kies een unieke naam of update het aantal."
+msgstr ""
+"De naam van de schoolfaciliteit bestaat. Kies een unieke naam of update het "
+"aantal."
 
 #. module: openeducat_classroom
 #: model:ir.module.category,description:openeducat_classroom.module_category_all_op_classroom
+#: model:res.groups.privilege,description:openeducat_classroom.module_category_openeducat_classroom
 msgid "Helps you manage your institutes different-different users."
 msgstr ""
 "Helpt u bij het beheren van uw instellingen met verschillende gebruikers."
@@ -137,7 +141,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__id
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_facility_line__id
 msgid "ID"
-msgstr "Identiteitskaart"
+msgstr "ID"
 
 #. module: openeducat_classroom
 #: model:ir.model.constraint,message:openeducat_classroom.constraint_op_classroom_capacity_check
@@ -157,9 +161,14 @@ msgid "Last Updated on"
 msgstr "Laatst bijgewerkt op"
 
 #. module: openeducat_classroom
+#: model:ir.module.module,summary:base.module_openeducat_classroom
+msgid "Manage Classroom"
+msgstr "Beheer klaslokaal"
+
+#. module: openeducat_classroom
 #: model:ir.model,name:openeducat_classroom.model_op_facility_line
 msgid "Manage Facility Line"
-msgstr "Beheer de faciliteitslijn"
+msgstr "Beheer schoolfaciliteitslijn"
 
 #. module: openeducat_classroom
 #: model:res.groups,name:openeducat_classroom.group_op_classroom_manager
@@ -173,9 +182,19 @@ msgid "Name"
 msgstr "Naam"
 
 #. module: openeducat_classroom
+#: model:res.groups.privilege,placeholder:openeducat_classroom.module_category_openeducat_classroom
+msgid "No"
+msgstr "No"
+
+#. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_classroom__capacity
 msgid "No of Seats"
 msgstr "Aantal zitplaatsen"
+
+#. module: openeducat_classroom
+#: model:ir.module.module,shortdesc:base.module_openeducat_classroom
+msgid "OpenEduCat Classroom"
+msgstr "OpenEduCat-klaslokaal"
 
 #. module: openeducat_classroom
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__product_id
@@ -186,6 +205,11 @@ msgstr "Product"
 #: model:ir.model.fields,field_description:openeducat_classroom.field_op_asset__product_uom_qty
 msgid "Quantity"
 msgstr "Hoeveelheid"
+
+#. module: openeducat_classroom
+#: model:ir.module.module,description:base.module_openeducat_classroom
+msgid "This module adds classroom management feature to OpenEduCat_Core.\n"
+msgstr "Deze module voegt een klasbeheerfunctie toe aan OpenEduCat_Core.\n"
 
 #. module: openeducat_classroom
 #: model:res.groups,name:openeducat_classroom.group_op_classroom_user

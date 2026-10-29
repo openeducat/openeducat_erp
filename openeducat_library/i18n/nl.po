@@ -4,16 +4,29 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-30 10:04+0000\n"
-"PO-Revision-Date: 2025-10-30 10:04+0000\n"
+"POT-Creation-Date: 2026-10-28 12:39+0000\n"
+"PO-Revision-Date: 2026-10-28 12:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: openeducat_library
+#: model:ir.module.category,description:openeducat_library.module_category_all_library
+#: model:res.groups.privilege,description:openeducat_library.module_privilege_openeducat_library
+msgid ""
+"\n"
+"            Helps you manage your institute library users.\n"
+"        "
+msgstr ""
+"\n"
+"            Helpt u bij het beheren van de gebruikers van uw instituutsbibliotheek.\n"
+"        "
 
 #. module: openeducat_library
 #: model:ir.actions.report,print_report_name:openeducat_library.action_report_student_library_card
@@ -21,9 +34,24 @@ msgid "'Library ID Card - %s' % (object.name)"
 msgstr "'Bibliotheek ID-kaart - %s' % (object.name)"
 
 #. module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
-msgid "<strong>Library Card(s) Barcode</strong>"
-msgstr "<strong>Barcode van bibliotheekkaart(en)</strong>"
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<strong>Card No:</strong>"
+msgstr "<strong>Kaartnummer:</strong>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<strong>Issued Date:</strong>"
+msgstr "<strong>Uitgiftedatum:</strong>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<strong>Name:</strong>"
+msgstr "<strong>Naam:</strong>"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
+msgid "<strong>Type:</strong>"
+msgstr "<strong>Soort:</strong>"
 
 #. module: openeducat_library
 #: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
@@ -89,13 +117,13 @@ msgid ""
 "                                                    <t t-out=\"object.company_id.phone or ''\"/>\n"
 "                                                    <t t-if=\"object.company_id.email\">\n"
 "                                                        |\n"
-"                                                        <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                        <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                            <t t-out=\"object.company_id.email or ''\"/>\n"
 "                                                        </a>\n"
 "                                                    </t>\n"
 "                                                    <t t-if=\"object.company_id.website\">\n"
 "                                                        |\n"
-"                                                        <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                        <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                            <t t-out=\"object.company_id.website or ''\"/>\n"
 "                                                        </a>\n"
 "                                                    </t>\n"
@@ -111,6 +139,88 @@ msgid ""
 "            </table>\n"
 "        "
 msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                <tr>\n"
+"                    <td align=\"center\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\">\n"
+"                                                    <span style=\"font-size: 10px;\"/>\n"
+"                                                    <br/>\n"
+"                                                </td>\n"
+"                                                <td valign=\"middle\" align=\"right\">\n"
+"                                                    <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                    <p>Beste </p>\n"
+"                                                    <strong>\n"
+"                                                         <t t-out=\"object.student_id.name or ''\"/></strong>\n"
+"                                                    <p>Jouw  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
+"                                                         <t t-out=\"object.media_id.name or ''\"/>\n"
+"                                                    </strong> is verlopen. Stuur het zo snel mogelijk terug.\n"
+"                                                    </p>\n"
+"                                                    <p>Bedankt.</p>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\">\n"
+"                                                    <t t-out=\"object.company_id.name or ''\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    <t t-out=\"object.company_id.phone or ''\"/>\n"
+"                                                    <t t-if=\"object.company_id.email\">\n"
+"                                                        |\n"
+"                                                        <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.email or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                    <t t-if=\"object.company_id.website\">\n"
+"                                                        |\n"
+"                                                        <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.website or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </tbody>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </table>\n"
+"        "
 
 #. module: openeducat_library
 #: model:mail.template,body_html:openeducat_library.email_template_media_movement
@@ -191,13 +301,13 @@ msgid ""
 "                                                    <t t-out=\"object.company_id.phone or ''\"/>\n"
 "                                                    <t t-if=\"object.company_id.email\">\n"
 "                                                        |\n"
-"                                                        <a href=\"'mailto:%s'%20%20%7B%7B%20object.company_id.email%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                        <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                            <t t-out=\"object.company_id.email or ''\"/>\n"
 "                                                        </a>\n"
 "                                                    </t>\n"
 "                                                    <t t-if=\"object.company_id.website\">\n"
 "                                                        |\n"
-"                                                        <a href=\"'%s'%20%20%7B%7B%20object.company_id.website%20%7D%7D\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                        <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
 "                                                            <t t-out=\"object.company_id.website or ''\"/>\n"
 "                                                        </a>\n"
 "                                                    </t>\n"
@@ -213,6 +323,103 @@ msgid ""
 "            </table>\n"
 "        "
 msgstr ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                <tr>\n"
+"                    <td align=\"center\">\n"
+"                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                            <tbody>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\">\n"
+"                                                    <span style=\"font-size: 10px;\">Bibliotheekkaart verlengen</span>\n"
+"                                                    <br/>\n"
+"                                                </td>\n"
+"                                                <td valign=\"middle\" align=\"right\">\n"
+"                                                    <img t-att-src=\"'/logo.png?company=%s' % object.company_id.id\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"'%s' % object.company_id.name\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                    <p>Beste</p>\n"
+"                                                    <strong>\n"
+"                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
+"                                                    </strong>\n"
+"                                                    <p>Jouw<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                        <strong>\n"
+"                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
+"                                                        </strong>\n"
+"                                                        zullen\n"
+"                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
+"                                                            verlopen zijn\n"
+"                                                            <strong>Vandaag.</strong>\n"
+"                                                        </t>\n"
+"                                                        <t t-else=\"\">\n"
+"                                                            verlopen binnen\n"
+"                                                            <strong>\n"
+"                                                                <t t-out=\"object.get_diff_day() or ''\"/>\n"
+"                                                            </strong>\n"
+"                                                            dag(en).\n"
+"                                                        </t>\n"
+"                                                        Stuur het zo snel mogelijk terug.\n"
+"                                                    </p>\n"
+"                                                    <p>Bedankt.</p>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td style=\"text-align:center;\">\n"
+"                                                    <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                                <tr>\n"
+"                                    <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\">\n"
+"                                                    <t t-out=\"object.company_id.name or ''\"/>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                            <tr>\n"
+"                                                <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    <t t-out=\"object.company_id.phone or ''\"/>\n"
+"                                                    <t t-if=\"object.company_id.email\">\n"
+"                                                        |\n"
+"                                                        <a t-attf-href=\"mailto:{{ object.company_id.email }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.email or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                    <t t-if=\"object.company_id.website\">\n"
+"                                                        |\n"
+"                                                        <a t-attf-href=\"{{ object.company_id.website }}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            <t t-out=\"object.company_id.website or ''\"/>\n"
+"                                                        </a>\n"
+"                                                    </t>\n"
+"                                                </td>\n"
+"                                            </tr>\n"
+"                                        </table>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </tbody>\n"
+"                        </table>\n"
+"                    </td>\n"
+"                </tr>\n"
+"            </table>\n"
+"        "
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
@@ -235,7 +442,7 @@ msgstr "Geaccepteerd"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction
 msgid "Action Needed"
-msgstr "Actie nodig"
+msgstr "Actie gevraagd"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__active
@@ -275,13 +482,13 @@ msgstr "Adresgegevens"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Admission Details"
-msgstr "Toelatingsgegevens"
+msgstr "Toelatingsgegevens voor studenten"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_view
 #: model:ir.ui.menu,name:openeducat_library.menu_library_medias
 msgid "All Media"
-msgstr "Alle media"
+msgstr "Alle bibliotheekmedia"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
@@ -336,20 +543,22 @@ msgstr "Beschikbaar"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__barcode
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
 msgid "Barcode"
-msgstr "Streepjescode"
+msgstr "Barcode"
 
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unit_unique_name_barcode
 msgid "Barcode must be unique per Media unit!"
-msgstr "Barcode moet per Media-eenheid uniek zijn!"
+msgstr "Barcode moet uniek zijn per Bibliotheek Media-eenheid!"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 msgid "Can't return media."
-msgstr "Kan media niet retourneren."
+msgstr "Kan bibliotheekmedia niet retourneren."
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
@@ -376,7 +585,7 @@ msgstr "Kaarttype"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "City"
-msgstr "Stad"
+msgstr "Plaats"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_type__code
@@ -386,7 +595,7 @@ msgstr "Code"
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_type_unique_media_type_code
 msgid "Code should be unique per media type!"
-msgstr "Code moet uniek zijn per mediatype!"
+msgstr "Code moet uniek zijn per bibliotheekmediatype!"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__company_id
@@ -436,7 +645,7 @@ msgstr "Factuur maken"
 #: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_uid
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_uid
 msgid "Created by"
-msgstr "Gemaakt door"
+msgstr "Aangemaakt door"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__create_date
@@ -454,13 +663,13 @@ msgstr "Gemaakt door"
 #: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__create_date
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__create_date
 msgid "Created on"
-msgstr "Gemaakt op"
+msgstr "Aangemaakt op"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__description
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Description"
-msgstr "Beschrijving"
+msgstr "Omschrijving"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_account_move__display_name
@@ -488,12 +697,12 @@ msgstr "Weergavenaam"
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__draft
 msgid "Draft"
-msgstr "Voorlopige versie"
+msgstr "Concept"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__return_date
 msgid "Due Date"
-msgstr "Twee data"
+msgstr "Vervaldatum"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__duration
@@ -503,7 +712,7 @@ msgstr "Duur"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "Duur in termen van aantal leaddagen"
+msgstr "Duur in termen van aantal verkoopleaddagen (prospect)"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -535,9 +744,10 @@ msgstr "Voer de juiste waarde in"
 #: model:ir.model.fields.selection,name:openeducat_library.selection__issue_media__type__faculty
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_library_card__type__faculty
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__type__faculty
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Faculty"
-msgstr "Faculteit"
+msgstr "Docent"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
@@ -562,12 +772,12 @@ msgstr "Volgers"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_partner_ids
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Volgers (partners)"
+msgstr "Volgers (Partners)"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_from
 msgid "From Date"
-msgstr "Vanaf Datum"
+msgstr "Startdatum"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__has_message
@@ -578,12 +788,6 @@ msgstr "Vanaf Datum"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__has_message
 msgid "Has Message"
 msgstr "Heeft bericht"
-
-#. module: openeducat_library
-#: model:ir.module.category,description:openeducat_library.module_category_all_Library
-msgid "Helps you manage your institutes different-different users."
-msgstr ""
-"Helpt u bij het beheren van uw instellingen met verschillende gebruikers."
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_account_move__id
@@ -606,7 +810,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
 msgid "ID"
-msgstr "Identiteitskaart"
+msgstr "ID"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
@@ -616,7 +820,7 @@ msgstr "ISBN-code"
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_isbn
 msgid "ISBN code must be unique per media!"
-msgstr "ISBN-code moet per medium uniek zijn!"
+msgstr "ISBN-code moet uniek zijn per bibliotheekmedia!"
 
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_issue_media__message_needaction
@@ -626,7 +830,7 @@ msgstr "ISBN-code moet per medium uniek zijn!"
 #: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction
 #: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Indien aangevinkt, vereisen nieuwe berichten uw aandacht."
+msgstr "Indien aangevinkt vragen nieuwe berichten je aandacht."
 
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_issue_media__message_has_error
@@ -642,7 +846,7 @@ msgstr "Indien aangevinkt, vereisen nieuwe berichten uw aandacht."
 #: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error
 #: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Indien aangevinkt, hebben sommige berichten een bezorgfout."
+msgstr "Indien aangevinkt hebben sommige berichten een leveringsfout."
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__internal_code
@@ -652,7 +856,7 @@ msgstr "Interne code"
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_internal_cod
 msgid "Internal Code must be unique per media!"
-msgstr "Interne Code moet uniek zijn per medium!"
+msgstr "Interne code moet uniek zijn per bibliotheekmedia!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -662,7 +866,7 @@ msgid ""
 " Parent can not create             Media Purchase Requests!"
 msgstr ""
 "Ongeldige actie!\n"
-" Ouders kunnen geen media-aankoopverzoeken aanmaken!"
+" Ouders kunnen geen bibliotheekmedia-aankoopverzoeken aanmaken!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -672,7 +876,7 @@ msgid ""
 " Parent can not create             Media Queue Requests!"
 msgstr ""
 "Ongeldige actie!\n"
-" Ouder kan geen mediawachtrijverzoeken maken!"
+" Ouder kan geen bibliotheekmediawachtrijverzoeken maken!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -682,7 +886,7 @@ msgid ""
 " Parent can not edit             Media Purchase Requests!"
 msgstr ""
 "Ongeldige actie!\n"
-" Ouders kunnen media-aankoopverzoeken niet bewerken!"
+" Ouders kunnen bibliotheekmedia-aankoopverzoeken niet bewerken!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -692,7 +896,7 @@ msgid ""
 " Parent can not edit             Media Queue Requests!"
 msgstr ""
 "Ongeldige actie!\n"
-" Ouder kan mediawachtrijverzoeken niet bewerken!"
+" Ouder kan bibliotheekmediawachtrijverzoeken niet bewerken!"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
@@ -707,7 +911,7 @@ msgstr "Factuur"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_is_follower
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_is_follower
 msgid "Is Follower"
-msgstr "Is volger"
+msgstr "Is een volger"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__issue_date
@@ -717,24 +921,24 @@ msgstr "Uitgiftedatum"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 msgid "Issue Media"
-msgstr "Uitgiftemedia"
+msgstr "Bibliotheekitem uitlenen"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_issue_media
 msgid "Issue Media Wizard"
-msgstr "Mediawizard uitgeven"
+msgstr "Assistent bibliotheekitems uitlenen"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.issue_media_act
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Issue media"
-msgstr "Geef media uit"
+msgstr "Bibliotheekitem uitlenen"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__issue
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_unit__state__issue
 msgid "Issued"
-msgstr "Uitgegeven"
+msgstr "Uitgeleend"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__issued_date
@@ -751,7 +955,7 @@ msgstr "Vandaag uitgegeven"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
 msgid "Journal Entry"
-msgstr "Journaalboeking"
+msgstr "Boeking"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
@@ -795,7 +999,7 @@ msgid "Last Updated on"
 msgstr "Laatst bijgewerkt op"
 
 #. module: openeducat_library
-#: model:ir.module.category,name:openeducat_library.module_category_all_Library
+#: model:ir.module.category,name:openeducat_library.module_category_all_library
 #: model:ir.ui.menu,name:openeducat_library.menu_op_library_root
 #: model:res.groups.privilege,name:openeducat_library.module_privilege_openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_faculty_form_library_inherit
@@ -851,6 +1055,11 @@ msgid "Library Card Types"
 msgstr "Soorten bibliotheekkaarten"
 
 #. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
+msgid "Library Card(s) Barcode"
+msgstr "Bibliotheekkaart(en) Barcode"
+
+#. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_library_card_sub
 msgid "Library Cards"
@@ -877,6 +1086,11 @@ msgid "Lost"
 msgstr "Kwijt"
 
 #. module: openeducat_library
+#: model:ir.module.module,summary:base.module_openeducat_library
+msgid "Manage Library"
+msgstr "Beheer bibliotheek"
+
+#. module: openeducat_library
 #: model:res.groups,name:openeducat_library.group_op_library
 msgid "Manager"
 msgstr "Manager"
@@ -885,7 +1099,7 @@ msgstr "Manager"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Maximum Number of media allowed for %s is : %s"
-msgstr "Het maximale aantal toegestane media voor %s is: %s"
+msgstr "Het maximale aantal toegestane bibliotheekmedia voor %s is: %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
@@ -905,87 +1119,82 @@ msgstr "Het maximale aantal toegestane media voor %s is: %s"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
 msgid "Media"
-msgstr "Media"
-
-#. module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
-msgid "Media :"
-msgstr "Media:"
+msgstr "Bibliotheekmedia"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_author
 #: model:ir.model,name:openeducat_library.model_return_media
 msgid "Media Author"
-msgstr "Media-auteur"
+msgstr "Media-auteur van de bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
 msgid "Media Barcode"
-msgstr "Mediastreepjescode"
+msgstr "Barcode voor bibliotheekmedia"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_media_barcode
 msgid "Media Barcode Report"
-msgstr "Mediabarcoderapport"
+msgstr "Barcoderapport bibliotheekmedia"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media
 msgid "Media Details"
-msgstr "Mediadetails"
+msgstr "Mediadetails van bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_movement
 #: model:mail.template,name:openeducat_library.email_template_media_movement
 msgid "Media Movement"
-msgstr "Mediabeweging"
+msgstr "Bibliotheekmediabeweging"
 
 #. module: openeducat_library
 #: model:mail.template,name:openeducat_library.email_template_media_movement_after
 msgid "Media Movement After Due Date Passed"
-msgstr "Mediabeweging nadat de vervaldatum is verstreken"
+msgstr "Bibliotheekmediaverplaatsing na vervaldatum verstreken"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "Mediaverplaatsingslijn na 1 dag"
+msgstr "Bibliotheekmediaverplaatsingslijn na 1 dag"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "Mediabewegingslijn vóór 1 dagen"
+msgstr "Bibliotheekmediabewegingslijn vóór 1 dagen"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "Aantal mediabewegingslijnen"
+msgstr "Aantal lijnen mediabeweging in bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
 msgid "Media Movements"
-msgstr "Mediabewegingen"
+msgstr "Mediabewegingen in de bibliotheek"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Media Name"
-msgstr "Medianaam"
+msgstr "Medianaam van bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_purchase
 msgid "Media Purchase Request"
-msgstr "Verzoek om media-aankoop"
+msgstr "Bibliotheekmedia-aankoopverzoek"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_purchase_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_request_library_sub
 msgid "Media Purchase Requests"
-msgstr "Aanvragen voor media-aankoop"
+msgstr "Aanvragen voor bibliotheekmedia-aankoop"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__queue_ids
 msgid "Media Queue"
-msgstr "Mediawachtrij"
+msgstr "Mediawachtrij van bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_queue
@@ -995,35 +1204,35 @@ msgstr "Mediawachtrij"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
 msgid "Media Queue Request"
-msgstr "Verzoek om mediawachtrij"
+msgstr "Verzoek om bibliotheekmediawachtrij"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_queue_request_library_sub
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Media Queue Requests"
-msgstr "Mediawachtrijverzoeken"
+msgstr "Mediawachtrijverzoeken voor bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
 #: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
 msgid "Media Reservation"
-msgstr "Mediareservering"
+msgstr "Mediareservering bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_reserve_media
 msgid "Media Reserve"
-msgstr "Mediareservering"
+msgstr "Bibliotheek Mediareserve"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
 msgid "Media Return"
-msgstr "Mediaretour"
+msgstr "Bibliotheekmediaretour"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_tag
 msgid "Media Tags"
-msgstr "Mediatags"
+msgstr "Mediatags van bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_type_view
@@ -1034,7 +1243,7 @@ msgstr "Mediatags"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_type_id
 #: model:ir.ui.menu,name:openeducat_library.menu_media_type
 msgid "Media Type"
-msgstr "Mediatype"
+msgstr "Mediatype bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_unit
@@ -1043,14 +1252,14 @@ msgstr "Mediatype"
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
 msgid "Media Unit"
-msgstr "Media-eenheid"
+msgstr "Bibliotheek media-eenheid"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 msgid "Media Unit can not be returned because it's already: %s"
 msgstr ""
-"Media Unit kan niet worden geretourneerd omdat het al het volgende is: %s"
+"Bibliotheekmedia-eenheid kan niet worden geretourneerd omdat deze al: %s is"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
@@ -1060,13 +1269,14 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_unit_graph
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_unit_pivot
 msgid "Media Units"
-msgstr "Media-eenheden"
+msgstr "Bibliotheekmedia-eenheden"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
-msgstr "Media-eenheid kan niet worden uitgegeven omdat deze al: %s is"
+msgstr ""
+"Bibliotheek Media-eenheid kan niet worden uitgegeven omdat deze al: %s is"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1074,7 +1284,12 @@ msgstr "Media-eenheid kan niet worden uitgegeven omdat deze al: %s is"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_author_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_publisher_form
 msgid "Media(s)"
-msgstr "Media('s)"
+msgstr "Bibliotheekmedia('s)"
+
+#. module: openeducat_library
+#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
+msgid "Media:"
+msgstr "Bibliotheekmedia:"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_error
@@ -1084,7 +1299,7 @@ msgstr "Media('s)"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_has_error
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_has_error
 msgid "Message Delivery error"
-msgstr "Berichtbezorgingsfout"
+msgstr "Bericht afleverfout"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_ids
@@ -1109,7 +1324,7 @@ msgstr "Middelste naam"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Movements"
-msgstr "Bewegingen"
+msgstr "Uitleningen"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__name
@@ -1125,9 +1340,14 @@ msgid "Name"
 msgstr "Naam"
 
 #. module: openeducat_library
+#: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
+msgid "No"
+msgstr "No"
+
+#. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
 msgid "No of Media Allowed"
-msgstr "Aantal media toegestaan"
+msgstr "Aantal toegestane bibliotheekmedia"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
@@ -1162,7 +1382,7 @@ msgstr "Aantal fouten"
 #: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_needaction_counter
 #: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "Aantal berichten waarvoor actie vereist is"
+msgstr "Aantal berichten die actie vereisen"
 
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_issue_media__message_has_error_counter
@@ -1172,12 +1392,17 @@ msgstr "Aantal berichten waarvoor actie vereist is"
 #: model:ir.model.fields,help:openeducat_library.field_op_media_queue__message_has_error_counter
 #: model:ir.model.fields,help:openeducat_library.field_op_media_unit__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "Aantal berichten met bezorgfout"
+msgstr "Aantal berichten met leveringsfout"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_faculty
 msgid "OpenEduCat Faculty"
-msgstr "OpenEduCat-faculteit"
+msgstr "OpenEduCat-leraar"
+
+#. module: openeducat_library
+#: model:ir.module.module,shortdesc:base.module_openeducat_library
+msgid "OpenEduCat Library"
+msgstr "OpenEduCat-bibliotheek"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__partner_id
@@ -1188,7 +1413,7 @@ msgstr "Partner"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__penalty
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Penalty"
-msgstr "Straf"
+msgstr "Boete"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__penalty_amt_per_day
@@ -1279,12 +1504,12 @@ msgstr "Datum van aanvraag"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__request_no
 msgid "Request No."
-msgstr "Verzoek nr."
+msgstr "Verzoeknummer"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_purchase_form
 msgid "Request media"
-msgstr "Media aanvragen"
+msgstr "Bibliotheekmedia aanvragen"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__request
@@ -1324,7 +1549,7 @@ msgstr "De retourdatum kan niet eerder worden ingesteld dan de Uitgiftedatum."
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Return Media"
-msgstr "Retourmedia"
+msgstr "Bibliotheekmedia retourneren"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
@@ -1354,17 +1579,17 @@ msgstr "SMS-bezorgfout"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__name
 msgid "Sequence No"
-msgstr "Volgorde nr"
+msgstr "Volgnummer"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "Serveracties Mediabeweging"
+msgstr "Serveracties Bibliotheek Mediabeweging"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
-msgstr "Serveracties Mediabeweging na 1 dag"
+msgstr "Serveracties Bibliotheekmediabeweging na 1 dag"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1377,11 +1602,12 @@ msgstr "Instellingen"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "Staat"
+msgstr "Provincie / Staat"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__state
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
 msgid "Status"
@@ -1405,6 +1631,7 @@ msgstr "Straat2"
 #: model:ir.model.fields.selection,name:openeducat_library.selection__issue_media__type__student
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_library_card__type__student
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__type__student
+#: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Student"
@@ -1415,23 +1642,23 @@ msgstr "Student"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__type
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__partner_id
 msgid "Student/Faculty"
-msgstr "Student/Faculteit"
+msgstr "Student/leraar"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Student/Faculty Detail"
-msgstr "Gegevens student/faculteit"
+msgstr "Gegevens leerling/leraar"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__subject_ids
 msgid "Subject"
-msgstr "Onderwerp"
+msgstr "Vak"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__subject_ids
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Subjects"
-msgstr "Onderwerpen"
+msgstr "Vakken"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_type_form
@@ -1446,7 +1673,7 @@ msgstr "Label"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__tags
 msgid "Tag(s)"
-msgstr "Label(s)"
+msgstr "Etiket(ten)"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_tag_view
@@ -1466,6 +1693,11 @@ msgstr ""
 "instellingenmenu."
 
 #. module: openeducat_library
+#: model:ir.module.module,description:base.module_openeducat_library
+msgid "This module provide feature of Library Management.\n"
+msgstr "Deze module biedt een functie van Bibliotheekbeheer.\n"
+
+#. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__name
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
@@ -1475,13 +1707,13 @@ msgstr "Titel"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
 msgid "To Date"
-msgstr "Tot op heden"
+msgstr "Einddatum"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/models/media_queue.py:0
 msgid "To Date cannot be set before From Date."
-msgstr "Tot Datum kan niet eerder worden ingesteld dan Vanaf Datum."
+msgstr "Einddatum kan niet vóór de startdatum worden ingesteld."
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__type
@@ -1489,7 +1721,7 @@ msgstr "Tot Datum kan niet eerder worden ingesteld dan Vanaf Datum."
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_library_card_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
 msgid "Type"
-msgstr "Type"
+msgstr "Soort"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__unit_ids
@@ -1511,26 +1743,6 @@ msgid "Users"
 msgstr "Gebruikers"
 
 #. module: openeducat_library
-#: model:ir.model.fields,field_description:openeducat_library.field_issue_media__website_message_ids
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media__website_message_ids
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__website_message_ids
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__website_message_ids
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__website_message_ids
-#: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__website_message_ids
-msgid "Website Messages"
-msgstr "Websiteberichten"
-
-#. module: openeducat_library
-#: model:ir.model.fields,help:openeducat_library.field_issue_media__website_message_ids
-#: model:ir.model.fields,help:openeducat_library.field_op_media__website_message_ids
-#: model:ir.model.fields,help:openeducat_library.field_op_media_movement__website_message_ids
-#: model:ir.model.fields,help:openeducat_library.field_op_media_purchase__website_message_ids
-#: model:ir.model.fields,help:openeducat_library.field_op_media_queue__website_message_ids
-#: model:ir.model.fields,help:openeducat_library.field_op_media_unit__website_message_ids
-msgid "Website communication history"
-msgstr "Communicatiegeschiedenis van websites"
-
-#. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
 msgstr "ZIP"
@@ -1538,56 +1750,26 @@ msgstr "ZIP"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "media"
-msgstr "media"
+msgstr "bibliotheekmedia"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
 msgid "media Issue"
-msgstr "mediaprobleem"
+msgstr "uitleen van bibliotheekartikelen"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
 msgid "media Movement"
-msgstr "mediabeweging"
+msgstr "bibliotheekmediabeweging"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
 msgid "media Queue Request"
-msgstr "Mediawachtrijverzoek"
+msgstr "bibliotheekmedia Wachtrijverzoek"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 msgid "media Units"
-msgstr "media-eenheden"
-
-# module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
-msgid "<strong>Card No:</strong>"
-msgstr "<strong>Kaartnummer:</strong>"
-
-# module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
-msgid "<strong>Issued Date:</strong>"
-msgstr "<strong>Uitgiftedatum:</strong>"
-
-# module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
-msgid "<strong>Name:</strong>"
-msgstr "<strong>Naam:</strong>"
-
-# module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
-msgid "<strong>Type:</strong>"
-msgstr "<strong>Type:</strong>"
-
-# module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
-msgid "Library Card(s) Barcode"
-msgstr "Bibliotheekkaart(en) Barcode"
-
-# module: openeducat_library
-#: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
-msgid "Media:"
-msgstr "Media:"
+msgstr "bibliotheekmedia-eenheden"
