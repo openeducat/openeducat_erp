@@ -1,22 +1,37 @@
 services:
   - type: web
-    name: openeducat-source-app
-    env: python
-    plan: free
+    name: truelearners-openeducat
+    runtime: docker
+    # OpenEduCat lists 4 GB RAM as its minimum. This is a paid Render plan.
+    # Do not deploy until the account owner has reviewed the current price.
+    plan: 1c-4g
     region: oregon
-    # The build command installs all required Python dependencies from the source
-    buildCommand: "pip install -r requirements.txt"
-    # The start command kicks off the Odoo/OpenEduCat binary server engine
-    startCommand: "python3 odoo-bin --http-port=8069"
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /web/login
     envVars:
-      - key: PORT
-        value: 8069
-      # --- Supabase Production Database Credentials ---
+      # Supabase Session Pooler connection. Use the pooler host and username
+      # shown by Supabase; do not use transaction pooling for Odoo.
       - key: HOST
-        value: aws-0-us-east-1.pooler.supabase.com
+        sync: false
       - key: USER
-        value: postgres.mscbtygvlssqimocycnz
+        sync: false
       - key: PASSWORD
-        value: 2FFbXgeEA6WvuBoE
+        sync: false
       - key: PGPORT
-        value: 5432
+        value: "5432"
+      - key: DB_NAME
+        value: postgres
+      - key: RUNNING_ENV
+        value: prod
+
+      # Backblaze B2 S3-compatible endpoint and bucket credentials.
+      - key: B2_ENDPOINT_URL
+        sync: false
+      - key: B2_REGION
+        sync: false
+      - key: B2_BUCKET
+        sync: false
+      - key: B2_ACCESS_KEY_ID
+        sync: false
+      - key: B2_SECRET_ACCESS_KEY
+        sync: false
