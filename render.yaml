@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: openeducat-source-app
+    env: python
+    plan: free
+    region: oregon
+    # The build command installs all required Python dependencies from the source
+    buildCommand: "pip install -r requirements.txt"
+    # The start command kicks off the Odoo/OpenEduCat binary server engine
+    startCommand: "python3 odoo-bin --http-port=8069"
+    envVars:
+      - key: PORT
+        value: 8069
+      # --- Supabase Production Database Credentials ---
+      - key: HOST
+        value: aws-0-us-east-1.pooler.supabase.com
+      - key: USER
+        value: postgres.mscbtygvlssqimocycnz
+      - key: PASSWORD
+        value: 2FFbXgeEA6WvuBoE
+      - key: PGPORT
+        value: 5432
