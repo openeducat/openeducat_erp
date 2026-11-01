@@ -7,6 +7,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 import time
 
 required = [
@@ -41,9 +42,9 @@ server_config["fs_storage.b2"] = {
         "text/css": 0,
     }),
 }
-config_text = io.StringIO()
-server_config.write(config_text)
-os.environ["SERVER_ENV_CONFIG"] = config_text.getvalue()
+server_text = io.StringIO()
+server_config.write(server_text)
+os.environ["SERVER_ENV_CONFIG"] = server_text.getvalue()
 os.environ["PGSSLMODE"] = "require"
 
 db_name = os.environ["DB_NAME"]
@@ -75,25 +76,46 @@ for attempt in range(1, 31):
         print(f"Waiting for Supabase connection ({attempt}/30)...", flush=True)
         time.sleep(5)
 
+# Write the Odoo database credentials to a private, temporary config file.
+# This avoids putting the password in command-line arguments or Git.
 port = os.environ.get("PORT", "10000")
-common = [
-    "odoo",
-    "--database", db_name,
-    "--db-filter", "^" + re.escape(db_name) + "$",
-    "--http-interface", "0.0.0.0",
-    "--http-port", port,
-    "--proxy-mode",
-    "--without-demo=all",
-    "--max-cron-threads=1",
-    "--log-level=info",
-]
+odoo_config = configparser.ConfigParser(interpolation=None)
+odoo_config["options"] = {
+    "db_host": db_host,
+    "db_port": str(db_port),
+    "db_user": db_user,
+    "db_password": db_password,
+    "db_sslmode": "require",
+    "db_name": db_name,
+    "dbfilter": "^" + re.escape(db_name) + "$",
+    "list_db": "False",
+    "http_interface": "0.0.0.0",
+    "http_port": port,
+    "proxy_mode": "True",
+    "without_demo": "all",
+    "max_cron_threads": "1",
+    "log_level": "info",
+}
+config_file = tempfile.NamedTemporaryFile(
+    mode="w", prefix="odoo-render-", suffix=".conf", delete=False
+)
+try:
+    os.chmod(config_file.name, 0o600)
+    odoo_config.write(config_file)
+    config_file.close()
+except Exception:
+    config_file.close()
+    raise
+
+os.environ["ODOO_RC"] = config_file.name
+common = ["odoo", "--config", config_file.name]
 
 # Install the OpenEduCat ERP bundle and the B2 attachment backend on first
 # boot. Odoo leaves already-installed modules alone on later starts.
-init_command = common + [
-    "--init", "openeducat_erp,tl_b2_attachment_storage",
-    "--stop-after-init",
-]
-subprocess.run(init_command, check=True, env=os.environ.copy())
+subprocess.run(
+    common + ["--init", "openeducat_erp,tl_b2_attachment_storage", "--stop-after-init"],
+    check=True,
+    env=os.environ.copy(),
+)
 
 os.execvp(common[0], common)
