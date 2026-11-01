@@ -4,7 +4,7 @@ services:
     runtime: docker
     # OpenEduCat lists 4 GB RAM as its minimum. This is a paid Render plan.
     # Do not deploy until the account owner has reviewed the current price.
-    plan: 1c-4g
+    plan: 2c-4g
     region: oregon
     dockerfilePath: ./Dockerfile
     healthCheckPath: /web/login
@@ -19,6 +19,8 @@ services:
         sync: false
       - key: PGPORT
         value: "5432"
+      - key: PGSSLMODE
+        value: require
       - key: DB_NAME
         value: postgres
       - key: RUNNING_ENV
