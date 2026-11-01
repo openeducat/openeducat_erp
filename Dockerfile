@@ -32,10 +32,11 @@ RUN python3 -m pip install --break-system-packages --no-cache-dir "fsspec[s3]>=2
 # TrueLearners deployment addon. Keep addon folders at the top level.
 COPY --chown=odoo:odoo . /mnt/extra-addons/
 
-COPY --chown=root:root --chmod=755 render-start.sh /usr/local/bin/render-start.sh
+COPY --chown=root:root render-start.py /usr/local/bin/render-start.py
+RUN chmod 755 /usr/local/bin/render-start.py
 
 USER odoo
 
 EXPOSE 10000
 
-CMD ["/usr/local/bin/render-start.sh"]
+CMD ["python3", "/usr/local/bin/render-start.py"]
