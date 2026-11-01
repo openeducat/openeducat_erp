@@ -89,6 +89,7 @@ odoo_config["options"] = {
     "db_name": db_name,
     "dbfilter": "^" + re.escape(db_name) + "$",
     "list_db": "False",
+    "without_demo": "all",
     "http_interface": "0.0.0.0",
     "http_port": port,
     "proxy_mode": "True",
