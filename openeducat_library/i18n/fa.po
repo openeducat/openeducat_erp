@@ -31,7 +31,7 @@ msgstr ""
 #. module: openeducat_library
 #: model:ir.actions.report,print_report_name:openeducat_library.action_report_student_library_card
 msgid "'Library ID Card - %s' % (object.name)"
-msgstr "\"کارت شناسایی کتابخانه - %s\" % (object.name)"
+msgstr "'کارت شناسایی کتابخانه - %s' % (object.name)"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -169,12 +169,12 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>عزیز </p>\n"
+"                                                    <p>دانشجوی گرامی </p>\n"
 "                                                    <strong>\n"
 "                                                         <t t-out=\"object.student_id.name or ''\"/></strong>\n"
-"                                                    <p>شما  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
+"                                                    <p>مهلت امانت:  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
 "                                                         <t t-out=\"object.media_id.name or ''\"/>\n"
-"                                                    </strong> منقضی شده است. لطفا در اسرع وقت آن را برگردانید.\n"
+"                                                    </strong> به پایان رسیده است. لطفا در اسرع وقت آن را برگردانید.\n"
 "                                                    </p>\n"
 "                                                    <p>متشکرم.</p>\n"
 "                                                </td>\n"
@@ -353,25 +353,25 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>عزیز</p>\n"
+"                                                    <p>دانشجوی گرامی</p>\n"
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>شما<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>مهلت امانت: <t t-out=\"object.media_type_id.name or ''\"/>,\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        خواهد شد\n"
+"                                                        —\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
-"                                                            منقضی شود\n"
+"                                                            پایان می‌یابد:\n"
 "                                                            <strong>امروز</strong>\n"
 "                                                        </t>\n"
 "                                                        <t t-else=\"\">\n"
-"                                                            منقضی شود\n"
+"                                                            تا\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.get_diff_day() or ''\"/>\n"
 "                                                            </strong>\n"
-"                                                            روز (روزها).\n"
+"                                                            روز دیگر پایان می‌یابد.\n"
 "                                                        </t>\n"
 "                                                        لطفا در اسرع وقت آن را برگردانید.\n"
 "                                                    </p>\n"
@@ -710,7 +710,7 @@ msgstr "مدت زمان"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "مدت زمان بر حسب تعداد روزهای پیشرو فروش"
+msgstr "مدت زمان بر حسب تعداد روز"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -808,7 +808,7 @@ msgstr "آیا دارای پیام است"
 #: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
 msgid "ID"
-msgstr "ID"
+msgstr "شناسه"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
@@ -949,7 +949,7 @@ msgstr "تاریخ صدور"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Today"
-msgstr "صادر شده امروز"
+msgstr "امروز امانت داده شد"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
@@ -1145,34 +1145,34 @@ msgstr "جزئیات رسانه کتابخانه"
 #: model:ir.model,name:openeducat_library.model_op_media_movement
 #: model:mail.template,name:openeducat_library.email_template_media_movement
 msgid "Media Movement"
-msgstr "جنبش رسانه کتابخانه"
+msgstr "گردش امانت رسانه"
 
 #. module: openeducat_library
 #: model:mail.template,name:openeducat_library.email_template_media_movement_after
 msgid "Media Movement After Due Date Passed"
-msgstr "جنبش رسانه های کتابخانه پس از گذشت تاریخ مقرر"
+msgstr "گردش امانت رسانه پس از گذشت تاریخ مقرر"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "خط جنبش رسانه کتابخانه پس از 1 روز"
+msgstr "سطر گردش امانت رسانه پس از 1 روز"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "خط حرکت رسانه کتابخانه قبل از 1 روز"
+msgstr "سطر گردش امانت رسانه 1 روز قبل"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "تعداد خطوط جنبش رسانه کتابخانه"
+msgstr "تعداد سطرهای گردش امانت رسانه"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
 msgid "Media Movements"
-msgstr "جنبش های رسانه ای کتابخانه ای"
+msgstr "گردش امانت رسانه‌ها"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
@@ -1273,7 +1273,7 @@ msgstr "واحدهای رسانه کتابخانه"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
-msgstr "واحد رسانه کتابخانه نمی تواند صادر شود زیرا قبلاً: %s است"
+msgstr "واحد رسانه کتابخانه را نمی توان امانت داد زیرا قبلاً: %s است"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1339,7 +1339,7 @@ msgstr "نام"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "خیر"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1415,7 +1415,7 @@ msgstr "جریمه"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__penalty_amt_per_day
 msgid "Penalty Amount/Day"
-msgstr "مبلغ / روز جریمه"
+msgstr "مبلغ جریمه / روز"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__partner_id
@@ -1546,7 +1546,7 @@ msgstr "تاریخ بازگشت را نمی توان قبل از تاریخ صد
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Return Media"
-msgstr "رسانه کتابخانه بازگشت"
+msgstr "بازگرداندن رسانه کتابخانه"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
@@ -1561,7 +1561,7 @@ msgstr "انجام شد"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Returned Today"
-msgstr "امروز برگشت"
+msgstr "امروز بازگردانده شد"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
@@ -1581,12 +1581,12 @@ msgstr "شماره دنباله"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "اقدامات سرور جنبش رسانه کتابخانه"
+msgstr "اقدامات سرور: گردش امانت رسانه"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
-msgstr "اقدامات سرور جنبش رسانه کتابخانه پس از 1 روز"
+msgstr "اقدامات سرور: گردش امانت رسانه پس از 1 روز"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1599,7 +1599,7 @@ msgstr "تنظیمات"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "استان"
+msgstr "وضعیت"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
@@ -1665,7 +1665,7 @@ msgstr "دروس"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_tag_tree
 msgid "Tag"
-msgstr "برچسب بزنید"
+msgstr "برچسب"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__tags
@@ -1686,7 +1686,7 @@ msgid ""
 " install a chart of account from Accounting app, settings menu."
 msgstr ""
 "هیچ حساب درآمدی برای این محصول تعریف نشده است: \"%s\". ممکن است مجبور شوید "
-"یک نمودار حساب را از برنامه حسابداری، منوی تنظیمات نصب کنید."
+"سرفصل حساب‌ها را از برنامه حسابداری، منوی تنظیمات نصب کنید."
 
 #. module: openeducat_library
 #: model:ir.module.module,description:base.module_openeducat_library
@@ -1741,7 +1741,7 @@ msgstr "کاربران"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "کد پستی"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1758,7 +1758,7 @@ msgstr "امانت اقلام کتابخانه"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
 msgid "media Movement"
-msgstr "جنبش رسانه های کتابخانه ای"
+msgstr "گردش امانت رسانه"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form

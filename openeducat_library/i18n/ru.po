@@ -31,7 +31,7 @@ msgstr ""
 #. module: openeducat_library
 #: model:ir.actions.report,print_report_name:openeducat_library.action_report_student_library_card
 msgid "'Library ID Card - %s' % (object.name)"
-msgstr "'Удостоверение личности библиотеки - %s' % (object.name)"
+msgstr "'Читательский билет - %s' % (object.name)"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -46,7 +46,7 @@ msgstr "<strong>Дата выпуска:</strong>"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
 msgid "<strong>Name:</strong>"
-msgstr "<strong>Название:</strong>"
+msgstr "<strong>Имя:</strong>"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -353,17 +353,17 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>Дорогой</p>\n"
+"                                                    <p>Уважаемый(ая)</p>\n"
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>Твой<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>Ваш материал <t t-out=\"object.media_type_id.name or ''\"/>,\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        воля\n"
+"                                                        срок выдачи\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
-"                                                            истекать\n"
+"                                                            истекает\n"
 "                                                            <strong>сегодня.</strong>\n"
 "                                                        </t>\n"
 "                                                        <t t-else=\"\">\n"
@@ -432,7 +432,7 @@ msgstr "Принять"
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__accept
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__accept
 msgid "Accepted"
-msgstr "Принял"
+msgstr "Принято"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_needaction
@@ -466,7 +466,7 @@ msgstr "Фактическая дата возврата"
 #: code:addons/openeducat_library/models/media_movement.py:0
 msgid "Actual Return Date cannot be set before Issued Date"
 msgstr ""
-"Фактическая дата возврата не может быть установлена ​​раньше даты выдачи."
+"Фактическая дата возврата не может быть установлена раньше даты выдачи."
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
@@ -711,9 +711,7 @@ msgstr "Длительность"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr ""
-"Продолжительность с точки зрения количества дней продаж (потенциальных "
-"клиентов)"
+msgstr "Продолжительность в количестве дней выдачи"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -853,7 +851,7 @@ msgstr "Если отмечено, некоторые сообщения не б
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__internal_code
 msgid "Internal Code"
-msgstr "Внутренний кодекс"
+msgstr "Внутренний код"
 
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_internal_cod
@@ -953,7 +951,7 @@ msgstr "Дата выпуска"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Today"
-msgstr "Выпущено сегодня"
+msgstr "Выдано сегодня"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
@@ -1122,13 +1120,13 @@ msgstr "Максимальное количество носителей биб�
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
 msgid "Media"
-msgstr "Библиотека СМИ"
+msgstr "Библиотечный материал"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_author
 #: model:ir.model,name:openeducat_library.model_return_media
 msgid "Media Author"
-msgstr "Библиотечный медиа-автор"
+msgstr "Автор материала"
 
 #. module: openeducat_library
 #: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
@@ -1149,34 +1147,34 @@ msgstr "Подробности о носителях библиотеки"
 #: model:ir.model,name:openeducat_library.model_op_media_movement
 #: model:mail.template,name:openeducat_library.email_template_media_movement
 msgid "Media Movement"
-msgstr "Библиотечное медиа-движение"
+msgstr "Выдача материала"
 
 #. module: openeducat_library
 #: model:mail.template,name:openeducat_library.email_template_media_movement_after
 msgid "Media Movement After Due Date Passed"
-msgstr "Движение библиотечных СМИ после истечения установленного срока"
+msgstr "Выдача материала после истечения срока"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "Линия движения медиа-библиотеки через 1 день"
+msgstr "Строка выдачи материала через 1 день"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "Линия движения средств массовой информации в библиотеке до 1 дня"
+msgstr "Строка выдачи материала за 1 день"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "Подсчет линий движения медиафайлов в библиотеке"
+msgstr "Количество строк выдачи материалов"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
 msgid "Media Movements"
-msgstr "Библиотечные медиа-движения"
+msgstr "Выдачи материалов"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
@@ -1255,13 +1253,13 @@ msgstr "Тип носителя библиотеки"
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
 msgid "Media Unit"
-msgstr "Медиа-отдел библиотеки"
+msgstr "Экземпляр материала"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 msgid "Media Unit can not be returned because it's already: %s"
-msgstr "Медиа-модуль библиотеки не может быть возвращен, поскольку он уже: %s"
+msgstr "Экземпляр материала не может быть возвращён, поскольку он уже: %s"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
@@ -1277,7 +1275,7 @@ msgstr "Медиа-единицы библиотеки"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
-msgstr "Медиа-модуль библиотеки не может быть выдан, поскольку он уже: %s"
+msgstr "Экземпляр материала не может быть выдан, поскольку он уже: %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1290,7 +1288,7 @@ msgstr "Библиотечные носители"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
 msgid "Media:"
-msgstr "Библиотечные СМИ:"
+msgstr "Материал:"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_error
@@ -1343,7 +1341,7 @@ msgstr "Название"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "Нет"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1353,7 +1351,7 @@ msgstr "Разрешенное количество библиотечных н�
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
 msgid "Number"
-msgstr "Число"
+msgstr "Номер"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_needaction_counter
@@ -1543,14 +1541,14 @@ msgstr "Дата возвращения"
 #: code:addons/openeducat_library/models/media_movement.py:0
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Return Date cannot be set before Issued Date."
-msgstr "Дата возврата не может быть установлена ​​раньше даты выдачи."
+msgstr "Дата возврата не может быть установлена раньше даты выдачи."
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.return_media_act
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Return Media"
-msgstr "Возврат медиа-библиотеки"
+msgstr "Возврат материала"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
@@ -1560,12 +1558,12 @@ msgstr "Возвращено"
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return_done
 msgid "Returned Done"
-msgstr "Возвращено Готово"
+msgstr "Возврат завершён"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Returned Today"
-msgstr "Вернулся сегодня"
+msgstr "Возвращено сегодня"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
@@ -1585,12 +1583,12 @@ msgstr "Порядковый номер"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "Библиотека действий сервера. Движение мультимедиа"
+msgstr "Действия сервера: выдача материала"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
-msgstr "Действия сервера Библиотека Движение СМИ через 1 день"
+msgstr "Действия сервера: выдача материала через 1 день"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1702,7 +1700,7 @@ msgstr "Этот модуль предоставляет функцию упра
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Title"
-msgstr "Заголовок"
+msgstr "Название"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
@@ -1713,7 +1711,7 @@ msgstr "Дата окончания"
 #. odoo-python
 #: code:addons/openeducat_library/models/media_queue.py:0
 msgid "To Date cannot be set before From Date."
-msgstr "Дата окончания не может быть установлена ​​раньше даты начала."
+msgstr "Дата окончания не может быть установлена раньше даты начала."
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__type
@@ -1745,7 +1743,7 @@ msgstr "Пользователи"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "Почтовый индекс"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1755,14 +1753,14 @@ msgstr "медиа библиотеки"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
 msgid "media Issue"
-msgstr "выдача библиотечных материалов в аренду"
+msgstr "выдача материала"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
 msgid "media Movement"
-msgstr "библиотека СМИ Движение"
+msgstr "выдача материала"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
@@ -1772,4 +1770,4 @@ msgstr "Запрос очереди медиафайлов библиотеки"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 msgid "media Units"
-msgstr "библиотечные носители Единицы"
+msgstr "экземпляры материалов"

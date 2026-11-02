@@ -361,17 +361,17 @@ msgstr ""
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        将要\n"
+"                                                        将\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
-"                                                            即将到期\n"
-"                                                            <strong>今天。</strong>\n"
+"                                                            于\n"
+"                                                            <strong>今天</strong>到期。\n"
 "                                                        </t>\n"
 "                                                        <t t-else=\"\">\n"
-"                                                            到期于\n"
+"                                                            在\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.get_diff_day() or ''\"/>\n"
 "                                                            </strong>\n"
-"                                                            天。\n"
+"                                                            天后到期。\n"
 "                                                        </t>\n"
 "                                                        请尽快归还。\n"
 "                                                    </p>\n"
@@ -432,7 +432,7 @@ msgstr "接受"
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_purchase__state__accept
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_queue__state__accept
 msgid "Accepted"
-msgstr "公认"
+msgstr "已接受"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_needaction
@@ -459,13 +459,13 @@ msgstr "有效"
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__actual_return_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Actual Return Date"
-msgstr "实际返回日期"
+msgstr "实际归还日期"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/models/media_movement.py:0
 msgid "Actual Return Date cannot be set before Issued Date"
-msgstr "实际归还日期不能早于发行日期"
+msgstr "实际归还日期不能早于借出日期"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
@@ -573,7 +573,7 @@ msgstr "卡条码"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
 msgid "Card Holder"
-msgstr "卡夹"
+msgstr "持卡人"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__library_card_type_id
@@ -593,7 +593,7 @@ msgstr "代码"
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_type_unique_media_type_code
 msgid "Code should be unique per media type!"
-msgstr "每个库媒体类型的代码应该是唯一的！"
+msgstr "每个图书馆媒体类型的代码应该是唯一的！"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__company_id
@@ -710,7 +710,7 @@ msgstr "持续时间"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "销售线索（潜在客户）天数的持续时间"
+msgstr "以提前天数计算的持续时间"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -854,7 +854,7 @@ msgstr "内码"
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_internal_cod
 msgid "Internal Code must be unique per media!"
-msgstr "每个库媒体的内码必须是唯一的！"
+msgstr "每个图书馆媒体的内部代码必须是唯一的！"
 
 #. module: openeducat_library
 #. odoo-python
@@ -874,7 +874,7 @@ msgid ""
 " Parent can not create             Media Queue Requests!"
 msgstr ""
 "无效动作！\n"
-" 父级无法创建库媒体队列请求！"
+" 家长无法创建图书馆媒体队列请求！"
 
 #. module: openeducat_library
 #. odoo-python
@@ -894,7 +894,7 @@ msgid ""
 " Parent can not edit             Media Queue Requests!"
 msgstr ""
 "无效动作！\n"
-" 家长无法编辑库媒体队列请求！"
+" 家长无法编辑图书馆媒体队列请求！"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
@@ -943,12 +943,12 @@ msgstr "已借出"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__issued_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Date"
-msgstr "签发日期"
+msgstr "借出日期"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Today"
-msgstr "今天发布"
+msgstr "今天借出"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
@@ -1097,7 +1097,7 @@ msgstr "经理"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Maximum Number of media allowed for %s is : %s"
-msgstr "%s 允许的最大库介质数量为：%s"
+msgstr "%s 允许的最大图书馆媒体数量为：%s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
@@ -1144,39 +1144,39 @@ msgstr "图书馆媒体详情"
 #: model:ir.model,name:openeducat_library.model_op_media_movement
 #: model:mail.template,name:openeducat_library.email_template_media_movement
 msgid "Media Movement"
-msgstr "图书馆媒体运动"
+msgstr "图书馆媒体借还记录"
 
 #. module: openeducat_library
 #: model:mail.template,name:openeducat_library.email_template_media_movement_after
 msgid "Media Movement After Due Date Passed"
-msgstr "截止日期过后图书馆媒体动态"
+msgstr "截止日期过后图书馆媒体借还记录"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "1 天后图书馆媒体移动线"
+msgstr "1 天后图书馆媒体借还行"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "1天前图书馆媒体动线"
+msgstr "1 天前图书馆媒体借还行"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "图书馆媒体移动线路数"
+msgstr "图书馆媒体借还行数"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
 msgid "Media Movements"
-msgstr "图书馆媒体运动"
+msgstr "图书馆媒体借还记录"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Media Name"
-msgstr "库媒体名称"
+msgstr "图书馆媒体名称"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_purchase
@@ -1192,7 +1192,7 @@ msgstr "图书馆媒体购买请求"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__queue_ids
 msgid "Media Queue"
-msgstr "库媒体队列"
+msgstr "图书馆媒体队列"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_queue
@@ -1202,14 +1202,14 @@ msgstr "库媒体队列"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
 msgid "Media Queue Request"
-msgstr "库媒体队列请求"
+msgstr "图书馆媒体队列请求"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_queue_request_library_sub
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Media Queue Requests"
-msgstr "库媒体队列请求"
+msgstr "图书馆媒体队列请求"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
@@ -1220,12 +1220,12 @@ msgstr "图书馆媒体预订"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_reserve_media
 msgid "Media Reserve"
-msgstr "图书馆媒体储备"
+msgstr "图书馆媒体预约"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
 msgid "Media Return"
-msgstr "图书馆媒体回报"
+msgstr "图书馆媒体归还"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_tag
@@ -1250,13 +1250,13 @@ msgstr "图书馆媒体类型"
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
 msgid "Media Unit"
-msgstr "图书馆媒体部"
+msgstr "图书馆媒体单位"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 msgid "Media Unit can not be returned because it's already: %s"
-msgstr "无法退回库媒体单元，因为它已经是：%s"
+msgstr "无法归还图书馆媒体单位，因为它已经是：%s"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
@@ -1272,7 +1272,7 @@ msgstr "图书馆媒体单位"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
-msgstr "无法发行图书馆媒体单元，因为它已经： %s"
+msgstr "无法借出图书馆媒体单位，因为它已经是： %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1338,7 +1338,7 @@ msgstr "名称"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "否"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1531,21 +1531,21 @@ msgstr "已预约"
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Return Date"
-msgstr "返回日期"
+msgstr "归还日期"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/models/media_movement.py:0
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Return Date cannot be set before Issued Date."
-msgstr "返回日期不能设置在发行日期之前。"
+msgstr "归还日期不能设置在借出日期之前。"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.return_media_act
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Return Media"
-msgstr "返回图书馆媒体"
+msgstr "归还图书馆媒体"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
@@ -1560,7 +1560,7 @@ msgstr "已归还"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Returned Today"
-msgstr "今天返回"
+msgstr "今天归还"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
@@ -1580,12 +1580,12 @@ msgstr "序号"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "服务器操作库媒体移动"
+msgstr "服务器操作：图书馆媒体借还"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
-msgstr "1 天后服务器操作库媒体移动"
+msgstr "服务器操作：1 天后图书馆媒体借还"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1598,7 +1598,7 @@ msgstr "设置"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "省/州"
+msgstr "状态"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
@@ -1738,7 +1738,7 @@ msgstr "用户"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "邮政编码"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1755,7 +1755,7 @@ msgstr "图书馆物品借阅"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
 msgid "media Movement"
-msgstr "图书馆媒体运动"
+msgstr "图书馆媒体借还记录"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form

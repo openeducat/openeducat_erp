@@ -169,10 +169,10 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>Caro </p>\n"
+"                                                    <p>Gentile </p>\n"
 "                                                    <strong>\n"
 "                                                         <t t-out=\"object.student_id.name or ''\"/></strong>\n"
-"                                                    <p>Tuo  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
+"                                                    <p>Il tuo  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
 "                                                         <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                    </strong> è scaduto. Si prega di restituirlo il prima possibile.\n"
 "                                                    </p>\n"
@@ -353,21 +353,21 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>Caro</p>\n"
+"                                                    <p>Gentile</p>\n"
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>Tuo<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>Il tuo <t t-out=\"object.media_type_id.name or ''\"/>,\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        Volere\n"
+"                                                        scadrà\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
-"                                                            essere in scadenza\n"
-"                                                            <strong>Oggi.</strong>\n"
+"                                                            \n"
+"                                                            <strong>oggi.</strong>\n"
 "                                                        </t>\n"
 "                                                        <t t-else=\"\">\n"
-"                                                            scadono entro\n"
+"                                                            tra\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.get_diff_day() or ''\"/>\n"
 "                                                            </strong>\n"
@@ -554,13 +554,13 @@ msgstr "Codice a barre"
 msgid "Barcode must be unique per Media unit!"
 msgstr ""
 "Il codice a barre deve essere univoco per ogni unità multimediale della "
-"libreria!"
+"biblioteca!"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 msgid "Can't return media."
-msgstr "Impossibile restituire i supporti della libreria."
+msgstr "Impossibile restituire i supporti della biblioteca."
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.issue_media_form
@@ -597,7 +597,7 @@ msgstr "Codice"
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_type_unique_media_type_code
 msgid "Code should be unique per media type!"
-msgstr "Il codice deve essere univoco per tipo di supporto della libreria!"
+msgstr "Il codice deve essere univoco per tipo di supporto della biblioteca!"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__company_id
@@ -714,9 +714,7 @@ msgstr "Durata"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr ""
-"Durata in termini di numero di giorni di lead di vendita (potenziali "
-"clienti)"
+msgstr "Durata espressa in numero di giorni"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -862,7 +860,7 @@ msgstr "Codice interno"
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unique_name_internal_cod
 msgid "Internal Code must be unique per media!"
 msgstr ""
-"Il codice interno deve essere univoco per ogni supporto della libreria!"
+"Il codice interno deve essere univoco per ogni supporto della biblioteca!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -872,7 +870,7 @@ msgid ""
 " Parent can not create             Media Purchase Requests!"
 msgstr ""
 "Azione non valida!\n"
-" Il genitore non può creare richieste di acquisto di contenuti multimediali della libreria!"
+" Il genitore non può creare richieste di acquisto di contenuti multimediali della biblioteca!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -882,7 +880,7 @@ msgid ""
 " Parent can not create             Media Queue Requests!"
 msgstr ""
 "Azione non valida!\n"
-" Il genitore non può creare richieste di coda multimediale nella libreria!"
+" Il genitore non può creare richieste di coda multimediale nella biblioteca!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -892,7 +890,7 @@ msgid ""
 " Parent can not edit             Media Purchase Requests!"
 msgstr ""
 "Azione non valida!\n"
-" Il genitore non può modificare le richieste di acquisto di contenuti multimediali della libreria!"
+" Il genitore non può modificare le richieste di acquisto di contenuti multimediali della biblioteca!"
 
 #. module: openeducat_library
 #. odoo-python
@@ -902,7 +900,7 @@ msgid ""
 " Parent can not edit             Media Queue Requests!"
 msgstr ""
 "Azione non valida!\n"
-" Il genitore non può modificare le richieste di coda multimediale della libreria!"
+" Il genitore non può modificare le richieste di coda multimediale della biblioteca!"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__invoice_id
@@ -956,7 +954,7 @@ msgstr "Data di emissione"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Today"
-msgstr "Pubblicato oggi"
+msgstr "Prestato oggi"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
@@ -1096,7 +1094,7 @@ msgstr "Perduto"
 #. module: openeducat_library
 #: model:ir.module.module,summary:base.module_openeducat_library
 msgid "Manage Library"
-msgstr "Gestisci libreria"
+msgstr "Gestisci biblioteca"
 
 #. module: openeducat_library
 #: model:res.groups,name:openeducat_library.group_op_library
@@ -1107,7 +1105,8 @@ msgstr "Manager"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Maximum Number of media allowed for %s is : %s"
-msgstr "Il numero massimo di supporti della libreria consentiti per %s è: %s"
+msgstr ""
+"Il numero massimo di supporti della biblioteca consentiti per %s è: %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__media_id
@@ -1127,7 +1126,7 @@ msgstr "Il numero massimo di supporti della libreria consentiti per %s è: %s"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_tree
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_form_library_inherit
 msgid "Media"
-msgstr "Biblioteca multimediale"
+msgstr "Supporto della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_author
@@ -1138,17 +1137,17 @@ msgstr "Autore multimediale della biblioteca"
 #. module: openeducat_library
 #: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
 msgid "Media Barcode"
-msgstr "Codice a barre multimediale della libreria"
+msgstr "Codice a barre dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_media_barcode
 msgid "Media Barcode Report"
-msgstr "Rapporto sui codici a barre dei supporti della libreria"
+msgstr "Rapporto sui codici a barre dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media
 msgid "Media Details"
-msgstr "Dettagli multimediali della libreria"
+msgstr "Dettagli dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_movement
@@ -1166,18 +1165,18 @@ msgstr ""
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "Linea di movimento dei media della libreria dopo 1 giorno"
+msgstr "Riga di movimento dei supporti della biblioteca dopo 1 giorno"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "Linea di movimento dei media della libreria prima di 1 giorni"
+msgstr "Riga di movimento dei supporti della biblioteca prima di 1 giorno"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "Conteggio righe di movimento multimediale della libreria"
+msgstr "Conteggio righe di movimento dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
@@ -1188,7 +1187,7 @@ msgstr "Movimenti dei media delle biblioteche"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Media Name"
-msgstr "Nome del supporto della libreria"
+msgstr "Nome del supporto della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_purchase
@@ -1204,7 +1203,7 @@ msgstr "Richieste di acquisto di supporti della biblioteca"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__queue_ids
 msgid "Media Queue"
-msgstr "Coda multimediale della libreria"
+msgstr "Coda dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_queue
@@ -1214,14 +1213,14 @@ msgstr "Coda multimediale della libreria"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
 msgid "Media Queue Request"
-msgstr "Richiesta coda multimediale della libreria"
+msgstr "Richiesta di coda dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_queue_request_library_sub
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
 msgid "Media Queue Requests"
-msgstr "Richieste di coda multimediale della libreria"
+msgstr "Richieste di coda dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
@@ -1242,7 +1241,7 @@ msgstr "Restituzione dei supporti della biblioteca"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_tag
 msgid "Media Tags"
-msgstr "Tag multimediali della libreria"
+msgstr "Etichette dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_type_view
@@ -1253,7 +1252,7 @@ msgstr "Tag multimediali della libreria"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__media_type_id
 #: model:ir.ui.menu,name:openeducat_library.menu_media_type
 msgid "Media Type"
-msgstr "Tipo di supporto della libreria"
+msgstr "Tipo di supporto della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_media_unit
@@ -1269,7 +1268,8 @@ msgstr "Unità multimediale della Biblioteca"
 #: code:addons/openeducat_library/wizards/return_media.py:0
 msgid "Media Unit can not be returned because it's already: %s"
 msgstr ""
-"Impossibile restituire l'unità multimediale della libreria perché è già: %s"
+"Impossibile restituire l'unità multimediale della biblioteca perché è già: "
+"%s"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
@@ -1286,7 +1286,8 @@ msgstr "Unità multimediali della biblioteca"
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
 msgstr ""
-"L'unità multimediale della libreria non può essere emessa perché è già: %s"
+"L'unità multimediale della biblioteca non può essere prestata perché è già: "
+"%s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1357,7 +1358,7 @@ msgstr "No"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
 msgid "No of Media Allowed"
-msgstr "Numero di supporti della libreria consentiti"
+msgstr "Numero di supporti della biblioteca consentiti"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
@@ -1561,7 +1562,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Return Media"
-msgstr "Restituisci i supporti della libreria"
+msgstr "Restituisci i supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
@@ -1571,7 +1572,7 @@ msgstr "Restituito"
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return_done
 msgid "Returned Done"
-msgstr "Restituito Fatto"
+msgstr "Restituzione completata"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1596,13 +1597,13 @@ msgstr "Numero di sequenza"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "Movimento multimediale della libreria delle azioni del server"
+msgstr "Azioni del server: movimento dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
 msgstr ""
-"Movimento multimediale della libreria delle azioni del server dopo 1 giorno"
+"Azioni del server: movimento dei supporti della biblioteca dopo 1 giorno"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1615,7 +1616,7 @@ msgstr "Impostazioni"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "Provincia"
+msgstr "Stato"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
@@ -1758,7 +1759,7 @@ msgstr "Utenti"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "CAP"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1780,7 +1781,7 @@ msgstr "Movimento dei media bibliotecari"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
 msgid "media Queue Request"
-msgstr "Richiesta coda multimediale della libreria"
+msgstr "Richiesta di coda dei supporti della biblioteca"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search

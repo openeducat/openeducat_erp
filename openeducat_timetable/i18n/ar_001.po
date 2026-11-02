@@ -20,13 +20,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 msgid "%(actor)s added: %(names)s"
-msgstr "%(actor)s وأضاف: %(names)s"
+msgstr "%(actor)s أضاف: %(names)s"
 
 #. module: openeducat_timetable
 #. odoo-python
 #: code:addons/openeducat_timetable/models/timetable.py:0
 msgid "%(actor)s removed: %(names)s"
-msgstr "%(actor)s تمت الإزالة: %(names)s"
+msgstr "%(actor)s أزال: %(names)s"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
@@ -280,7 +280,7 @@ msgstr ""
 "                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                                <tr>\n"
 "                                                    <td valign=\"middle\">\n"
-"                                                        <span style=\"font-size: 10px;\">تفاصيل الجلسة</span>\n"
+"                                                        <span style=\"font-size: 10px;\">تفاصيل الحصة</span>\n"
 "                                                        <br/>\n"
 "                                                    </td>\n"
 "                                                    <td valign=\"middle\" align=\"right\">\n"
@@ -308,7 +308,7 @@ msgstr ""
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                موضوع المدرسة:\n"
+"                                                                المادة:\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.subject_id.name\"/>\n"
 "                                                                </span>\n"
@@ -320,13 +320,13 @@ msgstr ""
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                مجموعة الطلاب:\n"
+"                                                                الدفعة:\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.batch_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                الفصل الدراسي:\n"
+"                                                                القاعة الدراسية:\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.classroom_id.name\"/>\n"
 "                                                                </span>\n"
@@ -403,12 +403,12 @@ msgstr ""
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__am
 msgid "AM"
-msgstr "AM"
+msgstr "صباحاً"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
 msgid "AM/PM"
-msgstr "صباحا/مساءا"
+msgstr "صباحًا/مساءً"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction
@@ -439,7 +439,7 @@ msgstr "عدد المرفقات"
 #. module: openeducat_timetable
 #: model:ir.actions.server,name:openeducat_timetable.action_backfill_op_session_student_ids
 msgid "Backfill Students from Batch"
-msgstr "ردم الطلاب من مجموعة الطلاب"
+msgstr "تعبئة الطلاب من الدفعة"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__batch_id
@@ -688,7 +688,7 @@ msgstr "إنشاء تقرير الجلسات"
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_gen_time_table_line
 msgid "Generate Time Table Lines"
-msgstr "إنشاء خطوط جدول الفصل"
+msgstr "إنشاء سطور الجدول الدراسي"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_time_table_report
@@ -732,7 +732,7 @@ msgstr "ساعات"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__id
 msgid "ID"
-msgstr "ID"
+msgstr "المُعرف"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
@@ -823,7 +823,7 @@ msgstr "الاسم"
 #: model:res.groups.privilege,placeholder:openeducat_timetable.module_privilege_openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
 msgid "No"
-msgstr "No"
+msgstr "لا"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction_counter
@@ -858,7 +858,7 @@ msgstr "جدول دروس OpenEduCat"
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__pm
 msgid "PM"
-msgstr "PM"
+msgstr "مساءً"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_op_timing
@@ -982,7 +982,7 @@ msgstr "عدد الجلسات"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_tree
 msgid "Session Line"
-msgstr "خط الجلسة"
+msgstr "سطر الحصة"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
@@ -1033,7 +1033,7 @@ msgstr "وقت البدء"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "State"
-msgstr "الولاية"
+msgstr "الحالة"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__state
@@ -1085,7 +1085,7 @@ msgstr "نظام"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_form
 msgid "Table Line"
-msgstr "خط الجدول"
+msgstr "سطر الجدول"
 
 #. module: openeducat_timetable
 #: model:ir.module.module,description:base.module_openeducat_timetable
@@ -1108,42 +1108,42 @@ msgstr "الجدول الدراسي"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines
 msgid "Time Table Lines"
-msgstr "خطوط الجدول الدراسي"
+msgstr "سطور الجدول الدراسي"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_1
 msgid "Time Table Lines1"
-msgstr "خطوط الجدول الدراسي1"
+msgstr "سطور الجدول الدراسي1"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_2
 msgid "Time Table Lines2"
-msgstr "خطوط الجدول الدراسي2"
+msgstr "سطور الجدول الدراسي2"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_3
 msgid "Time Table Lines3"
-msgstr "خطوط الجدول الدراسي3"
+msgstr "سطور الجدول الدراسي3"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_4
 msgid "Time Table Lines4"
-msgstr "خطوط الجدول الدراسي4"
+msgstr "سطور الجدول الدراسي4"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_5
 msgid "Time Table Lines5"
-msgstr "خطوط الجدول الدراسي5"
+msgstr "سطور الجدول الدراسي5"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_6
 msgid "Time Table Lines6"
-msgstr "خطوط الجدول الدراسي6"
+msgstr "سطور الجدول الدراسي6"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_7
 msgid "Time Table Lines7"
-msgstr "خطوط الجدول الدراسي7"
+msgstr "سطور الجدول الدراسي7"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
@@ -1170,12 +1170,12 @@ msgstr "الجدول الدراسي"
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_student_generate
 msgid "Timetable Student Report"
-msgstr "تقرير الطالب الجدول الدراسي"
+msgstr "تقرير الجدول الدراسي للطالب"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_report_openeducat_timetable_report_timetable_teacher_generate
 msgid "Timetable Teacher Report"
-msgstr "تقرير المعلم جدول الفصل"
+msgstr "تقرير الجدول الدراسي للمدرس"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__timing_id
@@ -1266,4 +1266,4 @@ msgstr "لا يمكنك إنشاء جلسة مع نفس المعلم في نفس
 #. module: openeducat_timetable
 #: model:mail.template,subject:openeducat_timetable.session_details_changes
 msgid "{{ object.get_subject() }}"
-msgstr ""
+msgstr "{{ object.get_subject() }}"

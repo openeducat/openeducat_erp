@@ -59,7 +59,7 @@ msgstr "<strong>Egzamino pavadinimas</strong>"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "<strong>Hall Ticket</strong>"
-msgstr "<strong>Laikymo į egzaminą kortelė</strong>"
+msgstr "<strong>Leidimas laikyti egzaminą</strong>"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -228,7 +228,7 @@ msgstr "Kontaktas"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_graph_view
 msgid "Count"
-msgstr "Skaičiuoti"
+msgstr "Skaičius"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__course_id
@@ -377,7 +377,7 @@ msgstr "Įveskite tinkamus pažymius!"
 #. odoo-python
 #: code:addons/openeducat_exam/models/marksheet_register.py:0
 msgid "Enter proper pass or fail!"
-msgstr "Įveskite tinkamą leidimą arba nesėkmę!"
+msgstr "Įveskite tinkamą rezultatą: išlaikė arba neišlaikė!"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_session__evaluation_type
@@ -644,12 +644,12 @@ msgstr "Įvykęs"
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_form
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_held_exam_form
 msgid "Held Exam"
-msgstr "Laikė egzaminą"
+msgstr "Įvykęs egzaminas"
 
 #. module: openeducat_exam
 #: model:ir.actions.act_window,name:openeducat_exam.act_open_op_held_exam_view
 msgid "Held Exam Wizard"
-msgstr "Laikė egzaminų padėjėjas"
+msgstr "Įvykusio egzamino asistentas"
 
 #. module: openeducat_exam
 #: model:ir.module.category,description:openeducat_exam.module_category_all_op_exam
@@ -843,7 +843,7 @@ msgstr "Minimali procentinė dalis neturi būti didesnė už didžiausią procen
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "Month/Year of Passing"
-msgstr "Praėjimo mėnuo/metai"
+msgstr "Išlaikymo mėnuo/metai"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__name
@@ -856,7 +856,7 @@ msgstr "Pavadinimas"
 #. module: openeducat_exam
 #: model:res.groups.privilege,placeholder:openeducat_exam.module_category_openeducat_exam
 msgid "No"
-msgstr "No"
+msgstr "Ne"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_room__capacity
@@ -915,7 +915,7 @@ msgstr "Gautas pažymių balas"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "Obtained Marks"
-msgstr "Gavo pažymius"
+msgstr "Gauti pažymiai"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
@@ -937,7 +937,7 @@ msgstr "Išlaikė"
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__min_marks
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_marksheet_report
 msgid "Passing Marks"
-msgstr "Išlaikyti pažymius"
+msgstr "Išlaikymo pažymiai"
 
 #. module: openeducat_exam
 #. odoo-python
@@ -967,7 +967,7 @@ msgstr "Įveskite esamo mokinio pažymius nuo 0 iki %d."
 #. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
 msgid "Please Enter both Room And student"
-msgstr "Įeikite į kambarį ir studentą"
+msgstr "Įveskite ir patalpą, ir studentą"
 
 #. module: openeducat_exam
 #: model:ir.model.fields.selection,name:openeducat_exam.selection__op_exam_attendees__status__present
@@ -1070,8 +1070,7 @@ msgstr "Rezultatai įvesti"
 #. odoo-python
 #: code:addons/openeducat_exam/models/exam.py:0
 msgid "Results can only be updated for exams in 'Held' state."
-msgstr ""
-"Tik egzaminų, kurių būsena yra „Sulaikyta“, rezultatus galima atnaujinti."
+msgstr "Rezultatus galima atnaujinti tik egzaminų, kurių būsena yra „Įvykęs“."
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam_attendees__room_id
@@ -1092,7 +1091,7 @@ msgstr "Kambarių paskirstymas"
 #. odoo-python
 #: code:addons/openeducat_exam/wizard/room_distribution.py:0
 msgid "Room capacity must be greater than total number of student"
-msgstr "Kambario tūris turi būti didesnis nei bendras studentų skaičius"
+msgstr "Patalpos talpa turi būti didesnė nei bendras studentų skaičius"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__message_has_sms_error
@@ -1172,12 +1171,12 @@ msgstr "Studentas"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 msgid "Student Hall Tickets"
-msgstr "Studentų salės bilietai"
+msgstr "Studentų leidimai laikyti egzaminą"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.report_ticket
 msgid "Student Image"
-msgstr "Mokinio įvaizdis"
+msgstr "Mokinio nuotrauka"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_result_line_search
@@ -1195,7 +1194,7 @@ msgstr "Mokiniai (%s) jau suplanuoti kitam aktyviam egzaminui nurodytu laiku."
 #. module: openeducat_exam
 #: model:ir.actions.report,name:openeducat_exam.action_student_hall_ticket_report
 msgid "Students Hall Tickets"
-msgstr "Studentų salės bilietai"
+msgstr "Studentų leidimai laikyti egzaminą"
 
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_exam__subject_id
@@ -1254,7 +1253,7 @@ msgstr "Iš viso išlaikė"
 #. module: openeducat_exam
 #: model:ir.model.fields,field_description:openeducat_exam.field_op_room_distribution__total_student
 msgid "Total Student"
-msgstr "Visas studentas"
+msgstr "Iš viso studentų"
 
 #. module: openeducat_exam
 #: model:res.groups,name:openeducat_exam.group_op_exam_user
@@ -1283,7 +1282,7 @@ msgstr "Vieta"
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_form
 msgid "exam"
-msgstr "egzaminą"
+msgstr "egzaminas"
 
 #. module: openeducat_exam
 #: model_terms:ir.ui.view,arch_db:openeducat_exam.view_op_exam_session_pivot

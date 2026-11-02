@@ -169,10 +169,10 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>Sayang </p>\n"
+"                                                    <p>Yth. </p>\n"
 "                                                    <strong>\n"
 "                                                         <t t-out=\"object.student_id.name or ''\"/></strong>\n"
-"                                                    <p>Milikmu  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
+"                                                    <p>Masa pinjam  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
 "                                                         <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                    </strong> telah kedaluwarsa. Silakan kembalikan sesegera mungkin.\n"
 "                                                    </p>\n"
@@ -353,21 +353,21 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>Sayang</p>\n"
+"                                                    <p>Yth.</p>\n"
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>Milikmu<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>Masa pinjam <t t-out=\"object.media_type_id.name or ''\"/>,\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
 "                                                        akan\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
-"                                                            akan kedaluwarsa\n"
-"                                                            <strong>Hari ini.</strong>\n"
+"                                                            kedaluwarsa\n"
+"                                                            <strong>hari ini.</strong>\n"
 "                                                        </t>\n"
 "                                                        <t t-else=\"\">\n"
-"                                                            habis masa berlakunya\n"
+"                                                            kedaluwarsa dalam\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.get_diff_day() or ''\"/>\n"
 "                                                            </strong>\n"
@@ -467,7 +467,7 @@ msgstr "Tanggal Pengembalian Sebenarnya"
 msgid "Actual Return Date cannot be set before Issued Date"
 msgstr ""
 "Tanggal Pengembalian Sebenarnya tidak dapat diatur sebelum Tanggal "
-"Penerbitan"
+"Peminjaman"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
@@ -477,7 +477,7 @@ msgstr "Alamat"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Address Detail"
-msgstr "Detil Alamat"
+msgstr "Detail Alamat"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
@@ -547,7 +547,7 @@ msgstr "Tersedia"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
 msgid "Barcode"
-msgstr "Barcode"
+msgstr "Kode Batang"
 
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_media_unit_unique_name_barcode
@@ -712,7 +712,7 @@ msgstr "Durasi"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "Durasi dalam hal Jumlah Hari Prospek Penjualan"
+msgstr "Durasi dalam Jumlah Hari"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -926,7 +926,7 @@ msgstr "Pinjamkan Item Perpustakaan"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_issue_media
 msgid "Issue Media Wizard"
-msgstr "Pinjamkan Asisten Item Perpustakaan"
+msgstr "Asisten Peminjaman Item Perpustakaan"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.issue_media_act
@@ -945,7 +945,7 @@ msgstr "Dipinjamkan"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__issued_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Date"
-msgstr "Tanggal Diterbitkan"
+msgstr "Tanggal Dikeluarkan"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1157,18 +1157,18 @@ msgstr "Pergerakan Media Perpustakaan Setelah Tanggal Jatuh Tempo Berlalu"
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "Jalur Pergerakan Media Perpustakaan Setelah 1 Hari"
+msgstr "Baris Riwayat Peminjaman Media Perpustakaan Setelah 1 Hari"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "Jalur Pergerakan Media Perpustakaan Sebelum 1 Hari"
+msgstr "Baris Riwayat Peminjaman Media Perpustakaan Sebelum 1 Hari"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "Jumlah Garis Pergerakan Media Perpustakaan"
+msgstr "Jumlah Baris Riwayat Peminjaman Media Perpustakaan"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
@@ -1205,7 +1205,7 @@ msgstr "Antrean Media Perpustakaan"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_tree
 msgid "Media Queue Request"
-msgstr "Permintaan Antrian Media Perpustakaan"
+msgstr "Permintaan Antrean Media Perpustakaan"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_queue_view
@@ -1223,7 +1223,7 @@ msgstr "Reservasi Media Perpustakaan"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_reserve_media
 msgid "Media Reserve"
-msgstr "Cadangan Media Perpustakaan"
+msgstr "Reservasi Media Perpustakaan"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
@@ -1275,7 +1275,7 @@ msgstr "Unit Media Perpustakaan"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
-msgstr "Unit Media Perpustakaan tidak dapat diterbitkan karena sudah: %s"
+msgstr "Unit Media Perpustakaan tidak dapat dipinjamkan karena sudah: %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1341,7 +1341,7 @@ msgstr "Nama"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "Tidak"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1361,7 +1361,7 @@ msgstr "Nomor"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__message_needaction_counter
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_unit__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Jumlah Action"
+msgstr "Jumlah Tindakan"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_error_counter
@@ -1523,7 +1523,7 @@ msgstr "Diminta oleh"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Reservation Detail"
-msgstr "Detil Reservasi"
+msgstr "Detail Reservasi"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__reserve
@@ -1541,7 +1541,7 @@ msgstr "Tanggal Kembali"
 #: code:addons/openeducat_library/models/media_movement.py:0
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Return Date cannot be set before Issued Date."
-msgstr "Tanggal Pengembalian tidak dapat diatur sebelum Tanggal Penerbitan."
+msgstr "Tanggal Pengembalian tidak dapat diatur sebelum Tanggal Peminjaman."
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.return_media_act
@@ -1563,7 +1563,7 @@ msgstr "Kembali Selesai"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Returned Today"
-msgstr "Kembali Hari Ini"
+msgstr "Dikembalikan Hari Ini"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
@@ -1583,12 +1583,12 @@ msgstr "Nomor Urut"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "Gerakan Media Perpustakaan Tindakan Server"
+msgstr "Tindakan Server Riwayat Peminjaman Media Perpustakaan"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
-msgstr "Pergerakan Media Perpustakaan Tindakan Server Setelah 1 Hari"
+msgstr "Tindakan Server Riwayat Peminjaman Media Perpustakaan Setelah 1 Hari"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1601,7 +1601,7 @@ msgstr "Pengaturan"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "Negara Bagian/Provinsi"
+msgstr "Status"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
@@ -1646,7 +1646,7 @@ msgstr "Siswa / Guru"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Student/Faculty Detail"
-msgstr "Detil Siswa/Guru"
+msgstr "Detail Siswa/Pengajar"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__subject_ids
@@ -1744,7 +1744,7 @@ msgstr "Pengguna"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "Kode Pos"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1766,7 +1766,7 @@ msgstr "Gerakan media perpustakaan"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form
 msgid "media Queue Request"
-msgstr "Permintaan Antrian media perpustakaan"
+msgstr "Permintaan Antrean media perpustakaan"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search

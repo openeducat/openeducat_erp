@@ -140,20 +140,20 @@ msgstr ""
 "                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                                <tr>\n"
 "                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                        <p>Estimado</p>\n"
+"                                                        <p>Estimado/a</p>\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        <p>Envío de su tarea\n"
+"                                                        <p>Su tarea\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.assignment_id.name or ''\"/>\n"
 "                                                            </strong>\n"
-"                                                            fecha\n"
+"                                                            con fecha de entrega\n"
 "                                                            <strong>(\n"
 "                                                                <t t-out=\"object.submission_date or ''\"/>)\n"
 "                                                            </strong>\n"
-"                                                            tiene\n"
-"                                                            sido pasado. Por favor envíelo lo antes posible.\n"
+"                                                            está\n"
+"                                                            fuera de plazo. Entréguela lo antes posible.\n"
 "                                                        </p>\n"
 "                                                        <p>Gracias.</p>\n"
 "                                                    </td>\n"
@@ -325,20 +325,20 @@ msgstr ""
 "                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                                <tr>\n"
 "                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                        <p>Estimado</p>\n"
+"                                                        <p>Estimado/a</p>\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        <p>Envío de su tarea\n"
+"                                                        <p>La fecha de entrega de su tarea\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.assignment_id.name or ''\"/>\n"
 "                                                            </strong>\n"
-"                                                            la fecha es\n"
+"                                                            es\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.submission_date or ''\"/>\n"
 "                                                            </strong>\n"
 "                                                            .\n"
-"                                                            Por favor envíelo lo antes posible.\n"
+"                                                            Entréguela lo antes posible.\n"
 "                                                        </p>\n"
 "                                                        <p>Gracias.</p>\n"
 "                                                    </td>\n"
@@ -486,7 +486,7 @@ msgstr "Tabla dinámica de análisis de envío de tareas"
 #. module: openeducat_assignment
 #: model:mail.template,subject:openeducat_assignment.email_template_assignment_submission_after
 msgid "Assignment Submission Date Passed"
-msgstr "Fecha de envío de la tarea aprobada"
+msgstr "Fecha de entrega de la tarea vencida"
 
 #. module: openeducat_assignment
 #: model:base.automation,name:openeducat_assignment.test_rule_assignment_sub_line
@@ -501,7 +501,7 @@ msgstr "Línea de envío de tareas después de 1 día"
 #. module: openeducat_assignment
 #: model:mail.template,name:openeducat_assignment.email_template_assignment_submission_after
 msgid "Assignment Submission Passed"
-msgstr "Envío de tarea aprobado"
+msgstr "Plazo de entrega de la tarea vencido"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_sub_line_view
@@ -611,7 +611,7 @@ msgstr "Curso"
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__courses_subjects
 msgid "Courses Subjects"
-msgstr "Cursos Materias Escolares"
+msgstr "Cursos y asignaturas"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_grading_assignment__create_uid
@@ -942,7 +942,7 @@ msgstr "Ajustes"
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "State"
-msgstr "Provincia"
+msgstr "Estado"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__state
@@ -1064,4 +1064,4 @@ msgstr "Semana"
 #. odoo-python
 #: code:addons/openeducat_assignment/models/assignment_sub_line.py:0
 msgid "You can't delete none draft submissions!"
-msgstr "¡No puedes eliminar ningún borrador enviado!"
+msgstr "¡No puede eliminar entregas que no estén en borrador!"
