@@ -172,9 +172,9 @@ msgstr ""
 "                                                    <p>عزيزي </p>\n"
 "                                                    <strong>\n"
 "                                                         <t t-out=\"object.student_id.name or ''\"/></strong>\n"
-"                                                    <p>لك  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
+"                                                    <p>انتهت مدة إعارة  <t t-out=\"object.media_type_id.name or ''\"/>، <strong>\n"
 "                                                         <t t-out=\"object.media_id.name or ''\"/>\n"
-"                                                    </strong> انتهت صلاحيتها. يرجى إعادته في أقرب وقت ممكن.\n"
+"                                                    </strong> الخاصة بك. يرجى إعادته في أقرب وقت ممكن.\n"
 "                                                    </p>\n"
 "                                                    <p>شكرًا لك.</p>\n"
 "                                                </td>\n"
@@ -357,13 +357,13 @@ msgstr ""
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>لك<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>مدة إعارة <t t-out=\"object.media_type_id.name or ''\"/>،\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
 "                                                        سوف\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
-"                                                            تنتهي صلاحيتها\n"
+"                                                            تنتهي\n"
 "                                                            <strong>اليوم.</strong>\n"
 "                                                        </t>\n"
 "                                                        <t t-else=\"\">\n"
@@ -459,7 +459,7 @@ msgstr "نشط"
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__actual_return_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Actual Return Date"
-msgstr "تاريخ العودة الفعلي"
+msgstr "تاريخ الإرجاع الفعلي"
 
 #. module: openeducat_library
 #. odoo-python
@@ -710,7 +710,7 @@ msgstr "المدة"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "المدة من حيث عدد أيام المبيعات (المحتملة)"
+msgstr "المدة بعدد الأيام المسموح بها"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -808,7 +808,7 @@ msgstr "يحتوي على رسالة"
 #: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
 msgid "ID"
-msgstr "ID"
+msgstr "المُعرف"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
@@ -948,7 +948,7 @@ msgstr "تاريخ الإصدار"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Today"
-msgstr "صدر اليوم"
+msgstr "تمت إعارتها اليوم"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
@@ -1055,7 +1055,7 @@ msgstr "أنواع بطاقات المكتبة"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
 msgid "Library Card(s) Barcode"
-msgstr "بطاقة (بطاقات) المكتبة الباركود"
+msgstr "باركود بطاقة (بطاقات) المكتبة"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_view
@@ -1128,7 +1128,7 @@ msgstr "مؤلف وسائط المكتبة"
 #. module: openeducat_library
 #: model:ir.actions.report,name:openeducat_library.action_report_media_barcode
 msgid "Media Barcode"
-msgstr "مكتبة الوسائط الباركود"
+msgstr "الباركود لوسائط المكتبة"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_report_openeducat_library_report_media_barcode
@@ -1144,34 +1144,34 @@ msgstr "تفاصيل وسائط المكتبة"
 #: model:ir.model,name:openeducat_library.model_op_media_movement
 #: model:mail.template,name:openeducat_library.email_template_media_movement
 msgid "Media Movement"
-msgstr "حركة إعلام المكتبات"
+msgstr "حركة وسائط المكتبة"
 
 #. module: openeducat_library
 #: model:mail.template,name:openeducat_library.email_template_media_movement_after
 msgid "Media Movement After Due Date Passed"
-msgstr "حركة إعلام المكتبة بعد مرور الموعد المحدد لها"
+msgstr "حركة وسائط المكتبة بعد انقضاء تاريخ الاستحقاق"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "خط حركة وسائط المكتبة بعد يوم واحد"
+msgstr "سطر حركة وسائط المكتبة بعد يوم واحد"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "خط حركة وسائط المكتبة قبل يوم واحد"
+msgstr "سطر حركة وسائط المكتبة قبل يوم واحد"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "عدد خطوط حركة وسائط المكتبة"
+msgstr "عدد سطور حركة وسائط المكتبة"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
 msgid "Media Movements"
-msgstr "حركات وسائل الإعلام بالمكتبة"
+msgstr "حركات وسائط المكتبة"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
@@ -1215,17 +1215,17 @@ msgstr "طلبات قائمة انتظار وسائط المكتبة"
 #: model:ir.actions.act_window,name:openeducat_library.reserve_media_act
 #: model_terms:ir.ui.view,arch_db:openeducat_library.reserve_media_form
 msgid "Media Reservation"
-msgstr "حجز وسائل الإعلام بالمكتبة"
+msgstr "حجز وسائط المكتبة"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_reserve_media
 msgid "Media Reserve"
-msgstr "مكتبة الوسائط الاحتياطية"
+msgstr "حجز وسائط المكتبة"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
 msgid "Media Return"
-msgstr "عودة وسائط المكتبة"
+msgstr "إرجاع وسائط المكتبة"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_tag
@@ -1250,7 +1250,7 @@ msgstr "نوع وسائط المكتبة"
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__media_unit_id
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_media_barcode
 msgid "Media Unit"
-msgstr "وحدة الإعلام بالمكتبة"
+msgstr "وحدة وسائط المكتبة"
 
 #. module: openeducat_library
 #. odoo-python
@@ -1338,7 +1338,7 @@ msgstr "الاسم"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "لا"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1531,21 +1531,21 @@ msgstr "محجوز"
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Return Date"
-msgstr "تاريخ العودة"
+msgstr "تاريخ الإرجاع"
 
 #. module: openeducat_library
 #. odoo-python
 #: code:addons/openeducat_library/models/media_movement.py:0
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Return Date cannot be set before Issued Date."
-msgstr "لا يمكن تحديد تاريخ العودة قبل تاريخ الإصدار."
+msgstr "لا يمكن تحديد تاريخ الإرجاع قبل تاريخ الإصدار."
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.return_media_act
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_form
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_form
 msgid "Return Media"
-msgstr "عودة مكتبة الوسائط"
+msgstr "إرجاع وسائط المكتبة"
 
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return
@@ -1560,7 +1560,7 @@ msgstr "تم إرجاعه"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Returned Today"
-msgstr "عاد اليوم"
+msgstr "تم الإرجاع اليوم"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
@@ -1580,12 +1580,12 @@ msgstr "رقم التسلسل"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "حركة وسائط مكتبة إجراءات الخادم"
+msgstr "إجراءات الخادم لحركة وسائط المكتبة"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
-msgstr "حركة وسائط مكتبة إجراءات الخادم بعد يوم واحد"
+msgstr "إجراءات الخادم لحركة وسائط المكتبة بعد يوم واحد"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1598,7 +1598,7 @@ msgstr "الإعدادات"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "الولاية"
+msgstr "الحالة"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
@@ -1697,7 +1697,7 @@ msgstr "توفر هذه الوحدة ميزة إدارة المكتبة.\n"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Title"
-msgstr "عنوان"
+msgstr "العنوان"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
@@ -1740,7 +1740,7 @@ msgstr "المستخدمون"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "الرمز البريدي"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1757,7 +1757,7 @@ msgstr "إعارة عناصر المكتبة"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
 msgid "media Movement"
-msgstr "حركة الإعلام المكتبي"
+msgstr "حركة وسائط المكتبة"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form

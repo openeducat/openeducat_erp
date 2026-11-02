@@ -41,7 +41,7 @@ msgstr "<strong>Numéro de carte:</strong>"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
 msgid "<strong>Issued Date:</strong>"
-msgstr "<strong>Date de publication:</strong>"
+msgstr "<strong>Date d'émission :</strong>"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
@@ -51,7 +51,7 @@ msgstr "<strong>Nom:</strong>"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_student_library_card
 msgid "<strong>Type:</strong>"
-msgstr "<strong>Tapez:</strong>"
+msgstr "<strong>Type :</strong>"
 
 #. module: openeducat_library
 #: model:mail.template,body_html:openeducat_library.email_template_media_movement_after
@@ -353,15 +353,15 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>Cher</p>\n"
+"                                                    <p>Cher/Chère</p>\n"
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>Ton<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>Votre <t t-out=\"object.media_type_id.name or ''\"/>,\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        volonté\n"
+"                                                        va\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
 "                                                            expirer\n"
 "                                                            <strong>aujourd'hui.</strong>\n"
@@ -712,14 +712,14 @@ msgstr "Durée"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "Durée en termes de nombre de jours de prospect (prospect)"
+msgstr "Durée exprimée en nombre de jours"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__edition
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_search
 msgid "Edition"
-msgstr "Edition"
+msgstr "Édition"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
@@ -950,7 +950,7 @@ msgstr "Date d'émission"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Today"
-msgstr "Publié aujourd'hui"
+msgstr "Prêté aujourd'hui"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
@@ -1057,7 +1057,7 @@ msgstr "Types de cartes de bibliothèque"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.report_library_card_barcode
 msgid "Library Card(s) Barcode"
-msgstr "Carte(s) de bibliothèque"
+msgstr "Code-barres de la ou des cartes de bibliothèque"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_library_card_view
@@ -1162,7 +1162,7 @@ msgstr "Ligne de mouvement des médias de bibliothèque après 1 jour"
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "Ligne de mouvement des médias de bibliothèque avant 1 jours"
+msgstr "Ligne de mouvement des médias de bibliothèque avant 1 jour"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
@@ -1278,8 +1278,8 @@ msgstr "Unités multimédia de la bibliothèque"
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
 msgstr ""
-"L'unité de média de bibliothèque ne peut pas être émise car elle existe "
-"déjà : %s"
+"L'unité de média de bibliothèque ne peut pas être prêtée car elle est déjà :"
+" %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1345,7 +1345,7 @@ msgstr "Nom"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "Non"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1355,7 +1355,7 @@ msgstr "Nombre de médias de bibliothèque autorisés"
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
 msgid "Number"
-msgstr "Nombre"
+msgstr "Numéro"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_needaction_counter
@@ -1458,7 +1458,7 @@ msgstr "Éditeur"
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__publisher_ids
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__publisher
 msgid "Publisher(s)"
-msgstr "Editeur(s)"
+msgstr "Éditeur(s)"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_publisher_view
@@ -1562,7 +1562,7 @@ msgstr "Retourné"
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return_done
 msgid "Returned Done"
-msgstr "Renvoyé Terminé"
+msgstr "Retour terminé"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1587,13 +1587,13 @@ msgstr "Numéro de séquence"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "Mouvement des médias de la bibliothèque d'actions du serveur"
+msgstr "Actions du serveur : mouvement des médias de la bibliothèque"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
 msgstr ""
-"Mouvement des médias de la bibliothèque d'actions du serveur après 1 jour"
+"Actions du serveur : mouvement des médias de la bibliothèque après 1 jour"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1749,7 +1749,7 @@ msgstr "Utilisateurs"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "Code postal"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search

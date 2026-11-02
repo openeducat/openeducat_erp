@@ -357,23 +357,23 @@ msgstr ""
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>Jouw<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>Jouw <t t-out=\"object.media_type_id.name or ''\"/>,\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        zullen\n"
+"                                                        zal\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
-"                                                            verlopen zijn\n"
-"                                                            <strong>Vandaag.</strong>\n"
+"                                                            <strong>vandaag</strong>\n"
+"                                                            verlopen.\n"
 "                                                        </t>\n"
 "                                                        <t t-else=\"\">\n"
-"                                                            verlopen binnen\n"
+"                                                            over\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.get_diff_day() or ''\"/>\n"
 "                                                            </strong>\n"
-"                                                            dag(en).\n"
+"                                                            dag(en) verlopen.\n"
 "                                                        </t>\n"
-"                                                        Stuur het zo snel mogelijk terug.\n"
+"                                                        Lever het zo snel mogelijk in.\n"
 "                                                    </p>\n"
 "                                                    <p>Bedankt.</p>\n"
 "                                                </td>\n"
@@ -712,7 +712,7 @@ msgstr "Duur"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr "Duur in termen van aantal verkoopleaddagen (prospect)"
+msgstr "Duur in aantal dagen"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -950,7 +950,7 @@ msgstr "Datum van uitgifte"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Issued Today"
-msgstr "Vandaag uitgegeven"
+msgstr "Vandaag uitgeleend"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_account_move
@@ -1068,7 +1068,7 @@ msgstr "Bibliotheekkaarten"
 #. module: openeducat_library
 #: model:ir.actions.report,name:openeducat_library.action_report_student_library_card
 msgid "Library ID Card"
-msgstr "Bibliotheek identiteitskaart"
+msgstr "Bibliotheekkaart"
 
 #. module: openeducat_library
 #: model:ir.model.constraint,message:openeducat_library.constraint_op_library_card_unique_library_card_number
@@ -1156,18 +1156,18 @@ msgstr "Bibliotheekmediaverplaatsing na vervaldatum verstreken"
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "Bibliotheekmediaverplaatsingslijn na 1 dag"
+msgstr "Uitleningsregel bibliotheekmedia na 1 dag"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "Bibliotheekmediabewegingslijn vóór 1 dagen"
+msgstr "Uitleningsregel bibliotheekmedia vóór 1 dag"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "Aantal lijnen mediabeweging in bibliotheek"
+msgstr "Aantal uitleningsregels bibliotheekmedia"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
@@ -1222,7 +1222,7 @@ msgstr "Mediareservering bibliotheek"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_reserve_media
 msgid "Media Reserve"
-msgstr "Bibliotheek Mediareserve"
+msgstr "Mediareservering bibliotheek"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
@@ -1342,7 +1342,7 @@ msgstr "Naam"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "Nee"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1535,7 +1535,7 @@ msgstr "Gereserveerd"
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Return Date"
-msgstr "Terugkeerdatum"
+msgstr "Retourdatum"
 
 #. module: openeducat_library
 #. odoo-python
@@ -1559,12 +1559,12 @@ msgstr "Teruggegeven"
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return_done
 msgid "Returned Done"
-msgstr "Geretourneerd. Klaar"
+msgstr "Retour voltooid"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Returned Today"
-msgstr "Vandaag teruggekeerd"
+msgstr "Vandaag teruggegeven"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
@@ -1584,7 +1584,7 @@ msgstr "Volgnummer"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "Serveracties Bibliotheek Mediabeweging"
+msgstr "Serveracties Uitlening van bibliotheekmedia"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
@@ -1602,7 +1602,7 @@ msgstr "Instellingen"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "Provincie / Staat"
+msgstr "Status"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
@@ -1745,7 +1745,7 @@ msgstr "Gebruikers"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "Postcode"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search

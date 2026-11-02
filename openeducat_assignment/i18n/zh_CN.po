@@ -144,7 +144,7 @@ msgstr ""
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        <p>您提交的家庭作业\n"
+"                                                        <p>您的作业\n"
 "                                                            <strong>\n"
 "                                                                <t t-out=\"object.assignment_id.name or ''\"/>\n"
 "                                                            </strong>\n"
@@ -152,8 +152,8 @@ msgstr ""
 "                                                            <strong>(\n"
 "                                                                <t t-out=\"object.submission_date or ''\"/>)\n"
 "                                                            </strong>\n"
-"                                                            有\n"
-"                                                            已通过。请尽快提交。\n"
+"                                                            已过。\n"
+"                                                            请尽快提交。\n"
 "                                                        </p>\n"
 "                                                        <p>谢谢。</p>\n"
 "                                                    </td>\n"
@@ -394,7 +394,7 @@ msgstr "接受"
 #. module: openeducat_assignment
 #: model:ir.model.fields.selection,name:openeducat_assignment.selection__op_assignment_sub_line__state__accept
 msgid "Accepted"
-msgstr "公认"
+msgstr "已接受"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__message_needaction
@@ -470,7 +470,7 @@ msgstr "家庭作业子行"
 #. module: openeducat_assignment
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_graph
 msgid "Assignment Sub Line Graph View"
-msgstr "作业分配子线图视图"
+msgstr "作业子行图表视图"
 
 #. module: openeducat_assignment
 #: model:ir.model,name:openeducat_assignment.model_op_assignment_sub_line
@@ -491,7 +491,7 @@ msgstr "作业提交日期已过"
 #. module: openeducat_assignment
 #: model:base.automation,name:openeducat_assignment.test_rule_assignment_sub_line
 msgid "Assignment Submission Line"
-msgstr "家庭作业提交线"
+msgstr "作业提交行"
 
 #. module: openeducat_assignment
 #: model:base.automation,name:openeducat_assignment.test_rule_assignment_sub_line_after
@@ -501,7 +501,7 @@ msgstr "1 天后作业提交行"
 #. module: openeducat_assignment
 #: model:mail.template,name:openeducat_assignment.email_template_assignment_submission_after
 msgid "Assignment Submission Passed"
-msgstr "家庭作业提交已通过"
+msgstr "作业提交期限已过"
 
 #. module: openeducat_assignment
 #: model:ir.actions.act_window,name:openeducat_assignment.act_open_op_assignment_sub_line_view
@@ -831,7 +831,7 @@ msgstr "名称"
 #: model:res.groups.privilege,placeholder:openeducat_assignment.privilege_module_category_all_op_assignment
 #: model:res.groups.privilege,placeholder:openeducat_assignment.privilege_module_category_openeducat_assignment
 msgid "No"
-msgstr "No"
+msgstr "否"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment_sub_line__note
@@ -940,7 +940,7 @@ msgstr "设置"
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_search
 #: model_terms:ir.ui.view,arch_db:openeducat_assignment.view_op_assignment_sub_line_search
 msgid "State"
-msgstr "省/州"
+msgstr "状态"
 
 #. module: openeducat_assignment
 #: model:ir.model.fields,field_description:openeducat_assignment.field_op_assignment__state
@@ -1026,7 +1026,7 @@ msgstr "该代码在所有作业类型中必须是唯一的。"
 #. module: openeducat_assignment
 #: model:ir.model.fields,help:openeducat_assignment.field_op_assignment_sub_line__faculty_user_id
 msgid "The internal user in charge of this contact."
-msgstr "负责该合同的内部用户。"
+msgstr "负责此联系人的内部用户。"
 
 #. module: openeducat_assignment
 #: model:ir.module.module,description:base.module_openeducat_assignment
@@ -1061,4 +1061,4 @@ msgstr "周"
 #. odoo-python
 #: code:addons/openeducat_assignment/models/assignment_sub_line.py:0
 msgid "You can't delete none draft submissions!"
-msgstr "您无法删除任何提交的草稿！"
+msgstr "您无法删除非草稿状态的提交！"

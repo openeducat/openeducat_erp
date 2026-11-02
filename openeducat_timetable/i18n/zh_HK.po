@@ -89,7 +89,7 @@ msgid ""
 "style=\"width:14px;\" title=\"Type\"/>"
 msgstr ""
 "<i class=\"oi oi-filled me-2 flex-shrink-0\" data-icon=\"sell\" "
-"style=\"width:14px;\" title=\"地圖類型\"/>"
+"style=\"width:14px;\" title=\"類型\"/>"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.res_config_settings_view_form_timetable
@@ -278,7 +278,7 @@ msgstr ""
 "                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                                <tr>\n"
 "                                                    <td valign=\"middle\">\n"
-"                                                        <span style=\"font-size: 10px;\">會議詳情</span>\n"
+"                                                        <span style=\"font-size: 10px;\">課堂詳情</span>\n"
 "                                                        <br/>\n"
 "                                                    </td>\n"
 "                                                    <td valign=\"middle\" align=\"right\">\n"
@@ -300,13 +300,13 @@ msgstr ""
 "                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
 "                                                        <ul class=\"o_mail_thread_message_tracking\">\n"
 "                                                            <li>\n"
-"                                                                老師：\n"
+"                                                                教師：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.faculty_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                學校科目：\n"
+"                                                                科目：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.subject_id.name\"/>\n"
 "                                                                </span>\n"
@@ -318,13 +318,13 @@ msgstr ""
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                學生組：\n"
+"                                                                班級：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.batch_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                課堂：\n"
+"                                                                教室：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.classroom_id.name\"/>\n"
 "                                                                </span>\n"
@@ -344,12 +344,12 @@ msgstr ""
 "                                                            </li>\n"
 "\n"
 "                                                            <li>\n"
-"                                                                地位：\n"
+"                                                                狀態：\n"
 "                                                                <t t-if=\"object.state == 'confirm'\">\n"
-"                                                                    <span>確認的</span>\n"
+"                                                                    <span>已確認</span>\n"
 "                                                                </t>\n"
 "                                                                <t t-elif=\"object.state == 'cancel'\">\n"
-"                                                                    <span>取消</span>\n"
+"                                                                    <span>已取消</span>\n"
 "                                                                </t>\n"
 "                                                            </li>\n"
 "                                                        </ul>\n"
@@ -401,7 +401,7 @@ msgstr ""
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__am
 msgid "AM"
-msgstr "AM"
+msgstr "上午"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
@@ -604,7 +604,7 @@ msgstr "草稿"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__duration
 msgid "Duration"
-msgstr "動畫長度"
+msgstr "持續時間"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_kanban
@@ -627,7 +627,7 @@ msgstr "結束日期無法在開始日期之前設置。"
 #. odoo-python
 #: code:addons/openeducat_timetable/wizard/generate_timetable.py:0
 msgid "End Date cannot be set before Start Date."
-msgstr "結束日期不能設定在開始日期之前。"
+msgstr "結束日期無法在開始日期之前設置。"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_gen_time_table_line__session_end_time
@@ -730,7 +730,7 @@ msgstr "小時"
 #: model:ir.model.fields,field_description:openeducat_timetable.field_session_confirmation__id
 #: model:ir.model.fields,field_description:openeducat_timetable.field_time_table_report__id
 msgid "ID"
-msgstr "ID"
+msgstr "識別號"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,help:openeducat_timetable.field_op_session__message_needaction
@@ -821,7 +821,7 @@ msgstr "名稱"
 #: model:res.groups.privilege,placeholder:openeducat_timetable.module_privilege_openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
 msgid "No"
-msgstr "No"
+msgstr "否"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction_counter
@@ -856,7 +856,7 @@ msgstr "OpenEduCat 課程表"
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__pm
 msgid "PM"
-msgstr "PM"
+msgstr "下午"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_op_timing
@@ -866,7 +866,7 @@ msgstr "PM"
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_search
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_tree
 msgid "Period"
-msgstr "時期"
+msgstr "時段"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
@@ -1095,7 +1095,7 @@ msgstr "課程表"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines
 msgid "Time Table Lines"
-msgstr "課程表線"
+msgstr "課程表行"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_1
@@ -1250,4 +1250,4 @@ msgstr "您無法在同一日期和時間與同一位老師創建課程"
 #. module: openeducat_timetable
 #: model:mail.template,subject:openeducat_timetable.session_details_changes
 msgid "{{ object.get_subject() }}"
-msgstr ""
+msgstr "{{ object.get_subject() }}"

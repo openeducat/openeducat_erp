@@ -169,12 +169,12 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>ที่รัก </p>\n"
+"                                                    <p>เรียน </p>\n"
 "                                                    <strong>\n"
 "                                                         <t t-out=\"object.student_id.name or ''\"/></strong>\n"
-"                                                    <p>ของคุณ  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
+"                                                    <p>รายการ  <t t-out=\"object.media_type_id.name or ''\"/>, <strong>\n"
 "                                                         <t t-out=\"object.media_id.name or ''\"/>\n"
-"                                                    </strong> หมดอายุแล้ว กรุณาส่งคืนโดยเร็วที่สุด\n"
+"                                                    </strong> ของคุณหมดอายุแล้ว กรุณาส่งคืนโดยเร็วที่สุด\n"
 "                                                    </p>\n"
 "                                                    <p>ขอบคุณ</p>\n"
 "                                                </td>\n"
@@ -353,15 +353,15 @@ msgstr ""
 "                                        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                            <tr>\n"
 "                                                <td valign=\"top\" style=\"font-size: 13px;\">\n"
-"                                                    <p>ที่รัก</p>\n"
+"                                                    <p>เรียน</p>\n"
 "                                                    <strong>\n"
 "                                                        <t t-out=\"object.student_id.name or ''\"/>\n"
 "                                                    </strong>\n"
-"                                                    <p>ของคุณ<t t-out=\"object.media_type_id.name or ''\"/>,\n"
+"                                                    <p>รายการ<t t-out=\"object.media_type_id.name or ''\"/>,\n"
 "                                                        <strong>\n"
 "                                                            <t t-out=\"object.media_id.name or ''\"/>\n"
 "                                                        </strong>\n"
-"                                                        จะ\n"
+"                                                        ของคุณ\n"
 "                                                        <t t-if=\"object.get_diff_day() == 0\">\n"
 "                                                            กำลังจะหมดอายุ\n"
 "                                                            <strong>วันนี้.</strong>\n"
@@ -710,8 +710,7 @@ msgstr "ระยะเวลา"
 #. module: openeducat_library
 #: model:ir.model.fields,help:openeducat_library.field_op_library_card_type__duration
 msgid "Duration in terms of Number of Lead Days"
-msgstr ""
-"ระยะเวลาในแง่ของจำนวนวันที่ลูกค้าเป้าหมาย (ผู้ที่มีแนวโน้มจะเป็นลูกค้า)"
+msgstr "ระยะเวลาเป็นจำนวนวันที่ให้ยืม"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__edition
@@ -809,7 +808,7 @@ msgstr "มีข้อความ"
 #: model:ir.model.fields,field_description:openeducat_library.field_reserve_media__id
 #: model:ir.model.fields,field_description:openeducat_library.field_return_media__id
 msgid "ID"
-msgstr "ID"
+msgstr "ไอดี"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media__isbn
@@ -925,7 +924,7 @@ msgstr "ยืมรายการห้องสมุด"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_issue_media
 msgid "Issue Media Wizard"
-msgstr "ให้ยืมผู้ช่วยรายการห้องสมุด"
+msgstr "ผู้ช่วยให้ยืมสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.issue_media_act
@@ -1145,34 +1144,34 @@ msgstr "รายละเอียดสื่อห้องสมุด"
 #: model:ir.model,name:openeducat_library.model_op_media_movement
 #: model:mail.template,name:openeducat_library.email_template_media_movement
 msgid "Media Movement"
-msgstr "ความเคลื่อนไหวสื่อห้องสมุด"
+msgstr "การยืมคืนสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model:mail.template,name:openeducat_library.email_template_media_movement_after
 msgid "Media Movement After Due Date Passed"
-msgstr "ความเคลื่อนไหวของสื่อห้องสมุดหลังจากผ่านวันครบกำหนด"
+msgstr "การยืมคืนสื่อห้องสมุดหลังจากผ่านวันครบกำหนด"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_after
 msgid "Media Movement Line After 1 Days"
-msgstr "สายการเคลื่อนไหวสื่อห้องสมุดหลังจากผ่านไป 1 วัน"
+msgstr "รายการการยืมคืนสื่อห้องสมุดหลังจากผ่านไป 1 วัน"
 
 #. module: openeducat_library
 #: model:base.automation,name:openeducat_library.test_rule_media_movement_line_1
 msgid "Media Movement Line Before 1 Days"
-msgstr "สายเคลื่อนไหวสื่อห้องสมุด ก่อน 1 วัน"
+msgstr "รายการการยืมคืนสื่อห้องสมุดก่อน 1 วัน"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_faculty__media_movement_lines_count
 #: model:ir.model.fields,field_description:openeducat_library.field_op_student__media_movement_lines_count
 msgid "Media Movement Lines Count"
-msgstr "จำนวนเส้นการเคลื่อนไหวของสื่อห้องสมุด"
+msgstr "จำนวนรายการการยืมคืนสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_op_media_movement_view
 #: model:ir.ui.menu,name:openeducat_library.menu_op_media_movement_library
 msgid "Media Movements"
-msgstr "ความเคลื่อนไหวของสื่อห้องสมุด"
+msgstr "ประวัติการยืมสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_form
@@ -1221,12 +1220,12 @@ msgstr "การจองสื่อห้องสมุด"
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_reserve_media
 msgid "Media Reserve"
-msgstr "ห้องสมุดสื่อสำรอง"
+msgstr "การจองสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.return_media_form
 msgid "Media Return"
-msgstr "การกลับมาของสื่อห้องสมุด"
+msgstr "การคืนสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model:ir.model,name:openeducat_library.model_op_tag
@@ -1257,7 +1256,7 @@ msgstr "หน่วยสื่อห้องสมุด"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/return_media.py:0
 msgid "Media Unit can not be returned because it's already: %s"
-msgstr "ไม่สามารถส่งคืนหน่วยสื่อของไลบรารีได้เนื่องจากมีอยู่แล้ว: %s"
+msgstr "ไม่สามารถส่งคืนหน่วยสื่อห้องสมุดได้เนื่องจากอยู่ในสถานะแล้ว: %s"
 
 #. module: openeducat_library
 #: model:ir.actions.act_window,name:openeducat_library.act_open_media_unit_view
@@ -1273,7 +1272,7 @@ msgstr "หน่วยสื่อห้องสมุด"
 #. odoo-python
 #: code:addons/openeducat_library/wizards/issue_media.py:0
 msgid "Media unit can not be issued because it's already: %s"
-msgstr "ไม่สามารถออกหน่วยสื่อของไลบรารีได้เนื่องจากมีอยู่แล้ว: %s"
+msgstr "ไม่สามารถให้ยืมหน่วยสื่อห้องสมุดได้เนื่องจากอยู่ในสถานะแล้ว: %s"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_author__media_ids
@@ -1339,7 +1338,7 @@ msgstr "ชื่อ"
 #. module: openeducat_library
 #: model:res.groups.privilege,placeholder:openeducat_library.module_privilege_openeducat_library
 msgid "No"
-msgstr "No"
+msgstr "ไม่"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card_type__allow_media
@@ -1349,7 +1348,7 @@ msgstr "จำนวนสื่อห้องสมุดที่อนุญ
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_library_card__number
 msgid "Number"
-msgstr "ตัวเลข"
+msgstr "หมายเลข"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_needaction_counter
@@ -1532,7 +1531,7 @@ msgstr "จองแล้ว"
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__return_date
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Return Date"
-msgstr "วันที่เดินทางกลับ"
+msgstr "วันที่ส่งคืน"
 
 #. module: openeducat_library
 #. odoo-python
@@ -1556,12 +1555,12 @@ msgstr "คืนแล้ว"
 #. module: openeducat_library
 #: model:ir.model.fields.selection,name:openeducat_library.selection__op_media_movement__state__return_done
 msgid "Returned Done"
-msgstr "กลับมาเรียบร้อยแล้ว"
+msgstr "คืนเรียบร้อยแล้ว"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 msgid "Returned Today"
-msgstr "กลับมาแล้ววันนี้"
+msgstr "คืนแล้ววันนี้"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_issue_media__message_has_sms_error
@@ -1581,12 +1580,12 @@ msgstr "หมายเลขลำดับ"
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action
 msgid "Server Actions Media Movement"
-msgstr "การเคลื่อนไหวของสื่อไลบรารีการกระทำของเซิร์ฟเวอร์"
+msgstr "การดำเนินการของเซิร์ฟเวอร์สำหรับการยืมคืนสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model:ir.actions.server,name:openeducat_library.library_card_media_movement_action_after
 msgid "Server Actions Media Movement After 1 Days"
-msgstr "การเคลื่อนไหวของสื่อไลบรารีการดำเนินการของเซิร์ฟเวอร์หลังจาก 1 วัน"
+msgstr "การดำเนินการของเซิร์ฟเวอร์สำหรับการยืมคืนสื่อห้องสมุดหลังจาก 1 วัน"
 
 #. module: openeducat_library
 #: model:ir.ui.menu,name:openeducat_library.menu_library_config
@@ -1599,7 +1598,7 @@ msgstr "การตั้งค่า"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_media_unit_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "State"
-msgstr "จังหวัด"
+msgstr "สถานะ"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_movement__state
@@ -1698,7 +1697,7 @@ msgstr "โมดูลนี้มีคุณลักษณะของกา
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_purchase__name
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "Title"
-msgstr "ชื่อ"
+msgstr "ชื่อเรื่อง"
 
 #. module: openeducat_library
 #: model:ir.model.fields,field_description:openeducat_library.field_op_media_queue__date_to
@@ -1741,7 +1740,7 @@ msgstr "ผู้ใช้"
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_student_library_form
 msgid "ZIP"
-msgstr "ZIP"
+msgstr "รหัสไปรษณีย์"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
@@ -1758,7 +1757,7 @@ msgstr "การให้ยืมรายการห้องสมุด"
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_search
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_movement_tree
 msgid "media Movement"
-msgstr "ความเคลื่อนไหวสื่อห้องสมุด"
+msgstr "การยืมคืนสื่อห้องสมุด"
 
 #. module: openeducat_library
 #: model_terms:ir.ui.view,arch_db:openeducat_library.view_op_media_queue_form

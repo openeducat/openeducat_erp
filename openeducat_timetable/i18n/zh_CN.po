@@ -278,7 +278,7 @@ msgstr ""
 "                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                                                <tr>\n"
 "                                                    <td valign=\"middle\">\n"
-"                                                        <span style=\"font-size: 10px;\">会议详情</span>\n"
+"                                                        <span style=\"font-size: 10px;\">课时详情</span>\n"
 "                                                        <br/>\n"
 "                                                    </td>\n"
 "                                                    <td valign=\"middle\" align=\"right\">\n"
@@ -300,13 +300,13 @@ msgstr ""
 "                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
 "                                                        <ul class=\"o_mail_thread_message_tracking\">\n"
 "                                                            <li>\n"
-"                                                                老师：\n"
+"                                                                教师：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.faculty_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                学校科目：\n"
+"                                                                科目：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.subject_id.name\"/>\n"
 "                                                                </span>\n"
@@ -318,13 +318,13 @@ msgstr ""
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                学生组：\n"
+"                                                                班级：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.batch_id.name\"/>\n"
 "                                                                </span>\n"
 "                                                            </li>\n"
 "                                                            <li>\n"
-"                                                                课堂：\n"
+"                                                                教室：\n"
 "                                                                <span>\n"
 "                                                                    <t t-out=\"object.classroom_id.name\"/>\n"
 "                                                                </span>\n"
@@ -344,12 +344,12 @@ msgstr ""
 "                                                            </li>\n"
 "\n"
 "                                                            <li>\n"
-"                                                                地位：\n"
+"                                                                状态：\n"
 "                                                                <t t-if=\"object.state == 'confirm'\">\n"
-"                                                                    <span>确认的</span>\n"
+"                                                                    <span>已确认</span>\n"
 "                                                                </t>\n"
 "                                                                <t t-elif=\"object.state == 'cancel'\">\n"
-"                                                                    <span>取消</span>\n"
+"                                                                    <span>已取消</span>\n"
 "                                                                </t>\n"
 "                                                            </li>\n"
 "                                                        </ul>\n"
@@ -401,7 +401,7 @@ msgstr ""
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__am
 msgid "AM"
-msgstr "AM"
+msgstr "上午"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_timing__am_pm
@@ -821,7 +821,7 @@ msgstr "名称"
 #: model:res.groups.privilege,placeholder:openeducat_timetable.module_privilege_openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_session_confirmation_form
 msgid "No"
-msgstr "No"
+msgstr "否"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__message_needaction_counter
@@ -856,7 +856,7 @@ msgstr "OpenEduCat 课程表"
 #. module: openeducat_timetable
 #: model:ir.model.fields.selection,name:openeducat_timetable.selection__op_timing__am_pm__pm
 msgid "PM"
-msgstr "PM"
+msgstr "下午"
 
 #. module: openeducat_timetable
 #: model:ir.model,name:openeducat_timetable.model_op_timing
@@ -866,7 +866,7 @@ msgstr "PM"
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_search
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_timing_tree
 msgid "Period"
-msgstr "时期"
+msgstr "时段"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_time_table_report_form
@@ -972,7 +972,7 @@ msgstr "会话数"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_tree
 msgid "Session Line"
-msgstr "会话线"
+msgstr "课时行"
 
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_form
@@ -1023,7 +1023,7 @@ msgstr "开始时间"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_op_session_search
 msgid "State"
-msgstr "省/州"
+msgstr "状态"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_op_session__state
@@ -1072,7 +1072,7 @@ msgstr "系统"
 #. module: openeducat_timetable
 #: model_terms:ir.ui.view,arch_db:openeducat_timetable.view_gen_time_table_line_form
 msgid "Table Line"
-msgstr "表线"
+msgstr "表行"
 
 #. module: openeducat_timetable
 #: model:ir.module.module,description:base.module_openeducat_timetable
@@ -1095,7 +1095,7 @@ msgstr "课程表"
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines
 msgid "Time Table Lines"
-msgstr "课程表线"
+msgstr "课程表行"
 
 #. module: openeducat_timetable
 #: model:ir.model.fields,field_description:openeducat_timetable.field_generate_time_table__time_table_lines_1
