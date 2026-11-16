@@ -25,7 +25,7 @@ from odoo.http import request
 class OpAttendanceController(http.Controller):
 
     @http.route(['/openeducat-attendance/take-attendance'], type='jsonrpc',
-                auth='none', methods=['POST'], csrf=False)
+                auth='user', methods=['POST'], csrf=False)
     def create_attendance_lines(self, **post):
         sheet_id = post.get('attendance_sheet_id', False)
         if sheet_id:
