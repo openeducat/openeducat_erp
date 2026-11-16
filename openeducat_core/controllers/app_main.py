@@ -21,10 +21,19 @@
 import werkzeug.utils
 from odoo import http
 from odoo.addons.portal.controllers.web import Home as home
+from odoo.addons.web.controllers.utils import is_user_internal
 from odoo.http import request
 
 
 class OpeneducatHome(home):
+
+    @http.route()
+    def web_client(self, s_action=None, **kw):
+        uid = request.session.uid
+        if uid and not is_user_internal(uid) and \
+                request.env['res.users'].sudo().browse(uid).is_parent:
+            return request.redirect_query('/my/child', query=request.params)
+        return super(OpeneducatHome, self).web_client(s_action, **kw)
 
     @http.route()
     def web_login(self, redirect=None, *args, **kw):
