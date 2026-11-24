@@ -30,6 +30,7 @@
                     <field name="name"/>
                     <field name="mobile" required="1"/>
                     <field name="student_ids" widget="many2many_tags"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
                 </list>
             </field>
         </record>
@@ -56,6 +57,7 @@
                                 <field name="name" placeholder="Parent Name"/>
                                 <field name="mobile" />
                                 <field name="email" />
+                                <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                             <group>
                                 <field name="user_id" readonly="1"/>

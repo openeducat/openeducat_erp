@@ -40,4 +40,11 @@
             <field name="domain_force">['|', ('user_id','=',user.id), ('user_id','in',user.child_ids.ids)]</field>
         </record>
 
+        <record model="ir.rule" id="op_parent_multi_comp_rule">
+            <field name="name">Parent multi-company</field>
+            <field name="model_id" ref="model_op_parent"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),'&amp;',('company_id','in',company_ids),'|',('company_id','child_of',[user.company_id.id]),('company_id','in',user.company_ids.ids)]</field>
+        </record>
+
 </odoo>

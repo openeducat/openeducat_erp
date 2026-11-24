@@ -35,6 +35,10 @@ class OpParent(models.Model):
     active = fields.Boolean(default=True)
     relationship_id = fields.Many2one('op.parent.relationship',
                                       'Relation with Student', required=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.company,
+        index=True)
 
     _unique_parent = models.Constraint('unique(name)',
                                        'Can not create parent multiple times.!')
@@ -50,9 +54,14 @@ class OpParent(models.Model):
 
     def _sync_children(self):
         """Make the parent login's child_ids match the logins of its students."""
+        # Skip entirely when none of the parents have a login: there is
+        # nothing to write on res.users, so the record-rule cache that reads
+        # user.child_ids is still valid.
+        if not self.mapped('user_id'):
+            return
         for rec in self:
             if rec.user_id:
-                rec.user_id.child_ids = [
+                rec.user_id.sudo().child_ids = [
                     (6, 0, rec.student_ids.user_id.ids)]
         self.env.registry.clear_cache()
 
@@ -124,20 +133,46 @@ class OpParent(models.Model):
             for rec in self:
                 old = old_logins.get(rec.id)
                 if old and old != rec.user_id:
-                    old.child_ids = [(6, 0, [])]
+                    old.sudo().child_ids = [(6, 0, [])]
         if 'student_ids' in vals or 'user_id' in vals:
             self._sync_children()
+        if 'active' in vals:
+            # Cascade archive/unarchive to the parent's login, so an archived
+            # parent cannot keep signing in and seeing the (former) children.
+            touched_users = False
+            for rec in self:
+                if not rec.user_id:
+                    continue
+                touched_users = True
+                if vals['active']:
+                    rec.user_id.sudo().write({
+                        'active': True,
+                        'child_ids': [(6, 0, rec.student_ids.user_id.ids)],
+                    })
+                else:
+                    rec.user_id.sudo().write({
+                        'active': False,
+                        'child_ids': [(6, 0, [])],
+                    })
+            if touched_users:
+                # child_ids changed on the parent login, so the portal
+                # record-rule cache (which reads user.child_ids) is stale.
+                self.env.registry.clear_cache()
         return res
 
     def unlink(self):
         for record in self:
             if record.user_id:
-                record.user_id.child_ids = [(6, 0, [])]
+                record.user_id.sudo().child_ids = [(6, 0, [])]
         return super(OpParent, self).unlink()
 
     def create_parent_user(self):
-        template = self.env.ref('openeducat_parent.parent_template_user')
-        users_res = self.env['res.users']
+        # Read the template with sudo: it is a system record, and a parent
+        # manager of another company would otherwise be blocked by the
+        # res.users multi-company rule.
+        template = self.env.ref(
+            'openeducat_parent.parent_template_user').sudo()
+        users_res = self.env['res.users'].sudo()
         for record in self:
             partner = record.name
             if not (partner.email or record.email):
@@ -152,7 +187,7 @@ class OpParent(models.Model):
             if partner.user_ids:
                 # The contact already has a login: link it, don't make a second one.
                 record.user_id = partner.user_ids[:1]
-                record.user_id.is_parent = True
+                record.user_id.sudo().is_parent = True
                 continue
             groups_id = template and template.group_ids or False
             user_id = users_res.create({
