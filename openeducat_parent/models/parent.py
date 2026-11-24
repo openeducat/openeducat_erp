@@ -97,7 +97,7 @@ class OpParent(models.Model):
         for record in res:
             if record.student_ids and record.name.user_id:
                 user_ids = [s.user_id.id for s in record.student_ids if s.user_id]
-                record.user_id.child_ids = [(6, 0, user_ids)]
+                record.user_id.sudo().child_ids = [(6, 0, user_ids)]
 
             if record.name and not record.name.is_parent:
                 record.name.is_parent = True
@@ -111,19 +111,19 @@ class OpParent(models.Model):
                 student_ids = rec.student_ids.browse(rec.student_ids.ids)
                 usr_ids = [student_id.user_id.id for student_id in student_ids
                            if student_id.user_id]
-                rec.user_id.child_ids = [(6, 0, usr_ids)]
+                rec.user_id.sudo().child_ids = [(6, 0, usr_ids)]
             rec.env.registry.clear_cache()
         return res
 
     def unlink(self):
         for record in self:
             if record.name.user_id:
-                record.user_id.child_ids = [(6, 0, [])]
+                record.user_id.sudo().child_ids = [(6, 0, [])]
         return super(OpParent, self).unlink()
 
     def create_parent_user(self):
         template = self.env.ref('openeducat_parent.parent_template_user')
-        users_res = self.env['res.users']
+        users_res = self.env['res.users'].sudo()
         for record in self:
             partner = record.name
             if not (partner.email or record.email):
@@ -172,7 +172,7 @@ class OpStudent(models.Model):
                     if parent_id.user_id:
                         user_ids = [student.user_id.id for student
                                     in parent_id.student_ids if student.user_id]
-                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
+                        parent_id.user_id.sudo().child_ids = [(6, 0, user_ids)]
         return res
 
     def write(self, vals):
@@ -184,19 +184,19 @@ class OpStudent(models.Model):
                     if parent.user_id:
                         user_ids = [parent.user_id.id for parent in parent.student_ids
                                     if parent.user_id]
-                        parent.user_id.child_ids = [(6, 0, user_ids)]
+                        parent.user_id.sudo().child_ids = [(6, 0, user_ids)]
             else:
-                user_ids = self.env['res.users'].search([
+                user_ids = self.env['res.users'].sudo().search([
                     ('child_ids', 'in', self.user_id.id)])
                 for user_id in user_ids:
                     child_ids = user_id.child_ids.ids
                     child_ids.remove(self.user_id.id)
-                    user_id.child_ids = [(6, 0, child_ids)]
+                    user_id.sudo().child_ids = [(6, 0, child_ids)]
         if vals.get('user_id', False):
             for parent_id in self.parent_ids:
                 child_ids = parent_id.user_id.child_ids.ids
                 child_ids.append(vals['user_id'])
-                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
+                parent_id.name.user_id.sudo().child_ids = [(6, 0, child_ids)]
         self.env.registry.clear_cache()
         return res
 
@@ -206,7 +206,7 @@ class OpStudent(models.Model):
                 for parent_id in record.parent_ids:
                     child_ids = parent_id.user_id.child_ids.ids
                     child_ids.remove(record.user_id.id)
-                    parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
+                    parent_id.name.user_id.sudo().child_ids = [(6, 0, child_ids)]
         return super(OpStudent, self).unlink()
 
     def get_parent(self):
