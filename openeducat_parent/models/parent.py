@@ -35,6 +35,10 @@ class OpParent(models.Model):
     active = fields.Boolean(default=True)
     relationship_id = fields.Many2one('op.parent.relationship',
                                       'Relation with Student', required=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.company,
+        index=True)
 
     _unique_parent = models.Constraint('unique(name)',
                                        'Can not create parent multiple times.!')
