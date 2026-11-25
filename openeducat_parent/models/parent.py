@@ -29,7 +29,7 @@ class OpParent(models.Model):
     name = fields.Many2one('res.partner', 'Name', required=True,
                            domain="[('is_parent', '=', True)]")
     user_id = fields.Many2one('res.users', string='User', store=True)
-    student_ids = fields.Many2many('op.student', string='Student(s)', required=True,)
+    student_ids = fields.Many2many('op.student', string='Student(s)', required=True, )
     mobile = fields.Char(string='Mobile')
     email = fields.Char(string='Email')
     active = fields.Boolean(default=True)
@@ -46,7 +46,7 @@ class OpParent(models.Model):
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
-            # the contact's own login, not its salesperson (partner.user_id)
+            # the contact's own login, not partner.user_id (its salesperson)
             self.user_id = self.name.user_ids[:1]
             self.mobile = self.name.phone
             self.email = self.name.email
@@ -114,7 +114,6 @@ class OpParent(models.Model):
 
         res = super(OpParent, self).create(vals_list)
 
-        res._update_parent_user_children()
         for record in res:
             if record.name and not record.name.is_parent:
                 record.name.is_parent = True
@@ -122,28 +121,42 @@ class OpParent(models.Model):
         res._sync_children()
         return res
 
-    def _update_parent_user_children(self):
-        """Give each parent login (op.parent.user_id) its students' logins
-        as child_ids. The portal rules of the parent read child_ids.
-
-        Note: partner.user_id is the contact's salesperson, not the
-        parent's login, so it must not be used here.
-        """
-        for rec in self:
-            if rec.user_id:
-                rec.user_id.child_ids = [(6, 0, rec.student_ids.user_id.ids)]
-
     def write(self, vals):
         old_users = self.user_id if 'user_id' in vals else self.env['res.users']
         res = super(OpParent, self).write(vals)
-        # a login unlinked from the parent loses the children it got from it
-        (old_users - self.user_id).write({'child_ids': [(5, 0, 0)]})
         if 'student_ids' in vals or 'user_id' in vals:
-            self._update_parent_user_children()
+            # a login that is no longer this parent's loses its children
+            dropped = old_users - self.user_id
+            if dropped:
+                dropped.sudo().write({'child_ids': [(5, 0, 0)]})
+            self._sync_children()
+        if 'active' in vals:
+            # Cascade archive/unarchive to the parent's login, so an archived
+            # parent cannot keep signing in and seeing the (former) children.
+            touched_users = self.env['res.users']
+            for rec in self:
+                if not rec.user_id:
+                    continue
+                touched_users |= rec.user_id
+                if vals['active']:
+                    rec.user_id.sudo().write({
+                        'active': True,
+                        'child_ids': [(6, 0, rec.student_ids.user_id.ids)],
+                    })
+                else:
+                    rec.user_id.sudo().write({
+                        'active': False,
+                        'child_ids': [(6, 0, [])],
+                    })
+            if touched_users:
+                # Targeted: only the fields we wrote, only the records we wrote.
+                touched_users.invalidate_recordset(['active', 'child_ids'])
         return res
 
     def unlink(self):
-        self.user_id.write({'child_ids': [(5, 0, 0)]})
+        for record in self:
+            if record.user_id:
+                record.user_id.sudo().child_ids = [(6, 0, [])]
         return super(OpParent, self).unlink()
 
     def create_parent_user(self):
@@ -158,25 +171,23 @@ class OpParent(models.Model):
             if not partner.phone and record.mobile:
                 partner.phone = record.mobile
 
-            if not record.user_id and record.name.user_ids:
-                # the contact already has a login: link it
-                record.user_id = record.name.user_ids[:1]
-            if not record.user_id:
+            # partner.user_id is the contact's salesperson; the parent's
+            # login is the user whose partner is this contact
+            user = record.user_id or partner.sudo().user_ids[:1]
+            if not user:
                 groups_id = template and template.group_ids or False
-                user_ids = [
-                    parent.user_id.id for
-                    parent in record.student_ids if parent.user_id]
-                user_id = users_res.create({
-                    'name': record.name.name,
-                    'partner_id': record.name.id,
-                    'login': record.name.email or record.email,
+                user = users_res.create({
+                    'name': partner.name,
+                    'partner_id': partner.id,
+                    'login': partner.email or record.email,
                     'is_parent': True,
                     'tz': self.env.context.get('tz'),
                     'group_ids': groups_id,
-                    'child_ids': [(6, 0, user_ids)]
                 })
-                record.user_id = user_id
-            record._update_parent_user_children()
+            if record.user_id != user:
+                record.user_id = user  # write() syncs the children
+            else:
+                record._sync_children()
 
     @api.model
     def get_import_templates(self):
@@ -194,23 +205,23 @@ class OpStudent(models.Model):
     @api.model_create_multi
     def create(self, vals):
         res = super(OpStudent, self).create(vals)
-        res.parent_ids._update_parent_user_children()
+        res.parent_ids._sync_children()
         return res
 
     def write(self, vals):
-        # parents the students had before the write lose them if unlinked
-        parents = self.parent_ids if 'parent_ids' in vals else self.env['op.parent']
+        track = 'parent_ids' in vals or 'user_id' in vals
+        old_parents = self.parent_ids if track else self.env['op.parent']
         res = super(OpStudent, self).write(vals)
-        if 'parent_ids' in vals or 'user_id' in vals:
-            # recomputed from the students' logins: a changed student login
-            # replaces the old one on the parent login
-            (parents | self.parent_ids)._update_parent_user_children()
+        if track:
+            # Re-sync parents the student left and parents it now has, so a
+            # new / changed / removed student login reaches the parent LOGIN.
+            (old_parents | self.parent_ids)._sync_children()
         return res
 
     def unlink(self):
         parents = self.parent_ids
         res = super(OpStudent, self).unlink()
-        parents.exists()._update_parent_user_children()
+        parents.exists()._sync_children()
         return res
 
     def get_parent(self):
