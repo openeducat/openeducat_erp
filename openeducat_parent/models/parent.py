@@ -53,15 +53,17 @@ class OpParent(models.Model):
     def _sync_children(self):
         """Make the parent login's child_ids match the logins of its students."""
         # Skip entirely when none of the parents have a login: there is
-        # nothing to write on res.users, so the per-env field cache is still
-        # valid and env.invalidate_all() would just be wasted work.
-        if not self.mapped('user_id'):
+        # nothing to write on res.users, and no cache to invalidate.
+        touched_users = self.mapped('user_id')
+        if not touched_users:
             return
         for rec in self:
             if rec.user_id:
                 rec.user_id.sudo().child_ids = [
                     (6, 0, rec.student_ids.user_id.ids)]
-        self.env.invalidate_all()
+        # Targeted cache invalidation: only the child_ids field on the users
+        # we actually wrote to, so bulk operations stay cheap.
+        touched_users.invalidate_recordset(['child_ids'])
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -125,11 +127,11 @@ class OpParent(models.Model):
         if 'active' in vals:
             # Cascade archive/unarchive to the parent's login, so an archived
             # parent cannot keep signing in and seeing the (former) children.
-            touched_users = False
+            touched_users = self.env['res.users']
             for rec in self:
                 if not rec.user_id:
                     continue
-                touched_users = True
+                touched_users |= rec.user_id
                 if vals['active']:
                     rec.user_id.sudo().write({
                         'active': True,
@@ -141,9 +143,8 @@ class OpParent(models.Model):
                         'child_ids': [(6, 0, [])],
                     })
             if touched_users:
-                # child_ids changed on the parent login, so the portal
-                # record-rule cache (which reads user.child_ids) is stale.
-                self.env.invalidate_all()
+                # Targeted: only the fields we wrote, only the records we wrote.
+                touched_users.invalidate_recordset(['active', 'child_ids'])
         return res
 
     def unlink(self):
