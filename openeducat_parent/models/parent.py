@@ -35,6 +35,10 @@ class OpParent(models.Model):
     active = fields.Boolean(default=True)
     relationship_id = fields.Many2one('op.parent.relationship',
                                       'Relation with Student', required=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.company,
+        index=True)
 
     _unique_parent = models.Constraint('unique(name)',
                                        'Can not create parent multiple times.!')
@@ -118,6 +122,28 @@ class OpParent(models.Model):
         res = super(OpParent, self).write(vals)
         if 'student_ids' in vals or 'user_id' in vals:
             self._sync_children()
+        if 'active' in vals:
+            # Cascade archive/unarchive to the parent's login, so an archived
+            # parent cannot keep signing in and seeing the (former) children.
+            touched_users = False
+            for rec in self:
+                if not rec.user_id:
+                    continue
+                touched_users = True
+                if vals['active']:
+                    rec.user_id.sudo().write({
+                        'active': True,
+                        'child_ids': [(6, 0, rec.student_ids.user_id.ids)],
+                    })
+                else:
+                    rec.user_id.sudo().write({
+                        'active': False,
+                        'child_ids': [(6, 0, [])],
+                    })
+            if touched_users:
+                # child_ids changed on the parent login, so the portal
+                # record-rule cache (which reads user.child_ids) is stale.
+                self.env.invalidate_all()
         return res
 
     def unlink(self):
