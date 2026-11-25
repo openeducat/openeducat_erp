@@ -46,6 +46,19 @@ class OpParent(models.Model):
             self.mobile = self.name.phone
             self.email = self.name.email
 
+    def _sync_children(self):
+        """Make the parent login's child_ids match the logins of its students."""
+        # Skip entirely when none of the parents have a login: there is
+        # nothing to write on res.users, so the per-env field cache is still
+        # valid and env.invalidate_all() would just be wasted work.
+        if not self.mapped('user_id'):
+            return
+        for rec in self:
+            if rec.user_id:
+                rec.user_id.child_ids = [
+                    (6, 0, rec.student_ids.user_id.ids)]
+        self.env.invalidate_all()
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -95,23 +108,16 @@ class OpParent(models.Model):
         res = super(OpParent, self).create(vals_list)
 
         for record in res:
-            if record.student_ids and record.name.user_id:
-                user_ids = [s.user_id.id for s in record.student_ids if s.user_id]
-                record.user_id.child_ids = [(6, 0, user_ids)]
-
             if record.name and not record.name.is_parent:
                 record.name.is_parent = True
 
+        res._sync_children()
         return res
 
     def write(self, vals):
         res = super(OpParent, self).write(vals)
-        for rec in self:
-            if vals.get('student_ids', False) and rec.name.user_id:
-                student_ids = rec.student_ids.browse(rec.student_ids.ids)
-                usr_ids = [student_id.user_id.id for student_id in student_ids
-                           if student_id.user_id]
-                rec.user_id.child_ids = [(6, 0, usr_ids)]
+        if 'student_ids' in vals or 'user_id' in vals:
+            self._sync_children()
         return res
 
     def unlink(self):
@@ -165,48 +171,24 @@ class OpStudent(models.Model):
     @api.model_create_multi
     def create(self, vals):
         res = super(OpStudent, self).create(vals)
-        for values in vals:
-            if values.get('parent_ids', False):
-                for parent_id in res.parent_ids:
-                    if parent_id.user_id:
-                        user_ids = [student.user_id.id for student
-                                    in parent_id.student_ids if student.user_id]
-                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
+        res.parent_ids._sync_children()
         return res
 
     def write(self, vals):
+        track = 'parent_ids' in vals or 'user_id' in vals
+        old_parents = self.parent_ids if track else self.env['op.parent']
         res = super(OpStudent, self).write(vals)
-        if vals.get('parent_ids', False):
-            user_ids = []
-            if self.parent_ids:
-                for parent in self.parent_ids:
-                    if parent.user_id:
-                        user_ids = [parent.user_id.id for parent in parent.student_ids
-                                    if parent.user_id]
-                        parent.user_id.child_ids = [(6, 0, user_ids)]
-            else:
-                user_ids = self.env['res.users'].search([
-                    ('child_ids', 'in', self.user_id.id)])
-                for user_id in user_ids:
-                    child_ids = user_id.child_ids.ids
-                    child_ids.remove(self.user_id.id)
-                    user_id.child_ids = [(6, 0, child_ids)]
-        if vals.get('user_id', False):
-            for parent_id in self.parent_ids:
-                child_ids = parent_id.user_id.child_ids.ids
-                child_ids.append(vals['user_id'])
-                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
-        self.env.invalidate_all()
+        if track:
+            # Re-sync parents the student left and parents it now has, so a
+            # new / changed / removed student login reaches the parent LOGIN.
+            (old_parents | self.parent_ids)._sync_children()
         return res
 
     def unlink(self):
-        for record in self:
-            if record.parent_ids:
-                for parent_id in record.parent_ids:
-                    child_ids = parent_id.user_id.child_ids.ids
-                    child_ids.remove(record.user_id.id)
-                    parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
-        return super(OpStudent, self).unlink()
+        parents = self.parent_ids
+        res = super(OpStudent, self).unlink()
+        parents.exists()._sync_children()
+        return res
 
     def get_parent(self):
         self.ensure_one()
