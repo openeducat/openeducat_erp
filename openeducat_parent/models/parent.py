@@ -29,7 +29,7 @@ class OpParent(models.Model):
     name = fields.Many2one('res.partner', 'Name', required=True,
                            domain="[('is_parent', '=', True)]")
     user_id = fields.Many2one('res.users', string='User', store=True)
-    student_ids = fields.Many2many('op.student', string='Student(s)', required=True,)
+    student_ids = fields.Many2many('op.student', string='Student(s)', required=True, )
     mobile = fields.Char(string='Mobile')
     email = fields.Char(string='Email')
     active = fields.Boolean(default=True)
@@ -46,7 +46,8 @@ class OpParent(models.Model):
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
-            self.user_id = self.name.user_id.id if self.name.user_id else False
+            # the contact's own login, not partner.user_id (its salesperson)
+            self.user_id = self.name.user_ids[:1]
             self.mobile = self.name.phone
             self.email = self.name.email
 
@@ -121,8 +122,13 @@ class OpParent(models.Model):
         return res
 
     def write(self, vals):
+        old_users = self.user_id if 'user_id' in vals else self.env['res.users']
         res = super(OpParent, self).write(vals)
         if 'student_ids' in vals or 'user_id' in vals:
+            # a login that is no longer this parent's loses its children
+            dropped = old_users - self.user_id
+            if dropped:
+                dropped.sudo().write({'child_ids': [(5, 0, 0)]})
             self._sync_children()
         if 'active' in vals:
             # Cascade archive/unarchive to the parent's login, so an archived
@@ -165,22 +171,23 @@ class OpParent(models.Model):
             if not partner.phone and record.mobile:
                 partner.phone = record.mobile
 
-            if not record.name.user_id:
+            # partner.user_id is the contact's salesperson; the parent's
+            # login is the user whose partner is this contact
+            user = record.user_id or partner.sudo().user_ids[:1]
+            if not user:
                 groups_id = template and template.group_ids or False
-                user_ids = [
-                    parent.user_id.id for
-                    parent in record.student_ids if parent.user_id]
-                user_id = users_res.create({
-                    'name': record.name.name,
-                    'partner_id': record.name.id,
-                    'login': record.name.email or record.email,
+                user = users_res.create({
+                    'name': partner.name,
+                    'partner_id': partner.id,
+                    'login': partner.email or record.email,
                     'is_parent': True,
                     'tz': self.env.context.get('tz'),
                     'group_ids': groups_id,
-                    'child_ids': [(6, 0, user_ids)]
                 })
-                record.user_id = user_id
-                record.name.user_id = user_id
+            if record.user_id != user:
+                record.user_id = user  # write() syncs the children
+            else:
+                record._sync_children()
 
     @api.model
     def get_import_templates(self):
