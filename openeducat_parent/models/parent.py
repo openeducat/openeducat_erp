@@ -55,7 +55,7 @@ class OpParent(models.Model):
             return
         for rec in self:
             if rec.user_id:
-                rec.user_id.child_ids = [
+                rec.user_id.sudo().child_ids = [
                     (6, 0, rec.student_ids.user_id.ids)]
         self.env.invalidate_all()
 
@@ -122,13 +122,13 @@ class OpParent(models.Model):
 
     def unlink(self):
         for record in self:
-            if record.name.user_id:
-                record.user_id.child_ids = [(6, 0, [])]
+            if record.user_id:
+                record.user_id.sudo().child_ids = [(6, 0, [])]
         return super(OpParent, self).unlink()
 
     def create_parent_user(self):
         template = self.env.ref('openeducat_parent.parent_template_user')
-        users_res = self.env['res.users']
+        users_res = self.env['res.users'].sudo()
         for record in self:
             partner = record.name
             if not (partner.email or record.email):
