@@ -111,10 +111,16 @@
                                 <field name="number"/>
                                 <field name="library_card_type_id"/>
                                 <field name="type"/>
+                                <label for="student_id" string="Student" invisible="type != 'student'"/>
                                 <field name="student_id" options="{'no_create': True , 'no_open': True}"
-                                invisible="type != 'student'" required= "type == 'student'"/>
+                                       invisible="type != 'student'" required="type == 'student'"
+                                       nolabel="1"/>
+
+                                <label for="faculty_id" string="Faculty" invisible="type != 'faculty'"/>
                                 <field name="faculty_id" options="{'no_create': True , 'no_open': True}"
-                                invisible="type != 'faculty'" required= "type == 'faculty'"/>
+                                       invisible="type != 'faculty'" 
+                                       required="type == 'faculty'"
+                                       nolabel="1"/>
                             </group>
                             <group>
                                 <field name="issue_date"/>

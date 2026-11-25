@@ -11,19 +11,19 @@
                             <div id="informations" class="row mt-4 mb-4">
                                 <div class="col-auto col-3 mw-100 mb-2">
                                     <strong>Class</strong>
-                                    <p class="m-0" t-esc="data['course_id'][1]"/>
+                                    <p class="m-0" t-out="data['course_id'][1]"/>
                                 </div>
                                 <div class="col-auto col-3 mw-100 mb-2">
                                     <strong>Batch</strong>
-                                    <p class="m-0" t-esc="data.get('batch_id') and data['batch_id'][1] or ''"/>
+                                    <p class="m-0" t-out="data.get('batch_id') and data['batch_id'][1] or ''"/>
                                 </div>
                                 <div class="col-auto col-3 mw-100 mb-2">
                                     <strong>From Date</strong>
-                                    <p class="m-0" t-esc="data['start_date']" t-options="{'widget':'date'}"/>
+                                    <p class="m-0" t-out="data['start_date']" t-options="{'widget':'date'}"/>
                                 </div>
                                 <div class="col-auto col-3 mw-100 mb-2">
                                     <strong>To Date</strong>
-                                    <p class="m-0" t-esc="data['end_date']" t-options="{'widget':'date'}"/>
+                                    <p class="m-0" t-out="data['end_date']" t-options="{'widget':'date'}"/>
                                 </div>
                             </div>
                             <table class="table table-sm o_main_table table-borderless mt-4">
@@ -43,25 +43,25 @@
                                             <span t-out="a['name'] if a['name'] else ''"/>
                                         </td>
                                         <td class="text-start align-middle">
-                                            <span t-esc="a['line'].get('0',{'subject':''})['subject']"/>
+                                            <span t-out="a['line'].get('0',{'subject':''})['subject']"/>
                                         </td>
                                         <td class="text-start align-middle">
-                                            <span t-esc="a['line'].get('1',{'subject':''})['subject']"/>
+                                            <span t-out="a['line'].get('1',{'subject':''})['subject']"/>
                                         </td>
                                         <td class="text-start align-middle">
-                                            <span t-esc="a['line'].get('2',{'subject':''})['subject']"/>
+                                            <span t-out="a['line'].get('2',{'subject':''})['subject']"/>
                                         </td>
                                         <td class="text-start align-middle">
-                                            <span t-esc="a['line'].get('3',{'subject':''})['subject']"/>
+                                            <span t-out="a['line'].get('3',{'subject':''})['subject']"/>
                                         </td>
                                         <td class="text-start align-middle">
-                                            <span t-esc="a['line'].get('4',{'subject':''})['subject']"/>
+                                            <span t-out="a['line'].get('4',{'subject':''})['subject']"/>
                                         </td>
                                         <td class="text-start align-middle">
-                                            <span t-esc="a['line'].get('5',{'subject':''})['subject']"/>
+                                            <span t-out="a['line'].get('5',{'subject':''})['subject']"/>
                                         </td>
                                         <td class="text-start align-middle">
-                                            <span t-esc="a['line'].get('6',{'subject':''})['subject']"/>
+                                            <span t-out="a['line'].get('6',{'subject':''})['subject']"/>
                                         </td>
                                     </tr>
                                 </tbody>

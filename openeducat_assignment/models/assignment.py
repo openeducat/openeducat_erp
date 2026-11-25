@@ -90,8 +90,9 @@ class OpAssignment(models.Model):
         # cleared batch triggers `onchange_batch_id` on the next tick
         # (with a False batch → allocation stays empty), so the two
         # side-effects compose safely.
-        self.batch_id = False
-        self.allocation_ids = [(5, 0, 0)]
+        if self.batch_id.course_id != self.course_id:
+            self.batch_id = False
+            self.allocation_ids = [(5, 0, 0)]
         if self.course_id:
             subject_ids = self.env['op.course'].search([
                 ('id', '=', self.course_id.id)]).subject_ids

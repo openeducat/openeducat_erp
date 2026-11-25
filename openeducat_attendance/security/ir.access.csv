@@ -2,9 +2,10 @@ id,name,model_id,group_id/id,operation,domain
 access_op_attendance_register_faculty,op_attendance_register_faculty,op.attendance.register,openeducat_attendance.group_op_attendance_user,r,
 access_op_attendance_sheet_faculty,op_attendance_sheet_faculty,op.attendance.sheet,openeducat_attendance.group_op_attendance_user,cru,
 access_op_attendance_line_faculty,op_attendance_line_faculty,op.attendance.line,openeducat_attendance.group_op_attendance_user,cru,
-access_op_attendance_line_student,op_attendance_line_student,op.attendance.line,openeducat_attendance.group_op_attendance_manager,crud,"['|', ('student_id.user_id', '=', user.id), ('student_id.user_id', 'in', user.child_ids.ids)]"
+access_op_attendance_line_student,op_attendance_line_student,op.attendance.line,openeducat_attendance.group_op_attendance_manager,crud,
 access_op_attendance_register_student,op_attendance_register_student,op.attendance.register,openeducat_attendance.group_op_attendance_manager,crud,
 access_op_attendance_sheet_student,op_attendance_sheet_student,op.attendance.sheet,openeducat_attendance.group_op_attendance_manager,crud,
 access_op_attendance_type_faculty,access_op_attendance_type_faculty,op.attendance.type,openeducat_attendance.group_op_attendance_user,r,
 access_op_attendance_type_manager,access_op_attendance_type_back_office,op.attendance.type,openeducat_attendance.group_op_attendance_manager,crud,
 access_student_attendance,name_student_attendance,student.attendance,openeducat_attendance.group_op_attendance_manager,crud,
+attendance_type_multi_comp_rule,attendance type multi comp rule,op.attendance.type,,crud,"[('company_id', 'in', company_ids + [False])]"

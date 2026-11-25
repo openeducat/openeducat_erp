@@ -35,6 +35,10 @@ class OpParent(models.Model):
     active = fields.Boolean(default=True)
     relationship_id = fields.Many2one('op.parent.relationship',
                                       'Relation with Student', required=True)
+    company_id = fields.Many2one(
+        'res.company', string='Company',
+        default=lambda self: self.env.company,
+        index=True)
 
     _unique_parent = models.Constraint('unique(name)',
                                        'Can not create parent multiple times.!')
@@ -46,6 +50,21 @@ class OpParent(models.Model):
             self.user_id = self.name.user_ids[:1]
             self.mobile = self.name.phone
             self.email = self.name.email
+
+    def _sync_children(self):
+        """Make the parent login's child_ids match the logins of its students."""
+        # Skip entirely when none of the parents have a login: there is
+        # nothing to write on res.users, and no cache to invalidate.
+        touched_users = self.mapped('user_id')
+        if not touched_users:
+            return
+        for rec in self:
+            if rec.user_id:
+                rec.user_id.sudo().child_ids = [
+                    (6, 0, rec.student_ids.user_id.ids)]
+        # Targeted cache invalidation: only the child_ids field on the users
+        # we actually wrote to, so bulk operations stay cheap.
+        touched_users.invalidate_recordset(['child_ids'])
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -100,6 +119,7 @@ class OpParent(models.Model):
             if record.name and not record.name.is_parent:
                 record.name.is_parent = True
 
+        res._sync_children()
         return res
 
     def _update_parent_user_children(self):
@@ -128,7 +148,7 @@ class OpParent(models.Model):
 
     def create_parent_user(self):
         template = self.env.ref('openeducat_parent.parent_template_user')
-        users_res = self.env['res.users']
+        users_res = self.env['res.users'].sudo()
         for record in self:
             partner = record.name
             if not (partner.email or record.email):
