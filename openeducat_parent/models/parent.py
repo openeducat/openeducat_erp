@@ -185,7 +185,6 @@ class OpStudent(models.Model):
             # recomputed from the students' logins: a changed student login
             # replaces the old one on the parent login
             (parents | self.parent_ids)._update_parent_user_children()
-        self.env.invalidate_all()
         return res
 
     def unlink(self):
