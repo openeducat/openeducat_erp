@@ -42,7 +42,8 @@ class OpParent(models.Model):
     @api.onchange('name')
     def _onchange_name(self):
         if self.name:
-            self.user_id = self.name.user_id.id if self.name.user_id else False
+            # the contact's own login, not its salesperson (partner.user_id)
+            self.user_id = self.name.user_ids[:1]
             self.mobile = self.name.phone
             self.email = self.name.email
 
@@ -94,30 +95,35 @@ class OpParent(models.Model):
 
         res = super(OpParent, self).create(vals_list)
 
+        res._update_parent_user_children()
         for record in res:
-            if record.student_ids and record.name.user_id:
-                user_ids = [s.user_id.id for s in record.student_ids if s.user_id]
-                record.user_id.child_ids = [(6, 0, user_ids)]
-
             if record.name and not record.name.is_parent:
                 record.name.is_parent = True
 
         return res
 
-    def write(self, vals):
-        res = super(OpParent, self).write(vals)
+    def _update_parent_user_children(self):
+        """Give each parent login (op.parent.user_id) its students' logins
+        as child_ids. The portal rules of the parent read child_ids.
+
+        Note: partner.user_id is the contact's salesperson, not the
+        parent's login, so it must not be used here.
+        """
         for rec in self:
-            if vals.get('student_ids', False) and rec.name.user_id:
-                student_ids = rec.student_ids.browse(rec.student_ids.ids)
-                usr_ids = [student_id.user_id.id for student_id in student_ids
-                           if student_id.user_id]
-                rec.user_id.child_ids = [(6, 0, usr_ids)]
+            if rec.user_id:
+                rec.user_id.child_ids = [(6, 0, rec.student_ids.user_id.ids)]
+
+    def write(self, vals):
+        old_users = self.user_id if 'user_id' in vals else self.env['res.users']
+        res = super(OpParent, self).write(vals)
+        # a login unlinked from the parent loses the children it got from it
+        (old_users - self.user_id).write({'child_ids': [(5, 0, 0)]})
+        if 'student_ids' in vals or 'user_id' in vals:
+            self._update_parent_user_children()
         return res
 
     def unlink(self):
-        for record in self:
-            if record.name.user_id:
-                record.user_id.child_ids = [(6, 0, [])]
+        self.user_id.write({'child_ids': [(5, 0, 0)]})
         return super(OpParent, self).unlink()
 
     def create_parent_user(self):
@@ -132,7 +138,10 @@ class OpParent(models.Model):
             if not partner.phone and record.mobile:
                 partner.phone = record.mobile
 
-            if not record.name.user_id:
+            if not record.user_id and record.name.user_ids:
+                # the contact already has a login: link it
+                record.user_id = record.name.user_ids[:1]
+            if not record.user_id:
                 groups_id = template and template.group_ids or False
                 user_ids = [
                     parent.user_id.id for
@@ -147,7 +156,7 @@ class OpParent(models.Model):
                     'child_ids': [(6, 0, user_ids)]
                 })
                 record.user_id = user_id
-                record.name.user_id = user_id
+            record._update_parent_user_children()
 
     @api.model
     def get_import_templates(self):
@@ -165,48 +174,25 @@ class OpStudent(models.Model):
     @api.model_create_multi
     def create(self, vals):
         res = super(OpStudent, self).create(vals)
-        for values in vals:
-            if values.get('parent_ids', False):
-                for parent_id in res.parent_ids:
-                    if parent_id.user_id:
-                        user_ids = [student.user_id.id for student
-                                    in parent_id.student_ids if student.user_id]
-                        parent_id.user_id.child_ids = [(6, 0, user_ids)]
+        res.parent_ids._update_parent_user_children()
         return res
 
     def write(self, vals):
+        # parents the students had before the write lose them if unlinked
+        parents = self.parent_ids if 'parent_ids' in vals else self.env['op.parent']
         res = super(OpStudent, self).write(vals)
-        if vals.get('parent_ids', False):
-            user_ids = []
-            if self.parent_ids:
-                for parent in self.parent_ids:
-                    if parent.user_id:
-                        user_ids = [parent.user_id.id for parent in parent.student_ids
-                                    if parent.user_id]
-                        parent.user_id.child_ids = [(6, 0, user_ids)]
-            else:
-                user_ids = self.env['res.users'].search([
-                    ('child_ids', 'in', self.user_id.id)])
-                for user_id in user_ids:
-                    child_ids = user_id.child_ids.ids
-                    child_ids.remove(self.user_id.id)
-                    user_id.child_ids = [(6, 0, child_ids)]
-        if vals.get('user_id', False):
-            for parent_id in self.parent_ids:
-                child_ids = parent_id.user_id.child_ids.ids
-                child_ids.append(vals['user_id'])
-                parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
+        if 'parent_ids' in vals or 'user_id' in vals:
+            # recomputed from the students' logins: a changed student login
+            # replaces the old one on the parent login
+            (parents | self.parent_ids)._update_parent_user_children()
         self.env.invalidate_all()
         return res
 
     def unlink(self):
-        for record in self:
-            if record.parent_ids:
-                for parent_id in record.parent_ids:
-                    child_ids = parent_id.user_id.child_ids.ids
-                    child_ids.remove(record.user_id.id)
-                    parent_id.name.user_id.child_ids = [(6, 0, child_ids)]
-        return super(OpStudent, self).unlink()
+        parents = self.parent_ids
+        res = super(OpStudent, self).unlink()
+        parents.exists()._update_parent_user_children()
+        return res
 
     def get_parent(self):
         self.ensure_one()
